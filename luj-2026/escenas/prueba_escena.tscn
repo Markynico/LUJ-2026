@@ -1,6 +1,110 @@
 [gd_scene format=3 uid="uid://dmc7utikh5oir"]
 
 [ext_resource type="Script" uid="uid://wyd6ylcfv1ua" path="res://scripts/script_para_guardar_github.gd" id="1_x6dlq"]
+[ext_resource type="Script" uid="uid://de507lqpxv4vx" path="res://scripts/instanciador_pelotita_prueba.gd" id="2_4lvbr"]
+[ext_resource type="PackedScene" uid="uid://81pksmc2o65u" path="res://escenas/pelotita_prueba.tscn" id="3_jn8va"]
+[ext_resource type="PackedScene" uid="uid://dy3jqoayfdkwm" path="res://escenas/pelotita_estatica_prueba.tscn" id="4_qjisj"]
 
 [node name="PRUEBA_ESCENA" type="Node2D" unique_id=1045362644]
 script = ExtResource("1_x6dlq")
+
+[node name="InstanciadorPelotita" type="Node" parent="." unique_id=468983718]
+script = ExtResource("2_4lvbr")
+escena_pelotita_prueba = ExtResource("3_jn8va")
+
+[node name="Label" type="Label" parent="." unique_id=1049854138]
+offset_left = 19.0
+offset_top = 15.0
+offset_right = 413.0
+offset_bottom = 38.0
+text = "para el prototipo hacer click y aparece una pelotita"
+
+[node name="Pelotita_estatica_prueba" parent="." unique_id=1399652072 instance=ExtResource("4_qjisj")]
+position = Vector2(316, 416)
+
+[node name="Pelotita_estatica_prueba2" parent="." unique_id=97392058 instance=ExtResource("4_qjisj")]
+position = Vector2(391, 414)
+
+[node name="Pelotita_estatica_prueba3" parent="." unique_id=299867459 instance=ExtResource("4_qjisj")]
+position = Vector2(485, 382)
+
+[node name="Pelotita_estatica_prueba4" parent="." unique_id=1560412993 instance=ExtResource("4_qjisj")]
+position = Vector2(575, 410)
+
+[node name="Pelotita_estatica_prueba5" parent="." unique_id=1302094454 instance=ExtResource("4_qjisj")]
+position = Vector2(674, 380)
+
+[node name="Pelotita_estatica_prueba6" parent="." unique_id=1145472262 instance=ExtResource("4_qjisj")]
+position = Vector2(745, 425)
+
+[node name="Pelotita_estatica_prueba7" parent="." unique_id=888120480 instance=ExtResource("4_qjisj")]
+position = Vector2(824, 382)
+
+[node name="Pelotita_estatica_prueba8" parent="." unique_id=656634429 instance=ExtResource("4_qjisj")]
+position = Vector2(908, 451)
+
+[node name="Pelotita_estatica_prueba9" parent="." unique_id=2035229286 instance=ExtResource("4_qjisj")]
+position = Vector2(734, 505)
+
+[node name="Pelotita_estatica_prueba10" parent="." unique_id=1202110764 instance=ExtResource("4_qjisj")]
+position = Vector2(614, 520)
+
+[node name="Pelotita_estatica_prueba11" parent="." unique_id=1109734897 instance=ExtResource("4_qjisj")]
+position = Vector2(477, 535)
+
+[node name="Pelotita_estatica_prueba12" parent="." unique_id=451839941 instance=ExtResource("4_qjisj")]
+position = Vector2(370, 544)
+
+[node name="Pelotita_estatica_prueba13" parent="." unique_id=1035051354 instance=ExtResource("4_qjisj")]
+position = Vector2(319, 355)
+
+[node name="Pelotita_estatica_prueba14" parent="." unique_id=303894575 instance=ExtResource("4_qjisj")]
+position = Vector2(270, 357)
+
+[node name="Pelotita_estatica_prueba15" parent="." unique_id=1266513723 instance=ExtResource("4_qjisj")]
+position = Vector2(287, 303)
+
+[node name="Pelotita_estatica_prueba16" parent="." unique_id=1101442520 instance=ExtResource("4_qjisj")]
+position = Vector2(435, 288)
+
+[node name="Pelotita_estatica_prueba17" parent="." unique_id=474351598 instance=ExtResource("4_qjisj")]
+position = Vector2(574, 303)
+
+[node name="Pelotita_estatica_prueba18" parent="." unique_id=1291736645 instance=ExtResource("4_qjisj")]
+position = Vector2(695, 282)
+
+[node name="Pelotita_estatica_prueba19" parent="." unique_id=1776732831 instance=ExtResource("4_qjisj")]
+position = Vector2(806, 278)
+
+[node name="Pelotita_estatica_prueba20" parent="." unique_id=96843228 instance=ExtResource("4_qjisj")]
+position = Vector2(905, 284)
+
+[node name="Pelotita_estatica_prueba21" parent="." unique_id=1135782096 instance=ExtResource("4_qjisj")]
+position = Vector2(961, 333)
+
+[node name="Pelotita_estatica_prueba22" parent="." unique_id=108318314 instance=ExtResource("4_qjisj")]
+position = Vector2(985, 436)
+
+[node name="Pelotita_estatica_prueba23" parent="." unique_id=1843559432 instance=ExtResource("4_qjisj")]
+position = Vector2(861, 565)
+
+[node name="Pelotita_estatica_prueba24" parent="." unique_id=208112070 instance=ExtResource("4_qjisj")]
+position = Vector2(752, 610)
+
+[node name="Pelotita_estatica_prueba25" parent="." unique_id=1414045852 instance=ExtResource("4_qjisj")]
+position = Vector2(675, 608)
+
+[node name="Pelotita_estatica_prueba26" parent="." unique_id=851860470 instance=ExtResource("4_qjisj")]
+position = Vector2(581, 597)
+
+[node name="Pelotita_estatica_prueba27" parent="." unique_id=866142204 instance=ExtResource("4_qjisj")]
+position = Vector2(455, 606)
+
+[node name="Pelotita_estatica_prueba28" parent="." unique_id=1764410896 instance=ExtResource("4_qjisj")]
+position = Vector2(470, 465)
+
+[node name="Pelotita_estatica_prueba29" parent="." unique_id=1993582750 instance=ExtResource("4_qjisj")]
+position = Vector2(959, 521)
+
+[node name="Pelotita_estatica_prueba30" parent="." unique_id=1462179173 instance=ExtResource("4_qjisj")]
+position = Vector2(264, 530)
