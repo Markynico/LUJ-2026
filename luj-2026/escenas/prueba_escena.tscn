@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://dmc7utikh5oir"]
 
+[ext_resource type="Script" uid="uid://wyd6ylcfv1ua" path="res://scripts/script_para_guardar_github.gd" id="1_x6dlq"]
+
 [node name="PRUEBA_ESCENA" type="Node2D" unique_id=1045362644]
+script = ExtResource("1_x6dlq")
