@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ddjsjatakql7"]
+
+[ext_resource type="Script" uid="uid://dcw0s4m8jmxet" path="res://scripts/niveles/movimiento_por_path.gd" id="1_mov"]
+
+[node name="Recorrido" type="Path2D" node_paths=PackedStringArray("seguidor")]
+script = ExtResource("1_mov")
+seguidor = NodePath("Seguidor")
+
+[node name="Seguidor" type="PathFollow2D" parent="."]
+rotates = false

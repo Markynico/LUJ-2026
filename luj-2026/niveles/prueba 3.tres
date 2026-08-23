@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="NivelData" format=3 uid="uid://cc6rta7y88b3s"]
+
+[ext_resource type="Script" uid="uid://1owdr3bm0age" path="res://scripts/niveles/forma_data.gd" id="1_csah6"]
+[ext_resource type="Script" uid="uid://4yxin8siliwu" path="res://scripts/niveles/nivel_data.gd" id="2_1ag0y"]
+
+[sub_resource type="Resource" id="Resource_e0ysx"]
+script = ExtResource("1_csah6")
+posicion = Vector2(650.81995, 384.36536)
+separacion_ovillos = 36.325
+"tamaño" = Vector2(760.7923, 173.12354)
+
+[resource]
+script = ExtResource("2_1ag0y")
+nombre = "prueba 3"
+formas = Array[ExtResource("1_csah6")]([SubResource("Resource_e0ysx")])

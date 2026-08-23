@@ -24,7 +24,20 @@ func pedir_regenerar() -> void:
 	if regeneracion_pendiente:
 		return
 	regeneracion_pendiente = true
-	regenerar.call_deferred()
+	if Engine.is_editor_hint():
+		regenerar.call_deferred()
+	else:
+		reposicionar.call_deferred()
+
+
+func reposicionar() -> void:
+	regeneracion_pendiente = false
+	var puntos : PackedVector2Array = forma.obtener_puntos()
+	if puntos.size() != get_child_count():
+		regenerar()
+		return
+	for i in puntos.size():
+		get_child(i).global_position = puntos[i]
 
 
 func regenerar() -> void:
