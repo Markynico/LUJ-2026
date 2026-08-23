@@ -4,9 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://cb5y372b6m6i0" path="res://escenas/fondo_menu_pelotitas.tscn" id="2_fondo"]
 [ext_resource type="PackedScene" uid="uid://b23m7w8h04g8j" path="res://escenas/componentes/gatito_menu.tscn" id="3_gatito"]
 [ext_resource type="Script" uid="uid://c5abydnl26fwy" path="res://scripts/boton_menu_animado.gd" id="4_boton"]
+[ext_resource type="PackedScene" uid="uid://bvqfl8uomex3l" path="res://escenas/componentes/reproductor_musica.tscn" id="5_musica"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_titulo"]
-font_size = 54
+font_size = 50
 font_color = Color(0.960784, 0.968627, 1, 1)
 outline_size = 10
 outline_color = Color(0.0823529, 0.0901961, 0.145098, 1)
@@ -15,7 +16,7 @@ shadow_color = Color(0, 0, 0, 0.5)
 shadow_offset = Vector2(0, 6)
 
 [sub_resource type="LabelSettings" id="LabelSettings_subtitulo"]
-font_size = 18
+font_size = 17
 font_color = Color(0.686275, 0.756863, 0.941176, 1)
 outline_size = 4
 outline_color = Color(0.0823529, 0.0901961, 0.145098, 0.8)
@@ -211,7 +212,7 @@ font_size = 32
 outline_size = 6
 outline_color = Color(0.08, 0.09, 0.15, 1)
 
-[node name="MenuPrincipal" type="Control" unique_id=1341228595]
+[node name="MenuPrincipal" type="Control" unique_id=929612266]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -220,11 +221,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_menu")
 
-[node name="FondoMenuPelotitas" parent="." unique_id=460261598 instance=ExtResource("2_fondo")]
+[node name="FondoMenuPelotitas" parent="." unique_id=1515011171 instance=ExtResource("2_fondo")]
 
-[node name="CapaUI" type="CanvasLayer" parent="." unique_id=247179072]
+[node name="CapaUI" type="CanvasLayer" parent="." unique_id=1632593200]
 
-[node name="ContenedorPrincipal" type="Control" parent="CapaUI" unique_id=1101640571]
+[node name="ContenedorPrincipal" type="Control" parent="CapaUI" unique_id=1758662874]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -233,57 +234,57 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="GatitoMenu" parent="CapaUI/ContenedorPrincipal" unique_id=1975331538 instance=ExtResource("3_gatito")]
-position = Vector2(340, 390)
-scale = Vector2(1.2, 1.2)
+[node name="GatitoMenu" parent="CapaUI/ContenedorPrincipal" unique_id=969704089 instance=ExtResource("3_gatito")]
+position = Vector2(340, 365)
+scale = Vector2(1.15, 1.15)
 
-[node name="ContenedorTitulo" type="VBoxContainer" parent="CapaUI/ContenedorPrincipal" unique_id=315198155]
+[node name="ContenedorTitulo" type="VBoxContainer" parent="CapaUI/ContenedorPrincipal" unique_id=45734546]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -300.0
-offset_top = 50.0
+offset_top = 35.0
 offset_right = 300.0
-offset_bottom = 160.0
+offset_bottom = 145.0
 grow_horizontal = 2
 theme_override_constants/separation = 4
 alignment = 1
 
-[node name="LabelTitulo" type="Label" parent="CapaUI/ContenedorPrincipal/ContenedorTitulo" unique_id=160456759]
+[node name="LabelTitulo" type="Label" parent="CapaUI/ContenedorPrincipal/ContenedorTitulo" unique_id=732445202]
 layout_mode = 2
-text = "LUJ 2026"
+text = "Juego epico de gato"
 label_settings = SubResource("LabelSettings_titulo")
 horizontal_alignment = 1
 
-[node name="LabelSubtitulo" type="Label" parent="CapaUI/ContenedorPrincipal/ContenedorTitulo" unique_id=612642011]
+[node name="LabelSubtitulo" type="Label" parent="CapaUI/ContenedorPrincipal/ContenedorTitulo" unique_id=1649292150]
 layout_mode = 2
-text = "¡Apunta, dispara y diviértete con los michis!"
+text = "DEsc epicarda de gatos"
 label_settings = SubResource("LabelSettings_subtitulo")
 horizontal_alignment = 1
 
-[node name="ContenedorBotones" type="VBoxContainer" parent="CapaUI/ContenedorPrincipal" unique_id=2029210917]
+[node name="ContenedorBotones" type="VBoxContainer" parent="CapaUI/ContenedorPrincipal" unique_id=217823068]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 20.0
-offset_top = -120.0
+offset_left = 30.0
+offset_top = -140.0
 offset_right = 320.0
-offset_bottom = 220.0
+offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 14
 alignment = 1
 
-[node name="BotonPlay" type="Button" parent="CapaUI/ContenedorPrincipal/ContenedorBotones" unique_id=1979279371]
+[node name="BotonPlay" type="Button" parent="CapaUI/ContenedorPrincipal/ContenedorBotones" unique_id=1196511977]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 60)
+custom_minimum_size = Vector2(290, 56)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_play_normal")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_play_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_play_hover")
@@ -291,11 +292,11 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_btn_play_hover")
 text = "▶  JUGAR"
 script = ExtResource("4_boton")
 
-[node name="BotonOpciones" type="Button" parent="CapaUI/ContenedorPrincipal/ContenedorBotones" unique_id=1014260209]
+[node name="BotonOpciones" type="Button" parent="CapaUI/ContenedorPrincipal/ContenedorBotones" unique_id=2053229974]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 54)
+custom_minimum_size = Vector2(290, 50)
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 19
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
@@ -303,11 +304,11 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
 text = "⚙  OPCIONES"
 script = ExtResource("4_boton")
 
-[node name="BotonCreditos" type="Button" parent="CapaUI/ContenedorPrincipal/ContenedorBotones" unique_id=374062774]
+[node name="BotonCreditos" type="Button" parent="CapaUI/ContenedorPrincipal/ContenedorBotones" unique_id=1379838949]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 54)
+custom_minimum_size = Vector2(290, 50)
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 19
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
@@ -315,11 +316,11 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
 text = "★  CRÉDITOS"
 script = ExtResource("4_boton")
 
-[node name="BotonSalir" type="Button" parent="CapaUI/ContenedorPrincipal/ContenedorBotones" unique_id=1421377744]
+[node name="BotonSalir" type="Button" parent="CapaUI/ContenedorPrincipal/ContenedorBotones" unique_id=666677066]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 54)
+custom_minimum_size = Vector2(290, 50)
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 19
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_salir_normal")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_salir_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_salir_hover")
@@ -327,7 +328,21 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_btn_salir_hover")
 text = "✖  CERRAR JUEGO"
 script = ExtResource("4_boton")
 
-[node name="PanelOpciones" type="PanelContainer" parent="CapaUI" unique_id=1756374802]
+[node name="ReproductorMusica" parent="CapaUI/ContenedorPrincipal" unique_id=579565593 instance=ExtResource("5_musica")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -280.0
+offset_top = -102.0
+offset_right = 280.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PanelOpciones" type="PanelContainer" parent="CapaUI" unique_id=407481080]
 unique_name_in_owner = true
 visible = false
 anchors_preset = 8
@@ -343,31 +358,31 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel_modal")
 
-[node name="VBoxOpciones" type="VBoxContainer" parent="CapaUI/PanelOpciones" unique_id=784942566]
+[node name="VBoxOpciones" type="VBoxContainer" parent="CapaUI/PanelOpciones" unique_id=412787199]
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="LabelOpciones" type="Label" parent="CapaUI/PanelOpciones/VBoxOpciones" unique_id=947791718]
+[node name="LabelOpciones" type="Label" parent="CapaUI/PanelOpciones/VBoxOpciones" unique_id=793964282]
 layout_mode = 2
 text = "OPCIONES"
 label_settings = SubResource("LabelSettings_modal_titulo")
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="CapaUI/PanelOpciones/VBoxOpciones" unique_id=958289205]
+[node name="HSeparator" type="HSeparator" parent="CapaUI/PanelOpciones/VBoxOpciones" unique_id=1959898527]
 layout_mode = 2
 
-[node name="HBoxVolumen" type="HBoxContainer" parent="CapaUI/PanelOpciones/VBoxOpciones" unique_id=166674980]
+[node name="HBoxVolumen" type="HBoxContainer" parent="CapaUI/PanelOpciones/VBoxOpciones" unique_id=1368120297]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="LabelVol" type="Label" parent="CapaUI/PanelOpciones/VBoxOpciones/HBoxVolumen" unique_id=1916741255]
+[node name="LabelVol" type="Label" parent="CapaUI/PanelOpciones/VBoxOpciones/HBoxVolumen" unique_id=1725808255]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "Volumen Master:"
 
-[node name="SliderVolumen" type="HSlider" parent="CapaUI/PanelOpciones/VBoxOpciones/HBoxVolumen" unique_id=1415881637]
+[node name="SliderVolumen" type="HSlider" parent="CapaUI/PanelOpciones/VBoxOpciones/HBoxVolumen" unique_id=607662655]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(240, 24)
 layout_mode = 2
@@ -375,26 +390,26 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 value = 80.0
 
-[node name="HBoxPantalla" type="HBoxContainer" parent="CapaUI/PanelOpciones/VBoxOpciones" unique_id=1254470526]
+[node name="HBoxPantalla" type="HBoxContainer" parent="CapaUI/PanelOpciones/VBoxOpciones" unique_id=1236815223]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="LabelPantalla" type="Label" parent="CapaUI/PanelOpciones/VBoxOpciones/HBoxPantalla" unique_id=2097315970]
+[node name="LabelPantalla" type="Label" parent="CapaUI/PanelOpciones/VBoxOpciones/HBoxPantalla" unique_id=1009012251]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "Pantalla Completa:"
 
-[node name="CheckPantallaCompleta" type="CheckBox" parent="CapaUI/PanelOpciones/VBoxOpciones/HBoxPantalla" unique_id=2015735507]
+[node name="CheckPantallaCompleta" type="CheckBox" parent="CapaUI/PanelOpciones/VBoxOpciones/HBoxPantalla" unique_id=2026506706]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Spacer" type="Control" parent="CapaUI/PanelOpciones/VBoxOpciones" unique_id=1871597790]
+[node name="Spacer" type="Control" parent="CapaUI/PanelOpciones/VBoxOpciones" unique_id=398673977]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="BotonCerrarOpciones" type="Button" parent="CapaUI/PanelOpciones/VBoxOpciones" unique_id=2140242328]
+[node name="BotonCerrarOpciones" type="Button" parent="CapaUI/PanelOpciones/VBoxOpciones" unique_id=1017243708]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(180, 48)
 layout_mode = 2
@@ -407,7 +422,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
 text = "VOLVER"
 script = ExtResource("4_boton")
 
-[node name="PanelCreditos" type="PanelContainer" parent="CapaUI" unique_id=1912616116]
+[node name="PanelCreditos" type="PanelContainer" parent="CapaUI" unique_id=780208973]
 unique_name_in_owner = true
 visible = false
 anchors_preset = 8
@@ -423,36 +438,36 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel_modal")
 
-[node name="VBoxCreditos" type="VBoxContainer" parent="CapaUI/PanelCreditos" unique_id=1371335076]
+[node name="VBoxCreditos" type="VBoxContainer" parent="CapaUI/PanelCreditos" unique_id=5604481]
 layout_mode = 2
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="LabelCreditos" type="Label" parent="CapaUI/PanelCreditos/VBoxCreditos" unique_id=486814274]
+[node name="LabelCreditos" type="Label" parent="CapaUI/PanelCreditos/VBoxCreditos" unique_id=1562622580]
 layout_mode = 2
 text = "CRÉDITOS"
 label_settings = SubResource("LabelSettings_modal_titulo")
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="CapaUI/PanelCreditos/VBoxCreditos" unique_id=826440529]
+[node name="HSeparator" type="HSeparator" parent="CapaUI/PanelCreditos/VBoxCreditos" unique_id=879455564]
 layout_mode = 2
 
-[node name="LabelTextoCreditos" type="Label" parent="CapaUI/PanelCreditos/VBoxCreditos" unique_id=92470218]
+[node name="LabelTextoCreditos" type="Label" parent="CapaUI/PanelCreditos/VBoxCreditos" unique_id=1125071665]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.88, 0.9, 0.96, 1)
 theme_override_font_sizes/font_size = 18
-text = "Desarrollo :
-Nombres del equipo
+text = "Desarrollo:
+Nombres de todos
 
 Motor: Godot Engine 4
-assets usados: pipipi"
+Assets usados: si usamos algo lo que usemos"
 horizontal_alignment = 1
 
-[node name="Spacer" type="Control" parent="CapaUI/PanelCreditos/VBoxCreditos" unique_id=1146462912]
+[node name="Spacer" type="Control" parent="CapaUI/PanelCreditos/VBoxCreditos" unique_id=1468536423]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="BotonCerrarCreditos" type="Button" parent="CapaUI/PanelCreditos/VBoxCreditos" unique_id=1062114357]
+[node name="BotonCerrarCreditos" type="Button" parent="CapaUI/PanelCreditos/VBoxCreditos" unique_id=750141010]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(180, 48)
 layout_mode = 2
