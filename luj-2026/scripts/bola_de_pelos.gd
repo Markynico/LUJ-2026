@@ -6,6 +6,7 @@ extends RigidBody2D
 @export var audio : AudioStreamPlayer
 @export var tipo_pelotita : PelotitaBase
 @export var estela_movimiento : EstelaMovimiento
+var fue_duplicada : bool = false #probando, seguro lo saco de aca
 
 func _ready() -> void:
 	estela_movimiento.set_color_estela(tipo_pelotita.colores_estela)
@@ -25,3 +26,11 @@ func impactar_con_objeto(objeto : Node):
 	apply_central_impulse(-normal * fuerza_rebote)
 	audio.play()
 	objeto.queue_free()
+
+
+func duplicar_pelotita():
+	if fue_duplicada:
+		return
+	get_parent().add_child(duplicate())
+	fue_duplicada = true
+	
