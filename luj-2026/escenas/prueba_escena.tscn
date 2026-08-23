@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dmc7utikh5oir"]
 
+[ext_resource type="PackedScene" uid="uid://djxr6fsxwllx3" path="res://escenas/game_manager.tscn" id="1_7oqg1"]
 [ext_resource type="PackedScene" uid="uid://brhfmi38jresg" path="res://escenas/componentes/disparador_pelotita.tscn" id="2_jn8va"]
+[ext_resource type="PackedScene" uid="uid://b07gjr8bpk3tm" path="res://escenas/hud.tscn" id="3_l1he2"]
 [ext_resource type="Script" uid="uid://bh3lxufik2p65" path="res://scripts/niveles/cargador_de_nivel.gd" id="3_qjisj"]
 [ext_resource type="Resource" uid="uid://dqestmncri4nu" path="res://niveles/prueba divisiones.tres" id="4_7oqg1"]
 [ext_resource type="PackedScene" uid="uid://dy3jqoayfdkwm" path="res://escenas/pelotita_estatica_prueba.tscn" id="4_qjisj"]
@@ -8,14 +10,21 @@
 
 [node name="PRUEBA_ESCENA" type="Node2D" unique_id=1045362644]
 
-[node name="DisparadorPelotita" parent="." unique_id=59303478 instance=ExtResource("2_jn8va")]
+[node name="GameManager" parent="." unique_id=627731887 node_paths=PackedStringArray("disparador") instance=ExtResource("1_7oqg1")]
+disparador = NodePath("../DisparadorPelotita")
+
+[node name="DisparadorPelotita" parent="." unique_id=59303478 node_paths=PackedStringArray("game_manager") instance=ExtResource("2_jn8va")]
 position = Vector2(639, 118)
+game_manager = NodePath("../GameManager")
+
+[node name="HUD" parent="." unique_id=2102008230 node_paths=PackedStringArray("game_manager") instance=ExtResource("3_l1he2")]
+game_manager = NodePath("../GameManager")
 
 [node name="Label" type="Label" parent="." unique_id=1049854138]
-offset_left = 19.0
-offset_top = 15.0
-offset_right = 413.0
-offset_bottom = 38.0
+offset_left = 4.0
+offset_top = 73.0
+offset_right = 398.0
+offset_bottom = 96.0
 text = "para el prototipo hacer click y aparece una pelotita"
 
 [node name="pelotitas de prueba" type="Node2D" parent="." unique_id=409704067]
