@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cdivisor000a1"]
+
+[ext_resource type="Script" uid="uid://5k0577aqxfdg" path="res://scripts/niveles/divisor.gd" id="1_div"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pared"]
+resource_local_to_scene = true
+size = Vector2(40, 200)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_punta"]
+resource_local_to_scene = true
+radius = 30.0
+
+[node name="Divisor" type="StaticBody2D" unique_id=1662655621 node_paths=PackedStringArray("colision_pared", "colision_punta")]
+script = ExtResource("1_div")
+alto = 200.0
+ancho = 40.0
+radio_punta = 30.0
+colision_pared = NodePath("ColisionPared")
+colision_punta = NodePath("ColisionPunta")
+
+[node name="ColisionPared" type="CollisionShape2D" parent="." unique_id=1782782826]
+position = Vector2(0, -100)
+shape = SubResource("RectangleShape2D_pared")
+
+[node name="ColisionPunta" type="CollisionShape2D" parent="." unique_id=579995083]
+position = Vector2(0, -200)
+shape = SubResource("CircleShape2D_punta")

@@ -84,7 +84,8 @@ func actualizar_seguidor() -> void:
 		return
 	seguidor.loop = bucle and not ida_y_vuelta
 	seguidor.rotates = rotar_con_el_path
-	seguidor.progress_ratio = progreso_inicial / 100.0
+	if obtener_curva().get_baked_length() > 0.0:
+		seguidor.progress_ratio = progreso_inicial / 100.0
 
 
 func obtener_forma() -> Node2D:

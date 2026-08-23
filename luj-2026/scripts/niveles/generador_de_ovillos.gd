@@ -11,6 +11,8 @@ var regeneracion_pendiente : bool = false
 
 
 func _ready() -> void:
+	if Engine.is_editor_hint() and escena_spawn and not escena_spawn.changed.is_connected(pedir_regenerar):
+		escena_spawn.changed.connect(pedir_regenerar)
 	set_as_top_level(true)
 	if not forma:
 		forma = get_parent() as Node2D

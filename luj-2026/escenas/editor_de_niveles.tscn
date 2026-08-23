@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://jimkk8u7orb2"]
 
 [ext_resource type="Script" uid="uid://bh3lxufik2p65" path="res://scripts/niveles/cargador_de_nivel.gd" id="1_carg"]
-[ext_resource type="Script" uid="uid://dcw0s4m8jmxet" path="res://scripts/niveles/movimiento_por_path.gd" id="3_awi8f"]
 [ext_resource type="PackedScene" uid="uid://cformarect0a1" path="res://escenas/componentes/forma_rectangulo.tscn" id="4_pevrx"]
-[ext_resource type="Script" uid="uid://1owd66s6mpge" path="res://scripts/niveles/forma_rectangulo.gd" id="5_k61t0"]
 [ext_resource type="PackedScene" uid="uid://ddjsjatakql7" path="res://escenas/componentes/recorrido.tscn" id="5_xrhlm"]
+[ext_resource type="PackedScene" uid="uid://bxjt6h43758na" path="res://escenas/componentes/divisiones_pachinko.tscn" id="7_divs"]
 
 [sub_resource type="Curve2D" id="Curve2D_pevrx"]
 _data = {
@@ -21,18 +20,14 @@ point_count = 4
 [node name="EditorDeNiveles" type="Node2D" unique_id=925235971]
 script = ExtResource("1_carg")
 
-[node name="Recorrido" parent="." unique_id=280754748 node_paths=PackedStringArray("seguidor") instance=ExtResource("5_xrhlm")]
+[node name="Recorrido" parent="." unique_id=280754748 instance=ExtResource("5_xrhlm")]
 position = Vector2(273.12997, 429.81)
 curve = SubResource("Curve2D_pevrx")
-script = ExtResource("3_awi8f")
-seguidor = NodePath("Seguidor")
 
 [node name="Seguidor" parent="Recorrido" index="0"]
-rotates = false
 loop = false
 
-[node name="FormaRectangulo" type="Node2D" parent="Recorrido/Seguidor" index="0" unique_id=643326389 instance=ExtResource("4_pevrx")]
-script = ExtResource("5_k61t0")
+[node name="FormaRectangulo" parent="Recorrido/Seguidor" index="0" unique_id=643326389 instance=ExtResource("4_pevrx")]
 "tamaño" = Vector2(216.16003, 194.59497)
 
 [node name="Recorrido2" parent="." unique_id=778508862 instance=ExtResource("5_xrhlm")]
@@ -48,20 +43,20 @@ loop = false
 [node name="FormaRectangulo" parent="Recorrido2/Seguidor" index="0" unique_id=986486089 instance=ExtResource("4_pevrx")]
 "tamaño" = Vector2(216.16003, 194.59497)
 
-[node name="@Path2D@130142" parent="." unique_id=784222684 node_paths=PackedStringArray("seguidor") instance=ExtResource("5_xrhlm")]
+[node name="Recorrido3" parent="." unique_id=784222684 instance=ExtResource("5_xrhlm")]
 position = Vector2(973.42847, 449.75647)
 curve = SubResource("Curve2D_k61t0")
-script = ExtResource("3_awi8f")
-seguidor = NodePath("Seguidor")
 
-[node name="Seguidor" parent="@Path2D@130142" index="0"]
-rotates = false
+[node name="Seguidor" parent="Recorrido3" index="0"]
 loop = false
 
-[node name="FormaRectangulo" type="Node2D" parent="@Path2D@130142/Seguidor" index="0" unique_id=762517866 instance=ExtResource("4_pevrx")]
-script = ExtResource("5_k61t0")
+[node name="FormaRectangulo" parent="Recorrido3/Seguidor" index="0" unique_id=762517866 instance=ExtResource("4_pevrx")]
 "tamaño" = Vector2(262.14, 198.83002)
+
+[node name="DivisionesPachinko" parent="." unique_id=631157151 instance=ExtResource("7_divs")]
+position = Vector2(0, 720)
+divisiones_intermedias = 3
 
 [editable path="Recorrido"]
 [editable path="Recorrido2"]
-[editable path="@Path2D@130142"]
+[editable path="Recorrido3"]
