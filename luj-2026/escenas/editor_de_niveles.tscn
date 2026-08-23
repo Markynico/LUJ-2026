@@ -12,6 +12,12 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="Curve2D" id="Curve2D_k61t0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -13.599976, -339.94, 0, 0, 0, 0, 157.40002, -252.94, 0, 0, 0, 0, 59.400024, -167.94)
+}
+point_count = 4
+
 [node name="EditorDeNiveles" type="Node2D" unique_id=925235971]
 script = ExtResource("1_carg")
 
@@ -42,5 +48,20 @@ loop = false
 [node name="FormaRectangulo" parent="Recorrido2/Seguidor" index="0" unique_id=986486089 instance=ExtResource("4_pevrx")]
 "tamaño" = Vector2(216.16003, 194.59497)
 
+[node name="@Path2D@130142" parent="." unique_id=784222684 node_paths=PackedStringArray("seguidor") instance=ExtResource("5_xrhlm")]
+position = Vector2(973.42847, 449.75647)
+curve = SubResource("Curve2D_k61t0")
+script = ExtResource("3_awi8f")
+seguidor = NodePath("Seguidor")
+
+[node name="Seguidor" parent="@Path2D@130142" index="0"]
+rotates = false
+loop = false
+
+[node name="FormaRectangulo" type="Node2D" parent="@Path2D@130142/Seguidor" index="0" unique_id=762517866 instance=ExtResource("4_pevrx")]
+script = ExtResource("5_k61t0")
+"tamaño" = Vector2(262.14, 198.83002)
+
 [editable path="Recorrido"]
 [editable path="Recorrido2"]
+[editable path="@Path2D@130142"]
