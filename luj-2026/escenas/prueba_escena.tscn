@@ -1,16 +1,12 @@
 [gd_scene format=3 uid="uid://dmc7utikh5oir"]
 
-[ext_resource type="Script" uid="uid://wyd6ylcfv1ua" path="res://scripts/script_para_guardar_github.gd" id="1_x6dlq"]
-[ext_resource type="Script" uid="uid://de507lqpxv4vx" path="res://scripts/instanciador_pelotita_prueba.gd" id="2_4lvbr"]
-[ext_resource type="PackedScene" uid="uid://81pksmc2o65u" path="res://escenas/pelotita_prueba.tscn" id="3_jn8va"]
+[ext_resource type="PackedScene" uid="uid://brhfmi38jresg" path="res://escenas/componentes/disparador_pelotita.tscn" id="2_jn8va"]
 [ext_resource type="PackedScene" uid="uid://dy3jqoayfdkwm" path="res://escenas/pelotita_estatica_prueba.tscn" id="4_qjisj"]
 
 [node name="PRUEBA_ESCENA" type="Node2D" unique_id=1045362644]
-script = ExtResource("1_x6dlq")
 
-[node name="InstanciadorPelotita" type="Node" parent="." unique_id=468983718]
-script = ExtResource("2_4lvbr")
-escena_pelotita_prueba = ExtResource("3_jn8va")
+[node name="DisparadorPelotita" parent="." unique_id=59303478 instance=ExtResource("2_jn8va")]
+position = Vector2(639, 118)
 
 [node name="Label" type="Label" parent="." unique_id=1049854138]
 offset_left = 19.0

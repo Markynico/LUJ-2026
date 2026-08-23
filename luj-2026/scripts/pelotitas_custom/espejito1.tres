@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="PelotitaEspejismo" format=3 uid="uid://douq6aja55n77"]
+
+[ext_resource type="Script" uid="uid://oyp7vfsbtov4" path="res://scripts/pelotitas_custom/pelotita_espejismo.gd" id="1_cr1et"]
+
+[resource]
+script = ExtResource("1_cr1et")
+metadata/_custom_type_script = "uid://oyp7vfsbtov4"

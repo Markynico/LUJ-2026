@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://brhfmi38jresg"]
+
+[ext_resource type="Script" uid="uid://de507lqpxv4vx" path="res://scripts/disparador_pelotita.gd" id="1_k5sp8"]
+[ext_resource type="PackedScene" uid="uid://dccnge8bwnhmv" path="res://escenas/bola_de_pelos.tscn" id="2_of528"]
+[ext_resource type="Texture2D" uid="uid://copta8wcxywct" path="res://iconos_custom/person_body.svg" id="3_of528"]
+[ext_resource type="PackedScene" uid="uid://bmqhpq2y5tv2w" path="res://escenas/componentes/trayectoria_disparo.tscn" id="4_c1g5h"]
+
+[node name="DisparadorPelotita" type="Node2D" unique_id=1250010144]
+script = ExtResource("1_k5sp8")
+escena_pelotita_prueba = ExtResource("2_of528")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=769145456]
+scale = Vector2(3, 3)
+texture = ExtResource("3_of528")
+
+[node name="TrayectoriaDisparo" parent="." unique_id=2096489121 node_paths=PackedStringArray("disparador") instance=ExtResource("4_c1g5h")]
+disparador = NodePath("..")

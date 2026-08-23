@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dmexovyecfyo4"]
+
+[ext_resource type="Script" uid="uid://cs0857v0ve0tm" path="res://scripts/estela_movimiento.gd" id="1_l8ec8"]
+
+[sub_resource type="Curve" id="Curve_tra1g"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_tra1g"]
+offsets = PackedFloat32Array(0.6234568, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="EstelaMovimiento" type="Line2D" unique_id=817457491]
+width_curve = SubResource("Curve_tra1g")
+default_color = Color(1, 1, 1, 0.7294118)
+gradient = SubResource("Gradient_tra1g")
+script = ExtResource("1_l8ec8")
