@@ -49,3 +49,18 @@ func regenerar() -> void:
 		var divisor := escena_divisor.instantiate()
 		divisor.position = Vector2(ancho_total * i / (cantidad - 1), 0)
 		add_child(divisor)
+
+
+func cantidad_de_divisores() -> int:
+	return divisiones_intermedias + 2
+
+
+func ancho_de_hueco() -> float:
+	return ancho_total / (cantidad_de_divisores() - 1)
+
+
+func obtener_centros_de_huecos() -> Array[float]:
+	var centros : Array[float] = []
+	for i in cantidad_de_divisores() - 1:
+		centros.append(ancho_de_hueco() * (i + 0.5))
+	return centros

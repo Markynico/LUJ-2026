@@ -2,6 +2,8 @@
 class_name CargadorDeNivel
 extends Node2D
 
+signal nivel_construido
+
 ##nivel que se construye al iniciar, si esta vacio se usan las formas que ya son hijas del nodo
 @export var nivel : NivelData:
 	set(valor):
@@ -80,6 +82,7 @@ func construir_nivel(datos_nivel : NivelData, duenio : Node = null) -> void:
 	limpiar_formas()
 	instanciar_formas(datos_nivel, duenio)
 	aplicar_divisiones(datos_nivel)
+	nivel_construido.emit()
 
 
 func obtener_divisiones() -> DivisionesPachinko:
@@ -94,7 +97,6 @@ func aplicar_divisiones(datos_nivel : NivelData) -> void:
 	if not divisiones:
 		divisiones = escena_divisiones.instantiate()
 		add_child(divisiones, true)
-	divisiones.divisiones_intermedias = datos_nivel.divisiones_intermedias
 	divisiones.position = datos_nivel.posicion_divisiones
 	divisiones.ancho_total = datos_nivel.ancho_divisiones
 
@@ -157,7 +159,6 @@ func exportar_nivel(nombre : String) -> NivelData:
 		datos_nivel.formas.append(raiz.obtener_datos())
 	var divisiones := obtener_divisiones()
 	if divisiones:
-		datos_nivel.divisiones_intermedias = divisiones.divisiones_intermedias
 		datos_nivel.posicion_divisiones = divisiones.position
 		datos_nivel.ancho_divisiones = divisiones.ancho_total
 	return datos_nivel

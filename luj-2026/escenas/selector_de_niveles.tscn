@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg1l33uckhg43"]
+
+[ext_resource type="Script" uid="uid://mrkgoq2v1cix" path="res://scripts/niveles/selector_de_niveles.gd" id="1_selec"]
+
+[node name="selector_de_niveles" type="Node2D" unique_id=252954684]
+script = ExtResource("1_selec")

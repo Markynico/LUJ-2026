@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://csalida0000a1"]
+
+[ext_resource type="Script" uid="uid://ca0nc2j3goafo" path="res://scripts/niveles/salida_de_nivel.gd" id="1_salida"]
+
+[node name="SalidaDeNivel" type="Area2D" node_paths=PackedStringArray("colision")]
+script = ExtResource("1_salida")
+colision = NodePath("Colision")
+
+[node name="Colision" type="CollisionShape2D" parent="."]
