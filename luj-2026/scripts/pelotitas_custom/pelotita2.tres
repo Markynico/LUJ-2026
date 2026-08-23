@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PelotitaBase" format=3 uid="uid://cdkd5sdqylel"]
+
+[ext_resource type="Script" uid="uid://c7ogyqxnq7236" path="res://scripts/pelotitas_custom/pelotita_base.gd" id="1_ddhdq"]
+
+[sub_resource type="Gradient" id="Gradient_fwkfv"]
+offsets = PackedFloat32Array(0, 0.61170214)
+colors = PackedColorArray(0.92941177, 0, 0, 1, 0, 0.74339545, 0.7433953, 1)
+
+[resource]
+script = ExtResource("1_ddhdq")
+colores_estela = SubResource("Gradient_fwkfv")
+metadata/_custom_type_script = "uid://c7ogyqxnq7236"

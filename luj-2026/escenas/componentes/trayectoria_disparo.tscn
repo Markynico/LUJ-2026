@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bmqhpq2y5tv2w"]
+
+[ext_resource type="Script" uid="uid://b580vvptmr04r" path="res://scripts/trayectoria_disparo.gd" id="1_6vpaq"]
+
+[sub_resource type="Curve" id="Curve_6vpaq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_6vpaq"]
+offsets = PackedFloat32Array(0, 0.43209878)
+colors = PackedColorArray(1, 1, 1, 0.56078434, 1, 1, 1, 0)
+
+[node name="TrayectoriaDisparo" type="Line2D" unique_id=2096489121]
+closed = true
+width = 5.0
+width_curve = SubResource("Curve_6vpaq")
+default_color = Color(1, 1, 1, 0.4117647)
+gradient = SubResource("Gradient_6vpaq")
+script = ExtResource("1_6vpaq")

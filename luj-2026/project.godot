@@ -17,6 +17,8 @@ config/icon="res://icon.svg"
 
 [display]
 
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
@@ -25,7 +27,9 @@ window/stretch/aspect="expand"
 folder_colors={
 "res://assets/": "blue",
 "res://escenas/": "green",
-"res://iconos_custom/": "yellow"
+"res://iconos_custom/": "yellow",
+"res://scripts/": "purple",
+"res://sonidos/": "teal"
 }
 
 [input]
