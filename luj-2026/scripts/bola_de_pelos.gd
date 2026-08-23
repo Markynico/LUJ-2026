@@ -2,35 +2,43 @@
 class_name BolaDePelos
 extends RigidBody2D
 
-@export var fuerza_rebote : float = 350 #TODO, por ahora existe aca pero podria ser una propiedad del objeto en el cual rebota
-@export var audio : AudioStreamPlayer
-@export var tipo_pelotita : PelotitaBase
+@export_group("RESOURCES")
+##resource para configurar a la pelotita, contiene info de la textura, color de la estela y demas.
+@export var configuracion_pelotita : PelotitaBase
+@export var efectos_al_rebotar : Array[EfectosPelotita]
+
+@export_group("NODOS")
+@export var sprite_bola: Sprite2D
 @export var estela_movimiento : EstelaMovimiento
+@export var audio : AudioStreamPlayer
+
+
 var fue_duplicada : bool = false #probando, seguro lo saco de aca
 
 func _ready() -> void:
-	estela_movimiento.set_color_estela(tipo_pelotita.colores_estela)
+	estela_movimiento.gradient = configuracion_pelotita.colores_estela
+	sprite_bola.texture = configuracion_pelotita.textura
 
 func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, local_shape_index: int) -> void:
 	if body is BolaDePelos: #evito rebote con otras bolas de pelos
 		return
-	tipo_pelotita.impactar_con_objeto(self, body)
-	#impactar_con_objeto(body)
-
-func impactar_con_objeto(objeto : Node):
-	#por ahora se ejecuta el rebote clasico, pero aca meteria la logica para hacer ejecutar
-	#el efecto de impacto segun la pelotita q sea
-	#tipo_pelotita.impacto_con_objeto(objeto) algo asi seria
-	var normal = global_position.direction_to(objeto.global_position)
-	#var fuerza = objeto.get_fuerza_rebote() ?? idea
-	apply_central_impulse(-normal * fuerza_rebote)
-	audio.play()
-	objeto.queue_free()
+	for efecto in efectos_al_rebotar:
+		efecto.impactar_con_objeto(self, body)
+		sonido_rebote()
 
 
 func duplicar_pelotita():
-	if fue_duplicada:
+	if fue_duplicada: #para solo duplicarla una sola vez
 		return
-	get_parent().add_child(duplicate())
+	var pelotita_nueva : BolaDePelos = duplicate()
+	pelotita_nueva.fue_duplicada = true #evito q la duplicada tambien se duplique
+	get_parent().add_child(pelotita_nueva)
 	fue_duplicada = true
-	
+
+func sonido_rebote():
+	audio.play()
+
+
+#eliminar la bola de pelos cuando sale de la pantalla
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()

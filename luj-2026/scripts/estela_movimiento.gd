@@ -8,8 +8,6 @@ extends Line2D
 func _ready() -> void:
 	set_as_top_level(true)
  
-func set_color_estela(gradiente : Gradient):
-	gradient = gradiente
  
 func _physics_process(_delta: float) -> void:
 	if not body:

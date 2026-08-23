@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="EfectoReboteNormal" format=3 uid="uid://c1v3eyk4mhclb"]
+
+[ext_resource type="Script" uid="uid://5i4oxxen13xa" path="res://scripts/pelotitas_custom/efecto_rebote_normal.gd" id="1_ol16t"]
+
+[resource]
+script = ExtResource("1_ol16t")
+metadata/_custom_type_script = "uid://5i4oxxen13xa"
