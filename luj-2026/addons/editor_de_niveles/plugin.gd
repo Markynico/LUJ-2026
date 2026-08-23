@@ -15,6 +15,8 @@ func _enter_tree() -> void:
 	dock.crear_forma.connect(crear_forma)
 	dock.guardar_nivel.connect(guardar_nivel)
 	dock.cargar_nivel.connect(abrir_dialogo_cargar)
+	dock.agregar_recorrido.connect(agregar_recorrido)
+	dock.quitar_recorrido.connect(quitar_recorrido)
 	add_control_to_dock(DOCK_SLOT_LEFT_UL, dock)
 	manijas = ManijasForma.new(get_undo_redo())
 	selector = SelectorDeFormas.new(manijas, self, buscar_control_viewport())
@@ -81,6 +83,48 @@ func crear_forma(tipo : String) -> void:
 	seleccion.add_node(forma)
 	if forma is FormaPath:
 		seleccionar_herramienta_agregar_punto.call_deferred()
+
+
+func obtener_forma_seleccionada(cargador : CargadorDeNivel) -> Node2D:
+	var formas := cargador.obtener_formas()
+	for nodo in EditorInterface.get_selection().get_selected_nodes():
+		var actual := nodo
+		while actual and actual != cargador:
+			if formas.has(actual):
+				return actual
+			actual = actual.get_parent()
+	push_warning("Selecciona una forma del nivel")
+	return null
+
+
+func agregar_recorrido() -> void:
+	var cargador := obtener_cargador()
+	if not cargador:
+		return
+	var forma := obtener_forma_seleccionada(cargador)
+	if not forma or cargador.obtener_recorrido(forma):
+		return
+	var recorrido := cargador.agregar_recorrido(forma, cargador)
+	var seleccion := EditorInterface.get_selection()
+	seleccion.clear()
+	seleccion.add_node(recorrido)
+	seleccionar_herramienta_agregar_punto.call_deferred()
+
+
+func quitar_recorrido() -> void:
+	var cargador := obtener_cargador()
+	if not cargador:
+		return
+	var forma := obtener_forma_seleccionada(cargador)
+	if not forma:
+		return
+	var recorrido := cargador.obtener_recorrido(forma)
+	if not recorrido:
+		return
+	cargador.quitar_recorrido(recorrido, cargador)
+	var seleccion := EditorInterface.get_selection()
+	seleccion.clear()
+	seleccion.add_node(forma)
 
 
 func seleccionar_herramienta_agregar_punto() -> void:

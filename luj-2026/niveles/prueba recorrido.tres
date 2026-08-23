@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="NivelData" format=3 uid="uid://c0g81qynjv6td"]
+
+[ext_resource type="Script" uid="uid://1owdr3bm0age" path="res://scripts/niveles/forma_data.gd" id="1_yqe6q"]
+[ext_resource type="Script" uid="uid://4yxin8siliwu" path="res://scripts/niveles/nivel_data.gd" id="2_n5402"]
+
+[sub_resource type="Resource" id="Resource_yqe6q"]
+script = ExtResource("1_yqe6q")
+tipo = "circulo"
+posicion = Vector2(1035.1543, 151.66599)
+
+[sub_resource type="Curve2D" id="Curve2D_n5402"]
+bake_interval = 2.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 68.553406, 30.272095, 0, 0, 0, 0, 19.631836, 84.272095, 0, 0, 0, 0, 29.631836, 239.2721, 0, 0, 0, 0, 364.63184, 352.2721, 0, 0, 0, 0, 488.63184, 200.2721, 0, 0, 0, 0, 246.63184, 103.272095, 0, 0, 0, 0, 156.63184, 216.2721, 0, 0, 0, 0, 166.63184, 16.272095, 0, 0, 0, 0, 125.167725, -119.727905, 0, 0, 0, 0, -16.368164, -154.7279, 0, 0, 0, 0, 172.63184, -262.7279, 0, 0, 0, 0, 368.63184, -27.727905, 0, 0, 0, 0, 365.63184, 36.272095)
+}
+point_count = 13
+
+[sub_resource type="Resource" id="Resource_gx5fa"]
+script = ExtResource("1_yqe6q")
+tipo = "path"
+posicion = Vector2(753.83997, 470.63672)
+escala = Vector2(0.8455446, 0.6)
+separacion_ovillos = 78.61
+curva = SubResource("Curve2D_n5402")
+
+[sub_resource type="Curve2D" id="Curve2D_k2w32"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 350, 40, 0, 0, 0, 0, 481, 185)
+}
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_0qjuv"]
+script = ExtResource("1_yqe6q")
+tipo = "circulo"
+recorrido = SubResource("Curve2D_k2w32")
+posicion_recorrido = Vector2(206, 171)
+velocidad = 150.0
+
+[sub_resource type="Curve2D" id="Curve2D_kmo1s"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 75.60791, 196.82355, 0, 0, 0, 0, 344.6079, 212.82355, 0, 0, 0, 0, 358, -91)
+}
+point_count = 4
+
+[sub_resource type="Resource" id="Resource_7ve8x"]
+script = ExtResource("1_yqe6q")
+rotacion = 25.132742
+separacion_ovillos = 52.945
+"tamaño" = Vector2(501.53403, 234.65564)
+recorrido = SubResource("Curve2D_kmo1s")
+posicion_recorrido = Vector2(303.3921, 454.17645)
+
+[resource]
+script = ExtResource("2_n5402")
+nombre = "prueba recorrido"
+formas = Array[ExtResource("1_yqe6q")]([SubResource("Resource_yqe6q"), SubResource("Resource_gx5fa"), SubResource("Resource_0qjuv"), SubResource("Resource_7ve8x")])

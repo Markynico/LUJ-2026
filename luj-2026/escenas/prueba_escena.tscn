@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://brhfmi38jresg" path="res://escenas/componentes/disparador_pelotita.tscn" id="2_jn8va"]
 [ext_resource type="Script" uid="uid://bh3lxufik2p65" path="res://scripts/niveles/cargador_de_nivel.gd" id="3_qjisj"]
-[ext_resource type="Resource" uid="uid://40se36c7ho3d" path="res://niveles/prueba path.tres" id="4_7oqg1"]
+[ext_resource type="Resource" uid="uid://bbqc2tegc4ylc" path="res://niveles/prueba recorrido 2.tres" id="4_7oqg1"]
 [ext_resource type="PackedScene" uid="uid://dy3jqoayfdkwm" path="res://escenas/pelotita_estatica_prueba.tscn" id="4_qjisj"]
 
 [node name="PRUEBA_ESCENA" type="Node2D" unique_id=1045362644]
