@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b23m7w8h04g8j"]
+
+[ext_resource type="Script" path="res://scripts/gatito_menu.gd" id="1_gatito"]
+
+[node name="GatitoMenu" type="Node2D"]
+script = ExtResource("1_gatito")

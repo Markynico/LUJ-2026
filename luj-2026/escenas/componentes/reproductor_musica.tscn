@@ -1,0 +1,165 @@
+[gd_scene format=3 uid="uid://bvqfl8uomex3l"]
+
+[ext_resource type="Script" path="res://scripts/reproductor_musica.gd" id="1_music"]
+[ext_resource type="Script" path="res://scripts/boton_menu_animado.gd" id="2_boton"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel_player"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(0.109804, 0.12549, 0.180392, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.32549, 0.380392, 0.552941, 0.8)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.4)
+shadow_size = 12
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_titulo"]
+font_size = 15
+font_color = Color(0.92, 0.94, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tiempo"]
+font_size = 13
+font_color = Color(0.65, 0.72, 0.88, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_ctrl_normal"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.2, 0.23, 0.33, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 2
+border_color = Color(0.4, 0.47, 0.68, 0.8)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_ctrl_hover"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.28, 0.33, 0.48, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 2
+border_color = Color(0.6, 0.7, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_ctrl_pressed"]
+content_margin_left = 12.0
+content_margin_top = 7.0
+content_margin_right = 12.0
+content_margin_bottom = 5.0
+bg_color = Color(0.14, 0.16, 0.24, 0.95)
+border_width_left = 1
+border_width_top = 2
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.3, 0.35, 0.5, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="ReproductorMusica" type="PanelContainer"]
+custom_minimum_size = Vector2(560, 84)
+offset_right = 560.0
+offset_bottom = 84.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel_player")
+script = ExtResource("1_music")
+
+[node name="VBoxPrincipal" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="HBoxInfo" type="HBoxContainer" parent="VBoxPrincipal"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LabelTituloCancion" type="Label" parent="VBoxPrincipal/HBoxInfo"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "♫  [1/4] Tema Principal - Michi Adventure"
+label_settings = SubResource("LabelSettings_titulo")
+text_overrun_behavior = 3
+
+[node name="LabelTiempo" type="Label" parent="VBoxPrincipal/HBoxInfo"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "00:00 / 00:00"
+label_settings = SubResource("LabelSettings_tiempo")
+horizontal_alignment = 2
+
+[node name="SliderProgreso" type="HSlider" parent="VBoxPrincipal"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="HBoxControles" type="HBoxContainer" parent="VBoxPrincipal"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="BotonAnterior" type="Button" parent="VBoxPrincipal/HBoxControles"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(46, 32)
+layout_mode = 2
+tooltip_text = "Pista Anterior"
+theme_override_font_sizes/font_size = 14
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_ctrl_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_ctrl_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_ctrl_pressed")
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_ctrl_normal")
+text = "⏮"
+script = ExtResource("2_boton")
+
+[node name="BotonPlayPause" type="Button" parent="VBoxPrincipal/HBoxControles"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 32)
+layout_mode = 2
+tooltip_text = "Reproducir / Pausar"
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_ctrl_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_ctrl_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_ctrl_pressed")
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_ctrl_normal")
+text = "▶"
+script = ExtResource("2_boton")
+
+[node name="BotonSiguiente" type="Button" parent="VBoxPrincipal/HBoxControles"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(46, 32)
+layout_mode = 2
+tooltip_text = "Siguiente Pista"
+theme_override_font_sizes/font_size = 14
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_ctrl_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_ctrl_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_ctrl_pressed")
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_ctrl_normal")
+text = "⏭"
+script = ExtResource("2_boton")
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+bus = &"Master"
