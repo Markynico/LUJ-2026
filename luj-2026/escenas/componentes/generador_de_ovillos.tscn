@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgen0vill0s1a"]
+
+[ext_resource type="Script" uid="uid://bgenovillos001" path="res://scripts/niveles/generador_de_ovillos.gd" id="1_gen"]
+
+[node name="GeneradorDeOvillos" type="Node2D"]
+script = ExtResource("1_gen")

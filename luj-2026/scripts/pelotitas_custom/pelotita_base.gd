@@ -19,3 +19,5 @@ func rebote_simple(pelotita : BolaDePelos ,objeto_a_impactar : Node2D):
 	var normal = pelotita.global_position.direction_to(objeto_a_impactar.global_position)
 	#var fuerza = objeto.get_fuerza_rebote() ?? idea
 	pelotita.apply_central_impulse(-normal * fuerza_rebote)
+	if objeto_a_impactar.has_method("recibir_impacto"):
+		objeto_a_impactar.recibir_impacto()

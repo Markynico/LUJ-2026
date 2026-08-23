@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://jimkk8u7orb2"]
+
+[ext_resource type="Script" uid="uid://bh3lxufik2p65" path="res://scripts/niveles/cargador_de_nivel.gd" id="1_carg"]
+[ext_resource type="Script" uid="uid://1owdr3bm0age" path="res://scripts/niveles/forma_data.gd" id="2_awi8f"]
+[ext_resource type="Script" uid="uid://4yxin8siliwu" path="res://scripts/niveles/nivel_data.gd" id="3_4ylx1"]
+[ext_resource type="PackedScene" uid="uid://cformarect0a1" path="res://escenas/componentes/forma_rectangulo.tscn" id="4_pevrx"]
+[ext_resource type="Script" uid="uid://1owd66s6mpge" path="res://scripts/niveles/forma_rectangulo.gd" id="5_k61t0"]
+
+[sub_resource type="Resource" id="Resource_c7eq1"]
+script = ExtResource("3_4ylx1")
+formas = Array[ExtResource("2_awi8f")]([null])
+
+[node name="EditorDeNiveles" type="Node2D" unique_id=925235971]
+script = ExtResource("1_carg")
+nivel = SubResource("Resource_c7eq1")
+
+[node name="FormaRectangulo" type="Node2D" parent="." unique_id=870574654 instance=ExtResource("4_pevrx")]
+position = Vector2(643.8004, 369.08484)
+rotation = 25.132742
+script = ExtResource("5_k61t0")
+"tamaño" = Vector2(1162.7882, 96.63141)
+separacion_ovillos = 52.945
