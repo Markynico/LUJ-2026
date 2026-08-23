@@ -19,6 +19,8 @@ extends Node2D
 }
 ##escena que envuelve a una forma para moverla por un recorrido
 @export var escena_recorrido : PackedScene = preload("uid://crecorrido00a1")
+##escena con los divisores de la parte de abajo
+@export var escena_divisiones : PackedScene = preload("uid://cdivisiones0a1")
 
 
 func _ready() -> void:
@@ -34,6 +36,7 @@ func mostrar_vista_previa() -> void:
 	limpiar_formas_sin_duenio()
 	if nivel:
 		instanciar_formas(nivel)
+		aplicar_divisiones(nivel)
 
 
 func es_raiz_editada() -> bool:
@@ -76,6 +79,24 @@ func limpiar_formas() -> void:
 func construir_nivel(datos_nivel : NivelData, duenio : Node = null) -> void:
 	limpiar_formas()
 	instanciar_formas(datos_nivel, duenio)
+	aplicar_divisiones(datos_nivel)
+
+
+func obtener_divisiones() -> DivisionesPachinko:
+	for hijo in get_children():
+		if hijo is DivisionesPachinko:
+			return hijo
+	return null
+
+
+func aplicar_divisiones(datos_nivel : NivelData) -> void:
+	var divisiones := obtener_divisiones()
+	if not divisiones:
+		divisiones = escena_divisiones.instantiate()
+		add_child(divisiones, true)
+	divisiones.divisiones_intermedias = datos_nivel.divisiones_intermedias
+	divisiones.position = datos_nivel.posicion_divisiones
+	divisiones.ancho_total = datos_nivel.ancho_divisiones
 
 
 func instanciar_formas(datos_nivel : NivelData, duenio : Node = null) -> void:
@@ -88,7 +109,7 @@ func instanciar_formas(datos_nivel : NivelData, duenio : Node = null) -> void:
 
 func crear_forma(tipo : String, duenio : Node = null) -> Node2D:
 	var forma : Node2D = escenas_formas[tipo].instantiate()
-	add_child(forma)
+	add_child(forma, true)
 	if duenio:
 		forma.owner = duenio
 	return forma
@@ -98,7 +119,7 @@ func agregar_recorrido(forma : Node2D, duenio : Node = null) -> MovimientoPorPat
 	var recorrido : MovimientoPorPath = escena_recorrido.instantiate()
 	var posicion_global := forma.global_position
 	forma.get_parent().remove_child(forma)
-	add_child(recorrido)
+	add_child(recorrido, true)
 	recorrido.global_position = posicion_global
 	recorrido.seguidor.add_child(forma)
 	forma.position = Vector2.ZERO
@@ -115,7 +136,7 @@ func quitar_recorrido(recorrido : MovimientoPorPath, duenio : Node = null) -> No
 	recorrido.seguidor.remove_child(forma)
 	remove_child(recorrido)
 	recorrido.queue_free()
-	add_child(forma)
+	add_child(forma, true)
 	forma.global_position = posicion_global
 	if duenio:
 		forma.owner = duenio
@@ -134,4 +155,9 @@ func exportar_nivel(nombre : String) -> NivelData:
 	datos_nivel.nombre = nombre
 	for raiz in obtener_raices_de_formas():
 		datos_nivel.formas.append(raiz.obtener_datos())
+	var divisiones := obtener_divisiones()
+	if divisiones:
+		datos_nivel.divisiones_intermedias = divisiones.divisiones_intermedias
+		datos_nivel.posicion_divisiones = divisiones.position
+		datos_nivel.ancho_divisiones = divisiones.ancho_total
 	return datos_nivel

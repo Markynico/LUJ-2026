@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cformarect0a1"]
 
-[ext_resource type="Script" uid="uid://bformarectng01" path="res://scripts/niveles/forma_rectangulo.gd" id="1_rect"]
+[ext_resource type="Script" uid="uid://1owd66s6mpge" path="res://scripts/niveles/forma_rectangulo.gd" id="1_rect"]
 [ext_resource type="PackedScene" uid="uid://cgen0vill0s1a" path="res://escenas/componentes/generador_de_ovillos.tscn" id="2_gen"]
 
 [node name="FormaRectangulo" type="Node2D"]
