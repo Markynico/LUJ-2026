@@ -3,14 +3,24 @@
 [ext_resource type="Script" uid="uid://1owdr3bm0age" path="res://scripts/niveles/forma_data.gd" id="1_lkrqq"]
 [ext_resource type="Script" uid="uid://4yxin8siliwu" path="res://scripts/niveles/nivel_data.gd" id="2_fel4d"]
 
-[sub_resource type="Resource" id="Resource_auu7u"]
+[sub_resource type="Resource" id="Resource_lkrqq"]
 script = ExtResource("1_lkrqq")
 posicion = Vector2(643.8004, 369.08484)
 rotacion = 25.132742
 separacion_ovillos = 52.945
 "tamaño" = Vector2(1162.7882, 96.63141)
 
+[sub_resource type="Resource" id="Resource_fel4d"]
+script = ExtResource("1_lkrqq")
+tipo = "circulo"
+posicion = Vector2(1035.1543, 151.66599)
+
+[sub_resource type="Resource" id="Resource_auu7u"]
+script = ExtResource("1_lkrqq")
+tipo = "circulo"
+posicion = Vector2(205.74161, 166.16058)
+
 [resource]
 script = ExtResource("2_fel4d")
 nombre = "nivel de prueba"
-formas = Array[ExtResource("1_lkrqq")]([SubResource("Resource_auu7u")])
+formas = Array[ExtResource("1_lkrqq")]([SubResource("Resource_lkrqq"), SubResource("Resource_fel4d"), SubResource("Resource_auu7u")])

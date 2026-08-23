@@ -7,6 +7,7 @@ const CARPETA_NIVELES := "res://niveles/"
 var dock : DockEditorDeNiveles
 var manijas : ManijasForma
 var dialogo_archivo : EditorFileDialog
+var selector : SelectorDeFormas
 
 
 func _enter_tree() -> void:
@@ -16,6 +17,8 @@ func _enter_tree() -> void:
 	dock.cargar_nivel.connect(abrir_dialogo_cargar)
 	add_control_to_dock(DOCK_SLOT_LEFT_UL, dock)
 	manijas = ManijasForma.new(get_undo_redo())
+	selector = SelectorDeFormas.new(manijas, self, buscar_control_viewport())
+	EditorInterface.get_base_control().add_child(selector)
 	dialogo_archivo = EditorFileDialog.new()
 	dialogo_archivo.file_mode = EditorFileDialog.FILE_MODE_OPEN_FILE
 	dialogo_archivo.access = EditorFileDialog.ACCESS_RESOURCES
@@ -29,6 +32,7 @@ func _exit_tree() -> void:
 	remove_control_from_docks(dock)
 	dock.queue_free()
 	dialogo_archivo.queue_free()
+	selector.queue_free()
 
 
 func _handles(objeto : Object) -> bool:
@@ -51,6 +55,13 @@ func _forward_canvas_gui_input(evento : InputEvent) -> bool:
 	return consumido
 
 
+func buscar_control_viewport() -> Control:
+	var candidatos := EditorInterface.get_base_control().find_children("*", "CanvasItemEditorViewport", true, false)
+	if not candidatos.is_empty():
+		return candidatos[0]
+	return EditorInterface.get_editor_viewport_2d().get_parent()
+
+
 func obtener_cargador() -> CargadorDeNivel:
 	var raiz := EditorInterface.get_edited_scene_root()
 	if raiz is CargadorDeNivel:
@@ -68,6 +79,20 @@ func crear_forma(tipo : String) -> void:
 	var seleccion := EditorInterface.get_selection()
 	seleccion.clear()
 	seleccion.add_node(forma)
+	if forma is FormaPath:
+		seleccionar_herramienta_agregar_punto.call_deferred()
+
+
+func seleccionar_herramienta_agregar_punto() -> void:
+	var editores := EditorInterface.get_base_control().find_children("*", "Path2DEditor", true, false)
+	if editores.is_empty():
+		return
+	var nombres := [tr("Add Point"), tr("Add Point (in empty space)")]
+	for boton in editores[0].find_children("*", "Button", true, false):
+		for nombre in nombres:
+			if boton.tooltip_text.begins_with(nombre):
+				boton.button_pressed = true
+				return
 
 
 func centro_del_viewport() -> Vector2:

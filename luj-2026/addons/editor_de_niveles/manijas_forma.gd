@@ -5,11 +5,11 @@ extends RefCounted
 var radio_manija : float = 6.0
 var color_manija : Color = Color(1.0, 0.55, 0.1)
 var color_manija_activa : Color = Color(1.0, 1.0, 1.0)
-var paso_snap_rotacion : float = deg_to_rad(45.0)
 var forma : FormaSpawn
 var deshacer_rehacer : EditorUndoRedoManager
 var manija_activa : int = -1
 var estado_inicial : Dictionary
+var desplazamiento_agarre : Vector2
 
 
 func _init(manejador_deshacer : EditorUndoRedoManager) -> void:
@@ -38,27 +38,49 @@ func procesar_input(evento : InputEvent) -> bool:
 			return empezar_arrastre(evento.position)
 		return terminar_arrastre()
 	if evento is InputEventMouseMotion and manija_activa >= 0:
-		arrastrar(evento.position, evento.shift_pressed)
+		arrastrar(evento.position, evento.shift_pressed, evento.ctrl_pressed)
 		return true
 	return false
 
 
 func empezar_arrastre(posicion_pantalla : Vector2) -> bool:
+	var indice := buscar_manija_en(posicion_pantalla)
+	if indice < 0:
+		return false
+	manija_activa = indice
+	desplazamiento_agarre = Vector2.ZERO
+	estado_inicial = capturar_estado()
+	forma.empezar_arrastre_manija(indice)
+	return true
+
+
+func empezar_arrastre_desde_contorno(forma_agarrada : FormaSpawn, posicion_pantalla : Vector2) -> void:
+	forma = forma_agarrada
+	manija_activa = FormaSpawn.ManijaBase.CENTRO
+	desplazamiento_agarre = a_local(posicion_pantalla) - forma.obtener_centro_manijas()
+	estado_inicial = capturar_estado()
+
+
+func hay_manija_en(posicion_pantalla : Vector2) -> bool:
+	return es_valida() and buscar_manija_en(posicion_pantalla) >= 0
+
+
+func buscar_manija_en(posicion_pantalla : Vector2) -> int:
 	var transformacion := transformacion_viewport() * forma.global_transform
 	var manijas := forma.obtener_manijas()
 	for i in manijas.size():
 		if (transformacion * manijas[i]).distance_to(posicion_pantalla) <= radio_manija * 1.5:
-			manija_activa = i
-			estado_inicial = capturar_estado()
-			return true
-	return false
+			return i
+	return -1
 
 
-func arrastrar(posicion_pantalla : Vector2, con_snap : bool) -> void:
-	var posicion_local := forma.get_global_transform().affine_inverse() * (transformacion_viewport().affine_inverse() * posicion_pantalla)
-	forma.mover_manija(manija_activa, posicion_local)
-	if con_snap and manija_activa == FormaSpawn.ManijaBase.ROTACION:
-		forma.rotation = snappedf(forma.rotation, paso_snap_rotacion)
+func arrastrar(posicion_pantalla : Vector2, con_shift : bool, con_control : bool) -> void:
+	var posicion_local := a_local(posicion_pantalla) - desplazamiento_agarre
+	forma.mover_manija(manija_activa, posicion_local, con_shift, con_control)
+
+
+func a_local(posicion_pantalla : Vector2) -> Vector2:
+	return forma.get_global_transform().affine_inverse() * (transformacion_viewport().affine_inverse() * posicion_pantalla)
 
 
 func terminar_arrastre() -> bool:
@@ -81,6 +103,7 @@ func capturar_estado() -> Dictionary:
 			estado[propiedad.name] = forma.get(propiedad.name)
 	estado["position"] = forma.position
 	estado["rotation"] = forma.rotation
+	estado["scale"] = forma.scale
 	return estado
 
 

@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" uid="uid://cvnp2t8klxr25" path="res://addons/editor_de_niveles/dock_editor_de_niveles.gd" id="1_dock"]
 
-[node name="Editor de niveles" type="VBoxContainer" unique_id=1439805482 node_paths=PackedStringArray("boton_rectangulo", "boton_guardar", "boton_cargar", "campo_nombre")]
+[node name="Editor de niveles" type="VBoxContainer" unique_id=1439805482 node_paths=PackedStringArray("boton_rectangulo", "boton_circulo", "boton_path", "boton_guardar", "boton_cargar", "campo_nombre")]
 script = ExtResource("1_dock")
 boton_rectangulo = NodePath("BotonRectangulo")
+boton_circulo = NodePath("BotonCirculo")
+boton_path = NodePath("BotonPath")
 boton_guardar = NodePath("BotonGuardar")
 boton_cargar = NodePath("BotonCargar")
 campo_nombre = NodePath("CampoNombre")
@@ -16,6 +18,14 @@ text = "Formas"
 [node name="BotonRectangulo" type="Button" parent="." unique_id=1270800419]
 layout_mode = 2
 text = "Rectangulo"
+
+[node name="BotonCirculo" type="Button" parent="."]
+layout_mode = 2
+text = "Circulo"
+
+[node name="BotonPath" type="Button" parent="."]
+layout_mode = 2
+text = "Path"
 
 [node name="Separador" type="HSeparator" parent="." unique_id=1386849823]
 layout_mode = 2

@@ -7,6 +7,8 @@ signal guardar_nivel(nombre : String)
 signal cargar_nivel
 
 @export var boton_rectangulo : Button
+@export var boton_circulo : Button
+@export var boton_path : Button
 @export var boton_guardar : Button
 @export var boton_cargar : Button
 @export var campo_nombre : LineEdit
@@ -14,6 +16,8 @@ signal cargar_nivel
 
 func _ready() -> void:
 	boton_rectangulo.pressed.connect(crear_forma.emit.bind("rectangulo"))
+	boton_circulo.pressed.connect(crear_forma.emit.bind("circulo"))
+	boton_path.pressed.connect(crear_forma.emit.bind("path"))
 	boton_guardar.pressed.connect(func(): guardar_nivel.emit(campo_nombre.text))
 	boton_cargar.pressed.connect(cargar_nivel.emit)
 

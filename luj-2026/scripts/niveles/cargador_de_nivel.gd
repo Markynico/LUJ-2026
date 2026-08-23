@@ -14,6 +14,8 @@ extends Node2D
 ##escenas de formas disponibles
 @export var escenas_formas : Dictionary[String, PackedScene] = {
 	"rectangulo": preload("uid://cformarect0a1"),
+	"circulo": preload("uid://cformacirc0a1"),
+	"path": preload("uid://cformabe000a1"),
 }
 
 
@@ -25,11 +27,15 @@ func _ready() -> void:
 
 
 func mostrar_vista_previa() -> void:
-	if not Engine.is_editor_hint() or not is_inside_tree():
+	if not Engine.is_editor_hint() or not is_inside_tree() or es_raiz_editada():
 		return
 	limpiar_formas_sin_duenio()
 	if nivel:
 		construir_nivel(nivel)
+
+
+func es_raiz_editada() -> bool:
+	return owner == null
 
 
 func limpiar_formas_sin_duenio() -> void:
@@ -39,10 +45,10 @@ func limpiar_formas_sin_duenio() -> void:
 			forma.queue_free()
 
 
-func obtener_formas() -> Array[FormaSpawn]:
-	var formas : Array[FormaSpawn] = []
+func obtener_formas() -> Array[Node2D]:
+	var formas : Array[Node2D] = []
 	for hijo in get_children():
-		if hijo is FormaSpawn:
+		if hijo.has_method("obtener_datos"):
 			formas.append(hijo)
 	return formas
 
@@ -59,8 +65,8 @@ func construir_nivel(datos_nivel : NivelData, duenio : Node = null) -> void:
 		crear_forma(datos.tipo, duenio).aplicar_datos(datos)
 
 
-func crear_forma(tipo : String, duenio : Node = null) -> FormaSpawn:
-	var forma : FormaSpawn = escenas_formas[tipo].instantiate()
+func crear_forma(tipo : String, duenio : Node = null) -> Node2D:
+	var forma : Node2D = escenas_formas[tipo].instantiate()
 	add_child(forma)
 	if duenio:
 		forma.owner = duenio
