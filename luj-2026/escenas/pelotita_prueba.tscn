@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bth3a2osj35la" path="res://scripts/pelotita_prueba.gd" id="1_76w8x"]
 [ext_resource type="Texture2D" uid="uid://bsk14c2sew84m" path="res://iconos_custom/gobot.svg" id="1_pbm23"]
-[ext_resource type="AudioStream" uid="uid://c6rjkabpuu3sj" path="res://sonidos/sonido_pop.wav" id="3_5mc1e"]
+[ext_resource type="AudioStream" uid="uid://2jvby7clemka" path="res://assets/audio/sfx/romper_pelotita.wav" id="3_5mc1e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_37ege"]
 radius = 20.024984

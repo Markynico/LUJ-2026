@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://t22vju8kwtq7" path="res://iconos_custom/pie_chart.svg" id="1_dpe3i"]
 [ext_resource type="Script" uid="uid://c2tmnndlvd5mq" path="res://scripts/pelotita_estatica_prueba.gd" id="1_us7wx"]
-[ext_resource type="AudioStream" uid="uid://c6rjkabpuu3sj" path="res://sonidos/sonido_pop.wav" id="3_231nb"]
+[ext_resource type="AudioStream" uid="uid://2jvby7clemka" path="res://assets/audio/sfx/romper_pelotita.wav" id="3_231nb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_37ege"]
 radius = 20.0
