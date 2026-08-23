@@ -1,22 +1,33 @@
-[gd_scene load_steps=5 format=3 uid="uid://dy3jqoayfdkwm"]
+[gd_scene format=3 uid="uid://dy3jqoayfdkwm"]
 
-[ext_resource type="Script" uid="uid://bovillo0000001" path="res://scripts/ovillo.gd" id="1_ovillo"]
-[ext_resource type="Texture2D" uid="uid://t22vju8kwtq7" path="res://iconos_custom/pie_chart.svg" id="1_dpe3i"]
+[ext_resource type="Script" uid="uid://cil5i0yy8liwu" path="res://scripts/ovillo.gd" id="1_ovillo"]
+[ext_resource type="Texture2D" uid="uid://dbcovwwwqfpky" path="res://assets/sprite_ovillos/Ovillo verde.png" id="2_231nb"]
+[ext_resource type="Resource" uid="uid://oqtx0omob3qi" path="res://scripts/resources/ovillo_normal.tres" id="2_ncv57"]
 [ext_resource type="AudioStream" uid="uid://2jvby7clemka" path="res://assets/audio/sfx/romper_pelotita.wav" id="3_231nb"]
+[ext_resource type="Texture2D" uid="uid://wr43cbl6x483" path="res://assets/sprite_ovillos/Ovillo negro.png" id="3_kjm64"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_37ege"]
 radius = 20.0
 
-[node name="Pelotita_estatica_prueba" type="StaticBody2D" unique_id=142733400 node_paths=PackedStringArray("audio", "forma_colision", "sprite")]
+[node name="Ovillo" type="StaticBody2D" unique_id=142733400 node_paths=PackedStringArray("audio", "forma_colision", "sprite_normal", "sprite_desactivado")]
 script = ExtResource("1_ovillo")
+configuracion_ovillo = ExtResource("2_ncv57")
 audio = NodePath("AudioStreamPlayer")
 forma_colision = NodePath("CollisionShape2D")
-sprite = NodePath("Sprite2D")
+sprite_normal = NodePath("SpriteNormal")
+sprite_desactivado = NodePath("SpriteDesactivado")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=20603333]
+[node name="SpriteNormal" type="Sprite2D" parent="." unique_id=20603333]
 texture_filter = 1
-scale = Vector2(2.5937502, 2.5937502)
-texture = ExtResource("1_dpe3i")
+position = Vector2(0.99999905, -3.9999995)
+scale = Vector2(0.16643755, 0.16643755)
+texture = ExtResource("2_231nb")
+
+[node name="SpriteDesactivado" type="Sprite2D" parent="." unique_id=550040605]
+visible = false
+position = Vector2(0, -2)
+scale = Vector2(0.11, 0.11)
+texture = ExtResource("3_kjm64")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1818122697]
 shape = SubResource("CircleShape2D_37ege")
