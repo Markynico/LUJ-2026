@@ -2,11 +2,13 @@
 
 [ext_resource type="Script" uid="uid://cvnp2t8klxr25" path="res://addons/editor_de_niveles/dock_editor_de_niveles.gd" id="1_dock"]
 
-[node name="Editor de niveles" type="VBoxContainer" unique_id=1439805482 node_paths=PackedStringArray("boton_rectangulo", "boton_circulo", "boton_path", "boton_guardar", "boton_cargar", "campo_nombre")]
+[node name="Editor de niveles" type="VBoxContainer" unique_id=1439805482 node_paths=PackedStringArray("boton_rectangulo", "boton_circulo", "boton_path", "boton_agregar_recorrido", "boton_quitar_recorrido", "boton_guardar", "boton_cargar", "campo_nombre")]
 script = ExtResource("1_dock")
 boton_rectangulo = NodePath("BotonRectangulo")
 boton_circulo = NodePath("BotonCirculo")
 boton_path = NodePath("BotonPath")
+boton_agregar_recorrido = NodePath("BotonAgregarRecorrido")
+boton_quitar_recorrido = NodePath("BotonQuitarRecorrido")
 boton_guardar = NodePath("BotonGuardar")
 boton_cargar = NodePath("BotonCargar")
 campo_nombre = NodePath("CampoNombre")
@@ -26,6 +28,21 @@ text = "Circulo"
 [node name="BotonPath" type="Button" parent="."]
 layout_mode = 2
 text = "Path"
+
+[node name="SeparadorRecorrido" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="EtiquetaRecorrido" type="Label" parent="."]
+layout_mode = 2
+text = "Recorrido"
+
+[node name="BotonAgregarRecorrido" type="Button" parent="."]
+layout_mode = 2
+text = "Agregar recorrido"
+
+[node name="BotonQuitarRecorrido" type="Button" parent="."]
+layout_mode = 2
+text = "Quitar recorrido"
 
 [node name="Separador" type="HSeparator" parent="." unique_id=1386849823]
 layout_mode = 2

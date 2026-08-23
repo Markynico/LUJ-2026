@@ -2,8 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://brhfmi38jresg" path="res://escenas/componentes/disparador_pelotita.tscn" id="2_jn8va"]
 [ext_resource type="Script" uid="uid://bh3lxufik2p65" path="res://scripts/niveles/cargador_de_nivel.gd" id="3_qjisj"]
-[ext_resource type="Resource" uid="uid://40se36c7ho3d" path="res://niveles/prueba bezier.tres" id="4_7oqg1"]
+[ext_resource type="Resource" uid="uid://dqestmncri4nu" path="res://niveles/prueba divisiones.tres" id="4_7oqg1"]
 [ext_resource type="PackedScene" uid="uid://dy3jqoayfdkwm" path="res://escenas/pelotita_estatica_prueba.tscn" id="4_qjisj"]
+[ext_resource type="Script" uid="uid://mrkgoq2v1cix" path="res://scripts/niveles/selector_de_niveles.gd" id="5_7oqg1"]
 
 [node name="PRUEBA_ESCENA" type="Node2D" unique_id=1045362644]
 
@@ -17,210 +18,212 @@ offset_right = 413.0
 offset_bottom = 38.0
 text = "para el prototipo hacer click y aparece una pelotita"
 
-[node name="Pelotita_estatica_prueba" parent="." unique_id=1399652072 instance=ExtResource("4_qjisj")]
+[node name="pelotitas de prueba" type="Node2D" parent="." unique_id=409704067]
+
+[node name="Pelotita_estatica_prueba" parent="pelotitas de prueba" unique_id=1399652072 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(316, 416)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba2" parent="." unique_id=97392058 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba2" parent="pelotitas de prueba" unique_id=97392058 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(391, 414)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba3" parent="." unique_id=299867459 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba3" parent="pelotitas de prueba" unique_id=299867459 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(485, 382)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba4" parent="." unique_id=1560412993 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba4" parent="pelotitas de prueba" unique_id=1560412993 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(575, 410)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba5" parent="." unique_id=1302094454 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba5" parent="pelotitas de prueba" unique_id=1302094454 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(674, 380)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba6" parent="." unique_id=1145472262 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba6" parent="pelotitas de prueba" unique_id=1145472262 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(745, 425)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba7" parent="." unique_id=888120480 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba7" parent="pelotitas de prueba" unique_id=888120480 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(824, 382)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba8" parent="." unique_id=656634429 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba8" parent="pelotitas de prueba" unique_id=656634429 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(908, 451)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba9" parent="." unique_id=2035229286 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba9" parent="pelotitas de prueba" unique_id=2035229286 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(734, 505)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba10" parent="." unique_id=1202110764 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba10" parent="pelotitas de prueba" unique_id=1202110764 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(614, 520)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba11" parent="." unique_id=1109734897 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba11" parent="pelotitas de prueba" unique_id=1109734897 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(477, 535)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba12" parent="." unique_id=451839941 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba12" parent="pelotitas de prueba" unique_id=451839941 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(370, 544)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba13" parent="." unique_id=1035051354 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba13" parent="pelotitas de prueba" unique_id=1035051354 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(319, 355)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba14" parent="." unique_id=303894575 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba14" parent="pelotitas de prueba" unique_id=303894575 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(270, 357)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba15" parent="." unique_id=1266513723 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba15" parent="pelotitas de prueba" unique_id=1266513723 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(287, 303)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba16" parent="." unique_id=1101442520 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba16" parent="pelotitas de prueba" unique_id=1101442520 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(435, 288)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba17" parent="." unique_id=474351598 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba17" parent="pelotitas de prueba" unique_id=474351598 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(574, 303)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba18" parent="." unique_id=1291736645 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba18" parent="pelotitas de prueba" unique_id=1291736645 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(695, 282)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba19" parent="." unique_id=1776732831 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba19" parent="pelotitas de prueba" unique_id=1776732831 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(806, 278)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba20" parent="." unique_id=96843228 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba20" parent="pelotitas de prueba" unique_id=96843228 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(905, 284)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba21" parent="." unique_id=1135782096 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba21" parent="pelotitas de prueba" unique_id=1135782096 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(961, 333)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba22" parent="." unique_id=108318314 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba22" parent="pelotitas de prueba" unique_id=108318314 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(985, 436)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba23" parent="." unique_id=1843559432 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba23" parent="pelotitas de prueba" unique_id=1843559432 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(861, 565)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba24" parent="." unique_id=208112070 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba24" parent="pelotitas de prueba" unique_id=208112070 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(752, 610)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba25" parent="." unique_id=1414045852 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba25" parent="pelotitas de prueba" unique_id=1414045852 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(675, 608)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba26" parent="." unique_id=851860470 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba26" parent="pelotitas de prueba" unique_id=851860470 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(581, 597)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba27" parent="." unique_id=866142204 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba27" parent="pelotitas de prueba" unique_id=866142204 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(455, 606)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba28" parent="." unique_id=1764410896 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba28" parent="pelotitas de prueba" unique_id=1764410896 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(470, 465)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba29" parent="." unique_id=1993582750 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba29" parent="pelotitas de prueba" unique_id=1993582750 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(959, 521)
 collision_layer = 0
 collision_mask = 0
 script = null
 
-[node name="Pelotita_estatica_prueba30" parent="." unique_id=1462179173 instance=ExtResource("4_qjisj")]
+[node name="Pelotita_estatica_prueba30" parent="pelotitas de prueba" unique_id=1462179173 instance=ExtResource("4_qjisj")]
 visible = false
 position = Vector2(264, 530)
 collision_layer = 0
@@ -231,3 +234,10 @@ script = null
 script = ExtResource("3_qjisj")
 nivel = ExtResource("4_7oqg1")
 metadata/_custom_type_script = "uid://bh3lxufik2p65"
+
+[node name="SelectorDeNiveles" type="Node2D" parent="." unique_id=1571656494 node_paths=PackedStringArray("cargador")]
+script = ExtResource("5_7oqg1")
+cargador = NodePath("../CargadorDeNivel")
+divisores_minimos = 1
+divisores_maximos = 3
+metadata/_custom_type_script = "uid://mrkgoq2v1cix"

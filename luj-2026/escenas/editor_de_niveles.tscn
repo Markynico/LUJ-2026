@@ -1,6 +1,62 @@
 [gd_scene format=3 uid="uid://jimkk8u7orb2"]
 
 [ext_resource type="Script" uid="uid://bh3lxufik2p65" path="res://scripts/niveles/cargador_de_nivel.gd" id="1_carg"]
+[ext_resource type="PackedScene" uid="uid://cformarect0a1" path="res://escenas/componentes/forma_rectangulo.tscn" id="4_pevrx"]
+[ext_resource type="PackedScene" uid="uid://ddjsjatakql7" path="res://escenas/componentes/recorrido.tscn" id="5_xrhlm"]
+[ext_resource type="PackedScene" uid="uid://bxjt6h43758na" path="res://escenas/componentes/divisiones_pachinko.tscn" id="7_divs"]
+
+[sub_resource type="Curve2D" id="Curve2D_pevrx"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -6.1299744, -350.81)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_k61t0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -13.599976, -339.94, 0, 0, 0, 0, 157.40002, -252.94, 0, 0, 0, 0, 59.400024, -167.94)
+}
+point_count = 4
 
 [node name="EditorDeNiveles" type="Node2D" unique_id=925235971]
 script = ExtResource("1_carg")
+
+[node name="Recorrido" parent="." unique_id=280754748 instance=ExtResource("5_xrhlm")]
+position = Vector2(273.12997, 429.81)
+curve = SubResource("Curve2D_pevrx")
+
+[node name="Seguidor" parent="Recorrido" index="0"]
+loop = false
+
+[node name="FormaRectangulo" parent="Recorrido/Seguidor" index="0" unique_id=643326389 instance=ExtResource("4_pevrx")]
+"tamaño" = Vector2(216.16003, 194.59497)
+
+[node name="Recorrido2" parent="." unique_id=778508862 instance=ExtResource("5_xrhlm")]
+position = Vector2(571, 429.81)
+curve = SubResource("Curve2D_pevrx")
+progreso_inicial = 50.0
+
+[node name="Seguidor" parent="Recorrido2" index="0"]
+position = Vector2(-3.0649874, -175.40501)
+progress = 175.4318
+loop = false
+
+[node name="FormaRectangulo" parent="Recorrido2/Seguidor" index="0" unique_id=986486089 instance=ExtResource("4_pevrx")]
+"tamaño" = Vector2(216.16003, 194.59497)
+
+[node name="Recorrido3" parent="." unique_id=784222684 instance=ExtResource("5_xrhlm")]
+position = Vector2(973.42847, 449.75647)
+curve = SubResource("Curve2D_k61t0")
+
+[node name="Seguidor" parent="Recorrido3" index="0"]
+loop = false
+
+[node name="FormaRectangulo" parent="Recorrido3/Seguidor" index="0" unique_id=762517866 instance=ExtResource("4_pevrx")]
+"tamaño" = Vector2(262.14, 198.83002)
+
+[node name="DivisionesPachinko" parent="." unique_id=631157151 instance=ExtResource("7_divs")]
+position = Vector2(0, 720)
+divisiones_intermedias = 3
+
+[editable path="Recorrido"]
+[editable path="Recorrido2"]
+[editable path="Recorrido3"]
