@@ -16,7 +16,7 @@ enum EstadoDeJuego{
 }
 
 @export var disparador : DisparadorPelotita
-@export var bolas_maximas : int = 6
+@export var bolas_maximas : int = 20
 
 var bolas_restantes : int = 0
 var estado_actual : EstadoDeJuego = EstadoDeJuego.ESPERANDO

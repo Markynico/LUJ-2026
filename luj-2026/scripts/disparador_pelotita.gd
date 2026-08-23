@@ -12,6 +12,7 @@ signal disparo #Se conecta con game manager
 @export var fuerza_disparo : float = 2.0
 var velocidad_inicial : Vector2
 var posicion_mouse : Vector2
+var bolitas_creadas : int = 0
 #var gravedad = ProjectSettings.get_setting("physics/2d/default_gravity") arreglarrrr
 
 func _ready() -> void:
@@ -23,8 +24,11 @@ func _input(event: InputEvent) -> void:
 		#posicion_mouse = get_viewport().get_mouse_position()
 		posicion_mouse = get_global_mouse_position()
 		velocidad_inicial = (global_position - posicion_mouse) * fuerza_disparo #no lo normalizo para q justamente dispare mas fuerte si el mouse esta lejos
-	if Input.is_action_just_pressed("click_izq"):
-		disparo.emit()
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			bolitas_creadas += 1
+			print("BOLITA CREADA: " + str(bolitas_creadas))
+			disparo.emit()
 
 func _on_pedir_lanzar_bola () -> void:
 		var instancia : BolaDePelos = escena_pelotita_prueba.instantiate()
