@@ -1,0 +1,466 @@
+[gd_scene format=3 uid="uid://cwooty7ys5aue"]
+
+[ext_resource type="Script" uid="uid://yd823ata1jv5" path="res://scripts/menu_principal.gd" id="1_menu"]
+[ext_resource type="PackedScene" uid="uid://cb5y372b6m6i0" path="res://escenas/fondo_menu_pelotitas.tscn" id="2_fondo"]
+[ext_resource type="PackedScene" uid="uid://b23m7w8h04g8j" path="res://escenas/componentes/gatito_menu.tscn" id="3_gatito"]
+[ext_resource type="Script" uid="uid://c5abydnl26fwy" path="res://scripts/boton_menu_animado.gd" id="4_boton"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_titulo"]
+font_size = 54
+font_color = Color(0.960784, 0.968627, 1, 1)
+outline_size = 10
+outline_color = Color(0.0823529, 0.0901961, 0.145098, 1)
+shadow_size = 12
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_offset = Vector2(0, 6)
+
+[sub_resource type="LabelSettings" id="LabelSettings_subtitulo"]
+font_size = 18
+font_color = Color(0.686275, 0.756863, 0.941176, 1)
+outline_size = 4
+outline_color = Color(0.0823529, 0.0901961, 0.145098, 0.8)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_play_normal"]
+content_margin_left = 24.0
+content_margin_top = 14.0
+content_margin_right = 24.0
+content_margin_bottom = 14.0
+bg_color = Color(0.180392, 0.631373, 0.439216, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 4
+border_color = Color(0.352941, 0.862745, 0.627451, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.1, 0.4, 0.25, 0.35)
+shadow_size = 8
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_play_pressed"]
+content_margin_left = 24.0
+content_margin_top = 16.0
+content_margin_right = 24.0
+content_margin_bottom = 12.0
+bg_color = Color(0.12549, 0.470588, 0.32549, 0.95)
+border_width_left = 2
+border_width_top = 4
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.18, 0.55, 0.38, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_play_hover"]
+content_margin_left = 24.0
+content_margin_top = 14.0
+content_margin_right = 24.0
+content_margin_bottom = 14.0
+bg_color = Color(0.219608, 0.741176, 0.517647, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 4
+border_color = Color(0.55, 1, 0.8, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.2, 0.8, 0.5, 0.45)
+shadow_size = 12
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
+content_margin_left = 24.0
+content_margin_top = 14.0
+content_margin_right = 24.0
+content_margin_bottom = 14.0
+bg_color = Color(0.184314, 0.207843, 0.301961, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 4
+border_color = Color(0.380392, 0.443137, 0.643137, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.3)
+shadow_size = 6
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_pressed"]
+content_margin_left = 24.0
+content_margin_top = 16.0
+content_margin_right = 24.0
+content_margin_bottom = 12.0
+bg_color = Color(0.137255, 0.152941, 0.227451, 0.95)
+border_width_left = 2
+border_width_top = 4
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.294118, 0.345098, 0.509804, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.2)
+shadow_size = 2
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+content_margin_left = 24.0
+content_margin_top = 14.0
+content_margin_right = 24.0
+content_margin_bottom = 14.0
+bg_color = Color(0.247059, 0.286275, 0.419608, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 4
+border_color = Color(0.584314, 0.678431, 0.976471, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.38, 0.45, 0.7, 0.4)
+shadow_size = 10
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_salir_normal"]
+content_margin_left = 24.0
+content_margin_top = 14.0
+content_margin_right = 24.0
+content_margin_bottom = 14.0
+bg_color = Color(0.529412, 0.184314, 0.223529, 0.85)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 4
+border_color = Color(0.8, 0.3, 0.35, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.3)
+shadow_size = 6
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_salir_pressed"]
+content_margin_left = 24.0
+content_margin_top = 16.0
+content_margin_right = 24.0
+content_margin_bottom = 12.0
+bg_color = Color(0.38, 0.12, 0.15, 0.95)
+border_width_left = 2
+border_width_top = 4
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5, 0.15, 0.2, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_salir_hover"]
+content_margin_left = 24.0
+content_margin_top = 14.0
+content_margin_right = 24.0
+content_margin_bottom = 14.0
+bg_color = Color(0.682353, 0.227451, 0.278431, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 4
+border_color = Color(1, 0.45, 0.5, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.8, 0.2, 0.25, 0.4)
+shadow_size = 10
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel_modal"]
+content_margin_left = 32.0
+content_margin_top = 32.0
+content_margin_right = 32.0
+content_margin_bottom = 32.0
+bg_color = Color(0.121569, 0.137255, 0.2, 0.96)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.435294, 0.505882, 0.721569, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_size = 20
+shadow_offset = Vector2(0, 8)
+
+[sub_resource type="LabelSettings" id="LabelSettings_modal_titulo"]
+font_size = 32
+outline_size = 6
+outline_color = Color(0.08, 0.09, 0.15, 1)
+
+[node name="MenuPrincipal" type="Control" unique_id=1341228595]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+
+[node name="FondoMenuPelotitas" parent="." unique_id=460261598 instance=ExtResource("2_fondo")]
+
+[node name="CapaUI" type="CanvasLayer" parent="." unique_id=247179072]
+
+[node name="ContenedorPrincipal" type="Control" parent="CapaUI" unique_id=1101640571]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="GatitoMenu" parent="CapaUI/ContenedorPrincipal" unique_id=1975331538 instance=ExtResource("3_gatito")]
+position = Vector2(340, 390)
+scale = Vector2(1.2, 1.2)
+
+[node name="ContenedorTitulo" type="VBoxContainer" parent="CapaUI/ContenedorPrincipal" unique_id=315198155]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 50.0
+offset_right = 300.0
+offset_bottom = 160.0
+grow_horizontal = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="LabelTitulo" type="Label" parent="CapaUI/ContenedorPrincipal/ContenedorTitulo" unique_id=160456759]
+layout_mode = 2
+text = "LUJ 2026"
+label_settings = SubResource("LabelSettings_titulo")
+horizontal_alignment = 1
+
+[node name="LabelSubtitulo" type="Label" parent="CapaUI/ContenedorPrincipal/ContenedorTitulo" unique_id=612642011]
+layout_mode = 2
+text = "¡Apunta, dispara y diviértete con los michis!"
+label_settings = SubResource("LabelSettings_subtitulo")
+horizontal_alignment = 1
+
+[node name="ContenedorBotones" type="VBoxContainer" parent="CapaUI/ContenedorPrincipal" unique_id=2029210917]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -120.0
+offset_right = 320.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="BotonPlay" type="Button" parent="CapaUI/ContenedorPrincipal/ContenedorBotones" unique_id=1979279371]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_play_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_play_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_play_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_play_hover")
+text = "▶  JUGAR"
+script = ExtResource("4_boton")
+
+[node name="BotonOpciones" type="Button" parent="CapaUI/ContenedorPrincipal/ContenedorBotones" unique_id=1014260209]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 54)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
+text = "⚙  OPCIONES"
+script = ExtResource("4_boton")
+
+[node name="BotonCreditos" type="Button" parent="CapaUI/ContenedorPrincipal/ContenedorBotones" unique_id=374062774]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 54)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
+text = "★  CRÉDITOS"
+script = ExtResource("4_boton")
+
+[node name="BotonSalir" type="Button" parent="CapaUI/ContenedorPrincipal/ContenedorBotones" unique_id=1421377744]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 54)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_salir_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_salir_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_salir_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_salir_hover")
+text = "✖  CERRAR JUEGO"
+script = ExtResource("4_boton")
+
+[node name="PanelOpciones" type="PanelContainer" parent="CapaUI" unique_id=1756374802]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -200.0
+offset_right = 260.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel_modal")
+
+[node name="VBoxOpciones" type="VBoxContainer" parent="CapaUI/PanelOpciones" unique_id=784942566]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="LabelOpciones" type="Label" parent="CapaUI/PanelOpciones/VBoxOpciones" unique_id=947791718]
+layout_mode = 2
+text = "OPCIONES"
+label_settings = SubResource("LabelSettings_modal_titulo")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CapaUI/PanelOpciones/VBoxOpciones" unique_id=958289205]
+layout_mode = 2
+
+[node name="HBoxVolumen" type="HBoxContainer" parent="CapaUI/PanelOpciones/VBoxOpciones" unique_id=166674980]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="LabelVol" type="Label" parent="CapaUI/PanelOpciones/VBoxOpciones/HBoxVolumen" unique_id=1916741255]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Volumen Master:"
+
+[node name="SliderVolumen" type="HSlider" parent="CapaUI/PanelOpciones/VBoxOpciones/HBoxVolumen" unique_id=1415881637]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 80.0
+
+[node name="HBoxPantalla" type="HBoxContainer" parent="CapaUI/PanelOpciones/VBoxOpciones" unique_id=1254470526]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="LabelPantalla" type="Label" parent="CapaUI/PanelOpciones/VBoxOpciones/HBoxPantalla" unique_id=2097315970]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Pantalla Completa:"
+
+[node name="CheckPantallaCompleta" type="CheckBox" parent="CapaUI/PanelOpciones/VBoxOpciones/HBoxPantalla" unique_id=2015735507]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Spacer" type="Control" parent="CapaUI/PanelOpciones/VBoxOpciones" unique_id=1871597790]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="BotonCerrarOpciones" type="Button" parent="CapaUI/PanelOpciones/VBoxOpciones" unique_id=2140242328]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
+text = "VOLVER"
+script = ExtResource("4_boton")
+
+[node name="PanelCreditos" type="PanelContainer" parent="CapaUI" unique_id=1912616116]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -220.0
+offset_right = 260.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel_modal")
+
+[node name="VBoxCreditos" type="VBoxContainer" parent="CapaUI/PanelCreditos" unique_id=1371335076]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="LabelCreditos" type="Label" parent="CapaUI/PanelCreditos/VBoxCreditos" unique_id=486814274]
+layout_mode = 2
+text = "CRÉDITOS"
+label_settings = SubResource("LabelSettings_modal_titulo")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CapaUI/PanelCreditos/VBoxCreditos" unique_id=826440529]
+layout_mode = 2
+
+[node name="LabelTextoCreditos" type="Label" parent="CapaUI/PanelCreditos/VBoxCreditos" unique_id=92470218]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.9, 0.96, 1)
+theme_override_font_sizes/font_size = 18
+text = "Desarrollo :
+Nombres del equipo
+
+Motor: Godot Engine 4
+assets usados: pipipi"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="CapaUI/PanelCreditos/VBoxCreditos" unique_id=1146462912]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="BotonCerrarCreditos" type="Button" parent="CapaUI/PanelCreditos/VBoxCreditos" unique_id=1062114357]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
+text = "VOLVER"
+script = ExtResource("4_boton")

@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://cb5y372b6m6i0"]
+
+[ext_resource type="Script" path="res://scripts/fondo_menu_pelotitas.gd" id="1_fondo"]
+[ext_resource type="PackedScene" uid="uid://dy3jqoayfdkwm" path="res://escenas/pelotita_estatica_prueba.tscn" id="2_pegs"]
+
+[node name="FondoMenuPelotitas" type="Node2D"]
+script = ExtResource("1_fondo")
+
+[node name="ColorRectFondo" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.117647, 0.12549, 0.180392, 1)
+
+[node name="Obstaculos" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0.75)
+
+[node name="Peg1" parent="Obstaculos" instance=ExtResource("2_pegs")]
+position = Vector2(240, 220)
+
+[node name="Peg2" parent="Obstaculos" instance=ExtResource("2_pegs")]
+position = Vector2(400, 260)
+
+[node name="Peg3" parent="Obstaculos" instance=ExtResource("2_pegs")]
+position = Vector2(560, 220)
+
+[node name="Peg4" parent="Obstaculos" instance=ExtResource("2_pegs")]
+position = Vector2(720, 260)
+
+[node name="Peg5" parent="Obstaculos" instance=ExtResource("2_pegs")]
+position = Vector2(880, 220)
+
+[node name="Peg6" parent="Obstaculos" instance=ExtResource("2_pegs")]
+position = Vector2(1040, 260)
+
+[node name="Peg7" parent="Obstaculos" instance=ExtResource("2_pegs")]
+position = Vector2(320, 420)
+
+[node name="Peg8" parent="Obstaculos" instance=ExtResource("2_pegs")]
+position = Vector2(480, 460)
+
+[node name="Peg9" parent="Obstaculos" instance=ExtResource("2_pegs")]
+position = Vector2(640, 420)
+
+[node name="Peg10" parent="Obstaculos" instance=ExtResource("2_pegs")]
+position = Vector2(800, 460)
+
+[node name="Peg11" parent="Obstaculos" instance=ExtResource("2_pegs")]
+position = Vector2(960, 420)
+
+[node name="Peg12" parent="Obstaculos" instance=ExtResource("2_pegs")]
+position = Vector2(200, 580)
+
+[node name="Peg13" parent="Obstaculos" instance=ExtResource("2_pegs")]
+position = Vector2(440, 610)
+
+[node name="Peg14" parent="Obstaculos" instance=ExtResource("2_pegs")]
+position = Vector2(680, 580)
+
+[node name="Peg15" parent="Obstaculos" instance=ExtResource("2_pegs")]
+position = Vector2(920, 610)
+
+[node name="Peg16" parent="Obstaculos" instance=ExtResource("2_pegs")]
+position = Vector2(1100, 580)
+
+[node name="CapaFiltroOscurecedor" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0.07, 0.08, 0.12, 0.45)
