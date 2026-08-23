@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://jimkk8u7orb2"]
+
+[ext_resource type="Script" uid="uid://bh3lxufik2p65" path="res://scripts/niveles/cargador_de_nivel.gd" id="1_carg"]
+
+[node name="EditorDeNiveles" type="Node2D" unique_id=925235971]
+script = ExtResource("1_carg")

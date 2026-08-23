@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://4u6vlkjfcunf"]
+
+[ext_resource type="Script" uid="uid://bspawnovillo01" path="res://scripts/niveles/spawn_ovillo.gd" id="1_spawn"]
+
+[node name="SpawnOvillo" type="Node2D"]
+script = ExtResource("1_spawn")

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="NivelData" format=3 uid="uid://40se36c7ho3d"]
+
+[ext_resource type="Script" uid="uid://1owdr3bm0age" path="res://scripts/niveles/forma_data.gd" id="1_7mjxy"]
+[ext_resource type="Script" uid="uid://4yxin8siliwu" path="res://scripts/niveles/nivel_data.gd" id="2_qf3c6"]
+
+[sub_resource type="Curve2D" id="Curve2D_l60qw"]
+_data = {
+"points": PackedVector2Array(-21.258734, -380.88565, 21.258734, 380.88565, -215.71252, -141.09744, 54.918396, -148.81114, -54.918396, 148.81114, -573.7125, -42.097443, -148.81114, -72.63401, 148.81114, 72.63401, -440.71252, 193.90256, -178.92767, 134.63864, 178.92767, -134.63864, 111.287476, 74.90256, -1.7715611, 120.466156, 1.7715611, -120.466156, 354.28748, -185.09744, 304.70853, -166.52675, -304.70853, 166.52675, 46.287476, -235.09744)
+}
+point_count = 6
+
+[sub_resource type="Resource" id="Resource_pul76"]
+script = ExtResource("1_7mjxy")
+tipo = "path"
+posicion = Vector2(788, 369)
+curva = SubResource("Curve2D_l60qw")
+
+[resource]
+script = ExtResource("2_qf3c6")
+nombre = "prueba bezier"
+formas = Array[ExtResource("1_7mjxy")]([SubResource("Resource_pul76")])

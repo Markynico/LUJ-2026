@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cformacirc0a1"]
+
+[ext_resource type="Script" uid="uid://bformacircul01" path="res://scripts/niveles/forma_circulo.gd" id="1_circ"]
+[ext_resource type="PackedScene" uid="uid://cgen0vill0s1a" path="res://escenas/componentes/generador_de_ovillos.tscn" id="2_gen"]
+
+[node name="FormaCirculo" type="Node2D"]
+script = ExtResource("1_circ")
+
+[node name="GeneradorDeOvillos" parent="." node_paths=PackedStringArray("forma") instance=ExtResource("2_gen")]
+forma = NodePath("..")

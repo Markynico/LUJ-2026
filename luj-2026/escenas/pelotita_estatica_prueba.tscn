@@ -1,12 +1,17 @@
-[gd_scene format=3 uid="uid://dy3jqoayfdkwm"]
+[gd_scene load_steps=5 format=3 uid="uid://dy3jqoayfdkwm"]
 
+[ext_resource type="Script" uid="uid://bovillo0000001" path="res://scripts/ovillo.gd" id="1_ovillo"]
 [ext_resource type="Texture2D" uid="uid://t22vju8kwtq7" path="res://iconos_custom/pie_chart.svg" id="1_dpe3i"]
-[ext_resource type="AudioStream" uid="uid://c6rjkabpuu3sj" path="res://sonidos/sonido_pop.wav" id="3_231nb"]
+[ext_resource type="AudioStream" uid="uid://2jvby7clemka" path="res://assets/audio/sfx/romper_pelotita.wav" id="3_231nb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_37ege"]
 radius = 20.0
 
-[node name="Pelotita_estatica_prueba" type="StaticBody2D" unique_id=142733400]
+[node name="Pelotita_estatica_prueba" type="StaticBody2D" unique_id=142733400 node_paths=PackedStringArray("audio", "forma_colision", "sprite")]
+script = ExtResource("1_ovillo")
+audio = NodePath("AudioStreamPlayer")
+forma_colision = NodePath("CollisionShape2D")
+sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=20603333]
 texture_filter = 1
