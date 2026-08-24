@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://8fp4u37v55ma"]
+
+[ext_resource type="Script" uid="uid://y1lycsaua1lj" path="res://scripts/explosion.gd" id="1_jo8qg"]
+[ext_resource type="Texture2D" uid="uid://dx353b6iil2jy" path="res://icon.svg" id="2_kqol7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_37ege"]
+radius = 49.365982
+
+[sub_resource type="Animation" id="Animation_nv2mc"]
+resource_name = "probando"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.53333336, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.08, 0.08), Vector2(1.6, 1.6), Vector2(0.08, 0.08)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_spn5a"]
+_data = {
+&"probando": SubResource("Animation_nv2mc")
+}
+
+[node name="Explosion" type="Node2D" unique_id=1253243995]
+script = ExtResource("1_jo8qg")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=307007487]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=944350662]
+shape = SubResource("CircleShape2D_37ege")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=187689397]
+libraries/ = SubResource("AnimationLibrary_spn5a")
+autoplay = &"probando"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1668059366]
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("2_kqol7")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

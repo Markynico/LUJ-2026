@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cb5y372b6m6i0"]
 
-[ext_resource type="Script" path="res://scripts/fondo_menu_pelotitas.gd" id="1_fondo"]
-[ext_resource type="PackedScene" uid="uid://dy3jqoayfdkwm" path="res://escenas/pelotita_estatica_prueba.tscn" id="2_pegs"]
+[ext_resource type="Script" uid="uid://dte0ehwesipla" path="res://scripts/fondo_menu_pelotitas.gd" id="1_fondo"]
+[ext_resource type="PackedScene" uid="uid://dy3jqoayfdkwm" path="res://escenas/Ovillo.tscn" id="2_pegs"]
 
 [node name="FondoMenuPelotitas" type="Node2D"]
 script = ExtResource("1_fondo")

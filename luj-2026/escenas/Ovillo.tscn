@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://dy3jqoayfdkwm"]
+
+[ext_resource type="Script" uid="uid://cil5i0yy8liwu" path="res://scripts/ovillo.gd" id="1_wlnnp"]
+[ext_resource type="Script" uid="uid://cv3xugh8gva3y" path="res://scripts/ovillos_custom/efecto_ovillo_explosion.gd" id="3_dcous"]
+[ext_resource type="Texture2D" uid="uid://dbcovwwwqfpky" path="res://assets/sprite_ovillos/Ovillo verde.png" id="3_vkchq"]
+[ext_resource type="Script" uid="uid://bbkyk2anhunsd" path="res://scripts/ovillos_custom/ovillo_base.gd" id="3_wlnnp"]
+[ext_resource type="Texture2D" uid="uid://wr43cbl6x483" path="res://assets/sprite_ovillos/Ovillo negro.png" id="4_3vil1"]
+[ext_resource type="AudioStream" uid="uid://2jvby7clemka" path="res://assets/audio/sfx/romper_pelotita.wav" id="5_f54ks"]
+
+[sub_resource type="Resource" id="Resource_wlnnp"]
+script = ExtResource("3_dcous")
+metadata/_custom_type_script = "uid://cv3xugh8gva3y"
+
+[sub_resource type="Resource" id="Resource_anqno"]
+script = ExtResource("3_wlnnp")
+sprite = ExtResource("3_vkchq")
+audio = ExtResource("5_f54ks")
+efectos_al_recibir_impacto = [SubResource("Resource_wlnnp")]
+metadata/_custom_type_script = "uid://bbkyk2anhunsd"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_37ege"]
+radius = 20.0
+
+[node name="Ovillo" type="StaticBody2D" unique_id=142733400 node_paths=PackedStringArray("audio", "forma_colision", "sprite_normal", "sprite_desactivado")]
+script = ExtResource("1_wlnnp")
+tipo_ovillo = SubResource("Resource_anqno")
+audio = NodePath("AudioStreamPlayer")
+forma_colision = NodePath("CollisionShape2D")
+sprite_normal = NodePath("SpriteNormal")
+sprite_desactivado = NodePath("SpriteDesactivado")
+
+[node name="SpriteNormal" type="Sprite2D" parent="." unique_id=20603333]
+texture_filter = 1
+position = Vector2(0.99999905, -3.9999995)
+scale = Vector2(0.16643755, 0.16643755)
+texture = ExtResource("3_vkchq")
+
+[node name="SpriteDesactivado" type="Sprite2D" parent="." unique_id=550040605]
+visible = false
+position = Vector2(0, -2)
+scale = Vector2(0.11, 0.11)
+texture = ExtResource("4_3vil1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1818122697]
+shape = SubResource("CircleShape2D_37ege")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1822913173]
+unique_name_in_owner = true
+stream = ExtResource("5_f54ks")
+volume_db = -0.5
