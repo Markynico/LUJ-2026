@@ -18,6 +18,8 @@ signal nivel_construido
 	"rectangulo": preload("uid://cformarect0a1"),
 	"circulo": preload("uid://cformacirc0a1"),
 	"path": preload("uid://cformabe000a1"),
+	"obstaculo_rectangulo": preload("uid://cobstrect00a1"),
+	"obstaculo_circulo": preload("uid://cobstcirc00a1"),
 }
 ##escena que envuelve a una forma para moverla por un recorrido
 @export var escena_recorrido : PackedScene = preload("uid://crecorrido00a1")

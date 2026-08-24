@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://bh3lxufik2p65" path="res://scripts/niveles/cargador_de_nivel.gd" id="3_qjisj"]
 [ext_resource type="PackedScene" uid="uid://dy3jqoayfdkwm" path="res://escenas/Ovillo.tscn" id="4_qjisj"]
 [ext_resource type="Script" uid="uid://mrkgoq2v1cix" path="res://scripts/niveles/selector_de_niveles.gd" id="5_7oqg1"]
-[ext_resource type="Resource" uid="uid://ed62sq6tp7rx" path="res://niveles/prueba4.tres" id="6_3a2ma"]
+[ext_resource type="Resource" uid="uid://fxthvqs3nbe6" path="res://niveles/cool s.tres" id="6_3a2ma"]
 
 [node name="PRUEBA_ESCENA" type="Node2D" unique_id=1045362644]
 
@@ -252,4 +252,5 @@ script = ExtResource("5_7oqg1")
 cargador = NodePath("../CargadorDeNivel")
 divisores_minimos = 1
 divisores_maximos = 3
+alto_salida = 100.0
 metadata/_custom_type_script = "uid://mrkgoq2v1cix"

@@ -52,8 +52,21 @@ func seleccionar_forma_en(posicion_pantalla : Vector2) -> bool:
 		if not forma is FormaSpawn:
 			continue
 		var punto_local := forma.global_transform.affine_inverse() * (transformacion_viewport.affine_inverse() * posicion_pantalla)
-		if forma.esta_sobre_contorno(punto_local, tolerancia):
+		if forma.esta_sobre_contorno(punto_local, tolerancia) or esta_sobre_relleno(forma, punto_local):
 			seleccionar(forma)
 			manijas.empezar_arrastre_desde_contorno(forma, posicion_pantalla)
+			return true
+	return false
+
+
+func esta_sobre_relleno(forma : FormaSpawn, punto_local : Vector2) -> bool:
+	if not es_solida(forma):
+		return false
+	return Geometry2D.is_point_in_polygon(punto_local, forma.obtener_contorno())
+
+
+func es_solida(forma : FormaSpawn) -> bool:
+	for hijo in forma.get_children():
+		if hijo is Obstaculo:
 			return true
 	return false

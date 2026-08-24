@@ -6,7 +6,7 @@
 [sub_resource type="Curve2D" id="Curve2D_7dnf6"]
 bake_interval = 2.0
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 24.387695, -11.237701, 0, 0, 0, 0, 65.177124, -80.974396, 0, 0, 0, 0, 66.49286, -215.18471, 0, 0, 0, 0, -46.664795, -392.81598, 0, 0, 0, 0, -155.87512, -212.55313, 0, 0, 0, 0, -154.46533, -117.54068, 0, 0, 0, 0, -158.50671, -50.711304, 0, 0, 0, 0, -53.465332, 77.45932, 0, 0, 0, 0, -51.92798, 244.02502)
+"points": PackedVector2Array(0, 0, 0, 0, 24.387695, -11.237701, 0, 0, 0, 0, 65.177124, -80.974396, 0, 0, 0, 0, 66.49286, -215.18471, 0, 0, 0, 0, -46.664795, -392.81598, 0, 0, 0, 0, -155.87512, -212.55313, 0, 0, 0, 0, -154.46533, -117.54068, 0, 0, 0, 0, -158.50671, -75.71127, 0, 0, 0, 0, -49.296387, 80.8674, 0, 0, 0, 0, -51.92798, 244.02502)
 }
 point_count = 9
 
@@ -20,7 +20,7 @@ curva = SubResource("Curve2D_7dnf6")
 [sub_resource type="Curve2D" id="Curve2D_jf1ll"]
 bake_interval = 2.0
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -77.595276, -169.66753, 0, 0, 0, 0, -79.972534, -20.94757, 0, 0, 0, 0, 25.027466, 131.05243, 0, 0, 0, 0, 23.027466, 281.05243, 0, 0, 0, 0, -82.85846, 442.1735, 0, 0, 0, 0, -185.97253, 288.05243, 0, 0, 0, 0, -188.1214, 129.01614, 0, 0, 0, 0, -156.54254, 73.75311)
+"points": PackedVector2Array(0, 0, 0, 0, -77.595276, -169.66753, 0, 0, 0, 0, -79.972534, -20.94757, 0, 0, 0, 0, 35.56244, 129.01614, 0, 0, 0, 0, 36.878174, 281.6475, 0, 0, 0, 0, -82.85846, 442.1735, 0, 0, 0, 0, -185.97253, 288.05243, 0, 0, 0, 0, -188.1214, 129.01614, 0, 0, 0, 0, -156.54254, 73.75311)
 }
 point_count = 8
 
@@ -31,7 +31,28 @@ posicion = Vector2(543.97253, 298.94754)
 escala = Vector2(0.76000124, 0.76000124)
 curva = SubResource("Curve2D_jf1ll")
 
+[sub_resource type="Resource" id="Resource_uptfj"]
+script = ExtResource("1_7dnf6")
+tipo = "obstaculo_rectangulo"
+posicion = Vector2(738.7923, 311.6502)
+rotacion = -0.7853982
+"tamaño" = Vector2(208.10669, 31.671692)
+
+[sub_resource type="Resource" id="Resource_hlemt"]
+script = ExtResource("1_7dnf6")
+tipo = "obstaculo_rectangulo"
+posicion = Vector2(863.9951, 311.00143)
+rotacion = 0.7853982
+"tamaño" = Vector2(208.10669, 31.671692)
+
+[sub_resource type="Resource" id="Resource_3af3g"]
+script = ExtResource("1_7dnf6")
+tipo = "obstaculo_rectangulo"
+posicion = Vector2(224.96992, 297.51)
+rotacion = 11.888833
+"tamaño" = Vector2(169.57495, 141.35501)
+
 [resource]
 script = ExtResource("2_444nr")
 nombre = "cool s"
-formas = Array[ExtResource("1_7dnf6")]([SubResource("Resource_444nr"), SubResource("Resource_b4055")])
+formas = Array[ExtResource("1_7dnf6")]([SubResource("Resource_444nr"), SubResource("Resource_b4055"), SubResource("Resource_uptfj"), SubResource("Resource_hlemt"), SubResource("Resource_3af3g")])
