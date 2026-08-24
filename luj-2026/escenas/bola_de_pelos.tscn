@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://7uwexjujii6u" path="res://scripts/bola_de_pelos.gd" id="1_q2vq6"]
 [ext_resource type="Texture2D" uid="uid://bsk14c2sew84m" path="res://iconos_custom/gobot.svg" id="2_unop5"]
 [ext_resource type="Script" uid="uid://c7ogyqxnq7236" path="res://scripts/pelotitas_custom/pelotita_base.gd" id="3_7sm33"]
-[ext_resource type="Script" uid="uid://5i4oxxen13xa" path="res://scripts/pelotitas_custom/efecto_rebote_normal.gd" id="3_avp8o"]
 [ext_resource type="Script" uid="uid://c31lbqa2grch4" path="res://scripts/pelotitas_custom/efectos_pelotita.gd" id="3_mfh0k"]
 [ext_resource type="Script" uid="uid://5i4oxxen13xa" path="res://scripts/pelotitas_custom/efecto_rebote_normal.gd" id="4_mfh0k"]
 [ext_resource type="AudioStream" uid="uid://2jvby7clemka" path="res://assets/audio/sfx/romper_pelotita.wav" id="4_rguhl"]
@@ -15,7 +14,7 @@ offsets = PackedFloat32Array(0.53246754, 1)
 colors = PackedColorArray(0, 1, 0, 1, 1, 1, 1, 1)
 
 [sub_resource type="Resource" id="Resource_0ct46"]
-script = ExtResource("3_avp8o")
+script = ExtResource("4_mfh0k")
 metadata/_custom_type_script = "uid://5i4oxxen13xa"
 
 [sub_resource type="Resource" id="Resource_avp8o"]
@@ -25,12 +24,8 @@ colores_estela = SubResource("Gradient_sdgal")
 efectos = Array[ExtResource("3_mfh0k")]([SubResource("Resource_0ct46")])
 metadata/_custom_type_script = "uid://c7ogyqxnq7236"
 
-[sub_resource type="Resource" id="Resource_bbvk0"]
-script = ExtResource("4_mfh0k")
-metadata/_custom_type_script = "uid://5i4oxxen13xa"
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_37ege"]
-radius = 19.026299
+radius = 12.0
 
 [node name="BolaDePelos" type="RigidBody2D" unique_id=660631560 node_paths=PackedStringArray("sprite_bola", "estela_movimiento", "audio")]
 z_index = 1
@@ -46,10 +41,11 @@ audio = NodePath("AudioRebote")
 [node name="SpriteBola" type="Sprite2D" parent="." unique_id=1381481664]
 unique_name_in_owner = true
 texture_filter = 1
-scale = Vector2(2.5, 2.5)
+scale = Vector2(0.35, 0.35)
 texture = ExtResource("2_unop5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1988233965]
+scale = Vector2(0.25, 0.25)
 shape = SubResource("CircleShape2D_37ege")
 
 [node name="AudioRebote" type="AudioStreamPlayer" parent="." unique_id=787173903]
