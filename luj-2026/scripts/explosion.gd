@@ -1,3 +1,4 @@
+@icon("res://iconos_custom/explosion.svg")
 class_name Explosion
 extends Node2D
 
