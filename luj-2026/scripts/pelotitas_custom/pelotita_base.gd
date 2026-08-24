@@ -5,3 +5,4 @@ extends Resource
 @export var textura : Texture2D
 ##colores para la estela q deja la pelotita al moverse
 @export var colores_estela : Gradient
+@export var efectos: Array[EfectosPelotita] #ahora ta aca adentro pq me mezclaba q esten separados

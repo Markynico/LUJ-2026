@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://4u6vlkjfcunf"]
+[gd_scene format=3 uid="uid://4u6vlkjfcunf"]
 
-[ext_resource type="Script" uid="uid://bspawnovillo01" path="res://scripts/niveles/spawn_ovillo.gd" id="1_spawn"]
+[ext_resource type="Script" uid="uid://cgylyxw78yb53" path="res://scripts/niveles/spawn_ovillo.gd" id="1_spawn"]
+[ext_resource type="Script" uid="uid://bbkyk2anhunsd" path="res://scripts/ovillos_custom/ovillo_base.gd" id="2_c1m82"]
+[ext_resource type="Resource" uid="uid://7s3l7jelg8oy" path="res://scripts/resources/ovillo_normal_prueba.tres" id="3_u0c8d"]
+[ext_resource type="Resource" uid="uid://d3ks2dut6iacd" path="res://scripts/resources/explosivo_final.tres" id="4_c1m82"]
 
-[node name="SpawnOvillo" type="Node2D"]
+[node name="SpawnOvillo" type="Node2D" unique_id=566835572]
 script = ExtResource("1_spawn")
+tipo_ovillos = Array[ExtResource("2_c1m82")]([ExtResource("3_u0c8d"), ExtResource("4_c1m82")])
