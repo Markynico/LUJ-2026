@@ -5,5 +5,5 @@ var explosion_scene: PackedScene = preload("res://escenas/componentes/explosion.
 
 func al_recibir_impacto(ovillo: Ovillo):
 	var explosion = explosion_scene.instantiate()
-	ovillo.get_parent().add_child(explosion)
-	explosion.global_position = ovillo.global_position
+	ovillo.get_parent().call_deferred("add_child", explosion)
+	explosion.set_deferred("global_position", ovillo.global_position)
