@@ -1,64 +1,39 @@
 [gd_scene format=3 uid="uid://jimkk8u7orb2"]
 
 [ext_resource type="Script" uid="uid://bh3lxufik2p65" path="res://scripts/niveles/cargador_de_nivel.gd" id="1_carg"]
-[ext_resource type="PackedScene" uid="uid://cformarect0a1" path="res://escenas/componentes/forma_rectangulo.tscn" id="4_pevrx"]
-[ext_resource type="PackedScene" uid="uid://ddjsjatakql7" path="res://escenas/componentes/recorrido.tscn" id="5_xrhlm"]
+[ext_resource type="PackedScene" uid="uid://cformabe000a1" path="res://escenas/componentes/forma_path.tscn" id="3_4ylx1"]
+[ext_resource type="Script" uid="uid://1owdp7hud1ge" path="res://scripts/niveles/forma_path.gd" id="4_pevrx"]
 [ext_resource type="PackedScene" uid="uid://bxjt6h43758na" path="res://escenas/componentes/divisiones_pachinko.tscn" id="7_divs"]
 
-[sub_resource type="Curve2D" id="Curve2D_pevrx"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -6.1299744, -350.81)
-}
-point_count = 2
-
 [sub_resource type="Curve2D" id="Curve2D_k61t0"]
+bake_interval = 2.0
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -13.599976, -339.94, 0, 0, 0, 0, 157.40002, -252.94, 0, 0, 0, 0, 59.400024, -167.94)
+"points": PackedVector2Array(0, 0, 0, 0, 24.387695, -11.237701, 0, 0, 0, 0, 65.177124, -80.974396, 0, 0, 0, 0, 66.49286, -215.18471, 0, 0, 0, 0, -46.664795, -392.81598, 0, 0, 0, 0, -155.87512, -212.55313, 0, 0, 0, 0, -154.46533, -117.54068, 0, 0, 0, 0, -158.50671, -50.711304, 0, 0, 0, 0, -53.465332, 77.45932, 0, 0, 0, 0, -51.92798, 244.02502)
 }
-point_count = 4
+point_count = 9
+
+[sub_resource type="Curve2D" id="Curve2D_xrhlm"]
+bake_interval = 2.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -77.595276, -169.66753, 0, 0, 0, 0, -79.972534, -20.94757, 0, 0, 0, 0, 25.027466, 131.05243, 0, 0, 0, 0, 23.027466, 281.05243, 0, 0, 0, 0, -82.85846, 442.1735, 0, 0, 0, 0, -185.97253, 288.05243, 0, 0, 0, 0, -188.1214, 129.01614, 0, 0, 0, 0, -156.54254, 73.75311)
+}
+point_count = 8
 
 [node name="EditorDeNiveles" type="Node2D" unique_id=925235971]
 script = ExtResource("1_carg")
-
-[node name="Recorrido" parent="." unique_id=280754748 instance=ExtResource("5_xrhlm")]
-position = Vector2(177.16464, 555.67755)
-curve = SubResource("Curve2D_pevrx")
-
-[node name="Seguidor" parent="Recorrido" index="0"]
-loop = false
-
-[node name="FormaRectangulo" parent="Recorrido/Seguidor" index="0" unique_id=643326389 instance=ExtResource("4_pevrx")]
-"tamaño" = Vector2(216.16003, 194.59497)
-separacion_ovillos = 92.095
-
-[node name="Recorrido2" parent="." unique_id=778508862 instance=ExtResource("5_xrhlm")]
-position = Vector2(565.1416, 694.04083)
-curve = SubResource("Curve2D_pevrx")
-progreso_inicial = 50.0
-
-[node name="Seguidor" parent="Recorrido2" index="0"]
-position = Vector2(-3.0649874, -175.40501)
-progress = 175.4318
-loop = false
-
-[node name="FormaRectangulo" parent="Recorrido2/Seguidor" index="0" unique_id=986486089 instance=ExtResource("4_pevrx")]
-"tamaño" = Vector2(216.16003, 194.59497)
-separacion_ovillos = 91.55
-
-[node name="Recorrido3" parent="." unique_id=784222684 instance=ExtResource("5_xrhlm")]
-position = Vector2(973.42847, 449.75647)
-curve = SubResource("Curve2D_k61t0")
-
-[node name="Seguidor" parent="Recorrido3" index="0"]
-loop = false
-
-[node name="FormaRectangulo" parent="Recorrido3/Seguidor" index="0" unique_id=762517866 instance=ExtResource("4_pevrx")]
-"tamaño" = Vector2(262.14, 198.83002)
 
 [node name="DivisionesPachinko" parent="." unique_id=631157151 instance=ExtResource("7_divs")]
 position = Vector2(0, 720)
 divisiones_intermedias = 3
 
-[editable path="Recorrido"]
-[editable path="Recorrido2"]
-[editable path="Recorrido3"]
+[node name="FormaPath" type="Path2D" parent="." unique_id=106809862 instance=ExtResource("3_4ylx1")]
+position = Vector2(521.46533, 329.54065)
+scale = Vector2(0.76000124, 0.76000124)
+curve = SubResource("Curve2D_k61t0")
+script = ExtResource("4_pevrx")
+
+[node name="FormaPath2" type="Path2D" parent="." unique_id=2118330783 instance=ExtResource("3_4ylx1")]
+position = Vector2(543.97253, 298.94754)
+scale = Vector2(0.76000124, 0.76000124)
+curve = SubResource("Curve2D_xrhlm")
+script = ExtResource("4_pevrx")

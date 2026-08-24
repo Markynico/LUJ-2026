@@ -18,8 +18,10 @@ bolas_maximas = 6
 position = Vector2(455, 41)
 game_manager = NodePath("../GameManager")
 
-[node name="HUD" parent="." unique_id=2102008230 node_paths=PackedStringArray("game_manager") instance=ExtResource("3_l1he2")]
-game_manager = NodePath("../GameManager")
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2101704717]
+
+[node name="HUD" parent="CanvasLayer" unique_id=2102008230 node_paths=PackedStringArray("game_manager") instance=ExtResource("3_l1he2")]
+game_manager = NodePath("../../GameManager")
 
 [node name="Label" type="Label" parent="." unique_id=1049854138]
 offset_left = 4.0
