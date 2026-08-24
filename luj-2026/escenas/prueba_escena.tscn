@@ -4,9 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://che0rryy8c7cq" path="res://escenas/gato.tscn" id="2_3a2ma"]
 [ext_resource type="PackedScene" uid="uid://b07gjr8bpk3tm" path="res://escenas/hud.tscn" id="3_l1he2"]
 [ext_resource type="Script" uid="uid://bh3lxufik2p65" path="res://scripts/niveles/cargador_de_nivel.gd" id="3_qjisj"]
-[ext_resource type="PackedScene" uid="uid://dy3jqoayfdkwm" path="res://escenas/pelotita_estatica_prueba.tscn" id="4_qjisj"]
-[ext_resource type="Script" uid="uid://mrkgoq2v1cix" path="res://scripts/niveles/selector_de_niveles.gd" id="5_7oqg1"]
-[ext_resource type="Resource" uid="uid://fxthvqs3nbe6" path="res://niveles/cool s.tres" id="6_3a2ma"]
 [ext_resource type="PackedScene" uid="uid://dy3jqoayfdkwm" path="res://escenas/Ovillo.tscn" id="4_qjisj"]
 [ext_resource type="Script" uid="uid://mrkgoq2v1cix" path="res://scripts/niveles/selector_de_niveles.gd" id="5_7oqg1"]
 [ext_resource type="Resource" uid="uid://ed62sq6tp7rx" path="res://niveles/prueba4.tres" id="6_3a2ma"]
@@ -21,8 +18,10 @@ bolas_maximas = 6
 position = Vector2(455, 41)
 game_manager = NodePath("../GameManager")
 
-[node name="HUD" parent="." unique_id=2102008230 node_paths=PackedStringArray("game_manager") instance=ExtResource("3_l1he2")]
-game_manager = NodePath("../GameManager")
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2101704717]
+
+[node name="HUD" parent="CanvasLayer" unique_id=2102008230 node_paths=PackedStringArray("game_manager") instance=ExtResource("3_l1he2")]
+game_manager = NodePath("../../GameManager")
 
 [node name="Label" type="Label" parent="." unique_id=1049854138]
 offset_left = 4.0

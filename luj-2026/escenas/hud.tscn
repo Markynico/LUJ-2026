@@ -11,8 +11,21 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_m5lxu")
 
-[node name="BolasRestantes" type="Label" parent="." unique_id=1556842408]
-layout_mode = 0
-offset_right = 40.0
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=764577966]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
 offset_bottom = 23.0
+grow_horizontal = 2
+
+[node name="BolasRestantes" type="Label" parent="HBoxContainer" unique_id=1556842408]
+unique_name_in_owner = true
+layout_mode = 2
 text = "Bolas de pelo restantes:"
+
+[node name="Monedas" type="Label" parent="HBoxContainer" unique_id=599543815]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Monedas: "
+horizontal_alignment = 2
