@@ -13,6 +13,7 @@ var selector : SelectorDeFormas
 func _enter_tree() -> void:
 	dock = ESCENA_DOCK.instantiate()
 	dock.crear_forma.connect(crear_forma)
+	dock.nuevo_nivel.connect(nuevo_nivel)
 	dock.guardar_nivel.connect(guardar_nivel)
 	dock.cargar_nivel.connect(abrir_dialogo_cargar)
 	dock.agregar_recorrido.connect(agregar_recorrido)
@@ -142,6 +143,14 @@ func seleccionar_herramienta_agregar_punto() -> void:
 func centro_del_viewport() -> Vector2:
 	var viewport := EditorInterface.get_editor_viewport_2d()
 	return viewport.global_canvas_transform.affine_inverse() * (viewport.size * 0.5)
+
+
+func nuevo_nivel() -> void:
+	var cargador := obtener_cargador()
+	if not cargador:
+		return
+	cargador.limpiar_formas()
+	dock.mostrar_nombre("")
 
 
 func guardar_nivel(nombre : String) -> void:

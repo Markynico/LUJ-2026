@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://brhfmi38jresg" path="res://escenas/componentes/disparador_pelotita.tscn" id="2_jn8va"]
 [ext_resource type="PackedScene" uid="uid://b07gjr8bpk3tm" path="res://escenas/hud.tscn" id="3_l1he2"]
 [ext_resource type="Script" uid="uid://bh3lxufik2p65" path="res://scripts/niveles/cargador_de_nivel.gd" id="3_qjisj"]
-[ext_resource type="Resource" uid="uid://dqestmncri4nu" path="res://niveles/prueba divisiones.tres" id="4_7oqg1"]
 [ext_resource type="PackedScene" uid="uid://dy3jqoayfdkwm" path="res://escenas/pelotita_estatica_prueba.tscn" id="4_qjisj"]
 [ext_resource type="Script" uid="uid://mrkgoq2v1cix" path="res://scripts/niveles/selector_de_niveles.gd" id="5_7oqg1"]
+[ext_resource type="Resource" uid="uid://fxthvqs3nbe6" path="res://niveles/cool s.tres" id="6_3a2ma"]
 
 [node name="PRUEBA_ESCENA" type="Node2D" unique_id=1045362644]
 
@@ -241,7 +241,7 @@ script = null
 
 [node name="CargadorDeNivel" type="Node2D" parent="." unique_id=2005064664]
 script = ExtResource("3_qjisj")
-nivel = ExtResource("4_7oqg1")
+nivel = ExtResource("6_3a2ma")
 metadata/_custom_type_script = "uid://bh3lxufik2p65"
 
 [node name="SelectorDeNiveles" type="Node2D" parent="." unique_id=1571656494 node_paths=PackedStringArray("cargador")]

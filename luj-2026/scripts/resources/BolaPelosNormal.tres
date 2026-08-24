@@ -1,7 +1,6 @@
 [gd_resource type="Resource" script_class="PelotitaBase" format=3 uid="uid://cefp6mo0t1mgi"]
 
 [ext_resource type="Script" uid="uid://c7ogyqxnq7236" path="res://scripts/pelotitas_custom/pelotita_base.gd" id="1_07tsf"]
-[ext_resource type="AudioStream" uid="uid://2jvby7clemka" path="res://assets/audio/sfx/romper_pelotita.wav" id="1_riwt3"]
 [ext_resource type="Texture2D" uid="uid://y01cjx6nscow" path="res://iconos_custom/heart.svg" id="2_pxh3y"]
 
 [sub_resource type="Gradient" id="Gradient_pxh3y"]
@@ -12,5 +11,4 @@ colors = PackedColorArray(0.7882353, 0, 0, 1, 0.5159575, 0.5159575, 0.5159575, 1
 script = ExtResource("1_07tsf")
 textura = ExtResource("2_pxh3y")
 colores_estela = SubResource("Gradient_pxh3y")
-audio_al_rebotar = ExtResource("1_riwt3")
 metadata/_custom_type_script = "uid://c7ogyqxnq7236"
