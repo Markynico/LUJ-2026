@@ -10,6 +10,7 @@ script = ExtResource("1_k5sp8")
 escena_pelotita_prueba = ExtResource("2_of528")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=769145456]
+visible = false
 scale = Vector2(3, 3)
 texture = ExtResource("3_of528")
 

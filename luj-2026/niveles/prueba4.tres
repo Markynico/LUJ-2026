@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="NivelData" format=3 uid="uid://ed62sq6tp7rx"]
+
+[ext_resource type="Script" uid="uid://1owdr3bm0age" path="res://scripts/niveles/forma_data.gd" id="1_racp5"]
+[ext_resource type="Script" uid="uid://4yxin8siliwu" path="res://scripts/niveles/nivel_data.gd" id="2_qmvhj"]
+
+[sub_resource type="Curve2D" id="Curve2D_83rnm"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -6.1299744, -350.81)
+}
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_qxh5i"]
+script = ExtResource("1_racp5")
+separacion_ovillos = 92.095
+"tamaño" = Vector2(216.16003, 194.59497)
+recorrido = SubResource("Curve2D_83rnm")
+posicion_recorrido = Vector2(177.16464, 555.67755)
+
+[sub_resource type="Curve2D" id="Curve2D_o46bc"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -6.1299744, -350.81)
+}
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_e0v4h"]
+script = ExtResource("1_racp5")
+separacion_ovillos = 91.55
+"tamaño" = Vector2(216.16003, 194.59497)
+recorrido = SubResource("Curve2D_o46bc")
+posicion_recorrido = Vector2(565.1416, 694.04083)
+progreso_inicial = 50.0
+
+[sub_resource type="Curve2D" id="Curve2D_uvaxn"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -13.599976, -339.94, 0, 0, 0, 0, 157.40002, -252.94, 0, 0, 0, 0, 59.400024, -167.94)
+}
+point_count = 4
+
+[sub_resource type="Resource" id="Resource_6cihd"]
+script = ExtResource("1_racp5")
+"tamaño" = Vector2(262.14, 198.83002)
+recorrido = SubResource("Curve2D_uvaxn")
+posicion_recorrido = Vector2(973.42847, 449.75647)
+
+[resource]
+script = ExtResource("2_qmvhj")
+nombre = "prueba4"
+formas = Array[ExtResource("1_racp5")]([SubResource("Resource_qxh5i"), SubResource("Resource_e0v4h"), SubResource("Resource_6cihd")])
