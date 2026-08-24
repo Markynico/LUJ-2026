@@ -19,7 +19,7 @@ signal elegida(salida : SalidaDeNivel)
 
 func _ready() -> void:
 	actualizar_forma()
-	body_entered.connect(al_entrar_cuerpo)
+	body_entered.connect(_on_body_entered)
 
 
 func actualizar_forma() -> void:
@@ -32,8 +32,9 @@ func actualizar_forma() -> void:
 	queue_redraw()
 
 
-func al_entrar_cuerpo(_cuerpo : Node2D) -> void:
-	elegida.emit(self)
+func _on_body_entered(body : Node2D) -> void:
+	if body is Gato:
+		elegida.emit(self)
 
 
 func _draw() -> void:
