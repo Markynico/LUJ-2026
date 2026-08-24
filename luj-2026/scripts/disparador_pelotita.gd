@@ -7,16 +7,12 @@ signal disparo #Se conecta con game manager
 @export var escena_pelotita_prueba : PackedScene
 ##multiplicador de fuerza que se aplica para empujar la pelotita, se usa para multiplicar a la velocidad inicial (velocidad inicial se da por que tan lejos esta el mouse del michi)
 
-@export var game_manager : GameManager
-
 @export var fuerza_disparo : float = 2.0
 var velocidad_inicial : Vector2
 var posicion_mouse : Vector2
 var bolitas_creadas : int = 0
 #var gravedad = ProjectSettings.get_setting("physics/2d/default_gravity") arreglarrrr
 
-func _ready() -> void:
-	game_manager.pedir_lanzar_bola.connect(_on_pedir_lanzar_bola)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -30,7 +26,7 @@ func _input(event: InputEvent) -> void:
 			print("BOLITA CREADA: " + str(bolitas_creadas))
 			disparo.emit()
 
-func _on_pedir_lanzar_bola () -> void:
+func escupir_bola () -> void:
 		var instancia : BolaDePelos = escena_pelotita_prueba.instantiate()
 		add_child(instancia)
 		#instancia.global_position = posicion_mouse
