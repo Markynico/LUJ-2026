@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="OvilloBase" format=3 uid="uid://bxhm6u6fpxnlh"]
+
+[ext_resource type="AudioStream" uid="uid://2jvby7clemka" path="res://assets/audio/sfx/romper_pelotita.wav" id="1_7jvuy"]
+[ext_resource type="Script" uid="uid://fd1odbauo3fr" path="res://scripts/ovillos_custom/efecto_ovillo_base.gd" id="2_jxmy8"]
+[ext_resource type="Texture2D" uid="uid://bxj6ryp76c7eg" path="res://assets/sprite_ovillos/Ovillo blanco.png" id="4_6jv63"]
+[ext_resource type="Script" uid="uid://bbkyk2anhunsd" path="res://scripts/ovillos_custom/ovillo_base.gd" id="4_th3p8"]
+
+[resource]
+script = ExtResource("4_th3p8")
+sprite = ExtResource("4_6jv63")
+audio = ExtResource("1_7jvuy")
+metadata/_custom_type_script = "uid://bbkyk2anhunsd"
