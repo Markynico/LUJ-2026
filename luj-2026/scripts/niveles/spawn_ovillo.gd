@@ -8,6 +8,8 @@ extends Node2D
 @export var radio_vista_previa : float = 8.0
 @export var color_vista_previa : Color = Color(1.0, 0.8, 0.2, 0.8)
 
+@export var tipo_ovillos : Array[OvilloBase]
+
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -23,5 +25,7 @@ func _draw() -> void:
 func instanciar_ovillo() -> void:
 	if not escena_ovillo:
 		return
-	var ovillo := escena_ovillo.instantiate()
+	var tipo = tipo_ovillos.pick_random() #por ahora solo al azar
+	var ovillo : Ovillo= escena_ovillo.instantiate()
+	ovillo.tipo_ovillo = tipo
 	add_child(ovillo)
