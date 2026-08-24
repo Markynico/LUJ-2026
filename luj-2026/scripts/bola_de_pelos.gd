@@ -2,10 +2,10 @@
 class_name BolaDePelos
 extends RigidBody2D
 
-@export_group("RESOURCES")
-##resource para configurar a la pelotita, contiene info de la textura, color de la estela y demas.
-@export var configuracion_pelotita : PelotitaBase
-@export var efectos_al_rebotar : Array[EfectosPelotita]
+#a futuro capaz meto un enum de TIPO DE BOLA DE PELOS y q segun ese enum se instancie y se setee toooda la info q necesito (?
+
+@export_group("TIPO")
+@export var tipo_pelotita : PelotitaBase #TODO revisar si de verdad lo necesito aca o directamente hacer export vars aca en el nodo
 
 @export_group("NODOS")
 @export var sprite_bola: Sprite2D
@@ -14,15 +14,16 @@ extends RigidBody2D
 
 
 var fue_duplicada : bool = false #probando, seguro lo saco de aca
+var contador_rebotes : int = 0
 
 func _ready() -> void:
-	estela_movimiento.gradient = configuracion_pelotita.colores_estela
-	sprite_bola.texture = configuracion_pelotita.textura
+	estela_movimiento.gradient = tipo_pelotita.colores_estela
+	sprite_bola.texture = tipo_pelotita.textura
 
 func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, local_shape_index: int) -> void:
 	if body is BolaDePelos: #evito rebote con otras bolas de pelos
 		return
-	for efecto in efectos_al_rebotar:
+	for efecto in tipo_pelotita.efectos:
 		efecto.impactar_con_objeto(self, body)
 		sonido_rebote()
 
