@@ -4,6 +4,6 @@ extends FormaCirculo
 
 
 func obtener_datos() -> FormaData:
-	var datos := super()
+	var datos : FormaData = super()
 	datos.tipo = "obstaculo_circulo"
 	return datos

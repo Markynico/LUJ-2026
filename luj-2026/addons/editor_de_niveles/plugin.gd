@@ -52,21 +52,21 @@ func _forward_canvas_draw_over_viewport(superficie : Control) -> void:
 
 
 func _forward_canvas_gui_input(evento : InputEvent) -> bool:
-	var consumido := manijas.procesar_input(evento)
+	var consumido : bool = manijas.procesar_input(evento)
 	if consumido:
 		update_overlays()
 	return consumido
 
 
 func buscar_control_viewport() -> Control:
-	var candidatos := EditorInterface.get_base_control().find_children("*", "CanvasItemEditorViewport", true, false)
+	var candidatos : Array[Node] = EditorInterface.get_base_control().find_children("*", "CanvasItemEditorViewport", true, false)
 	if not candidatos.is_empty():
 		return candidatos[0]
 	return EditorInterface.get_editor_viewport_2d().get_parent()
 
 
 func obtener_cargador() -> CargadorDeNivel:
-	var raiz := EditorInterface.get_edited_scene_root()
+	var raiz : Node = EditorInterface.get_edited_scene_root()
 	if raiz is CargadorDeNivel:
 		return raiz
 	push_warning("La escena abierta tiene que tener un CargadorDeNivel como raiz")
@@ -74,12 +74,14 @@ func obtener_cargador() -> CargadorDeNivel:
 
 
 func crear_forma(tipo : String) -> void:
-	var cargador := obtener_cargador()
+	var cargador : CargadorDeNivel = obtener_cargador()
+	var forma : Node2D
+	var seleccion : EditorSelection
 	if not cargador:
 		return
-	var forma := cargador.crear_forma(tipo, cargador)
+	forma = cargador.crear_forma(tipo, cargador)
 	forma.global_position = centro_del_viewport()
-	var seleccion := EditorInterface.get_selection()
+	seleccion = EditorInterface.get_selection()
 	seleccion.clear()
 	seleccion.add_node(forma)
 	if forma is FormaPath:
@@ -87,9 +89,10 @@ func crear_forma(tipo : String) -> void:
 
 
 func obtener_forma_seleccionada(cargador : CargadorDeNivel) -> Node2D:
-	var formas := cargador.obtener_formas()
+	var formas : Array[Node2D] = cargador.obtener_formas()
+	var actual : Node
 	for nodo in EditorInterface.get_selection().get_selected_nodes():
-		var actual := nodo
+		actual = nodo
 		while actual and actual != cargador:
 			if formas.has(actual):
 				return actual
@@ -99,40 +102,47 @@ func obtener_forma_seleccionada(cargador : CargadorDeNivel) -> Node2D:
 
 
 func agregar_recorrido() -> void:
-	var cargador := obtener_cargador()
+	var cargador : CargadorDeNivel = obtener_cargador()
+	var forma : Node2D
+	var recorrido : MovimientoPorPath
+	var seleccion : EditorSelection
 	if not cargador:
 		return
-	var forma := obtener_forma_seleccionada(cargador)
+	forma = obtener_forma_seleccionada(cargador)
 	if not forma or cargador.obtener_recorrido(forma):
 		return
-	var recorrido := cargador.agregar_recorrido(forma, cargador)
-	var seleccion := EditorInterface.get_selection()
+	recorrido = cargador.agregar_recorrido(forma, cargador)
+	seleccion = EditorInterface.get_selection()
 	seleccion.clear()
 	seleccion.add_node(recorrido)
 	seleccionar_herramienta_agregar_punto.call_deferred()
 
 
 func quitar_recorrido() -> void:
-	var cargador := obtener_cargador()
+	var cargador : CargadorDeNivel = obtener_cargador()
+	var forma : Node2D
+	var recorrido : MovimientoPorPath
+	var seleccion : EditorSelection
 	if not cargador:
 		return
-	var forma := obtener_forma_seleccionada(cargador)
+	forma = obtener_forma_seleccionada(cargador)
 	if not forma:
 		return
-	var recorrido := cargador.obtener_recorrido(forma)
+	recorrido = cargador.obtener_recorrido(forma)
 	if not recorrido:
 		return
 	cargador.quitar_recorrido(recorrido, cargador)
-	var seleccion := EditorInterface.get_selection()
+	seleccion = EditorInterface.get_selection()
 	seleccion.clear()
 	seleccion.add_node(forma)
 
 
 func seleccionar_herramienta_agregar_punto() -> void:
-	var editores := EditorInterface.get_base_control().find_children("*", "Path2DEditor", true, false)
+	var editores : Array[Node] = EditorInterface.get_base_control().find_children("*", "Path2DEditor", true, false)
+	var nombres : Array
 	if editores.is_empty():
 		return
-	var nombres := [tr("Add Point"), tr("Add Point (in empty space)")]
+	nombres = [tr("Add Point"), tr("Add Point (in empty space)")]
 	for boton in editores[0].find_children("*", "Button", true, false):
 		for nombre in nombres:
 			if boton.tooltip_text.begins_with(nombre):
@@ -141,12 +151,12 @@ func seleccionar_herramienta_agregar_punto() -> void:
 
 
 func centro_del_viewport() -> Vector2:
-	var viewport := EditorInterface.get_editor_viewport_2d()
+	var viewport : SubViewport = EditorInterface.get_editor_viewport_2d()
 	return viewport.global_canvas_transform.affine_inverse() * (viewport.size * 0.5)
 
 
 func nuevo_nivel() -> void:
-	var cargador := obtener_cargador()
+	var cargador : CargadorDeNivel = obtener_cargador()
 	if not cargador:
 		return
 	cargador.limpiar_formas()
@@ -154,15 +164,18 @@ func nuevo_nivel() -> void:
 
 
 func guardar_nivel(nombre : String) -> void:
-	var cargador := obtener_cargador()
+	var cargador : CargadorDeNivel = obtener_cargador()
+	var ruta : String
+	var datos : NivelData
+	var error : Error
 	if not cargador:
 		return
 	if nombre.is_empty():
 		nombre = "nivel"
 	DirAccess.make_dir_recursive_absolute(CARPETA_NIVELES)
-	var ruta := CARPETA_NIVELES + nombre + ".tres"
-	var datos := actualizar_recurso_en_cache(cargador.exportar_nivel(nombre), ruta)
-	var error := ResourceSaver.save(datos, ruta)
+	ruta = CARPETA_NIVELES + nombre + ".tres"
+	datos = actualizar_recurso_en_cache(cargador.exportar_nivel(nombre), ruta)
+	error = ResourceSaver.save(datos, ruta)
 	if error != OK:
 		push_error("No se pudo guardar el nivel en " + ruta)
 		return
@@ -185,10 +198,11 @@ func abrir_dialogo_cargar() -> void:
 
 
 func cargar_nivel(ruta : String) -> void:
-	var cargador := obtener_cargador()
+	var cargador : CargadorDeNivel = obtener_cargador()
+	var datos : NivelData
 	if not cargador:
 		return
-	var datos : NivelData = ResourceLoader.load(ruta, "", ResourceLoader.CACHE_MODE_IGNORE)
+	datos = ResourceLoader.load(ruta, "", ResourceLoader.CACHE_MODE_IGNORE)
 	if not datos:
 		push_error("El archivo no es un NivelData: " + ruta)
 		return

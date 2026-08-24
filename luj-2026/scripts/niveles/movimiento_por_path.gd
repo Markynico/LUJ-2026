@@ -28,12 +28,13 @@ var sentido : float = 1.0
 
 
 func _ready() -> void:
+	var forma : Node2D
 	obtener_curva().changed.connect(anclar_origen_de_la_curva)
 	anclar_origen_de_la_curva()
 	actualizar_seguidor()
 	if Engine.is_editor_hint():
 		seguidor.child_entered_tree.connect(escuchar_forma)
-		var forma := obtener_forma()
+		forma = obtener_forma()
 		if forma:
 			escuchar_forma(forma)
 
@@ -44,7 +45,7 @@ func escuchar_forma(nodo : Node) -> void:
 
 
 func seguir_a_la_forma() -> void:
-	var forma := obtener_forma()
+	var forma : Node2D = obtener_forma()
 	if not forma or not Engine.is_editor_hint() or forma.position == Vector2.ZERO:
 		return
 	global_position += forma.global_position - seguidor.global_position
@@ -52,10 +53,11 @@ func seguir_a_la_forma() -> void:
 
 
 func anclar_origen_de_la_curva() -> void:
-	var curva := obtener_curva()
+	var curva : Curve2D = obtener_curva()
+	var origen : Vector2
 	if curva.point_count == 0:
 		return
-	var origen := curva.get_point_position(0)
+	origen = curva.get_point_position(0)
 	if origen == Vector2.ZERO:
 		return
 	for i in curva.point_count:
@@ -98,7 +100,7 @@ func obtener_forma() -> Node2D:
 
 
 func obtener_datos() -> FormaData:
-	var forma := obtener_forma()
+	var forma : Node2D = obtener_forma()
 	var datos : FormaData = forma.obtener_datos() if forma else FormaData.new()
 	datos.recorrido = obtener_curva().duplicate()
 	datos.posicion_recorrido = position

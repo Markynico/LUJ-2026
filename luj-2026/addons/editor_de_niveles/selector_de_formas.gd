@@ -14,12 +14,13 @@ func _init(manejador_manijas : ManijasForma, plugin_editor : EditorPlugin, contr
 
 
 func _input(evento : InputEvent) -> void:
+	var posicion : Vector2
 	if es_soltar_izquierdo(evento) and manijas.terminar_arrastre():
 		plugin.update_overlays()
 		return
 	if not es_click_izquierdo(evento) or not control_viewport or not control_viewport.is_visible_in_tree():
 		return
-	var posicion := control_viewport.get_local_mouse_position()
+	posicion = control_viewport.get_local_mouse_position()
 	if not Rect2(Vector2.ZERO, control_viewport.size).has_point(posicion):
 		return
 	if manijas.hay_manija_en(posicion):
@@ -37,21 +38,24 @@ func es_soltar_izquierdo(evento : InputEvent) -> bool:
 
 
 func seleccionar(nodo : Node) -> void:
-	var seleccion := EditorInterface.get_selection()
+	var seleccion : EditorSelection = EditorInterface.get_selection()
 	seleccion.clear()
 	seleccion.add_node(nodo)
 
 
 func seleccionar_forma_en(posicion_pantalla : Vector2) -> bool:
-	var cargador := EditorInterface.get_edited_scene_root() as CargadorDeNivel
+	var cargador : CargadorDeNivel = EditorInterface.get_edited_scene_root() as CargadorDeNivel
+	var transformacion_viewport : Transform2D
+	var tolerancia : float
+	var punto_local : Vector2
 	if not cargador:
 		return false
-	var transformacion_viewport := EditorInterface.get_editor_viewport_2d().global_canvas_transform
-	var tolerancia := manijas.radio_manija / transformacion_viewport.get_scale().x
+	transformacion_viewport = EditorInterface.get_editor_viewport_2d().global_canvas_transform
+	tolerancia = manijas.radio_manija / transformacion_viewport.get_scale().x
 	for forma in cargador.obtener_formas():
 		if not forma is FormaSpawn:
 			continue
-		var punto_local := forma.global_transform.affine_inverse() * (transformacion_viewport.affine_inverse() * posicion_pantalla)
+		punto_local = forma.global_transform.affine_inverse() * (transformacion_viewport.affine_inverse() * posicion_pantalla)
 		if forma.esta_sobre_contorno(punto_local, tolerancia) or esta_sobre_relleno(forma, punto_local):
 			seleccionar(forma)
 			manijas.empezar_arrastre_desde_contorno(forma, posicion_pantalla)
