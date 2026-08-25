@@ -5,64 +5,41 @@ var tween : Tween = null
 var posicion_inicial : Vector2 = position
 
 func _ready() -> void:
+	pivot_offset = size / 2.0
 	hide()
-	reiniciar_valores()
+	#reiniciar_valores()
 
-func iniciar_numero_impacto(numero : int):
+func iniciar_numero_impacto(numero : int): 
 	text = str(numero)
 	show()
-	todo_junto(1.0)
-	#tween_opacidad(1.0)
-	#tween_escala(Vector2(0.9, 0.9), 0.1)
-	#tween_escala(Vector2(1.3, 1.3), 5)
-	#tween_opacidad(0.0)
-	
-	#tween_escala(Vector2(0.1, 0.1), 1)
-	
+	efecto_punch_parabolico()
 
-func reiniciar_valores(): #por si el ovillo se puede volver a activar el numerito deberia volver a funcionar (?
-	modulate.a = 0
-	#position = posicion_inicial
-
-
-func animacion_numerito():
+#TODO esta funcion no se usa, perooo si metemos que algun ovillo pueda volver a activarse vamos a necesitar reiniciar
+func reiniciar_valores():
+	scale = Vector2.ONE #reinicio valores
+	modulate.a = 1.0
+	position = posicion_inicial 
 	pass
 
 
-func todo_junto(valor_final : float, tiempo : float = 0.3):
+func efecto_punch_parabolico():
+	scale = Vector2.ONE #reinicio valores
+	modulate.a = 1.0
+	position = posicion_inicial 
+	#aca randomizo q a veces salte para la izquierda y a veces para la derecha y tambien varia el movimmiento
+	var direccion = [-1,1].pick_random() #izq o derecha
+	var distancia_x = randf_range(20.0, 80.0) * direccion
+	var altura_y = randf_range(30.0, 60.0)
 	tween = create_tween()
-	tween.set_trans(Tween.TRANS_SINE)
-	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(self, "modulate:a", valor_final, tiempo)
-	
-	#tween = create_tween()
-	tween.set_trans(Tween.TRANS_SINE)
-	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(self, "scale", Vector2(0.9, 0.9) , 0.3)
-	
-	#tween = create_tween()
-	tween.set_trans(Tween.TRANS_SINE)
-	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(self, "scale", Vector2(1.2, 1.2) , 0.8)
-	
-	#tween = create_tween()
-	tween.set_trans(Tween.TRANS_SINE)
-	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(self, "modulate:a", 0.0, 0.3)
-
-func tween_opacidad(valor_final : float, tiempo : float = 0.3):
-	#if tween:
-		#tween.kill()
-	tween = create_tween()
-	tween.set_trans(Tween.TRANS_SINE)
-	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(self, "modulate:a", valor_final, tiempo)
-
-
-func tween_escala(valor_final : Vector2, tiempo : float = 0.3):
-	#if tween:
-		#tween.kill()
-	tween = create_tween()
-	tween.set_trans(Tween.TRANS_SINE)
-	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(self, "scale", valor_final , 0.3)
+	#efecto punch
+	tween.tween_property(self, "scale", Vector2(2.0, 2.0), 0.15).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	tween.tween_interval(0.1) #aca pega una pausa
+	#saltito parabolico
+	tween.chain().set_parallel(true)#resulta q con chain todo lo q sigue se ejecuta al mismo tiempo
+	tween.tween_property(self, "scale", Vector2(0.8, 0.8), 0.4).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(self, "position:x", posicion_inicial.x + distancia_x, 0.9).set_trans(Tween.TRANS_LINEAR)
+	tween.tween_property(self, "position:y", posicion_inicial.y - altura_y, 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "position:y", posicion_inicial.y + (altura_y * 0.5), 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN).set_delay(0.2)
+	tween.tween_property(self, "modulate:a", 0.0, 0.2).set_delay(0.2)
+	#marge no voy a mentirte
+	#la referencia viene de aca https://forum.godotengine.org/t/hit-style-tweens/92906/5 pero use ia pq sino no terminaba ma

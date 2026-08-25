@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cil5i0yy8liwu" path="res://scripts/ovillo.gd" id="1_wlnnp"]
 [ext_resource type="Resource" uid="uid://7s3l7jelg8oy" path="res://scripts/resources/ovillo_normal_prueba.tres" id="2_wlnnp"]
+[ext_resource type="Material" uid="uid://mm5ccdl66itm" path="res://scripts/shaders/material_ovillo_titilar.tres" id="3_3vil1"]
 [ext_resource type="Texture2D" uid="uid://dbcovwwwqfpky" path="res://assets/sprite_ovillos/Ovillo verde.png" id="3_vkchq"]
 [ext_resource type="Texture2D" uid="uid://wr43cbl6x483" path="res://assets/sprite_ovillos/Ovillo negro.png" id="4_3vil1"]
 [ext_resource type="AudioStream" uid="uid://2jvby7clemka" path="res://assets/audio/sfx/romper_pelotita.wav" id="5_f54ks"]
@@ -11,12 +12,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_37ege"]
 radius = 20.0
 
-
 [node name="Ovillo" type="StaticBody2D" unique_id=142733400 node_paths=PackedStringArray("audio", "forma_colision", "sprite_normal", "sprite_desactivado", "pergamino_info", "numero_impacto")]
+scale = Vector2(0.35, 0.35)
 collision_layer = 3
 collision_mask = 7
 input_pickable = true
-scale = Vector2(0.35, 0.35)
 script = ExtResource("1_wlnnp")
 tipo_ovillo = ExtResource("2_wlnnp")
 audio = NodePath("AudioStreamPlayer")
@@ -25,6 +25,7 @@ sprite_normal = NodePath("SpriteNormal")
 sprite_desactivado = NodePath("SpriteDesactivado")
 pergamino_info = NodePath("PergaminoInfo")
 numero_impacto = NodePath("NumeroImpacto")
+shader_titilar = ExtResource("3_3vil1")
 
 [node name="SpriteNormal" type="Sprite2D" parent="." unique_id=20603333]
 texture_filter = 1
@@ -49,10 +50,6 @@ volume_db = -0.5
 [node name="PergaminoInfo" parent="." unique_id=1923268390 instance=ExtResource("6_dcous")]
 
 [node name="NumeroImpacto" parent="." unique_id=633406525 instance=ExtResource("7_vkchq")]
-offset_left = -19.0
-offset_top = -40.0
-offset_right = 21.0
-offset_bottom = -17.0
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="." to="PergaminoInfo" method="_on_mouse_entered"]
