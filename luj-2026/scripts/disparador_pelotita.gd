@@ -11,7 +11,6 @@ signal disparo #Se conecta con game manager
 var velocidad_inicial : Vector2
 var posicion_mouse : Vector2
 var bolitas_creadas : int = 0
-#var gravedad = ProjectSettings.get_setting("physics/2d/default_gravity") arreglarrrr
 
 
 func _input(event: InputEvent) -> void:

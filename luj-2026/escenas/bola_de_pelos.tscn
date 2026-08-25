@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://2jvby7clemka" path="res://assets/audio/sfx/romper_pelotita.wav" id="4_rguhl"]
 [ext_resource type="PackedScene" uid="uid://dmexovyecfyo4" path="res://escenas/componentes/estela_movimiento.tscn" id="4_tra1g"]
 [ext_resource type="Texture2D" uid="uid://y01cjx6nscow" path="res://iconos_custom/heart.svg" id="5_sdgal"]
+[ext_resource type="PackedScene" uid="uid://dymyh3ifxvug3" path="res://escenas/componentes/pergamino_info.tscn" id="9_sdgal"]
 
 [sub_resource type="Gradient" id="Gradient_sdgal"]
 offsets = PackedFloat32Array(0.53246754, 1)
@@ -19,6 +20,7 @@ metadata/_custom_type_script = "uid://5i4oxxen13xa"
 
 [sub_resource type="Resource" id="Resource_avp8o"]
 script = ExtResource("3_7sm33")
+nombre = "BolaNormal"
 textura = ExtResource("5_sdgal")
 colores_estela = SubResource("Gradient_sdgal")
 efectos = Array[ExtResource("3_mfh0k")]([SubResource("Resource_0ct46")])
@@ -29,6 +31,7 @@ radius = 19.026299
 
 [node name="BolaDePelos" type="RigidBody2D" unique_id=660631560 node_paths=PackedStringArray("sprite_bola", "estela_movimiento", "audio")]
 z_index = 1
+input_pickable = true
 continuous_cd = 2
 contact_monitor = true
 max_contacts_reported = 2
@@ -57,5 +60,9 @@ body = NodePath("..")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1816185939]
 
+[node name="PergaminoInfo" parent="." unique_id=1923268390 instance=ExtResource("9_sdgal")]
+
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="mouse_entered" from="." to="PergaminoInfo" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="PergaminoInfo" method="_on_mouse_exited"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
