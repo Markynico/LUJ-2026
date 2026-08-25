@@ -35,6 +35,7 @@ var bolas_restantes : int = 0:
 	set(valor):
 		bolas_restantes = valor
 		bola_usada.emit(bolas_restantes)
+var vidas_actuales : int = 3
 var estado_actual : EstadoDeJuego = EstadoDeJuego.ESPERANDO
 
 var total_ovillos : int = 0

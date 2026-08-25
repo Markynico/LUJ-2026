@@ -15,9 +15,6 @@
 gato = NodePath("../Gato")
 bolas_maximas = 6
 
-[node name="HUD" parent="GameManager" unique_id=2102008230 node_paths=PackedStringArray("game_manager") instance=ExtResource("3_l1he2")]
-game_manager = NodePath("..")
-
 [node name="Gato" parent="." unique_id=69399080 node_paths=PackedStringArray("game_manager") instance=ExtResource("2_3a2ma")]
 position = Vector2(455, 41)
 game_manager = NodePath("../GameManager")

@@ -18,9 +18,7 @@ signal elegida(salida : SalidaDeNivel)
 
 
 func _ready() -> void:
-	actualizar_forma()
-	body_entered.connect(_on_body_entered)
-
+	pass
 
 func actualizar_forma() -> void:
 	if not colision:
@@ -39,3 +37,8 @@ func al_entrar_cuerpo(cuerpo : Node2D) -> void:
 
 func _draw() -> void:
 	draw_rect(Rect2(-tamaño.x * 0.5, -tamaño.y, tamaño.x, tamaño.y), TipoDeSala.COLORES[tipo])
+
+
+func _on_body_entered(body: Node2D) -> void:
+	actualizar_forma()
+	pass # Replace with function body.

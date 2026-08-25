@@ -1,9 +1,6 @@
 class_name HUD
 extends Control
 
-@onready var bolas_restantes: Label = %BolasRestantes
-@onready var monedas_label: Label = %Monedas
-
 @export var game_manager : GameManager
 @export var textura_corazon : Texture2D = preload("res://iconos_custom/heart.svg")
 
@@ -14,6 +11,8 @@ extends Control
 @onready var label_meta_badge : Label = %LabelMetaBadge
 @onready var banner_notificacion : PanelContainer = %BannerNotificacion
 @onready var label_notificacion : Label = %LabelNotificacion
+@onready var bolas_restantes_label : Label = %BolasRestantes if has_node("%BolasRestantes") else null
+@onready var monedas_label : Label = %Monedas if has_node("%Monedas") else null
 
 var _corazones : Array[TextureRect] = []
 var _tween_notif : Tween
@@ -26,6 +25,10 @@ func _ready() -> void:
 	
 	if banner_notificacion:
 		banner_notificacion.visible = false
+	
+	# Monedas globales
+	actualizar_monedas(Global.monedas)
+	Global.monedas_cambiadas.connect(actualizar_monedas)
 	
 	if game_manager:
 		game_manager.bola_usada.connect(actualizar_bolas_restantes)
@@ -42,6 +45,8 @@ func _ready() -> void:
 		_crear_corazones(3, 3)
 
 func _crear_corazones(vidas_actuales: int, vidas_max: int) -> void:
+	if not contenedor_vidas:
+		return
 	for child in contenedor_vidas.get_children():
 		child.queue_free()
 	_corazones.clear()
@@ -91,10 +96,6 @@ func _animar_corazon(corazon: TextureRect, ganado: bool) -> void:
 	else:
 		corazon.scale = Vector2(0.6, 0.6)
 		tween.tween_property(corazon, "scale", Vector2.ONE, 0.2)
-	actualizar_bolas_restantes(game_manager.bolas_restantes)
-	game_manager.bola_usada.connect(actualizar_bolas_restantes)
-	actualizar_monedas(Global.monedas)
-	Global.monedas_cambiadas.connect(actualizar_monedas)
 
 func actualizar_bolas_restantes(cantidad: int) -> void:
 	if label_bolas:
@@ -103,6 +104,13 @@ func actualizar_bolas_restantes(cantidad: int) -> void:
 		label_bolas.scale = Vector2(1.1, 1.1)
 		label_bolas.pivot_offset = Vector2(0, label_bolas.size.y / 2.0)
 		tween.tween_property(label_bolas, "scale", Vector2.ONE, 0.15)
+	
+	if bolas_restantes_label:
+		bolas_restantes_label.text = "Bolas de pelo restantes: " + str(cantidad)
+
+func actualizar_monedas(monedas: int) -> void:
+	if monedas_label:
+		monedas_label.text = "Monedas: " + str(monedas)
 
 func actualizar_progreso_ovillos(destruidos: int, requeridos: int, total: int, _porcentaje_actual: float) -> void:
 	if barra_ovillos:
@@ -156,8 +164,3 @@ func mostrar_notificacion(texto: String, color_texto: Color = Color.WHITE) -> vo
 	_tween_notif.tween_interval(1.8)
 	_tween_notif.chain().tween_property(banner_notificacion, "modulate:a", 0.0, 0.3)
 	_tween_notif.finished.connect(func(): banner_notificacion.visible = false)
-func actualizar_bolas_restantes(cantidad : int) -> void:
-	bolas_restantes.text = "Bolas de pelo restantes: " + str(cantidad)
-
-func actualizar_monedas(monedas : int):
-	monedas_label.text = "Monedas: " + str(Global.monedas)

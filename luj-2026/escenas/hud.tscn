@@ -212,6 +212,7 @@ text = "¡Meta alcanzada!"
 label_settings = SubResource("LabelSettings_notif")
 horizontal_alignment = 1
 vertical_alignment = 1
+
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=764577966]
 layout_mode = 1
 anchors_preset = 10
