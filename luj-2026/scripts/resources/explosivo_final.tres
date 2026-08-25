@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="OvilloBase" format=3 uid="uid://d3ks2dut6iacd"]
+[gd_resource type="Resource" script_class="OvilloBase" format=3 uid="uid://dgxq0q0w846a5"]
 
 [ext_resource type="AudioStream" uid="uid://2jvby7clemka" path="res://assets/audio/sfx/romper_pelotita.wav" id="1_jbj0c"]
 [ext_resource type="Script" uid="uid://fd1odbauo3fr" path="res://scripts/ovillos_custom/efecto_ovillo_base.gd" id="2_yvgvs"]

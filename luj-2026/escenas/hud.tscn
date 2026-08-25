@@ -2,17 +2,232 @@
 
 [ext_resource type="Script" uid="uid://fopa4trrkrbv" path="res://scripts/hud.gd" id="1_m5lxu"]
 
-[node name="HUD" type="Control" unique_id=2102008230]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel_hud"]
+content_margin_left = 16.0
+content_margin_top = 10.0
+content_margin_right = 16.0
+content_margin_bottom = 10.0
+bg_color = Color(0.109804, 0.12549, 0.180392, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28, 0.33, 0.48, 0.8)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+shadow_color = Color(0, 0, 0, 0.3)
+shadow_size = 6
+
+[sub_resource type="LabelSettings" id="LabelSettings_seccion"]
+font_size = 12
+font_color = Color(0.7, 0.76, 0.92, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bolas"]
+font_color = Color(1, 0.92, 0.5, 1)
+outline_size = 2
+outline_color = Color(0.1, 0.08, 0.02, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_badge"]
+font_size = 12
+font_color = Color(0.75, 0.82, 0.95, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress_bg"]
+bg_color = Color(0.07, 0.08, 0.12, 0.8)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2, 0.25, 0.35, 0.6)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress_fill"]
+bg_color = Color(0.2, 0.75, 0.48, 0.95)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0.15, 0.8, 0.4, 0.4)
+shadow_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_progreso"]
+font_size = 13
+font_color = Color(0.9, 0.93, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_notif"]
+content_margin_left = 24.0
+content_margin_top = 10.0
+content_margin_right = 24.0
+content_margin_bottom = 10.0
+bg_color = Color(0.12, 0.14, 0.22, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.6, 0.9, 0.8)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.4)
+shadow_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_notif"]
+font_size = 18
+outline_size = 3
+outline_color = Color(0.05, 0.05, 0.1, 1)
+
+[node name="HUD" type="Control" unique_id=197422415]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_m5lxu")
 
-[node name="BolasRestantes" type="Label" parent="." unique_id=1556842408]
-layout_mode = 0
-offset_right = 40.0
+[node name="MarginSuperior" type="MarginContainer" parent="." unique_id=1796348773]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 100.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+
+[node name="HBoxHUD" type="HBoxContainer" parent="MarginSuperior" unique_id=21128900]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="PanelVidasBolas" type="PanelContainer" parent="MarginSuperior/HBoxHUD" unique_id=946678465]
+custom_minimum_size = Vector2(240, 68)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel_hud")
+
+[node name="VBoxVidasBolas" type="VBoxContainer" parent="MarginSuperior/HBoxHUD/PanelVidasBolas" unique_id=1751878294]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="HBoxVidas" type="HBoxContainer" parent="MarginSuperior/HBoxHUD/PanelVidasBolas/VBoxVidasBolas" unique_id=1339436826]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="LabelVidasTitulo" type="Label" parent="MarginSuperior/HBoxHUD/PanelVidasBolas/VBoxVidasBolas/HBoxVidas" unique_id=1946624985]
+layout_mode = 2
+text = "VIDAS:"
+label_settings = SubResource("LabelSettings_seccion")
+
+[node name="ContenedorVidas" type="HBoxContainer" parent="MarginSuperior/HBoxHUD/PanelVidasBolas/VBoxVidasBolas/HBoxVidas" unique_id=628779073]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="LabelBolas" type="Label" parent="MarginSuperior/HBoxHUD/PanelVidasBolas/VBoxVidasBolas" unique_id=407916706]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Bolas restantes: 20"
+label_settings = SubResource("LabelSettings_bolas")
+
+[node name="Spacer" type="Control" parent="MarginSuperior/HBoxHUD" unique_id=1023086998]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="PanelProgreso" type="PanelContainer" parent="MarginSuperior/HBoxHUD" unique_id=781316756]
+custom_minimum_size = Vector2(340, 68)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel_hud")
+
+[node name="VBoxProgreso" type="VBoxContainer" parent="MarginSuperior/HBoxHUD/PanelProgreso" unique_id=1746689928]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="HBoxProgresoHeader" type="HBoxContainer" parent="MarginSuperior/HBoxHUD/PanelProgreso/VBoxProgreso" unique_id=1150031160]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="LabelObjetivoTitulo" type="Label" parent="MarginSuperior/HBoxHUD/PanelProgreso/VBoxProgreso/HBoxProgresoHeader" unique_id=1384448355]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "OBJETIVO DE NIVEL"
+label_settings = SubResource("LabelSettings_seccion")
+
+[node name="LabelMetaBadge" type="Label" parent="MarginSuperior/HBoxHUD/PanelProgreso/VBoxProgreso/HBoxProgresoHeader" unique_id=701565132]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Faltan ovillos"
+label_settings = SubResource("LabelSettings_badge")
+horizontal_alignment = 2
+
+[node name="BarraOvillos" type="ProgressBar" parent="MarginSuperior/HBoxHUD/PanelProgreso/VBoxProgreso" unique_id=1166877563]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_progress_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_progress_fill")
+show_percentage = false
+
+[node name="LabelOvillos" type="Label" parent="MarginSuperior/HBoxHUD/PanelProgreso/VBoxProgreso" unique_id=228814905]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Ovillos: 0 / 0  (Meta: 0 | 70%)"
+label_settings = SubResource("LabelSettings_progreso")
+
+[node name="BannerNotificacion" type="PanelContainer" parent="." unique_id=1420914603]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -180.0
+offset_top = 100.0
+offset_right = 180.0
+offset_bottom = 148.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_notif")
+
+[node name="LabelNotificacion" type="Label" parent="BannerNotificacion" unique_id=1880558931]
+unique_name_in_owner = true
+layout_mode = 2
+text = "¡Meta alcanzada!"
+label_settings = SubResource("LabelSettings_notif")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=764577966]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
 offset_bottom = 23.0
+grow_horizontal = 2
+
+[node name="BolasRestantes" type="Label" parent="HBoxContainer" unique_id=1556842408]
+unique_name_in_owner = true
+layout_mode = 2
 text = "Bolas de pelo restantes:"
+
+[node name="Monedas" type="Label" parent="HBoxContainer" unique_id=599543815]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Monedas: "
+horizontal_alignment = 2

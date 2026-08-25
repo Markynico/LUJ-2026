@@ -2,19 +2,81 @@ class_name TrayectoriaDisparo
 extends Line2D
 
 @export var disparador : DisparadorPelotita
-@export var distancia_maxima: float = 25.0
-@export var intervalo: float = 0.05
+##shape cast con la forma de la bola que frena la linea donde frenaria la bola
+@export var detector : ShapeCast2D
+##color del circulo que marca donde impacta la bola
+@export var color_impacto : Color = Color.WHITE
 
-func _physics_process(delta: float) -> void:
-	dibujar_trayectoria()
+var hay_impacto : bool = false
+var centro_impacto : Vector2
+var gato : Gato
 
 
-func dibujar_trayectoria():
+func _ready() -> void:
+	gato = disparador.get_parent() as Gato
+
+
+func _process(delta : float) -> void:
+	visible = hay_algo_para_disparar()
+	if visible:
+		dibujar_trayectoria()
+
+
+func hay_algo_para_disparar() -> bool:
+	if not gato or not gato.game_manager:
+		return true
+	if gato.listo_para_lanzar:
+		return true
+	return gato.game_manager.estado_actual == GameManager.EstadoDeJuego.LANZANDO_BOLAS and gato.game_manager.bolas_restantes > 0
+
+
+func dibujar_trayectoria() -> void:
+	var datos : DatosDisparo = disparador.preparar_datos_disparo()
+	if gato and gato.listo_para_lanzar:
+		datos.velocidad_inicial = -gato.velocidad_inicial
 	clear_points()
-	var posicion_inicial := disparador.global_position
-	var velocidad_inicial := -disparador.velocidad_inicial
-	for i in 10: #probando
-		var tiempo := i * intervalo
-		var posicion = (posicion_inicial+ velocidad_inicial * tiempo+ 0.5 * Vector2(0,980) * tiempo * tiempo)
-		var posicion_local = to_local(posicion)
-		add_point(posicion_local)
+	hay_impacto = false
+	for punto in calcular_puntos(datos):
+		add_point(to_local(punto))
+	queue_redraw()
+
+
+func _draw() -> void:
+	if hay_impacto:
+		draw_circle(to_local(centro_impacto), radio_de_la_bola(), color_impacto)
+
+
+func radio_de_la_bola() -> float:
+	return detector.shape.radius if detector.shape is CircleShape2D else 12.0
+
+
+func calcular_puntos(datos : DatosDisparo) -> PackedVector2Array:
+	var puntos : PackedVector2Array = PackedVector2Array()
+	var posicion : Vector2 = disparador.global_position
+	var velocidad : Vector2 = datos.velocidad_inicial
+	var rebotes_restantes : int = datos.rebotes
+	var movimiento : Vector2
+	var normal : Vector2
+	detector.global_position = posicion
+	puntos.append(posicion)
+	for i in datos.pasos:
+		velocidad += datos.gravedad * datos.intervalo
+		movimiento = velocidad * datos.intervalo
+		detector.target_position = movimiento
+		detector.force_shapecast_update()
+		if detector.is_colliding():
+			posicion += movimiento * detector.get_closest_collision_safe_fraction()
+			puntos.append(posicion)
+			centro_impacto = posicion
+			hay_impacto = true
+			if rebotes_restantes <= 0:
+				break
+			rebotes_restantes -= 1
+			normal = detector.get_collision_normal(0)
+			velocidad = velocidad.slide(normal) * datos.factor_friccion + normal * datos.fuerza_rebote
+			posicion += normal * 0.5
+		else:
+			posicion += movimiento
+			puntos.append(posicion)
+		detector.global_position = posicion
+	return puntos

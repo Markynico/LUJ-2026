@@ -25,7 +25,29 @@ func _draw() -> void:
 func instanciar_ovillo() -> void:
 	if not escena_ovillo:
 		return
-	var tipo = tipo_ovillos.pick_random() #por ahora solo al azar
+	var tipo = elegir_ovillo()
 	var ovillo : Ovillo= escena_ovillo.instantiate()
 	ovillo.tipo_ovillo = tipo
 	add_child(ovillo)
+	
+
+func elegir_ovillo() -> OvilloBase:
+	var valor_spawn_total : float = 0.0
+	
+	for ovillo in tipo_ovillos:
+		valor_spawn_total += ovillo.valor_spawn 
+		#Calcula el valor total de todos los tipos de ovillo
+	
+	var valor_aleatorio : float = randf_range(0.0, valor_spawn_total)
+	
+	var valor_a_elegir : float = 0.0
+	
+	#vuelve a recorrer el arreglo y chequea el avance del valor
+	#de los ovillos con el numero aleatorio elegido
+	for ovillo in tipo_ovillos:
+		valor_a_elegir += ovillo.valor_spawn
+		if valor_aleatorio <= valor_a_elegir:
+			return ovillo
+	
+#Condicion de corte si falla
+	return tipo_ovillos[0]

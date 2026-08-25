@@ -3,19 +3,25 @@
 [ext_resource type="Texture2D" uid="uid://slp70pl61824" path="res://assets/placeholders/cat_placeholder.png" id="1_g1sv5"]
 [ext_resource type="Script" uid="uid://cvo1oqa6q40ut" path="res://scripts/gato.gd" id="1_vrxw6"]
 [ext_resource type="PackedScene" uid="uid://brhfmi38jresg" path="res://escenas/componentes/disparador_pelotita.tscn" id="3_bbvk0"]
+[ext_resource type="Texture2D" uid="uid://cbapxh718cgxk" path="res://assets/sprites_gato/gato_bola.png" id="3_ewiyr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dklp6"]
-radius = 21.0
+radius = 10.198039
 
-[node name="Gato" type="RigidBody2D" unique_id=69399080 node_paths=PackedStringArray("disparador_pelotitas", "colision")]
+[node name="Gato" type="RigidBody2D" unique_id=69399080 node_paths=PackedStringArray("sprite", "disparador_pelotitas", "colision")]
+collision_layer = 8
+collision_mask = 19
 script = ExtResource("1_vrxw6")
+sprite = NodePath("Sprite2D")
+imagen_normal = ExtResource("1_g1sv5")
+imagen_bolita = ExtResource("3_ewiyr")
 disparador_pelotitas = NodePath("DisparadorPelotita")
 colision = NodePath("CollisionShape2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=36343804]
-position = Vector2(0, 1.9073486e-06)
-scale = Vector2(0.048900288, 0.04645961)
-texture = ExtResource("1_g1sv5")
+position = Vector2(1, 1)
+scale = Vector2(0.019547045, 0.018571427)
+texture = ExtResource("3_ewiyr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1688846017]
 shape = SubResource("CircleShape2D_dklp6")

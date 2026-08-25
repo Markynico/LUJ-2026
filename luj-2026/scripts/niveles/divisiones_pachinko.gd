@@ -38,15 +38,17 @@ func pedir_regenerar() -> void:
 
 
 func regenerar() -> void:
+	var cantidad : int
+	var divisor : Node2D
 	regeneracion_pendiente = false
 	for hijo in get_children():
 		remove_child(hijo)
 		hijo.queue_free()
 	if not escena_divisor:
 		return
-	var cantidad := divisiones_intermedias + 2
+	cantidad = divisiones_intermedias + 2
 	for i in cantidad:
-		var divisor := escena_divisor.instantiate()
+		divisor = escena_divisor.instantiate()
 		divisor.position = Vector2(ancho_total * i / (cantidad - 1), 0)
 		add_child(divisor)
 

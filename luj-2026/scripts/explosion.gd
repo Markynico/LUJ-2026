@@ -9,6 +9,6 @@ func _ready() -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Ovillo:
-		print("hay ovillo en explosion")
+		#print("hay ovillo en explosion")
 		body.recibir_impacto()
-		#+ animacion q se esta ejecutando sola en el animation player
+		#+ animacion q se esta ejecutando sola en el animation player pero dsp lo cambio a un tween facheraso

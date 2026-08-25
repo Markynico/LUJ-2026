@@ -20,6 +20,31 @@ func _ready() -> void:
 	estela_movimiento.gradient = tipo_pelotita.colores_estela
 	sprite_bola.texture = tipo_pelotita.textura
 
+func normal_de_contacto(objeto : Node2D) -> Vector2:
+	var estado : PhysicsDirectBodyState2D = PhysicsServer2D.body_get_direct_state(get_rid())
+	var normal : Vector2
+	for i in estado.get_contact_count():
+		if estado.get_contact_collider_object(i) == objeto:
+			normal = estado.get_contact_local_normal(i)
+			if normal.dot(global_position - estado.get_contact_local_position(i)) < 0.0:
+				normal = -normal
+			return normal
+	return objeto.global_position.direction_to(global_position)
+
+func separar_del_contacto(objeto : Node2D) -> void:
+	var estado : PhysicsDirectBodyState2D = PhysicsServer2D.body_get_direct_state(get_rid())
+	var radio : float = $CollisionShape2D.shape.radius
+	var normal : Vector2
+	var punto : Vector2
+	for i in estado.get_contact_count():
+		if estado.get_contact_collider_object(i) == objeto:
+			punto = estado.get_contact_local_position(i)
+			normal = normal_de_contacto(objeto)
+			if (global_position - punto).length() < radio:
+				estado.transform.origin = punto + normal * radio
+				global_position = punto + normal * radio
+			return
+
 func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, local_shape_index: int) -> void:
 	if body is BolaDePelos: #evito rebote con otras bolas de pelos
 		return
