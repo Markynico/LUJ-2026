@@ -19,10 +19,17 @@ signal nivel_elegido(tipo : TipoDeSala.Tipo)
 ]
 ##niveles que se pueden elegir como destino
 @export var niveles_disponibles : Array[NivelData] = []
+##ruta de la escena a la que se viaja segun el tipo de sala elegido
+@export var escenas_por_sala : Dictionary[TipoDeSala.Tipo, String] = {
+	TipoDeSala.Tipo.NORMAL: "uid://csalanormal0a1",
+	TipoDeSala.Tipo.TIENDA: "uid://dfm5y8q2s1txc",
+	TipoDeSala.Tipo.LOOT: "uid://csalanormal0a1",
+}
 ##alto del area de cada salida
 @export var alto_salida : float = 200.0
 
 var salidas : Array[SalidaDeNivel] = []
+var eleccion_hecha : bool = false
 
 
 func _ready() -> void:
@@ -32,7 +39,8 @@ func _ready() -> void:
 
 
 func preparar_salidas() -> void:
-	var divisiones := obtener_divisiones()
+	var divisiones : DivisionesPachinko = obtener_divisiones()
+	eleccion_hecha = false
 	if not divisiones:
 		return
 	divisiones.divisiones_intermedias = randi_range(divisores_minimos, divisores_maximos)
@@ -43,12 +51,14 @@ func colocar_salidas() -> void:
 	for salida in salidas:
 		salida.queue_free()
 	salidas.clear()
-	var divisiones := obtener_divisiones()
+	var divisiones : DivisionesPachinko = obtener_divisiones()
+	var ancho : float
+	var salida : SalidaDeNivel
 	if not divisiones or not escena_salida or tipos_disponibles.is_empty():
 		return
-	var ancho := divisiones.ancho_de_hueco()
+	ancho = divisiones.ancho_de_hueco()
 	for centro in divisiones.obtener_centros_de_huecos():
-		var salida : SalidaDeNivel = escena_salida.instantiate()
+		salida = escena_salida.instantiate()
 		salida.tipo = tipos_disponibles.pick_random()
 		salida.tamaño = Vector2(ancho, alto_salida)
 		add_child(salida, true)
@@ -62,4 +72,18 @@ func obtener_divisiones() -> DivisionesPachinko:
 
 
 func al_elegir_salida(salida : SalidaDeNivel) -> void:
+	if eleccion_hecha:
+		return
+	eleccion_hecha = true
 	nivel_elegido.emit(salida.tipo)
+	viajar_a_sala(salida.tipo)
+
+
+func viajar_a_sala(tipo : TipoDeSala.Tipo) -> void:
+	var ruta : String = escenas_por_sala.get(tipo, "")
+	var escena : PackedScene
+	if ruta.is_empty():
+		return
+	escena = load(ruta)
+	if escena:
+		get_tree().change_scene_to_packed.call_deferred(escena)

@@ -33,8 +33,9 @@ func pedir_regenerar() -> void:
 
 
 func reposicionar() -> void:
+	var puntos : PackedVector2Array
 	regeneracion_pendiente = false
-	var puntos : PackedVector2Array = forma.obtener_puntos()
+	puntos = forma.obtener_puntos()
 	if puntos.size() != get_child_count():
 		regenerar()
 		return
@@ -43,6 +44,7 @@ func reposicionar() -> void:
 
 
 func regenerar() -> void:
+	var spawn : Node2D
 	regeneracion_pendiente = false
 	for hijo in get_children():
 		remove_child(hijo)
@@ -50,6 +52,6 @@ func regenerar() -> void:
 	if not forma or not escena_spawn:
 		return
 	for punto in forma.obtener_puntos():
-		var spawn := escena_spawn.instantiate()
+		spawn = escena_spawn.instantiate()
 		add_child(spawn)
 		spawn.global_position = punto
