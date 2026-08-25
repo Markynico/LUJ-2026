@@ -32,7 +32,7 @@ func actualizar_forma() -> void:
 	queue_redraw()
 
 
-func al_entrar_cuerpo(_cuerpo : Node2D) -> void:
+func _on_body_entered(body : Node2D) -> void:
 	elegida.emit(self)
 
 

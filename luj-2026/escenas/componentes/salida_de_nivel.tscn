@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://ca0nc2j3goafo" path="res://scripts/niveles/salida_de_nivel.gd" id="1_salida"]
 
 [node name="SalidaDeNivel" type="Area2D" node_paths=PackedStringArray("colision")]
+collision_layer = 0
+collision_mask = 8
 script = ExtResource("1_salida")
 colision = NodePath("Colision")
 

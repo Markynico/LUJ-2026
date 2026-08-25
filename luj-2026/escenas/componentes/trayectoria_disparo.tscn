@@ -1,29 +1,17 @@
-[gd_scene format=3 uid="uid://bmqhpq2y5tv2w"]
+[gd_scene load_steps=3 format=3 uid="uid://bmqhpq2y5tv2w"]
 
 [ext_resource type="Script" uid="uid://b580vvptmr04r" path="res://scripts/trayectoria_disparo.gd" id="1_6vpaq"]
 
-[sub_resource type="Curve" id="Curve_6vpaq"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Gradient" id="Gradient_6vpaq"]
-offsets = PackedFloat32Array(0, 0.36893204)
-colors = PackedColorArray(1, 1, 1, 0.8745098, 1, 1, 1, 0)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_37ege"]
+radius = 3.0
 
-[node name="TrayectoriaDisparo" type="Line2D" unique_id=2096489121 node_paths=PackedStringArray("detector_colisiones")]
-closed = true
-width = 5.0
-width_curve = SubResource("Curve_6vpaq")
+[node name="TrayectoriaDisparo" type="Line2D" node_paths=PackedStringArray("disparador", "detector")]
+width = 3.0
 default_color = Color(1, 1, 1, 0.4862745)
-gradient = SubResource("Gradient_6vpaq")
 script = ExtResource("1_6vpaq")
-detector_colisiones = NodePath("DetectorColisiones")
+detector = NodePath("Detector")
 
-[node name="DetectorColisiones" type="CharacterBody2D" parent="." unique_id=1048028819]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorColisiones" unique_id=1977158245]
+[node name="Detector" type="ShapeCast2D" parent="."]
+enabled = false
+collision_mask = 19
 shape = SubResource("CircleShape2D_37ege")

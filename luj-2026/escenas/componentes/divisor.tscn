@@ -11,6 +11,7 @@ resource_local_to_scene = true
 radius = 30.0
 
 [node name="Divisor" type="StaticBody2D" unique_id=1662655621 node_paths=PackedStringArray("colision_pared", "colision_punta")]
+collision_mask = 0
 script = ExtResource("1_div")
 alto = 200.0
 ancho = 40.0

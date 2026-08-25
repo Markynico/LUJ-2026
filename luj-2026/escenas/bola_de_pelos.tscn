@@ -27,10 +27,12 @@ efectos = Array[ExtResource("3_mfh0k")]([SubResource("Resource_0ct46")])
 metadata/_custom_type_script = "uid://c7ogyqxnq7236"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_37ege"]
-radius = 19.026299
+radius = 3.0
 
 [node name="BolaDePelos" type="RigidBody2D" unique_id=660631560 node_paths=PackedStringArray("sprite_bola", "estela_movimiento", "audio")]
 z_index = 1
+collision_layer = 4
+collision_mask = 19
 input_pickable = true
 continuous_cd = 2
 contact_monitor = true

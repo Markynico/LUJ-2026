@@ -25,8 +25,15 @@ func _input(event: InputEvent) -> void:
 			print("BOLITA CREADA: " + str(bolitas_creadas))
 			disparo.emit()
 
+func preparar_datos_disparo() -> DatosDisparo:
+	var datos : DatosDisparo = DatosDisparo.new()
+	datos.velocidad_inicial = -velocidad_inicial
+	ReliquiasManager.al_preparar_disparo(datos)
+	return datos
+
+
 func escupir_bola () -> void:
 		var instancia : BolaDePelos = escena_pelotita_prueba.instantiate()
 		add_child(instancia)
 		#instancia.global_position = posicion_mouse
-		instancia.apply_impulse(-velocidad_inicial)
+		instancia.apply_impulse(preparar_datos_disparo().velocidad_inicial)
