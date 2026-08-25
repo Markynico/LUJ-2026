@@ -31,8 +31,10 @@ static var vidas_inicializadas: bool = false
 @export var vidas_maximas : int = 3
 @export_range(0.1, 1.0, 0.05) var porcentaje_ovillos_requerido : float = 0.70
 
-var bolas_restantes : int = 0
-var vidas_actuales : int = 3
+var bolas_restantes : int = 0:
+	set(valor):
+		bolas_restantes = valor
+		bola_usada.emit(bolas_restantes)
 var estado_actual : EstadoDeJuego = EstadoDeJuego.ESPERANDO
 
 var total_ovillos : int = 0
@@ -55,6 +57,7 @@ func _ready() -> void:
 		vidas_inicializadas = true
 	vidas_actuales = vidas_guardadas
 	
+	ReliquiasManager.al_empezar_nivel(self)
 	estado_actual = EstadoDeJuego.LANZANDO_BOLAS
 	
 	if gato and gato.disparador_pelotitas:

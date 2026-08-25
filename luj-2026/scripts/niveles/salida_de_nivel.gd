@@ -19,7 +19,7 @@ signal elegida(salida : SalidaDeNivel)
 
 func _ready() -> void:
 	actualizar_forma()
-	body_entered.connect(al_entrar_cuerpo)
+	body_entered.connect(_on_body_entered)
 
 
 func actualizar_forma() -> void:

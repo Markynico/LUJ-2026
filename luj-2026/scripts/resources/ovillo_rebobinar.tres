@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="OvilloBase" format=3 uid="uid://fumr1qv4h1ho"]
+
+[ext_resource type="AudioStream" uid="uid://2jvby7clemka" path="res://assets/audio/sfx/romper_pelotita.wav" id="1_s0e38"]
+[ext_resource type="Script" uid="uid://fd1odbauo3fr" path="res://scripts/ovillos_custom/efecto_ovillo_base.gd" id="1_uuoqp"]
+[ext_resource type="Script" uid="uid://bbkyk2anhunsd" path="res://scripts/ovillos_custom/ovillo_base.gd" id="2_q4f2x"]
+[ext_resource type="Texture2D" uid="uid://bdirqk0n3v241" path="res://assets/sprite_ovillos/Ovillo morado.png" id="4_6fw7n"]
+
+[resource]
+script = ExtResource("2_q4f2x")
+nombre = "OVILLO REBOBINAR"
+sprite = ExtResource("4_6fw7n")
+audio = ExtResource("1_s0e38")
+puntaje = 10
+metadata/_custom_type_script = "uid://bbkyk2anhunsd"

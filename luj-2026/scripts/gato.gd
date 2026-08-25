@@ -3,11 +3,16 @@ extends RigidBody2D
 
 signal escupir_bola
 
+#======== SPRITES que luego se borran ======
+@export var sprite : Sprite2D
+@export var imagen_normal : Texture2D
+@export var imagen_bolita : Texture2D
+
 @export var disparador_pelotitas : DisparadorPelotita
 @export var game_manager : GameManager
 @export var colision : CollisionShape2D
 
-@export var fuerza_disparo : float = 2.0
+@export var fuerza_disparo : float = 1.0
 
 var velocidad_inicial : Vector2
 var posicion_mouse : Vector2
@@ -16,6 +21,7 @@ var _fue_lanzado : bool = false
 var _finalizo_ronda : bool = false
 
 func _ready() -> void:
+	sprite.texture = imagen_normal
 	freeze = true
 	if colision:
 		colision.set_deferred("disabled", true)
@@ -54,8 +60,10 @@ func _input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			lanzar()
 
-# ============ FUNCIONES ==============
-func preparar_lanzamiento() -> void:
+#============ FUNCIONES ==============
+
+func preparar_lanzamiento():
+	sprite.texture = imagen_bolita
 	call_deferred("habilitar_lanzamiento")
 
 func habilitar_lanzamiento() -> void:

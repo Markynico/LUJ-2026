@@ -1,32 +1,39 @@
 [gd_scene format=3 uid="uid://dy3jqoayfdkwm"]
 
 [ext_resource type="Script" uid="uid://cil5i0yy8liwu" path="res://scripts/ovillo.gd" id="1_wlnnp"]
-[ext_resource type="Resource" uid="uid://7s3l7jelg8oy" path="res://scripts/resources/ovillo_normal_prueba.tres" id="2_wlnnp"]
+[ext_resource type="Resource" uid="uid://7s3l7jelg8oy" path="res://scripts/resources/ovillo_normal_final.tres" id="2_wlnnp"]
 [ext_resource type="Texture2D" uid="uid://dbcovwwwqfpky" path="res://assets/sprite_ovillos/Ovillo verde.png" id="3_vkchq"]
 [ext_resource type="Texture2D" uid="uid://wr43cbl6x483" path="res://assets/sprite_ovillos/Ovillo negro.png" id="4_3vil1"]
 [ext_resource type="AudioStream" uid="uid://2jvby7clemka" path="res://assets/audio/sfx/romper_pelotita.wav" id="5_f54ks"]
+[ext_resource type="PackedScene" uid="uid://dymyh3ifxvug3" path="res://escenas/componentes/pergamino_info.tscn" id="6_dcous"]
+[ext_resource type="PackedScene" uid="uid://foy2qcacwbix" path="res://escenas/componentes/numero_impacto.tscn" id="7_vkchq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_37ege"]
-radius = 20.0
+radius = 7.0
 
-[node name="Ovillo" type="StaticBody2D" unique_id=142733400 node_paths=PackedStringArray("audio", "forma_colision", "sprite_normal", "sprite_desactivado")]
+[node name="Ovillo" type="StaticBody2D" unique_id=142733400 node_paths=PackedStringArray("audio", "forma_colision", "sprite_normal", "sprite_desactivado", "pergamino_info", "numero_impacto")]
+collision_layer = 2
+collision_mask = 0
+input_pickable = true
 script = ExtResource("1_wlnnp")
 tipo_ovillo = ExtResource("2_wlnnp")
 audio = NodePath("AudioStreamPlayer")
 forma_colision = NodePath("CollisionShape2D")
 sprite_normal = NodePath("SpriteNormal")
 sprite_desactivado = NodePath("SpriteDesactivado")
+pergamino_info = NodePath("PergaminoInfo")
+numero_impacto = NodePath("NumeroImpacto")
 
 [node name="SpriteNormal" type="Sprite2D" parent="." unique_id=20603333]
 texture_filter = 1
-position = Vector2(0.99999905, -3.9999995)
-scale = Vector2(0.16643755, 0.16643755)
+position = Vector2(0.35, -1.4)
+scale = Vector2(0.058253143, 0.058253143)
 texture = ExtResource("3_vkchq")
 
 [node name="SpriteDesactivado" type="Sprite2D" parent="." unique_id=550040605]
 visible = false
-position = Vector2(0, -2)
-scale = Vector2(0.11, 0.11)
+position = Vector2(0, -0.7)
+scale = Vector2(0.0385, 0.0385)
 texture = ExtResource("4_3vil1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1818122697]
@@ -36,3 +43,17 @@ shape = SubResource("CircleShape2D_37ege")
 unique_name_in_owner = true
 stream = ExtResource("5_f54ks")
 volume_db = -0.5
+
+[node name="PergaminoInfo" parent="." unique_id=1923268390 instance=ExtResource("6_dcous")]
+scale = Vector2(0.35, 0.35)
+
+[node name="NumeroImpacto" parent="." unique_id=633406525 instance=ExtResource("7_vkchq")]
+scale = Vector2(0.35, 0.35)
+offset_left = -19.0
+offset_top = -40.0
+offset_right = 21.0
+offset_bottom = -17.0
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="." to="PergaminoInfo" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="PergaminoInfo" method="_on_mouse_exited"]

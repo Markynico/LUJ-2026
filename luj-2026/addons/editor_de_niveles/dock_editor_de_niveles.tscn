@@ -2,13 +2,16 @@
 
 [ext_resource type="Script" uid="uid://cvnp2t8klxr25" path="res://addons/editor_de_niveles/dock_editor_de_niveles.gd" id="1_dock"]
 
-[node name="Editor de niveles" type="VBoxContainer" unique_id=1439805482 node_paths=PackedStringArray("boton_rectangulo", "boton_circulo", "boton_path", "boton_agregar_recorrido", "boton_quitar_recorrido", "boton_guardar", "boton_cargar", "campo_nombre")]
+[node name="Editor de niveles" type="VBoxContainer" unique_id=1439805482 node_paths=PackedStringArray("boton_rectangulo", "boton_circulo", "boton_path", "boton_obstaculo_rectangulo", "boton_obstaculo_circulo", "boton_agregar_recorrido", "boton_quitar_recorrido", "boton_nuevo", "boton_guardar", "boton_cargar", "campo_nombre")]
 script = ExtResource("1_dock")
 boton_rectangulo = NodePath("BotonRectangulo")
 boton_circulo = NodePath("BotonCirculo")
 boton_path = NodePath("BotonPath")
+boton_obstaculo_rectangulo = NodePath("BotonObstaculoRectangulo")
+boton_obstaculo_circulo = NodePath("BotonObstaculoCirculo")
 boton_agregar_recorrido = NodePath("BotonAgregarRecorrido")
 boton_quitar_recorrido = NodePath("BotonQuitarRecorrido")
+boton_nuevo = NodePath("BotonNuevo")
 boton_guardar = NodePath("BotonGuardar")
 boton_cargar = NodePath("BotonCargar")
 campo_nombre = NodePath("CampoNombre")
@@ -28,6 +31,21 @@ text = "Circulo"
 [node name="BotonPath" type="Button" parent="."]
 layout_mode = 2
 text = "Path"
+
+[node name="SeparadorObstaculos" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="EtiquetaObstaculos" type="Label" parent="."]
+layout_mode = 2
+text = "Obstaculos"
+
+[node name="BotonObstaculoRectangulo" type="Button" parent="."]
+layout_mode = 2
+text = "Rectangulo solido"
+
+[node name="BotonObstaculoCirculo" type="Button" parent="."]
+layout_mode = 2
+text = "Circulo solido"
 
 [node name="SeparadorRecorrido" type="HSeparator" parent="."]
 layout_mode = 2
@@ -50,6 +68,10 @@ layout_mode = 2
 [node name="EtiquetaNivel" type="Label" parent="." unique_id=1163254849]
 layout_mode = 2
 text = "Nivel"
+
+[node name="BotonNuevo" type="Button" parent="."]
+layout_mode = 2
+text = "Nuevo nivel"
 
 [node name="CampoNombre" type="LineEdit" parent="." unique_id=887389719]
 layout_mode = 2

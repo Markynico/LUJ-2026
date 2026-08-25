@@ -9,6 +9,8 @@ extends StaticBody2D
 @export var forma_colision : CollisionShape2D
 @export var sprite_normal : Sprite2D
 @export var sprite_desactivado : Sprite2D
+@export var pergamino_info : PergaminoInfo
+@export var numero_impacto : NumeroImpacto
 
 signal ovillo_desactivado(ovillo: Ovillo)
 
@@ -27,6 +29,8 @@ func _ready() -> void:
 	# Auto-registrarse en GameManager
 	if GameManager.instancia_actual:
 		GameManager.instancia_actual.registrar_ovillo(self)
+  pergamino_info.set_texto_ovillo(tipo_ovillo)
+
 
 func recibir_impacto() -> void: # Se llama desde la bola de pelos al impactar
 	if not activado:
@@ -36,6 +40,18 @@ func recibir_impacto() -> void: # Se llama desde la bola de pelos al impactar
 		for efecto in tipo_ovillo.efectos_al_recibir_impacto:
 			if efecto:
 				efecto.al_recibir_impacto(self)
+	#numero_impacto.iniciar_numero_impacto(tipo_ovillo.cant_monedas)
+	for efecto in tipo_ovillo.efectos_al_recibir_impacto:
+		efecto.al_recibir_impacto(self)
+		#emitir dar monedas tipo_ovillo.cantidadmondedas
+		pass
+
+func desactivar_ovillo():
+	forma_colision.set_deferred("disabled", true)
+	sprite_normal.hide()
+	sprite_desactivado.show()
+	audio.play()
+	activado = false
 
 func desactivar_ovillo() -> void:
 	if not activado:

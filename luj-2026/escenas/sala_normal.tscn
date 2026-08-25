@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://8l4ogj2t5ql7"]
+
+[ext_resource type="Script" uid="uid://cpdk8l4oi6c1j" path="res://scripts/niveles/sala_normal.gd" id="1_sala"]
+[ext_resource type="Script" uid="uid://bh3lxufik2p65" path="res://scripts/niveles/cargador_de_nivel.gd" id="5_carg"]
+[ext_resource type="Script" uid="uid://mrkgoq2v1cix" path="res://scripts/niveles/selector_de_niveles.gd" id="6_selec"]
+
+[node name="SalaNormal" type="Node2D" unique_id=934673846 node_paths=PackedStringArray("cargador")]
+script = ExtResource("1_sala")
+cargador = NodePath("CargadorDeNivel")
+
+[node name="CargadorDeNivel" type="Node2D" parent="." unique_id=883247812]
+script = ExtResource("5_carg")
+
+[node name="SelectorDeNiveles" type="Node2D" parent="." unique_id=931382229 node_paths=PackedStringArray("cargador")]
+script = ExtResource("6_selec")
+cargador = NodePath("../CargadorDeNivel")
+alto_salida = 100.0
