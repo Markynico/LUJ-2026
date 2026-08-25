@@ -2,39 +2,72 @@ class_name TrayectoriaDisparo
 extends Line2D
 
 @export var disparador : DisparadorPelotita
-@export var distancia_maxima: float = 6.0
-@export var intervalo: float = 0.05
-@export var detector_colisiones : CharacterBody2D
-var gravedad = ProjectSettings.get_setting("physics/2d/default_gravity")
+##shape cast con la forma de la bola que frena la linea donde frenaria la bola
+@export var detector : ShapeCast2D
+##color del circulo que marca donde impacta la bola
+@export var color_impacto : Color = Color.WHITE
 
-func _process(delta: float):
-	dibujar_trayectoria()
-	#actualizar_trayectoria()
+var hay_impacto : bool = false
+var centro_impacto : Vector2
+var gato : Gato
 
-#probar con raycast en vez de characterbody
-func actualizar_trayectoria():
+
+func _ready() -> void:
+	gato = disparador.get_parent() as Gato
+
+
+func _process(delta : float) -> void:
+	visible = hay_algo_para_disparar()
+	if visible:
+		dibujar_trayectoria()
+
+
+func hay_algo_para_disparar() -> bool:
+	if not gato or not gato.game_manager:
+		return true
+	if gato.listo_para_lanzar:
+		return true
+	return gato.game_manager.estado_actual == GameManager.EstadoDeJuego.LANZANDO_BOLAS and gato.game_manager.bolas_restantes > 0
+
+
+func dibujar_trayectoria() -> void:
+	var datos : DatosDisparo = disparador.preparar_datos_disparo()
+	if gato and gato.listo_para_lanzar:
+		datos.velocidad_inicial = -gato.velocidad_inicial
 	clear_points()
-	var posicion_inicial := disparador.global_position
-	var velocidad_inicial := -disparador.velocidad_inicial #se calcula segun la posicion del mouse, mientras mas lejos mas fuerte disparo
-	var gravedad_real : Vector2 = Vector2(0, 980)
-	for i in 12:
-		var delta_simulacion := intervalo
-		velocidad_inicial.y += gravedad * delta_simulacion
-		var movimiento := velocidad_inicial * delta_simulacion
-		var colision := detector_colisiones.move_and_collide(movimiento)
-		if colision:
-			velocidad_inicial = velocidad_inicial.bounce(colision.get_normal())
-		posicion_inicial += movimiento
-		add_point(to_local(posicion_inicial))
-		detector_colisiones.global_position = posicion_inicial
+	hay_impacto = false
+	for punto in calcular_puntos(datos):
+		add_point(to_local(punto))
+	queue_redraw()
 
-func dibujar_trayectoria(): #este metodo anda
-	clear_points()
-	var posicion_inicial := disparador.global_position
-	var velocidad_inicial := -disparador.velocidad_inicial #se calcula segun la posicion del mouse, mientras mas lejos mas fuerte disparo
-	for i in distancia_maxima: #probando
-		var tiempo := i * intervalo
-		#uso la formula esta de fisica q dice ( x= x0 + vi * t + 1/2 * aceleracion * t al cuadrado ) si, como te diste cuenta q no me gustaba fisica en la escuela
-		var posicion = (posicion_inicial+ velocidad_inicial * tiempo+ 0.5 * Vector2(0,980) * tiempo * tiempo)
-		var posicion_local = to_local(posicion)
-		add_point(posicion_local)
+
+func _draw() -> void:
+	if hay_impacto:
+		draw_circle(to_local(centro_impacto), radio_de_la_bola(), color_impacto)
+
+
+func radio_de_la_bola() -> float:
+	return detector.shape.radius if detector.shape is CircleShape2D else 12.0
+
+
+func calcular_puntos(datos : DatosDisparo) -> PackedVector2Array:
+	var puntos : PackedVector2Array = PackedVector2Array()
+	var posicion : Vector2 = disparador.global_position
+	var velocidad : Vector2 = datos.velocidad_inicial
+	var movimiento : Vector2
+	detector.global_position = posicion
+	puntos.append(posicion)
+	for i in datos.pasos:
+		velocidad += datos.gravedad * datos.intervalo
+		movimiento = velocidad * datos.intervalo
+		detector.target_position = movimiento
+		detector.force_shapecast_update()
+		if detector.is_colliding():
+			centro_impacto = posicion + movimiento * detector.get_closest_collision_safe_fraction()
+			hay_impacto = true
+			puntos.append(centro_impacto)
+			break
+		posicion += movimiento
+		puntos.append(posicion)
+		detector.global_position = posicion
+	return puntos

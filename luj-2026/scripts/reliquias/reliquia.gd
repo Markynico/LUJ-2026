@@ -9,7 +9,7 @@ extends Resource
 		emit_changed()
 
 
-func al_obtener(_game_manager : GameManager) -> void:
+func al_obtener(game_manager : GameManager) -> void:
 	pass
 
 
@@ -18,4 +18,8 @@ func al_empezar_nivel(game_manager : GameManager) -> void:
 
 
 func al_romper_ovillo(ovillo : Ovillo) -> void:
+	pass
+
+
+func al_preparar_disparo(datos : DatosDisparo) -> void:
 	pass

@@ -33,8 +33,7 @@ func actualizar_forma() -> void:
 
 
 func _on_body_entered(body : Node2D) -> void:
-	if body is Gato:
-		elegida.emit(self)
+	elegida.emit(self)
 
 
 func _draw() -> void:

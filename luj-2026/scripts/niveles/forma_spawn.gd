@@ -86,7 +86,7 @@ func obtener_radio_exterior() -> float:
 	return 0.0
 
 
-func empezar_arrastre_manija(_indice : int) -> void:
+func empezar_arrastre_manija(indice : int) -> void:
 	pass
 
 

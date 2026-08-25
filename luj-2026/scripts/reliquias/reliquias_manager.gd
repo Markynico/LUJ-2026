@@ -20,3 +20,8 @@ func al_empezar_nivel(game_manager : GameManager) -> void:
 	game_manager_actual = game_manager
 	for reliquia in obtenidas:
 		reliquia.al_empezar_nivel(game_manager)
+
+
+func al_preparar_disparo(datos : DatosDisparo) -> void:
+	for reliquia in obtenidas:
+		reliquia.al_preparar_disparo(datos)
