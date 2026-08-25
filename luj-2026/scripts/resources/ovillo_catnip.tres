@@ -10,7 +10,6 @@ script = ExtResource("2_v2j64")
 nombre = "OVILLO CATNIP"
 sprite = ExtResource("3_amiee")
 audio = ExtResource("1_v2j64")
-cant_monedas = 0
 puntaje = 15
 valor_spawn = 9.0
 metadata/_custom_type_script = "uid://bbkyk2anhunsd"

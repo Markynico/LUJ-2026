@@ -17,8 +17,6 @@ bolas_maximas = 6
 
 [node name="Gato" parent="." unique_id=69399080 node_paths=PackedStringArray("game_manager") instance=ExtResource("2_3a2ma")]
 position = Vector2(455, 41)
-collision_layer = 1
-collision_mask = 1
 game_manager = NodePath("../GameManager")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2101704717]
@@ -252,7 +250,5 @@ metadata/_custom_type_script = "uid://bh3lxufik2p65"
 
 [node name="ItemReliquia" parent="." unique_id=1618766747 instance=ExtResource("7_vyirj")]
 position = Vector2(288, 146)
-collision_layer = 1
-collision_mask = 1
 reliquia = ExtResource("8_6avbl")
 "tamaño_icono" = 80.0
