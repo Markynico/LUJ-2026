@@ -26,6 +26,9 @@ colores_estela = SubResource("Gradient_sdgal")
 efectos = Array[ExtResource("3_mfh0k")]([SubResource("Resource_0ct46")])
 metadata/_custom_type_script = "uid://c7ogyqxnq7236"
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bola"]
+friction = 0.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_37ege"]
 radius = 3.0
 
@@ -33,6 +36,9 @@ radius = 3.0
 z_index = 1
 collision_layer = 4
 collision_mask = 19
+physics_material_override = SubResource("PhysicsMaterial_bola")
+linear_damp_mode = 1
+linear_damp = 0.0
 input_pickable = true
 continuous_cd = 2
 contact_monitor = true

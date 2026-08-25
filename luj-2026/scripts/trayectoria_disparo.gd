@@ -54,7 +54,9 @@ func calcular_puntos(datos : DatosDisparo) -> PackedVector2Array:
 	var puntos : PackedVector2Array = PackedVector2Array()
 	var posicion : Vector2 = disparador.global_position
 	var velocidad : Vector2 = datos.velocidad_inicial
+	var rebotes_restantes : int = datos.rebotes
 	var movimiento : Vector2
+	var normal : Vector2
 	detector.global_position = posicion
 	puntos.append(posicion)
 	for i in datos.pasos:
@@ -63,11 +65,18 @@ func calcular_puntos(datos : DatosDisparo) -> PackedVector2Array:
 		detector.target_position = movimiento
 		detector.force_shapecast_update()
 		if detector.is_colliding():
-			centro_impacto = posicion + movimiento * detector.get_closest_collision_safe_fraction()
+			posicion += movimiento * detector.get_closest_collision_safe_fraction()
+			puntos.append(posicion)
+			centro_impacto = posicion
 			hay_impacto = true
-			puntos.append(centro_impacto)
-			break
-		posicion += movimiento
-		puntos.append(posicion)
+			if rebotes_restantes <= 0:
+				break
+			rebotes_restantes -= 1
+			normal = detector.get_collision_normal(0)
+			velocidad = velocidad.slide(normal) * datos.factor_friccion + normal * datos.fuerza_rebote
+			posicion += normal * 0.5
+		else:
+			posicion += movimiento
+			puntos.append(posicion)
 		detector.global_position = posicion
 	return puntos

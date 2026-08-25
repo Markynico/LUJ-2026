@@ -8,6 +8,8 @@ signal disparo #Se conecta con game manager
 ##multiplicador de fuerza que se aplica para empujar la pelotita, se usa para multiplicar a la velocidad inicial (velocidad inicial se da por que tan lejos esta el mouse del michi)
 
 @export var fuerza_disparo : float = 2.0
+##velocidad maxima a la que puede salir la bola
+@export var velocidad_maxima : float = 1200.0
 var velocidad_inicial : Vector2
 var posicion_mouse : Vector2
 var bolitas_creadas : int = 0
@@ -27,7 +29,7 @@ func _input(event: InputEvent) -> void:
 
 func preparar_datos_disparo() -> DatosDisparo:
 	var datos : DatosDisparo = DatosDisparo.new()
-	datos.velocidad_inicial = -velocidad_inicial
+	datos.velocidad_inicial = (-velocidad_inicial).limit_length(velocidad_maxima)
 	ReliquiasManager.al_preparar_disparo(datos)
 	return datos
 
