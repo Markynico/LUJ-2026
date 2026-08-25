@@ -2,9 +2,12 @@
 
 [ext_resource type="Script" uid="uid://cgylyxw78yb53" path="res://scripts/niveles/spawn_ovillo.gd" id="1_spawn"]
 [ext_resource type="Script" uid="uid://bbkyk2anhunsd" path="res://scripts/ovillos_custom/ovillo_base.gd" id="2_c1m82"]
-[ext_resource type="Resource" uid="uid://7s3l7jelg8oy" path="res://scripts/resources/ovillo_normal_prueba.tres" id="3_u0c8d"]
-[ext_resource type="Resource" uid="uid://d3ks2dut6iacd" path="res://scripts/resources/explosivo_final.tres" id="4_c1m82"]
+[ext_resource type="Resource" uid="uid://7s3l7jelg8oy" path="res://scripts/resources/ovillo_normal_final.tres" id="3_u0c8d"]
+[ext_resource type="Resource" uid="uid://d3ks2dut6iacd" path="res://scripts/resources/ovillo_explosivo_final.tres" id="4_c1m82"]
+[ext_resource type="Resource" uid="uid://dky2mbnm2rn0l" path="res://scripts/resources/ovillo_monedas.tres" id="5_u0c8d"]
+[ext_resource type="Resource" uid="uid://cy6q6prk7gt7p" path="res://scripts/resources/ovillo_catnip.tres" id="6_3axgr"]
+[ext_resource type="Resource" uid="uid://fumr1qv4h1ho" path="res://scripts/resources/ovillo_rebobinar.tres" id="7_r2n36"]
 
 [node name="SpawnOvillo" type="Node2D" unique_id=566835572]
 script = ExtResource("1_spawn")
-tipo_ovillos = Array[ExtResource("2_c1m82")]([ExtResource("3_u0c8d"), ExtResource("4_c1m82")])
+tipo_ovillos = Array[ExtResource("2_c1m82")]([ExtResource("3_u0c8d"), ExtResource("4_c1m82"), ExtResource("5_u0c8d"), ExtResource("6_3axgr"), ExtResource("7_r2n36")])
