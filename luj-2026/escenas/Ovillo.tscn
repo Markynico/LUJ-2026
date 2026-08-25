@@ -11,10 +11,12 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_37ege"]
 radius = 20.0
 
+
 [node name="Ovillo" type="StaticBody2D" unique_id=142733400 node_paths=PackedStringArray("audio", "forma_colision", "sprite_normal", "sprite_desactivado", "pergamino_info", "numero_impacto")]
 collision_layer = 3
 collision_mask = 7
 input_pickable = true
+scale = Vector2(0.35, 0.35)
 script = ExtResource("1_wlnnp")
 tipo_ovillo = ExtResource("2_wlnnp")
 audio = NodePath("AudioStreamPlayer")
