@@ -15,17 +15,16 @@ var direccion_diagonal : Vector2
 
 
 func _draw() -> void:
-	var vertices : PackedVector2Array
 	if not Engine.is_editor_hint():
 		return
 	super()
-	vertices = obtener_vertices()
+	var vertices := obtener_vertices()
 	vertices.append(vertices[0])
 	draw_polyline(vertices, COLOR_DIBUJO, GROSOR_DIBUJO)
 
 
 func obtener_vertices() -> PackedVector2Array:
-	var mitad : Vector2 = tamaño * 0.5
+	var mitad := tamaño * 0.5
 	return PackedVector2Array([
 		Vector2(-mitad.x, -mitad.y),
 		Vector2(mitad.x, -mitad.y),
@@ -47,16 +46,15 @@ func obtener_puntos() -> PackedVector2Array:
 
 
 func obtener_manijas() -> PackedVector2Array:
-	var manijas : PackedVector2Array = super()
+	var manijas := super()
 	manijas.append_array(obtener_vertices())
 	return manijas
 
 
 func empezar_arrastre_manija(indice : int) -> void:
-	var esquina : Vector2
 	if indice < Manija.ARRIBA_IZQUIERDA:
 		return
-	esquina = obtener_vertices()[indice - Manija.ARRIBA_IZQUIERDA]
+	var esquina := obtener_vertices()[indice - Manija.ARRIBA_IZQUIERDA]
 	ancla_global = to_global(-esquina)
 	direccion_diagonal = esquina.normalized()
 
@@ -72,15 +70,15 @@ func mover_manija(indice : int, posicion_local : Vector2, con_shift : bool, con_
 
 
 func escalar_desde_centro(posicion_local : Vector2, proporcional : bool) -> void:
-	var mitad : Vector2 = posicion_local
+	var mitad := posicion_local
 	if proporcional:
 		mitad = proyectar_sobre_diagonal(mitad)
 	tamaño = mitad.abs() * 2.0
 
 
 func escalar_desde_ancla(posicion_local : Vector2, proporcional : bool) -> void:
-	var opuesta : Vector2 = to_local(ancla_global)
-	var diagonal : Vector2 = posicion_local - opuesta
+	var opuesta := to_local(ancla_global)
+	var diagonal := posicion_local - opuesta
 	if proporcional:
 		diagonal = proyectar_sobre_diagonal(diagonal)
 	position += (opuesta + diagonal * 0.5).rotated(rotation)
@@ -92,7 +90,7 @@ func proyectar_sobre_diagonal(vector : Vector2) -> Vector2:
 
 
 func obtener_datos() -> FormaData:
-	var datos : FormaData = super()
+	var datos := super()
 	datos.tipo = "rectangulo"
 	datos.tamaño = tamaño
 	return datos
