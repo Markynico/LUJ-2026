@@ -38,14 +38,11 @@ func recibir_impacto() -> void: # Se llama desde la bola de pelos al impactar
 	if not activado:
 		return
 	desactivar_ovillo()
-
-	if tipo_ovillo and tipo_ovillo.efectos_al_recibir_impacto:
-		for efecto in tipo_ovillo.efectos_al_recibir_impacto:
-			if efecto:
-				efecto.al_recibir_impacto(self)
+	numero_impacto.iniciar_numero_impacto(tipo_ovillo.puntaje) #le cambie monedas x puntaje
+	for efecto in tipo_ovillo.efectos_al_recibir_impacto:
+		efecto.al_recibir_impacto(self)
 	
-	if numero_impacto and tipo_ovillo and "cant_monedas" in tipo_ovillo:
-		numero_impacto.iniciar_numero_impacto(tipo_ovillo.cant_monedas)
+	
 
 	#numero_impacto.iniciar_numero_impacto(tipo_ovillo.cant_monedas) #holi aca poner puntaje en vez de monedas
 	#for efecto in tipo_ovillo.efectos_al_recibir_impacto:
