@@ -15,7 +15,6 @@ script = ExtResource("4_qu7k5")
 nombre = "OVILLO EXPLOSIVO"
 sprite = ExtResource("5_db3ri")
 audio = ExtResource("1_uj1e1")
-cant_monedas = 0
 puntaje = 10
 valor_spawn = 15.0
 efectos_al_recibir_impacto = Array[ExtResource("2_hlo4y")]([SubResource("Resource_pv7le")])
