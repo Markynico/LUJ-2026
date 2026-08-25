@@ -12,7 +12,9 @@ metadata/_custom_type_script = "uid://cv3xugh8gva3y"
 
 [resource]
 script = ExtResource("4_06w3h")
+nombre = "OVILLO EXPLOSIVO"
 sprite = ExtResource("5_bdy5q")
 audio = ExtResource("1_jbj0c")
+cant_monedas = 3
 efectos_al_recibir_impacto = Array[ExtResource("2_yvgvs")]([SubResource("Resource_pv7le")])
 metadata/_custom_type_script = "uid://bbkyk2anhunsd"

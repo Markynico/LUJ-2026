@@ -15,7 +15,8 @@ func impactar_con_objeto(pelotita : BolaDePelos ,objeto_a_impactar : Node2D):
 ##no es necesario que se sobre escriba, pero la dejo aca por si queremos evitar escribir mil veces la misma funcion para un simple rebote
 func rebote_simple(pelotita : BolaDePelos ,objeto_a_impactar : Node2D):
 	var normal = pelotita.global_position.direction_to(objeto_a_impactar.global_position)
-	#var fuerza = objeto.get_fuerza_rebote() ?? idea
-	pelotita.apply_central_impulse(-normal * fuerza_rebote)
 	if objeto_a_impactar is Ovillo:
+		fuerza_rebote += objeto_a_impactar.tipo_ovillo.rebote_extra #para q se sume el rebote de la pelotita + el rebote del ovillo (si es q corresponde)
+	if objeto_a_impactar.has_method("recibir_impacto"):
 		objeto_a_impactar.recibir_impacto()
+	pelotita.apply_central_impulse(-normal * fuerza_rebote)

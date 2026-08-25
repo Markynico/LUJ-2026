@@ -44,6 +44,12 @@ click_izq={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="MUNDO"
+2d_physics/layer_2="OVILLOS"
+2d_physics/layer_3="BOLADEPELOS"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

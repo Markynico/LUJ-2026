@@ -7,13 +7,23 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_6vpaq"]
-offsets = PackedFloat32Array(0, 0.39506173)
+offsets = PackedFloat32Array(0, 0.36893204)
 colors = PackedColorArray(1, 1, 1, 0.8745098, 1, 1, 1, 0)
 
-[node name="TrayectoriaDisparo" type="Line2D" unique_id=2096489121]
+[sub_resource type="CircleShape2D" id="CircleShape2D_37ege"]
+
+[node name="TrayectoriaDisparo" type="Line2D" unique_id=2096489121 node_paths=PackedStringArray("detector_colisiones")]
 closed = true
 width = 5.0
 width_curve = SubResource("Curve_6vpaq")
-default_color = Color(1, 1, 1, 0.4117647)
+default_color = Color(1, 1, 1, 0.4862745)
 gradient = SubResource("Gradient_6vpaq")
 script = ExtResource("1_6vpaq")
+detector_colisiones = NodePath("DetectorColisiones")
+
+[node name="DetectorColisiones" type="CharacterBody2D" parent="." unique_id=1048028819]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorColisiones" unique_id=1977158245]
+shape = SubResource("CircleShape2D_37ege")
