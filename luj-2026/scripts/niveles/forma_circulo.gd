@@ -21,7 +21,7 @@ func _draw() -> void:
 
 
 func obtener_contorno() -> PackedVector2Array:
-	var contorno : PackedVector2Array = PackedVector2Array()
+	var contorno := PackedVector2Array()
 	for i in SEGMENTOS_DIBUJO:
 		contorno.append(Vector2.from_angle(TAU * i / SEGMENTOS_DIBUJO) * radio)
 	return contorno
@@ -36,7 +36,7 @@ func obtener_puntos() -> PackedVector2Array:
 
 
 func obtener_manijas() -> PackedVector2Array:
-	var manijas : PackedVector2Array = super()
+	var manijas := super()
 	manijas.append(Vector2(radio, 0))
 	return manijas
 
@@ -49,7 +49,7 @@ func mover_manija(indice : int, posicion_local : Vector2, con_shift : bool, con_
 
 
 func obtener_datos() -> FormaData:
-	var datos : FormaData = super()
+	var datos := super()
 	datos.tipo = "circulo"
 	datos.radio = radio
 	return datos

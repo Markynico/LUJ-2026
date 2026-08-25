@@ -21,15 +21,12 @@ func transformacion_viewport() -> Transform2D:
 
 
 func dibujar(superficie : Control) -> void:
-	var transformacion : Transform2D
-	var manijas : PackedVector2Array
-	var color : Color
 	if not es_valida():
 		return
-	transformacion = transformacion_viewport() * forma.global_transform
-	manijas = forma.obtener_manijas()
+	var transformacion := transformacion_viewport() * forma.global_transform
+	var manijas := forma.obtener_manijas()
 	for i in manijas.size():
-		color = color_manija_activa if i == manija_activa else color_manija
+		var color := color_manija_activa if i == manija_activa else color_manija
 		superficie.draw_circle(transformacion * manijas[i], radio_manija, color)
 
 
@@ -47,7 +44,7 @@ func procesar_input(evento : InputEvent) -> bool:
 
 
 func empezar_arrastre(posicion_pantalla : Vector2) -> bool:
-	var indice : int = buscar_manija_en(posicion_pantalla)
+	var indice := buscar_manija_en(posicion_pantalla)
 	if indice < 0:
 		return false
 	manija_activa = indice
@@ -69,8 +66,8 @@ func hay_manija_en(posicion_pantalla : Vector2) -> bool:
 
 
 func buscar_manija_en(posicion_pantalla : Vector2) -> int:
-	var transformacion : Transform2D = transformacion_viewport() * forma.global_transform
-	var manijas : PackedVector2Array = forma.obtener_manijas()
+	var transformacion := transformacion_viewport() * forma.global_transform
+	var manijas := forma.obtener_manijas()
 	for i in manijas.size():
 		if (transformacion * manijas[i]).distance_to(posicion_pantalla) <= radio_manija * 1.5:
 			return i
@@ -78,7 +75,7 @@ func buscar_manija_en(posicion_pantalla : Vector2) -> int:
 
 
 func arrastrar(posicion_pantalla : Vector2, con_shift : bool, con_control : bool) -> void:
-	var posicion_local : Vector2 = a_local(posicion_pantalla) - desplazamiento_agarre
+	var posicion_local := a_local(posicion_pantalla) - desplazamiento_agarre
 	forma.mover_manija(manija_activa, posicion_local, con_shift, con_control)
 
 
@@ -87,10 +84,9 @@ func a_local(posicion_pantalla : Vector2) -> Vector2:
 
 
 func terminar_arrastre() -> bool:
-	var estado_final : Dictionary
 	if manija_activa < 0:
 		return false
-	estado_final = capturar_estado()
+	var estado_final := capturar_estado()
 	deshacer_rehacer.create_action("Mover manija de forma")
 	for propiedad in estado_final:
 		deshacer_rehacer.add_do_property(forma, propiedad, estado_final[propiedad])
@@ -101,7 +97,7 @@ func terminar_arrastre() -> bool:
 
 
 func capturar_estado() -> Dictionary:
-	var estado : Dictionary = {}
+	var estado := {}
 	for propiedad in forma.get_property_list():
 		if propiedad.usage & PROPERTY_USAGE_SCRIPT_VARIABLE and propiedad.usage & PROPERTY_USAGE_STORAGE:
 			estado[propiedad.name] = forma.get(propiedad.name)
