@@ -3,37 +3,35 @@
 [ext_resource type="Script" uid="uid://7uwexjujii6u" path="res://scripts/bola_de_pelos.gd" id="1_q2vq6"]
 [ext_resource type="Texture2D" uid="uid://bsk14c2sew84m" path="res://iconos_custom/gobot.svg" id="2_unop5"]
 [ext_resource type="Script" uid="uid://c7ogyqxnq7236" path="res://scripts/pelotitas_custom/pelotita_base.gd" id="3_7sm33"]
-[ext_resource type="Script" uid="uid://5i4oxxen13xa" path="res://scripts/pelotitas_custom/efecto_rebote_normal.gd" id="3_avp8o"]
 [ext_resource type="Script" uid="uid://c31lbqa2grch4" path="res://scripts/pelotitas_custom/efectos_pelotita.gd" id="3_mfh0k"]
 [ext_resource type="Script" uid="uid://5i4oxxen13xa" path="res://scripts/pelotitas_custom/efecto_rebote_normal.gd" id="4_mfh0k"]
 [ext_resource type="AudioStream" uid="uid://2jvby7clemka" path="res://assets/audio/sfx/romper_pelotita.wav" id="4_rguhl"]
 [ext_resource type="PackedScene" uid="uid://dmexovyecfyo4" path="res://escenas/componentes/estela_movimiento.tscn" id="4_tra1g"]
 [ext_resource type="Texture2D" uid="uid://y01cjx6nscow" path="res://iconos_custom/heart.svg" id="5_sdgal"]
+[ext_resource type="PackedScene" uid="uid://dymyh3ifxvug3" path="res://escenas/componentes/pergamino_info.tscn" id="9_sdgal"]
 
 [sub_resource type="Gradient" id="Gradient_sdgal"]
 offsets = PackedFloat32Array(0.53246754, 1)
 colors = PackedColorArray(0, 1, 0, 1, 1, 1, 1, 1)
 
 [sub_resource type="Resource" id="Resource_0ct46"]
-script = ExtResource("3_avp8o")
+script = ExtResource("4_mfh0k")
 metadata/_custom_type_script = "uid://5i4oxxen13xa"
 
 [sub_resource type="Resource" id="Resource_avp8o"]
 script = ExtResource("3_7sm33")
+nombre = "BolaNormal"
 textura = ExtResource("5_sdgal")
 colores_estela = SubResource("Gradient_sdgal")
 efectos = Array[ExtResource("3_mfh0k")]([SubResource("Resource_0ct46")])
 metadata/_custom_type_script = "uid://c7ogyqxnq7236"
 
-[sub_resource type="Resource" id="Resource_bbvk0"]
-script = ExtResource("4_mfh0k")
-metadata/_custom_type_script = "uid://5i4oxxen13xa"
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_37ege"]
-radius = 19.026299
+radius = 12.0
 
 [node name="BolaDePelos" type="RigidBody2D" unique_id=660631560 node_paths=PackedStringArray("sprite_bola", "estela_movimiento", "audio")]
 z_index = 1
+input_pickable = true
 continuous_cd = 2
 contact_monitor = true
 max_contacts_reported = 2
@@ -46,10 +44,11 @@ audio = NodePath("AudioRebote")
 [node name="SpriteBola" type="Sprite2D" parent="." unique_id=1381481664]
 unique_name_in_owner = true
 texture_filter = 1
-scale = Vector2(2.5, 2.5)
+scale = Vector2(0.35, 0.35)
 texture = ExtResource("2_unop5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1988233965]
+scale = Vector2(0.25, 0.25)
 shape = SubResource("CircleShape2D_37ege")
 
 [node name="AudioRebote" type="AudioStreamPlayer" parent="." unique_id=787173903]
@@ -62,5 +61,9 @@ body = NodePath("..")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1816185939]
 
+[node name="PergaminoInfo" parent="." unique_id=1923268390 instance=ExtResource("9_sdgal")]
+
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="mouse_entered" from="." to="PergaminoInfo" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="PergaminoInfo" method="_on_mouse_exited"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
