@@ -14,18 +14,18 @@
 gato = NodePath("../Gato")
 bolas_maximas = 6
 
+[node name="HUD" parent="GameManager" unique_id=2102008230 node_paths=PackedStringArray("game_manager") instance=ExtResource("3_l1he2")]
+game_manager = NodePath("..")
+
 [node name="Gato" parent="." unique_id=69399080 node_paths=PackedStringArray("game_manager") instance=ExtResource("2_3a2ma")]
 position = Vector2(455, 41)
 game_manager = NodePath("../GameManager")
 
-[node name="HUD" parent="." unique_id=2102008230 node_paths=PackedStringArray("game_manager") instance=ExtResource("3_l1he2")]
-game_manager = NodePath("../GameManager")
-
 [node name="Label" type="Label" parent="." unique_id=1049854138]
 offset_left = 4.0
-offset_top = 73.0
+offset_top = 114.0
 offset_right = 398.0
-offset_bottom = 96.0
+offset_bottom = 137.0
 text = "para el prototipo hacer click y aparece una pelotita"
 
 [node name="pelotitas de prueba" type="Node2D" parent="." unique_id=409704067]

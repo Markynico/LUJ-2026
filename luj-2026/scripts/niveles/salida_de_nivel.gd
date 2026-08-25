@@ -32,8 +32,9 @@ func actualizar_forma() -> void:
 	queue_redraw()
 
 
-func al_entrar_cuerpo(_cuerpo : Node2D) -> void:
-	elegida.emit(self)
+func al_entrar_cuerpo(cuerpo : Node2D) -> void:
+	if cuerpo is Gato:
+		elegida.emit(self)
 
 
 func _draw() -> void:
