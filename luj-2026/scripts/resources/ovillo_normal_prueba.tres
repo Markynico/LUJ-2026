@@ -7,9 +7,6 @@
 
 [resource]
 script = ExtResource("3_cxs5g")
-nombre = "OVILLO NORMAL"
 sprite = ExtResource("4_b4utc")
 audio = ExtResource("1_rk3w7")
-cant_monedas = 22
-color_numeros_impacto = Color(0.92099476, 0.9209946, 0.9209946, 1)
 metadata/_custom_type_script = "uid://bbkyk2anhunsd"
