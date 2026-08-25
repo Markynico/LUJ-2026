@@ -18,7 +18,9 @@ signal elegida(salida : SalidaDeNivel)
 
 
 func _ready() -> void:
-	pass
+	actualizar_forma()
+	if not body_entered.is_connected(_on_body_entered):
+		body_entered.connect(_on_body_entered)
 
 func actualizar_forma() -> void:
 	if not colision:
@@ -30,15 +32,11 @@ func actualizar_forma() -> void:
 	queue_redraw()
 
 
-func al_entrar_cuerpo(cuerpo : Node2D) -> void:
-	if cuerpo is Gato:
-		elegida.emit(self)
-
-
 func _draw() -> void:
+	var nombre : String = TipoDeSala.NOMBRES.get(tipo, "?")
 	draw_rect(Rect2(-tamaño.x * 0.5, -tamaño.y, tamaño.x, tamaño.y), TipoDeSala.COLORES[tipo])
+	draw_string(ThemeDB.fallback_font, Vector2(-tamaño.x * 0.5, -tamaño.y * 0.5), nombre, HORIZONTAL_ALIGNMENT_CENTER, tamaño.x, 18, Color.WHITE)
 
 
-func _on_body_entered(body: Node2D) -> void:
-	actualizar_forma()
-	pass # Replace with function body.
+func _on_body_entered(body : Node2D) -> void:
+	elegida.emit(self)

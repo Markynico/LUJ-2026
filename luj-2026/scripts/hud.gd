@@ -14,8 +14,8 @@ extends Control
 @onready var bolas_restantes_label : Label = %BolasRestantes if has_node("%BolasRestantes") else null
 @onready var monedas_label : Label = %Monedas if has_node("%Monedas") else null
 
-var _corazones : Array[TextureRect] = []
-var _tween_notif : Tween
+var corazones : Array[TextureRect] = []
+var tween_notif : Tween
 
 func _ready() -> void:
 	if not game_manager:
@@ -33,23 +33,23 @@ func _ready() -> void:
 	if game_manager:
 		game_manager.bola_usada.connect(actualizar_bolas_restantes)
 		game_manager.vidas_cambiadas.connect(actualizar_vidas)
-		game_manager.ovillos_actualizados.connect(actualizar_progreso_ovillos)
-		game_manager.meta_alcanzada.connect(_on_meta_alcanzada)
-		game_manager.nivel_completado.connect(_on_nivel_completado)
-		game_manager.game_over.connect(_on_game_over)
+		game_manager.puntos_actualizados.connect(actualizar_progreso_ovillos)
+		game_manager.meta_alcanzada.connect(al_alcanzar_meta)
+		game_manager.nivel_completado.connect(al_completar_nivel)
+		game_manager.game_over.connect(al_game_over)
 		
 		# Inicializar vistas
 		actualizar_vidas(game_manager.vidas_actuales, game_manager.vidas_maximas)
 		actualizar_bolas_restantes(game_manager.bolas_restantes)
 	else:
-		_crear_corazones(3, 3)
+		crear_corazones(3, 3)
 
-func _crear_corazones(vidas_actuales: int, vidas_max: int) -> void:
+func crear_corazones(vidas_actuales: int, vidas_max: int) -> void:
 	if not contenedor_vidas:
 		return
 	for child in contenedor_vidas.get_children():
 		child.queue_free()
-	_corazones.clear()
+	corazones.clear()
 	
 	for i in range(vidas_max):
 		var corazon = TextureRect.new()
@@ -65,15 +65,15 @@ func _crear_corazones(vidas_actuales: int, vidas_max: int) -> void:
 			corazon.modulate = Color(0.3, 0.35, 0.45, 0.4)
 		
 		contenedor_vidas.add_child(corazon)
-		_corazones.append(corazon)
+		corazones.append(corazon)
 
 func actualizar_vidas(vidas_actuales: int, vidas_max: int) -> void:
-	if _corazones.size() != vidas_max:
-		_crear_corazones(vidas_actuales, vidas_max)
+	if corazones.size() != vidas_max:
+		crear_corazones(vidas_actuales, vidas_max)
 		return
 	
 	for i in range(vidas_max):
-		var corazon = _corazones[i]
+		var corazon = corazones[i]
 		var estaba_activo = (corazon.modulate.a > 0.6)
 		var ahora_activo = (i < vidas_actuales)
 		
@@ -81,14 +81,14 @@ func actualizar_vidas(vidas_actuales: int, vidas_max: int) -> void:
 			corazon.modulate = Color(1.0, 0.4, 0.5, 1.0)
 			if not estaba_activo:
 				# Animación al ganar vida
-				_animar_corazon(corazon, true)
+				animar_corazon(corazon, true)
 		else:
 			corazon.modulate = Color(0.3, 0.35, 0.45, 0.4)
 			if estaba_activo:
 				# Animación al perder vida
-				_animar_corazon(corazon, false)
+				animar_corazon(corazon, false)
 
-func _animar_corazon(corazon: TextureRect, ganado: bool) -> void:
+func animar_corazon(corazon: TextureRect, ganado: bool) -> void:
 	var tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	if ganado:
 		corazon.scale = Vector2(1.5, 1.5)
@@ -112,37 +112,37 @@ func actualizar_monedas(monedas: int) -> void:
 	if monedas_label:
 		monedas_label.text = "Monedas: " + str(monedas)
 
-func actualizar_progreso_ovillos(destruidos: int, requeridos: int, total: int, _porcentaje_actual: float) -> void:
+func actualizar_progreso_ovillos(obtenidos: int, requeridos: int, total: int, porcentaje_actual: float) -> void:
 	if barra_ovillos:
 		barra_ovillos.max_value = max(total, 1)
-		barra_ovillos.value = destruidos
+		barra_ovillos.value = obtenidos
 	
 	if label_ovillos:
 		var pct_nivel = 0
 		if game_manager:
 			pct_nivel = int(game_manager.porcentaje_ovillos_requerido * 100.0)
-		label_ovillos.text = "Ovillos: %d / %d  (Meta: %d | %d%%)" % [destruidos, total, requeridos, pct_nivel]
+		label_ovillos.text = "Puntos: %d / %d  (Meta: %d | %d%%)" % [obtenidos, total, requeridos, pct_nivel]
 	
 	if label_meta_badge:
-		if destruidos >= requeridos:
+		if obtenidos >= requeridos:
 			label_meta_badge.text = "✓ ¡META CUMPLIDA!"
 			label_meta_badge.modulate = Color(0.35, 0.95, 0.55, 1.0)
 		else:
-			var faltan = max(0, requeridos - destruidos)
-			label_meta_badge.text = "Faltan %d para ganar" % faltan
+			var faltan = max(0, requeridos - obtenidos)
+			label_meta_badge.text = "Faltan %d puntos para ganar" % faltan
 			label_meta_badge.modulate = Color(0.85, 0.88, 0.95, 0.8)
 
-func _on_meta_alcanzada(es_meta: bool) -> void:
+func al_alcanzar_meta(es_meta: bool) -> void:
 	if es_meta:
 		mostrar_notificacion("¡Meta de nivel alcanzada! 🎉", Color(0.35, 0.95, 0.55))
 
-func _on_nivel_completado(exito: bool) -> void:
+func al_completar_nivel(exito: bool) -> void:
 	if exito:
 		mostrar_notificacion("¡NIVEL SUPERADO! 🎉", Color(0.35, 0.95, 0.55))
 	else:
 		mostrar_notificacion("¡No alcanzaste la meta! Perdiste una vida 💔", Color(1.0, 0.4, 0.4))
 
-func _on_game_over() -> void:
+func al_game_over() -> void:
 	mostrar_notificacion("GAME OVER 💀 Sin vidas restantes", Color(1.0, 0.25, 0.25))
 
 func mostrar_notificacion(texto: String, color_texto: Color = Color.WHITE) -> void:
@@ -155,12 +155,12 @@ func mostrar_notificacion(texto: String, color_texto: Color = Color.WHITE) -> vo
 	banner_notificacion.modulate.a = 0.0
 	banner_notificacion.position.y = 80.0
 	
-	if _tween_notif and _tween_notif.is_valid():
-		_tween_notif.kill()
+	if tween_notif and tween_notif.is_valid():
+		tween_notif.kill()
 	
-	_tween_notif = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	_tween_notif.tween_property(banner_notificacion, "modulate:a", 1.0, 0.2)
-	_tween_notif.parallel().tween_property(banner_notificacion, "position:y", 105.0, 0.25)
-	_tween_notif.tween_interval(1.8)
-	_tween_notif.chain().tween_property(banner_notificacion, "modulate:a", 0.0, 0.3)
-	_tween_notif.finished.connect(func(): banner_notificacion.visible = false)
+	tween_notif = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween_notif.tween_property(banner_notificacion, "modulate:a", 1.0, 0.2)
+	tween_notif.parallel().tween_property(banner_notificacion, "position:y", 105.0, 0.25)
+	tween_notif.tween_interval(1.8)
+	tween_notif.chain().tween_property(banner_notificacion, "modulate:a", 0.0, 0.3)
+	tween_notif.finished.connect(func(): banner_notificacion.visible = false)
