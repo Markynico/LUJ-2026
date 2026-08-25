@@ -51,13 +51,11 @@ func contorno_cerrado() -> bool:
 
 
 func esta_sobre_contorno(punto_local : Vector2, tolerancia : float) -> bool:
-	var contorno : PackedVector2Array = obtener_contorno()
-	var segmentos : int = contorno.size() if contorno_cerrado() else contorno.size() - 1
-	var desde : Vector2
-	var hasta : Vector2
+	var contorno := obtener_contorno()
+	var segmentos := contorno.size() if contorno_cerrado() else contorno.size() - 1
 	for i in segmentos:
-		desde = contorno[i]
-		hasta = contorno[(i + 1) % contorno.size()]
+		var desde := contorno[i]
+		var hasta := contorno[(i + 1) % contorno.size()]
 		if Geometry2D.get_closest_point_to_segment(punto_local, desde, hasta).distance_to(punto_local) <= tolerancia:
 			return true
 	return false
@@ -72,7 +70,7 @@ func obtener_centro_manijas() -> Vector2:
 
 
 func obtener_manijas() -> PackedVector2Array:
-	var manijas : PackedVector2Array = PackedVector2Array([obtener_centro_manijas()])
+	var manijas := PackedVector2Array([obtener_centro_manijas()])
 	if usa_rotacion():
 		manijas.append(obtener_manija_rotacion())
 	return manijas
@@ -101,7 +99,7 @@ func mover_manija(indice : int, posicion_local : Vector2, con_shift : bool, con_
 
 
 func obtener_datos() -> FormaData:
-	var datos : FormaData = FormaData.new()
+	var datos := FormaData.new()
 	datos.posicion = position
 	datos.rotacion = rotation
 	datos.escala = scale
@@ -121,28 +119,20 @@ func a_global(lista : PackedVector2Array) -> PackedVector2Array:
 
 
 func puntos_sobre_poligono(vertices : PackedVector2Array) -> PackedVector2Array:
-	var perimetro : float = 0.0
-	var cantidad : int
-	var separacion_real : float
-	var puntos : PackedVector2Array
-	var recorrido : float
-	var siguiente : float
-	var desde : Vector2
-	var hasta : Vector2
-	var largo : float
+	var perimetro := 0.0
 	for i in vertices.size():
 		perimetro += vertices[i].distance_to(vertices[(i + 1) % vertices.size()])
-	cantidad = calcular_cantidad_ovillos(perimetro)
+	var cantidad := calcular_cantidad_ovillos(perimetro)
 	if cantidad == 0:
 		return PackedVector2Array()
-	separacion_real = perimetro / cantidad
-	puntos = PackedVector2Array()
-	recorrido = 0.0
-	siguiente = 0.0
+	var separacion_real := perimetro / cantidad
+	var puntos := PackedVector2Array()
+	var recorrido := 0.0
+	var siguiente := 0.0
 	for i in vertices.size():
-		desde = vertices[i]
-		hasta = vertices[(i + 1) % vertices.size()]
-		largo = desde.distance_to(hasta)
+		var desde := vertices[i]
+		var hasta := vertices[(i + 1) % vertices.size()]
+		var largo := desde.distance_to(hasta)
 		while siguiente < recorrido + largo - 0.001 and puntos.size() < cantidad:
 			puntos.append(desde.lerp(hasta, (siguiente - recorrido) / largo))
 			siguiente += separacion_real

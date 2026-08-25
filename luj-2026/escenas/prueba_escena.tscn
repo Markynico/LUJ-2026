@@ -5,9 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://b07gjr8bpk3tm" path="res://escenas/hud.tscn" id="3_l1he2"]
 [ext_resource type="Script" uid="uid://bh3lxufik2p65" path="res://scripts/niveles/cargador_de_nivel.gd" id="3_qjisj"]
 [ext_resource type="PackedScene" uid="uid://dy3jqoayfdkwm" path="res://escenas/Ovillo.tscn" id="4_qjisj"]
-[ext_resource type="Resource" uid="uid://fxthvqs3nbe6" path="res://niveles/cool s.tres" id="6_3a2ma"]
-[ext_resource type="PackedScene" uid="uid://citemreliq0a1" path="res://escenas/componentes/item_reliquia.tscn" id="7_vyirj"]
-[ext_resource type="Resource" uid="uid://chsjfpl7ukql7" path="res://scripts/resources/reliquias/tiro_extra.tres" id="8_6avbl"]
+[ext_resource type="Script" uid="uid://mrkgoq2v1cix" path="res://scripts/niveles/selector_de_niveles.gd" id="5_7oqg1"]
+[ext_resource type="Resource" uid="uid://ed62sq6tp7rx" path="res://niveles/prueba4.tres" id="6_3a2ma"]
 
 [node name="PRUEBA_ESCENA" type="Node2D" unique_id=1045362644]
 
@@ -19,10 +18,8 @@ bolas_maximas = 6
 position = Vector2(455, 41)
 game_manager = NodePath("../GameManager")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2101704717]
-
-[node name="HUD" parent="CanvasLayer" unique_id=2102008230 node_paths=PackedStringArray("game_manager") instance=ExtResource("3_l1he2")]
-game_manager = NodePath("../../GameManager")
+[node name="HUD" parent="." unique_id=2102008230 node_paths=PackedStringArray("game_manager") instance=ExtResource("3_l1he2")]
+game_manager = NodePath("../GameManager")
 
 [node name="Label" type="Label" parent="." unique_id=1049854138]
 offset_left = 4.0
@@ -248,7 +245,9 @@ script = ExtResource("3_qjisj")
 nivel = ExtResource("6_3a2ma")
 metadata/_custom_type_script = "uid://bh3lxufik2p65"
 
-[node name="ItemReliquia" parent="." unique_id=1618766747 instance=ExtResource("7_vyirj")]
-position = Vector2(288, 146)
-reliquia = ExtResource("8_6avbl")
-"tamaño_icono" = 80.0
+[node name="SelectorDeNiveles" type="Node2D" parent="." unique_id=1571656494 node_paths=PackedStringArray("cargador")]
+script = ExtResource("5_7oqg1")
+cargador = NodePath("../CargadorDeNivel")
+divisores_minimos = 1
+divisores_maximos = 3
+metadata/_custom_type_script = "uid://mrkgoq2v1cix"
