@@ -18,11 +18,15 @@ enum EstadoDeJuego{
 @export var gato : Gato
 @export var bolas_maximas : int = 20
 
-var bolas_restantes : int = 0
+var bolas_restantes : int = 0:
+	set(valor):
+		bolas_restantes = valor
+		bola_usada.emit(bolas_restantes)
 var estado_actual : EstadoDeJuego = EstadoDeJuego.ESPERANDO
 
 func _ready() -> void:
 	bolas_restantes = bolas_maximas
+	ReliquiasManager.al_empezar_nivel(self)
 	estado_actual = EstadoDeJuego.LANZANDO_BOLAS
 	
 	gato.disparador_pelotitas.disparo.connect(disparar_bola)
@@ -39,7 +43,6 @@ func disparar_bola() -> void:
 	print("JUGANDO")
 	if bolas_restantes > 0:
 		bolas_restantes -= 1
-		bola_usada.emit(bolas_restantes) #Se conecta con la interfaz
 		gato_lanza_bola.emit() #Se conecta con el disparador
 	
 	if bolas_restantes <= 0:

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://citemreliq0a1"]
+
+[ext_resource type="Script" uid="uid://cppkxd171e1pv" path="res://scripts/reliquias/item_reliquia.gd" id="1_item"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_item"]
+resource_local_to_scene = true
+radius = 30.0
+
+[node name="ItemReliquia" type="StaticBody2D" node_paths=PackedStringArray("sprite", "colision", "audio")]
+script = ExtResource("1_item")
+sprite = NodePath("Sprite")
+colision = NodePath("Colision")
+audio = NodePath("Audio")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+
+[node name="Colision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_item")
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]
