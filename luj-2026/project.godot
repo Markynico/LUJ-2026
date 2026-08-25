@@ -54,6 +54,8 @@ click_izq={
 2d_physics/layer_1="MUNDO"
 2d_physics/layer_2="OVILLOS"
 2d_physics/layer_3="BOLADEPELOS"
+2d_physics/layer_4="GATO"
+2d_physics/layer_5="ITEMS"
 
 [physics]
 

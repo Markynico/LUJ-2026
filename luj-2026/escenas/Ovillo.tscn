@@ -9,14 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://foy2qcacwbix" path="res://escenas/componentes/numero_impacto.tscn" id="7_vkchq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_37ege"]
-radius = 20.0
+radius = 7.0
 
 
 [node name="Ovillo" type="StaticBody2D" unique_id=142733400 node_paths=PackedStringArray("audio", "forma_colision", "sprite_normal", "sprite_desactivado", "pergamino_info", "numero_impacto")]
-collision_layer = 3
-collision_mask = 7
+collision_layer = 2
+collision_mask = 0
 input_pickable = true
-scale = Vector2(0.35, 0.35)
 script = ExtResource("1_wlnnp")
 tipo_ovillo = ExtResource("2_wlnnp")
 audio = NodePath("AudioStreamPlayer")
@@ -28,14 +27,14 @@ numero_impacto = NodePath("NumeroImpacto")
 
 [node name="SpriteNormal" type="Sprite2D" parent="." unique_id=20603333]
 texture_filter = 1
-position = Vector2(0.99999905, -3.9999995)
-scale = Vector2(0.16643755, 0.16643755)
+position = Vector2(0.35, -1.4)
+scale = Vector2(0.058253143, 0.058253143)
 texture = ExtResource("3_vkchq")
 
 [node name="SpriteDesactivado" type="Sprite2D" parent="." unique_id=550040605]
 visible = false
-position = Vector2(0, -2)
-scale = Vector2(0.11, 0.11)
+position = Vector2(0, -0.7)
+scale = Vector2(0.0385, 0.0385)
 texture = ExtResource("4_3vil1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1818122697]
@@ -47,8 +46,10 @@ stream = ExtResource("5_f54ks")
 volume_db = -0.5
 
 [node name="PergaminoInfo" parent="." unique_id=1923268390 instance=ExtResource("6_dcous")]
+scale = Vector2(0.35, 0.35)
 
 [node name="NumeroImpacto" parent="." unique_id=633406525 instance=ExtResource("7_vkchq")]
+scale = Vector2(0.35, 0.35)
 offset_left = -19.0
 offset_top = -40.0
 offset_right = 21.0
