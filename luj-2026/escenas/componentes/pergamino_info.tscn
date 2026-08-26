@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dymyh3ifxvug3"]
 
 [ext_resource type="Script" uid="uid://djc83gveohivq" path="res://scripts/pergamino_info.gd" id="1_gtour"]
+[ext_resource type="FontFile" uid="uid://dwg47e0trev3j" path="res://fuentes/Bungee-Regular.ttf" id="2_exk88"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37ege"]
 content_margin_left = 24.0
@@ -9,12 +10,19 @@ content_margin_right = 24.0
 content_margin_bottom = 12.0
 bg_color = Color(0, 0, 0, 0.28627452)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exk88"]
+bg_color = Color(0.89059, 0.89059, 0.8905901, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
 [node name="PergaminoInfo" type="PanelContainer" unique_id=1923268390]
 z_index = 10
 offset_left = 10.0
 offset_top = 7.0
-offset_right = 137.0
-offset_bottom = 89.0
+offset_right = 671.0
+offset_bottom = 355.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_37ege")
 script = ExtResource("1_gtour")
@@ -32,16 +40,23 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 14
+theme_override_fonts/normal_font = ExtResource("2_exk88")
+theme_override_font_sizes/normal_font_size = 47
 bbcode_enabled = true
 text = "vo jugador si estas viendo esto, es un bug :p"
 fit_content = true
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=1657379201]
+layout_mode = 2
+theme_override_constants/separation = 6
+theme_override_styles/separator = SubResource("StyleBoxFlat_exk88")
 
 [node name="InfoText" type="RichTextLabel" parent="VBoxContainer" unique_id=1601116275]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 13
+theme_override_fonts/normal_font = ExtResource("2_exk88")
+theme_override_font_sizes/normal_font_size = 47
 bbcode_enabled = true
 text = "abcde"
 fit_content = true
