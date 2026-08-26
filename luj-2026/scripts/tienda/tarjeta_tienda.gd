@@ -14,16 +14,16 @@ signal compra_solicitada(item: ItemTienda, tarjeta: TarjetaTienda)
 @onready var boton_comprar: Button = %BotonComprar
 @onready var audio_compra: AudioStreamPlayer = %AudioCompra
 
-var _economia: GestorEconomia
-var _inventario: InventarioJugador
+var economia: GestorEconomia
+var inventario: InventarioJugador
 var _ya_comprado: bool = false
 var _tween_hover: Tween
 
 func _ready() -> void:
-	_economia = GestorEconomia.get_instancia()
-	_inventario = InventarioJugador.get_instancia()
+	economia = GestorEconomia.get_instancia()
+	inventario = InventarioJugador.get_instancia()
 	
-	_economia.monedas_cambiadas.connect(_on_monedas_cambiadas)
+	economia.monedas_cambiadas.connect(al_cambiar_monedas)
 	boton_comprar.pressed.connect(_on_boton_comprar_pressed)
 	
 	# Efectos de hover en la tarjeta entera
@@ -68,7 +68,7 @@ func configurar(item: ItemTienda) -> void:
 	_aplicar_estilo_rareza(color_rareza)
 	
 	# Verificar si ya está comprado
-	_ya_comprado = _inventario.posee_item(item_data)
+	_ya_comprado = inventario.posee_item(item_data)
 	actualizar_estado_compra()
 
 func _aplicar_estilo_rareza(color_rareza: Color) -> void:
@@ -88,7 +88,7 @@ func actualizar_estado_compra() -> void:
 		modulate = Color(0.7, 0.7, 0.7, 0.85)
 		return
 	
-	var tiene_dinero = _economia.tiene_suficiente(item_data.precio)
+	var tiene_dinero = economia.tiene_suficiente(item_data.precio)
 	boton_comprar.text = "%d   COMPRAR" % item_data.precio
 	boton_comprar.disabled = not tiene_dinero
 	
@@ -101,9 +101,9 @@ func _on_boton_comprar_pressed() -> void:
 	if _ya_comprado or not item_data:
 		return
 	
-	if _economia.gastar_monedas(item_data.precio):
+	if economia.gastar_monedas(item_data.precio):
 		_ya_comprado = true
-		_inventario.agregar_item(item_data)
+		inventario.agregar_item(item_data)
 		actualizar_estado_compra()
 		compra_solicitada.emit(item_data, self)
 		
@@ -118,7 +118,7 @@ func _animar_compra_exitosa() -> void:
 	tween.tween_property(self, "scale", Vector2(1.1, 1.1), 0.15)
 	tween.chain().tween_property(self, "scale", Vector2.ONE, 0.15)
 
-func _on_monedas_cambiadas(_nuevo_total: int, _cambio: int) -> void:
+func al_cambiar_monedas(_nuevo_total: int, cambio: int) -> void:
 	actualizar_estado_compra()
 
 func _on_mouse_entered() -> void:

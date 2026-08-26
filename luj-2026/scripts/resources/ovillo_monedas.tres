@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://teghc6v6rp6c" path="res://scripts/ovillos_custom/efecto_monedas.gd" id="3_fa0qx"]
 [ext_resource type="Texture2D" uid="uid://kuwgkbdi0hbn" path="res://assets/sprite_ovillos/Ovillo azul.png" id="3_w3p2q"]
 
-[sub_resource type="Resource" id="Resource_3axgr"]
+[sub_resource type="Resource" id="Resource_3vil1"]
 script = ExtResource("3_fa0qx")
 metadata/_custom_type_script = "uid://teghc6v6rp6c"
 
@@ -18,5 +18,5 @@ audio = ExtResource("1_tug73")
 cant_monedas = 5
 puntaje = 5
 valor_spawn = 25.0
-efectos_al_recibir_impacto = Array[ExtResource("1_rx7yq")]([SubResource("Resource_3axgr")])
+efectos_al_recibir_impacto = Array[ExtResource("1_rx7yq")]([SubResource("Resource_3vil1")])
 metadata/_custom_type_script = "uid://bbkyk2anhunsd"
