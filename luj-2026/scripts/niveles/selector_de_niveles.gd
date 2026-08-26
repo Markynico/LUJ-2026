@@ -19,14 +19,10 @@ signal nivel_elegido(tipo : TipoDeSala.Tipo)
 ]
 ##niveles que se pueden elegir como destino
 @export var niveles_disponibles : Array[NivelData] = []
-##ruta de la escena a la que se viaja segun el tipo de sala elegido
-@export var escenas_por_sala : Dictionary[TipoDeSala.Tipo, String] = {
-	TipoDeSala.Tipo.NORMAL: "uid://csalanormal0a1",
-	TipoDeSala.Tipo.TIENDA: "uid://dfm5y8q2s1txc",
-	TipoDeSala.Tipo.LOOT: "uid://csalanormal0a1",
-}
 ##alto del area de cada salida
 @export var alto_salida : float = 200.0
+##probabilidad de que aparezca una tienda entre las salidas, nunca mas de una
+@export_range(0.0, 1.0, 0.05) var chance_tienda : float = 0.25
 
 var salidas : Array[SalidaDeNivel] = []
 var eleccion_hecha : bool = false
@@ -57,14 +53,28 @@ func colocar_salidas() -> void:
 	if not divisiones or not escena_salida or tipos_disponibles.is_empty():
 		return
 	ancho = divisiones.ancho_de_hueco()
-	for centro in divisiones.obtener_centros_de_huecos():
+	var centros : Array[float] = divisiones.obtener_centros_de_huecos()
+	var tipos : Array[TipoDeSala.Tipo] = elegir_tipos(centros.size())
+	for i in centros.size():
 		salida = escena_salida.instantiate()
-		salida.tipo = tipos_disponibles.pick_random()
+		salida.tipo = tipos[i]
 		salida.tamaño = Vector2(ancho, alto_salida)
 		add_child(salida, true)
-		salida.global_position = divisiones.to_global(Vector2(centro, 0))
+		salida.global_position = divisiones.to_global(Vector2(centros[i], 0))
 		salida.elegida.connect(al_elegir_salida)
 		salidas.append(salida)
+
+
+func elegir_tipos(cantidad : int) -> Array[TipoDeSala.Tipo]:
+	var sin_tienda : Array[TipoDeSala.Tipo] = tipos_disponibles.filter(func(tipo): return tipo != TipoDeSala.Tipo.TIENDA)
+	var tipos : Array[TipoDeSala.Tipo] = []
+	if sin_tienda.is_empty():
+		sin_tienda = tipos_disponibles
+	for i in cantidad:
+		tipos.append(sin_tienda.pick_random())
+	if tipos_disponibles.has(TipoDeSala.Tipo.TIENDA) and cantidad > 0 and randf() < chance_tienda:
+		tipos[randi_range(0, cantidad - 1)] = TipoDeSala.Tipo.TIENDA
+	return tipos
 
 
 func obtener_divisiones() -> DivisionesPachinko:
@@ -76,14 +86,3 @@ func al_elegir_salida(salida : SalidaDeNivel) -> void:
 		return
 	eleccion_hecha = true
 	nivel_elegido.emit(salida.tipo)
-	viajar_a_sala(salida.tipo)
-
-
-func viajar_a_sala(tipo : TipoDeSala.Tipo) -> void:
-	var ruta : String = escenas_por_sala.get(tipo, "")
-	var escena : PackedScene
-	if ruta.is_empty():
-		return
-	escena = load(ruta)
-	if escena:
-		get_tree().change_scene_to_packed.call_deferred(escena)

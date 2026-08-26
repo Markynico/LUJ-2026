@@ -2,13 +2,25 @@
 class_name Explosion
 extends Node2D
 
-@onready var area_2d: Area2D = %Area2D
+@export var area_2d: Area2D
+@export var animated_sprite_explosion : AnimatedSprite2D
 
-func _ready() -> void:
-	area_2d.set_deferred("monitoring", true)
+func activar_explosion(): #se llama desde OVILLO
+	#sprite_2d.show()
+	#$AnimationPlayer.play("probando")
+	animated_sprite_explosion.play()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Ovillo:
-		#print("hay ovillo en explosion")
 		body.recibir_impacto()
-		#+ animacion q se esta ejecutando sola en el animation player pero dsp lo cambio a un tween facheraso
+
+
+func _on_sprites_explosion_frame_changed() -> void:
+	if animated_sprite_explosion.frame == 22: #pq justo en la 22 hace la explosion grande
+		#dsp la volvemos a timear con la animacion de verdad
+		#print("DEBERIA REACTIVARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR")
+		reactivar_colisiones()
+
+
+func reactivar_colisiones(): #en realidad esta es la funcion q nos ayuda a q otros ovillos exploten
+	area_2d.set_deferred("monitoring", true)

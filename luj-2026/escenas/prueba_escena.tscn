@@ -7,13 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://dy3jqoayfdkwm" path="res://escenas/Ovillo.tscn" id="4_qjisj"]
 [ext_resource type="Resource" uid="uid://fxthvqs3nbe6" path="res://niveles/cool s.tres" id="6_3a2ma"]
 [ext_resource type="PackedScene" uid="uid://citemreliq0a1" path="res://escenas/componentes/item_reliquia.tscn" id="7_vyirj"]
-[ext_resource type="Texture2D" uid="uid://bymp1mcxn0fpt" path="res://assets/helado_michinko_color_1.png" id="8_6avbl"]
-[ext_resource type="Script" uid="uid://clj8t7dfecp6v" path="res://scripts/reliquias/reliquia_rascador.gd" id="8_vyirj"]
-
-[sub_resource type="Resource" id="Resource_7dnf6"]
-script = ExtResource("8_vyirj")
-icono = ExtResource("8_6avbl")
-metadata/_custom_type_script = "uid://clj8t7dfecp6v"
+[ext_resource type="Resource" uid="uid://chsjfpl7ukql7" path="res://scripts/resources/reliquias/tiro_extra.tres" id="8_6avbl"]
+[ext_resource type="Resource" uid="uid://b7j557eqgyp2r" path="res://scripts/resources/reliquias/reliquia_prueba.tres" id="9_6avbl"]
 
 [node name="PRUEBA_ESCENA" type="Node2D" unique_id=1045362644]
 
@@ -258,3 +253,7 @@ metadata/_custom_type_script = "uid://bh3lxufik2p65"
 position = Vector2(288, 146)
 reliquia = SubResource("Resource_7dnf6")
 "tamaño_icono" = 80.0
+
+[node name="ItemReliquia2" parent="." unique_id=1320972296 instance=ExtResource("7_vyirj")]
+position = Vector2(716, 128)
+reliquia = ExtResource("9_6avbl")
