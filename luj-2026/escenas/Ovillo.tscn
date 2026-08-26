@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://foy2qcacwbix" path="res://escenas/componentes/numero_impacto.tscn" id="7_vkchq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_37ege"]
-radius = 7.0
+radius = 13.5
 
 [node name="Ovillo" type="StaticBody2D" unique_id=142733400 node_paths=PackedStringArray("audio", "forma_colision", "sprite_normal", "sprite_desactivado", "pergamino_info", "numero_impacto")]
 collision_layer = 2
@@ -28,14 +28,13 @@ shader_titilar = ExtResource("3_3vil1")
 
 [node name="SpriteNormal" type="Sprite2D" parent="." unique_id=20603333]
 texture_filter = 1
-position = Vector2(0.35, -1.4)
-scale = Vector2(0.058253143, 0.058253143)
+position = Vector2(0.5, -3)
+scale = Vector2(0.114426576, 0.114426576)
 texture = ExtResource("3_vkchq")
 
 [node name="SpriteDesactivado" type="Sprite2D" parent="." unique_id=550040605]
-visible = false
 position = Vector2(0, -0.7)
-scale = Vector2(0.0385, 0.0385)
+scale = Vector2(0.06, 0.06)
 texture = ExtResource("4_3vil1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1818122697]

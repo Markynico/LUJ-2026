@@ -1,61 +1,31 @@
 [gd_scene format=3 uid="uid://jimkk8u7orb2"]
 
 [ext_resource type="Script" uid="uid://bh3lxufik2p65" path="res://scripts/niveles/cargador_de_nivel.gd" id="1_carg"]
-[ext_resource type="PackedScene" uid="uid://cformabe000a1" path="res://escenas/componentes/forma_path.tscn" id="3_4ylx1"]
-[ext_resource type="Script" uid="uid://1owdp7hud1ge" path="res://scripts/niveles/forma_path.gd" id="4_k61t0"]
-[ext_resource type="PackedScene" uid="uid://cobstrect00a1" path="res://escenas/componentes/obstaculo_rectangulo.tscn" id="4_pevrx"]
-[ext_resource type="Script" uid="uid://s48qenil6kit" path="res://scripts/niveles/obstaculo_rectangulo.gd" id="5_k61t0"]
+[ext_resource type="PackedScene" uid="uid://cformacirc0a1" path="res://escenas/componentes/forma_circulo.tscn" id="3_4ylx1"]
+[ext_resource type="Script" uid="uid://1owdrb8otuge" path="res://scripts/niveles/forma_circulo.gd" id="4_pevrx"]
+[ext_resource type="PackedScene" uid="uid://cformarect0a1" path="res://escenas/componentes/forma_rectangulo.tscn" id="5_k61t0"]
+[ext_resource type="Script" uid="uid://1owd66s6mpge" path="res://scripts/niveles/forma_rectangulo.gd" id="6_xrhlm"]
 [ext_resource type="PackedScene" uid="uid://bxjt6h43758na" path="res://escenas/componentes/divisiones_pachinko.tscn" id="7_divs"]
-
-[sub_resource type="Curve2D" id="Curve2D_xrhlm"]
-bake_interval = 2.0
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 24.387695, -11.237701, 0, 0, 0, 0, 65.177124, -80.974396, 0, 0, 0, 0, 66.49286, -215.18471, 0, 0, 0, 0, -46.664795, -392.81598, 0, 0, 0, 0, -155.87512, -212.55313, 0, 0, 0, 0, -154.46533, -117.54068, 0, 0, 0, 0, -158.50671, -75.71127, 0, 0, 0, 0, -49.296387, 80.8674, 0, 0, 0, 0, -51.92798, 244.02502)
-}
-point_count = 9
-
-[sub_resource type="Curve2D" id="Curve2D_6wvn0"]
-bake_interval = 2.0
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -77.595276, -169.66753, 0, 0, 0, 0, -79.972534, -20.94757, 0, 0, 0, 0, 35.56244, 129.01614, 0, 0, 0, 0, 36.878174, 281.6475, 0, 0, 0, 0, -82.85846, 442.1735, 0, 0, 0, 0, -185.97253, 288.05243, 0, 0, 0, 0, -188.1214, 129.01614, 0, 0, 0, 0, -156.54254, 73.75311)
-}
-point_count = 8
 
 [node name="EditorDeNiveles" type="Node2D" unique_id=925235971]
 script = ExtResource("1_carg")
 
 [node name="DivisionesPachinko" parent="." unique_id=631157151 instance=ExtResource("7_divs")]
 position = Vector2(0, 720)
-divisiones_intermedias = 3
+ancho_total = 1246.705
 
-[node name="FormaPath" type="Path2D" parent="." unique_id=455267942 instance=ExtResource("3_4ylx1")]
-position = Vector2(521.46533, 329.54065)
-scale = Vector2(0.76000124, 0.76000124)
-curve = SubResource("Curve2D_xrhlm")
-script = ExtResource("4_k61t0")
-separacion_ovillos = 15.0
+[node name="FormaCirculo" type="Node2D" parent="." unique_id=427711858 instance=ExtResource("3_4ylx1")]
+position = Vector2(429.6175, 173.32306)
+script = ExtResource("4_pevrx")
+separacion_ovillos = 32.0
 
-[node name="FormaPath2" type="Path2D" parent="." unique_id=1187656753 instance=ExtResource("3_4ylx1")]
-position = Vector2(543.97253, 298.94754)
-scale = Vector2(0.76000124, 0.76000124)
-curve = SubResource("Curve2D_6wvn0")
-script = ExtResource("4_k61t0")
-separacion_ovillos = 15.0
+[node name="FormaCirculo2" type="Node2D" parent="." unique_id=1856639908 instance=ExtResource("3_4ylx1")]
+position = Vector2(948.366, 171.17944)
+script = ExtResource("4_pevrx")
+separacion_ovillos = 32.0
 
-[node name="ObstaculoRectangulo" type="Node2D" parent="." unique_id=2104234899 instance=ExtResource("4_pevrx")]
-position = Vector2(738.7923, 311.6502)
-rotation = -0.7853982
-script = ExtResource("5_k61t0")
-"tamaño" = Vector2(208.10669, 31.671692)
-
-[node name="ObstaculoRectangulo2" type="Node2D" parent="." unique_id=326678568 instance=ExtResource("4_pevrx")]
-position = Vector2(863.9951, 311.00143)
-rotation = 0.7853982
-script = ExtResource("5_k61t0")
-"tamaño" = Vector2(208.10669, 31.671692)
-
-[node name="ObstaculoRectangulo3" type="Node2D" parent="." unique_id=86325534 instance=ExtResource("4_pevrx")]
-position = Vector2(224.96992, 297.51)
-rotation = 11.888833
-script = ExtResource("5_k61t0")
-"tamaño" = Vector2(169.57495, 141.35501)
+[node name="FormaRectangulo" type="Node2D" parent="." unique_id=581068297 instance=ExtResource("5_k61t0")]
+position = Vector2(708.28406, 424.123)
+script = ExtResource("6_xrhlm")
+"tamaño" = Vector2(798.8098, 75.72302)
+separacion_ovillos = 32.0

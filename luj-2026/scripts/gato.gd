@@ -5,7 +5,7 @@ signal escupir_bola
 
 #======== SPRITES que luego se borran ======
 @export var sprite : Sprite2D
-@export var imagen_normal : Texture2D
+@export var imagen_normal : Texture2D #dsp cambiamos por animatedsprite ambos o solo este
 @export var imagen_bolita : Texture2D
 
 @export var disparador_pelotitas : DisparadorPelotita
@@ -23,7 +23,14 @@ var posicion_inicial : Vector2
 
 func _ready() -> void:
 	posicion_inicial = global_position
-	reiniciar()
+	#reiniciar() #lo comento pq era uno de los conflictos en git, revisar manana
+	#sprite.texture = imagen_normal #deje a proposito directamente el sprite del gato bolita hasta q tengamos las otras
+	freeze = true
+	if colision:
+		colision.set_deferred("disabled", true)
+	listo_para_lanzar = false
+	_fue_lanzado = false
+	_finalizo_ronda = false
 	
 	if not game_manager and GameManager.instancia_actual:
 		game_manager = GameManager.instancia_actual
