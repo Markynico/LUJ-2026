@@ -125,7 +125,7 @@ func al_desactivar_ovillo(ovillo : Ovillo) -> void:
 	pass
 
 func puntaje_de(ovillo : Ovillo) -> int:
-	return ovillo.tipo_ovillo.puntaje if ovillo.tipo_ovillo else 1
+	return ovillo.obtener_puntaje() if ovillo.tipo_ovillo else 1
 
 func recalcular_meta() -> void:
 	if cargador_nivel and cargador_nivel.nivel and "porcentaje_ovillos_requerido" in cargador_nivel.nivel:
