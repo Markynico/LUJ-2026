@@ -91,8 +91,9 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_m5lxu")
 
-[node name="MarginSuperior" type="MarginContainer" parent="." unique_id=1796348773]
-layout_mode = 1
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1032973156]
+
+[node name="MarginSuperior" type="MarginContainer" parent="CanvasLayer" unique_id=1796348773]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 100.0
@@ -102,80 +103,80 @@ theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 20
 
-[node name="HBoxHUD" type="HBoxContainer" parent="MarginSuperior" unique_id=21128900]
+[node name="HBoxHUD" type="HBoxContainer" parent="CanvasLayer/MarginSuperior" unique_id=21128900]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 20
 
-[node name="PanelVidasBolas" type="PanelContainer" parent="MarginSuperior/HBoxHUD" unique_id=946678465]
+[node name="PanelVidasBolas" type="PanelContainer" parent="CanvasLayer/MarginSuperior/HBoxHUD" unique_id=946678465]
 custom_minimum_size = Vector2(240, 68)
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel_hud")
 
-[node name="VBoxVidasBolas" type="VBoxContainer" parent="MarginSuperior/HBoxHUD/PanelVidasBolas" unique_id=1751878294]
+[node name="VBoxVidasBolas" type="VBoxContainer" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelVidasBolas" unique_id=1751878294]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 6
 alignment = 1
 
-[node name="HBoxVidas" type="HBoxContainer" parent="MarginSuperior/HBoxHUD/PanelVidasBolas/VBoxVidasBolas" unique_id=1339436826]
+[node name="HBoxVidas" type="HBoxContainer" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelVidasBolas/VBoxVidasBolas" unique_id=1339436826]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 10
 
-[node name="LabelVidasTitulo" type="Label" parent="MarginSuperior/HBoxHUD/PanelVidasBolas/VBoxVidasBolas/HBoxVidas" unique_id=1946624985]
+[node name="LabelVidasTitulo" type="Label" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelVidasBolas/VBoxVidasBolas/HBoxVidas" unique_id=1946624985]
 layout_mode = 2
 text = "VIDAS:"
 label_settings = SubResource("LabelSettings_seccion")
 
-[node name="ContenedorVidas" type="HBoxContainer" parent="MarginSuperior/HBoxHUD/PanelVidasBolas/VBoxVidasBolas/HBoxVidas" unique_id=628779073]
+[node name="ContenedorVidas" type="HBoxContainer" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelVidasBolas/VBoxVidasBolas/HBoxVidas" unique_id=628779073]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 6
 
-[node name="LabelBolas" type="Label" parent="MarginSuperior/HBoxHUD/PanelVidasBolas/VBoxVidasBolas" unique_id=407916706]
+[node name="LabelBolas" type="Label" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelVidasBolas/VBoxVidasBolas" unique_id=407916706]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Bolas restantes: 20"
 label_settings = SubResource("LabelSettings_bolas")
 
-[node name="Spacer" type="Control" parent="MarginSuperior/HBoxHUD" unique_id=1023086998]
+[node name="Spacer" type="Control" parent="CanvasLayer/MarginSuperior/HBoxHUD" unique_id=1023086998]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="PanelProgreso" type="PanelContainer" parent="MarginSuperior/HBoxHUD" unique_id=781316756]
+[node name="PanelProgreso" type="PanelContainer" parent="CanvasLayer/MarginSuperior/HBoxHUD" unique_id=781316756]
 custom_minimum_size = Vector2(340, 68)
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel_hud")
 
-[node name="VBoxProgreso" type="VBoxContainer" parent="MarginSuperior/HBoxHUD/PanelProgreso" unique_id=1746689928]
+[node name="VBoxProgreso" type="VBoxContainer" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelProgreso" unique_id=1746689928]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 6
 alignment = 1
 
-[node name="HBoxProgresoHeader" type="HBoxContainer" parent="MarginSuperior/HBoxHUD/PanelProgreso/VBoxProgreso" unique_id=1150031160]
+[node name="HBoxProgresoHeader" type="HBoxContainer" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelProgreso/VBoxProgreso" unique_id=1150031160]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="LabelObjetivoTitulo" type="Label" parent="MarginSuperior/HBoxHUD/PanelProgreso/VBoxProgreso/HBoxProgresoHeader" unique_id=1384448355]
+[node name="LabelObjetivoTitulo" type="Label" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelProgreso/VBoxProgreso/HBoxProgresoHeader" unique_id=1384448355]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "OBJETIVO DE NIVEL"
 label_settings = SubResource("LabelSettings_seccion")
 
-[node name="LabelMetaBadge" type="Label" parent="MarginSuperior/HBoxHUD/PanelProgreso/VBoxProgreso/HBoxProgresoHeader" unique_id=701565132]
+[node name="LabelMetaBadge" type="Label" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelProgreso/VBoxProgreso/HBoxProgresoHeader" unique_id=701565132]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Faltan ovillos"
 label_settings = SubResource("LabelSettings_badge")
 horizontal_alignment = 2
 
-[node name="BarraOvillos" type="ProgressBar" parent="MarginSuperior/HBoxHUD/PanelProgreso/VBoxProgreso" unique_id=1166877563]
+[node name="BarraOvillos" type="ProgressBar" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelProgreso/VBoxProgreso" unique_id=1166877563]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
@@ -184,16 +185,33 @@ theme_override_styles/background = SubResource("StyleBoxFlat_progress_bg")
 theme_override_styles/fill = SubResource("StyleBoxFlat_progress_fill")
 show_percentage = false
 
-[node name="LabelOvillos" type="Label" parent="MarginSuperior/HBoxHUD/PanelProgreso/VBoxProgreso" unique_id=228814905]
+[node name="LabelOvillos" type="Label" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelProgreso/VBoxProgreso" unique_id=228814905]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Ovillos: 0 / 0  (Meta: 0 | 70%)"
 label_settings = SubResource("LabelSettings_progreso")
 
-[node name="BannerNotificacion" type="PanelContainer" parent="." unique_id=1420914603]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=764577966]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+
+[node name="BolasRestantes" type="Label" parent="CanvasLayer/HBoxContainer" unique_id=1556842408]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Bolas de pelo restantes:"
+
+[node name="Monedas" type="Label" parent="CanvasLayer/HBoxContainer" unique_id=599543815]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Monedas: "
+horizontal_alignment = 2
+
+[node name="BannerNotificacion" type="PanelContainer" parent="CanvasLayer" unique_id=1420914603]
 unique_name_in_owner = true
 visible = false
-layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -205,29 +223,10 @@ grow_horizontal = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_notif")
 
-[node name="LabelNotificacion" type="Label" parent="BannerNotificacion" unique_id=1880558931]
+[node name="LabelNotificacion" type="Label" parent="CanvasLayer/BannerNotificacion" unique_id=1880558931]
 unique_name_in_owner = true
 layout_mode = 2
 text = "¡Meta alcanzada!"
 label_settings = SubResource("LabelSettings_notif")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=764577966]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 23.0
-grow_horizontal = 2
-
-[node name="BolasRestantes" type="Label" parent="HBoxContainer" unique_id=1556842408]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Bolas de pelo restantes:"
-
-[node name="Monedas" type="Label" parent="HBoxContainer" unique_id=599543815]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 10
-text = "Monedas: "
-horizontal_alignment = 2

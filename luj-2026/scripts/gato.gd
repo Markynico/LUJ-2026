@@ -5,7 +5,7 @@ signal escupir_bola
 
 # ======== SPRITES que luego se borran ======
 @export var sprite : Sprite2D
-@export var imagen_normal : Texture2D
+@export var imagen_normal : Texture2D #dsp cambiamos por animatedsprite ambos o solo este
 @export var imagen_bolita : Texture2D
 
 @export var disparador_pelotitas : DisparadorPelotita
@@ -30,6 +30,7 @@ var _finalizo_ronda : bool = false
 var posicion_inicial : Vector2
 
 func _ready() -> void:
+	#sprite.texture = imagen_normal #deje a proposito directamente el sprite del gato bolita hasta q tengamos las otras
 	pos_superior = global_position
 	posicion_inicial = global_position
 	if sprite:
@@ -48,7 +49,7 @@ func _ready() -> void:
 		game_manager.gato_lanza_bola.connect(preparar_bola)
 		game_manager.lanzar_gato.connect(preparar_lanzamiento)
 
-# ============ PROCESS / DETECCIÓN DE FIN DE NIVEL ============
+# ============ PROCESS / DETECCIÓN DE FIN DE NIVEL =============
 func _physics_process(_delta: float) -> void:
 	if _fue_lanzado and not _finalizo_ronda:
 		# Si el gato cae por debajo de la pantalla o divisiones
