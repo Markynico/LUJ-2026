@@ -94,7 +94,7 @@ func obtener_divisiones() -> DivisionesPachinko:
 			return hijo
 	return null
 
-
+#
 func aplicar_divisiones(datos_nivel : NivelData) -> void:
 	var divisiones : DivisionesPachinko = obtener_divisiones()
 	if not divisiones:

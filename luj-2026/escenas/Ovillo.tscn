@@ -29,7 +29,7 @@ shader_titilar = ExtResource("3_3vil1")
 [node name="SpriteNormal" type="Sprite2D" parent="." unique_id=20603333]
 texture_filter = 1
 position = Vector2(0.5, -3)
-scale = Vector2(0.114426576, 0.114426576)
+scale = Vector2(0.113, 0.113)
 texture = ExtResource("3_vkchq")
 
 [node name="SpriteDesactivado" type="Sprite2D" parent="." unique_id=550040605]
