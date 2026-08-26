@@ -25,12 +25,13 @@ var pos_lateral_der : Vector2 = Vector2(1210, 300)
 var velocidad_inicial : Vector2
 var posicion_mouse : Vector2
 var listo_para_lanzar : bool
-var fue_lanzado : bool = false
-var finalizo_ronda : bool = false
+var _fue_lanzado : bool = false
+var _finalizo_ronda : bool = false
 var posicion_inicial : Vector2
 
 func _ready() -> void:
 	pos_superior = global_position
+	posicion_inicial = global_position
 	if sprite:
 		sprite.texture = imagen_normal
 	freeze = true
@@ -48,11 +49,11 @@ func _ready() -> void:
 		game_manager.lanzar_gato.connect(preparar_lanzamiento)
 
 # ============ PROCESS / DETECCIÓN DE FIN DE NIVEL ============
-func _physics_process(delta: float) -> void:
-	if fue_lanzado and not finalizo_ronda:
+func _physics_process(_delta: float) -> void:
+	if _fue_lanzado and not _finalizo_ronda:
 		# Si el gato cae por debajo de la pantalla o divisiones
 		if global_position.y > 750.0:
-			finalizo_ronda = true
+			_finalizo_ronda = true
 			if game_manager:
 				game_manager.finalizar_nivel()
 			elif GameManager.instancia_actual:
@@ -111,13 +112,14 @@ func cambiar_posicion_disparo(nueva_pos : PosicionDisparo) -> void:
 	tween.tween_property(self, "global_position", target_pos, 0.25)
 
 func reiniciar() -> void:
-	sprite.texture = imagen_normal
+	if sprite:
+		sprite.texture = imagen_normal
 	freeze = true
 	if colision:
 		colision.set_deferred("disabled", true)
 	listo_para_lanzar = false
-	fue_lanzado = false
-	finalizo_ronda = false
+	_fue_lanzado = false
+	_finalizo_ronda = false
 	velocidad_inicial = Vector2.ZERO
 	linear_velocity = Vector2.ZERO
 	angular_velocity = 0.0
@@ -129,15 +131,15 @@ func teleportar_al_inicio() -> void:
 	PhysicsServer2D.body_set_state(get_rid(), PhysicsServer2D.BODY_STATE_LINEAR_VELOCITY, Vector2.ZERO)
 	global_position = posicion_inicial
 
-
-func preparar_lanzamiento():
-	sprite.texture = imagen_bolita
+func preparar_lanzamiento() -> void:
+	if sprite:
+		sprite.texture = imagen_bolita
 	call_deferred("habilitar_lanzamiento")
 
 func habilitar_lanzamiento() -> void:
 	listo_para_lanzar = true
-	fue_lanzado = false
-	finalizo_ronda = false
+	_fue_lanzado = false
+	_finalizo_ronda = false
 	print("GATO LANZAMIENTO LISTO")
 
 func lanzar() -> void:
@@ -146,7 +148,7 @@ func lanzar() -> void:
 		colision.set_deferred("disabled", false)
 	apply_impulse(-velocidad_inicial)
 	listo_para_lanzar = false
-	fue_lanzado = true
+	_fue_lanzado = true
 
 func preparar_bola() -> void:
 	if disparador_pelotitas:
