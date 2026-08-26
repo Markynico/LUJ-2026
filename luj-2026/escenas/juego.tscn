@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://cexjr0e4owki" path="res://escenas/estructura_de_nivel.tscn" id="4_t4q8c"]
 [ext_resource type="Script" uid="uid://bh3lxufik2p65" path="res://scripts/niveles/cargador_de_nivel.gd" id="5_j5whg"]
 [ext_resource type="Resource" uid="uid://i85k472iy387" path="res://niveles/placeholder1.tres" id="6_j5whg"]
+[ext_resource type="PackedScene" uid="uid://citemreliq0a1" path="res://escenas/componentes/item_reliquia.tscn" id="7_n5myf"]
+[ext_resource type="Resource" uid="uid://chsjfpl7ukql7" path="res://scripts/resources/reliquias/tiro_extra.tres" id="8_uf0fd"]
 
 [node name="Juego" type="Node2D" unique_id=1865884372]
 
@@ -27,3 +29,7 @@ position = Vector2(337, 377)
 script = ExtResource("5_j5whg")
 nivel = ExtResource("6_j5whg")
 metadata/_custom_type_script = "uid://bh3lxufik2p65"
+
+[node name="ItemReliquia" parent="." unique_id=837780463 instance=ExtResource("7_n5myf")]
+position = Vector2(589, 423)
+reliquia = ExtResource("8_uf0fd")
