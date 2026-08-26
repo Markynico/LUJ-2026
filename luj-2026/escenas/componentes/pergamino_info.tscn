@@ -34,6 +34,7 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 14
 bbcode_enabled = true
+text = "vo jugador si estas viendo esto, es un bug :p"
 fit_content = true
 
 [node name="InfoText" type="RichTextLabel" parent="VBoxContainer" unique_id=1601116275]
@@ -42,4 +43,5 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 13
 bbcode_enabled = true
+text = "abcde"
 fit_content = true
