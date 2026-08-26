@@ -1,10 +1,6 @@
 [gd_scene format=3 uid="uid://jimkk8u7orb2"]
 
 [ext_resource type="Script" uid="uid://bh3lxufik2p65" path="res://scripts/niveles/cargador_de_nivel.gd" id="1_carg"]
-[ext_resource type="PackedScene" uid="uid://cformacirc0a1" path="res://escenas/componentes/forma_circulo.tscn" id="3_4ylx1"]
-[ext_resource type="Script" uid="uid://1owdrb8otuge" path="res://scripts/niveles/forma_circulo.gd" id="4_pevrx"]
-[ext_resource type="PackedScene" uid="uid://cformarect0a1" path="res://escenas/componentes/forma_rectangulo.tscn" id="5_k61t0"]
-[ext_resource type="Script" uid="uid://1owd66s6mpge" path="res://scripts/niveles/forma_rectangulo.gd" id="6_xrhlm"]
 [ext_resource type="PackedScene" uid="uid://bxjt6h43758na" path="res://escenas/componentes/divisiones_pachinko.tscn" id="7_divs"]
 
 [node name="EditorDeNiveles" type="Node2D" unique_id=925235971]
@@ -13,19 +9,3 @@ script = ExtResource("1_carg")
 [node name="DivisionesPachinko" parent="." unique_id=631157151 instance=ExtResource("7_divs")]
 position = Vector2(0, 720)
 ancho_total = 1246.705
-
-[node name="FormaCirculo" type="Node2D" parent="." unique_id=427711858 instance=ExtResource("3_4ylx1")]
-position = Vector2(429.6175, 173.32306)
-script = ExtResource("4_pevrx")
-separacion_ovillos = 32.0
-
-[node name="FormaCirculo2" type="Node2D" parent="." unique_id=1856639908 instance=ExtResource("3_4ylx1")]
-position = Vector2(948.366, 171.17944)
-script = ExtResource("4_pevrx")
-separacion_ovillos = 32.0
-
-[node name="FormaRectangulo" type="Node2D" parent="." unique_id=581068297 instance=ExtResource("5_k61t0")]
-position = Vector2(708.28406, 424.123)
-script = ExtResource("6_xrhlm")
-"tamaño" = Vector2(798.8098, 75.72302)
-separacion_ovillos = 32.0
