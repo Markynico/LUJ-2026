@@ -32,9 +32,13 @@ func _ready() -> void:
 		game_manager.gato_lanza_bola.connect(preparar_bola)
 		game_manager.lanzar_gato.connect(preparar_lanzamiento)
 
+
 # ============ PROCESS / DETECCIÓN DE FIN DE NIVEL ============
-func _physics_process(delta: float) -> void:
-	if fue_lanzado and not finalizo_ronda:
+#func _physics_process(delta: float) -> void:
+	#if fue_lanzado and not finalizo_ronda:
+# ============ PROCESS / DETECCIÓN DE FIN DE NIVEL =============
+func _physics_process(_delta: float) -> void:
+	if _fue_lanzado and not _finalizo_ronda:
 		# Si el gato cae por debajo de la pantalla o divisiones
 		if global_position.y > 750.0:
 			finalizo_ronda = true
