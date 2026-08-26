@@ -251,7 +251,7 @@ metadata/_custom_type_script = "uid://bh3lxufik2p65"
 
 [node name="ItemReliquia" parent="." unique_id=1618766747 instance=ExtResource("7_vyirj")]
 position = Vector2(288, 146)
-reliquia = ExtResource("8_6avbl")
+reliquia = SubResource("Resource_7dnf6")
 "tamaño_icono" = 80.0
 
 [node name="ItemReliquia2" parent="." unique_id=1320972296 instance=ExtResource("7_vyirj")]
