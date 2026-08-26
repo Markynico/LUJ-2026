@@ -30,7 +30,7 @@ game_manager = NodePath("../GameManager")
 
 [node name="EstructuraDeNivel" parent="." unique_id=1258707596 instance=ExtResource("4_t4q8c")]
 
-[node name="HUD" parent="." unique_id=2102008230 node_paths=PackedStringArray("game_manager") instance=ExtResource("2_t4q8c")]
+[node name="HUD" parent="." unique_id=877611437 node_paths=PackedStringArray("game_manager") instance=ExtResource("2_t4q8c")]
 game_manager = NodePath("../GameManager")
 
 [node name="CargadorDeNivel" type="Node2D" parent="." unique_id=1344270759]
