@@ -29,7 +29,7 @@ func set_activo(activar : bool):
 
 func set_texto_ovillo(tipo_ovillo : OvilloBase): #probandooooo, ya chusmeo si hago una funcion para ovillo y otra para bolita o todo en una
 	nombre_text.text = tipo_ovillo.nombre
-	info_text.text = "al golpear suma " + str(tipo_ovillo.cant_monedas) + " monedas"
+	info_text.text = "al golpear suma " + str(tipo_ovillo.cant_monedas) + "monedas"
 
 
 func tween_opacidad(valor_final : float):

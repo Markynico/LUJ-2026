@@ -38,8 +38,8 @@ func efecto_punch_parabolico():
 	tween.chain().set_parallel(true)#resulta q con chain todo lo q sigue se ejecuta al mismo tiempo
 	tween.tween_property(self, "scale", Vector2(0.8, 0.8), 0.4).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(self, "position:x", posicion_inicial.x + distancia_x, 0.9).set_trans(Tween.TRANS_LINEAR)
-	tween.tween_property(self, "position:y", posicion_inicial.y - altura_y, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "position:y", posicion_inicial.y - altura_y, 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "position:y", posicion_inicial.y + (altura_y * 0.5), 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN).set_delay(0.2)
-	tween.tween_property(self, "modulate:a", 0.0, 0.2).set_delay(0.15)
+	tween.tween_property(self, "modulate:a", 0.0, 0.2).set_delay(0.2)
 	#marge no voy a mentirte
 	#la referencia viene de aca https://forum.godotengine.org/t/hit-style-tweens/92906/5 pero use ia pq sino no terminaba ma
