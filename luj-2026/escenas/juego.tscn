@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://che0rryy8c7cq" path="res://escenas/gato.tscn" id="3_qnwci"]
 [ext_resource type="PackedScene" uid="uid://cexjr0e4owki" path="res://escenas/estructura_de_nivel.tscn" id="4_t4q8c"]
 [ext_resource type="Script" uid="uid://bh3lxufik2p65" path="res://scripts/niveles/cargador_de_nivel.gd" id="5_j5whg"]
-[ext_resource type="Resource" uid="uid://i85k472iy387" path="res://niveles/placeholder1.tres" id="6_j5whg"]
 [ext_resource type="PackedScene" uid="uid://citemreliq0a1" path="res://escenas/componentes/item_reliquia.tscn" id="7_n5myf"]
 [ext_resource type="Resource" uid="uid://chsjfpl7ukql7" path="res://scripts/resources/reliquias/tiro_extra.tres" id="8_uf0fd"]
 
@@ -14,15 +13,10 @@
 script = ExtResource("0_juego")
 game_manager = NodePath("GameManager")
 gato = NodePath("Gato")
-capa_interfaz = NodePath("CanvasLayer")
+capa_interfaz = NodePath("")
 
 [node name="GameManager" parent="." unique_id=627731887 node_paths=PackedStringArray("gato") instance=ExtResource("1_mf1lf")]
 gato = NodePath("../Gato")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1743666402]
-
-[node name="HUD" parent="CanvasLayer" unique_id=2102008230 node_paths=PackedStringArray("game_manager") instance=ExtResource("2_t4q8c")]
-game_manager = NodePath("../../GameManager")
 
 [node name="Gato" parent="." unique_id=69399080 node_paths=PackedStringArray("game_manager") instance=ExtResource("3_qnwci")]
 position = Vector2(641, 50)
@@ -36,7 +30,6 @@ game_manager = NodePath("../GameManager")
 [node name="CargadorDeNivel" type="Node2D" parent="." unique_id=1344270759]
 position = Vector2(337, 377)
 script = ExtResource("5_j5whg")
-nivel = ExtResource("6_j5whg")
 metadata/_custom_type_script = "uid://bh3lxufik2p65"
 
 [node name="ItemReliquia" parent="." unique_id=837780463 instance=ExtResource("7_n5myf")]
