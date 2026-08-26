@@ -50,7 +50,7 @@ func recibir_impacto() -> void: # Se llama desde la bola de pelos al impactar
 		#emitir dar monedas tipo_ovillo.cantidadmondedas
 	#	pass
 
-
+#
 func desactivar_ovillo() -> void:
 	if not activado:
 		return
