@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ReliquiaPrueba" format=3 uid="uid://b7j557eqgyp2r"]
+
+[ext_resource type="Script" uid="uid://bioywlrwf246j" path="res://scripts/reliquias/reliquia_prueba.gd" id="1_lebhf"]
+
+[resource]
+script = ExtResource("1_lebhf")
+metadata/_custom_type_script = "uid://bioywlrwf246j"

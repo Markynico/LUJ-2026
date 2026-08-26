@@ -41,7 +41,8 @@ func actualizar_icono() -> void:
 	if not sprite.texture:
 		return
 	lado = maxf(sprite.texture.get_width(), sprite.texture.get_height())
-	sprite.scale = Vector2.ONE * (tamaño_icono / lado)
+	if lado > 0.0:
+		sprite.scale = Vector2.ONE * (tamaño_icono / lado)
 
 
 func recibir_impacto() -> void:

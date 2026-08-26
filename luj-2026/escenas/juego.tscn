@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://hli2qjvrii4o"]
 
+[ext_resource type="Script" uid="uid://dt7ukdew5fnkf" path="res://scripts/juego.gd" id="0_juego"]
 [ext_resource type="PackedScene" uid="uid://djxr6fsxwllx3" path="res://escenas/game_manager.tscn" id="1_mf1lf"]
 [ext_resource type="PackedScene" uid="uid://b07gjr8bpk3tm" path="res://escenas/hud.tscn" id="2_t4q8c"]
 [ext_resource type="PackedScene" uid="uid://che0rryy8c7cq" path="res://escenas/gato.tscn" id="3_qnwci"]
@@ -9,7 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://citemreliq0a1" path="res://escenas/componentes/item_reliquia.tscn" id="7_n5myf"]
 [ext_resource type="Resource" uid="uid://chsjfpl7ukql7" path="res://scripts/resources/reliquias/tiro_extra.tres" id="8_uf0fd"]
 
-[node name="Juego" type="Node2D" unique_id=1865884372]
+[node name="Juego" type="Node2D" unique_id=1865884372 node_paths=PackedStringArray("game_manager", "gato", "capa_interfaz")]
+script = ExtResource("0_juego")
+game_manager = NodePath("GameManager")
+gato = NodePath("Gato")
+capa_interfaz = NodePath("CanvasLayer")
 
 [node name="GameManager" parent="." unique_id=627731887 node_paths=PackedStringArray("gato") instance=ExtResource("1_mf1lf")]
 gato = NodePath("../Gato")

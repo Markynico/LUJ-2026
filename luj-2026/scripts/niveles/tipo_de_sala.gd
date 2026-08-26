@@ -7,3 +7,9 @@ const COLORES := {
 	Tipo.TIENDA: Color(1.0, 0.85, 0.3, 0.5),
 	Tipo.LOOT: Color(0.8, 0.4, 1.0, 0.5),
 }
+
+const NOMBRES := {
+	Tipo.NORMAL: "NORMAL",
+	Tipo.TIENDA: "TIENDA",
+	Tipo.LOOT: "LOOT",
+}
