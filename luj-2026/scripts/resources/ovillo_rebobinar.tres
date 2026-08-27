@@ -3,7 +3,12 @@
 [ext_resource type="AudioStream" uid="uid://2jvby7clemka" path="res://assets/audio/sfx/romper_pelotita.wav" id="1_s0e38"]
 [ext_resource type="Script" uid="uid://fd1odbauo3fr" path="res://scripts/ovillos_custom/efecto_ovillo_base.gd" id="1_uuoqp"]
 [ext_resource type="Script" uid="uid://bbkyk2anhunsd" path="res://scripts/ovillos_custom/ovillo_base.gd" id="2_q4f2x"]
+[ext_resource type="Script" uid="uid://ct20i2qr4wb6k" path="res://scripts/ovillos_custom/efecto_rebobinar.gd" id="3_6fw7n"]
 [ext_resource type="Texture2D" uid="uid://bdirqk0n3v241" path="res://assets/sprite_ovillos/Ovillo morado.png" id="4_6fw7n"]
+
+[sub_resource type="Resource" id="Resource_3axgr"]
+script = ExtResource("3_6fw7n")
+metadata/_custom_type_script = "uid://ct20i2qr4wb6k"
 
 [resource]
 script = ExtResource("2_q4f2x")
@@ -11,4 +16,5 @@ nombre = "OVILLO REBOBINAR"
 sprite = ExtResource("4_6fw7n")
 audio = ExtResource("1_s0e38")
 puntaje = 10
+efectos_al_recibir_impacto = Array[ExtResource("1_uuoqp")]([SubResource("Resource_3axgr")])
 metadata/_custom_type_script = "uid://bbkyk2anhunsd"

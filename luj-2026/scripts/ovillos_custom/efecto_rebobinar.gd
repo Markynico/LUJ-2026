@@ -5,5 +5,5 @@ func al_recibir_impacto(ovillo: Ovillo):
 	var bola = ovillo.bola_que_impacto
 	
 	if bola:
-		ovillo.rebobinar_bola.emit(bola)
+		ovillo.rebobinar_bola.emit()
 		print("EMITIDO")

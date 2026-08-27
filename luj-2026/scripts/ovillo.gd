@@ -13,7 +13,7 @@ extends StaticBody2D
 @export var numero_impacto : NumeroImpacto
 
 signal ovillo_desactivado(ovillo: Ovillo)
-signal rebobinar_bola(bola : BolaDePelos)
+signal rebobinar_bola(bola_de_pelos : BolaDePelos)
 
 @export var shader_titilar : ShaderMaterial
 var tween : Tween
