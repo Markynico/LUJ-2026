@@ -29,4 +29,4 @@ position = Vector2(-2, 0)
 shape = SubResource("CircleShape2D_dklp6")
 
 [node name="DisparadorPelotita" parent="." unique_id=1250010144 instance=ExtResource("3_bbvk0")]
-position = Vector2(0, 115)
+position = Vector2(0, 166)

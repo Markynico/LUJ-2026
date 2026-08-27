@@ -19,6 +19,7 @@ colors = PackedColorArray(0, 1, 0, 1, 1, 1, 1, 1)
 
 [sub_resource type="Resource" id="Resource_0ct46"]
 script = ExtResource("4_mfh0k")
+fuerza_rebote = 150.0
 metadata/_custom_type_script = "uid://5i4oxxen13xa"
 
 [sub_resource type="Resource" id="Resource_avp8o"]

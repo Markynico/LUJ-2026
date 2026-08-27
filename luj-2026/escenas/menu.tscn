@@ -1,64 +1,49 @@
 [gd_scene format=3 uid="uid://c30ry4xehty4"]
 
-[ext_resource type="Script" uid="uid://bower76ju6eql" path="res://scripts/menu.gd" id="1_menu"]
 [ext_resource type="Texture2D" uid="uid://c300lurukq11v" path="res://assets/pantalla_de_juegosigninterrogacion.jpeg" id="1_d7r87"]
-[ext_resource type="Texture2D" uid="uid://68c3aqcbe25w" path="res://assets/estandarte inventario.png" id="2_2owot"]
-[ext_resource type="Shader" uid="uid://c3frowpgg1xd7" path="res://scripts/shaders/bandera_ondeante.gdshader" id="3_shader"]
-[ext_resource type="Script" uid="uid://drt7rt8bpb8wp" path="res://scripts/redibujar_en_editor.gd" id="4_redib"]
-[ext_resource type="FontFile" uid="uid://daev32fyu3g8a" path="res://assets/fuentes/CARDINAL-ALTERNATE.TTF" id="5_5t3kx"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_ond1"]
-frequency = 0.008
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ond1"]
-noise = SubResource("FastNoiseLite_ond1")
-seamless = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ond1"]
-shader = ExtResource("3_shader")
-shader_parameter/intensidad = 0.00400000019
-shader_parameter/ondulacion_vertical = 0.002000000095
-shader_parameter/escala_tiempo = Vector2(0.1, 0.1)
-shader_parameter/escala_uv = Vector2(0.3, 0.5)
-shader_parameter/textura_ruido = SubResource("NoiseTexture2D_ond1")
-
-[sub_resource type="Theme" id="Theme_jhh3k"]
-Label/fonts/font = ExtResource("5_5t3kx")
+[ext_resource type="Script" uid="uid://bower76ju6eql" path="res://scripts/menu.gd" id="1_menu"]
+[ext_resource type="PackedScene" uid="uid://cwcb53v5re82r" path="res://escenas/componentes/boton_estandarte.tscn" id="3_2owot"]
+[ext_resource type="Texture2D" uid="uid://d3bwndvu3r60t" path="res://assets/estandartes/estandartejugararriba.png" id="4_4gv4q"]
+[ext_resource type="Texture2D" uid="uid://dp7b6ng71awkx" path="res://assets/estandartes/estandartejugarabajo.png" id="5_8jdmi"]
+[ext_resource type="Texture2D" uid="uid://b58mkku4omi7s" path="res://assets/estandartes/estandarteopcionesarriba.png" id="6_i5l0x"]
+[ext_resource type="Texture2D" uid="uid://bnjrf64bqbily" path="res://assets/estandartes/estandarteopcionesabajo.png" id="7_6m0pt"]
+[ext_resource type="Texture2D" uid="uid://bgwfassbyybmg" path="res://assets/estandartes/estandartesalirarriba.png" id="8_builu"]
+[ext_resource type="Texture2D" uid="uid://re7kh2u4s8ut" path="res://assets/estandartes/estandartesalirabajo.png" id="9_20bhr"]
 
 [node name="Menu" type="CanvasLayer" unique_id=1421157520]
 script = ExtResource("1_menu")
 
-[node name="Control" type="Control" parent="." unique_id=948642556]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="TextureRect" type="TextureRect" parent="." unique_id=660928265]
+[node name="Fondo" type="TextureRect" parent="." unique_id=660928265]
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_d7r87")
 
-[node name="TextureButton" type="TextureButton" parent="." unique_id=1829824927]
-material = SubResource("ShaderMaterial_ond1")
-offset_left = 584.0
-offset_top = 261.0
-offset_right = 1235.0
-offset_bottom = 912.0
-texture_normal = ExtResource("2_2owot")
-ignore_texture_size = true
-stretch_mode = 0
-script = ExtResource("4_redib")
+[node name="BotonEstandarteInventario" parent="." unique_id=2120989071 instance=ExtResource("3_2owot")]
+offset_left = 266.0
+offset_top = 283.0
+offset_right = 866.0
+offset_bottom = 1051.0
 
-[node name="Label" type="Label" parent="TextureButton" unique_id=1587952362]
-use_parent_material = true
-layout_mode = 0
-offset_left = 211.0
-offset_top = 88.0
-offset_right = 449.0
-offset_bottom = 173.0
-theme = SubResource("Theme_jhh3k")
-theme_override_font_sizes/font_size = 58
-text = "Inventario"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="BotonEstandarteJugar" parent="." unique_id=1586238991 instance=ExtResource("3_2owot")]
+offset_left = 21.0
+offset_top = 281.0
+offset_right = 621.0
+offset_bottom = 1049.0
+textura_fija = ExtResource("4_4gv4q")
+textura_tela = ExtResource("5_8jdmi")
+
+[node name="BotonEstandarteOpciones" parent="." unique_id=1606040631 instance=ExtResource("3_2owot")]
+offset_left = 1413.0
+offset_top = 277.0
+offset_right = 2013.0
+offset_bottom = 1045.0
+textura_fija = ExtResource("6_i5l0x")
+textura_tela = ExtResource("7_6m0pt")
+
+[node name="BotonEstandarteSalir" parent="." unique_id=1175541432 instance=ExtResource("3_2owot")]
+offset_left = 1646.0
+offset_top = 279.0
+offset_right = 2246.0
+offset_bottom = 1047.0
+textura_fija = ExtResource("8_builu")
+textura_tela = ExtResource("9_20bhr")

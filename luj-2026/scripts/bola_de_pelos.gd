@@ -16,6 +16,9 @@ var fue_duplicada : bool = false #probando, seguro lo saco de aca
 var contador_rebotes : int = 0
 
 func _ready() -> void:
+	add_to_group("bolas_de_pelos")
+	if GameManager.instancia_actual:
+		tree_exited.connect(GameManager.instancia_actual.registrar_salida_de_bola, CONNECT_DEFERRED)
 	estela_movimiento.gradient = tipo_pelotita.colores_estela
 	sprite_bola.texture = tipo_pelotita.textura
 

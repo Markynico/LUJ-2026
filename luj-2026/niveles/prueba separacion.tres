@@ -1,0 +1,115 @@
+[gd_resource type="Resource" script_class="NivelData" format=3 uid="uid://o2ttpyj4y67y"]
+
+[ext_resource type="Script" uid="uid://1owdr3bm0age" path="res://scripts/niveles/forma_data.gd" id="1_waipv"]
+[ext_resource type="Script" uid="uid://4yxin8siliwu" path="res://scripts/niveles/nivel_data.gd" id="2_o4i32"]
+
+[sub_resource type="Curve2D" id="Curve2D_sw6fg"]
+bake_interval = 2.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 577.7047, 1.2038574, 0, 0, 0, 0, -593.2953, -2.7961426)
+}
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_vpm15"]
+script = ExtResource("1_waipv")
+tipo = "path"
+posicion = Vector2(970, 818)
+curva = SubResource("Curve2D_sw6fg")
+
+[sub_resource type="Curve2D" id="Curve2D_bas86"]
+bake_interval = 2.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 551.7047, 25.203857, 0, 0, 0, 0, -564.2953, 23.203857)
+}
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_ygwom"]
+script = ExtResource("1_waipv")
+tipo = "path"
+posicion = Vector2(971, 737)
+curva = SubResource("Curve2D_bas86")
+
+[sub_resource type="Curve2D" id="Curve2D_t16m2"]
+bake_interval = 2.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 577.7047, 1.2038574, 0, 0, 0, 0, -593.2953, -2.7961426)
+}
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_p3dmo"]
+script = ExtResource("1_waipv")
+tipo = "path"
+posicion = Vector2(970.2953, 706.79614)
+curva = SubResource("Curve2D_t16m2")
+
+[sub_resource type="Curve2D" id="Curve2D_o7roc"]
+bake_interval = 2.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 551.7047, 25.203857, 0, 0, 0, 0, -564.2953, 23.203857)
+}
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_vk4i2"]
+script = ExtResource("1_waipv")
+tipo = "path"
+posicion = Vector2(971.2953, 625.79614)
+curva = SubResource("Curve2D_o7roc")
+
+[sub_resource type="Curve2D" id="Curve2D_6dbxa"]
+bake_interval = 2.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 577.7047, 1.2038574, 0, 0, 0, 0, -593.2953, -2.7961426)
+}
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_7ed2x"]
+script = ExtResource("1_waipv")
+tipo = "path"
+posicion = Vector2(970.2953, 601.79614)
+curva = SubResource("Curve2D_6dbxa")
+
+[sub_resource type="Curve2D" id="Curve2D_8gelq"]
+bake_interval = 2.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 551.7047, 25.203857, 0, 0, 0, 0, -564.2953, 23.203857)
+}
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_y545r"]
+script = ExtResource("1_waipv")
+tipo = "path"
+posicion = Vector2(971.2953, 520.79614)
+curva = SubResource("Curve2D_8gelq")
+
+[sub_resource type="Curve2D" id="Curve2D_vcnsj"]
+bake_interval = 2.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 577.7047, 1.2038574, 0, 0, 0, 0, -593.2953, -2.7961426)
+}
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_liqry"]
+script = ExtResource("1_waipv")
+tipo = "path"
+posicion = Vector2(970.2953, 490.79614)
+curva = SubResource("Curve2D_vcnsj")
+
+[sub_resource type="Curve2D" id="Curve2D_d81wj"]
+bake_interval = 2.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 551.7047, 25.203857, 0, 0, 0, 0, -564.2953, 23.203857)
+}
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_5322f"]
+script = ExtResource("1_waipv")
+tipo = "path"
+posicion = Vector2(971.2953, 409.79614)
+curva = SubResource("Curve2D_d81wj")
+
+[resource]
+script = ExtResource("2_o4i32")
+nombre = "prueba separacion"
+formas = Array[ExtResource("1_waipv")]([SubResource("Resource_vpm15"), SubResource("Resource_ygwom"), SubResource("Resource_p3dmo"), SubResource("Resource_vk4i2"), SubResource("Resource_7ed2x"), SubResource("Resource_y545r"), SubResource("Resource_liqry"), SubResource("Resource_5322f")])
+posicion_divisiones = Vector2(349, 1080)
+ancho_divisiones = 1241.0
