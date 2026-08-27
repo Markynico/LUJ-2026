@@ -25,17 +25,51 @@ signal nivel_construido
 @export var escena_recorrido : PackedScene = preload("uid://crecorrido00a1")
 ##escena con los divisores de la parte de abajo
 @export var escena_divisiones : PackedScene = preload("uid://cdivisiones0a1")
+##estructura que define la zona jugable, si esta vacia se busca en el arbol
+@export var estructura : EstructuraDeNivel
+##distancia de los divisores al borde inferior de la zona jugable
+@export var margen_inferior_divisiones : float = 0.0
+##niveles entre los que se elige al azar cuando no hay nivel asignado, si esta vacio usa la carpeta
+@export var niveles_aleatorios : Array[NivelData] = []
+##carpeta de donde se cargan los niveles cuando la lista esta vacia
+@export_dir var carpeta_niveles : String = "res://niveles"
 
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		mostrar_vista_previa()
-	elif nivel:
-		construir_nivel(nivel)
+	else:
+		construir_nivel_elegido()
+
+
+func construir_nivel_elegido() -> void:
+	var elegido : NivelData = nivel if nivel else elegir_nivel()
+	if elegido:
+		construir_nivel(elegido)
+
+
+func elegir_nivel() -> NivelData:
+	var disponibles : Array[NivelData] = niveles_aleatorios if not niveles_aleatorios.is_empty() else cargar_carpeta()
+	return disponibles.pick_random() if not disponibles.is_empty() else null
+
+
+func cargar_carpeta() -> Array[NivelData]:
+	var encontrados : Array[NivelData] = []
+	var recurso : Resource
+	for archivo in DirAccess.get_files_at(carpeta_niveles):
+		if archivo.get_extension() != "tres":
+			continue
+		recurso = load(carpeta_niveles.path_join(archivo))
+		if recurso is NivelData:
+			encontrados.append(recurso)
+	return encontrados
 
 
 func mostrar_vista_previa() -> void:
-	if not Engine.is_editor_hint() or not is_inside_tree() or es_raiz_editada():
+	if not Engine.is_editor_hint() or not is_inside_tree():
+		return
+	if es_raiz_editada():
+		acomodar_divisiones(null)
 		return
 	limpiar_formas_sin_duenio()
 	if nivel:
@@ -94,14 +128,48 @@ func obtener_divisiones() -> DivisionesPachinko:
 			return hijo
 	return null
 
-#
 func aplicar_divisiones(datos_nivel : NivelData) -> void:
 	var divisiones : DivisionesPachinko = obtener_divisiones()
 	if not divisiones:
 		divisiones = escena_divisiones.instantiate()
 		add_child(divisiones, true)
-	divisiones.position = datos_nivel.posicion_divisiones
-	divisiones.ancho_total = datos_nivel.ancho_divisiones
+	acomodar_divisiones(datos_nivel)
+
+
+func acomodar_divisiones(datos_nivel : NivelData) -> void:
+	var divisiones : DivisionesPachinko = obtener_divisiones()
+	var estructura_activa : EstructuraDeNivel = obtener_estructura()
+	var zona : Rect2
+	if not divisiones:
+		return
+	if estructura_activa:
+		zona = estructura_activa.zona_jugable()
+		divisiones.global_position = Vector2(zona.position.x, zona.end.y - margen_inferior_divisiones)
+		divisiones.ancho_total = zona.size.x
+	elif datos_nivel:
+		divisiones.position = datos_nivel.posicion_divisiones
+		divisiones.ancho_total = datos_nivel.ancho_divisiones
+
+
+func obtener_estructura() -> EstructuraDeNivel:
+	if estructura:
+		return estructura
+	if not is_inside_tree():
+		return null
+	if Engine.is_editor_hint():
+		return buscar_estructura(get_tree().edited_scene_root) if get_tree().edited_scene_root else null
+	return buscar_estructura(get_tree().root)
+
+
+func buscar_estructura(nodo : Node) -> EstructuraDeNivel:
+	var encontrada : EstructuraDeNivel
+	if nodo is EstructuraDeNivel:
+		return nodo
+	for hijo in nodo.get_children():
+		encontrada = buscar_estructura(hijo)
+		if encontrada:
+			return encontrada
+	return null
 
 
 func instanciar_formas(datos_nivel : NivelData, duenio : Node = null) -> void:

@@ -1,11 +1,37 @@
 [gd_scene format=3 uid="uid://jimkk8u7orb2"]
 
 [ext_resource type="Script" uid="uid://bh3lxufik2p65" path="res://scripts/niveles/cargador_de_nivel.gd" id="1_carg"]
+[ext_resource type="PackedScene" uid="uid://cexjr0e4owki" path="res://escenas/estructura_de_nivel.tscn" id="2_estru"]
+[ext_resource type="PackedScene" uid="uid://cformacirc0a1" path="res://escenas/componentes/forma_circulo.tscn" id="4_xrhlm"]
+[ext_resource type="Script" uid="uid://1owdrb8otuge" path="res://scripts/niveles/forma_circulo.gd" id="5_6wvn0"]
+[ext_resource type="PackedScene" uid="uid://cformarect0a1" path="res://escenas/componentes/forma_rectangulo.tscn" id="6_43wpl"]
 [ext_resource type="PackedScene" uid="uid://bxjt6h43758na" path="res://escenas/componentes/divisiones_pachinko.tscn" id="7_divs"]
+[ext_resource type="Script" uid="uid://1owd66s6mpge" path="res://scripts/niveles/forma_rectangulo.gd" id="7_x3fkq"]
 
-[node name="EditorDeNiveles" type="Node2D" unique_id=925235971]
+[node name="EditorDeNiveles" type="Node2D" unique_id=925235971 node_paths=PackedStringArray("estructura")]
 script = ExtResource("1_carg")
+estructura = NodePath("EstructuraDeNivel")
+niveles_aleatorios = null
+carpeta_niveles = null
+
+[node name="EstructuraDeNivel" parent="." unique_id=536052181 instance=ExtResource("2_estru")]
 
 [node name="DivisionesPachinko" parent="." unique_id=631157151 instance=ExtResource("7_divs")]
-position = Vector2(0, 720)
-ancho_total = 1246.705
+position = Vector2(349, 1080)
+ancho_total = 1241.0
+
+[node name="FormaCirculo" type="Node2D" parent="." unique_id=805926599 instance=ExtResource("4_xrhlm")]
+position = Vector2(691, 508.14362)
+script = ExtResource("5_6wvn0")
+separacion_ovillos = 32.0
+
+[node name="FormaCirculo2" type="Node2D" parent="." unique_id=1660998352 instance=ExtResource("4_xrhlm")]
+position = Vector2(1209.7485, 506)
+script = ExtResource("5_6wvn0")
+separacion_ovillos = 32.0
+
+[node name="FormaRectangulo" type="Node2D" parent="." unique_id=1013957300 instance=ExtResource("6_43wpl")]
+position = Vector2(969.66656, 758.94354)
+script = ExtResource("7_x3fkq")
+"tamaño" = Vector2(798.8098, 75.72302)
+separacion_ovillos = 32.0
