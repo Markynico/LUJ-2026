@@ -38,26 +38,26 @@ func crear_reproductor_musica() -> AudioStreamPlayer:
 	return reproductor
 
 
-func reproducir_sfx(tipo : EfectoDeSonido.Tipo) -> void:
+func reproducir_sfx(tipo : EfectoDeSonido.Tipo, pitch_extra : float = 0.0) -> void:
 	var efecto : EfectoDeSonido = efectos_por_tipo.get(tipo)
 	var reproductor : AudioStreamPlayer = AudioStreamPlayer.new()
-	if not preparar_sfx(efecto, reproductor):
+	if not preparar_sfx(efecto, reproductor, pitch_extra):
 		return
 	add_child(reproductor)
 	reproductor.play()
 
 
-func reproducir_sfx_en(tipo : EfectoDeSonido.Tipo, posicion : Vector2) -> void:
+func reproducir_sfx_en(tipo : EfectoDeSonido.Tipo, posicion : Vector2, pitch_extra : float = 0.0) -> void:
 	var efecto : EfectoDeSonido = efectos_por_tipo.get(tipo)
 	var reproductor : AudioStreamPlayer2D = AudioStreamPlayer2D.new()
-	if not preparar_sfx(efecto, reproductor):
+	if not preparar_sfx(efecto, reproductor, pitch_extra):
 		return
 	add_child(reproductor)
 	reproductor.global_position = posicion
 	reproductor.play()
 
 
-func preparar_sfx(efecto : EfectoDeSonido, reproductor : Node) -> bool:
+func preparar_sfx(efecto : EfectoDeSonido, reproductor : Node, pitch_extra : float = 0.0) -> bool:
 	var stream : AudioStream = efecto.stream_aleatorio() if efecto else null
 	if not stream or conteo_por_efecto.get(efecto, 0) >= efecto.limite_simultaneos:
 		reproductor.free()
@@ -66,7 +66,7 @@ func preparar_sfx(efecto : EfectoDeSonido, reproductor : Node) -> bool:
 	reproductor.stream = stream
 	reproductor.bus = bus_sfx
 	reproductor.volume_db = efecto.volumen_db
-	reproductor.pitch_scale = randf_range(efecto.pitch_minimo, efecto.pitch_maximo)
+	reproductor.pitch_scale = randf_range(efecto.pitch_minimo, efecto.pitch_maximo) + pitch_extra
 	reproductor.finished.connect(al_terminar_sfx.bind(efecto, reproductor))
 	return true
 

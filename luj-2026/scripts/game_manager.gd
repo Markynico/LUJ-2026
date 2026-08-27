@@ -174,13 +174,21 @@ func reiniciar_vidas() -> void:
 func disparar_bola() -> void:
 	if estado_actual != EstadoDeJuego.LANZANDO_BOLAS:
 		return
-	
+	if not get_tree().get_nodes_in_group("bolas_de_pelos").is_empty():
+		return
+
 	if bolas_restantes > 0:
 		bolas_restantes -= 1
 		bola_usada.emit(bolas_restantes)
 		gato_lanza_bola.emit()
-	
-	if bolas_restantes <= 0:
+
+
+func registrar_salida_de_bola() -> void:
+	if estado_actual != EstadoDeJuego.LANZANDO_BOLAS:
+		return
+	if bolas_restantes > 0:
+		return
+	if get_tree().get_nodes_in_group("bolas_de_pelos").is_empty():
 		cambiar_gato()
 
 func cambiar_gato() -> void:

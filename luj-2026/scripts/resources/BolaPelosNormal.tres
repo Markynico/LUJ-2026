@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="PelotitaBase" format=3 uid="uid://cefp6mo0t1mgi"]
 
 [ext_resource type="Script" uid="uid://c7ogyqxnq7236" path="res://scripts/pelotitas_custom/pelotita_base.gd" id="1_07tsf"]
+[ext_resource type="Script" uid="uid://c31lbqa2grch4" path="res://scripts/pelotitas_custom/efectos_pelotita.gd" id="1_53lk3"]
 [ext_resource type="Texture2D" uid="uid://y01cjx6nscow" path="res://iconos_custom/heart.svg" id="2_pxh3y"]
 
 [sub_resource type="Gradient" id="Gradient_pxh3y"]

@@ -14,7 +14,7 @@ extends Node2D
 ##ruta de la escena de sala para cada tipo, los niveles normales no usan escena
 @export var escenas_por_sala : Dictionary[TipoDeSala.Tipo, String] = {
 	TipoDeSala.Tipo.TIENDA: "uid://dfm5y8q2s1txc",
-	TipoDeSala.Tipo.LOOT: "uid://csalaloot000a1",
+	TipoDeSala.Tipo.LOOT: "uid://8l4mghblkql7",
 }
 
 var sala_actual : Node
@@ -43,7 +43,7 @@ func cambiar_sala(tipo : TipoDeSala.Tipo) -> void:
 			capa_salas.add_child(sala_actual, true)
 		else:
 			add_child(sala_actual, true)
-		if sala_actual is Tienda:
+		if sala_actual.has_signal("continuar_pedido"):
 			sala_actual.continuar_pedido.connect(cambiar_sala.bind(TipoDeSala.Tipo.NORMAL))
 	if cargador:
 		cargador.visible = es_nivel
