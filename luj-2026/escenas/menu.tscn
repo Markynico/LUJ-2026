@@ -3,12 +3,14 @@
 [ext_resource type="Texture2D" uid="uid://c300lurukq11v" path="res://assets/pantalla_de_juegosigninterrogacion.jpeg" id="1_d7r87"]
 [ext_resource type="Script" uid="uid://bower76ju6eql" path="res://scripts/menu.gd" id="1_menu"]
 [ext_resource type="PackedScene" uid="uid://cwcb53v5re82r" path="res://escenas/componentes/boton_estandarte.tscn" id="3_2owot"]
+[ext_resource type="Texture2D" uid="uid://bhi3nf0jngdpb" path="res://assets/tapir.jpg" id="3_i5l0x"]
 [ext_resource type="Texture2D" uid="uid://d3bwndvu3r60t" path="res://assets/estandartes/estandartejugararriba.png" id="4_4gv4q"]
 [ext_resource type="Texture2D" uid="uid://dp7b6ng71awkx" path="res://assets/estandartes/estandartejugarabajo.png" id="5_8jdmi"]
 [ext_resource type="Texture2D" uid="uid://b58mkku4omi7s" path="res://assets/estandartes/estandarteopcionesarriba.png" id="6_i5l0x"]
 [ext_resource type="Texture2D" uid="uid://bnjrf64bqbily" path="res://assets/estandartes/estandarteopcionesabajo.png" id="7_6m0pt"]
 [ext_resource type="Texture2D" uid="uid://bgwfassbyybmg" path="res://assets/estandartes/estandartesalirarriba.png" id="8_builu"]
 [ext_resource type="Texture2D" uid="uid://re7kh2u4s8ut" path="res://assets/estandartes/estandartesalirabajo.png" id="9_20bhr"]
+[ext_resource type="Texture2D" uid="uid://84aw1fbg7kwq" path="res://assets/Michinko Logo.png" id="11_6m0pt"]
 
 [node name="Menu" type="CanvasLayer" unique_id=1421157520]
 script = ExtResource("1_menu")
@@ -17,6 +19,22 @@ script = ExtResource("1_menu")
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_d7r87")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1491152693]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 1600.0
+offset_bottom = 900.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_i5l0x")
 
 [node name="BotonEstandarteInventario" parent="." unique_id=2120989071 instance=ExtResource("3_2owot")]
 offset_left = 266.0
@@ -47,3 +65,18 @@ offset_right = 2246.0
 offset_bottom = 1047.0
 textura_fija = ExtResource("8_builu")
 textura_tela = ExtResource("9_20bhr")
+
+[node name="Logo" type="TextureRect" parent="." unique_id=641265280]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -316.0
+offset_top = -91.0
+offset_right = 684.0
+offset_bottom = 398.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.695, 0.695)
+texture = ExtResource("11_6m0pt")

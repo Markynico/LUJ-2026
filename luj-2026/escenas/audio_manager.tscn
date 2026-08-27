@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://bf2u7khywdugp" path="res://scripts/audio/efecto_de_sonido.gd" id="2_8eov3"]
 [ext_resource type="Resource" path="res://sonidos/efectos/romper_ovillo.tres" id="2_romper"]
 [ext_resource type="Resource" path="res://sonidos/efectos/romper_ovillo_moneda.tres" id="3_moneda"]
+[ext_resource type="Resource" uid="uid://dvbdemblt4ryk" path="res://sonidos/efectos/estandarte_abrir.tres" id="4_abrir"]
+[ext_resource type="Resource" uid="uid://nc65kq18fwii" path="res://sonidos/efectos/estandarte_cerrar.tres" id="5_cerrar"]
 [ext_resource type="AudioStream" uid="uid://c5ui73ucckhyw" path="res://assets/audio/musica/Michinko Menu.ogg" id="5_piins"]
 [ext_resource type="AudioStream" uid="uid://dr4jwha8086v4" path="res://assets/audio/musica/Michinko Menu Loop.ogg" id="6_pej0h"]
 
@@ -19,5 +21,5 @@ clip_1/auto_advance = 0
 
 [node name="AudioManager" type="Node" unique_id=1480012408]
 script = ExtResource("1_audio")
-efectos = Array[ExtResource("2_8eov3")]([ExtResource("2_romper"), ExtResource("3_moneda")])
+efectos = Array[ExtResource("2_8eov3")]([ExtResource("2_romper"), ExtResource("3_moneda"), ExtResource("4_abrir"), ExtResource("5_cerrar")])
 musica_menu = SubResource("AudioStreamInteractive_xcvd1")

@@ -43,3 +43,4 @@ func desplegar(abrir : bool) -> void:
 		tween.kill()
 	tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.tween_property(tela, "position:y", y_desplegada if abrir else y_escondida, duracion)
+	AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.ESTANDARTE_ABRIR if abrir else EfectoDeSonido.Tipo.ESTANDARTE_CERRAR)
