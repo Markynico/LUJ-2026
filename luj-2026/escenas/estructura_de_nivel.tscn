@@ -1,0 +1,157 @@
+[gd_scene format=3 uid="uid://cexjr0e4owki"]
+
+[ext_resource type="Script" uid="uid://c2k7k2sfqhbgw" path="res://scripts/niveles/estructura_de_nivel.gd" id="0_estru"]
+[ext_resource type="Texture2D" uid="uid://c86pbvyhgv3bj" path="res://assets/placeholders/placeholder_estructura_ladrillos.png" id="1_ktx7k"]
+[ext_resource type="Theme" uid="uid://cwsrathd8xljh" path="res://themes/theme_label_numeritos.tres" id="2_lxg71"]
+[ext_resource type="PackedScene" uid="uid://citemreliq0a1" path="res://escenas/componentes/item_reliquia.tscn" id="3_ap1nk"]
+[ext_resource type="PackedScene" uid="uid://dy3jqoayfdkwm" path="res://escenas/Ovillo.tscn" id="3_bwf86"]
+[ext_resource type="Resource" uid="uid://cy6q6prk7gt7p" path="res://scripts/resources/ovillo_catnip.tres" id="4_6g6d1"]
+[ext_resource type="Resource" uid="uid://chsjfpl7ukql7" path="res://scripts/resources/reliquias/tiro_extra.tres" id="4_cb2a4"]
+[ext_resource type="Resource" uid="uid://dky2mbnm2rn0l" path="res://scripts/resources/ovillo_monedas.tres" id="5_ap1nk"]
+[ext_resource type="Resource" uid="uid://fumr1qv4h1ho" path="res://scripts/resources/ovillo_rebobinar.tres" id="7_xuxpc"]
+[ext_resource type="Resource" uid="uid://d3ks2dut6iacd" path="res://scripts/resources/ovillo_explosivo_final.tres" id="8_hxxj2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_37ege"]
+size = Vector2(1917, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lxg71"]
+size = Vector2(869.9999, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ktx7k"]
+size = Vector2(869.9999, 39)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lxg71"]
+viewport_path = NodePath("PanelInfoIzquierdo/SubViewportIzq")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_bwf86"]
+viewport_path = NodePath("PanelInfoDerecho/SubViewportDer")
+
+[node name="EstructuraDeNivel" type="Node2D" unique_id=1258707596 node_paths=PackedStringArray("pared_izquierda", "pared_derecha", "piso_gato")]
+script = ExtResource("0_estru")
+pared_izquierda = NodePath("ParedIzquierda")
+pared_derecha = NodePath("ParedDerecha")
+piso_gato = NodePath("PisoGato")
+
+[node name="PisoGato" type="StaticBody2D" parent="." unique_id=1017529080]
+position = Vector2(3, 217)
+collision_layer = 0
+collision_mask = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="PisoGato" unique_id=837333878]
+position = Vector2(810.5001, -10)
+scale = Vector2(32.041096, 0.6875)
+texture = ExtResource("1_ktx7k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PisoGato" unique_id=1350136418]
+position = Vector2(959.5, -9.5)
+shape = SubResource("RectangleShape2D_37ege")
+
+[node name="ParedIzquierda" type="StaticBody2D" parent="." unique_id=2131165626]
+position = Vector2(320, 222)
+rotation = 1.5707964
+collision_mask = 7
+
+[node name="Sprite2D" type="Sprite2D" parent="ParedIzquierda" unique_id=1704718615]
+position = Vector2(441.28845, -10)
+scale = Vector2(12.021599, 0.6875)
+texture = ExtResource("1_ktx7k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedIzquierda" unique_id=115799613]
+position = Vector2(440, -9.499996)
+shape = SubResource("RectangleShape2D_lxg71")
+
+[node name="ParedDerecha" type="StaticBody2D" parent="." unique_id=536931780]
+position = Vector2(1600, 229)
+rotation = 1.5707964
+collision_mask = 7
+
+[node name="Sprite2D" type="Sprite2D" parent="ParedDerecha" unique_id=1022962513]
+position = Vector2(438.07306, -10)
+scale = Vector2(11.933506, 0.6875)
+texture = ExtResource("1_ktx7k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedDerecha" unique_id=1413173927]
+position = Vector2(436, -9.5)
+shape = SubResource("RectangleShape2D_ktx7k")
+
+[node name="PanelInfoIzquierdo" type="Sprite2D" parent="." unique_id=1428603965]
+position = Vector2(265, 934)
+texture = SubResource("ViewportTexture_lxg71")
+
+[node name="SubViewportIzq" type="SubViewport" parent="PanelInfoIzquierdo" unique_id=603650131]
+transparent_bg = true
+
+[node name="Panel" type="Panel" parent="PanelInfoIzquierdo/SubViewportIzq" unique_id=1023388696]
+offset_right = 297.0
+offset_bottom = 372.0
+
+[node name="Label" type="Label" parent="PanelInfoIzquierdo/SubViewportIzq/Panel" unique_id=725000867]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 38.0
+offset_right = 386.0
+offset_bottom = 161.0
+theme = ExtResource("2_lxg71")
+theme_override_font_sizes/font_size = 32
+text = "PLACEHOLDER 
+IZQUIERDO
+
+RELIQUIAS
+OBTENIDAS
+ETC"
+
+[node name="ItemReliquia" parent="PanelInfoIzquierdo" unique_id=1257653781 instance=ExtResource("3_ap1nk")]
+position = Vector2(-201, -318)
+reliquia = ExtResource("4_cb2a4")
+
+[node name="ItemReliquia2" parent="PanelInfoIzquierdo" unique_id=392828500 instance=ExtResource("3_ap1nk")]
+position = Vector2(-121, -318)
+reliquia = ExtResource("4_cb2a4")
+
+[node name="ItemReliquia3" parent="PanelInfoIzquierdo" unique_id=1607621363 instance=ExtResource("3_ap1nk")]
+position = Vector2(-41, -318)
+reliquia = ExtResource("4_cb2a4")
+
+[node name="PanelInfoDerecho" type="Sprite2D" parent="." unique_id=1908544833]
+position = Vector2(1878, 811)
+texture = SubResource("ViewportTexture_bwf86")
+
+[node name="SubViewportDer" type="SubViewport" parent="PanelInfoDerecho" unique_id=365414708]
+transparent_bg = true
+
+[node name="Panel" type="Panel" parent="PanelInfoDerecho/SubViewportDer" unique_id=211600726]
+offset_right = 297.0
+offset_bottom = 644.0
+
+[node name="Label" type="Label" parent="PanelInfoDerecho/SubViewportDer/Panel" unique_id=148605056]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 38.0
+offset_right = 386.0
+offset_bottom = 161.0
+theme = ExtResource("2_lxg71")
+theme_override_font_sizes/font_size = 32
+text = "placeholder
+tmb
+
+ovillos +
+info ?"
+
+[node name="Ovillo" parent="PanelInfoDerecho" unique_id=142733400 instance=ExtResource("3_bwf86")]
+position = Vector2(-213, 57)
+
+[node name="Ovillo2" parent="PanelInfoDerecho" unique_id=1247461299 instance=ExtResource("3_bwf86")]
+position = Vector2(-150, 57)
+tipo_ovillo = ExtResource("4_6g6d1")
+
+[node name="Ovillo4" parent="PanelInfoDerecho" unique_id=1391767155 instance=ExtResource("3_bwf86")]
+position = Vector2(-86, 57)
+tipo_ovillo = ExtResource("5_ap1nk")
+
+[node name="Ovillo6" parent="PanelInfoDerecho" unique_id=102319978 instance=ExtResource("3_bwf86")]
+position = Vector2(-213, 120)
+tipo_ovillo = ExtResource("7_xuxpc")
+
+[node name="Ovillo7" parent="PanelInfoDerecho" unique_id=1053634701 instance=ExtResource("3_bwf86")]
+position = Vector2(-155, 120)
+tipo_ovillo = ExtResource("8_hxxj2")

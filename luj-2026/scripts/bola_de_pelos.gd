@@ -2,7 +2,6 @@
 class_name BolaDePelos
 extends RigidBody2D
 
-#a futuro capaz meto un enum de TIPO DE BOLA DE PELOS y q segun ese enum se instancie y se setee toooda la info q necesito (?
 
 @export_group("TIPO")
 @export var tipo_pelotita : PelotitaBase #TODO revisar si de verdad lo necesito aca o directamente hacer export vars aca en el nodo
@@ -62,6 +61,9 @@ func duplicar_pelotita():
 	fue_duplicada = true
 
 func sonido_rebote():
+	#TODO aca agregaria un chekeo para subirle el pitch scale
+	#algo tipo global.impactos_acumulados
+	#y si acumula + 2 + 3 + 4 impactos le meto + pitch scale y suena como queriamos
 	audio.play()
 
 

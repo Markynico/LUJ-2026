@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ReliquiaRascador" format=3 uid="uid://d1g05k4oam2p8"]
+
+[ext_resource type="Script" path="res://scripts/reliquias/reliquia_rascador.gd" id="1_rascador"]
+[ext_resource type="Texture2D" uid="uid://copta8wcxywct" path="res://iconos_custom/person_body.svg" id="2_icono"]
+
+[resource]
+script = ExtResource("1_rascador")
+nombre = "Rascador"
+descripcion = "“juega mas con la caja en la que vino que con el rascador en si”"
+icono = ExtResource("2_icono")

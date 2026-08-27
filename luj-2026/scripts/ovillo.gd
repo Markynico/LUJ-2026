@@ -45,14 +45,14 @@ func recibir_impacto() -> void: # Se llama desde la bola de pelos al impactar
 		efecto.al_recibir_impacto(self)
 	
 	
-
+#forzar github
 	#numero_impacto.iniciar_numero_impacto(tipo_ovillo.cant_monedas) #holi aca poner puntaje en vez de monedas
 	#for efecto in tipo_ovillo.efectos_al_recibir_impacto:
 	#	efecto.al_recibir_impacto(self)
 		#emitir dar monedas tipo_ovillo.cantidadmondedas
 	#	pass
 
-
+#
 func desactivar_ovillo() -> void:
 	if not activado:
 		return

@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="NivelData" format=3 uid="uid://i85k472iy387"]
+
+[ext_resource type="Script" uid="uid://1owdr3bm0age" path="res://scripts/niveles/forma_data.gd" id="1_1el0k"]
+[ext_resource type="Script" uid="uid://4yxin8siliwu" path="res://scripts/niveles/nivel_data.gd" id="2_by6rf"]
+
+[sub_resource type="Resource" id="Resource_1el0k"]
+script = ExtResource("1_1el0k")
+tipo = "circulo"
+posicion = Vector2(691, 508.14362)
+separacion_ovillos = 32.0
+
+[sub_resource type="Resource" id="Resource_by6rf"]
+script = ExtResource("1_1el0k")
+tipo = "circulo"
+posicion = Vector2(1209.7485, 506)
+separacion_ovillos = 32.0
+
+[sub_resource type="Resource" id="Resource_3crje"]
+script = ExtResource("1_1el0k")
+posicion = Vector2(969.66656, 758.94354)
+separacion_ovillos = 32.0
+"tamaño" = Vector2(798.8098, 75.72302)
+
+[resource]
+script = ExtResource("2_by6rf")
+nombre = "placeholder1"
+formas = Array[ExtResource("1_1el0k")]([SubResource("Resource_1el0k"), SubResource("Resource_by6rf"), SubResource("Resource_3crje")])
+posicion_divisiones = Vector2(349, 1080)
+ancho_divisiones = 1241.0

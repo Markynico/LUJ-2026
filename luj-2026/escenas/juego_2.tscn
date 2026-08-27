@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://cifsopjywp37x"]
+
+[ext_resource type="PackedScene" uid="uid://djxr6fsxwllx3" path="res://escenas/game_manager.tscn" id="1_qmvnn"]
+[ext_resource type="PackedScene" uid="uid://che0rryy8c7cq" path="res://escenas/gato.tscn" id="2_1e3ts"]
+[ext_resource type="PackedScene" uid="uid://cexjr0e4owki" path="res://escenas/estructura_de_nivel.tscn" id="3_h2xfy"]
+[ext_resource type="PackedScene" uid="uid://b07gjr8bpk3tm" path="res://escenas/hud.tscn" id="4_x2mhk"]
+[ext_resource type="PackedScene" uid="uid://citemreliq0a1" path="res://escenas/componentes/item_reliquia.tscn" id="5_1s6xi"]
+[ext_resource type="Resource" uid="uid://chsjfpl7ukql7" path="res://scripts/resources/reliquias/tiro_extra.tres" id="6_qet6h"]
+[ext_resource type="Script" uid="uid://bh3lxufik2p65" path="res://scripts/niveles/cargador_de_nivel.gd" id="7_s5cmn"]
+[ext_resource type="Resource" uid="uid://i85k472iy387" path="res://niveles/placeholder1.tres" id="8_uwq2h"]
+
+[node name="Juego2" type="Node2D" unique_id=539659345]
+
+[node name="GameManager" parent="." unique_id=627731887 node_paths=PackedStringArray("gato") instance=ExtResource("1_qmvnn")]
+gato = NodePath("")
+bolas_maximas = 11
+
+[node name="Gato" parent="." unique_id=69399080 node_paths=PackedStringArray("game_manager") instance=ExtResource("2_1e3ts")]
+position = Vector2(958, 126)
+game_manager = NodePath("")
+
+[node name="EstructuraDeNivel" parent="." unique_id=1258707596 instance=ExtResource("3_h2xfy")]
+
+[node name="HUD" parent="." unique_id=197422415 node_paths=PackedStringArray("game_manager") instance=ExtResource("4_x2mhk")]
+game_manager = NodePath("")
+
+[node name="ItemReliquia" parent="." unique_id=1378157321 instance=ExtResource("5_1s6xi")]
+position = Vector2(589, 423)
+reliquia = ExtResource("6_qet6h")
+
+[node name="CargadorDeNivel" type="Node2D" parent="." unique_id=1820268629]
+position = Vector2(337, 363)
+script = ExtResource("7_s5cmn")
+nivel = ExtResource("8_uwq2h")
+metadata/_custom_type_script = "uid://bh3lxufik2p65"

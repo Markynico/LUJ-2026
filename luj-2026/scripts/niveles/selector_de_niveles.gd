@@ -8,7 +8,7 @@ signal nivel_elegido(tipo : TipoDeSala.Tipo)
 ##escena de area que representa cada salida
 @export var escena_salida : PackedScene = preload("uid://csalida0000a1")
 ##minimo de divisores intermedios que puede tener el nivel
-@export_range(0, 20, 1) var divisores_minimos : int = 2
+@export_range(0, 20, 1) var divisores_minimos : int = 0
 ##maximo de divisores intermedios que puede tener el nivel
 @export_range(0, 20, 1) var divisores_maximos : int = 5
 ##tipos de sala que pueden aparecer como salida
@@ -17,8 +17,6 @@ signal nivel_elegido(tipo : TipoDeSala.Tipo)
 	TipoDeSala.Tipo.TIENDA,
 	TipoDeSala.Tipo.LOOT,
 ]
-##niveles que se pueden elegir como destino
-@export var niveles_disponibles : Array[NivelData] = []
 ##alto del area de cada salida
 @export var alto_salida : float = 200.0
 ##probabilidad de que aparezca una tienda entre las salidas, nunca mas de una
