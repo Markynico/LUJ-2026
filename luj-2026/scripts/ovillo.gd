@@ -13,10 +13,12 @@ extends StaticBody2D
 @export var numero_impacto : NumeroImpacto
 
 signal ovillo_desactivado(ovillo: Ovillo)
+signal rebobinar_bola(bola : BolaDePelos)
 
 @export var shader_titilar : ShaderMaterial
 var tween : Tween
 var activado : bool = true
+var bola_que_impacto : BolaDePelos = null
 
 var multiplicador : int = 1 #para ovillo_catnip
 
@@ -36,15 +38,16 @@ func _ready() -> void:
 	if GameManager.instancia_actual:
 		GameManager.instancia_actual.registrar_ovillo(self)
 
-func recibir_impacto() -> void: # Se llama desde la bola de pelos al impactar
+func recibir_impacto(bola_pelos : BolaDePelos = null) -> void: # Se llama desde la bola de pelos al impactar
 	if not activado:
 		return
+	bola_que_impacto = bola_pelos
 	desactivar_ovillo()
 	numero_impacto.iniciar_numero_impacto(obtener_puntaje()) #le cambie monedas x puntaje
 	for efecto in tipo_ovillo.efectos_al_recibir_impacto:
 		efecto.al_recibir_impacto(self)
-	
-	
+
+
 #forzar github
 	#numero_impacto.iniciar_numero_impacto(tipo_ovillo.cant_monedas) #holi aca poner puntaje en vez de monedas
 	#for efecto in tipo_ovillo.efectos_al_recibir_impacto:
