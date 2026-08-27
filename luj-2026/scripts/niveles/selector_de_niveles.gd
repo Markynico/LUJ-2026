@@ -41,7 +41,14 @@ var salas_desde_loot : int = 0
 func _ready() -> void:
 	if cargador:
 		cargador.nivel_construido.connect(preparar_salidas)
+	if GameManager.instancia_actual:
+		GameManager.instancia_actual.lanzar_gato.connect(mostrar_salidas)
 	preparar_salidas.call_deferred()
+
+
+func mostrar_salidas() -> void:
+	for i in salidas.size():
+		salidas[i].aparecer(i * 0.1)
 
 
 func preparar_salidas() -> void:

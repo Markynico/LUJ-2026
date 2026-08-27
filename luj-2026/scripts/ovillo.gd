@@ -5,7 +5,6 @@ extends StaticBody2D
 @export var tipo_ovillo : OvilloBase
 
 @export_group("NODOS")
-@export var audio : AudioStreamPlayer
 @export var forma_colision : CollisionShape2D
 @export var sprite_normal : Sprite2D #el sprite normal es el q va a contener el shader de titilar antes de explotar
 @export var sprite_desactivado : Sprite2D
@@ -23,8 +22,6 @@ func _ready() -> void:
 	if sprite_desactivado:
 		sprite_desactivado.hide()
 	if tipo_ovillo:
-		if audio and tipo_ovillo.audio:
-			audio.stream = tipo_ovillo.audio
 		if sprite_normal and tipo_ovillo.sprite:
 			sprite_normal.texture = tipo_ovillo.sprite
 		if pergamino_info:
@@ -61,9 +58,9 @@ func desactivar_ovillo() -> void:
 		sprite_normal.hide()
 	if sprite_desactivado:
 		sprite_desactivado.show()
-	if audio and audio.stream:
-		audio.play()
-	
+	if tipo_ovillo:
+		AudioManager.reproducir_sfx_en(tipo_ovillo.efecto_al_romper, global_position)
+
 	ovillo_desactivado.emit(self)
 	
 	# Notificar a GameManager

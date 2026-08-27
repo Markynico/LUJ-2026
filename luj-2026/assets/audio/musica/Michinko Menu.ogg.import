@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c5ui73ucckhyw"
+path="res://.godot/imported/Michinko Menu.ogg-382689921eaccd5d3af992dba1803267.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/musica/Michinko Menu.ogg"
+dest_files=["res://.godot/imported/Michinko Menu.ogg-382689921eaccd5d3af992dba1803267.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=70.0
+beat_count=0
+bar_beats=4
