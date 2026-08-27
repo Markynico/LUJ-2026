@@ -9,7 +9,12 @@ extends RigidBody2D
 @export_group("NODOS")
 @export var sprite_bola: Sprite2D
 @export var estela_movimiento : EstelaMovimiento
-@export var audio : AudioStreamPlayer
+
+@export_group("SONIDO")
+##cuanto sube el pitch del rebote por cada rebote acumulado
+@export var incremento_pitch : float = 0.05
+##tope del pitch extra acumulado por rebotes
+@export var pitch_extra_maximo : float = 1.0
 
 
 var fue_duplicada : bool = false #probando, seguro lo saco de aca
@@ -50,9 +55,11 @@ func separar_del_contacto(objeto : Node2D) -> void:
 func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, local_shape_index: int) -> void:
 	if body is BolaDePelos: #evito rebote con otras bolas de pelos
 		return
+	if not body is Ovillo:
+		contador_rebotes = 0
 	for efecto in tipo_pelotita.efectos:
 		efecto.impactar_con_objeto(self, body)
-		sonido_rebote()
+	sonido_rebote()
 
 
 func duplicar_pelotita():
@@ -64,10 +71,9 @@ func duplicar_pelotita():
 	fue_duplicada = true
 
 func sonido_rebote():
-	#TODO aca agregaria un chekeo para subirle el pitch scale
-	#algo tipo global.impactos_acumulados
-	#y si acumula + 2 + 3 + 4 impactos le meto + pitch scale y suena como queriamos
-	audio.play()
+	var pitch_extra : float = minf(contador_rebotes * incremento_pitch, pitch_extra_maximo)
+	contador_rebotes += 1
+	AudioManager.reproducir_sfx_en(EfectoDeSonido.Tipo.REBOTE, global_position, pitch_extra)
 
 
 #eliminar la bola de pelos cuando sale de la pantalla

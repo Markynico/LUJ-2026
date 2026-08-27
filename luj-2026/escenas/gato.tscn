@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cbapxh718cgxk" path="res://assets/sprites_gato/gato_bola.png" id="3_ewiyr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dklp6"]
-radius = 50.0
+radius = 33.01515
 
 [node name="Gato" type="RigidBody2D" unique_id=69399080 node_paths=PackedStringArray("sprite", "disparador_pelotitas", "colision")]
 collision_layer = 8
@@ -21,7 +21,7 @@ colision = NodePath("CollisionShape2D")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=36343804]
 texture_filter = 2
 position = Vector2(3, 2)
-scale = Vector2(0.09, 0.09)
+scale = Vector2(0.065, 0.065)
 texture = ExtResource("3_ewiyr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1688846017]

@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://c7ogyqxnq7236" path="res://scripts/pelotitas_custom/pelotita_base.gd" id="3_7sm33"]
 [ext_resource type="Script" uid="uid://c31lbqa2grch4" path="res://scripts/pelotitas_custom/efectos_pelotita.gd" id="3_mfh0k"]
 [ext_resource type="Script" uid="uid://5i4oxxen13xa" path="res://scripts/pelotitas_custom/efecto_rebote_normal.gd" id="4_mfh0k"]
-[ext_resource type="AudioStream" uid="uid://2jvby7clemka" path="res://assets/audio/sfx/romper_pelotita.wav" id="4_rguhl"]
 [ext_resource type="PackedScene" uid="uid://dmexovyecfyo4" path="res://escenas/componentes/estela_movimiento.tscn" id="4_tra1g"]
 [ext_resource type="Texture2D" uid="uid://y01cjx6nscow" path="res://iconos_custom/heart.svg" id="5_sdgal"]
 [ext_resource type="PackedScene" uid="uid://dymyh3ifxvug3" path="res://escenas/componentes/pergamino_info.tscn" id="9_sdgal"]
@@ -31,9 +30,9 @@ efectos = Array[ExtResource("3_mfh0k")]([SubResource("Resource_0ct46")])
 metadata/_custom_type_script = "uid://c7ogyqxnq7236"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_37ege"]
-radius = 13.0
+radius = 11.0
 
-[node name="BolaDePelos" type="RigidBody2D" unique_id=660631560 node_paths=PackedStringArray("sprite_bola", "estela_movimiento", "audio")]
+[node name="BolaDePelos" type="RigidBody2D" unique_id=660631560 node_paths=PackedStringArray("sprite_bola", "estela_movimiento")]
 z_index = 1
 collision_layer = 4
 collision_mask = 19
@@ -47,7 +46,6 @@ script = ExtResource("1_q2vq6")
 tipo_pelotita = SubResource("Resource_avp8o")
 sprite_bola = NodePath("SpriteBola")
 estela_movimiento = NodePath("EstelaMovimiento")
-audio = NodePath("AudioRebote")
 
 [node name="SpriteBola" type="Sprite2D" parent="." unique_id=1381481664]
 unique_name_in_owner = true
@@ -57,11 +55,6 @@ texture = ExtResource("2_unop5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1988233965]
 shape = SubResource("CircleShape2D_37ege")
-
-[node name="AudioRebote" type="AudioStreamPlayer" parent="." unique_id=787173903]
-unique_name_in_owner = true
-stream = ExtResource("4_rguhl")
-volume_db = -0.5
 
 [node name="EstelaMovimiento" parent="." unique_id=817457491 node_paths=PackedStringArray("body") instance=ExtResource("4_tra1g")]
 width = 13.0
