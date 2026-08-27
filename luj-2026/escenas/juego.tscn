@@ -40,7 +40,7 @@ estructura = NodePath("../EstructuraDeNivel")
 script = ExtResource("6_selec")
 cargador = NodePath("../CargadorDeNivel")
 divisores_minimos = 1
-divisores_maximos = 4
+divisores_maximos = 3
 alto_salida = 100.0
 
 [node name="ItemReliquia" parent="." unique_id=837780463 instance=ExtResource("7_n5myf")]

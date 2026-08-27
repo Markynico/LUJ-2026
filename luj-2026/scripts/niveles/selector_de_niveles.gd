@@ -1,4 +1,4 @@
-class_name SelectorDeNiveles
+﻿class_name SelectorDeNiveles
 extends Node2D
 
 signal nivel_elegido(tipo : TipoDeSala.Tipo)
@@ -17,19 +17,38 @@ signal nivel_elegido(tipo : TipoDeSala.Tipo)
 	TipoDeSala.Tipo.TIENDA,
 	TipoDeSala.Tipo.LOOT,
 ]
-##alto del area de cada salida
-@export var alto_salida : float = 200.0
+@export_group("Chances de sala")
+##peso de las salas normales al sortear cada salida
+@export_range(0.0, 1.0, 0.05) var chance_normal : float = 1.0
+##peso de las salas de loot al sortear cada salida
+@export_range(0.0, 1.0, 0.05) var chance_loot : float = 0.25
 ##probabilidad de que aparezca una tienda entre las salidas, nunca mas de una
 @export_range(0.0, 1.0, 0.05) var chance_tienda : float = 0.25
+##salas minimas que tienen que pasar entre una tienda y la siguiente
+@export_range(0, 20, 1) var salas_entre_tiendas : int = 3
+##salas minimas que tienen que pasar entre una sala de loot y la siguiente
+@export_range(0, 20, 1) var salas_entre_loots : int = 3
+@export_group("")
+##alto del area de cada salida
+@export var alto_salida : float = 200.0
 
 var salidas : Array[SalidaDeNivel] = []
 var eleccion_hecha : bool = false
+var salas_desde_tienda : int = 0
+var salas_desde_loot : int = 0
 
 
 func _ready() -> void:
 	if cargador:
 		cargador.nivel_construido.connect(preparar_salidas)
+	if GameManager.instancia_actual:
+		GameManager.instancia_actual.lanzar_gato.connect(mostrar_salidas)
 	preparar_salidas.call_deferred()
+
+
+func mostrar_salidas() -> void:
+	for i in salidas.size():
+		salidas[i].aparecer(i * 0.1)
 
 
 func preparar_salidas() -> void:
@@ -42,17 +61,19 @@ func preparar_salidas() -> void:
 
 
 func colocar_salidas() -> void:
-	for salida in salidas:
-		salida.queue_free()
-	salidas.clear()
 	var divisiones : DivisionesPachinko = obtener_divisiones()
 	var ancho : float
 	var salida : SalidaDeNivel
+	var centros : Array[float]
+	var tipos : Array[TipoDeSala.Tipo]
+	for vieja in salidas:
+		vieja.queue_free()
+	salidas.clear()
 	if not divisiones or not escena_salida or tipos_disponibles.is_empty():
 		return
 	ancho = divisiones.ancho_de_hueco()
-	var centros : Array[float] = divisiones.obtener_centros_de_huecos()
-	var tipos : Array[TipoDeSala.Tipo] = elegir_tipos(centros.size())
+	centros = divisiones.obtener_centros_de_huecos()
+	tipos = elegir_tipos(centros.size())
 	for i in centros.size():
 		salida = escena_salida.instantiate()
 		salida.tipo = tipos[i]
@@ -64,13 +85,18 @@ func colocar_salidas() -> void:
 
 
 func elegir_tipos(cantidad : int) -> Array[TipoDeSala.Tipo]:
-	var sin_tienda : Array[TipoDeSala.Tipo] = tipos_disponibles.filter(func(tipo): return tipo != TipoDeSala.Tipo.TIENDA)
 	var tipos : Array[TipoDeSala.Tipo] = []
-	if sin_tienda.is_empty():
-		sin_tienda = tipos_disponibles
+	var peso_normal : float = chance_normal if tipos_disponibles.has(TipoDeSala.Tipo.NORMAL) else 0.0
+	var peso_loot : float = chance_loot if tipos_disponibles.has(TipoDeSala.Tipo.LOOT) and salas_desde_loot >= salas_entre_loots else 0.0
+	var total : float = peso_normal + peso_loot
+	var azar : float
 	for i in cantidad:
-		tipos.append(sin_tienda.pick_random())
-	if tipos_disponibles.has(TipoDeSala.Tipo.TIENDA) and cantidad > 0 and randf() < chance_tienda:
+		if total <= 0.0:
+			tipos.append(TipoDeSala.Tipo.NORMAL)
+			continue
+		azar = randf() * total
+		tipos.append(TipoDeSala.Tipo.NORMAL if azar < peso_normal else TipoDeSala.Tipo.LOOT)
+	if tipos_disponibles.has(TipoDeSala.Tipo.TIENDA) and salas_desde_tienda >= salas_entre_tiendas and cantidad > 0 and randf() < chance_tienda:
 		tipos[randi_range(0, cantidad - 1)] = TipoDeSala.Tipo.TIENDA
 	return tipos
 
@@ -83,4 +109,10 @@ func al_elegir_salida(salida : SalidaDeNivel) -> void:
 	if eleccion_hecha:
 		return
 	eleccion_hecha = true
+	salas_desde_tienda += 1
+	salas_desde_loot += 1
+	if salida.tipo == TipoDeSala.Tipo.TIENDA:
+		salas_desde_tienda = 0
+	elif salida.tipo == TipoDeSala.Tipo.LOOT:
+		salas_desde_loot = 0
 	nivel_elegido.emit(salida.tipo)

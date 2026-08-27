@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://c30ry4xehty4"]
+
+[ext_resource type="Script" uid="uid://bower76ju6eql" path="res://scripts/menu.gd" id="1_menu"]
+[ext_resource type="Texture2D" uid="uid://c300lurukq11v" path="res://assets/pantalla_de_juegosigninterrogacion.jpeg" id="1_d7r87"]
+[ext_resource type="Texture2D" uid="uid://68c3aqcbe25w" path="res://assets/estandarte inventario.png" id="2_2owot"]
+[ext_resource type="Shader" uid="uid://c3frowpgg1xd7" path="res://scripts/shaders/bandera_ondeante.gdshader" id="3_shader"]
+[ext_resource type="Script" uid="uid://drt7rt8bpb8wp" path="res://scripts/redibujar_en_editor.gd" id="4_redib"]
+[ext_resource type="FontFile" uid="uid://daev32fyu3g8a" path="res://assets/fuentes/CARDINAL-ALTERNATE.TTF" id="5_5t3kx"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ond1"]
+frequency = 0.008
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ond1"]
+noise = SubResource("FastNoiseLite_ond1")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ond1"]
+shader = ExtResource("3_shader")
+shader_parameter/intensidad = 0.00400000019
+shader_parameter/ondulacion_vertical = 0.002000000095
+shader_parameter/escala_tiempo = Vector2(0.1, 0.1)
+shader_parameter/escala_uv = Vector2(0.3, 0.5)
+shader_parameter/textura_ruido = SubResource("NoiseTexture2D_ond1")
+
+[sub_resource type="Theme" id="Theme_jhh3k"]
+Label/fonts/font = ExtResource("5_5t3kx")
+
+[node name="Menu" type="CanvasLayer" unique_id=1421157520]
+script = ExtResource("1_menu")
+
+[node name="Control" type="Control" parent="." unique_id=948642556]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=660928265]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_d7r87")
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1829824927]
+material = SubResource("ShaderMaterial_ond1")
+offset_left = 584.0
+offset_top = 261.0
+offset_right = 1235.0
+offset_bottom = 912.0
+texture_normal = ExtResource("2_2owot")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("4_redib")
+
+[node name="Label" type="Label" parent="TextureButton" unique_id=1587952362]
+use_parent_material = true
+layout_mode = 0
+offset_left = 211.0
+offset_top = 88.0
+offset_right = 449.0
+offset_bottom = 173.0
+theme = SubResource("Theme_jhh3k")
+theme_override_font_sizes/font_size = 58
+text = "Inventario"
+horizontal_alignment = 1
+vertical_alignment = 1

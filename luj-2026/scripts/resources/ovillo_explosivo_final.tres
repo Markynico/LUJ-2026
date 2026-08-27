@@ -1,6 +1,5 @@
 [gd_resource type="Resource" script_class="OvilloBase" format=3 uid="uid://d3ks2dut6iacd"]
 
-[ext_resource type="AudioStream" uid="uid://2jvby7clemka" path="res://assets/audio/sfx/romper_pelotita.wav" id="1_uj1e1"]
 [ext_resource type="Script" uid="uid://fd1odbauo3fr" path="res://scripts/ovillos_custom/efecto_ovillo_base.gd" id="2_hlo4y"]
 [ext_resource type="Script" uid="uid://cv3xugh8gva3y" path="res://scripts/ovillos_custom/efecto_ovillo_explosion.gd" id="3_50tys"]
 [ext_resource type="Script" uid="uid://bbkyk2anhunsd" path="res://scripts/ovillos_custom/ovillo_base.gd" id="4_qu7k5"]
@@ -14,7 +13,6 @@ metadata/_custom_type_script = "uid://cv3xugh8gva3y"
 script = ExtResource("4_qu7k5")
 nombre = "OVILLO EXPLOSIVO"
 sprite = ExtResource("5_db3ri")
-audio = ExtResource("1_uj1e1")
 puntaje = 10
 valor_spawn = 15.0
 efectos_al_recibir_impacto = Array[ExtResource("2_hlo4y")]([SubResource("Resource_pv7le")])

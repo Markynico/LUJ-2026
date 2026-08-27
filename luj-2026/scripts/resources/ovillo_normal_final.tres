@@ -1,6 +1,5 @@
 [gd_resource type="Resource" script_class="OvilloBase" format=3 uid="uid://7s3l7jelg8oy"]
 
-[ext_resource type="AudioStream" uid="uid://2jvby7clemka" path="res://assets/audio/sfx/romper_pelotita.wav" id="1_w32mi"]
 [ext_resource type="Script" uid="uid://fd1odbauo3fr" path="res://scripts/ovillos_custom/efecto_ovillo_base.gd" id="2_2l701"]
 [ext_resource type="Script" uid="uid://bbkyk2anhunsd" path="res://scripts/ovillos_custom/ovillo_base.gd" id="3_35iyd"]
 [ext_resource type="Texture2D" uid="uid://bxj6ryp76c7eg" path="res://assets/sprite_ovillos/Ovillo blanco.png" id="4_uiaxs"]
@@ -9,7 +8,6 @@
 script = ExtResource("3_35iyd")
 nombre = "OVILLO NORMAL"
 sprite = ExtResource("4_uiaxs")
-audio = ExtResource("1_w32mi")
 valor_spawn = 50.0
 color_numeros_impacto = Color(0.92099476, 0.9209946, 0.9209946, 1)
 metadata/_custom_type_script = "uid://bbkyk2anhunsd"

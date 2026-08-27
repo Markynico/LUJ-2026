@@ -15,12 +15,24 @@ signal elegida(salida : SalidaDeNivel)
 		tamaño = valor.max(Vector2.ONE)
 		actualizar_forma()
 @export var colision : CollisionShape2D
+##segundos que dura el fade in al aparecer
+@export var duracion_fade : float = 0.4
 
 
 func _ready() -> void:
 	actualizar_forma()
 	if not body_entered.is_connected(_on_body_entered):
 		body_entered.connect(_on_body_entered)
+	if not Engine.is_editor_hint():
+		modulate.a = 0.0
+		monitoring = false
+
+
+func aparecer(retraso : float = 0.0) -> void:
+	var tween : Tween = create_tween()
+	tween.tween_interval(retraso)
+	tween.tween_callback(func(): monitoring = true)
+	tween.tween_property(self, "modulate:a", 1.0, duracion_fade)
 
 func actualizar_forma() -> void:
 	if not colision:
