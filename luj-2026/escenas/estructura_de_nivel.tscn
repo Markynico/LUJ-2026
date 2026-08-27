@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cexjr0e4owki"]
 
+[ext_resource type="Script" uid="uid://c2k7k2sfqhbgw" path="res://scripts/niveles/estructura_de_nivel.gd" id="0_estru"]
 [ext_resource type="Texture2D" uid="uid://c86pbvyhgv3bj" path="res://assets/placeholders/placeholder_estructura_ladrillos.png" id="1_ktx7k"]
 [ext_resource type="Theme" uid="uid://cwsrathd8xljh" path="res://themes/theme_label_numeritos.tres" id="2_lxg71"]
 [ext_resource type="PackedScene" uid="uid://citemreliq0a1" path="res://escenas/componentes/item_reliquia.tscn" id="3_ap1nk"]
@@ -25,7 +26,11 @@ viewport_path = NodePath("PanelInfoIzquierdo/SubViewportIzq")
 [sub_resource type="ViewportTexture" id="ViewportTexture_bwf86"]
 viewport_path = NodePath("PanelInfoDerecho/SubViewportDer")
 
-[node name="EstructuraDeNivel" type="Node2D" unique_id=1258707596]
+[node name="EstructuraDeNivel" type="Node2D" unique_id=1258707596 node_paths=PackedStringArray("pared_izquierda", "pared_derecha", "piso_gato")]
+script = ExtResource("0_estru")
+pared_izquierda = NodePath("ParedIzquierda")
+pared_derecha = NodePath("ParedDerecha")
+piso_gato = NodePath("PisoGato")
 
 [node name="PisoGato" type="StaticBody2D" parent="." unique_id=1017529080]
 position = Vector2(3, 217)

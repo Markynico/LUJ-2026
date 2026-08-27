@@ -54,7 +54,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if _fue_lanzado and not _finalizo_ronda:
 		# Si el gato cae por debajo de la pantalla o divisiones
-		if global_position.y > 750.0:
+		if global_position.y > get_viewport_rect().size.y + 100.0:
 			_finalizo_ronda = true
 			if game_manager:
 				game_manager.finalizar_nivel()

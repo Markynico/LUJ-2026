@@ -3,13 +3,16 @@ extends Node2D
 
 @export var game_manager : GameManager
 @export var gato : Gato
+##cargador unico donde se construyen los niveles
+@export var cargador : CargadorDeNivel
+##selector de salidas hacia la proxima sala
+@export var selector : SelectorDeNiveles
 ##capa donde vive el HUD, se oculta fuera de los niveles
 @export var capa_interfaz : CanvasLayer
 ##tipo de sala con la que arranca la partida
 @export var sala_inicial : TipoDeSala.Tipo = TipoDeSala.Tipo.NORMAL
-##ruta de la escena de sala para cada tipo
+##ruta de la escena de sala para cada tipo, los niveles normales no usan escena
 @export var escenas_por_sala : Dictionary[TipoDeSala.Tipo, String] = {
-	TipoDeSala.Tipo.NORMAL: "uid://8l4ogj2t5ql7",
 	TipoDeSala.Tipo.TIENDA: "uid://dfm5y8q2s1txc",
 	TipoDeSala.Tipo.LOOT: "uid://csalaloot000a1",
 }
@@ -27,31 +30,36 @@ func _ready() -> void:
 
 
 func cambiar_sala(tipo : TipoDeSala.Tipo) -> void:
+	var es_nivel : bool = tipo == TipoDeSala.Tipo.NORMAL
 	var ruta : String = escenas_por_sala.get(tipo, "")
-	if ruta.is_empty():
+	if not es_nivel and ruta.is_empty():
 		return
 	if sala_actual:
 		sala_actual.queue_free()
-	sala_actual = load(ruta).instantiate()
-	if sala_actual is Control:
-		capa_salas.add_child(sala_actual, true)
-	else:
-		add_child(sala_actual, true)
-	if sala_actual is Tienda:
-		sala_actual.continuar_pedido.connect(cambiar_sala.bind(TipoDeSala.Tipo.NORMAL))
-	var es_nivel : bool = tipo == TipoDeSala.Tipo.NORMAL
+		sala_actual = null
+	if not es_nivel:
+		sala_actual = load(ruta).instantiate()
+		if sala_actual is Control:
+			capa_salas.add_child(sala_actual, true)
+		else:
+			add_child(sala_actual, true)
+		if sala_actual is Tienda:
+			sala_actual.continuar_pedido.connect(cambiar_sala.bind(TipoDeSala.Tipo.NORMAL))
+	if cargador:
+		cargador.visible = es_nivel
+	if selector:
+		selector.visible = es_nivel
 	if capa_interfaz:
 		capa_interfaz.visible = es_nivel
 	gato.visible = es_nivel
 	if es_nivel:
 		empezar_nivel()
+	elif cargador:
+		cargador.limpiar_formas()
 
 
 func empezar_nivel() -> void:
-	game_manager.conectar_sala(buscar_en_sala("CargadorDeNivel"), buscar_en_sala("SelectorDeNiveles"))
+	cargador.construir_nivel_elegido()
+	game_manager.conectar_sala(cargador, selector)
 	gato.reiniciar()
 	game_manager.reiniciar_nivel()
-
-
-func buscar_en_sala(nombre : String) -> Node:
-	return sala_actual.find_child(nombre, true, false)
