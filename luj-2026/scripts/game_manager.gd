@@ -110,6 +110,9 @@ func registrar_ovillo(ovillo : Ovillo) -> void:
 		puntos_totales += puntaje_de(ovillo)
 		if not ovillo.ovillo_desactivado.is_connected(al_desactivar_ovillo):
 			ovillo.ovillo_desactivado.connect(al_desactivar_ovillo)
+		
+		if not ovillo.rebobinar_bola.is_connected(al_rebobinar_rebote):
+			ovillo.rebobinar_bola.connect(al_rebobinar_rebote)
 		recalcular_meta()
 
 func registrar_ovillo_destruido(ovillo : Ovillo) -> void:
@@ -125,7 +128,7 @@ func al_desactivar_ovillo(ovillo : Ovillo) -> void:
 	pass
 
 func puntaje_de(ovillo : Ovillo) -> int:
-	return ovillo.tipo_ovillo.puntaje if ovillo.tipo_ovillo else 1
+	return ovillo.obtener_puntaje() if ovillo.tipo_ovillo else 1
 
 func recalcular_meta() -> void:
 	if cargador_nivel and cargador_nivel.nivel and "porcentaje_ovillos_requerido" in cargador_nivel.nivel:
@@ -224,6 +227,10 @@ func finalizar_nivel(tipo_sala : int = -1) -> void:
 			get_tree().create_timer(2.0).timeout.connect(func():
 				reiniciar_nivel_actual()
 			)
+
+func al_rebobinar_rebote ()-> void:
+	bolas_restantes += 1
+
 
 func reiniciar_nivel_actual() -> void:
 	if sala_pedida.get_connections().is_empty():

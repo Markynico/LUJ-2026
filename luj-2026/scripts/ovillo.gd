@@ -12,12 +12,14 @@ extends StaticBody2D
 @export var numero_impacto : NumeroImpacto
 
 signal ovillo_desactivado(ovillo: Ovillo)
-signal rebobinar_bola(bola : BolaDePelos)
+signal rebobinar_bola(bola_de_pelos : BolaDePelos)
 
 @export var shader_titilar : ShaderMaterial
 var tween : Tween
 var activado : bool = true
 var bola_que_impacto : BolaDePelos = null
+
+var multiplicador : int = 1 #para ovillo_catnip
 
 func _ready() -> void:
 	add_to_group("ovillos")
@@ -38,7 +40,7 @@ func recibir_impacto(bola_pelos : BolaDePelos = null) -> void: # Se llama desde 
 		return
 	bola_que_impacto = bola_pelos
 	desactivar_ovillo()
-	numero_impacto.iniciar_numero_impacto(tipo_ovillo.puntaje) #le cambie monedas x puntaje
+	numero_impacto.iniciar_numero_impacto(obtener_puntaje()) #le cambie monedas x puntaje
 	for efecto in tipo_ovillo.efectos_al_recibir_impacto:
 		efecto.al_recibir_impacto(self)
 
@@ -93,6 +95,29 @@ func explotar(nodo_explosion : Explosion): #lo llamo en el EfectoExplosion
 	sprite_desactivado.show()
 	nodo_explosion.activar_explosion()
 	tween.kill()
+
+func duplicar_recompensas() -> void: #la llama efecto_ovillo_catnip
+	if !activado:
+		return
+	print("MULTIPLICÓ")
+	multiplicador = 2
+	
+
+func fin_duplicar() -> void:
+	if !activado:
+		return
+	multiplicador = 1
+
+func obtener_puntaje () -> int:
+	if not tipo_ovillo:
+		return 0
+	#print(name, " puntaje: ", tipo_ovillo.puntaje, " x ", multiplicador)
+	return tipo_ovillo.puntaje * multiplicador
+
+func obtener_monedas () -> int:
+	if not tipo_ovillo:
+		return 0
+	return tipo_ovillo.cant_monedas * multiplicador
 
 func congelar() -> void:
 	pass

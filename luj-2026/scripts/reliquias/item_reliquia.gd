@@ -45,7 +45,7 @@ func actualizar_icono() -> void:
 		sprite.scale = Vector2.ONE * (tamaño_icono / lado)
 
 
-func recibir_impacto() -> void:
+func recibir_impacto(bola : BolaDePelos = null) -> void:
 	if Engine.is_editor_hint():
 		return
 	golpes_recibidos += 1
