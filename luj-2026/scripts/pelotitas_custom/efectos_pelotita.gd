@@ -20,5 +20,5 @@ func rebote_simple(pelotita : BolaDePelos ,objeto_a_impactar : Node2D):
 	if objeto_a_impactar is Ovillo:
 		fuerza += objeto_a_impactar.tipo_ovillo.rebote_extra #para q se sume el rebote de la pelotita + el rebote del ovillo (si es q corresponde)
 	if objeto_a_impactar.has_method("recibir_impacto"):
-		objeto_a_impactar.recibir_impacto()
+		objeto_a_impactar.recibir_impacto(pelotita)
 	pelotita.apply_central_impulse(normal * fuerza)
