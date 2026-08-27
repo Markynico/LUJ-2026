@@ -30,6 +30,7 @@ var _finalizo_ronda : bool = false
 var posicion_inicial : Vector2
 
 func _ready() -> void:
+	sprite.texture = imagen_bolita
 	#sprite.texture = imagen_normal #deje a proposito directamente el sprite del gato bolita hasta q tengamos las otras
 	pos_superior = global_position
 	posicion_inicial = global_position
