@@ -12,6 +12,10 @@ enum Tipo {
 	ESTANDARTE_CERRAR,
 	COMPRAR,
 	WHOOSH_CAMARA,
+	MECHA,
+	EXPLOSION,
+	REBOBINAR,
+	CATNIP,
 }
 
 ##tipo de efecto con el que se pide desde el codigo

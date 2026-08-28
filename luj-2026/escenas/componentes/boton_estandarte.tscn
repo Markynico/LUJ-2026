@@ -23,7 +23,7 @@ shader_parameter/escala_uv = Vector2(0.3, 0.5)
 shader_parameter/textura_ruido = SubResource("NoiseTexture2D_tela")
 
 [node name="BotonEstandarte" type="Button" unique_id=1586238991 node_paths=PackedStringArray("fija", "tela", "label")]
-offset_right = 600.0
+offset_right = 380.0
 offset_bottom = 768.0
 scale = Vector2(0.5, 0.5)
 flat = true
@@ -39,13 +39,10 @@ label = NodePath("Recorte/Tela/Label")
 
 [node name="Recorte" type="Control" parent="." unique_id=476258369]
 clip_contents = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+offset_left = -110.0
 offset_top = 81.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 490.0
+offset_bottom = 768.0
 mouse_filter = 2
 
 [node name="Tela" type="TextureRect" parent="Recorte" unique_id=1992817871]
@@ -71,11 +68,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Fija" type="TextureRect" parent="." unique_id=226436933]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -110.0
+offset_right = 490.0
+offset_bottom = 768.0
 mouse_filter = 2
 texture = ExtResource("2_arriba")

@@ -37,34 +37,34 @@ offset_bottom = 40.0
 texture = ExtResource("1_d7r87")
 
 [node name="BotonEstandarteColeccion" parent="." unique_id=2120989071 instance=ExtResource("3_2owot")]
-offset_left = 266.0
+offset_left = 321.0
 offset_top = 283.0
-offset_right = 866.0
+offset_right = 701.0
 offset_bottom = 1051.0
 texto = "Colección"
 
 [node name="BotonEstandarteJugar" parent="." unique_id=1586238991 instance=ExtResource("3_2owot")]
-offset_left = 21.0
+offset_left = 76.0
 offset_top = 281.0
-offset_right = 621.0
+offset_right = 456.0
 offset_bottom = 1049.0
 textura_fija = ExtResource("4_4gv4q")
 textura_tela = ExtResource("5_8jdmi")
 texto = "Jugar"
 
 [node name="BotonEstandarteOpciones" parent="." unique_id=1606040631 instance=ExtResource("3_2owot")]
-offset_left = 1413.0
+offset_left = 1468.0
 offset_top = 277.0
-offset_right = 2013.0
+offset_right = 1848.0
 offset_bottom = 1045.0
 textura_fija = ExtResource("6_i5l0x")
 textura_tela = ExtResource("7_6m0pt")
 texto = "Opciones"
 
 [node name="BotonEstandarteSalir" parent="." unique_id=1175541432 instance=ExtResource("3_2owot")]
-offset_left = 1646.0
+offset_left = 1701.0
 offset_top = 279.0
-offset_right = 2246.0
+offset_right = 2081.0
 offset_bottom = 1047.0
 textura_fija = ExtResource("8_builu")
 textura_tela = ExtResource("9_20bhr")

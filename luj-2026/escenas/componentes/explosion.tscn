@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bn7p02dxd5v1s" path="res://assets/placeholders/Free Explosion Animations 2/1.png" id="3_w8m11"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_37ege"]
-radius = 65.06919
+radius = 98.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nv2mc"]
 atlas = ExtResource("3_w8m11")
