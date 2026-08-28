@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://c300lurukq11v" path="res://assets/pantalla_de_juegosigninterrogacion.jpeg" id="1_d7r87"]
 [ext_resource type="Script" uid="uid://bower76ju6eql" path="res://scripts/menu.gd" id="1_menu"]
 [ext_resource type="PackedScene" uid="uid://cwcb53v5re82r" path="res://escenas/componentes/boton_estandarte.tscn" id="3_2owot"]
-[ext_resource type="Texture2D" uid="uid://bhi3nf0jngdpb" path="res://assets/tapir.jpg" id="3_i5l0x"]
 [ext_resource type="Texture2D" uid="uid://d3bwndvu3r60t" path="res://assets/estandartes/estandartejugararriba.png" id="4_4gv4q"]
 [ext_resource type="Texture2D" uid="uid://dp7b6ng71awkx" path="res://assets/estandartes/estandartejugarabajo.png" id="5_8jdmi"]
 [ext_resource type="Texture2D" uid="uid://b58mkku4omi7s" path="res://assets/estandartes/estandarteopcionesarriba.png" id="6_i5l0x"]
@@ -11,30 +10,28 @@
 [ext_resource type="Texture2D" uid="uid://bgwfassbyybmg" path="res://assets/estandartes/estandartesalirarriba.png" id="8_builu"]
 [ext_resource type="Texture2D" uid="uid://re7kh2u4s8ut" path="res://assets/estandartes/estandartesalirabajo.png" id="9_20bhr"]
 [ext_resource type="Texture2D" uid="uid://84aw1fbg7kwq" path="res://assets/Michinko Logo.png" id="11_6m0pt"]
+[ext_resource type="Texture2D" uid="uid://d0q0uitvrhqd7" path="res://assets/sprites_gato/Gato 1.png" id="11_i5l0x"]
+[ext_resource type="Script" uid="uid://ldkn2qu0rnkn" path="res://scripts/resources/datos_gato.gd" id="12_dgato"]
+[ext_resource type="Resource" uid="uid://c0y7jrcb8f0k" path="res://scripts/resources/gatos_michinko.tres" id="13_michi"]
 
-[node name="Menu" type="CanvasLayer" unique_id=1421157520]
+[node name="Menu" type="Node2D" unique_id=1421157520 node_paths=PackedStringArray("boton_jugar", "botones_menu", "camara", "foco_seleccion", "panel_info", "label_nombre", "label_descripcion", "boton_confirmar", "boton_volver")]
 script = ExtResource("1_menu")
+gatos = Array[ExtResource("12_dgato")]([ExtResource("13_michi")])
+zoom_seleccion = Vector2(3.5, 3.5)
+boton_jugar = NodePath("BotonEstandarteJugar")
+botones_menu = [NodePath("BotonEstandarteInventario"), NodePath("BotonEstandarteJugar"), NodePath("BotonEstandarteOpciones"), NodePath("BotonEstandarteSalir")]
+camara = NodePath("Camera2D")
+foco_seleccion = NodePath("FocoSeleccion")
+panel_info = NodePath("UISeleccion/PanelInfo")
+label_nombre = NodePath("UISeleccion/PanelInfo/Contenido/LabelNombre")
+label_descripcion = NodePath("UISeleccion/PanelInfo/Contenido/LabelDescripcion")
+boton_confirmar = NodePath("UISeleccion/PanelInfo/Contenido/Botones/BotonConfirmar")
+boton_volver = NodePath("UISeleccion/PanelInfo/Contenido/Botones/BotonVolver")
 
 [node name="Fondo" type="TextureRect" parent="." unique_id=660928265]
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_d7r87")
-
-[node name="TextureRect2" type="TextureRect" parent="." unique_id=1491152693]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -960.0
-offset_top = -540.0
-offset_right = 1600.0
-offset_bottom = 900.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("3_i5l0x")
 
 [node name="BotonEstandarteInventario" parent="." unique_id=2120989071 instance=ExtResource("3_2owot")]
 offset_left = 266.0
@@ -49,6 +46,7 @@ offset_right = 621.0
 offset_bottom = 1049.0
 textura_fija = ExtResource("4_4gv4q")
 textura_tela = ExtResource("5_8jdmi")
+texto = "Jugar"
 
 [node name="BotonEstandarteOpciones" parent="." unique_id=1606040631 instance=ExtResource("3_2owot")]
 offset_left = 1413.0
@@ -57,6 +55,7 @@ offset_right = 2013.0
 offset_bottom = 1045.0
 textura_fija = ExtResource("6_i5l0x")
 textura_tela = ExtResource("7_6m0pt")
+texto = "Opciones"
 
 [node name="BotonEstandarteSalir" parent="." unique_id=1175541432 instance=ExtResource("3_2owot")]
 offset_left = 1646.0
@@ -65,18 +64,64 @@ offset_right = 2246.0
 offset_bottom = 1047.0
 textura_fija = ExtResource("8_builu")
 textura_tela = ExtResource("9_20bhr")
+texto = "Salir"
 
 [node name="Logo" type="TextureRect" parent="." unique_id=641265280]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -316.0
-offset_top = -91.0
-offset_right = 684.0
-offset_bottom = 398.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 644.0
+offset_top = 449.0
+offset_right = 1644.0
+offset_bottom = 938.0
 scale = Vector2(0.695, 0.695)
 texture = ExtResource("11_6m0pt")
+
+[node name="GatoSprite" type="TextureRect" parent="." unique_id=1802822704]
+offset_left = 874.00006
+offset_top = 109.0
+offset_right = 1874.0
+offset_bottom = 1109.0
+scale = Vector2(0.195, 0.195)
+texture = ExtResource("11_i5l0x")
+
+[node name="FocoSeleccion" type="Marker2D" parent="." unique_id=159663655]
+position = Vector2(1118, 217)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1343517546]
+position = Vector2(960, 540)
+
+[node name="UISeleccion" type="CanvasLayer" parent="." unique_id=789863585]
+
+[node name="PanelInfo" type="PanelContainer" parent="UISeleccion" unique_id=268657886]
+offset_left = 980.0
+offset_top = 180.0
+offset_right = 1840.0
+offset_bottom = 900.0
+
+[node name="Contenido" type="VBoxContainer" parent="UISeleccion/PanelInfo" unique_id=1134529845]
+layout_mode = 2
+
+[node name="LabelNombre" type="Label" parent="UISeleccion/PanelInfo/Contenido" unique_id=1760905768]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "nombre"
+horizontal_alignment = 1
+
+[node name="LabelDescripcion" type="Label" parent="UISeleccion/PanelInfo/Contenido" unique_id=65272968]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 36
+text = "Descripcion"
+autowrap_mode = 2
+
+[node name="Botones" type="HBoxContainer" parent="UISeleccion/PanelInfo/Contenido" unique_id=661753733]
+layout_mode = 2
+alignment = 1
+
+[node name="BotonConfirmar" type="Button" parent="UISeleccion/PanelInfo/Contenido/Botones" unique_id=1808989309]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Confirmar"
+
+[node name="BotonVolver" type="Button" parent="UISeleccion/PanelInfo/Contenido/Botones" unique_id=1153163657]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Volver"
