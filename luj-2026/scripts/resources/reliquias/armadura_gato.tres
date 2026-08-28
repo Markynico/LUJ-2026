@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ReliquiaArmadura" format=3]
+
+[ext_resource type="Script" uid="uid://eyqrubc1hwg1" path="res://scripts/reliquias/reliquia_armadura.gd" id="1_rel"]
+[ext_resource type="Texture2D" uid="uid://jomecfaawdn4" path="res://assets/reliquias/armadura de gato.png" id="2_rel"]
+
+[resource]
+script = ExtResource("1_rel")
+nombre = "Armadura para gatos"
+descripcion = ""
+icono = ExtResource("2_rel")

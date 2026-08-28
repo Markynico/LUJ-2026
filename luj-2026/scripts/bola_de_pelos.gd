@@ -6,6 +6,9 @@ extends RigidBody2D
 @export_group("TIPO")
 @export var tipo_pelotita : PelotitaBase #TODO revisar si de verdad lo necesito aca o directamente hacer export vars aca en el nodo
 
+##diametro visual del sprite en pixeles, la textura se escala sola a este tamaño
+@export var diametro_sprite : float = 22.0
+
 @export_group("NODOS")
 @export var sprite_bola: Sprite2D
 @export var estela_movimiento : EstelaMovimiento
@@ -33,6 +36,8 @@ func _ready() -> void:
 		tree_exited.connect(GameManager.instancia_actual.registrar_salida_de_bola, CONNECT_DEFERRED)
 	estela_movimiento.gradient = tipo_pelotita.colores_estela
 	sprite_bola.texture = tipo_pelotita.textura
+	if sprite_bola.texture:
+		sprite_bola.scale = Vector2.ONE * (diametro_sprite / sprite_bola.texture.get_width())
 
 func normal_de_contacto(objeto : Node2D) -> Vector2:
 	var estado : PhysicsDirectBodyState2D = PhysicsServer2D.body_get_direct_state(get_rid())

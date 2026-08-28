@@ -46,10 +46,12 @@ func _ready() -> void:
 
 
 func acercar_camara() -> void:
+	AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.WHOOSH_CAMARA_RAPIDO)
 	mover_camara(gato.global_position + offset_zoom, zoom_disparo)
 
 
 func alejar_camara() -> void:
+	AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.WHOOSH_CAMARA_RAPIDO)
 	mover_camara(posicion_camara_inicial, zoom_camara_inicial)
 
 

@@ -16,11 +16,14 @@ var velocidad_congelada : Vector2
 var posicion_mouse : Vector2
 var bolitas_creadas : int = 0
 var escala_gravedad_bola : float = 1.0
+var fuerza_rebote_bola : float = 200.0
 
 
 func _ready() -> void:
 	var muestra : BolaDePelos = escena_pelotita_prueba.instantiate()
 	escala_gravedad_bola = muestra.gravity_scale
+	if muestra.tipo_pelotita and not muestra.tipo_pelotita.efectos.is_empty():
+		fuerza_rebote_bola = muestra.tipo_pelotita.efectos[0].fuerza_rebote
 	muestra.free()
 
 
@@ -41,14 +44,19 @@ func preparar_datos_disparo() -> DatosDisparo:
 	var datos : DatosDisparo = DatosDisparo.new()
 	datos.velocidad_inicial = (-velocidad_inicial).limit_length(velocidad_maxima)
 	datos.gravedad *= escala_gravedad_bola
+	datos.fuerza_rebote = fuerza_rebote_bola
 	ReliquiasManager.al_preparar_disparo(datos)
 	return datos
 
 
 func escupir_bola () -> void:
 		var instancia : BolaDePelos = escena_pelotita_prueba.instantiate()
+		var datos : DatosDisparo
+		var gravedad_default : float = ProjectSettings.get_setting("physics/2d/default_gravity")
 		velocidad_inicial = velocidad_congelada
+		datos = preparar_datos_disparo()
+		instancia.gravity_scale = datos.gravedad.y / gravedad_default
 		add_child(instancia)
 		#instancia.global_position = posicion_mouse
-		instancia.apply_impulse(preparar_datos_disparo().velocidad_inicial)
+		instancia.apply_impulse(datos.velocidad_inicial)
 		bola_escupida.emit()

@@ -85,6 +85,10 @@ func reactivar_ovillo() -> void:
 
 
 func explotar(nodo_explosion : Explosion): #lo llamo en el EfectoExplosion
+	if ReliquiasManager.explosion_instantanea:
+		AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.EXPLOSION)
+		nodo_explosion.activar_explosion()
+		return
 	var reproductor_mecha : AudioStreamPlayer = AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.MECHA)
 	sprite_normal.show() #lo muestro a proposito pq cuando lo desactivo se esconde, es solo visual
 	sprite_desactivado.hide()

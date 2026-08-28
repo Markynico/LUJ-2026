@@ -80,6 +80,7 @@ func calcular_puntos(datos : DatosDisparo) -> PackedVector2Array:
 	var movimiento : Vector2
 	var normal : Vector2
 	var cuerpo : Node
+	var fuerza_rebote : float
 	if gato and gato.listo_para_lanzar:
 		posicion = gato.global_position
 	if not detector:
@@ -106,7 +107,11 @@ func calcular_puntos(datos : DatosDisparo) -> PackedVector2Array:
 				break
 			rebotes_restantes -= 1
 			normal = detector.get_collision_normal(0)
-			velocidad = velocidad.slide(normal) * datos.factor_friccion + normal * datos.fuerza_rebote
+			fuerza_rebote = datos.fuerza_rebote
+			cuerpo = detector.get_collider(0)
+			if cuerpo is Ovillo and cuerpo.tipo_ovillo:
+				fuerza_rebote += cuerpo.tipo_ovillo.rebote_extra
+			velocidad = velocidad.slide(normal) * datos.factor_friccion + normal * fuerza_rebote
 			posicion += normal * 0.5
 		else:
 			posicion += movimiento
