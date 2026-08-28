@@ -124,12 +124,12 @@ autowrap_mode = 2
 layout_mode = 2
 alignment = 1
 
-[node name="BotonConfirmar" type="Button" parent="UISeleccion/PanelInfo/Contenido/Botones" unique_id=1808989309]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Confirmar"
-
 [node name="BotonVolver" type="Button" parent="UISeleccion/PanelInfo/Contenido/Botones" unique_id=1153163657]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Volver"
+
+[node name="BotonConfirmar" type="Button" parent="UISeleccion/PanelInfo/Contenido/Botones" unique_id=1808989309]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Confirmar"

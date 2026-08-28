@@ -34,8 +34,7 @@ piso_gato = NodePath("PisoGato")
 
 [node name="PisoGato" type="StaticBody2D" parent="." unique_id=1017529080]
 position = Vector2(3, 217)
-collision_layer = 0
-collision_mask = 6
+collision_mask = 7
 
 [node name="Sprite2D" type="Sprite2D" parent="PisoGato" unique_id=837333878]
 position = Vector2(810.5001, -10)
@@ -45,6 +44,8 @@ texture = ExtResource("1_ktx7k")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PisoGato" unique_id=1350136418]
 position = Vector2(959.5, -9.5)
 shape = SubResource("RectangleShape2D_37ege")
+one_way_collision = true
+one_way_collision_direction = Vector2(0, -1)
 
 [node name="ParedIzquierda" type="StaticBody2D" parent="." unique_id=2131165626]
 position = Vector2(320, 222)
