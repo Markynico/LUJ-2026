@@ -19,9 +19,10 @@ gato = NodePath("Gato")
 cargador = NodePath("CargadorDeNivel")
 selector = NodePath("SelectorDeNiveles")
 
-[node name="GameManager" parent="." unique_id=627731887 node_paths=PackedStringArray("gato") instance=ExtResource("1_mf1lf")]
+[node name="GameManager" parent="." unique_id=627731887 node_paths=PackedStringArray("gato", "cargador_nivel", "selector_niveles") instance=ExtResource("1_mf1lf")]
 gato = NodePath("../Gato")
-bolas_maximas = 11
+cargador_nivel = NodePath("../CargadorDeNivel")
+selector_niveles = NodePath("../SelectorDeNiveles")
 
 [node name="Gato" parent="." unique_id=69399080 node_paths=PackedStringArray("game_manager") instance=ExtResource("3_qnwci")]
 position = Vector2(958, 126)

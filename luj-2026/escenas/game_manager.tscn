@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://djxr6fsxwllx3"]
 
 [ext_resource type="Script" uid="uid://4x2b1qh0rotn" path="res://scripts/game_manager.gd" id="1_rp10r"]
+[ext_resource type="PackedScene" uid="uid://b8crj4s42jwkl" path="res://escenas/componentes/cargador_manager.tscn" id="2_f08bf"]
 
 [node name="GameManager" type="Node" unique_id=627731887]
 script = ExtResource("1_rp10r")
 bolas_maximas = 4
+
+[node name="CargadorManager" parent="." unique_id=1901494968 node_paths=PackedStringArray("game_manager") instance=ExtResource("2_f08bf")]
+game_manager = NodePath("..")

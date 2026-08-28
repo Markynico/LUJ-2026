@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b8crj4s42jwkl"]
+
+[ext_resource type="Script" uid="uid://c04g8g4ktg2nj" path="res://scripts/cargador_manager.gd" id="1_4x1wq"]
+
+[node name="CargadorManager" type="Node" unique_id=1901494968]
+script = ExtResource("1_4x1wq")

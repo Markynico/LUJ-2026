@@ -5,7 +5,7 @@ extends Node
 signal monedas_cambiadas(monedas : int)
 signal puntos_cambiados(puntos : int)
 signal eligio_una_comida
-signal cargador_pelotitas_actualizado
+signal cargador_pelotitas_actualizado #cuando disparo tambien llamo a esta signal
 
 var monedas : int = 0
 var puntos : int = 0

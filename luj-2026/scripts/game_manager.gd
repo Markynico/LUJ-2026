@@ -230,6 +230,7 @@ func finalizar_nivel(tipo_sala : int = -1) -> void:
 				reiniciar_nivel_actual()
 			)
 
+
 func al_rebobinar_rebote ()-> void:
 	bolas_restantes += 1
 
