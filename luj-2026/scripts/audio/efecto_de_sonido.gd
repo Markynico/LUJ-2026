@@ -11,6 +11,7 @@ enum Tipo {
 	ESTANDARTE_ABRIR,
 	ESTANDARTE_CERRAR,
 	COMPRAR,
+	WHOOSH_CAMARA,
 }
 
 ##tipo de efecto con el que se pide desde el codigo

@@ -91,6 +91,7 @@ func salir() -> void:
 
 
 func mover_camara(posicion : Vector2, zoom : Vector2) -> void:
+	AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.WHOOSH_CAMARA)
 	if tween:
 		tween.kill()
 	tween = create_tween().set_parallel().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
