@@ -16,6 +16,7 @@ enum Tipo {
 	EXPLOSION,
 	REBOBINAR,
 	CATNIP,
+	WHOOSH_CAMARA_RAPIDO,
 }
 
 ##tipo de efecto con el que se pide desde el codigo
