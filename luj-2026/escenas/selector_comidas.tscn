@@ -2,16 +2,12 @@
 
 [ext_resource type="Script" uid="uid://cfntnlipj1a7f" path="res://scripts/selector_comidas.gd" id="1_nxnv0"]
 [ext_resource type="FontFile" uid="uid://daev32fyu3g8a" path="res://assets/fuentes/CARDINAL-ALTERNATE.TTF" id="2_a6dfu"]
-[ext_resource type="Script" uid="uid://c31lbqa2grch4" path="res://scripts/pelotitas_custom/efectos_pelotita.gd" id="2_twn7f"]
 [ext_resource type="FontFile" uid="uid://e1pwbxfir4hk" path="res://assets/fuentes/CARDINAL.TTF" id="3_3ilur"]
-[ext_resource type="Resource" uid="uid://c1v3eyk4mhclb" path="res://scripts/resources/EfectoReboteNormal.tres" id="3_rj4pr"]
-[ext_resource type="Resource" uid="uid://bvv1rqdfseda7" path="res://scripts/resources/EfectoEspejismo.tres" id="4_ahqqf"]
 
 [node name="SelectorComidas" type="Control" unique_id=1764529133 node_paths=PackedStringArray("ui_contenedor_comidas", "canvas_layer")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_nxnv0")
-bolas_de_pelo_existentes = Array[ExtResource("2_twn7f")]([ExtResource("3_rj4pr"), ExtResource("4_ahqqf")])
 ui_contenedor_comidas = NodePath("CanvasLayer/HBoxPanelesComida")
 canvas_layer = NodePath("CanvasLayer")
 

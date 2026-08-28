@@ -32,7 +32,8 @@ piso_gato = NodePath("PisoGato")
 
 [node name="PisoGato" type="StaticBody2D" parent="." unique_id=1017529080]
 position = Vector2(3, 217)
-collision_mask = 7
+collision_layer = 0
+collision_mask = 6
 
 [node name="Sprite2D" type="Sprite2D" parent="PisoGato" unique_id=837333878]
 position = Vector2(810.5001, -10)

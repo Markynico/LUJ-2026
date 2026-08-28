@@ -1,36 +1,14 @@
 [gd_scene format=3 uid="uid://dccnge8bwnhmv"]
 
 [ext_resource type="Script" uid="uid://7uwexjujii6u" path="res://scripts/bola_de_pelos.gd" id="1_q2vq6"]
-[ext_resource type="Texture2D" uid="uid://bsk14c2sew84m" path="res://iconos_custom/gobot.svg" id="2_unop5"]
-[ext_resource type="Texture2D" uid="uid://iveykdb8nubi" path="res://assets/comidas/pancho osvaldo michinko color 1.png" id="3_0ct46"]
-[ext_resource type="Script" uid="uid://c7ogyqxnq7236" path="res://scripts/pelotitas_custom/pelotita_base.gd" id="3_7sm33"]
-[ext_resource type="Script" uid="uid://c31lbqa2grch4" path="res://scripts/pelotitas_custom/efectos_pelotita.gd" id="3_mfh0k"]
-[ext_resource type="Script" uid="uid://5i4oxxen13xa" path="res://scripts/pelotitas_custom/efecto_rebote_normal.gd" id="4_mfh0k"]
+[ext_resource type="Resource" uid="uid://7vcfjwmh5spv" path="res://scripts/resources/BolaPelosEspejismo.tres" id="2_7sm33"]
 [ext_resource type="AudioStream" uid="uid://2jvby7clemka" path="res://assets/audio/sfx/romper_pelotita.wav" id="4_rguhl"]
 [ext_resource type="PackedScene" uid="uid://dmexovyecfyo4" path="res://escenas/componentes/estela_movimiento.tscn" id="4_tra1g"]
-[ext_resource type="Texture2D" uid="uid://y01cjx6nscow" path="res://iconos_custom/heart.svg" id="5_sdgal"]
+[ext_resource type="Texture2D" uid="uid://dljb32hglhe5q" path="res://assets/placeholders/bolaspelo_placeholder/placeholder_bola_de_pelos_michinko2.png" id="7_0ct46"]
 [ext_resource type="PackedScene" uid="uid://dymyh3ifxvug3" path="res://escenas/componentes/pergamino_info.tscn" id="9_sdgal"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bola"]
 friction = 0.0
-
-[sub_resource type="Gradient" id="Gradient_sdgal"]
-offsets = PackedFloat32Array(0.53246754, 1)
-colors = PackedColorArray(0, 1, 0, 1, 1, 1, 1, 1)
-
-[sub_resource type="Resource" id="Resource_0ct46"]
-script = ExtResource("4_mfh0k")
-nombre_comida = "Panchosvaldo"
-imagen_comida_asociada = ExtResource("3_0ct46")
-metadata/_custom_type_script = "uid://5i4oxxen13xa"
-
-[sub_resource type="Resource" id="Resource_avp8o"]
-script = ExtResource("3_7sm33")
-nombre = "BolaNormal"
-textura = ExtResource("5_sdgal")
-colores_estela = SubResource("Gradient_sdgal")
-efectos = Array[ExtResource("3_mfh0k")]([SubResource("Resource_0ct46")])
-metadata/_custom_type_script = "uid://c7ogyqxnq7236"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_37ege"]
 radius = 13.0
@@ -46,19 +24,19 @@ contact_monitor = true
 max_contacts_reported = 2
 linear_damp_mode = 1
 script = ExtResource("1_q2vq6")
-tipo_pelotita = SubResource("Resource_avp8o")
+tipo_pelotita = ExtResource("2_7sm33")
 sprite_bola = NodePath("SpriteBola")
 estela_movimiento = NodePath("EstelaMovimiento")
 audio = NodePath("AudioRebote")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1988233965]
+shape = SubResource("CircleShape2D_37ege")
+
 [node name="SpriteBola" type="Sprite2D" parent="." unique_id=1381481664]
 unique_name_in_owner = true
 texture_filter = 1
-scale = Vector2(1.9, 1.9)
-texture = ExtResource("2_unop5")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1988233965]
-shape = SubResource("CircleShape2D_37ege")
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("7_0ct46")
 
 [node name="AudioRebote" type="AudioStreamPlayer" parent="." unique_id=787173903]
 unique_name_in_owner = true
@@ -70,6 +48,7 @@ width = 13.0
 body = NodePath("..")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1816185939]
+visible = false
 
 [node name="PergaminoInfo" parent="." unique_id=1923268390 instance=ExtResource("9_sdgal")]
 

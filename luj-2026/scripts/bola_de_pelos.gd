@@ -18,6 +18,7 @@ var contador_rebotes : int = 0
 func _ready() -> void:
 	estela_movimiento.gradient = tipo_pelotita.colores_estela
 	sprite_bola.texture = tipo_pelotita.textura
+	
 
 func normal_de_contacto(objeto : Node2D) -> Vector2:
 	var estado : PhysicsDirectBodyState2D = PhysicsServer2D.body_get_direct_state(get_rid())

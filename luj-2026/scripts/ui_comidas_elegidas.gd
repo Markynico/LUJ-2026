@@ -13,5 +13,6 @@ func _on_eligio_una_comida():
 	for comida in Global.comidas_elegidas:
 		agregar_item(comida)
 
-func agregar_item(comida : EfectosPelotita):
-	item_list.add_item(comida.nombre_comida, comida.imagen_comida_asociada, false)
+func agregar_item(comida_nueva : PelotitaBase):
+	#item_list.add_item(comida.nombre_comida, comida.imagen_comida_asociada, false)
+	item_list.add_item(comida_nueva.nombre, comida_nueva.imagen_comida_asociada, false)

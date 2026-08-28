@@ -17,9 +17,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*uid://btuoalh7saemw"
+Global="*uid://dpo30j2a7nucp"
 AudioManager="*res://escenas/audio_manager.tscn"
 ReliquiasManager="*uid://dj4vmras633kq"
+Global2="uid://btuoalh7saemw"
 
 [display]
 

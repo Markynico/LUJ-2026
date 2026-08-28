@@ -1,3 +1,4 @@
+@icon("res://iconos_custom/cat.svg")
 class_name Gato
 extends RigidBody2D
 
@@ -30,6 +31,7 @@ var _finalizo_ronda : bool = false
 var posicion_inicial : Vector2
 
 func _ready() -> void:
+	Global.eligio_una_comida.connect(_on_eligio_una_comida)
 	sprite.texture = imagen_bolita
 	#sprite.texture = imagen_normal #deje a proposito directamente el sprite del gato bolita hasta q tengamos las otras
 	pos_superior = global_position
@@ -155,3 +157,16 @@ func lanzar() -> void:
 func preparar_bola() -> void:
 	if disparador_pelotitas:
 		disparador_pelotitas.escupir_bola()
+
+
+func _on_eligio_una_comida():
+	crear_cargador_de_pelotitas()
+
+#para q se cree un array de pelotitas que de verdad puedo tirar, 4 normales + las q tenga segun las comidas elegidas y todo de forma aleatoria
+func crear_cargador_de_pelotitas():
+	var cargador : Array[PelotitaBase] #lo creo aca pero se lo voy a pasar a global en realidad
+	for comida in Global.comidas_elegidas:
+		print("cargadorrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
+		cargador.append(comida)
+	cargador.shuffle()
+	Global.actualizar_cargador_pelotitas(cargador)
