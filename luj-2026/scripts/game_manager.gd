@@ -32,6 +32,11 @@ static var vidas_inicializadas: bool = false
 @export var vidas_maximas : int = 3
 @export_range(0.1, 1.0, 0.05) var porcentaje_ovillos_requerido : float = 0.30
 
+#aversiestoanda
+var comidas_disponibles : Array[EfectosPelotita] #los efectos / comidas elegidas pero aca sin repetir
+##bolas de pelo q el jugador tiene disponibles para tirar (estan disponibles si las elegiste en el menu selector de comidas) y se va a llenar el array con los datos q tenga en global
+var bolas_de_pelo_disponibles : Array[EfectosPelotita] #INFO LEER IMPORTANTE: es parecido a la de arriba, pero aca si se pueden repetir los valores, pq podemos tener 3 espejitos + 2 normmales + una de carne + una de choclo y otra de carne y otra de choclo, si como supiste q tengo sueño
+
 var bolas_restantes : int = 0:
 	set(valor):
 		bolas_restantes = valor
@@ -50,6 +55,7 @@ func _enter_tree() -> void:
 	instancia_actual = self
 
 func _ready() -> void:
+	Global.eligio_una_comida.connect(_on_eligio_una_comida)
 	# Persistencia de vidas entre recargas de nivel
 	if not vidas_inicializadas:
 		vidas_guardadas = vidas_maximas
@@ -237,3 +243,11 @@ func reiniciar_nivel_actual() -> void:
 		get_tree().reload_current_scene()
 	else:
 		sala_pedida.emit(TipoDeSala.Tipo.NORMAL)
+
+
+
+func _on_eligio_una_comida():#funcion q se llama desde global, dsp de elegir una comida en el selector de comidas
+	comidas_disponibles = Global.get_comidas()
+
+func restablecer_tablero_pelotitas(): #la dejo por si metemos el efecto "al ser golpeado restablece el tablero de ovillos"
+	pass

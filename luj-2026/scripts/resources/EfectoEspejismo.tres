@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="EfectoEspejismo" format=3 uid="uid://bvv1rqdfseda7"]
 
 [ext_resource type="Script" uid="uid://oyp7vfsbtov4" path="res://scripts/pelotitas_custom/efecto_espejismo.gd" id="1_23o7r"]
+[ext_resource type="Texture2D" uid="uid://iveykdb8nubi" path="res://assets/comidas/pancho osvaldo michinko color 1.png" id="1_25my6"]
 
 [resource]
 script = ExtResource("1_23o7r")
 impactos_para_duplicar = 3
 fuerza_rebote = 222.0
+imagen_comida_asociada = ExtResource("1_25my6")
 metadata/_custom_type_script = "uid://oyp7vfsbtov4"

@@ -1,10 +1,13 @@
-class_name EfectosPelotita
+class_name EfectosPelotita #en realidad es una comida
 extends Resource
 
 
 #@export var cantidad_rebotes : int
 ##fuerza de rebote, ojo q necesita un valor alto, con 200 minimo anda bien
 @export var fuerza_rebote : float = 200
+@export var nombre_comida : String 
+##imagen q se va a mostrar en el selector de comidas, la idea es q una pelotita este asociada a una comida si no me equivoco no?
+@export var imagen_comida_asociada : Texture2D
 
 ##Funcion q despues los demas efectos van a sobrescribir aplicando sus propios efectos, rebotes, y demas [br]
 ##Se llama a la funcion cuando la pelotita impacte con algo

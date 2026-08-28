@@ -4,3 +4,4 @@
 
 [node name="GameManager" type="Node" unique_id=627731887]
 script = ExtResource("1_rp10r")
+bolas_maximas = 4

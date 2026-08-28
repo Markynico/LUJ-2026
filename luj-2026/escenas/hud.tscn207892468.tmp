@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://fopa4trrkrbv" path="res://scripts/hud.gd" id="1_m5lxu"]
 [ext_resource type="Script" uid="uid://bvukoufew36l2" path="res://scripts/ui_comidas_elegidas.gd" id="2_5u87e"]
+[ext_resource type="Texture2D" uid="uid://dbcovwwwqfpky" path="res://assets/sprite_ovillos/Ovillo verde.png" id="3_0sskl"]
+[ext_resource type="Texture2D" uid="uid://kuwgkbdi0hbn" path="res://assets/sprite_ovillos/Ovillo azul.png" id="4_8qmdo"]
+[ext_resource type="Texture2D" uid="uid://iveykdb8nubi" path="res://assets/comidas/pancho osvaldo michinko color 1.png" id="5_dda1n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel_hud"]
 content_margin_left = 16.0
@@ -237,10 +240,10 @@ layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 12.0
-offset_top = -630.0
-offset_right = 279.0
-offset_bottom = -286.0
+offset_left = 40.0
+offset_top = -428.0
+offset_right = 307.0
+offset_bottom = -84.0
 grow_vertical = 0
 script = ExtResource("2_5u87e")
 item_list = NodePath("ItemList")
@@ -252,11 +255,16 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -294.0
-offset_right = 17.0
+offset_right = 47.0
 grow_horizontal = 2
 grow_vertical = 2
-allow_search = false
-max_columns = 2
+item_count = 3
+max_columns = 17
 icon_mode = 0
 icon_scale = 0.5
 fixed_icon_size = Vector2i(250, 250)
+item_0/text = "aaaa"
+item_0/icon = ExtResource("3_0sskl")
+item_0/selectable = false
+item_1/icon = ExtResource("4_8qmdo")
+item_2/icon = ExtResource("5_dda1n")

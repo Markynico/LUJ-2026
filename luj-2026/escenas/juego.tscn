@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://mrkgoq2v1cix" path="res://scripts/niveles/selector_de_niveles.gd" id="6_selec"]
 [ext_resource type="PackedScene" uid="uid://citemreliq0a1" path="res://escenas/componentes/item_reliquia.tscn" id="7_n5myf"]
 [ext_resource type="Resource" uid="uid://chsjfpl7ukql7" path="res://scripts/resources/reliquias/tiro_extra.tres" id="8_uf0fd"]
+[ext_resource type="PackedScene" uid="uid://bjrqwv4iyx66g" path="res://escenas/selector_comidas.tscn" id="11_qfdc2"]
 
 [node name="Juego" type="Node2D" unique_id=1865884372 node_paths=PackedStringArray("game_manager", "gato", "cargador", "selector")]
 script = ExtResource("0_juego")
@@ -46,3 +47,7 @@ alto_salida = 100.0
 [node name="ItemReliquia" parent="." unique_id=837780463 instance=ExtResource("7_n5myf")]
 position = Vector2(589, 423)
 reliquia = ExtResource("8_uf0fd")
+
+[node name="SelectorComidas" parent="." unique_id=1764529133 instance=ExtResource("11_qfdc2")]
+
+[connection signal="nivel_completado" from="GameManager" to="SelectorComidas" method="_on_game_manager_nivel_completado"]

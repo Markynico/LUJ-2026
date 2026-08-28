@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://7uwexjujii6u" path="res://scripts/bola_de_pelos.gd" id="1_q2vq6"]
 [ext_resource type="Texture2D" uid="uid://bsk14c2sew84m" path="res://iconos_custom/gobot.svg" id="2_unop5"]
+[ext_resource type="Texture2D" uid="uid://iveykdb8nubi" path="res://assets/comidas/pancho osvaldo michinko color 1.png" id="3_0ct46"]
 [ext_resource type="Script" uid="uid://c7ogyqxnq7236" path="res://scripts/pelotitas_custom/pelotita_base.gd" id="3_7sm33"]
 [ext_resource type="Script" uid="uid://c31lbqa2grch4" path="res://scripts/pelotitas_custom/efectos_pelotita.gd" id="3_mfh0k"]
 [ext_resource type="Script" uid="uid://5i4oxxen13xa" path="res://scripts/pelotitas_custom/efecto_rebote_normal.gd" id="4_mfh0k"]
@@ -19,6 +20,8 @@ colors = PackedColorArray(0, 1, 0, 1, 1, 1, 1, 1)
 
 [sub_resource type="Resource" id="Resource_0ct46"]
 script = ExtResource("4_mfh0k")
+nombre_comida = "Panchosvaldo"
+imagen_comida_asociada = ExtResource("3_0ct46")
 metadata/_custom_type_script = "uid://5i4oxxen13xa"
 
 [sub_resource type="Resource" id="Resource_avp8o"]

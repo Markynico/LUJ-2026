@@ -1,7 +1,9 @@
 [gd_resource type="Resource" script_class="EfectoReboteNormal" format=3 uid="uid://c1v3eyk4mhclb"]
 
+[ext_resource type="Texture2D" uid="uid://bymp1mcxn0fpt" path="res://assets/helado_michinko_color_1.png" id="1_na7gh"]
 [ext_resource type="Script" uid="uid://5i4oxxen13xa" path="res://scripts/pelotitas_custom/efecto_rebote_normal.gd" id="1_ol16t"]
 
 [resource]
 script = ExtResource("1_ol16t")
+imagen_comida_asociada = ExtResource("1_na7gh")
 metadata/_custom_type_script = "uid://5i4oxxen13xa"
