@@ -2,10 +2,16 @@
 
 [ext_resource type="Script" uid="uid://ddjnfonlvbcs6" path="res://scripts/sala_loot.gd" id="1_loot"]
 [ext_resource type="Resource" uid="uid://d1g05k4oam2p8" path="res://scripts/resources/reliquias/rascador.tres" id="2_rascador"]
-[ext_resource type="Resource" uid="uid://b7j557eqgyp2r" path="res://scripts/resources/reliquias/reliquia_prueba.tres" id="3_prueba"]
 [ext_resource type="Resource" uid="uid://b85q6u2n8x3j1" path="res://scripts/resources/reliquias/tapita_lapicera.tres" id="4_tapita"]
 [ext_resource type="Resource" uid="uid://chsjfpl7ukql7" path="res://scripts/resources/reliquias/tiro_extra.tres" id="5_tiro"]
 [ext_resource type="Script" uid="uid://5lbsfhx8xug1" path="res://scripts/reliquias/reliquia.gd" id="6_reliquia"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/estatua_messi.tres" id="7_messi"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/maceta_yuyos.tres" id="8_maceta"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/almohadon.tres" id="9_almoh"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/balanceado_whiskas.tres" id="10_whisk"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/armadura_gato.tres" id="11_armad"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/almuerzo_duenia.tres" id="12_almue"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/magiclick.tres" id="13_magic"]
 
 [node name="SalaLoot" type="Control" unique_id=879506484 node_paths=PackedStringArray("icono", "label_nombre", "label_descripcion", "boton_aceptar", "boton_rechazar")]
 layout_mode = 3
@@ -15,7 +21,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_loot")
-reliquias_posibles = Array[ExtResource("6_reliquia")]([ExtResource("2_rascador"), ExtResource("3_prueba"), ExtResource("4_tapita"), ExtResource("5_tiro")])
+reliquias_posibles = Array[ExtResource("6_reliquia")]([ExtResource("2_rascador"), ExtResource("4_tapita"), ExtResource("5_tiro"), ExtResource("7_messi"), ExtResource("8_maceta"), ExtResource("9_almoh"), ExtResource("10_whisk"), ExtResource("11_armad"), ExtResource("12_almue"), ExtResource("13_magic")])
 icono = NodePath("Contenido/Icono")
 label_nombre = NodePath("Contenido/LabelNombre")
 label_descripcion = NodePath("Contenido/LabelDescripcion")

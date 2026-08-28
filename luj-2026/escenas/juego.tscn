@@ -42,6 +42,7 @@ cargador = NodePath("../CargadorDeNivel")
 divisores_minimos = 1
 divisores_maximos = 3
 chance_loot = 1.0
+salas_entre_loots = 0
 alto_salida = 100.0
 
 [node name="EstructuraDeNivel" parent="." unique_id=1258707596 instance=ExtResource("4_t4q8c")]

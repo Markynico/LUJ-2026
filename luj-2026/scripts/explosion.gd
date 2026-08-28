@@ -33,8 +33,9 @@ func empujar_bola(bola : BolaDePelos) -> void:
 
 
 func _on_sprites_explosion_frame_changed() -> void:
-	if animated_sprite_explosion.frame == 22: #pq justo en la 22 hace la explosion grande
+	if animated_sprite_explosion.frame == 18: #pq justo en la 22 hace la explosion grande
 		#dsp la volvemos a timear con la animacion de verdad
+		#de attie: lo baje a 18 porque 22 quedaba como con delay. ahora coincide con la visual y sfx 
 		#print("DEBERIA REACTIVARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR")
 		reactivar_colisiones()
 

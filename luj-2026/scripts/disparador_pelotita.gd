@@ -51,8 +51,12 @@ func preparar_datos_disparo() -> DatosDisparo:
 
 func escupir_bola () -> void:
 		var instancia : BolaDePelos = escena_pelotita_prueba.instantiate()
+		var datos : DatosDisparo
+		var gravedad_default : float = ProjectSettings.get_setting("physics/2d/default_gravity")
 		velocidad_inicial = velocidad_congelada
+		datos = preparar_datos_disparo()
+		instancia.gravity_scale = datos.gravedad.y / gravedad_default
 		add_child(instancia)
 		#instancia.global_position = posicion_mouse
-		instancia.apply_impulse(preparar_datos_disparo().velocidad_inicial)
+		instancia.apply_impulse(datos.velocidad_inicial)
 		bola_escupida.emit()
