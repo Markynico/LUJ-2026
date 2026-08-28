@@ -11,7 +11,7 @@ const escena_panel_comida : PackedScene = preload("res://escenas/componentes/pan
 
 func _ready() -> void:
 	%LabelAviso.hide()
-	#esconder_selector_comidas()
+	esconder_selector_comidas()
 	elegir_comidas_aleatorias() #dsp le puedo agregar q se tenga q verificar si ya tenia tal comida para no mostrarla (?
 
 func elegir_comidas_aleatorias():

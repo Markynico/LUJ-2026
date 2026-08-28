@@ -10,3 +10,4 @@ process_mode = 4
 physics_interpolation_mode = 2
 script = ExtResource("1_8bbxo")
 bolas_de_pelo_existentes = Array[ExtResource("2_8vl5g")]([ExtResource("4_kur0t"), ExtResource("3_kur0t")])
+cargador_de_pelotitas = Array[ExtResource("2_8vl5g")]([ExtResource("4_kur0t")])
