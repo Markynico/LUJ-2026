@@ -22,6 +22,7 @@ var capa_salas : CanvasLayer
 
 
 func _ready() -> void:
+	AudioManager.reproducir_musica(AudioManager.musica_juego)
 	capa_salas = CanvasLayer.new()
 	capa_salas.layer = 2
 	add_child(capa_salas)

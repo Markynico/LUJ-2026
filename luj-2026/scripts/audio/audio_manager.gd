@@ -10,6 +10,8 @@ const VOLUMEN_SILENCIO : float = -40.0
 @export var bus_musica : String = "Musica"
 ##duracion default del crossfade entre musicas
 @export var duracion_fade : float = 1.5
+##volumen inicial de los buses de musica y sfx
+@export_range(0.0, 1.0) var volumen_inicial : float = 0.8
 @export_group("Musica")
 ##musica del menu principal
 @export var musica_menu : AudioStream
@@ -29,6 +31,8 @@ func _ready() -> void:
 		efectos_por_tipo[efecto.tipo] = efecto
 	reproductor_activo = crear_reproductor_musica()
 	reproductor_inactivo = crear_reproductor_musica()
+	cambiar_volumen_musica(volumen_inicial)
+	cambiar_volumen_sfx(volumen_inicial)
 
 
 func crear_reproductor_musica() -> AudioStreamPlayer:
@@ -125,5 +129,5 @@ func cambiar_volumen_de_bus(bus : String, volumen : float) -> void:
 	var indice : int = AudioServer.get_bus_index(bus)
 	if indice < 0:
 		return
-	AudioServer.set_bus_volume_db(indice, linear_to_db(volumen))
-	AudioServer.set_bus_mute(indice, volumen < 0.05)
+	AudioServer.set_bus_volume_db(indice, linear_to_db(pow(volumen, 2.0)))
+	AudioServer.set_bus_mute(indice, is_zero_approx(volumen))

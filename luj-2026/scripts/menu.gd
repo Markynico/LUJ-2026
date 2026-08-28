@@ -5,21 +5,31 @@ extends Node2D
 @export_file("*.tscn") var escena_juego : String = "uid://hli2qjvrii4o"
 ##gatos disponibles para elegir
 @export var gatos : Array[DatosGato]
+
+@export_group("Camara")
 ##zoom de la camara durante la seleccion de gato
 @export var zoom_seleccion : Vector2 = Vector2(2.0, 2.0)
 ##segundos que tarda el movimiento de camara
 @export var duracion_zoom : float = 1.2
 ##segundos que tarda el fade del panel de seleccion
 @export var duracion_fade_panel : float = 0.3
-@export var boton_jugar : Button
-@export var botones_menu : Array[Control]
 @export var camara : Camera2D
 @export var foco_seleccion : Marker2D
+
+@export_group("Botones")
+@export var boton_jugar : Button
+@export var boton_opciones : Button
+@export var boton_salir : Button
+
+@export_group("Seleccion de gato")
 @export var panel_info : Control
 @export var label_nombre : Label
 @export var label_descripcion : Label
 @export var boton_confirmar : Button
 @export var boton_volver : Button
+
+@export_group("Opciones")
+@export var opciones : Opciones
 
 var gato_actual : int = 0
 var posicion_inicial : Vector2
@@ -35,6 +45,8 @@ func _ready() -> void:
 	zoom_inicial = camara.zoom
 	panel_info.visible = false
 	boton_jugar.pressed.connect(abrir_seleccion)
+	boton_opciones.pressed.connect(opciones.show)
+	boton_salir.pressed.connect(salir)
 	boton_confirmar.pressed.connect(confirmar)
 	boton_volver.pressed.connect(cerrar_seleccion)
 	mostrar_gato()
@@ -74,6 +86,10 @@ func confirmar() -> void:
 	get_tree().change_scene_to_file(escena_juego)
 
 
+func salir() -> void:
+	get_tree().quit()
+
+
 func mover_camara(posicion : Vector2, zoom : Vector2) -> void:
 	if tween:
 		tween.kill()
@@ -96,5 +112,6 @@ func mostrar_panel(visible_panel : bool) -> void:
 
 
 func habilitar_botones_menu(habilitar : bool) -> void:
-	for boton in botones_menu:
-		boton.mouse_filter = Control.MOUSE_FILTER_STOP if habilitar else Control.MOUSE_FILTER_IGNORE
+	for boton in get_children():
+		if boton is BotonEstandarte:
+			boton.mouse_filter = Control.MOUSE_FILTER_STOP if habilitar else Control.MOUSE_FILTER_IGNORE

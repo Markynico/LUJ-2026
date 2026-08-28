@@ -13,31 +13,35 @@
 [ext_resource type="Texture2D" uid="uid://d0q0uitvrhqd7" path="res://assets/sprites_gato/Gato 1.png" id="11_i5l0x"]
 [ext_resource type="Script" uid="uid://ldkn2qu0rnkn" path="res://scripts/resources/datos_gato.gd" id="12_dgato"]
 [ext_resource type="Resource" uid="uid://c0y7jrcb8f0k" path="res://scripts/resources/gatos_michinko.tres" id="13_michi"]
+[ext_resource type="PackedScene" path="res://escenas/opciones.tscn" id="14_opc"]
 
-[node name="Menu" type="Node2D" unique_id=1421157520 node_paths=PackedStringArray("boton_jugar", "botones_menu", "camara", "foco_seleccion", "panel_info", "label_nombre", "label_descripcion", "boton_confirmar", "boton_volver")]
+[node name="Menu" type="Node2D" unique_id=1421157520 node_paths=PackedStringArray("camara", "foco_seleccion", "boton_jugar", "boton_opciones", "boton_salir", "panel_info", "label_nombre", "label_descripcion", "boton_confirmar", "boton_volver", "opciones")]
 script = ExtResource("1_menu")
 gatos = Array[ExtResource("12_dgato")]([ExtResource("13_michi")])
 zoom_seleccion = Vector2(3.5, 3.5)
-boton_jugar = NodePath("BotonEstandarteJugar")
-botones_menu = [NodePath("BotonEstandarteInventario"), NodePath("BotonEstandarteJugar"), NodePath("BotonEstandarteOpciones"), NodePath("BotonEstandarteSalir")]
 camara = NodePath("Camera2D")
 foco_seleccion = NodePath("FocoSeleccion")
+boton_jugar = NodePath("BotonEstandarteJugar")
+boton_opciones = NodePath("BotonEstandarteOpciones")
+boton_salir = NodePath("BotonEstandarteSalir")
 panel_info = NodePath("UISeleccion/PanelInfo")
 label_nombre = NodePath("UISeleccion/PanelInfo/Contenido/LabelNombre")
 label_descripcion = NodePath("UISeleccion/PanelInfo/Contenido/LabelDescripcion")
 boton_confirmar = NodePath("UISeleccion/PanelInfo/Contenido/Botones/BotonConfirmar")
 boton_volver = NodePath("UISeleccion/PanelInfo/Contenido/Botones/BotonVolver")
+opciones = NodePath("Opciones")
 
 [node name="Fondo" type="TextureRect" parent="." unique_id=660928265]
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_d7r87")
 
-[node name="BotonEstandarteInventario" parent="." unique_id=2120989071 instance=ExtResource("3_2owot")]
+[node name="BotonEstandarteColeccion" parent="." unique_id=2120989071 instance=ExtResource("3_2owot")]
 offset_left = 266.0
 offset_top = 283.0
 offset_right = 866.0
 offset_bottom = 1051.0
+texto = "Colección"
 
 [node name="BotonEstandarteJugar" parent="." unique_id=1586238991 instance=ExtResource("3_2owot")]
 offset_left = 21.0
@@ -88,6 +92,9 @@ position = Vector2(1118, 217)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1343517546]
 position = Vector2(960, 540)
 
+[node name="Opciones" parent="." unique_id=1368031733 instance=ExtResource("14_opc")]
+visible = false
+
 [node name="UISeleccion" type="CanvasLayer" parent="." unique_id=789863585]
 
 [node name="PanelInfo" type="PanelContainer" parent="UISeleccion" unique_id=268657886]
@@ -106,6 +113,7 @@ text = "nombre"
 horizontal_alignment = 1
 
 [node name="LabelDescripcion" type="Label" parent="UISeleccion/PanelInfo/Contenido" unique_id=65272968]
+custom_minimum_size = Vector2(820, 0)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 36
