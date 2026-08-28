@@ -6,6 +6,7 @@
 radius = 11.0
 
 [node name="TrayectoriaDisparo" type="Line2D" unique_id=1196905175 node_paths=PackedStringArray("detector")]
+z_index = 10
 width = 3.0
 default_color = Color(1, 1, 1, 0.4862745)
 script = ExtResource("1_6vpaq")
