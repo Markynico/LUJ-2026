@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EfectoDeSonido" format=3]
+
+[ext_resource type="Script" uid="uid://bf2u7khywdugp" path="res://scripts/audio/efecto_de_sonido.gd" id="1_rebo"]
+[ext_resource type="AudioStream" uid="uid://cfggjkmwmlmjl" path="res://assets/audio/sfx/ovillo_rebobinar.wav" id="2_rebo"]
+
+[resource]
+script = ExtResource("1_rebo")
+tipo = 12
+streams = Array[AudioStream]([ExtResource("2_rebo")])
+metadata/_custom_type_script = "uid://bf2u7khywdugp"

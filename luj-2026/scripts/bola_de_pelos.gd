@@ -16,11 +16,18 @@ extends RigidBody2D
 ##tope del pitch extra acumulado por rebotes
 @export var pitch_extra_maximo : float = 1.0
 
+@export_group("LIMITES")
+##distancia fuera de los bordes del juego a la que se elimina la bola
+@export var margen_borde : float = 200.0
+
 
 var fue_duplicada : bool = false #probando, seguro lo saco de aca
 var contador_rebotes : int = 0
+var limites_juego : Rect2
 
 func _ready() -> void:
+	var tamanio_juego : Vector2 = Vector2(ProjectSettings.get_setting("display/window/size/viewport_width"), ProjectSettings.get_setting("display/window/size/viewport_height"))
+	limites_juego = Rect2(Vector2.ZERO, tamanio_juego).grow(margen_borde)
 	add_to_group("bolas_de_pelos")
 	if GameManager.instancia_actual:
 		tree_exited.connect(GameManager.instancia_actual.registrar_salida_de_bola, CONNECT_DEFERRED)
@@ -77,5 +84,6 @@ func sonido_rebote():
 
 
 #eliminar la bola de pelos cuando sale de la pantalla
-func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	queue_free()
+func _physics_process(_delta : float) -> void:
+	if not limites_juego.has_point(global_position):
+		queue_free()

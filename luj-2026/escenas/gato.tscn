@@ -1,21 +1,79 @@
 [gd_scene format=3 uid="uid://che0rryy8c7cq"]
 
-[ext_resource type="Texture2D" uid="uid://slp70pl61824" path="res://assets/placeholders/cat_placeholder.png" id="1_g1sv5"]
 [ext_resource type="Script" uid="uid://cvo1oqa6q40ut" path="res://scripts/gato.gd" id="1_vrxw6"]
+[ext_resource type="Texture2D" uid="uid://d0q0uitvrhqd7" path="res://assets/sprites_gato/Gato 1.png" id="2_ewiyr"]
 [ext_resource type="PackedScene" uid="uid://brhfmi38jresg" path="res://escenas/componentes/disparador_pelotita.tscn" id="3_bbvk0"]
 [ext_resource type="Texture2D" uid="uid://cbapxh718cgxk" path="res://assets/sprites_gato/gato_bola.png" id="3_ewiyr"]
+[ext_resource type="Texture2D" uid="uid://cntxmuk3o4xt4" path="res://assets/sprites_gato/Gato 3.png" id="5_uxgu4"]
+[ext_resource type="Texture2D" uid="uid://bi3dhqa8yyb3q" path="res://assets/sprites_gato/Gato 2.png" id="6_rjhol"]
+[ext_resource type="Texture2D" uid="uid://c5v37tl8u1pc7" path="res://assets/sprites_gato/Gato 4.png" id="7_rjhol"]
+[ext_resource type="Texture2D" uid="uid://c6g2y8exlrfk6" path="res://assets/sprites_gato/Gato 5.png" id="8_4fwun"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dklp6"]
 radius = 33.01515
 
-[node name="Gato" type="RigidBody2D" unique_id=69399080 node_paths=PackedStringArray("sprite", "disparador_pelotitas", "colision")]
+[sub_resource type="Animation" id="Animation_4fwun"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_ewiyr")]
+}
+
+[sub_resource type="Animation" id="Animation_ucdm4"]
+resource_name = "escupir_bola"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.2, 1.7, 2.0333333, 2.4, 3.1666667, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("5_uxgu4"), ExtResource("6_rjhol"), ExtResource("5_uxgu4"), ExtResource("6_rjhol"), ExtResource("5_uxgu4"), ExtResource("6_rjhol"), ExtResource("7_rjhol"), ExtResource("8_4fwun")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DisparadorPelotita")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"escupir_bola"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2wj7v"]
+_data = {
+&"RESET": SubResource("Animation_4fwun"),
+&"escupir_bola": SubResource("Animation_ucdm4")
+}
+
+[node name="Gato" type="RigidBody2D" unique_id=69399080 node_paths=PackedStringArray("sprite", "disparador_pelotitas", "animation_player", "colision")]
 collision_layer = 8
 collision_mask = 19
+contact_monitor = true
+max_contacts_reported = 8
 script = ExtResource("1_vrxw6")
 sprite = NodePath("Sprite2D")
-imagen_normal = ExtResource("1_g1sv5")
+imagen_normal = ExtResource("2_ewiyr")
 imagen_bolita = ExtResource("3_ewiyr")
 disparador_pelotitas = NodePath("DisparadorPelotita")
+animation_player = NodePath("AnimationPlayer")
 colision = NodePath("CollisionShape2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=36343804]
@@ -29,4 +87,7 @@ position = Vector2(-2, 0)
 shape = SubResource("CircleShape2D_dklp6")
 
 [node name="DisparadorPelotita" parent="." unique_id=1250010144 instance=ExtResource("3_bbvk0")]
-position = Vector2(0, 166)
+position = Vector2(0, 4)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1084193647]
+libraries/ = SubResource("AnimationLibrary_2wj7v")

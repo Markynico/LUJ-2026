@@ -131,9 +131,6 @@ func puntaje_de(ovillo : Ovillo) -> int:
 	return ovillo.obtener_puntaje() if ovillo.tipo_ovillo else 1
 
 func recalcular_meta() -> void:
-	if cargador_nivel and cargador_nivel.nivel and "porcentaje_ovillos_requerido" in cargador_nivel.nivel:
-		porcentaje_ovillos_requerido = cargador_nivel.nivel.porcentaje_ovillos_requerido
-	
 	if puntos_totales > 0:
 		puntos_requeridos = maxi(1, int(ceil(float(puntos_totales) * porcentaje_ovillos_requerido)))
 	else:
@@ -235,6 +232,20 @@ func finalizar_nivel(tipo_sala : int = -1) -> void:
 			get_tree().create_timer(2.0).timeout.connect(func():
 				reiniciar_nivel_actual()
 			)
+
+func fallar_por_atasco() -> void:
+	if estado_actual != EstadoDeJuego.LANZANDO_GATO or finalizando:
+		return
+	finalizando = true
+	print("Gato atascado. Pierde una vida y se repite el nivel.")
+	perder_vida(1)
+	nivel_completado.emit(false)
+	if vidas_actuales > 0:
+		get_tree().create_timer(1.5).timeout.connect(reiniciar_nivel_actual)
+	else:
+		vidas_guardadas = vidas_maximas
+		get_tree().create_timer(2.0).timeout.connect(reiniciar_nivel_actual)
+
 
 func al_rebobinar_rebote ()-> void:
 	bolas_restantes += 1

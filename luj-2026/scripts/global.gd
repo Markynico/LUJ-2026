@@ -1,6 +1,7 @@
 extends Node
 
 var monedas : int = 0
+var gato_elegido : DatosGato
 var puntos : int = 0
 
 signal monedas_cambiadas(monedas : int)

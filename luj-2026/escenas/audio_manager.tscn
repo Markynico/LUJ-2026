@@ -9,6 +9,13 @@
 [ext_resource type="Resource" uid="uid://nc65kq18fwii" path="res://sonidos/efectos/estandarte_cerrar.tres" id="5_cerrar"]
 [ext_resource type="AudioStream" uid="uid://c5ui73ucckhyw" path="res://assets/audio/musica/Michinko Menu.ogg" id="5_piins"]
 [ext_resource type="AudioStream" uid="uid://dr4jwha8086v4" path="res://assets/audio/musica/Michinko Menu Loop.ogg" id="6_pej0h"]
+[ext_resource type="Resource" uid="uid://dkj1neptxih4s" path="res://sonidos/efectos/whoosh_camara.tres" id="8_vqrne"]
+[ext_resource type="Resource" uid="uid://rjmfpyrr7new" path="res://sonidos/efectos/mecha.tres" id="9_mecha"]
+[ext_resource type="Resource" uid="uid://cuh3pua873ioa" path="res://sonidos/efectos/explosion.tres" id="10_expl"]
+[ext_resource type="AudioStream" uid="uid://cxhoaolq6rof8" path="res://assets/audio/musica/Michinko Niveles.ogg" id="10_gmpbd"]
+[ext_resource type="Resource" path="res://sonidos/efectos/rebobinar.tres" id="11_rebo"]
+[ext_resource type="AudioStream" uid="uid://fywkbutvka3e" path="res://assets/audio/musica/Michinko Niveles Loop.ogg" id="11_vqrne"]
+[ext_resource type="Resource" path="res://sonidos/efectos/catnip.tres" id="12_cat"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_xcvd1"]
 clip_count = 2
@@ -20,7 +27,20 @@ clip_1/name = &"Michinko Menu Loop"
 clip_1/stream = ExtResource("6_pej0h")
 clip_1/auto_advance = 0
 
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_smreb"]
+clip_count = 2
+clip_0/name = &"Michinko Niveles"
+clip_0/stream = ExtResource("10_gmpbd")
+clip_0/auto_advance = 1
+clip_0/next_clip = 1
+clip_1/name = &"Michinko Niveles Loop"
+clip_1/stream = ExtResource("11_vqrne")
+clip_1/auto_advance = 1
+clip_1/next_clip = 1
+
 [node name="AudioManager" type="Node" unique_id=1480012408]
 script = ExtResource("1_audio")
-efectos = Array[ExtResource("2_8eov3")]([ExtResource("2_rebote"), ExtResource("2_romper"), ExtResource("3_moneda"), ExtResource("4_abrir"), ExtResource("5_cerrar")])
+efectos = Array[ExtResource("2_8eov3")]([ExtResource("2_rebote"), ExtResource("2_romper"), ExtResource("3_moneda"), ExtResource("4_abrir"), ExtResource("5_cerrar"), ExtResource("8_vqrne"), ExtResource("9_mecha"), ExtResource("10_expl"), ExtResource("11_rebo"), ExtResource("12_cat")])
+volumen_inicial_musica = 0.458
 musica_menu = SubResource("AudioStreamInteractive_xcvd1")
+musica_juego = SubResource("AudioStreamInteractive_smreb")

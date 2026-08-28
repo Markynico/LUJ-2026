@@ -18,7 +18,7 @@ colors = PackedColorArray(0, 1, 0, 1, 1, 1, 1, 1)
 
 [sub_resource type="Resource" id="Resource_0ct46"]
 script = ExtResource("4_mfh0k")
-fuerza_rebote = 150.0
+fuerza_rebote = 300.0
 metadata/_custom_type_script = "uid://5i4oxxen13xa"
 
 [sub_resource type="Resource" id="Resource_avp8o"]
@@ -38,6 +38,7 @@ collision_layer = 4
 collision_mask = 19
 input_pickable = true
 physics_material_override = SubResource("PhysicsMaterial_bola")
+gravity_scale = 0.7
 continuous_cd = 2
 contact_monitor = true
 max_contacts_reported = 2
@@ -60,11 +61,8 @@ shape = SubResource("CircleShape2D_37ege")
 width = 13.0
 body = NodePath("..")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1816185939]
-
 [node name="PergaminoInfo" parent="." unique_id=1923268390 instance=ExtResource("9_sdgal")]
 
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
 [connection signal="mouse_entered" from="." to="PergaminoInfo" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="PergaminoInfo" method="_on_mouse_exited"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
