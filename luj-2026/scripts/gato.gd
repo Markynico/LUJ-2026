@@ -34,13 +34,11 @@ signal escupir_bola
 ##velocidad por debajo de la cual el gato cuenta como quieto
 @export var umbral_quieto : float = 10.0
 
-enum PosicionDisparo { SUPERIOR, LATERAL_IZQUIERDO, LATERAL_DERECHO }
-
-var disparo_lateral_habilitado : bool = false
-var posicion_actual : PosicionDisparo = PosicionDisparo.SUPERIOR
-var pos_superior : Vector2
-var pos_lateral_izq : Vector2 = Vector2(70, 300)
-var pos_lateral_der : Vector2 = Vector2(1210, 300)
+# ======== MOVIMIENTO HORIZONTAL (RELIQUIA RASCADOR) ========
+var movimiento_horizontal_habilitado : bool = false
+@export var velocidad_movimiento_horizontal : float = 550.0
+@export var limite_izquierdo : float = 80.0
+@export var limite_derecho : float = 1200.0
 
 var velocidad_inicial : Vector2
 var posicion_mouse : Vector2
@@ -55,6 +53,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	pos_superior = global_position
+	sprite.texture = imagen_bolita
 	posicion_inicial = global_position
 	if sprite:
 		sprite.texture = imagen_normal
@@ -90,10 +89,33 @@ func al_chocar(body : Node) -> void:
 		body.recibir_impacto()
 
 # ============ PROCESS / DETECCIÓN DE FIN DE NIVEL =============
+
 func _process(_delta : float) -> void:
 	if Engine.is_editor_hint():
 		return
+	procesar_movimiento_horizontal(delta)
 	actualizar_orientacion()
+
+
+func procesar_movimiento_horizontal(delta : float) -> void:
+	if not movimiento_horizontal_habilitado or not freeze:
+		return
+	
+	var input_x : float = 0.0
+	if Input.is_key_pressed(KEY_A) or Input.is_key_pressed(KEY_LEFT) or Input.is_action_pressed("ui_left"):
+		input_x -= 1.0
+	if Input.is_key_pressed(KEY_D) or Input.is_key_pressed(KEY_RIGHT) or Input.is_action_pressed("ui_right"):
+		input_x += 1.0
+	
+	if input_x != 0.0:
+		var ancho_viewport = get_viewport_rect().size.x
+		var max_x = minf(limite_derecho, ancho_viewport - 80.0)
+		global_position.x = clampf(global_position.x + input_x * velocidad_movimiento_horizontal * delta, limite_izquierdo, max_x)
+		global_position.y = posicion_inicial.y
+		
+		# Actualizar vector de apuntado en tiempo real al moverse
+		posicion_mouse = get_global_mouse_position()
+		velocidad_inicial = (global_position - posicion_mouse) * fuerza_disparo
 
 
 func actualizar_orientacion() -> void:
@@ -176,25 +198,12 @@ func _input(event: InputEvent) -> void:
 			lanzar()
 
 # ============ FUNCIONES DE RELIQUIA RASCADOR ==============
-func habilitar_disparo_lateral() -> void:
-	disparo_lateral_habilitado = true
-	print("Reliquia Rascador activa: Disparo lateral disponible (Usa A/D, flechas o Clic Derecho)")
+func habilitar_movimiento_horizontal() -> void:
+	movimiento_horizontal_habilitado = true
+	print("Reliquia Rascador activa: Control horizontal habilitado (Usa A/D o Flechas Izq/Der)")
 
-func cambiar_posicion_disparo(nueva_pos : PosicionDisparo) -> void:
-	if not disparo_lateral_habilitado or not freeze:
-		return
-	posicion_actual = nueva_pos
-	var target_pos = pos_superior
-	match nueva_pos:
-		PosicionDisparo.SUPERIOR:
-			target_pos = pos_superior
-		PosicionDisparo.LATERAL_IZQUIERDO:
-			target_pos = pos_lateral_izq
-		PosicionDisparo.LATERAL_DERECHO:
-			target_pos = pos_lateral_der
-	
-	var tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	tween.tween_property(self, "global_position", target_pos, 0.25)
+func habilitar_disparo_lateral() -> void:
+	habilitar_movimiento_horizontal()
 
 func reiniciar() -> void:
 	if sprite:
@@ -248,8 +257,6 @@ func lanzar() -> void:
 	tiempo_quieto = 0.0
 
 func preparar_bola() -> void:
-	#if disparador_pelotitas:
-		#disparador_pelotitas.escupir_bola()
 	if animation_player:
 		animation_player.stop()
 		animation_player.play("escupir_bola")

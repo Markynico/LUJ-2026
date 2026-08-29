@@ -38,6 +38,9 @@ func _ready() -> void:
 	sprite_bola.texture = tipo_pelotita.textura
 	if sprite_bola.texture:
 		sprite_bola.scale = Vector2.ONE * (diametro_sprite / sprite_bola.texture.get_width())
+	
+	for efecto in tipo_pelotita.efectos:
+		efecto.al_crearse(self)
 
 func normal_de_contacto(objeto : Node2D) -> Vector2:
 	var estado : PhysicsDirectBodyState2D = PhysicsServer2D.body_get_direct_state(get_rid())

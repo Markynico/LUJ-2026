@@ -6,6 +6,8 @@ signal monedas_cambiadas(monedas : int)
 signal puntos_cambiados(puntos : int)
 signal eligio_una_comida
 signal cargador_pelotitas_actualizado #cuando disparo tambien llamo a esta signal
+signal cerro_selector_comidas #para volver al estado de disparando
+signal eligiendo_comidas #para avisarle a game manager q cambie de estado a seleccionando comidas
 
 var monedas : int = 0
 var gato_elegido : DatosGato
@@ -33,7 +35,7 @@ func actualizar_puntos(valor):
 func actualizar_comidas_elegidas(pelotita_nueva : PelotitaBase):
 	print("global, elegimos una comida")
 	comidas_elegidas.append(pelotita_nueva)
-	eligio_una_comida.emit() #para avisarle al game manager q obtenga comidas_elegidas de este script
+	eligio_una_comida.emit() #para avisarle al cargador q obtenga comidas_elegidas de este script
 
 func get_comidas_elegidas():
 	return comidas_elegidas
