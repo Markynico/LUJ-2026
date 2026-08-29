@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dpo30j2a7nucp"]
+
+[ext_resource type="Script" uid="uid://btuoalh7saemw" path="res://scripts/global.gd" id="1_8bbxo"]
+[ext_resource type="Script" uid="uid://c7ogyqxnq7236" path="res://scripts/pelotitas_custom/pelotita_base.gd" id="2_8vl5g"]
+[ext_resource type="Resource" uid="uid://7vcfjwmh5spv" path="res://scripts/resources/BolaPelosEspejismo.tres" id="3_kur0t"]
+[ext_resource type="Resource" uid="uid://cefp6mo0t1mgi" path="res://scripts/resources/BolaPelosNormal.tres" id="4_kur0t"]
+
+[node name="Global" type="Node" unique_id=1338559971]
+process_mode = 4
+physics_interpolation_mode = 2
+script = ExtResource("1_8bbxo")
+bolas_de_pelo_existentes = Array[ExtResource("2_8vl5g")]([ExtResource("4_kur0t"), ExtResource("3_kur0t")])
+cargador_de_pelotitas = Array[ExtResource("2_8vl5g")]([ExtResource("4_kur0t")])

@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://bjrqwv4iyx66g"]
+
+[ext_resource type="Script" uid="uid://cfntnlipj1a7f" path="res://scripts/selector_comidas.gd" id="1_nxnv0"]
+[ext_resource type="FontFile" uid="uid://daev32fyu3g8a" path="res://assets/fuentes/CARDINAL-ALTERNATE.TTF" id="2_a6dfu"]
+[ext_resource type="FontFile" uid="uid://e1pwbxfir4hk" path="res://assets/fuentes/CARDINAL.TTF" id="3_3ilur"]
+
+[node name="SelectorComidas" type="Control" unique_id=1764529133 node_paths=PackedStringArray("ui_contenedor_comidas", "canvas_layer")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_nxnv0")
+ui_contenedor_comidas = NodePath("CanvasLayer/HBoxPanelesComida")
+canvas_layer = NodePath("CanvasLayer")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=807540918]
+
+[node name="ButtonOmitir" type="Button" parent="CanvasLayer" unique_id=1009734472]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -161.0
+offset_top = -78.0
+offset_right = -87.0
+offset_bottom = -50.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_a6dfu")
+theme_override_font_sizes/font_size = 47
+text = "OMITIR"
+
+[node name="LabelTitulo" type="Label" parent="CanvasLayer" unique_id=1857620278]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -531.5
+offset_top = 53.0
+offset_right = 531.5
+offset_bottom = 120.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("3_3ilur")
+theme_override_font_sizes/font_size = 55
+text = "SELECCIONA UNA COMIDA MAGICA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxPanelesComida" type="HBoxContainer" parent="CanvasLayer" unique_id=565757173]
+propagate_maximum_size = false
+clip_contents = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -300.0
+offset_right = 250.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 47
+
+[node name="LabelAviso" type="Label" parent="CanvasLayer" unique_id=273332492]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -455.0
+offset_top = -106.0
+offset_right = 455.0
+offset_bottom = -71.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "holi, los paneles de comida se instancian x codigo por eso puede estar vacio
+igual se pueden previsualizar con un @tool"
+
+[connection signal="pressed" from="CanvasLayer/ButtonOmitir" to="." method="avanzar"]

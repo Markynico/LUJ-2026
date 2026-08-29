@@ -1,3 +1,4 @@
+@icon("res://iconos_custom/cat.svg")
 class_name Gato
 extends RigidBody2D
 
@@ -212,6 +213,8 @@ func lanzar() -> void:
 	tiempo_quieto = 0.0
 
 func preparar_bola() -> void:
+	#if disparador_pelotitas:
+		#disparador_pelotitas.escupir_bola()
 	if animation_player:
 		animation_player.stop()
 		animation_player.play("escupir_bola")
