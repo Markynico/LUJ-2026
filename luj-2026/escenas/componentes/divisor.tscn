@@ -1,27 +1,50 @@
 [gd_scene format=3 uid="uid://cdivisor000a1"]
 
 [ext_resource type="Script" uid="uid://5k0577aqxfdg" path="res://scripts/niveles/divisor.gd" id="1_div"]
+[ext_resource type="Texture2D" uid="uid://dh1c5suwy3utn" path="res://assets/orbesoporte.png" id="2_sop"]
+[ext_resource type="Texture2D" uid="uid://bhfnbe4hbprte" path="res://assets/orbebola.png" id="3_bola"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pared"]
 resource_local_to_scene = true
-size = Vector2(40, 150)
+size = Vector2(40, 122.24)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_punta"]
 resource_local_to_scene = true
-radius = 45.0
+radius = 50.0
 
-[node name="Divisor" type="StaticBody2D" unique_id=1662655621 node_paths=PackedStringArray("colision_pared", "colision_punta")]
+[node name="Divisor" type="StaticBody2D" unique_id=1662655621 node_paths=PackedStringArray("colision_pared", "colision_punta", "sprite_soporte", "sprite_bola")]
 collision_mask = 0
 script = ExtResource("1_div")
+alto = 122.24
 ancho = 40.0
-radio_punta = 45.0
+radio_punta = 50.0
 colision_pared = NodePath("ColisionPared")
 colision_punta = NodePath("ColisionPunta")
+offset_soporte = 44.935
+sprite_soporte = NodePath("SpriteSoporte")
+sprite_bola = NodePath("SpriteBola")
+
+[node name="SpriteSoporte" type="Sprite2D" parent="." unique_id=1889234501]
+z_index = 2
+texture_filter = 2
+position = Vector2(0, -38.570824)
+scale = Vector2(0.5063291, 0.5063291)
+texture = ExtResource("2_sop")
+region_enabled = true
+region_rect = Rect2(54, 114, 79, 153)
+
+[node name="SpriteBola" type="Sprite2D" parent="." unique_id=1889234502]
+texture_filter = 2
+position = Vector2(0, -122.24)
+scale = Vector2(1.0989012, 1.0526316)
+texture = ExtResource("3_bola")
+region_enabled = true
+region_rect = Rect2(48, 42, 91, 95)
 
 [node name="ColisionPared" type="CollisionShape2D" parent="." unique_id=1782782826]
-position = Vector2(0, -75)
+position = Vector2(0, -61.12)
 shape = SubResource("RectangleShape2D_pared")
 
 [node name="ColisionPunta" type="CollisionShape2D" parent="." unique_id=579995083]
-position = Vector2(0, -150)
+position = Vector2(0, -122.24)
 shape = SubResource("CircleShape2D_punta")

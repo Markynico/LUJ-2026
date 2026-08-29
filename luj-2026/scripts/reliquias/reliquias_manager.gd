@@ -27,3 +27,10 @@ func al_empezar_nivel(game_manager : GameManager) -> void:
 func al_preparar_disparo(datos : DatosDisparo) -> void:
 	for reliquia in obtenidas:
 		reliquia.al_preparar_disparo(datos)
+
+
+func multiplicador_puntos_para(tipo_ovillo : OvilloBase) -> float:
+	var multiplicador : float = 1.0
+	for reliquia in obtenidas:
+		multiplicador *= reliquia.multiplicador_puntos(tipo_ovillo)
+	return multiplicador
