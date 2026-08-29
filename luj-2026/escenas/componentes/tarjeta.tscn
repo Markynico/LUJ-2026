@@ -16,7 +16,7 @@ expand_mode = 1
 script = ExtResource("1_tarjeta")
 recurso = ExtResource("4_v8b5i")
 icono = NodePath("Margen/Contenido/Icono")
-label_nombre = NodePath("Margen/Contenido/Encabezado/LabelNombre")
+label_nombre = NodePath("Margen/Contenido/LabelNombre")
 label_descripcion = NodePath("Margen/Contenido/LabelDescripcion")
 label_tipo = NodePath("LabelTipo")
 
@@ -59,11 +59,7 @@ texture = ExtResource("5_dfqys")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Encabezado" type="VBoxContainer" parent="Margen/Contenido" unique_id=1223187251]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="LabelNombre" type="Label" parent="Margen/Contenido/Encabezado" unique_id=1223187250]
+[node name="LabelNombre" type="Label" parent="Margen/Contenido" unique_id=1223187250]
 layout_mode = 2
 theme = ExtResource("5_cbjq2")
 theme_type_variation = &"LabelTitulo"
