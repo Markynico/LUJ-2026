@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c4l0jp3sdvgkh"
+path="res://.godot/imported/michinko blink.wav-1310f6d0baf4b1b57992bbcbc460cc2e.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/michinko blink.wav"
+dest_files=["res://.godot/imported/michinko blink.wav-1310f6d0baf4b1b57992bbcbc460cc2e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

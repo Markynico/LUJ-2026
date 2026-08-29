@@ -16,7 +16,7 @@
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_w7gqy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jhh3k"]
-size = Vector2(702, 45.99997)
+size = Vector2(1180.5, 45.99997)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_w7gqy"]
 viewport_path = NodePath("PanelInfoIzquierdo/SubViewportIzq")
@@ -91,9 +91,8 @@ script = ExtResource("6_selec")
 cargador = NodePath("../CargadorDeNivel")
 divisores_minimos = 1
 divisores_maximos = 3
-chance_normal = 0.0
-chance_loot = 0.0
-chance_tienda = 0.0
+chance_loot = 0.35
+chance_tienda = 0.2
 salas_entre_loots = 0
 alto_salida = 100.0
 
@@ -105,20 +104,26 @@ position = Vector2(0, 6)
 [node name="CollisionShape2D" parent="EstructuraDeNivel/PisoGato" parent_id_path=PackedInt32Array(1258707596, 1017529080) index="0" unique_id=1350136418]
 scale = Vector2(1, 0.855)
 
-[node name="CollisionShape2D" parent="EstructuraDeNivel/ParedIzquierda" parent_id_path=PackedInt32Array(1258707596, 2131165626) index="0" unique_id=115799613]
+[node name="ParedIzquierda" parent="EstructuraDeNivel" index="1" unique_id=2131165626]
+collision_mask = 15
+
+[node name="CollisionShape2D" parent="EstructuraDeNivel/ParedIzquierda" index="0" unique_id=115799613]
 position = Vector2(754, 11.99996)
 scale = Vector2(0.285, 2.32)
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="EstructuraDeNivel/ParedIzquierda" parent_id_path=PackedInt32Array(1258707596, 2131165626) index="1" unique_id=380444835]
-position = Vector2(307, 5.999878)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="EstructuraDeNivel/ParedIzquierda" index="1" unique_id=380444835]
+position = Vector2(167.5, 5.999817)
 shape = SubResource("RectangleShape2D_jhh3k")
 
-[node name="CollisionShape2D" parent="EstructuraDeNivel/ParedDerecha" parent_id_path=PackedInt32Array(1258707596, 536931780) index="0" unique_id=1413173927]
+[node name="ParedDerecha" parent="EstructuraDeNivel" index="2" unique_id=536931780]
+collision_mask = 15
+
+[node name="CollisionShape2D" parent="EstructuraDeNivel/ParedDerecha" index="0" unique_id=1413173927]
 position = Vector2(758, 1.9999863)
 scale = Vector2(0.285, 2.32)
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="EstructuraDeNivel/ParedDerecha" parent_id_path=PackedInt32Array(1258707596, 536931780) index="1" unique_id=593263161]
-position = Vector2(309, 9)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="EstructuraDeNivel/ParedDerecha" index="1" unique_id=593263161]
+position = Vector2(209.25, 9)
 shape = SubResource("RectangleShape2D_jhh3k")
 
 [node name="PanelInfoIzquierdo" parent="EstructuraDeNivel" index="3" unique_id=1428603965]

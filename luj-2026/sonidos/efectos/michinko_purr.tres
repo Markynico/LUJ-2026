@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EfectoDeSonido" format=3 uid="uid://c8po62wunyus1"]
+
+[ext_resource type="Script" uid="uid://bf2u7khywdugp" path="res://scripts/audio/efecto_de_sonido.gd" id="1_purr"]
+[ext_resource type="AudioStream" uid="uid://dv72j5ejnrbmw" path="res://assets/audio/sfx/michinko purr.wav" id="2_purr"]
+
+[resource]
+script = ExtResource("1_purr")
+tipo = 15
+streams = Array[AudioStream]([ExtResource("2_purr")])
+volumen_db = -12.0
+metadata/_custom_type_script = "uid://bf2u7khywdugp"

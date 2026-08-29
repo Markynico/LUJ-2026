@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EfectoDeSonido" format=3 uid="uid://c2fwayaqpurn4"]
+
+[ext_resource type="Script" uid="uid://bf2u7khywdugp" path="res://scripts/audio/efecto_de_sonido.gd" id="1_blink"]
+[ext_resource type="AudioStream" uid="uid://c4l0jp3sdvgkh" path="res://assets/audio/sfx/michinko blink.wav" id="2_blink"]
+
+[resource]
+script = ExtResource("1_blink")
+tipo = 16
+streams = Array[AudioStream]([ExtResource("2_blink")])
+volumen_db = -36.5
+metadata/_custom_type_script = "uid://bf2u7khywdugp"

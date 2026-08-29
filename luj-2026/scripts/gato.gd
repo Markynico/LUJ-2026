@@ -112,6 +112,10 @@ func al_sonar_timer_blink() -> void:
 		programar_blink()
 
 
+func sonar_blink() -> void:
+	AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.MICHINKO_BLINK)
+
+
 func puede_blinkear() -> bool:
 	if listo_para_lanzar or _fue_lanzado:
 		return false
@@ -146,12 +150,8 @@ func procesar_movimiento_horizontal(delta : float) -> void:
 		input_x += 1.0
 	
 	if input_x != 0.0:
-		var ancho_viewport = get_viewport_rect().size.x
-		var max_x = minf(limite_derecho, ancho_viewport - 80.0)
-		global_position.x = clampf(global_position.x + input_x * velocidad_movimiento_horizontal * delta, limite_izquierdo, max_x)
+		move_and_collide(Vector2(input_x * velocidad_movimiento_horizontal * delta, 0.0))
 		global_position.y = posicion_inicial.y
-		
-		# Actualizar vector de apuntado en tiempo real al moverse
 		posicion_mouse = get_global_mouse_position()
 		velocidad_inicial = (global_position - posicion_mouse) * fuerza_disparo
 
@@ -226,6 +226,8 @@ func _input(event: InputEvent) -> void:
 # ============ FUNCIONES DE RELIQUIA RASCADOR ==============
 func habilitar_movimiento_horizontal() -> void:
 	movimiento_horizontal_habilitado = true
+	if colision:
+		colision.set_deferred("disabled", false)
 	print("Reliquia Rascador activa: Control horizontal habilitado (Usa A/D o Flechas Izq/Der)")
 
 func habilitar_disparo_lateral() -> void:

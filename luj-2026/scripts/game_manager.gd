@@ -32,6 +32,8 @@ static var vidas_inicializadas: bool = false
 @export var bolas_maximas : int = 4
 @export var vidas_maximas : int = 3
 @export_range(0.1, 1.0, 0.05) var porcentaje_ovillos_requerido : float = 0.30
+##reliquias con las que arranca la run, para probar
+@export var reliquias_iniciales : Array[Reliquia] = []
 
 
 var bolas_restantes : int = 0:
@@ -57,7 +59,11 @@ func _ready() -> void:
 		vidas_guardadas = vidas_maximas
 		vidas_inicializadas = true
 	vidas_actuales = vidas_guardadas
-	
+
+	if ReliquiasManager.obtenidas.is_empty():
+		for reliquia in reliquias_iniciales:
+			ReliquiasManager.obtener(reliquia)
+
 	reiniciar_nivel()
 	
 	if gato and gato.disparador_pelotitas:
