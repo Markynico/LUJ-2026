@@ -9,7 +9,7 @@ extends RigidBody2D
 @export_group("NODOS")
 @export var sprite_bola: Sprite2D
 @export var estela_movimiento : EstelaMovimiento
-@export var audio : AudioStreamPlayer
+
 
 
 var fue_duplicada : bool = false #probando, seguro lo saco de aca
@@ -65,7 +65,7 @@ func sonido_rebote():
 	#TODO aca agregaria un chekeo para subirle el pitch scale
 	#algo tipo global.impactos_acumulados
 	#y si acumula + 2 + 3 + 4 impactos le meto + pitch scale y suena como queriamos
-	audio.play()
+	pass
 
 
 #eliminar la bola de pelos cuando sale de la pantalla
