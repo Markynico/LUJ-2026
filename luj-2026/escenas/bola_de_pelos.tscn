@@ -1,13 +1,9 @@
 [gd_scene format=3 uid="uid://dccnge8bwnhmv"]
 
 [ext_resource type="Script" uid="uid://7uwexjujii6u" path="res://scripts/bola_de_pelos.gd" id="1_q2vq6"]
+[ext_resource type="Resource" uid="uid://cefp6mo0t1mgi" path="res://scripts/resources/BolaPelosNormal.tres" id="2_rguhl"]
 [ext_resource type="PackedScene" uid="uid://dmexovyecfyo4" path="res://escenas/componentes/estela_movimiento.tscn" id="4_tra1g"]
 [ext_resource type="Texture2D" uid="uid://dljb32hglhe5q" path="res://assets/placeholders/bolaspelo_placeholder/placeholder_bola_de_pelos_michinko2.png" id="7_0ct46"]
-
-[ext_resource type="Script" uid="uid://c7ogyqxnq7236" path="res://scripts/pelotitas_custom/pelotita_base.gd" id="3_7sm33"]
-[ext_resource type="Script" uid="uid://c31lbqa2grch4" path="res://scripts/pelotitas_custom/efectos_pelotita.gd" id="3_mfh0k"]
-[ext_resource type="Script" uid="uid://5i4oxxen13xa" path="res://scripts/pelotitas_custom/efecto_rebote_normal.gd" id="4_mfh0k"]
-
 [ext_resource type="PackedScene" uid="uid://dymyh3ifxvug3" path="res://escenas/componentes/pergamino_info.tscn" id="9_sdgal"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bola"]
@@ -28,6 +24,7 @@ contact_monitor = true
 max_contacts_reported = 2
 linear_damp_mode = 1
 script = ExtResource("1_q2vq6")
+tipo_pelotita = ExtResource("2_rguhl")
 sprite_bola = NodePath("SpriteBola")
 estela_movimiento = NodePath("EstelaMovimiento")
 
