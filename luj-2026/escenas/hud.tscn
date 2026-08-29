@@ -3,6 +3,13 @@
 [ext_resource type="Script" uid="uid://fopa4trrkrbv" path="res://scripts/hud.gd" id="1_m5lxu"]
 [ext_resource type="Script" uid="uid://bvukoufew36l2" path="res://scripts/ui_comidas_elegidas.gd" id="2_5u87e"]
 [ext_resource type="Script" uid="uid://bojjht8bbil08" path="res://scripts/UICargadorPelotitas.gd" id="3_0sskl"]
+[ext_resource type="PackedScene" uid="uid://c87sy1bku6et8" path="res://escenas/componentes/texture_rect_cargador.tscn" id="4_hrvm2"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_37ege"]
+viewport_path = NodePath("UIComidasElegidas/SubViewportComidas")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_hrvm2"]
+viewport_path = NodePath("UICargadorPelotitas/SubViewportCargador")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel_hud"]
 content_margin_left = 16.0
@@ -93,6 +100,56 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_m5lxu")
 
+[node name="UIComidasElegidas" type="Sprite2D" parent="." unique_id=1447058340 node_paths=PackedStringArray("item_list")]
+position = Vector2(240, 538)
+texture = SubResource("ViewportTexture_37ege")
+script = ExtResource("2_5u87e")
+item_list = NodePath("SubViewportComidas/ItemList")
+
+[node name="SubViewportComidas" type="SubViewport" parent="UIComidasElegidas" unique_id=498794813]
+transparent_bg = true
+
+[node name="ItemList" type="ItemList" parent="UIComidasElegidas/SubViewportComidas" unique_id=1829704138]
+custom_minimum_size = Vector2(19.76, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 156.0
+offset_right = 29.0
+offset_bottom = 450.0
+grow_horizontal = 2
+grow_vertical = 2
+allow_search = false
+max_columns = 2
+icon_mode = 0
+icon_scale = 0.5
+fixed_icon_size = Vector2i(250, 250)
+
+[node name="UICargadorPelotitas" type="Sprite2D" parent="." unique_id=1862702493]
+z_index = 50
+position = Vector2(560, 587)
+texture = SubResource("ViewportTexture_hrvm2")
+script = ExtResource("3_0sskl")
+
+[node name="SubViewportCargador" type="SubViewport" parent="UICargadorPelotitas" unique_id=1187095001]
+transparent_bg = true
+
+[node name="VboxPelotitas" type="VBoxContainer" parent="UICargadorPelotitas/SubViewportCargador" unique_id=275765224]
+unique_name_in_owner = true
+z_index = 55
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="se_borra_solo" parent="UICargadorPelotitas/SubViewportCargador/VboxPelotitas" unique_id=2143947696 instance=ExtResource("4_hrvm2")]
+layout_mode = 2
+
+[node name="se_borra_solo2" parent="UICargadorPelotitas/SubViewportCargador/VboxPelotitas" unique_id=1594653062 instance=ExtResource("4_hrvm2")]
+layout_mode = 2
+
+[node name="se_borra_solo3" parent="UICargadorPelotitas/SubViewportCargador/VboxPelotitas" unique_id=1062992600 instance=ExtResource("4_hrvm2")]
+layout_mode = 2
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1032973156]
 
 [node name="MarginSuperior" type="MarginContainer" parent="CanvasLayer" unique_id=1796348773]
@@ -140,6 +197,7 @@ theme_override_constants/separation = 6
 
 [node name="LabelBolas" type="Label" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelVidasBolas/VBoxVidasBolas" unique_id=407916706]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Bolas restantes: 20"
 label_settings = SubResource("LabelSettings_bolas")
@@ -201,6 +259,7 @@ grow_horizontal = 2
 
 [node name="BolasRestantes" type="Label" parent="CanvasLayer/HBoxContainer" unique_id=1556842408]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Bolas de pelo restantes:"
 
@@ -232,47 +291,3 @@ text = "¡Meta alcanzada!"
 label_settings = SubResource("LabelSettings_notif")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="UIComidasElegidas" type="Control" parent="CanvasLayer" unique_id=207057206 node_paths=PackedStringArray("item_list")]
-layout_mode = 3
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 12.0
-offset_top = -630.0
-offset_right = 279.0
-offset_bottom = -286.0
-grow_vertical = 0
-script = ExtResource("2_5u87e")
-item_list = NodePath("ItemList")
-
-[node name="ItemList" type="ItemList" parent="CanvasLayer/UIComidasElegidas" unique_id=1829704138]
-custom_minimum_size = Vector2(19.76, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -294.0
-offset_right = 17.0
-grow_horizontal = 2
-grow_vertical = 2
-allow_search = false
-max_columns = 2
-icon_mode = 0
-icon_scale = 0.5
-fixed_icon_size = Vector2i(250, 250)
-
-[node name="UICargadorPelotitas" type="Control" parent="CanvasLayer" unique_id=978830186]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 381.0
-offset_top = 161.0
-offset_right = 504.0
-offset_bottom = 603.0
-script = ExtResource("3_0sskl")
-
-[node name="VboxPelotitas" type="VBoxContainer" parent="CanvasLayer/UICargadorPelotitas" unique_id=275765224]
-unique_name_in_owner = true
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
