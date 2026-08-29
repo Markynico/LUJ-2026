@@ -7,4 +7,5 @@ func al_recibir_impacto(ovillo: Ovillo):
 	if bola:
 		AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.REBOBINAR)
 		ovillo.rebobinar_bola.emit()
+		Global.agregar_pelotita_al_cargador(bola.tipo_pelotita)
 		print("EMITIDO")

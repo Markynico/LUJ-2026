@@ -3,10 +3,8 @@
 [ext_resource type="Script" uid="uid://c2k7k2sfqhbgw" path="res://scripts/niveles/estructura_de_nivel.gd" id="0_estru"]
 [ext_resource type="Texture2D" uid="uid://c86pbvyhgv3bj" path="res://assets/placeholders/placeholder_estructura_ladrillos.png" id="1_ktx7k"]
 [ext_resource type="Theme" uid="uid://cwsrathd8xljh" path="res://themes/theme_label_numeritos.tres" id="2_lxg71"]
-[ext_resource type="PackedScene" uid="uid://citemreliq0a1" path="res://escenas/componentes/item_reliquia.tscn" id="3_ap1nk"]
 [ext_resource type="PackedScene" uid="uid://dy3jqoayfdkwm" path="res://escenas/Ovillo.tscn" id="3_bwf86"]
 [ext_resource type="Resource" uid="uid://cy6q6prk7gt7p" path="res://scripts/resources/ovillo_catnip.tres" id="4_6g6d1"]
-[ext_resource type="Resource" uid="uid://chsjfpl7ukql7" path="res://scripts/resources/reliquias/tiro_extra.tres" id="4_cb2a4"]
 [ext_resource type="Resource" uid="uid://dky2mbnm2rn0l" path="res://scripts/resources/ovillo_monedas.tres" id="5_ap1nk"]
 [ext_resource type="Resource" uid="uid://fumr1qv4h1ho" path="res://scripts/resources/ovillo_rebobinar.tres" id="7_xuxpc"]
 [ext_resource type="Resource" uid="uid://d3ks2dut6iacd" path="res://scripts/resources/ovillo_explosivo_final.tres" id="8_hxxj2"]
@@ -100,18 +98,6 @@ IZQUIERDO
 RELIQUIAS
 OBTENIDAS
 ETC"
-
-[node name="ItemReliquia" parent="PanelInfoIzquierdo" unique_id=1257653781 instance=ExtResource("3_ap1nk")]
-position = Vector2(-201, -318)
-reliquia = ExtResource("4_cb2a4")
-
-[node name="ItemReliquia2" parent="PanelInfoIzquierdo" unique_id=392828500 instance=ExtResource("3_ap1nk")]
-position = Vector2(-121, -318)
-reliquia = ExtResource("4_cb2a4")
-
-[node name="ItemReliquia3" parent="PanelInfoIzquierdo" unique_id=1607621363 instance=ExtResource("3_ap1nk")]
-position = Vector2(-41, -318)
-reliquia = ExtResource("4_cb2a4")
 
 [node name="PanelInfoDerecho" type="Sprite2D" parent="." unique_id=1908544833]
 position = Vector2(1878, 811)
