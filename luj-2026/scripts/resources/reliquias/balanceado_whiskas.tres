@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ReliquiaWhiskas" format=3]
+
+[ext_resource type="Script" uid="uid://d0gvrmnx4r1rk" path="res://scripts/reliquias/reliquia_whiskas.gd" id="1_rel"]
+[ext_resource type="Texture2D" uid="uid://cvsvsfqjfm6t5" path="res://assets/reliquias/balanceado whiskas.png" id="2_rel"]
+
+[resource]
+script = ExtResource("1_rel")
+nombre = "Bolsa de balanceado Whiskas"
+descripcion = "Por favor no le compres esta mierda a tu gato"
+icono = ExtResource("2_rel")

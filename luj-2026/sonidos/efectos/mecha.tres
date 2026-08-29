@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EfectoDeSonido" format=3 uid="uid://rjmfpyrr7new"]
+
+[ext_resource type="Script" uid="uid://bf2u7khywdugp" path="res://scripts/audio/efecto_de_sonido.gd" id="1_mecha"]
+[ext_resource type="AudioStream" uid="uid://bsnsklydj1qjk" path="res://assets/audio/sfx/ovillo_explosivo_mecha.wav" id="2_mecha"]
+
+[resource]
+script = ExtResource("1_mecha")
+tipo = 10
+streams = Array[AudioStream]([ExtResource("2_mecha")])
+volumen_db = 4.0
+metadata/_custom_type_script = "uid://bf2u7khywdugp"

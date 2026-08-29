@@ -10,6 +10,10 @@ const VOLUMEN_SILENCIO : float = -40.0
 @export var bus_musica : String = "Musica"
 ##duracion default del crossfade entre musicas
 @export var duracion_fade : float = 1.5
+##volumen inicial del bus de musica
+@export_range(0.0, 1.0) var volumen_inicial_musica : float = 0.8
+##volumen inicial del bus de sfx
+@export_range(0.0, 1.0) var volumen_inicial_sfx : float = 0.8
 @export_group("Musica")
 ##musica del menu principal
 @export var musica_menu : AudioStream
@@ -29,6 +33,8 @@ func _ready() -> void:
 		efectos_por_tipo[efecto.tipo] = efecto
 	reproductor_activo = crear_reproductor_musica()
 	reproductor_inactivo = crear_reproductor_musica()
+	cambiar_volumen_musica(volumen_inicial_musica)
+	cambiar_volumen_sfx(volumen_inicial_sfx)
 
 
 func crear_reproductor_musica() -> AudioStreamPlayer:
@@ -38,26 +44,28 @@ func crear_reproductor_musica() -> AudioStreamPlayer:
 	return reproductor
 
 
-func reproducir_sfx(tipo : EfectoDeSonido.Tipo) -> void:
+func reproducir_sfx(tipo : EfectoDeSonido.Tipo, pitch_extra : float = 0.0) -> AudioStreamPlayer:
 	var efecto : EfectoDeSonido = efectos_por_tipo.get(tipo)
 	var reproductor : AudioStreamPlayer = AudioStreamPlayer.new()
-	if not preparar_sfx(efecto, reproductor):
-		return
+	if not preparar_sfx(efecto, reproductor, pitch_extra):
+		return null
 	add_child(reproductor)
 	reproductor.play()
+	return reproductor
 
 
-func reproducir_sfx_en(tipo : EfectoDeSonido.Tipo, posicion : Vector2) -> void:
+func reproducir_sfx_en(tipo : EfectoDeSonido.Tipo, posicion : Vector2, pitch_extra : float = 0.0) -> AudioStreamPlayer2D:
 	var efecto : EfectoDeSonido = efectos_por_tipo.get(tipo)
 	var reproductor : AudioStreamPlayer2D = AudioStreamPlayer2D.new()
-	if not preparar_sfx(efecto, reproductor):
-		return
+	if not preparar_sfx(efecto, reproductor, pitch_extra):
+		return null
 	add_child(reproductor)
 	reproductor.global_position = posicion
 	reproductor.play()
+	return reproductor
 
 
-func preparar_sfx(efecto : EfectoDeSonido, reproductor : Node) -> bool:
+func preparar_sfx(efecto : EfectoDeSonido, reproductor : Node, pitch_extra : float = 0.0) -> bool:
 	var stream : AudioStream = efecto.stream_aleatorio() if efecto else null
 	if not stream or conteo_por_efecto.get(efecto, 0) >= efecto.limite_simultaneos:
 		reproductor.free()
@@ -66,9 +74,15 @@ func preparar_sfx(efecto : EfectoDeSonido, reproductor : Node) -> bool:
 	reproductor.stream = stream
 	reproductor.bus = bus_sfx
 	reproductor.volume_db = efecto.volumen_db
-	reproductor.pitch_scale = randf_range(efecto.pitch_minimo, efecto.pitch_maximo)
+	reproductor.pitch_scale = randf_range(efecto.pitch_minimo, efecto.pitch_maximo) + pitch_extra
 	reproductor.finished.connect(al_terminar_sfx.bind(efecto, reproductor))
 	return true
+
+
+func detener_sfx(reproductor : Node) -> void:
+	if is_instance_valid(reproductor) and reproductor.playing:
+		reproductor.stop()
+		reproductor.finished.emit()
 
 
 func al_terminar_sfx(efecto : EfectoDeSonido, reproductor : Node) -> void:
@@ -125,5 +139,5 @@ func cambiar_volumen_de_bus(bus : String, volumen : float) -> void:
 	var indice : int = AudioServer.get_bus_index(bus)
 	if indice < 0:
 		return
-	AudioServer.set_bus_volume_db(indice, linear_to_db(volumen))
-	AudioServer.set_bus_mute(indice, volumen < 0.05)
+	AudioServer.set_bus_volume_db(indice, linear_to_db(pow(volumen, 2.0)))
+	AudioServer.set_bus_mute(indice, is_zero_approx(volumen))

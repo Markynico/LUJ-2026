@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://fywkbutvka3e"
+path="res://.godot/imported/Michinko Niveles Loop.ogg-25ed433a5a6f11aabb5192adf0d29182.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/musica/Michinko Niveles Loop.ogg"
+dest_files=["res://.godot/imported/Michinko Niveles Loop.ogg-25ed433a5a6f11aabb5192adf0d29182.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=70.0
+beat_count=0
+bar_beats=4

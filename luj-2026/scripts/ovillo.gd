@@ -85,6 +85,11 @@ func reactivar_ovillo() -> void:
 
 
 func explotar(nodo_explosion : Explosion): #lo llamo en el EfectoExplosion
+	if ReliquiasManager.explosion_instantanea:
+		AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.EXPLOSION)
+		nodo_explosion.activar_explosion()
+		return
+	var reproductor_mecha : AudioStreamPlayer = AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.MECHA)
 	sprite_normal.show() #lo muestro a proposito pq cuando lo desactivo se esconde, es solo visual
 	sprite_desactivado.hide()
 	sprite_normal.material = shader_titilar.duplicate() #ahora sprite tiene el shader, onda adentro del material esta el shader
@@ -93,6 +98,8 @@ func explotar(nodo_explosion : Explosion): #lo llamo en el EfectoExplosion
 	await tween.finished
 	sprite_normal.hide() #los vuelvo a esconder como si se hubiera desactivado recien ahora
 	sprite_desactivado.show()
+	AudioManager.detener_sfx(reproductor_mecha)
+	AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.EXPLOSION)
 	nodo_explosion.activar_explosion()
 	tween.kill()
 
