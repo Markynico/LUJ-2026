@@ -2,6 +2,8 @@ class_name PelotitaBase
 extends Resource
 
 @export var nombre : String = ""
+##descripcion que se muestra en la tarjeta
+@export_multiline var descripcion : String = ""
 ##textura o sprite de la pelotita
 @export var textura : Texture2D
 

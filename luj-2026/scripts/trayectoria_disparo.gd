@@ -43,7 +43,7 @@ func hay_algo_para_disparar() -> bool:
 		return true
 	if gato.listo_para_lanzar:
 		return true
-	if gato.animation_player and gato.animation_player.is_playing():
+	if gato.esta_escupiendo():
 		return false
 	if not get_tree().get_nodes_in_group("bolas_de_pelos").is_empty():
 		return false
