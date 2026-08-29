@@ -13,8 +13,7 @@ friction = 0.0
 radius = 11.0
 
 [node name="BolaDePelos" type="RigidBody2D" unique_id=660631560 node_paths=PackedStringArray("sprite_bola", "estela_movimiento")]
-z_index = 20
-z_as_relative = false
+z_index = 1
 collision_layer = 4
 collision_mask = 19
 input_pickable = true
@@ -39,7 +38,6 @@ scale = Vector2(0.04, 0.04)
 texture = ExtResource("7_0ct46")
 
 [node name="EstelaMovimiento" parent="." unique_id=817457491 node_paths=PackedStringArray("body") instance=ExtResource("4_tra1g")]
-z_index = 18
 width = 13.0
 body = NodePath("..")
 

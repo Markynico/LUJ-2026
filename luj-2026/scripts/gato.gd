@@ -1,4 +1,3 @@
-@tool
 @icon("res://iconos_custom/cat.svg")
 class_name Gato
 extends RigidBody2D
@@ -9,17 +8,6 @@ signal escupir_bola
 @export var sprite : Sprite2D
 @export var imagen_normal : Texture2D #dsp cambiamos por animatedsprite ambos o solo este
 @export var imagen_bolita : Texture2D
-@export var imagen_orgulloso : Texture2D
-##escala del sprite cuando muestra la imagen normal
-@export var escala_normal : float = 0.21:
-	set(valor):
-		escala_normal = valor
-		if Engine.is_editor_hint() and sprite:
-			sprite.scale = Vector2.ONE * valor
-##escala del sprite cuando muestra la imagen bolita
-@export var escala_bolita : float = 0.06
-##z del sprite mientras el gato vuela lanzado, para taparse la baranda
-@export var z_lanzado : int = 20
 
 @export var disparador_pelotitas : DisparadorPelotita
 @export var animation_player : AnimationPlayer
@@ -50,14 +38,10 @@ var ovillos_rotos : int = 0
 var tiempo_quieto : float = 0.0
 
 func _ready() -> void:
-	if Engine.is_editor_hint():
-		return
-	pos_superior = global_position
 	sprite.texture = imagen_bolita
 	posicion_inicial = global_position
 	if sprite:
 		sprite.texture = imagen_normal
-		sprite.scale = Vector2.ONE * escala_normal
 	freeze = true
 	if colision:
 		colision.set_deferred("disabled", true)
@@ -72,13 +56,6 @@ func _ready() -> void:
 		game_manager.gato_lanza_bola.connect(preparar_bola)
 		game_manager.lanzar_gato.connect(preparar_lanzamiento)
 	body_entered.connect(al_chocar)
-	if animation_player:
-		animation_player.animation_finished.connect(al_terminar_animacion)
-
-
-func al_terminar_animacion(nombre : StringName) -> void:
-	if nombre == &"escupir_bola" and not listo_para_lanzar:
-		animation_player.play("idle")
 
 
 func al_chocar(body : Node) -> void:
@@ -89,10 +66,7 @@ func al_chocar(body : Node) -> void:
 		body.recibir_impacto()
 
 # ============ PROCESS / DETECCIÓN DE FIN DE NIVEL =============
-
-func _process(_delta : float) -> void:
-	if Engine.is_editor_hint():
-		return
+func _process(delta : float) -> void:
 	procesar_movimiento_horizontal(delta)
 	actualizar_orientacion()
 
@@ -138,8 +112,6 @@ func esta_apuntando() -> bool:
 
 
 func _physics_process(delta: float) -> void:
-	if Engine.is_editor_hint():
-		return
 	if _fue_lanzado and not _finalizo_ronda:
 		# Si el gato cae por debajo de la pantalla o divisiones
 		if global_position.y > get_viewport_rect().size.y + 100.0:
@@ -166,26 +138,6 @@ func atascarse() -> void:
 
 # ============ INPUT ==============
 func _input(event: InputEvent) -> void:
-	if Engine.is_editor_hint():
-		return
-	# Cambio de posición lateral con la reliquia Rascador
-	if disparo_lateral_habilitado and freeze:
-		if event is InputEventKey and event.pressed:
-			if event.keycode == KEY_A or event.keycode == KEY_LEFT or event.keycode == KEY_Q:
-				cambiar_posicion_disparo(PosicionDisparo.LATERAL_IZQUIERDO)
-			elif event.keycode == KEY_D or event.keycode == KEY_RIGHT or event.keycode == KEY_E:
-				cambiar_posicion_disparo(PosicionDisparo.LATERAL_DERECHO)
-			elif event.keycode == KEY_W or event.keycode == KEY_UP or event.keycode == KEY_S:
-				cambiar_posicion_disparo(PosicionDisparo.SUPERIOR)
-		elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-			var mouse_pos = get_global_mouse_position()
-			if mouse_pos.x < 300:
-				cambiar_posicion_disparo(PosicionDisparo.LATERAL_IZQUIERDO)
-			elif mouse_pos.x > 980:
-				cambiar_posicion_disparo(PosicionDisparo.LATERAL_DERECHO)
-			else:
-				cambiar_posicion_disparo(PosicionDisparo.SUPERIOR)
-
 	if not listo_para_lanzar:
 		return
 	
@@ -208,8 +160,6 @@ func habilitar_disparo_lateral() -> void:
 func reiniciar() -> void:
 	if sprite:
 		sprite.texture = imagen_normal
-		sprite.scale = Vector2.ONE * escala_normal
-		sprite.z_index = 0
 	freeze = true
 	if colision:
 		colision.set_deferred("disabled", true)
@@ -229,11 +179,8 @@ func teleportar_al_inicio() -> void:
 	rotation = 0.0
 
 func preparar_lanzamiento() -> void:
-	if animation_player:
-		animation_player.stop()
 	if sprite:
-		sprite.texture = imagen_orgulloso
-		sprite.scale = Vector2.ONE * escala_normal
+		sprite.texture = imagen_bolita
 	call_deferred("habilitar_lanzamiento")
 
 func habilitar_lanzamiento() -> void:
@@ -243,10 +190,6 @@ func habilitar_lanzamiento() -> void:
 	print("GATO LANZAMIENTO LISTO")
 
 func lanzar() -> void:
-	if sprite:
-		sprite.texture = imagen_bolita
-		sprite.scale = Vector2.ONE * escala_bolita
-		sprite.z_index = z_lanzado
 	freeze = false
 	if colision:
 		colision.set_deferred("disabled", false)

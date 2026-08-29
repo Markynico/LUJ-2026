@@ -23,7 +23,3 @@ func al_romper_ovillo(ovillo : Ovillo) -> void:
 
 func al_preparar_disparo(datos : DatosDisparo) -> void:
 	pass
-
-
-func multiplicador_puntos(tipo_ovillo : OvilloBase) -> float:
-	return 1.0

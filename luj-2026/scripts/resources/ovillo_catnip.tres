@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="OvilloBase" format=3 uid="uid://cy6q6prk7gt7p"]
 
 [ext_resource type="Script" uid="uid://fd1odbauo3fr" path="res://scripts/ovillos_custom/efecto_ovillo_base.gd" id="1_2nyhu"]
-[ext_resource type="Texture2D" uid="uid://l6qji36ool28" path="res://assets/sprite_ovillos/decoracion catnip.png" id="1_v2j64"]
 [ext_resource type="Script" uid="uid://bbkyk2anhunsd" path="res://scripts/ovillos_custom/ovillo_base.gd" id="2_v2j64"]
+[ext_resource type="Texture2D" uid="uid://dbcovwwwqfpky" path="res://assets/sprite_ovillos/Ovillo verde.png" id="3_amiee"]
 [ext_resource type="Script" uid="uid://ugt4i2thqhvm" path="res://scripts/ovillos_custom/efecto_ovillo_catnip.gd" id="3_yfh44"]
 
 [sub_resource type="Resource" id="Resource_v2j64"]
@@ -12,8 +12,7 @@ metadata/_custom_type_script = "uid://ugt4i2thqhvm"
 [resource]
 script = ExtResource("2_v2j64")
 nombre = "OVILLO CATNIP"
-color = Color(0.36655998, 0.58, 0.17979999, 1)
-decoracion = ExtResource("1_v2j64")
+sprite = ExtResource("3_amiee")
 puntaje = 15
 valor_spawn = 3.0
 efectos_al_recibir_impacto = Array[ExtResource("1_2nyhu")]([SubResource("Resource_v2j64")])
