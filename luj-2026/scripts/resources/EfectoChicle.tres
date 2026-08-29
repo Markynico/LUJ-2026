@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EfectosPelotita" format=3 uid="uid://baoihoh3kxp21"]
+
+[ext_resource type="Script" uid="uid://c31lbqa2grch4" path="res://scripts/pelotitas_custom/efectos_pelotita.gd" id="1_wp4ow"]
+
+[resource]
+script = ExtResource("1_wp4ow")
+fuerza_rebote = 400.0
+nombre_comida = "Chicle"
+metadata/_custom_type_script = "uid://c31lbqa2grch4"

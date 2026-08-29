@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dccnge8bwnhmv"]
 
 [ext_resource type="Script" uid="uid://7uwexjujii6u" path="res://scripts/bola_de_pelos.gd" id="1_q2vq6"]
-[ext_resource type="Resource" uid="uid://cefp6mo0t1mgi" path="res://scripts/resources/BolaPelosNormal.tres" id="2_rguhl"]
+[ext_resource type="Resource" uid="uid://bp6yjcorvvb2y" path="res://scripts/resources/BolaPelosMate.tres" id="2_rguhl"]
 [ext_resource type="PackedScene" uid="uid://dmexovyecfyo4" path="res://escenas/componentes/estela_movimiento.tscn" id="4_tra1g"]
 [ext_resource type="Texture2D" uid="uid://dljb32hglhe5q" path="res://assets/placeholders/bolaspelo_placeholder/placeholder_bola_de_pelos_michinko2.png" id="7_0ct46"]
 [ext_resource type="PackedScene" uid="uid://dymyh3ifxvug3" path="res://escenas/componentes/pergamino_info.tscn" id="9_sdgal"]
