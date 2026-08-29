@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="EfectoMate" format=3 uid="uid://dq6criuajreor"]
+
+[ext_resource type="Script" uid="uid://bjrd3g5wyl6et" path="res://scripts/pelotitas_custom/efecto_mate.gd" id="1_6jmjm"]
+
+[resource]
+script = ExtResource("1_6jmjm")
+metadata/_custom_type_script = "uid://bjrd3g5wyl6et"

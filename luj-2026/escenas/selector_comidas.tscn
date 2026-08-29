@@ -12,6 +12,7 @@ ui_contenedor_comidas = NodePath("CanvasLayer/HBoxPanelesComida")
 canvas_layer = NodePath("CanvasLayer")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=807540918]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=14304087]
 anchors_preset = 15
