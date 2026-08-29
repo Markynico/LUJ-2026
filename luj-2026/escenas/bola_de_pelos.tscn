@@ -63,6 +63,8 @@ body = NodePath("..")
 
 [node name="PergaminoInfo" parent="." unique_id=1923268390 instance=ExtResource("9_sdgal")]
 
+[node name="Node2D" type="Node2D" parent="." unique_id=1311147375]
+
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
 [connection signal="mouse_entered" from="." to="PergaminoInfo" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="PergaminoInfo" method="_on_mouse_exited"]
