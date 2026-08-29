@@ -5,6 +5,8 @@
 
 [resource]
 script = ExtResource("1_reliquia")
-nombre = "Tiro extra"
-descripcion = "Suma un tiro mas en cada nivel."
+nombre = "Helado de pescado"
+descripcion = "+1 {tiros:texto/tiro} extra en cada nivel.
+
+...Qué asco."
 icono = ExtResource("1_utfq5")

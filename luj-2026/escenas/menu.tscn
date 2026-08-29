@@ -173,9 +173,7 @@ theme_override_constants/separation = 18
 [node name="LabelNombre" type="Label" parent="UISeleccion/CuadroUI/MarginContainer/Contenido" unique_id=1760905768]
 layout_mode = 2
 theme = ExtResource("18_xxdvs")
-theme_override_colors/font_color = Color(0.61692876, 0.069191836, 0.07788671, 1)
-theme_override_colors/font_outline_color = Color(0.25, 0.14583334, 0, 1)
-theme_override_constants/outline_size = 10
+theme_type_variation = &"LabelTitulo"
 theme_override_font_sizes/font_size = 99
 text = "Nombre"
 horizontal_alignment = 1

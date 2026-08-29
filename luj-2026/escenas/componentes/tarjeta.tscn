@@ -2,48 +2,81 @@
 
 [ext_resource type="Script" uid="uid://bksn57vug6xi" path="res://scripts/tarjeta.gd" id="1_tarjeta"]
 [ext_resource type="Texture2D" uid="uid://qk7oqr8153cw" path="res://assets/tarjeta v2.png" id="2_fondo"]
-[ext_resource type="Resource" path="res://scripts/resources/reliquias/armadura_gato.tres" id="3_v8b5i"]
-[ext_resource type="Texture2D" uid="uid://jomecfaawdn4" path="res://assets/reliquias/armadura de gato.png" id="4_dfqys"]
+[ext_resource type="Resource" uid="uid://cv7e0lifc61g8" path="res://scripts/resources/reliquias/magiclick.tres" id="4_v8b5i"]
 [ext_resource type="Theme" uid="uid://bjkvjfhj8dr8y" path="res://themes/theme_ui_general.tres" id="5_cbjq2"]
+[ext_resource type="Texture2D" uid="uid://cgiw5gf0n4eao" path="res://assets/reliquias/magiclick.png" id="5_dfqys"]
 
-[node name="Tarjeta" type="TextureRect" unique_id=1697798897 node_paths=PackedStringArray("icono", "label_nombre", "label_descripcion")]
+[node name="Tarjeta" type="TextureRect" unique_id=1697798897 node_paths=PackedStringArray("icono", "label_nombre", "label_descripcion", "label_tipo")]
 texture_filter = 2
 offset_right = 500.0
 offset_bottom = 600.0
+theme = ExtResource("5_cbjq2")
 texture = ExtResource("2_fondo")
 expand_mode = 1
 script = ExtResource("1_tarjeta")
-recurso = ExtResource("3_v8b5i")
-icono = NodePath("Icono")
-label_nombre = NodePath("LabelNombre")
-label_descripcion = NodePath("LabelDescripcion")
+recurso = ExtResource("4_v8b5i")
+icono = NodePath("Margen/Contenido/Icono")
+label_nombre = NodePath("Margen/Contenido/Encabezado/LabelNombre")
+label_descripcion = NodePath("Margen/Contenido/LabelDescripcion")
+label_tipo = NodePath("LabelTipo")
 
-[node name="Icono" type="TextureRect" parent="." unique_id=921463914]
+[node name="LabelTipo" type="Label" parent="." unique_id=1697798900]
 layout_mode = 1
-offset_left = 171.0
-offset_top = 137.0
-offset_right = 329.0
-offset_bottom = 295.0
-texture = ExtResource("4_dfqys")
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -217.0
+offset_top = 94.0
+offset_right = -141.0
+offset_bottom = 129.0
+grow_horizontal = 2
+theme = ExtResource("5_cbjq2")
+theme_override_font_sizes/font_size = 28
+text = "Reliquia"
+horizontal_alignment = 1
+
+[node name="Margen" type="MarginContainer" parent="." unique_id=1697798898]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 137
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 80
+
+[node name="Contenido" type="VBoxContainer" parent="Margen" unique_id=1697798899]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Icono" type="TextureRect" parent="Margen/Contenido" unique_id=921463914]
+custom_minimum_size = Vector2(158, 158)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("5_dfqys")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="LabelNombre" type="Label" parent="." unique_id=1223187250]
-layout_mode = 1
-offset_left = 50.0
-offset_top = 309.0
-offset_right = 450.0
-offset_bottom = 363.0
+[node name="Encabezado" type="VBoxContainer" parent="Margen/Contenido" unique_id=1223187251]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="LabelNombre" type="Label" parent="Margen/Contenido/Encabezado" unique_id=1223187250]
+layout_mode = 2
 theme = ExtResource("5_cbjq2")
+theme_type_variation = &"LabelTitulo"
+theme_override_colors/font_color = Color(0.79, 0.08690001, 0.09861816, 1)
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 44
-text = "Armadura para gatos"
+text = "Magiclick"
 horizontal_alignment = 1
 
-[node name="LabelDescripcion" type="RichTextLabel" parent="." unique_id=1919030934]
-layout_mode = 1
-offset_left = 60.0
-offset_top = 367.0
-offset_right = 440.0
-offset_bottom = 521.0
+[node name="LabelDescripcion" type="RichTextLabel" parent="Margen/Contenido" unique_id=1919030934]
+layout_mode = 2
+size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
+text = "Los [img=24x39]uid://dhf7cpyrxnlhx[/img]  explotan instantáneamente."
+horizontal_alignment = 1
