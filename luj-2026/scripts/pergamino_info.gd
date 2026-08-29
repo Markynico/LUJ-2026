@@ -29,6 +29,7 @@ func set_activo(activar : bool):
 
 func set_texto_ovillo(tipo_ovillo : OvilloBase): #probandooooo, ya chusmeo si hago una funcion para ovillo y otra para bolita o todo en una
 	nombre_text.text = tipo_ovillo.nombre
+	#descr = tipo_ovillo.descripcion
 	info_text.text = "al golpear suma " + str(tipo_ovillo.cant_monedas) + " monedas"
 
 

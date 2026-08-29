@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://cexjr0e4owki" path="res://escenas/estructura_de_nivel.tscn" id="4_t4q8c"]
 [ext_resource type="Script" uid="uid://bh3lxufik2p65" path="res://scripts/niveles/cargador_de_nivel.gd" id="5_carg"]
 [ext_resource type="Script" uid="uid://mrkgoq2v1cix" path="res://scripts/niveles/selector_de_niveles.gd" id="6_selec"]
+[ext_resource type="PackedScene" uid="uid://citemreliq0a1" path="res://escenas/componentes/item_reliquia.tscn" id="7_n5myf"]
+[ext_resource type="Resource" uid="uid://chsjfpl7ukql7" path="res://scripts/resources/reliquias/tiro_extra.tres" id="8_uf0fd"]
+[ext_resource type="PackedScene" uid="uid://bjrqwv4iyx66g" path="res://escenas/selector_comidas.tscn" id="11_qfdc2"]
 [ext_resource type="Resource" uid="uid://o2ttpyj4y67y" path="res://niveles/prueba separacion.tres" id="7_n5myf"]
 
 [node name="Juego" type="Node2D" unique_id=1865884372 node_paths=PackedStringArray("game_manager", "gato", "cargador", "selector", "camara")]
@@ -19,8 +22,10 @@ camara = NodePath("Camera2D")
 zoom_disparo = Vector2(3.5, 3.5)
 duracion_zoom = 2.0
 
-[node name="GameManager" parent="." unique_id=627731887 node_paths=PackedStringArray("gato") instance=ExtResource("1_mf1lf")]
+[node name="GameManager" parent="." unique_id=627731887 node_paths=PackedStringArray("gato", "cargador_nivel", "selector_niveles") instance=ExtResource("1_mf1lf")]
 gato = NodePath("../Gato")
+cargador_nivel = NodePath("../CargadorDeNivel")
+selector_niveles = NodePath("../SelectorDeNiveles")
 bolas_maximas = 4
 porcentaje_ovillos_requerido = 0.4
 
@@ -45,7 +50,13 @@ chance_loot = 1.0
 salas_entre_loots = 0
 alto_salida = 100.0
 
+
+[node name="SelectorComidas" parent="." unique_id=1764529133 instance=ExtResource("11_qfdc2")]
+
+[connection signal="nivel_completado" from="GameManager" to="SelectorComidas" method="_on_game_manager_nivel_completado"]
+
 [node name="EstructuraDeNivel" parent="." unique_id=1258707596 instance=ExtResource("4_t4q8c")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2055805025]
 position = Vector2(960, 540)
+

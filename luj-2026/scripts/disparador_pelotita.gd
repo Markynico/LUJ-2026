@@ -50,7 +50,15 @@ func preparar_datos_disparo() -> DatosDisparo:
 
 
 func escupir_bola () -> void:
+		var tipo_pelotita = Global.cargador_de_pelotitas.pop_front()
+		if tipo_pelotita == null:
+			return
 		var instancia : BolaDePelos = escena_pelotita_prueba.instantiate()
+		instancia.tipo_pelotita = tipo_pelotita
+		#add_child(instancia)
+		#instancia.global_position = posicion_mouse
+		#instancia.apply_impulse(preparar_datos_disparo().velocidad_inicial)
+		Global.cargador_pelotitas_actualizado.emit() #esto ponerlo en ultima linea
 		var datos : DatosDisparo
 		var gravedad_default : float = ProjectSettings.get_setting("physics/2d/default_gravity")
 		velocidad_inicial = velocidad_congelada
