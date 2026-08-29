@@ -6,7 +6,7 @@
 resource_local_to_scene = true
 radius = 30.0
 
-[node name="ItemReliquia" type="StaticBody2D" node_paths=PackedStringArray("sprite", "colision", "audio")]
+[node name="ItemReliquia" type="StaticBody2D" unique_id=84008790 node_paths=PackedStringArray("sprite", "colision", "audio")]
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_item")
@@ -14,9 +14,9 @@ sprite = NodePath("Sprite")
 colision = NodePath("Colision")
 audio = NodePath("Audio")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1775587772]
 
-[node name="Colision" type="CollisionShape2D" parent="."]
+[node name="Colision" type="CollisionShape2D" parent="." unique_id=297731551]
 shape = SubResource("CircleShape2D_item")
 
-[node name="Audio" type="AudioStreamPlayer" parent="."]
+[node name="Audio" type="AudioStreamPlayer" parent="." unique_id=1236313719]

@@ -14,7 +14,7 @@ extends Resource
 ##Funcion q despues los demas efectos van a sobrescribir aplicando sus propios efectos, rebotes, y demas [br]
 ##Se llama a la funcion cuando la pelotita impacte con algo
 func impactar_con_objeto(pelotita : BolaDePelos ,objeto_a_impactar : Node2D):
-	#rebote_simple(pelotita, objeto_a_impactar) #asi se usaria si queremos q la pelotita al impactar simplemente rebote y nada mas
+	rebote_simple(pelotita, objeto_a_impactar) #asi se usaria si queremos q la pelotita al impactar simplemente rebote y nada mas
 	pass
 
 ##no es necesario que se sobre escriba, pero la dejo aca por si queremos evitar escribir mil veces la misma funcion para un simple rebote
