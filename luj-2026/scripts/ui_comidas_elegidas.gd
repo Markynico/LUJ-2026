@@ -1,6 +1,6 @@
 @icon("res://iconos_custom/fish_2.svg")
 class_name UIComidasElegidas
-extends Control
+extends Sprite2D
 
 @export var item_list : ItemList
 
