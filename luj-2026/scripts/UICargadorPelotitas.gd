@@ -1,6 +1,6 @@
 @icon("res://iconos_custom/pie_chart.svg")
 class_name UICargadorPelotitas
-extends Control
+extends Sprite2D
 
 @onready var vbox_pelotitas: VBoxContainer = %VboxPelotitas
 @export var escena_textura_pelotita : PackedScene = preload("res://escenas/componentes/texture_rect_cargador.tscn")
