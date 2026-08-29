@@ -31,7 +31,7 @@ pared_derecha = NodePath("ParedDerecha")
 piso_gato = NodePath("PisoGato")
 
 [node name="PisoGato" type="StaticBody2D" parent="." unique_id=1017529080]
-position = Vector2(3, 217)
+position = Vector2(3, 292)
 collision_mask = 7
 
 [node name="Sprite2D" type="Sprite2D" parent="PisoGato" unique_id=837333878]
@@ -46,7 +46,7 @@ one_way_collision = true
 one_way_collision_direction = Vector2(0, -1)
 
 [node name="ParedIzquierda" type="StaticBody2D" parent="." unique_id=2131165626]
-position = Vector2(320, 222)
+position = Vector2(320, 297)
 rotation = 1.5707964
 collision_mask = 7
 
@@ -60,7 +60,7 @@ position = Vector2(440, -9.499996)
 shape = SubResource("RectangleShape2D_lxg71")
 
 [node name="ParedDerecha" type="StaticBody2D" parent="." unique_id=536931780]
-position = Vector2(1600, 229)
+position = Vector2(1600, 304)
 rotation = 1.5707964
 collision_mask = 7
 

@@ -18,7 +18,8 @@ enum EstadoDeJuego {
 	LANZANDO_BOLAS,
 	LANZANDO_GATO,
 	NIVEL_COMPLETADO,
-	GAME_OVER
+	GAME_OVER,
+	SELECCIONANDO_COMIDAS
 }
 
 static var instancia_actual: GameManager
@@ -51,7 +52,8 @@ func _enter_tree() -> void:
 	instancia_actual = self
 
 func _ready() -> void:
-	#Global.eligio_una_comida.connect(_on_eligio_una_comida)
+	Global.eligiendo_comidas.connect(_on_eligiendo_comidas)
+	Global.cerro_selector_comidas.connect(on_cerro_selector_comidas)
 	# Persistencia de vidas entre recargas de nivel
 	if not vidas_inicializadas:
 		vidas_guardadas = vidas_maximas
@@ -266,3 +268,15 @@ func reiniciar_nivel_actual() -> void:
 #
 #func restablecer_tablero_pelotitas(): #la dejo por si metemos el efecto "al ser golpeado restablece el tablero de ovillos"
 	#pass
+
+
+func _on_eligiendo_comidas():
+	print("asdasddsaasddsaadsjajsgldihjlaisdglhjiasdhjsdfjhadsfjhdfasjhldsfajhiladfsjhlashjlddshjdgas") #si fue marcos como supiste
+	estado_actual = EstadoDeJuego.SELECCIONANDO_COMIDAS
+	get_tree().paused  =true
+
+func on_cerro_selector_comidas():
+	print("volver a lanzando bolas ")
+	estado_actual = EstadoDeJuego.LANZANDO_BOLAS
+	get_tree().paused  =false
+	

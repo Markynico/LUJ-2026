@@ -8,6 +8,7 @@
 [node name="DisparadorPelotita" type="Node2D" unique_id=1250010144]
 script = ExtResource("1_k5sp8")
 escena_pelotita_prueba = ExtResource("2_of528")
+fuerza_disparo = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=769145456]
 visible = false
