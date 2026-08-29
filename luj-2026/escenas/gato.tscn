@@ -48,6 +48,23 @@ tracks/0/keys = {
 "update": 1,
 "values": [ExtResource("10_2wj7v"), ExtResource("6_nqle2"), ExtResource("7_emxb7"), ExtResource("8_j1ps4"), ExtResource("9_i3vll"), ExtResource("10_xa348"), ExtResource("10_2wj7v")]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.13333334, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"sonar_blink"
+}, {
+"args": [],
+"method": &"sonar_blink"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_ucdm4"]
 resource_name = "escupir_bola"
@@ -102,20 +119,20 @@ _data = {
 &"idle": SubResource("Animation_5rjvg")
 }
 
-[node name="Gato" type="RigidBody2D" unique_id=69399080 node_paths=PackedStringArray("sprite", "timer_blink", "disparador_pelotitas", "animation_player", "colision")]
+[node name="Gato" type="RigidBody2D" unique_id=69399080 node_paths=PackedStringArray("sprite", "colision", "disparador_pelotitas", "animation_player", "timer_blink")]
 collision_layer = 8
 collision_mask = 19
 contact_monitor = true
 max_contacts_reported = 8
 script = ExtResource("1_vrxw6")
-sprite = NodePath("Sprite2D")
 imagen_normal = ExtResource("10_2wj7v")
 imagen_bolita = ExtResource("3_ewiyr")
 imagen_orgulloso = ExtResource("9_7xk13")
-timer_blink = NodePath("TimerBlink")
+sprite = NodePath("Sprite2D")
+colision = NodePath("CollisionShape2D")
 disparador_pelotitas = NodePath("DisparadorPelotita")
 animation_player = NodePath("AnimationPlayer")
-colision = NodePath("CollisionShape2D")
+timer_blink = NodePath("TimerBlink")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=36343804]
 z_as_relative = false

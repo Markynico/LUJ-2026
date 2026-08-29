@@ -13,6 +13,8 @@ extends Node2D
 @export var duracion_zoom : float = 1.2
 ##segundos que tarda el fade del panel de seleccion
 @export var duracion_fade_panel : float = 0.3
+##segundos que tarda el fade del ronroneo en la seleccion
+@export var duracion_fade_purr : float = 0.8
 @export var camara : Camera2D
 @export var foco_seleccion : Marker2D
 
@@ -38,6 +40,8 @@ var zoom_inicial : Vector2
 var en_seleccion : bool = false
 var tween : Tween
 var tween_panel : Tween
+var reproductor_purr : Node
+var tween_purr : Tween
 
 
 func _ready() -> void:
@@ -69,6 +73,7 @@ func _unhandled_input(evento : InputEvent) -> void:
 
 func abrir_seleccion() -> void:
 	en_seleccion = true
+	iniciar_purr()
 	habilitar_botones_menu(false)
 	mover_camara(foco_seleccion.global_position, zoom_seleccion)
 	tween.chain().tween_callback(mostrar_panel.bind(true))
@@ -76,15 +81,42 @@ func abrir_seleccion() -> void:
 
 func cerrar_seleccion() -> void:
 	en_seleccion = false
+	detener_purr()
 	mostrar_panel(false)
 	mover_camara(posicion_inicial, zoom_inicial)
 	tween.chain().tween_callback(habilitar_botones_menu.bind(true))
 
 
 func confirmar() -> void:
+	detener_purr()
 	if not gatos.is_empty():
 		Global.gato_elegido = gatos[gato_actual]
 	get_tree().change_scene_to_file(escena_juego)
+
+
+func iniciar_purr() -> void:
+	var volumen_final : float
+	reproductor_purr = AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.MICHINKO_PURR)
+	if not reproductor_purr:
+		return
+	if tween_purr:
+		tween_purr.kill()
+	volumen_final = reproductor_purr.volume_db
+	reproductor_purr.volume_db = -40.0
+	tween_purr = create_tween()
+	tween_purr.tween_property(reproductor_purr, "volume_db", volumen_final, duracion_fade_purr)
+
+
+func detener_purr() -> void:
+	var reproductor : Node = reproductor_purr
+	reproductor_purr = null
+	if not is_instance_valid(reproductor) or not reproductor.playing:
+		return
+	if tween_purr:
+		tween_purr.kill()
+	tween_purr = reproductor.create_tween()
+	tween_purr.tween_property(reproductor, "volume_db", -40.0, duracion_fade_purr)
+	tween_purr.tween_callback(AudioManager.detener_sfx.bind(reproductor))
 
 
 func salir() -> void:
