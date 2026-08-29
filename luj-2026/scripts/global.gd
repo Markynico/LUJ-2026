@@ -6,8 +6,8 @@ signal monedas_cambiadas(monedas : int)
 signal puntos_cambiados(puntos : int)
 signal eligio_una_comida
 signal cargador_pelotitas_actualizado #cuando disparo tambien llamo a esta signal
-signal cerro_selector_comidas #para volver al estado de disparando
-signal eligiendo_comidas #para avisarle a game manager q cambie de estado a seleccionando comidas
+#signal cerro_selector_comidas #para volver al estado de disparando
+#signal eligiendo_comidas #para avisarle a game manager q cambie de estado a seleccionando comidas
 
 var monedas : int = 0
 var gato_elegido : DatosGato
@@ -31,7 +31,7 @@ func actualizar_puntos(valor):
 	puntos += valor
 	puntos_cambiados.emit(puntos)
 
-
+#el panel ejecuta esta funcion dsp de elegir una comida especifica
 func actualizar_comidas_elegidas(pelotita_nueva : PelotitaBase):
 	print("global, elegimos una comida")
 	comidas_elegidas.append(pelotita_nueva)
@@ -40,7 +40,7 @@ func actualizar_comidas_elegidas(pelotita_nueva : PelotitaBase):
 func get_comidas_elegidas():
 	return comidas_elegidas
 
-func actualizar_cargador_pelotitas(cargador_nuevo : Array[PelotitaBase]):
+func actualizar_cargador_pelotitas(cargador_nuevo : Array[PelotitaBase]): #esta no la deberia usar me parece
 	cargador_de_pelotitas = cargador_nuevo
 	cargador_pelotitas_actualizado.emit()
 
@@ -50,3 +50,10 @@ func agregar_pelotita_al_cargador(pelotita : PelotitaBase):
 
 func get_cargador_de_pelotitas():
 	return cargador_de_pelotitas
+
+
+func pausar_juego():
+	get_tree().paused = true
+
+func reanudar_juego():
+	get_tree().paused = false

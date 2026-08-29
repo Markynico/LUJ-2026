@@ -1,12 +1,14 @@
 @icon("res://iconos_custom/pie_chart.svg")
 class_name UICargadorPelotitas
-extends Control
+extends Sprite2D
 
 @onready var vbox_pelotitas: VBoxContainer = %VboxPelotitas
 @export var escena_textura_pelotita : PackedScene = preload("res://escenas/componentes/texture_rect_cargador.tscn")
 
 func _ready() -> void:
 	Global.cargador_pelotitas_actualizado.connect(_on_cargador_pelotitas_actualizado)
+	#await get_tree().create_timer(1).timeout
+	_on_cargador_pelotitas_actualizado()
 
 
 func _on_cargador_pelotitas_actualizado():
