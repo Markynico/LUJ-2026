@@ -10,6 +10,7 @@ extends Resource
 ##a la bola de pelos se le va a sumar este rebote extra, si no queremos q tenga rebote extra lo dejamos en cero y listo el posho (:
 @export var rebote_extra : float = 10
 @export var puntaje : int  = 1
+#descripcion
 @export var valor_spawn : float = 10.0
 @export var color_numeros_impacto : Color
 @export var efectos_al_recibir_impacto : Array[EfectosOvillo]

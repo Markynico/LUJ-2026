@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://b4c6sj6nrcnnp"]
+
+[ext_resource type="Theme" uid="uid://bgcd00qefsmys" path="res://themes/panel_comidas.tres" id="1_bo614"]
+[ext_resource type="Script" uid="uid://b0qbt3ctr03lj" path="res://scripts/panel_comida.gd" id="2_4bj2c"]
+[ext_resource type="Texture2D" uid="uid://b7irvwbe34e7r" path="res://assets/comidas/mate michinko color 1 (1).png" id="2_j0klf"]
+[ext_resource type="FontFile" uid="uid://e1pwbxfir4hk" path="res://assets/fuentes/CARDINAL.TTF" id="3_4bj2c"]
+
+[node name="PanelComida" type="Panel" unique_id=2111858594 node_paths=PackedStringArray("textura_comida")]
+custom_minimum_size = Vector2(500, 600)
+theme = ExtResource("1_bo614")
+script = ExtResource("2_4bj2c")
+textura_comida = NodePath("VBoxContainer/TexturaComida")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1374599505]
+propagate_maximum_size = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TexturaComida" type="TextureRect" parent="VBoxContainer" unique_id=1832306859]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_j0klf")
+expand_mode = 1
+
+[node name="ButtonElegir" type="Button" parent="VBoxContainer" unique_id=2073806600]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_4bj2c")
+theme_override_font_sizes/font_size = 32
+text = "SELECCIONAR"
+
+[connection signal="pressed" from="VBoxContainer/ButtonElegir" to="." method="_on_button_elegir_pressed"]
