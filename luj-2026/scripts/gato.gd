@@ -52,8 +52,6 @@ var tiempo_quieto : float = 0.0
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
-	pos_superior = global_position
-	sprite.texture = imagen_bolita
 	posicion_inicial = global_position
 	if sprite:
 		sprite.texture = imagen_normal
@@ -89,8 +87,7 @@ func al_chocar(body : Node) -> void:
 		body.recibir_impacto()
 
 # ============ PROCESS / DETECCIÓN DE FIN DE NIVEL =============
-
-func _process(_delta : float) -> void:
+func _process(delta : float) -> void:
 	if Engine.is_editor_hint():
 		return
 	procesar_movimiento_horizontal(delta)
@@ -168,24 +165,6 @@ func atascarse() -> void:
 func _input(event: InputEvent) -> void:
 	if Engine.is_editor_hint():
 		return
-	# Cambio de posición lateral con la reliquia Rascador
-	if disparo_lateral_habilitado and freeze:
-		if event is InputEventKey and event.pressed:
-			if event.keycode == KEY_A or event.keycode == KEY_LEFT or event.keycode == KEY_Q:
-				cambiar_posicion_disparo(PosicionDisparo.LATERAL_IZQUIERDO)
-			elif event.keycode == KEY_D or event.keycode == KEY_RIGHT or event.keycode == KEY_E:
-				cambiar_posicion_disparo(PosicionDisparo.LATERAL_DERECHO)
-			elif event.keycode == KEY_W or event.keycode == KEY_UP or event.keycode == KEY_S:
-				cambiar_posicion_disparo(PosicionDisparo.SUPERIOR)
-		elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-			var mouse_pos = get_global_mouse_position()
-			if mouse_pos.x < 300:
-				cambiar_posicion_disparo(PosicionDisparo.LATERAL_IZQUIERDO)
-			elif mouse_pos.x > 980:
-				cambiar_posicion_disparo(PosicionDisparo.LATERAL_DERECHO)
-			else:
-				cambiar_posicion_disparo(PosicionDisparo.SUPERIOR)
-
 	if not listo_para_lanzar:
 		return
 	
