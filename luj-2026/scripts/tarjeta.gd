@@ -12,6 +12,7 @@ extends TextureRect
 @export var icono : TextureRect
 @export var label_nombre : Label
 @export var label_descripcion : RichTextLabel
+@export var label_tipo : Label
 
 
 func _ready() -> void:
@@ -24,9 +25,19 @@ func actualizar_tarjeta() -> void:
 	if label_nombre and "nombre" in recurso:
 		label_nombre.text = recurso.nombre
 	if label_descripcion and "descripcion" in recurso:
-		label_descripcion.text = recurso.descripcion
+		label_descripcion.text = Resaltador.formatear(recurso.descripcion)
 	if icono:
 		icono.texture = obtener_icono()
+	if label_tipo:
+		label_tipo.text = obtener_tipo()
+
+
+func obtener_tipo() -> String:
+	if recurso is Reliquia:
+		return "Reliquia"
+	if recurso is PelotitaBase:
+		return "Comida"
+	return ""
 
 
 func obtener_icono() -> Texture2D:

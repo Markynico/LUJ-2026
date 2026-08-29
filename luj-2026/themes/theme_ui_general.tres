@@ -35,6 +35,10 @@ expand_margin_top = 10.0
 expand_margin_right = 15.0
 expand_margin_bottom = 10.0
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_v8b5i"]
+color = Color(0.25490198, 0.22352941, 0.13333334, 1)
+thickness = 2
+
 [resource]
 Button/colors/font_color = Color(0.1703749, 0.14596048, 0.07630951, 1)
 Button/colors/font_hover_color = Color(0.16862746, 0.14509805, 0.07450981, 1)
@@ -45,6 +49,13 @@ Button/fonts/font = ExtResource("1_sadmj")
 Button/styles/hover = SubResource("StyleBoxFlat_7nkol")
 Button/styles/normal = ExtResource("2_7nkol")
 Button/styles/pressed = SubResource("StyleBoxFlat_dfrvg")
+HSeparator/styles/separator = SubResource("StyleBoxLine_v8b5i")
 Label/colors/font_color = Color(0.15487596, 0.154876, 0.15487596, 1)
 Label/font_sizes/font_size = 18
 Label/fonts/font = ExtResource("1_sadmj")
+LabelTitulo/base_type = &"Label"
+LabelTitulo/colors/font_color = Color(0.61692876, 0.069191836, 0.07788671, 1)
+LabelTitulo/colors/font_outline_color = Color(0.25, 0.14583334, 0, 1)
+LabelTitulo/constants/outline_size = 10
+RichTextLabel/colors/default_color = Color(0.25490198, 0.22352941, 0.13333334, 1)
+RichTextLabel/fonts/normal_font = ExtResource("1_sadmj")

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ReliquiaMagiclick" format=3]
+[gd_resource type="Resource" script_class="ReliquiaMagiclick" format=3 uid="uid://cv7e0lifc61g8"]
 
 [ext_resource type="Script" uid="uid://bemtpj6j14v1n" path="res://scripts/reliquias/reliquia_magiclick.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://cgiw5gf0n4eao" path="res://assets/reliquias/magiclick.png" id="2_rel"]
@@ -6,5 +6,5 @@
 [resource]
 script = ExtResource("1_rel")
 nombre = "Magiclick"
-descripcion = ""
+descripcion = "Los {explosivo:icono} explotan instantáneamente."
 icono = ExtResource("2_rel")

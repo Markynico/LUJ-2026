@@ -1,12 +1,13 @@
 [gd_resource type="Resource" script_class="ReliquiaTapitaLapicera" format=3 uid="uid://b85q6u2n8x3j1"]
 
-[ext_resource type="Script" path="res://scripts/reliquias/reliquia_tapita_lapicera.gd" id="1_tapita"]
-[ext_resource type="Texture2D" uid="uid://4vghw1m3xoyw" path="res://iconos_custom/motion_vector.svg" id="2_icono"]
+[ext_resource type="Script" uid="uid://xvfnx8tvy8tf" path="res://scripts/reliquias/reliquia_tapita_lapicera.gd" id="1_tapita"]
+[ext_resource type="Texture2D" uid="uid://dk2de6ghg7k22" path="res://assets/reliquias/tapita de lapicera.png" id="1_yhcti"]
 
 [resource]
 script = ExtResource("1_tapita")
+rebotes_extra = 0
 nombre = "Tapita de lapicera"
-descripcion = "¿Por qué mi gato juega con esto?"
-icono = ExtResource("2_icono")
-rebotes_extra = 2
-dejar_camino_marcado = true
+descripcion = "Muestra la trayectoria del último disparo.
+
+¿Por qué mi gato juega con esto?"
+icono = ExtResource("1_yhcti")
