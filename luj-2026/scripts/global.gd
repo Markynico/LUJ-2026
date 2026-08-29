@@ -8,6 +8,7 @@ signal eligio_una_comida
 signal cargador_pelotitas_actualizado #cuando disparo tambien llamo a esta signal
 
 var monedas : int = 0
+var gato_elegido : DatosGato
 var puntos : int = 0
 
 ##aca pongamos los resource de todas las bolitas de pelo q existen (bueno de los efectos en realidad), no importa el orden pq despues uso otro array para elegir y ordenar

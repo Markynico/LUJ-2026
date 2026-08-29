@@ -1,0 +1,116 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://bk6wpm71fovgb" path="res://scripts/opciones.gd" id="1_opc"]
+
+[node name="Opciones" type="CanvasLayer" node_paths=PackedStringArray("slider_musica", "slider_efectos", "opcion_ventana", "opcion_resolucion", "opcion_vsync", "boton_cerrar")]
+layer = 2
+script = ExtResource("1_opc")
+slider_musica = NodePath("Panel/Contenido/SliderMusica")
+slider_efectos = NodePath("Panel/Contenido/SliderEfectos")
+opcion_ventana = NodePath("Panel/Contenido/OpcionVentana")
+opcion_resolucion = NodePath("Panel/Contenido/OpcionResolucion")
+opcion_vsync = NodePath("Panel/Contenido/OpcionVsync")
+boton_cerrar = NodePath("Panel/Contenido/BotonCerrar")
+
+[node name="Fondo" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.6)
+
+[node name="Panel" type="PanelContainer" parent="."]
+offset_left = 660.0
+offset_top = 90.0
+offset_right = 1260.0
+offset_bottom = 990.0
+
+[node name="Contenido" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="LabelTitulo" type="Label" parent="Panel/Contenido"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "Opciones"
+horizontal_alignment = 1
+
+[node name="LabelMusica" type="Label" parent="Panel/Contenido"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Musica"
+
+[node name="SliderMusica" type="HSlider" parent="Panel/Contenido"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="LabelEfectos" type="Label" parent="Panel/Contenido"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Efectos"
+
+[node name="SliderEfectos" type="HSlider" parent="Panel/Contenido"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="LabelVentana" type="Label" parent="Panel/Contenido"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Pantalla"
+
+[node name="OpcionVentana" type="OptionButton" parent="Panel/Contenido"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+item_count = 3
+popup/item_0/text = "Pantalla completa exclusiva"
+popup/item_0/id = 0
+popup/item_1/text = "Pantalla completa"
+popup/item_1/id = 1
+popup/item_2/text = "Ventana"
+popup/item_2/id = 2
+
+[node name="LabelResolucion" type="Label" parent="Panel/Contenido"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Resolucion"
+
+[node name="OpcionResolucion" type="OptionButton" parent="Panel/Contenido"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+item_count = 6
+popup/item_0/text = "3840 x 2160"
+popup/item_0/id = 0
+popup/item_1/text = "2560 x 1440"
+popup/item_1/id = 1
+popup/item_2/text = "1920 x 1080"
+popup/item_2/id = 2
+popup/item_3/text = "1600 x 900"
+popup/item_3/id = 3
+popup/item_4/text = "1366 x 768"
+popup/item_4/id = 4
+popup/item_5/text = "1280 x 720"
+popup/item_5/id = 5
+
+[node name="LabelVsync" type="Label" parent="Panel/Contenido"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Vsync"
+
+[node name="OpcionVsync" type="OptionButton" parent="Panel/Contenido"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+item_count = 3
+popup/item_0/text = "Desactivado"
+popup/item_0/id = 0
+popup/item_1/text = "Activado"
+popup/item_1/id = 1
+popup/item_2/text = "Adaptativo"
+popup/item_2/id = 2
+
+[node name="BotonCerrar" type="Button" parent="Panel/Contenido"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Cerrar"

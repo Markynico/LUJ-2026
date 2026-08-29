@@ -71,7 +71,7 @@ func mostrar_vista_previa() -> void:
 	if es_raiz_editada():
 		acomodar_divisiones(null)
 		return
-	limpiar_formas_sin_duenio()
+	limpiar_formas_sin_dueño()
 	if nivel:
 		instanciar_formas(nivel)
 		aplicar_divisiones(nivel)
@@ -81,7 +81,7 @@ func es_raiz_editada() -> bool:
 	return owner == null
 
 
-func limpiar_formas_sin_duenio() -> void:
+func limpiar_formas_sin_dueño() -> void:
 	for raiz in obtener_raices_de_formas():
 		if raiz.owner == null:
 			remove_child(raiz)
@@ -115,9 +115,9 @@ func limpiar_formas() -> void:
 		raiz.queue_free()
 
 
-func construir_nivel(datos_nivel : NivelData, duenio : Node = null) -> void:
+func construir_nivel(datos_nivel : NivelData, dueño : Node = null) -> void:
 	limpiar_formas()
-	instanciar_formas(datos_nivel, duenio)
+	instanciar_formas(datos_nivel, dueño)
 	aplicar_divisiones(datos_nivel)
 	nivel_construido.emit()
 
@@ -172,24 +172,24 @@ func buscar_estructura(nodo : Node) -> EstructuraDeNivel:
 	return null
 
 
-func instanciar_formas(datos_nivel : NivelData, duenio : Node = null) -> void:
+func instanciar_formas(datos_nivel : NivelData, dueño : Node = null) -> void:
 	var forma : Node2D
 	for datos in datos_nivel.formas:
-		forma = crear_forma(datos.tipo, duenio)
+		forma = crear_forma(datos.tipo, dueño)
 		forma.aplicar_datos(datos)
 		if datos.recorrido:
-			agregar_recorrido(forma, duenio).aplicar_datos(datos)
+			agregar_recorrido(forma, dueño).aplicar_datos(datos)
 
 
-func crear_forma(tipo : String, duenio : Node = null) -> Node2D:
+func crear_forma(tipo : String, dueño : Node = null) -> Node2D:
 	var forma : Node2D = escenas_formas[tipo].instantiate()
 	add_child(forma, true)
-	if duenio:
-		forma.owner = duenio
+	if dueño:
+		forma.owner = dueño
 	return forma
 
 
-func agregar_recorrido(forma : Node2D, duenio : Node = null) -> MovimientoPorPath:
+func agregar_recorrido(forma : Node2D, dueño : Node = null) -> MovimientoPorPath:
 	var recorrido : MovimientoPorPath = escena_recorrido.instantiate()
 	var posicion_global : Vector2 = forma.global_position
 	forma.get_parent().remove_child(forma)
@@ -197,14 +197,14 @@ func agregar_recorrido(forma : Node2D, duenio : Node = null) -> MovimientoPorPat
 	recorrido.global_position = posicion_global
 	recorrido.seguidor.add_child(forma)
 	forma.position = Vector2.ZERO
-	if duenio:
-		recorrido.owner = duenio
-		duenio.set_editable_instance(recorrido, true)
-		forma.owner = duenio
+	if dueño:
+		recorrido.owner = dueño
+		dueño.set_editable_instance(recorrido, true)
+		forma.owner = dueño
 	return recorrido
 
 
-func quitar_recorrido(recorrido : MovimientoPorPath, duenio : Node = null) -> Node2D:
+func quitar_recorrido(recorrido : MovimientoPorPath, dueño : Node = null) -> Node2D:
 	var forma : Node2D = recorrido.obtener_forma()
 	var posicion_global : Vector2 = forma.global_position
 	recorrido.seguidor.remove_child(forma)
@@ -212,8 +212,8 @@ func quitar_recorrido(recorrido : MovimientoPorPath, duenio : Node = null) -> No
 	recorrido.queue_free()
 	add_child(forma, true)
 	forma.global_position = posicion_global
-	if duenio:
-		forma.owner = duenio
+	if dueño:
+		forma.owner = dueño
 	return forma
 
 

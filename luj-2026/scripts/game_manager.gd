@@ -133,9 +133,6 @@ func puntaje_de(ovillo : Ovillo) -> int:
 	return ovillo.obtener_puntaje() if ovillo.tipo_ovillo else 1
 
 func recalcular_meta() -> void:
-	if cargador_nivel and cargador_nivel.nivel and "porcentaje_ovillos_requerido" in cargador_nivel.nivel:
-		porcentaje_ovillos_requerido = cargador_nivel.nivel.porcentaje_ovillos_requerido
-	
 	if puntos_totales > 0:
 		puntos_requeridos = maxi(1, int(ceil(float(puntos_totales) * porcentaje_ovillos_requerido)))
 	else:
@@ -176,13 +173,21 @@ func reiniciar_vidas() -> void:
 func disparar_bola() -> void:
 	if estado_actual != EstadoDeJuego.LANZANDO_BOLAS:
 		return
-	
+	if not get_tree().get_nodes_in_group("bolas_de_pelos").is_empty():
+		return
+
 	if bolas_restantes > 0:
 		bolas_restantes -= 1
 		bola_usada.emit(bolas_restantes)
 		gato_lanza_bola.emit()
-	
-	if bolas_restantes <= 0:
+
+
+func registrar_salida_de_bola() -> void:
+	if estado_actual != EstadoDeJuego.LANZANDO_BOLAS:
+		return
+	if bolas_restantes > 0:
+		return
+	if get_tree().get_nodes_in_group("bolas_de_pelos").is_empty():
 		cambiar_gato()
 
 func cambiar_gato() -> void:
@@ -229,6 +234,19 @@ func finalizar_nivel(tipo_sala : int = -1) -> void:
 			get_tree().create_timer(2.0).timeout.connect(func():
 				reiniciar_nivel_actual()
 			)
+
+func fallar_por_atasco() -> void:
+	if estado_actual != EstadoDeJuego.LANZANDO_GATO or finalizando:
+		return
+	finalizando = true
+	print("Gato atascado. Pierde una vida y se repite el nivel.")
+	perder_vida(1)
+	nivel_completado.emit(false)
+	if vidas_actuales > 0:
+		get_tree().create_timer(1.5).timeout.connect(reiniciar_nivel_actual)
+	else:
+		vidas_guardadas = vidas_maximas
+		get_tree().create_timer(2.0).timeout.connect(reiniciar_nivel_actual)
 
 
 func al_rebobinar_rebote ()-> void:

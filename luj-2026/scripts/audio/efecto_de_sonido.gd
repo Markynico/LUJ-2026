@@ -8,7 +8,15 @@ enum Tipo {
 	LANZAR_GATO,
 	ELEGIR_SALIDA,
 	BOTON_UI,
+	ESTANDARTE_ABRIR,
+	ESTANDARTE_CERRAR,
 	COMPRAR,
+	WHOOSH_CAMARA,
+	MECHA,
+	EXPLOSION,
+	REBOBINAR,
+	CATNIP,
+	WHOOSH_CAMARA_RAPIDO,
 }
 
 ##tipo de efecto con el que se pide desde el codigo

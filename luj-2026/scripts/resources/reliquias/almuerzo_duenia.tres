@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ReliquiaAlmuerzo" format=3]
+
+[ext_resource type="Script" uid="uid://fufph1pces5a" path="res://scripts/reliquias/reliquia_almuerzo.gd" id="1_rel"]
+[ext_resource type="Texture2D" uid="uid://phum3pcjd0od" path="res://assets/reliquias/almuerzo de la dueña.png" id="2_rel"]
+
+[resource]
+script = ExtResource("1_rel")
+nombre = "Almuerzo de la duena"
+descripcion = "Michinko la puta que te pario"
+icono = ExtResource("2_rel")

@@ -4,6 +4,8 @@ signal reliquia_obtenida(reliquia : Reliquia)
 
 var obtenidas : Array[Reliquia] = []
 var game_manager_actual : GameManager
+var explosion_instantanea : bool = false
+var ultima_ofrecida : Reliquia
 
 
 func obtener(reliquia : Reliquia) -> void:

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EfectoDeSonido" format=3]
+
+[ext_resource type="Script" uid="uid://bf2u7khywdugp" path="res://scripts/audio/efecto_de_sonido.gd" id="1_cat"]
+[ext_resource type="AudioStream" uid="uid://cs73cfjvfswd2" path="res://assets/audio/sfx/ovillo_catnip.wav" id="2_cat"]
+
+[resource]
+script = ExtResource("1_cat")
+tipo = 13
+streams = Array[AudioStream]([ExtResource("2_cat")])
+metadata/_custom_type_script = "uid://bf2u7khywdugp"

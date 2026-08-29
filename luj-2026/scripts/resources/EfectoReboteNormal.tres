@@ -6,4 +6,5 @@
 [resource]
 script = ExtResource("1_ol16t")
 imagen_comida_asociada = ExtResource("1_na7gh")
+fuerza_rebote = 100.0
 metadata/_custom_type_script = "uid://5i4oxxen13xa"

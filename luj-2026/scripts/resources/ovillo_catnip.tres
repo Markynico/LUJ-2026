@@ -14,6 +14,6 @@ script = ExtResource("2_v2j64")
 nombre = "OVILLO CATNIP"
 sprite = ExtResource("3_amiee")
 puntaje = 15
-valor_spawn = 9.0
+valor_spawn = 3.0
 efectos_al_recibir_impacto = Array[ExtResource("1_2nyhu")]([SubResource("Resource_v2j64")])
 metadata/_custom_type_script = "uid://bbkyk2anhunsd"

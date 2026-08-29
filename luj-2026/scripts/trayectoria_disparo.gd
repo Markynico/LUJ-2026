@@ -24,7 +24,7 @@ func _on_disparo_realizado() -> void:
 	if mostrar_camino_previo:
 		var datos : DatosDisparo = disparador.preparar_datos_disparo()
 		if gato and gato.listo_para_lanzar:
-			datos.velocidad_inicial = -gato.velocidad_inicial
+			ajustar_datos_para_gato(datos)
 		puntos_camino_previo = calcular_puntos(datos)
 		queue_redraw()
 
@@ -33,17 +33,26 @@ func _process(_delta : float) -> void:
 	if visible:
 		dibujar_trayectoria()
 
+func ajustar_datos_para_gato(datos : DatosDisparo) -> void:
+	datos.velocidad_inicial = -gato.velocidad_inicial
+	datos.gravedad = Vector2(0, ProjectSettings.get_setting("physics/2d/default_gravity")) * gato.gravity_scale
+
+
 func hay_algo_para_disparar() -> bool:
 	if not gato or not gato.game_manager:
 		return true
 	if gato.listo_para_lanzar:
 		return true
+	if gato.animation_player and gato.animation_player.is_playing():
+		return false
+	if not get_tree().get_nodes_in_group("bolas_de_pelos").is_empty():
+		return false
 	return gato.game_manager.estado_actual == GameManager.EstadoDeJuego.LANZANDO_BOLAS and gato.game_manager.bolas_restantes > 0
 
 func dibujar_trayectoria() -> void:
 	var datos : DatosDisparo = disparador.preparar_datos_disparo()
 	if gato and gato.listo_para_lanzar:
-		datos.velocidad_inicial = -gato.velocidad_inicial
+		ajustar_datos_para_gato(datos)
 	clear_points()
 	hay_impacto = false
 	for punto in calcular_puntos(datos):
@@ -70,15 +79,25 @@ func calcular_puntos(datos : DatosDisparo) -> PackedVector2Array:
 	var rebotes_restantes : int = datos.rebotes
 	var movimiento : Vector2
 	var normal : Vector2
+	var cuerpo : Node
+	var fuerza_rebote : float
+	if gato and gato.listo_para_lanzar:
+		posicion = gato.global_position
 	if not detector:
 		return puntos
+	detector.clear_exceptions()
 	detector.global_position = posicion
 	puntos.append(posicion)
 	for i in datos.pasos:
 		velocidad += datos.gravedad * datos.intervalo
 		movimiento = velocidad * datos.intervalo
 		detector.target_position = movimiento
+		detector.clear_exceptions()
 		detector.force_shapecast_update()
+		if detector.is_colliding() and puede_atravesar(detector.get_collider(0), detector.get_collider_shape(0), velocidad):
+			cuerpo = detector.get_collider(0)
+			detector.add_exception(cuerpo)
+			detector.force_shapecast_update()
 		if detector.is_colliding():
 			posicion += movimiento * detector.get_closest_collision_safe_fraction()
 			puntos.append(posicion)
@@ -88,10 +107,29 @@ func calcular_puntos(datos : DatosDisparo) -> PackedVector2Array:
 				break
 			rebotes_restantes -= 1
 			normal = detector.get_collision_normal(0)
-			velocidad = velocidad.slide(normal) * datos.factor_friccion + normal * datos.fuerza_rebote
+			fuerza_rebote = datos.fuerza_rebote
+			cuerpo = detector.get_collider(0)
+			if cuerpo is Ovillo and cuerpo.tipo_ovillo:
+				fuerza_rebote += cuerpo.tipo_ovillo.rebote_extra
+			velocidad = velocidad.slide(normal) * datos.factor_friccion + normal * fuerza_rebote
 			posicion += normal * 0.5
 		else:
 			posicion += movimiento
 			puntos.append(posicion)
 		detector.global_position = posicion
+	detector.clear_exceptions()
 	return puntos
+
+
+func puede_atravesar(colisionador : Object, indice_forma : int, velocidad : Vector2) -> bool:
+	var id_dueño : int
+	var nodo_forma : CollisionShape2D
+	var direccion_bloqueo : Vector2
+	if not colisionador is CollisionObject2D:
+		return false
+	id_dueño = colisionador.shape_find_owner(indice_forma)
+	nodo_forma = colisionador.shape_owner_get_owner(id_dueño) as CollisionShape2D
+	if nodo_forma == null or not nodo_forma.one_way_collision:
+		return false
+	direccion_bloqueo = nodo_forma.global_transform.basis_xform(nodo_forma.one_way_collision_direction).normalized()
+	return velocidad.dot(direccion_bloqueo) <= 0.0

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EfectoDeSonido" format=3 uid="uid://dkj1neptxih4s"]
+
+[ext_resource type="Script" uid="uid://bf2u7khywdugp" path="res://scripts/audio/efecto_de_sonido.gd" id="1_7f6fi"]
+[ext_resource type="AudioStream" uid="uid://ci4vt0dh5ikm7" path="res://assets/audio/sfx/whoosh_camara.wav" id="2_6n5ml"]
+
+[resource]
+script = ExtResource("1_7f6fi")
+tipo = 9
+streams = Array[AudioStream]([ExtResource("2_6n5ml")])
+metadata/_custom_type_script = "uid://bf2u7khywdugp"

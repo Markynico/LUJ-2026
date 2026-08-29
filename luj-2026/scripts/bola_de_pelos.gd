@@ -6,19 +6,38 @@ extends RigidBody2D
 @export_group("TIPO")
 @export var tipo_pelotita : PelotitaBase #TODO revisar si de verdad lo necesito aca o directamente hacer export vars aca en el nodo
 
+##diametro visual del sprite en pixeles, la textura se escala sola a este tamaño
+@export var diametro_sprite : float = 22.0
+
 @export_group("NODOS")
 @export var sprite_bola: Sprite2D
 @export var estela_movimiento : EstelaMovimiento
 
+@export_group("SONIDO")
+##cuanto sube el pitch del rebote por cada rebote acumulado
+@export var incremento_pitch : float = 0.05
+##tope del pitch extra acumulado por rebotes
+@export var pitch_extra_maximo : float = 1.0
+
+@export_group("LIMITES")
+##distancia fuera de los bordes del juego a la que se elimina la bola
+@export var margen_borde : float = 200.0
 
 
 var fue_duplicada : bool = false #probando, seguro lo saco de aca
 var contador_rebotes : int = 0
+var limites_juego : Rect2
 
 func _ready() -> void:
+	var tamanio_juego : Vector2 = Vector2(ProjectSettings.get_setting("display/window/size/viewport_width"), ProjectSettings.get_setting("display/window/size/viewport_height"))
+	limites_juego = Rect2(Vector2.ZERO, tamanio_juego).grow(margen_borde)
+	add_to_group("bolas_de_pelos")
+	if GameManager.instancia_actual:
+		tree_exited.connect(GameManager.instancia_actual.registrar_salida_de_bola, CONNECT_DEFERRED)
 	estela_movimiento.gradient = tipo_pelotita.colores_estela
 	sprite_bola.texture = tipo_pelotita.textura
-	
+	if sprite_bola.texture:
+		sprite_bola.scale = Vector2.ONE * (diametro_sprite / sprite_bola.texture.get_width())
 
 func normal_de_contacto(objeto : Node2D) -> Vector2:
 	var estado : PhysicsDirectBodyState2D = PhysicsServer2D.body_get_direct_state(get_rid())
@@ -48,9 +67,11 @@ func separar_del_contacto(objeto : Node2D) -> void:
 func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, local_shape_index: int) -> void:
 	if body is BolaDePelos: #evito rebote con otras bolas de pelos
 		return
+	if not body is Ovillo:
+		contador_rebotes = 0
 	for efecto in tipo_pelotita.efectos:
 		efecto.impactar_con_objeto(self, body)
-		sonido_rebote()
+	sonido_rebote()
 
 
 func duplicar_pelotita():
@@ -62,12 +83,12 @@ func duplicar_pelotita():
 	fue_duplicada = true
 
 func sonido_rebote():
-	#TODO aca agregaria un chekeo para subirle el pitch scale
-	#algo tipo global.impactos_acumulados
-	#y si acumula + 2 + 3 + 4 impactos le meto + pitch scale y suena como queriamos
-	pass
+	var pitch_extra : float = minf(contador_rebotes * incremento_pitch, pitch_extra_maximo)
+	contador_rebotes += 1
+	AudioManager.reproducir_sfx_en(EfectoDeSonido.Tipo.REBOTE, global_position, pitch_extra)
 
 
 #eliminar la bola de pelos cuando sale de la pantalla
-func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	queue_free()
+func _physics_process(_delta : float) -> void:
+	if not limites_juego.has_point(global_position):
+		queue_free()

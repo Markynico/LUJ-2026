@@ -1,17 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmqhpq2y5tv2w"]
+[gd_scene format=3 uid="uid://bmqhpq2y5tv2w"]
 
 [ext_resource type="Script" uid="uid://b580vvptmr04r" path="res://scripts/trayectoria_disparo.gd" id="1_6vpaq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_37ege"]
-radius = 3.0
+radius = 11.0
 
-[node name="TrayectoriaDisparo" type="Line2D" node_paths=PackedStringArray("disparador", "detector")]
+[node name="TrayectoriaDisparo" type="Line2D" unique_id=1196905175 node_paths=PackedStringArray("detector")]
+z_index = 10
 width = 3.0
 default_color = Color(1, 1, 1, 0.4862745)
 script = ExtResource("1_6vpaq")
 detector = NodePath("Detector")
 
-[node name="Detector" type="ShapeCast2D" parent="."]
+[node name="Detector" type="ShapeCast2D" parent="." unique_id=2066355622]
 enabled = false
-collision_mask = 19
 shape = SubResource("CircleShape2D_37ege")
+collision_mask = 19
