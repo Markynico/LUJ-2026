@@ -46,7 +46,9 @@ script = ExtResource("6_selec")
 cargador = NodePath("../CargadorDeNivel")
 divisores_minimos = 1
 divisores_maximos = 3
+chance_normal = 0.0
 chance_loot = 1.0
+chance_tienda = 0.0
 salas_entre_loots = 0
 alto_salida = 100.0
 
