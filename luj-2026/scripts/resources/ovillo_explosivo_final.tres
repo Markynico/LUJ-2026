@@ -1,10 +1,9 @@
 [gd_resource type="Resource" script_class="OvilloBase" format=3 uid="uid://d3ks2dut6iacd"]
 
-[ext_resource type="Texture2D" uid="uid://b5vsxrg8xutlx" path="res://assets/sprite_ovillos/llama.png" id="1_uj1e1"]
-[ext_resource type="Texture2D" uid="uid://cc7e6f6rviscu" path="res://assets/sprite_ovillos/hilo.png" id="2_50tys"]
 [ext_resource type="Script" uid="uid://fd1odbauo3fr" path="res://scripts/ovillos_custom/efecto_ovillo_base.gd" id="2_hlo4y"]
 [ext_resource type="Script" uid="uid://cv3xugh8gva3y" path="res://scripts/ovillos_custom/efecto_ovillo_explosion.gd" id="3_50tys"]
 [ext_resource type="Script" uid="uid://bbkyk2anhunsd" path="res://scripts/ovillos_custom/ovillo_base.gd" id="4_qu7k5"]
+[ext_resource type="Texture2D" uid="uid://d1h0xivjwqok0" path="res://assets/sprite_ovillos/Ovillo bomba.png" id="5_db3ri"]
 
 [sub_resource type="Resource" id="Resource_pv7le"]
 script = ExtResource("3_50tys")
@@ -13,9 +12,7 @@ metadata/_custom_type_script = "uid://cv3xugh8gva3y"
 [resource]
 script = ExtResource("4_qu7k5")
 nombre = "OVILLO EXPLOSIVO"
-color = Color(0.8, 0.17280002, 0.12800002, 1)
-decoracion = ExtResource("1_uj1e1")
-"decoracion_teñida" = ExtResource("2_50tys")
+sprite = ExtResource("5_db3ri")
 puntaje = 10
 valor_spawn = 2.5
 efectos_al_recibir_impacto = Array[ExtResource("2_hlo4y")]([SubResource("Resource_pv7le")])

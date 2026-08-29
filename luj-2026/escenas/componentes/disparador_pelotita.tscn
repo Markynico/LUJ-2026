@@ -16,5 +16,4 @@ scale = Vector2(3, 3)
 texture = ExtResource("3_of528")
 
 [node name="TrayectoriaDisparo" parent="." unique_id=2096489121 node_paths=PackedStringArray("disparador") instance=ExtResource("4_c1g5h")]
-z_index = 15
 disparador = NodePath("..")

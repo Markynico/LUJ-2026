@@ -27,7 +27,6 @@ extends Node2D
 @export var label_descripcion : Label
 @export var boton_confirmar : Button
 @export var boton_volver : Button
-@export var brillo_seleccion : ColorRect
 
 @export_group("Opciones")
 @export var opciones : Opciones
@@ -103,22 +102,14 @@ func mover_camara(posicion : Vector2, zoom : Vector2) -> void:
 func mostrar_panel(visible_panel : bool) -> void:
 	if tween_panel:
 		tween_panel.kill()
-	tween_panel = create_tween().set_parallel()
+	tween_panel = create_tween()
 	if visible_panel:
 		panel_info.modulate.a = 0.0
 		panel_info.visible = true
 		tween_panel.tween_property(panel_info, "modulate:a", 1.0, duracion_fade_panel)
-		if brillo_seleccion:
-			brillo_seleccion.modulate.a = 0.0
-			brillo_seleccion.visible = true
-			tween_panel.tween_property(brillo_seleccion, "modulate:a", 1.0, duracion_fade_panel)
 	else:
 		tween_panel.tween_property(panel_info, "modulate:a", 0.0, duracion_fade_panel)
-		if brillo_seleccion:
-			tween_panel.tween_property(brillo_seleccion, "modulate:a", 0.0, duracion_fade_panel)
-		tween_panel.chain().tween_callback(panel_info.hide)
-		if brillo_seleccion:
-			tween_panel.tween_callback(brillo_seleccion.hide)
+		tween_panel.tween_callback(panel_info.hide)
 
 
 func habilitar_botones_menu(habilitar : bool) -> void:

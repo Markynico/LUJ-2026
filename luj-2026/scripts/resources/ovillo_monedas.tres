@@ -1,11 +1,9 @@
 [gd_resource type="Resource" script_class="OvilloBase" format=3 uid="uid://dky2mbnm2rn0l"]
 
-[ext_resource type="Texture2D" uid="uid://ctlasolsixbkd" path="res://assets/sprite_ovillos/este va en el ovillo cara.png" id="1_fa0qx"]
 [ext_resource type="Script" uid="uid://fd1odbauo3fr" path="res://scripts/ovillos_custom/efecto_ovillo_base.gd" id="1_rx7yq"]
-[ext_resource type="Texture2D" uid="uid://13pthof0cqpy" path="res://assets/sprite_ovillos/este tapa la moneda.png" id="2_3ok5b"]
 [ext_resource type="Script" uid="uid://bbkyk2anhunsd" path="res://scripts/ovillos_custom/ovillo_base.gd" id="2_w3p2q"]
 [ext_resource type="Script" uid="uid://teghc6v6rp6c" path="res://scripts/ovillos_custom/efecto_monedas.gd" id="3_fa0qx"]
-[ext_resource type="Material" path="res://scripts/shaders/material_brillo_moneda.tres" id="4_brillo"]
+[ext_resource type="Texture2D" uid="uid://kuwgkbdi0hbn" path="res://assets/sprite_ovillos/Ovillo azul.png" id="3_w3p2q"]
 
 [sub_resource type="Resource" id="Resource_3vil1"]
 script = ExtResource("3_fa0qx")
@@ -14,12 +12,10 @@ metadata/_custom_type_script = "uid://teghc6v6rp6c"
 [resource]
 script = ExtResource("2_w3p2q")
 nombre = "OVILLO MONEDAS"
-color = Color(0.74, 0.5426667, 0, 1)
-decoracion = ExtResource("1_fa0qx")
-"decoracion_teñida" = ExtResource("2_3ok5b")
-material_brillo_decoracion = ExtResource("4_brillo")
+sprite = ExtResource("3_w3p2q")
 efecto_al_romper = 2
-cant_monedas = 1
+cant_monedas = 5
+puntaje = 2
 valor_spawn = 30.0
 efectos_al_recibir_impacto = Array[ExtResource("1_rx7yq")]([SubResource("Resource_3vil1")])
 metadata/_custom_type_script = "uid://bbkyk2anhunsd"

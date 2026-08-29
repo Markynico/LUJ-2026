@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://che0rryy8c7cq"]
 
 [ext_resource type="Script" uid="uid://cvo1oqa6q40ut" path="res://scripts/gato.gd" id="1_vrxw6"]
+[ext_resource type="Texture2D" uid="uid://d0q0uitvrhqd7" path="res://assets/sprites_gato/Gato 1.png" id="2_ewiyr"]
 [ext_resource type="PackedScene" uid="uid://brhfmi38jresg" path="res://escenas/componentes/disparador_pelotita.tscn" id="3_bbvk0"]
 [ext_resource type="Texture2D" uid="uid://cbapxh718cgxk" path="res://assets/sprites_gato/gato_bola.png" id="3_ewiyr"]
 [ext_resource type="Texture2D" uid="uid://bwcsatf82vn2s" path="res://assets/sprites_gato/gato 4_POSTVOMITO.png" id="5_ucdm4"]
@@ -25,7 +26,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("10_2wj7v")]
+"values": [ExtResource("3_ewiyr")]
 }
 
 [sub_resource type="Animation" id="Animation_ucdm4"]
@@ -87,28 +88,24 @@ contact_monitor = true
 max_contacts_reported = 8
 script = ExtResource("1_vrxw6")
 sprite = NodePath("Sprite2D")
-imagen_normal = ExtResource("10_2wj7v")
+imagen_normal = ExtResource("2_ewiyr")
 imagen_bolita = ExtResource("3_ewiyr")
-imagen_orgulloso = ExtResource("9_7xk13")
-escala_normal = 0.21
-escala_bolita = 0.06
 disparador_pelotitas = NodePath("DisparadorPelotita")
 animation_player = NodePath("AnimationPlayer")
 colision = NodePath("CollisionShape2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=36343804]
-z_as_relative = false
 texture_filter = 2
 position = Vector2(3, 2)
 scale = Vector2(0.21, 0.21)
-texture = ExtResource("10_2wj7v")
+texture = ExtResource("3_ewiyr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1688846017]
 position = Vector2(-2, 0)
 shape = SubResource("CircleShape2D_dklp6")
 
 [node name="DisparadorPelotita" parent="." unique_id=1250010144 instance=ExtResource("3_bbvk0")]
-position = Vector2(5, 10)
+position = Vector2(0, 4)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1084193647]
 libraries/ = SubResource("AnimationLibrary_2wj7v")
