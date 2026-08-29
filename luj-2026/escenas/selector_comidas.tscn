@@ -22,6 +22,7 @@ grow_vertical = 2
 color = Color(0.22670761, 0.22670746, 0.22670743, 0.76862746)
 
 [node name="ButtonOmitir" type="Button" parent="CanvasLayer" unique_id=1009734472]
+process_mode = 3
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0

@@ -29,7 +29,7 @@ static var vidas_inicializadas: bool = false
 @export var gato : Gato
 @export var cargador_nivel : CargadorDeNivel
 @export var selector_niveles : SelectorDeNiveles
-@export var bolas_maximas : int = 20
+@export var bolas_maximas : int = 4
 @export var vidas_maximas : int = 3
 @export_range(0.1, 1.0, 0.05) var porcentaje_ovillos_requerido : float = 0.30
 
@@ -52,8 +52,6 @@ func _enter_tree() -> void:
 	instancia_actual = self
 
 func _ready() -> void:
-	Global.eligiendo_comidas.connect(_on_eligiendo_comidas)
-	Global.cerro_selector_comidas.connect(on_cerro_selector_comidas)
 	# Persistencia de vidas entre recargas de nivel
 	if not vidas_inicializadas:
 		vidas_guardadas = vidas_maximas
@@ -268,15 +266,3 @@ func reiniciar_nivel_actual() -> void:
 #
 #func restablecer_tablero_pelotitas(): #la dejo por si metemos el efecto "al ser golpeado restablece el tablero de ovillos"
 	#pass
-
-
-func _on_eligiendo_comidas():
-	print("asdasddsaasddsaadsjajsgldihjlaisdglhjiasdhjsdfjhadsfjhdfasjhldsfajhiladfsjhlashjlddshjdgas") #si fue marcos como supiste
-	estado_actual = EstadoDeJuego.SELECCIONANDO_COMIDAS
-	get_tree().paused  =true
-
-func on_cerro_selector_comidas():
-	print("volver a lanzando bolas ")
-	estado_actual = EstadoDeJuego.LANZANDO_BOLAS
-	get_tree().paused  =false
-	

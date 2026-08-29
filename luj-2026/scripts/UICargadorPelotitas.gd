@@ -7,6 +7,8 @@ extends Control
 
 func _ready() -> void:
 	Global.cargador_pelotitas_actualizado.connect(_on_cargador_pelotitas_actualizado)
+	#await get_tree().create_timer(1).timeout
+	_on_cargador_pelotitas_actualizado()
 
 
 func _on_cargador_pelotitas_actualizado():
