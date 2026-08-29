@@ -12,6 +12,7 @@
 [ext_resource type="Resource" path="res://scripts/resources/reliquias/armadura_gato.tres" id="11_armad"]
 [ext_resource type="Resource" path="res://scripts/resources/reliquias/almuerzo_duenia.tres" id="12_almue"]
 [ext_resource type="Resource" path="res://scripts/resources/reliquias/magiclick.tres" id="13_magic"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/agujas_crochet.tres" id="14_aguja"]
 
 [node name="SalaLoot" type="Control" unique_id=879506484 node_paths=PackedStringArray("icono", "label_nombre", "label_descripcion", "boton_aceptar", "boton_rechazar")]
 process_mode = 3
@@ -22,7 +23,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_loot")
-reliquias_posibles = Array[ExtResource("6_reliquia")]([ExtResource("2_rascador"), ExtResource("4_tapita"), ExtResource("5_tiro"), ExtResource("7_messi"), ExtResource("8_maceta"), ExtResource("9_almoh"), ExtResource("10_whisk"), ExtResource("11_armad"), ExtResource("12_almue"), ExtResource("13_magic")])
+reliquias_posibles = Array[ExtResource("6_reliquia")]([ExtResource("2_rascador"), ExtResource("4_tapita"), ExtResource("5_tiro"), ExtResource("7_messi"), ExtResource("8_maceta"), ExtResource("9_almoh"), ExtResource("10_whisk"), ExtResource("11_armad"), ExtResource("12_almue"), ExtResource("13_magic"), ExtResource("14_aguja")])
 icono = NodePath("Contenido/Icono")
 label_nombre = NodePath("Contenido/LabelNombre")
 label_descripcion = NodePath("Contenido/LabelDescripcion")
