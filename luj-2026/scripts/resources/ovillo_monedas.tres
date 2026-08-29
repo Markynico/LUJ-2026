@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://fd1odbauo3fr" path="res://scripts/ovillos_custom/efecto_ovillo_base.gd" id="1_rx7yq"]
 [ext_resource type="Script" uid="uid://bbkyk2anhunsd" path="res://scripts/ovillos_custom/ovillo_base.gd" id="2_w3p2q"]
 [ext_resource type="Script" uid="uid://teghc6v6rp6c" path="res://scripts/ovillos_custom/efecto_monedas.gd" id="3_fa0qx"]
-[ext_resource type="Texture2D" uid="uid://kuwgkbdi0hbn" path="res://assets/sprite_ovillos/Ovillo azul.png" id="3_w3p2q"]
 
 [sub_resource type="Resource" id="Resource_3vil1"]
 script = ExtResource("3_fa0qx")
@@ -12,7 +11,7 @@ metadata/_custom_type_script = "uid://teghc6v6rp6c"
 [resource]
 script = ExtResource("2_w3p2q")
 nombre = "OVILLO MONEDAS"
-sprite = ExtResource("3_w3p2q")
+color = Color(0.74, 0.5426667, 0, 1)
 efecto_al_romper = 2
 cant_monedas = 5
 puntaje = 2

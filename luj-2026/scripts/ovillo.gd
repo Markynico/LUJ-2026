@@ -8,6 +8,7 @@ extends StaticBody2D
 @export var forma_colision : CollisionShape2D
 @export var sprite_normal : Sprite2D #el sprite normal es el q va a contener el shader de titilar antes de explotar
 @export var sprite_desactivado : Sprite2D
+@export var sprite_decoracion : Sprite2D
 @export var pergamino_info : PergaminoInfo
 @export var numero_impacto : NumeroImpacto
 
@@ -26,8 +27,15 @@ func _ready() -> void:
 	if sprite_desactivado:
 		sprite_desactivado.hide()
 	if tipo_ovillo:
-		if sprite_normal and tipo_ovillo.sprite:
-			sprite_normal.texture = tipo_ovillo.sprite
+		if sprite_normal:
+			if tipo_ovillo.sprite:
+				sprite_normal.texture = tipo_ovillo.sprite
+			sprite_normal.self_modulate = tipo_ovillo.color
+		if sprite_decoracion:
+			if tipo_ovillo.decoracion:
+				sprite_decoracion.texture = tipo_ovillo.decoracion
+			else:
+				sprite_decoracion.hide()
 		if pergamino_info:
 			pergamino_info.set_texto_ovillo(tipo_ovillo)
 	
@@ -119,7 +127,7 @@ func obtener_puntaje () -> int:
 	if not tipo_ovillo:
 		return 0
 	#print(name, " puntaje: ", tipo_ovillo.puntaje, " x ", multiplicador)
-	return tipo_ovillo.puntaje * multiplicador
+	return roundi(tipo_ovillo.puntaje * multiplicador * ReliquiasManager.multiplicador_puntos_para(tipo_ovillo))
 
 func obtener_monedas () -> int:
 	if not tipo_ovillo:

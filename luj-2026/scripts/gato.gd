@@ -1,3 +1,4 @@
+@tool
 @icon("res://iconos_custom/cat.svg")
 class_name Gato
 extends RigidBody2D
@@ -8,6 +9,17 @@ signal escupir_bola
 @export var sprite : Sprite2D
 @export var imagen_normal : Texture2D #dsp cambiamos por animatedsprite ambos o solo este
 @export var imagen_bolita : Texture2D
+@export var imagen_orgulloso : Texture2D
+##escala del sprite cuando muestra la imagen normal
+@export var escala_normal : float = 0.21:
+	set(valor):
+		escala_normal = valor
+		if Engine.is_editor_hint() and sprite:
+			sprite.scale = Vector2.ONE * valor
+##escala del sprite cuando muestra la imagen bolita
+@export var escala_bolita : float = 0.06
+##z del sprite mientras el gato vuela lanzado, para taparse la baranda
+@export var z_lanzado : int = 20
 
 @export var disparador_pelotitas : DisparadorPelotita
 @export var animation_player : AnimationPlayer
@@ -40,12 +52,13 @@ var ovillos_rotos : int = 0
 var tiempo_quieto : float = 0.0
 
 func _ready() -> void:
-	sprite.texture = imagen_bolita
-	#sprite.texture = imagen_normal #deje a proposito directamente el sprite del gato bolita hasta q tengamos las otras
+	if Engine.is_editor_hint():
+		return
 	pos_superior = global_position
 	posicion_inicial = global_position
 	if sprite:
 		sprite.texture = imagen_normal
+		sprite.scale = Vector2.ONE * escala_normal
 	freeze = true
 	if colision:
 		colision.set_deferred("disabled", true)
@@ -60,6 +73,13 @@ func _ready() -> void:
 		game_manager.gato_lanza_bola.connect(preparar_bola)
 		game_manager.lanzar_gato.connect(preparar_lanzamiento)
 	body_entered.connect(al_chocar)
+	if animation_player:
+		animation_player.animation_finished.connect(al_terminar_animacion)
+
+
+func al_terminar_animacion(nombre : StringName) -> void:
+	if nombre == &"escupir_bola" and not listo_para_lanzar:
+		animation_player.play("idle")
 
 
 func al_chocar(body : Node) -> void:
@@ -71,6 +91,8 @@ func al_chocar(body : Node) -> void:
 
 # ============ PROCESS / DETECCIÓN DE FIN DE NIVEL =============
 func _process(_delta : float) -> void:
+	if Engine.is_editor_hint():
+		return
 	actualizar_orientacion()
 
 
@@ -94,6 +116,8 @@ func esta_apuntando() -> bool:
 
 
 func _physics_process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
 	if _fue_lanzado and not _finalizo_ronda:
 		# Si el gato cae por debajo de la pantalla o divisiones
 		if global_position.y > get_viewport_rect().size.y + 100.0:
@@ -120,6 +144,8 @@ func atascarse() -> void:
 
 # ============ INPUT ==============
 func _input(event: InputEvent) -> void:
+	if Engine.is_editor_hint():
+		return
 	# Cambio de posición lateral con la reliquia Rascador
 	if disparo_lateral_habilitado and freeze:
 		if event is InputEventKey and event.pressed:
@@ -173,6 +199,8 @@ func cambiar_posicion_disparo(nueva_pos : PosicionDisparo) -> void:
 func reiniciar() -> void:
 	if sprite:
 		sprite.texture = imagen_normal
+		sprite.scale = Vector2.ONE * escala_normal
+		sprite.z_index = 0
 	freeze = true
 	if colision:
 		colision.set_deferred("disabled", true)
@@ -192,8 +220,11 @@ func teleportar_al_inicio() -> void:
 	rotation = 0.0
 
 func preparar_lanzamiento() -> void:
+	if animation_player:
+		animation_player.stop()
 	if sprite:
-		sprite.texture = imagen_bolita
+		sprite.texture = imagen_orgulloso
+		sprite.scale = Vector2.ONE * escala_normal
 	call_deferred("habilitar_lanzamiento")
 
 func habilitar_lanzamiento() -> void:
@@ -203,6 +234,10 @@ func habilitar_lanzamiento() -> void:
 	print("GATO LANZAMIENTO LISTO")
 
 func lanzar() -> void:
+	if sprite:
+		sprite.texture = imagen_bolita
+		sprite.scale = Vector2.ONE * escala_bolita
+		sprite.z_index = z_lanzado
 	freeze = false
 	if colision:
 		colision.set_deferred("disabled", false)
