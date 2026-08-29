@@ -218,4 +218,3 @@ func preparar_bola() -> void:
 	if animation_player:
 		animation_player.stop()
 		animation_player.play("escupir_bola")
-
