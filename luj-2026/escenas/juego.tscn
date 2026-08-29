@@ -18,10 +18,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jhh3k"]
 size = Vector2(702, 45.99997)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_6nwa0"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_w7gqy"]
 viewport_path = NodePath("PanelInfoIzquierdo/SubViewportIzq")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_eu1no"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_6nwa0"]
 viewport_path = NodePath("PanelInfoDerecho/SubViewportDer")
 
 [node name="Juego" type="Node2D" unique_id=1865884372 node_paths=PackedStringArray("game_manager", "gato", "cargador", "selector", "camara")]
@@ -118,10 +118,10 @@ position = Vector2(309, 9)
 shape = SubResource("RectangleShape2D_jhh3k")
 
 [node name="PanelInfoIzquierdo" parent="EstructuraDeNivel" index="3" unique_id=1428603965]
-texture = SubResource("ViewportTexture_6nwa0")
+texture = SubResource("ViewportTexture_w7gqy")
 
 [node name="PanelInfoDerecho" parent="EstructuraDeNivel" index="4" unique_id=1908544833]
-texture = SubResource("ViewportTexture_eu1no")
+texture = SubResource("ViewportTexture_6nwa0")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2055805025]
 position = Vector2(960, 540)

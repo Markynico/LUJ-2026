@@ -1,6 +1,8 @@
 [gd_resource type="Resource" script_class="OvilloBase" format=3 uid="uid://fumr1qv4h1ho"]
 
+[ext_resource type="Texture2D" uid="uid://bd7syc7ij2y2t" path="res://assets/sprite_ovillos/ovillo rewind.png" id="1_6fw7n"]
 [ext_resource type="Script" uid="uid://fd1odbauo3fr" path="res://scripts/ovillos_custom/efecto_ovillo_base.gd" id="1_uuoqp"]
+[ext_resource type="Texture2D" uid="uid://13pthof0cqpy" path="res://assets/sprite_ovillos/este tapa la moneda.png" id="2_o6654"]
 [ext_resource type="Script" uid="uid://bbkyk2anhunsd" path="res://scripts/ovillos_custom/ovillo_base.gd" id="2_q4f2x"]
 [ext_resource type="Script" uid="uid://ct20i2qr4wb6k" path="res://scripts/ovillos_custom/efecto_rebobinar.gd" id="3_6fw7n"]
 
@@ -12,6 +14,8 @@ metadata/_custom_type_script = "uid://ct20i2qr4wb6k"
 script = ExtResource("2_q4f2x")
 nombre = "OVILLO REBOBINAR"
 color = Color(0.48125008, 0.23100002, 0.66, 1)
+decoracion = ExtResource("1_6fw7n")
+"decoracion_teñida" = ExtResource("2_o6654")
 rebote_extra = 20.0
 puntaje = 5
 valor_spawn = 1.0

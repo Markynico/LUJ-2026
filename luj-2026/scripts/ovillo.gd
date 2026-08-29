@@ -9,6 +9,8 @@ extends StaticBody2D
 @export var sprite_normal : Sprite2D #el sprite normal es el q va a contener el shader de titilar antes de explotar
 @export var sprite_desactivado : Sprite2D
 @export var sprite_decoracion : Sprite2D
+@export var sprite_decoracion_teñida : Sprite2D
+@export var sprite_brillo_decoracion : Sprite2D
 @export var pergamino_info : PergaminoInfo
 @export var numero_impacto : NumeroImpacto
 
@@ -36,6 +38,19 @@ func _ready() -> void:
 				sprite_decoracion.texture = tipo_ovillo.decoracion
 			else:
 				sprite_decoracion.hide()
+		if sprite_brillo_decoracion:
+			if tipo_ovillo.material_brillo_decoracion:
+				sprite_brillo_decoracion.texture = sprite_normal.texture
+				sprite_brillo_decoracion.material = tipo_ovillo.material_brillo_decoracion
+				sprite_brillo_decoracion.show()
+			else:
+				sprite_brillo_decoracion.hide()
+		if sprite_decoracion_teñida:
+			if tipo_ovillo.decoracion_teñida:
+				sprite_decoracion_teñida.texture = tipo_ovillo.decoracion_teñida
+				sprite_decoracion_teñida.self_modulate = tipo_ovillo.color
+			else:
+				sprite_decoracion_teñida.hide()
 		if pergamino_info:
 			pergamino_info.set_texto_ovillo(tipo_ovillo)
 	

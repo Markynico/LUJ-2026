@@ -10,7 +10,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_37ege"]
 radius = 13.5
 
-[node name="Ovillo" type="StaticBody2D" unique_id=142733400 node_paths=PackedStringArray("forma_colision", "sprite_normal", "sprite_desactivado", "sprite_decoracion", "pergamino_info", "numero_impacto")]
+[node name="Ovillo" type="StaticBody2D" unique_id=142733400 node_paths=PackedStringArray("forma_colision", "sprite_normal", "sprite_desactivado", "sprite_decoracion", "sprite_decoracion_teñida", "sprite_brillo_decoracion", "pergamino_info", "numero_impacto")]
 collision_layer = 2
 collision_mask = 0
 input_pickable = true
@@ -20,6 +20,8 @@ forma_colision = NodePath("CollisionShape2D")
 sprite_normal = NodePath("SpriteNormal")
 sprite_desactivado = NodePath("SpriteDesactivado")
 sprite_decoracion = NodePath("SpriteNormal/SpriteDecoracion")
+"sprite_decoracion_teñida" = NodePath("SpriteNormal/SpriteDecoracionTeñida")
+sprite_brillo_decoracion = NodePath("SpriteNormal/SpriteBrilloDecoracion")
 pergamino_info = NodePath("PergaminoInfo")
 numero_impacto = NodePath("NumeroImpacto")
 shader_titilar = ExtResource("3_3vil1")
@@ -31,6 +33,13 @@ scale = Vector2(0.113, 0.113)
 texture = ExtResource("4_dcous")
 
 [node name="SpriteDecoracion" type="Sprite2D" parent="SpriteNormal" unique_id=550040606]
+texture_filter = 1
+
+[node name="SpriteDecoracionTeñida" type="Sprite2D" parent="SpriteNormal" unique_id=550040607]
+texture_filter = 1
+
+[node name="SpriteBrilloDecoracion" type="Sprite2D" parent="SpriteNormal" unique_id=550040608]
+visible = false
 texture_filter = 1
 
 [node name="SpriteDesactivado" type="Sprite2D" parent="." unique_id=550040605]

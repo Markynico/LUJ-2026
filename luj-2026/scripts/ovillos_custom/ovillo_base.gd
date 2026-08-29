@@ -6,8 +6,12 @@ extends Resource
 @export var sprite : Texture
 ##color con el que se tiñe el sprite base
 @export var color : Color = Color.WHITE
-##textura opcional que se dibuja por encima del ovillo
+##textura opcional que se dibuja por encima del ovillo, sin teñir
 @export var decoracion : Texture
+##textura opcional que se dibuja por delante de la decoracion, teñida con el color del ovillo
+@export var decoracion_teñida : Texture
+##material de brillo opcional que se dibuja sobre la decoracion
+@export var material_brillo_decoracion : ShaderMaterial
 ##efecto de sonido que suena al romper este ovillo
 @export var efecto_al_romper : EfectoDeSonido.Tipo = EfectoDeSonido.Tipo.ROMPER_OVILLO
 ##cantidad de monedas q obtendra el jugador cuando le peguemos a este ovillo
