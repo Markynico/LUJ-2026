@@ -2,25 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bh3lxufik2p65" path="res://scripts/niveles/cargador_de_nivel.gd" id="1_carg"]
 [ext_resource type="PackedScene" uid="uid://cexjr0e4owki" path="res://escenas/estructura_de_nivel.tscn" id="2_estru"]
-[ext_resource type="PackedScene" uid="uid://ddjsjatakql7" path="res://escenas/componentes/recorrido.tscn" id="6_43wpl"]
-[ext_resource type="PackedScene" uid="uid://cobstrect00a1" path="res://escenas/componentes/obstaculo_rectangulo.tscn" id="6_x3fkq"]
 [ext_resource type="PackedScene" uid="uid://bxjt6h43758na" path="res://escenas/componentes/divisiones_pachinko.tscn" id="7_divs"]
 [ext_resource type="Script" uid="uid://s48qenil6kit" path="res://scripts/niveles/obstaculo_rectangulo.gd" id="7_wilmi"]
 [ext_resource type="Script" uid="uid://dcw0s4m8jmxet" path="res://scripts/niveles/movimiento_por_path.gd" id="7_x3fkq"]
 [ext_resource type="PackedScene" uid="uid://cformarect0a1" path="res://escenas/componentes/forma_rectangulo.tscn" id="10_wilmi"]
 [ext_resource type="Script" uid="uid://1owd66s6mpge" path="res://scripts/niveles/forma_rectangulo.gd" id="11_uxw3d"]
-
-[sub_resource type="Curve2D" id="Curve2D_uxw3d"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 912.48206, -0.54681396)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_na3or"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -909.81396, -1.2894287)
-}
-point_count = 2
 
 [node name="EditorDeNiveles" type="Node2D" unique_id=925235971 node_paths=PackedStringArray("estructura")]
 script = ExtResource("1_carg")
@@ -31,64 +17,3 @@ estructura = NodePath("EstructuraDeNivel")
 [node name="DivisionesPachinko" parent="." unique_id=631157151 instance=ExtResource("7_divs")]
 position = Vector2(349, 1080)
 ancho_total = 1241.0
-
-[node name="Recorrido" parent="." unique_id=66443452 node_paths=PackedStringArray("seguidor") instance=ExtResource("6_43wpl")]
-position = Vector2(507.9707, 322.7786)
-curve = SubResource("Curve2D_uxw3d")
-script = ExtResource("7_x3fkq")
-seguidor = NodePath("Seguidor")
-bucle = true
-
-[node name="Seguidor" parent="Recorrido" index="0"]
-rotates = false
-loop = false
-
-[node name="ObstaculoRectangulo" type="Node2D" parent="Recorrido/Seguidor" index="0" unique_id=537999578 instance=ExtResource("6_x3fkq")]
-script = ExtResource("7_wilmi")
-"tamaño" = Vector2(234.38501, 37.293365)
-
-[node name="Recorrido2" parent="." unique_id=1344028630 node_paths=PackedStringArray("seguidor") instance=ExtResource("6_43wpl")]
-position = Vector2(1418.814, 404.28943)
-curve = SubResource("Curve2D_na3or")
-script = ExtResource("7_x3fkq")
-seguidor = NodePath("Seguidor")
-bucle = true
-
-[node name="Seguidor" parent="Recorrido2" index="0"]
-rotates = false
-loop = false
-
-[node name="ObstaculoRectangulo" type="Node2D" parent="Recorrido2/Seguidor" index="0" unique_id=626151801 instance=ExtResource("6_x3fkq")]
-script = ExtResource("7_wilmi")
-"tamaño" = Vector2(259.4405, 36.310608)
-
-[node name="FormaRectangulo" type="Node2D" parent="." unique_id=324525101 instance=ExtResource("10_wilmi")]
-position = Vector2(980.6811, 513.767)
-script = ExtResource("11_uxw3d")
-"tamaño" = Vector2(1085.6323, 38.72644)
-
-[node name="FormaRectangulo2" type="Node2D" parent="." unique_id=279524094 instance=ExtResource("10_wilmi")]
-position = Vector2(547.528, 615.26624)
-script = ExtResource("11_uxw3d")
-
-[node name="FormaRectangulo3" type="Node2D" parent="." unique_id=579401191 instance=ExtResource("10_wilmi")]
-position = Vector2(1425.2561, 612.0452)
-script = ExtResource("11_uxw3d")
-
-[node name="FormaRectangulo4" type="Node2D" parent="." unique_id=1682058775 instance=ExtResource("10_wilmi")]
-position = Vector2(995.2499, 584.66656)
-script = ExtResource("11_uxw3d")
-"tamaño" = Vector2(575.47864, 35.940125)
-
-[node name="FormaRectangulo5" type="Node2D" parent="." unique_id=1442138911 instance=ExtResource("10_wilmi")]
-position = Vector2(994.88684, 644.18115)
-script = ExtResource("11_uxw3d")
-"tamaño" = Vector2(570.84674, 35.579834)
-
-[node name="FormaRectangulo6" type="Node2D" parent="." unique_id=1972359258 instance=ExtResource("10_wilmi")]
-position = Vector2(985, 717)
-script = ExtResource("11_uxw3d")
-"tamaño" = Vector2(1077.5797, 43.557983)
-
-[editable path="Recorrido"]
-[editable path="Recorrido2"]

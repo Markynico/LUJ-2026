@@ -1,17 +1,18 @@
 [gd_scene format=3 uid="uid://c30ry4xehty4"]
 
-[ext_resource type="Texture2D" uid="uid://c300lurukq11v" path="res://assets/pantalla_de_juegosigninterrogacion.jpeg" id="1_d7r87"]
 [ext_resource type="Script" uid="uid://bower76ju6eql" path="res://scripts/menu.gd" id="1_menu"]
 [ext_resource type="PackedScene" uid="uid://cwcb53v5re82r" path="res://escenas/componentes/boton_estandarte.tscn" id="3_2owot"]
 [ext_resource type="Texture2D" uid="uid://d3bwndvu3r60t" path="res://assets/estandartes/estandartejugararriba.png" id="4_4gv4q"]
+[ext_resource type="Texture2D" uid="uid://cnn0x0om8yo5m" path="res://assets/pantalla de juego.png" id="4_20bhr"]
 [ext_resource type="Texture2D" uid="uid://dp7b6ng71awkx" path="res://assets/estandartes/estandartejugarabajo.png" id="5_8jdmi"]
+[ext_resource type="Texture2D" uid="uid://tyhp22ghvnep" path="res://assets/barandilla.png" id="5_lji1a"]
 [ext_resource type="Texture2D" uid="uid://b58mkku4omi7s" path="res://assets/estandartes/estandarteopcionesarriba.png" id="6_i5l0x"]
 [ext_resource type="Texture2D" uid="uid://bnjrf64bqbily" path="res://assets/estandartes/estandarteopcionesabajo.png" id="7_6m0pt"]
 [ext_resource type="Texture2D" uid="uid://bgwfassbyybmg" path="res://assets/estandartes/estandartesalirarriba.png" id="8_builu"]
 [ext_resource type="Texture2D" uid="uid://re7kh2u4s8ut" path="res://assets/estandartes/estandartesalirabajo.png" id="9_20bhr"]
 [ext_resource type="Texture2D" uid="uid://84aw1fbg7kwq" path="res://assets/Michinko Logo.png" id="11_6m0pt"]
-[ext_resource type="Texture2D" uid="uid://d0q0uitvrhqd7" path="res://assets/sprites_gato/Gato 1.png" id="11_i5l0x"]
 [ext_resource type="Script" uid="uid://ldkn2qu0rnkn" path="res://scripts/resources/datos_gato.gd" id="12_dgato"]
+[ext_resource type="Texture2D" uid="uid://ds6gl78d1ayev" path="res://assets/sprites_gato/gato 1_idle.png" id="13_20bhr"]
 [ext_resource type="Resource" uid="uid://c0y7jrcb8f0k" path="res://scripts/resources/gatos_michinko.tres" id="13_michi"]
 [ext_resource type="PackedScene" path="res://escenas/opciones.tscn" id="14_opc"]
 
@@ -32,9 +33,18 @@ boton_volver = NodePath("UISeleccion/PanelInfo/Contenido/Botones/BotonVolver")
 opciones = NodePath("Opciones")
 
 [node name="Fondo" type="TextureRect" parent="." unique_id=660928265]
+offset_right = 2560.0
+offset_bottom = 1440.0
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("4_20bhr")
+expand_mode = 5
+
+[node name="Baranda" type="TextureRect" parent="Fondo" unique_id=526998624]
+z_index = 11
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("1_d7r87")
+texture = ExtResource("5_lji1a")
 
 [node name="BotonEstandarteColeccion" parent="." unique_id=2120989071 instance=ExtResource("3_2owot")]
 offset_left = 321.0
@@ -79,15 +89,15 @@ scale = Vector2(0.695, 0.695)
 texture = ExtResource("11_6m0pt")
 
 [node name="GatoSprite" type="TextureRect" parent="." unique_id=1802822704]
-offset_left = 874.00006
-offset_top = 109.0
-offset_right = 1874.0
-offset_bottom = 1109.0
+offset_left = 1368.0
+offset_top = 111.0
+offset_right = 2368.0
+offset_bottom = 1111.0
 scale = Vector2(0.195, 0.195)
-texture = ExtResource("11_i5l0x")
+texture = ExtResource("13_20bhr")
 
 [node name="FocoSeleccion" type="Marker2D" parent="." unique_id=159663655]
-position = Vector2(1118, 217)
+position = Vector2(1556, 217)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1343517546]
 position = Vector2(960, 540)
