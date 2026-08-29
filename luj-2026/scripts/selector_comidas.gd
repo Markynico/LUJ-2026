@@ -35,19 +35,18 @@ func limpiar_comidas_anteriores():
 
 #la llamo con una signal desde los paneles y sino tmb desde el boton omitir con la signal de pressed
 func avanzar(): #sea pq elige una comida o pq pone en omitir
-	#print("avanzarrrrrrrrrrrrrr")
 	esconder_selector_comidas()
-	#get_tree().change_scene_to_file("res://escenas/juego.tscn") #TODO por ahora para testear pero debe enviarte al siguiente nivel no?
+	Global.cerro_selector_comidas.emit()
 
 
-func mostrar_selector_comidas(): 
+func mostrar_selector_comidas():
+	Global.eligiendo_comidas.emit() #para avisarle a game manager q cambie de estado a seleccionando comidas
 	elegir_comidas_aleatorias()
 	canvas_layer.show()
 
 
 func esconder_selector_comidas():
 	canvas_layer.hide()
-
 
 func _on_game_manager_nivel_completado(exito: bool) -> void: #la llamo con signal s
 	mostrar_selector_comidas()

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="PelotitaBase" format=3 uid="uid://bp6yjcorvvb2y"]
+
+[ext_resource type="Script" uid="uid://c31lbqa2grch4" path="res://scripts/pelotitas_custom/efectos_pelotita.gd" id="1_dhhhs"]
+[ext_resource type="Script" uid="uid://c7ogyqxnq7236" path="res://scripts/pelotitas_custom/pelotita_base.gd" id="2_h5w4i"]
+[ext_resource type="Resource" uid="uid://dq6criuajreor" path="res://scripts/resources/EfectoMate.tres" id="2_mt4yi"]
+[ext_resource type="Texture2D" uid="uid://b7irvwbe34e7r" path="res://assets/comidas/mate michinko color 1 (1).png" id="3_vv0hs"]
+[ext_resource type="Texture2D" uid="uid://ckmgx74nlpgr5" path="res://assets/placeholders/bolaspelo_placeholder/bola_mate.png" id="5_gi5oo"]
+
+[sub_resource type="Gradient" id="Gradient_2e4jd"]
+colors = PackedColorArray(0.32444704, 0.4023873, 0.104124404, 1, 0.09524963, 0.20339695, 0.07681506, 1)
+
+[resource]
+script = ExtResource("2_h5w4i")
+nombre = "BolaPelosMate"
+textura = ExtResource("5_gi5oo")
+colores_estela = SubResource("Gradient_2e4jd")
+imagen_comida_asociada = ExtResource("3_vv0hs")
+efectos = Array[ExtResource("1_dhhhs")]([ExtResource("2_mt4yi")])
+metadata/_custom_type_script = "uid://c7ogyqxnq7236"

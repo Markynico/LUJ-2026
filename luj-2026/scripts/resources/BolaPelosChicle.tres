@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="PelotitaBase" format=3 uid="uid://d2y2wdiwxf7pa"]
+
+[ext_resource type="Script" uid="uid://c31lbqa2grch4" path="res://scripts/pelotitas_custom/efectos_pelotita.gd" id="1_mog8v"]
+[ext_resource type="Texture2D" uid="uid://b4mjou370ar2a" path="res://assets/placeholders/bazooka.png" id="2_fkiue"]
+[ext_resource type="Resource" uid="uid://baoihoh3kxp21" path="res://scripts/resources/EfectoChicle.tres" id="2_k4i4d"]
+[ext_resource type="Script" uid="uid://c7ogyqxnq7236" path="res://scripts/pelotitas_custom/pelotita_base.gd" id="3_k4i4d"]
+[ext_resource type="Texture2D" uid="uid://cgf61huxrhoyo" path="res://assets/placeholders/bolaspelo_placeholder/bola_chicle.png" id="5_fkiue"]
+
+[sub_resource type="Gradient" id="Gradient_clc7a"]
+colors = PackedColorArray(0.7392886, 0.4366194, 0.5612622, 1, 0.30041242, 0.6552077, 0.75762534, 1)
+
+[resource]
+script = ExtResource("3_k4i4d")
+nombre = "BolaPelosChicle"
+textura = ExtResource("5_fkiue")
+colores_estela = SubResource("Gradient_clc7a")
+imagen_comida_asociada = ExtResource("2_fkiue")
+efectos = Array[ExtResource("1_mog8v")]([ExtResource("2_k4i4d")])
+metadata/_custom_type_script = "uid://c7ogyqxnq7236"
