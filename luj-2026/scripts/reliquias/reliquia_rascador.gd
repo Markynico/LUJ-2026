@@ -11,5 +11,7 @@ func _activar_en_gato(game_manager : GameManager) -> void:
 	if not game_manager or not game_manager.gato:
 		return
 	var gato = game_manager.gato
-	if gato.has_method("habilitar_disparo_lateral"):
+	if gato.has_method("habilitar_movimiento_horizontal"):
+		gato.habilitar_movimiento_horizontal()
+	elif gato.has_method("habilitar_disparo_lateral"):
 		gato.habilitar_disparo_lateral()

@@ -1,0 +1,61 @@
+[gd_resource type="Resource" script_class="NivelData" format=3 uid="uid://b48kcm8swtxie"]
+
+[ext_resource type="Script" uid="uid://1owdr3bm0age" path="res://scripts/niveles/forma_data.gd" id="1_x4xo4"]
+[ext_resource type="Script" uid="uid://4yxin8siliwu" path="res://scripts/niveles/nivel_data.gd" id="2_iyr54"]
+
+[sub_resource type="Resource" id="Resource_x4xo4"]
+script = ExtResource("1_x4xo4")
+tipo = "circulo"
+posicion = Vector2(971, 599)
+radio = 333.0
+
+[sub_resource type="Resource" id="Resource_iyr54"]
+script = ExtResource("1_x4xo4")
+tipo = "circulo"
+posicion = Vector2(971, 603)
+radio = 222.0
+
+[sub_resource type="Resource" id="Resource_mskso"]
+script = ExtResource("1_x4xo4")
+tipo = "circulo"
+posicion = Vector2(971.32996, 600.41)
+radio = 111.0
+
+[sub_resource type="Resource" id="Resource_5tv0s"]
+script = ExtResource("1_x4xo4")
+tipo = "circulo"
+posicion = Vector2(971.3567, 601.0073)
+radio = 67.36952
+
+[sub_resource type="Resource" id="Resource_hjprr"]
+script = ExtResource("1_x4xo4")
+tipo = "circulo"
+posicion = Vector2(971, 601)
+radio = 33.490974
+
+[sub_resource type="Resource" id="Resource_ohvn7"]
+script = ExtResource("1_x4xo4")
+tipo = "circulo"
+posicion = Vector2(500, 400)
+
+[sub_resource type="Resource" id="Resource_5f4we"]
+script = ExtResource("1_x4xo4")
+tipo = "circulo"
+posicion = Vector2(1440, 400)
+
+[sub_resource type="Resource" id="Resource_2gqwu"]
+script = ExtResource("1_x4xo4")
+tipo = "circulo"
+posicion = Vector2(500, 750)
+
+[sub_resource type="Resource" id="Resource_ot6fx"]
+script = ExtResource("1_x4xo4")
+tipo = "circulo"
+posicion = Vector2(1440, 750)
+
+[resource]
+script = ExtResource("2_iyr54")
+nombre = "Nivel2"
+formas = Array[ExtResource("1_x4xo4")]([SubResource("Resource_x4xo4"), SubResource("Resource_iyr54"), SubResource("Resource_mskso"), SubResource("Resource_5tv0s"), SubResource("Resource_hjprr"), SubResource("Resource_ohvn7"), SubResource("Resource_5f4we"), SubResource("Resource_2gqwu"), SubResource("Resource_ot6fx")])
+posicion_divisiones = Vector2(349, 1080)
+ancho_divisiones = 1241.0
