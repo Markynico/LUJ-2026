@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ReliquiaPuntosOvillo" format=3]
+[gd_resource type="Resource" script_class="ReliquiaPuntosOvillo" format=3 uid="uid://4o8c2qa6dfir"]
 
 [ext_resource type="Script" uid="uid://dmcn1v2kypih7" path="res://scripts/reliquias/reliquia_puntos_ovillo.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://ceagi84k2o2ge" path="res://assets/reliquias/agujas de crochet.png" id="2_rel"]
@@ -7,8 +7,7 @@
 
 [resource]
 script = ExtResource("1_rel")
+tipos_objetivo = Array[ExtResource("4_rel")]([ExtResource("3_rel")])
 nombre = "Agujas de crochet"
 descripcion = "Los ovillos normales dan el doble de puntos."
 icono = ExtResource("2_rel")
-tipos_objetivo = Array[ExtResource("4_rel")]([ExtResource("3_rel")])
-multiplicador = 2.0
