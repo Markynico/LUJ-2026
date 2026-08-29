@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://e1pwbxfir4hk" path="res://assets/fuentes/CARDINAL.TTF" id="3_4bj2c"]
 
 [node name="PanelComida" type="Panel" unique_id=2111858594 node_paths=PackedStringArray("textura_comida")]
+process_mode = 3
 custom_minimum_size = Vector2(500, 600)
 theme = ExtResource("1_bo614")
 script = ExtResource("2_4bj2c")
