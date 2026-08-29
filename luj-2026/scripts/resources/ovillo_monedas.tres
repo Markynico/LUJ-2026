@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://13pthof0cqpy" path="res://assets/sprite_ovillos/este tapa la moneda.png" id="2_3ok5b"]
 [ext_resource type="Script" uid="uid://bbkyk2anhunsd" path="res://scripts/ovillos_custom/ovillo_base.gd" id="2_w3p2q"]
 [ext_resource type="Script" uid="uid://teghc6v6rp6c" path="res://scripts/ovillos_custom/efecto_monedas.gd" id="3_fa0qx"]
-[ext_resource type="Material" path="res://scripts/shaders/material_brillo_moneda.tres" id="4_brillo"]
+[ext_resource type="Material" uid="uid://cfouekfi03sjc" path="res://scripts/shaders/material_brillo_moneda.tres" id="4_brillo"]
 
 [sub_resource type="Resource" id="Resource_3vil1"]
 script = ExtResource("3_fa0qx")

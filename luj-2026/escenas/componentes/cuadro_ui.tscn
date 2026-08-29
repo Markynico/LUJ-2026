@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://bh6v3wn4vlcem"]
+
+[ext_resource type="Script" uid="uid://w0aees4hsxw3" path="res://scripts/cuadro_ui.gd" id="0_cuadro"]
+[ext_resource type="Texture2D" uid="uid://bkxk5mc2urfyx" path="res://assets/puesta en escena fondo.png" id="1_fondo"]
+[ext_resource type="Texture2D" uid="uid://can0rgfixckmw" path="res://assets/Decoración tarjetas.png" id="2_marco"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mascara"]
+resource_local_to_scene = true
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="CuadroUI" type="Control" unique_id=280403763 node_paths=PackedStringArray("mascara_fondo", "marco")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1284.0
+offset_bottom = 795.0
+script = ExtResource("0_cuadro")
+radio_esquinas = 20
+mascara_fondo = NodePath("MascaraFondo")
+marco = NodePath("MascaraFondo/Fondo/MarginContainer/Marco")
+
+[node name="MascaraFondo" type="Panel" parent="." unique_id=457795614]
+show_behind_parent = true
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mascara")
+
+[node name="Fondo" type="TextureRect" parent="MascaraFondo" unique_id=122378028]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_fondo")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="MascaraFondo/Fondo" unique_id=414276495]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Marco" type="NinePatchRect" parent="MascaraFondo/Fondo/MarginContainer" unique_id=1454117022]
+layout_mode = 2
+texture = ExtResource("2_marco")
+patch_margin_left = 195
+patch_margin_top = 178
+patch_margin_right = 199
+patch_margin_bottom = 178

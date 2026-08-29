@@ -5,8 +5,17 @@ extends RigidBody2D
 
 signal escupir_bola
 
-# ======== SPRITES que luego se borran ======
-@export var sprite : Sprite2D
+##gato de adorno: sin disparador ni trayectoria, para el menu
+@export var decorativo : bool = false
+@export var fuerza_disparo : float = 1.0
+##ovillos que puede romper el gato al ser lanzado
+@export var impactos_maximos : int = 4
+##segundos quieto tras el lanzamiento para considerarlo atascado
+@export var tiempo_para_atascarse : float = 3.0
+##velocidad por debajo de la cual el gato cuenta como quieto
+@export var umbral_quieto : float = 10.0
+
+@export_group("Sprites")
 @export var imagen_normal : Texture2D #dsp cambiamos por animatedsprite ambos o solo este
 @export var imagen_bolita : Texture2D
 @export var imagen_orgulloso : Texture2D
@@ -21,24 +30,26 @@ signal escupir_bola
 ##z del sprite mientras el gato vuela lanzado, para taparse la baranda
 @export var z_lanzado : int = 20
 
-@export var disparador_pelotitas : DisparadorPelotita
-@export var animation_player : AnimationPlayer
-@export var game_manager : GameManager
-@export var colision : CollisionShape2D
+@export_group("Blink")
+##segundos minimos entre blinks
+@export var intervalo_blink_minimo : float = 3.0
+##segundos maximos entre blinks
+@export var intervalo_blink_maximo : float = 8.0
 
-@export var fuerza_disparo : float = 1.0
-##ovillos que puede romper el gato al ser lanzado
-@export var impactos_maximos : int = 4
-##segundos quieto tras el lanzamiento para considerarlo atascado
-@export var tiempo_para_atascarse : float = 3.0
-##velocidad por debajo de la cual el gato cuenta como quieto
-@export var umbral_quieto : float = 10.0
-
-# ======== MOVIMIENTO HORIZONTAL (RELIQUIA RASCADOR) ========
-var movimiento_horizontal_habilitado : bool = false
+@export_group("Movimiento horizontal (reliquia Rascador)")
 @export var velocidad_movimiento_horizontal : float = 550.0
 @export var limite_izquierdo : float = 80.0
 @export var limite_derecho : float = 1200.0
+
+@export_group("Nodos")
+@export var sprite : Sprite2D
+@export var colision : CollisionShape2D
+@export var disparador_pelotitas : DisparadorPelotita
+@export var animation_player : AnimationPlayer
+@export var timer_blink : Timer
+@export var game_manager : GameManager
+
+var movimiento_horizontal_habilitado : bool = false
 
 var velocidad_inicial : Vector2
 var posicion_mouse : Vector2
@@ -72,11 +83,41 @@ func _ready() -> void:
 	body_entered.connect(al_chocar)
 	if animation_player:
 		animation_player.animation_finished.connect(al_terminar_animacion)
+	if timer_blink:
+		timer_blink.timeout.connect(al_sonar_timer_blink)
+		programar_blink()
+	if decorativo and disparador_pelotitas:
+		disparador_pelotitas.hide()
+		disparador_pelotitas.process_mode = Node.PROCESS_MODE_DISABLED
 
 
 func al_terminar_animacion(nombre : StringName) -> void:
-	if nombre == &"escupir_bola" and not listo_para_lanzar:
-		animation_player.play("idle")
+	if listo_para_lanzar:
+		return
+	if nombre == &"escupir_bola" or nombre == &"blink":
+		if sprite:
+			sprite.texture = imagen_normal
+		programar_blink()
+
+
+func programar_blink() -> void:
+	if timer_blink:
+		timer_blink.start(randf_range(intervalo_blink_minimo, intervalo_blink_maximo))
+
+
+func al_sonar_timer_blink() -> void:
+	if puede_blinkear():
+		animation_player.play("blink")
+	else:
+		programar_blink()
+
+
+func puede_blinkear() -> bool:
+	if listo_para_lanzar or _fue_lanzado:
+		return false
+	if not animation_player or animation_player.is_playing():
+		return false
+	return true
 
 
 func al_chocar(body : Node) -> void:
@@ -119,9 +160,15 @@ func actualizar_orientacion() -> void:
 	if esta_apuntando():
 		sprite.flip_h = get_global_mouse_position().x < global_position.x
 		return
-	if animation_player and animation_player.is_playing():
+	if esta_escupiendo():
 		return
 	sprite.flip_h = false
+
+
+func esta_escupiendo() -> bool:
+	if not animation_player:
+		return false
+	return animation_player.current_animation == "escupir_bola" and animation_player.is_playing()
 
 
 func esta_apuntando() -> bool:
@@ -129,7 +176,7 @@ func esta_apuntando() -> bool:
 		return true
 	if not game_manager or game_manager.estado_actual != GameManager.EstadoDeJuego.LANZANDO_BOLAS:
 		return false
-	if animation_player and animation_player.is_playing():
+	if esta_escupiendo():
 		return false
 	return get_tree().get_nodes_in_group("bolas_de_pelos").is_empty()
 

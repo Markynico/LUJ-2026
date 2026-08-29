@@ -75,6 +75,10 @@ escala_normal = 0.32
 game_manager = NodePath("../GameManager")
 
 [node name="HUD" parent="." unique_id=2102008230 node_paths=PackedStringArray("game_manager") instance=ExtResource("2_t4q8c")]
+offset_left = -41.0
+offset_top = 11.0
+offset_right = -41.0
+offset_bottom = 11.0
 game_manager = NodePath("../GameManager")
 
 [node name="CargadorDeNivel" type="Node2D" parent="." unique_id=1344270759 node_paths=PackedStringArray("estructura")]
