@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EfectoIgnea" format=3 uid="uid://dhfl3nr18ocme"]
+
+[ext_resource type="Script" uid="uid://oywgrp0ljdng" path="res://scripts/pelotitas_custom/efecto_ignea.gd" id="1_oxtx1"]
+[ext_resource type="Resource" uid="uid://d3ks2dut6iacd" path="res://scripts/resources/ovillo_explosivo_final.tres" id="2_q4vhi"]
+
+[resource]
+script = ExtResource("1_oxtx1")
+tipo_efecto_bomba = ExtResource("2_q4vhi")
+metadata/_custom_type_script = "uid://oywgrp0ljdng"

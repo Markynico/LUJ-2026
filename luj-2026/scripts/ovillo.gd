@@ -159,3 +159,15 @@ func animacion_titilar(shader_real : ShaderMaterial):
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(shader_real,"shader_parameter/time",1.0,1)
+
+func convertir_explosivo(ovillo : Ovillo, efecto_bomba : OvilloBase) -> void:
+	if ovillo.tipo_ovillo == efecto_bomba:
+		return
+	ovillo.cambiar_tipo(efecto_bomba)
+
+func cambiar_tipo(nuevo_tipo : OvilloBase) -> void:
+	reactivar_ovillo()
+	tipo_ovillo = nuevo_tipo
+
+	if sprite_normal and tipo_ovillo.sprite:
+		sprite_normal.texture = tipo_ovillo.sprite

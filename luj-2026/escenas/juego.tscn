@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bws3j2014uxn2" path="res://assets/columnas.png" id="4_w7gqy"]
 [ext_resource type="Script" uid="uid://bh3lxufik2p65" path="res://scripts/niveles/cargador_de_nivel.gd" id="5_carg"]
 [ext_resource type="Script" uid="uid://mrkgoq2v1cix" path="res://scripts/niveles/selector_de_niveles.gd" id="6_selec"]
-[ext_resource type="Resource" uid="uid://o2ttpyj4y67y" path="res://niveles/prueba separacion.tres" id="7_n5myf"]
+[ext_resource type="Resource" uid="uid://cnaktgatgx54i" path="res://niveles/Nivel5.tres" id="9_w7gqy"]
 [ext_resource type="PackedScene" uid="uid://bjrqwv4iyx66g" path="res://escenas/selector_comidas.tscn" id="11_qfdc2"]
 [ext_resource type="Script" uid="uid://bojjht8bbil08" path="res://scripts/UICargadorPelotitas.gd" id="13_eu1no"]
 [ext_resource type="PackedScene" uid="uid://c87sy1bku6et8" path="res://escenas/componentes/texture_rect_cargador.tscn" id="14_uryky"]
@@ -94,7 +94,7 @@ game_manager = NodePath("../GameManager")
 
 [node name="CargadorDeNivel" type="Node2D" parent="." unique_id=1344270759 node_paths=PackedStringArray("estructura")]
 script = ExtResource("5_carg")
-nivel = ExtResource("7_n5myf")
+nivel = ExtResource("9_w7gqy")
 estructura = NodePath("../EstructuraDeNivel")
 
 [node name="SelectorDeNiveles" type="Node2D" parent="." unique_id=1344270760 node_paths=PackedStringArray("cargador")]
