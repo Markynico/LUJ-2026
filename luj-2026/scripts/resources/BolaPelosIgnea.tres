@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="PelotitaBase" format=3 uid="uid://vpcwlt8nkqws"]
+
+[ext_resource type="Script" uid="uid://c31lbqa2grch4" path="res://scripts/pelotitas_custom/efectos_pelotita.gd" id="1_d1vni"]
+[ext_resource type="Resource" uid="uid://dhfl3nr18ocme" path="res://scripts/resources/EfectoIgnea.tres" id="2_3h511"]
+[ext_resource type="Texture2D" uid="uid://denhvkktlq0d5" path="res://assets/comidas/taco gato michinko color 1 (1).png" id="2_55oik"]
+[ext_resource type="Script" uid="uid://c7ogyqxnq7236" path="res://scripts/pelotitas_custom/pelotita_base.gd" id="2_yh2yi"]
+[ext_resource type="Texture2D" uid="uid://cpyv42o86b3eq" path="res://assets/placeholders/bolaspelo_placeholder/bola_ignea.png" id="4_3h511"]
+
+[sub_resource type="Gradient" id="Gradient_55oik"]
+colors = PackedColorArray(0.59661216, 0.09793765, 1.92523e-07, 1, 0.81815124, 0.42011642, 0.16669929, 1)
+
+[resource]
+script = ExtResource("2_yh2yi")
+nombre = "Bola de Pelos Ígnea"
+textura = ExtResource("4_3h511")
+colores_estela = SubResource("Gradient_55oik")
+imagen_comida_asociada = ExtResource("2_55oik")
+efectos = Array[ExtResource("1_d1vni")]([ExtResource("2_3h511")])
+metadata/_custom_type_script = "uid://c7ogyqxnq7236"

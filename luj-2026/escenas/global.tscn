@@ -6,10 +6,11 @@
 [ext_resource type="Resource" uid="uid://cefp6mo0t1mgi" path="res://scripts/resources/BolaPelosNormal.tres" id="4_kur0t"]
 [ext_resource type="Resource" uid="uid://d2y2wdiwxf7pa" path="res://scripts/resources/BolaPelosChicle.tres" id="5_oeqe1"]
 [ext_resource type="Resource" uid="uid://bp6yjcorvvb2y" path="res://scripts/resources/BolaPelosMate.tres" id="6_u722q"]
+[ext_resource type="Resource" uid="uid://vpcwlt8nkqws" path="res://scripts/resources/BolaPelosIgnea.tres" id="7_ad12y"]
 
 [node name="Global" type="Node" unique_id=1338559971]
 process_mode = 4
 physics_interpolation_mode = 2
 script = ExtResource("1_8bbxo")
-bolas_de_pelo_existentes = Array[ExtResource("2_8vl5g")]([ExtResource("4_kur0t"), ExtResource("3_kur0t"), ExtResource("5_oeqe1"), ExtResource("6_u722q")])
+bolas_de_pelo_existentes = Array[ExtResource("2_8vl5g")]([ExtResource("4_kur0t"), ExtResource("3_kur0t"), ExtResource("5_oeqe1"), ExtResource("6_u722q"), ExtResource("7_ad12y")])
 cargador_de_pelotitas = Array[ExtResource("2_8vl5g")]([ExtResource("4_kur0t")])
