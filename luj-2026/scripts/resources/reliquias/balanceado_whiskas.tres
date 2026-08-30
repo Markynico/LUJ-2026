@@ -5,9 +5,9 @@
 
 [resource]
 script = ExtResource("1_rel")
-nombre = "Bolsa de balanceado Whiskas"
+nombre = "Bolsa de Balanceado Whiskas"
 descripcion = "-1 {vida:ambos/vida} máxima
 +25% {velocidad:texto/velocidad} de disparo
 
-Por favor no le compres esta mierda a tu gato."
+\"Por favor no le compres esta mierda a tu gato.\""
 icono = ExtResource("2_rel")

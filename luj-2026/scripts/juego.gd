@@ -7,6 +7,7 @@ extends Node2D
 @export var cargador : CargadorDeNivel
 ##selector de salidas hacia la proxima sala
 @export var selector : SelectorDeNiveles
+@export var selector_comidas : SelectorComidas
 ##capa donde vive el HUD, se oculta fuera de los niveles
 @export var capa_interfaz : CanvasLayer
 @export var camara : Camera2D
@@ -20,11 +21,12 @@ extends Node2D
 @export var sala_inicial : TipoDeSala.Tipo = TipoDeSala.Tipo.NORMAL
 ##ruta de la escena de sala para cada tipo, los niveles normales no usan escena
 @export var escenas_por_sala : Dictionary[TipoDeSala.Tipo, String] = {
-	TipoDeSala.Tipo.TIENDA: "uid://dfm5y8q2s1txc",
+	TipoDeSala.Tipo.TIENDA: "res://escenas/sala_tienda.tscn",
 	TipoDeSala.Tipo.LOOT: "uid://8l4mghblkql7",
 }
 
 var sala_actual : Node
+var sala_pendiente : int = -1
 var capa_salas : CanvasLayer
 var posicion_camara_inicial : Vector2
 var zoom_camara_inicial : Vector2
@@ -42,6 +44,8 @@ func _ready() -> void:
 	capa_salas.layer = 2
 	add_child(capa_salas)
 	game_manager.sala_pedida.connect(cambiar_sala)
+	if selector_comidas:
+		selector_comidas.seleccion_terminada.connect(al_terminar_seleccion_comidas)
 	cambiar_sala.call_deferred(sala_inicial)
 
 
@@ -63,9 +67,19 @@ func mover_camara(posicion : Vector2, zoom : Vector2) -> void:
 	tween_camara.tween_property(camara, "zoom", zoom, duracion_zoom)
 
 
+func al_terminar_seleccion_comidas() -> void:
+	var pendiente : int = sala_pendiente
+	sala_pendiente = -1
+	if pendiente >= 0:
+		cambiar_sala(pendiente)
+
+
 func cambiar_sala(tipo : TipoDeSala.Tipo) -> void:
 	var es_nivel : bool = tipo == TipoDeSala.Tipo.NORMAL
 	var ruta : String = escenas_por_sala.get(tipo, "")
+	if not es_nivel and selector_comidas and selector_comidas.canvas_layer.visible:
+		sala_pendiente = tipo
+		return
 	if not es_nivel and ruta.is_empty():
 		return
 	if sala_actual:

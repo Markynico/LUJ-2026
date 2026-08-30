@@ -5,9 +5,7 @@ signal continuar_pedido
 
 ##reliquias que pueden aparecer, se elige una al azar entre las que no se tienen
 @export var reliquias_posibles : Array[Reliquia] = []
-@export var icono : TextureRect
-@export var label_nombre : Label
-@export var label_descripcion : Label
+@export var tarjeta : Tarjeta
 @export var boton_aceptar : Button
 @export var boton_rechazar : Button
 
@@ -25,11 +23,11 @@ func _ready() -> void:
 		return
 	if candidatos.size() > 1:
 		candidatos.erase(ReliquiasManager.ultima_ofrecida)
+	if GameManager.instancia_actual:
+		candidatos = GameManager.filtrar_por_rareza(candidatos, GameManager.instancia_actual.sortear_rareza())
 	reliquia = candidatos.pick_random()
 	ReliquiasManager.ultima_ofrecida = reliquia
-	icono.texture = reliquia.icono
-	label_nombre.text = reliquia.nombre
-	label_descripcion.text = reliquia.descripcion
+	tarjeta.recurso = reliquia
 
 
 func aceptar() -> void:

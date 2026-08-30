@@ -11,7 +11,11 @@ colors = PackedColorArray(0.59661216, 0.09793765, 1.92523e-07, 1, 0.81815124, 0.
 
 [resource]
 script = ExtResource("2_yh2yi")
-nombre = "Bola de Pelos Ígnea"
+nombre = "Taco Picante"
+descripcion = "Cada tres rebotes, transforma un ovillo normal en un ovillo bomba.
+
+\"Otra que acidez estomacal.\""
+rareza = 2
 textura = ExtResource("4_3h511")
 colores_estela = SubResource("Gradient_55oik")
 imagen_comida_asociada = ExtResource("2_55oik")

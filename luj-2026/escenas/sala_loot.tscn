@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://8l4mghblkql7"]
 
 [ext_resource type="Script" uid="uid://ddjnfonlvbcs6" path="res://scripts/sala_loot.gd" id="1_loot"]
+[ext_resource type="PackedScene" uid="uid://u6k76f6lyw8y" path="res://escenas/componentes/tarjeta.tscn" id="1_tarj"]
 [ext_resource type="Resource" uid="uid://d1g05k4oam2p8" path="res://scripts/resources/reliquias/rascador.tres" id="2_rascador"]
 [ext_resource type="Resource" uid="uid://b85q6u2n8x3j1" path="res://scripts/resources/reliquias/tapita_lapicera.tres" id="4_tapita"]
 [ext_resource type="Resource" uid="uid://chsjfpl7ukql7" path="res://scripts/resources/reliquias/tiro_extra.tres" id="5_tiro"]
@@ -14,7 +15,7 @@
 [ext_resource type="Resource" uid="uid://cv7e0lifc61g8" path="res://scripts/resources/reliquias/magiclick.tres" id="13_magic"]
 [ext_resource type="Resource" uid="uid://4o8c2qa6dfir" path="res://scripts/resources/reliquias/agujas_crochet.tres" id="14_aguja"]
 
-[node name="SalaLoot" type="Control" unique_id=879506484 node_paths=PackedStringArray("icono", "label_nombre", "label_descripcion", "boton_aceptar", "boton_rechazar")]
+[node name="SalaLoot" type="Control" unique_id=879506484 node_paths=PackedStringArray("tarjeta", "boton_aceptar", "boton_rechazar")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -24,9 +25,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_loot")
 reliquias_posibles = Array[ExtResource("6_reliquia")]([ExtResource("2_rascador"), ExtResource("4_tapita"), ExtResource("5_tiro"), ExtResource("7_messi"), ExtResource("8_maceta"), ExtResource("9_almoh"), ExtResource("10_whisk"), ExtResource("11_armad"), ExtResource("12_almue"), ExtResource("13_magic"), ExtResource("14_aguja")])
-icono = NodePath("Contenido/Icono")
-label_nombre = NodePath("Contenido/LabelNombre")
-label_descripcion = NodePath("Contenido/LabelDescripcion")
+tarjeta = NodePath("Contenido/Tarjeta")
 boton_aceptar = NodePath("Contenido/Botones/BotonAceptar")
 boton_rechazar = NodePath("Contenido/Botones/BotonRechazar")
 
@@ -49,20 +48,10 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Icono" type="TextureRect" parent="Contenido" unique_id=1648717189]
-custom_minimum_size = Vector2(128, 128)
+[node name="Tarjeta" parent="Contenido" unique_id=1648717189 instance=ExtResource("1_tarj")]
+custom_minimum_size = Vector2(500, 600)
 layout_mode = 2
 size_flags_horizontal = 4
-expand_mode = 1
-stretch_mode = 5
-
-[node name="LabelNombre" type="Label" parent="Contenido" unique_id=2133492451]
-layout_mode = 2
-horizontal_alignment = 1
-
-[node name="LabelDescripcion" type="Label" parent="Contenido" unique_id=457364238]
-layout_mode = 2
-horizontal_alignment = 1
 
 [node name="Botones" type="HBoxContainer" parent="Contenido" unique_id=1124909329]
 layout_mode = 2

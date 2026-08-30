@@ -6,5 +6,8 @@
 [resource]
 script = ExtResource("1_rascador")
 nombre = "Rascador"
-descripcion = "“juega mas con la caja en la que vino que con el rascador en si”"
+rareza = 1
+descripcion = "Permite mover a Michinko con A y D.
+
+“Juega mas con la caja en la que vino que con el rascador en sí...”"
 icono = ExtResource("2_icono")

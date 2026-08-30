@@ -1,0 +1,260 @@
+[gd_scene format=3 uid="uid://dnyb8516ireeo"]
+
+[ext_resource type="Script" uid="uid://cu2a30bi7qyi8" path="res://scripts/sala_tienda.gd" id="1_tienda"]
+[ext_resource type="PackedScene" uid="uid://b07gjr8bpk3tm" path="res://escenas/hud.tscn" id="2_hud"]
+[ext_resource type="Theme" uid="uid://bjkvjfhj8dr8y" path="res://themes/theme_ui_general.tres" id="2_tema"]
+[ext_resource type="PackedScene" uid="uid://bh6v3wn4vlcem" path="res://escenas/componentes/cuadro_ui.tscn" id="3_cuadro"]
+[ext_resource type="Script" uid="uid://5lbsfhx8xug1" path="res://scripts/reliquias/reliquia.gd" id="4_rel"]
+[ext_resource type="Resource" uid="uid://d1g05k4oam2p8" path="res://scripts/resources/reliquias/rascador.tres" id="5_rasc"]
+[ext_resource type="Resource" uid="uid://b85q6u2n8x3j1" path="res://scripts/resources/reliquias/tapita_lapicera.tres" id="6_tapi"]
+[ext_resource type="Resource" uid="uid://chsjfpl7ukql7" path="res://scripts/resources/reliquias/tiro_extra.tres" id="7_tiro"]
+[ext_resource type="Resource" uid="uid://cja6y5nb157vd" path="res://scripts/resources/reliquias/estatua_messi.tres" id="8_messi"]
+[ext_resource type="Resource" uid="uid://c8mxf5blpvrvr" path="res://scripts/resources/reliquias/maceta_yuyos.tres" id="9_mace"]
+[ext_resource type="Resource" uid="uid://duu7f1aj2t4g7" path="res://scripts/resources/reliquias/almohadon.tres" id="10_almo"]
+[ext_resource type="Resource" uid="uid://jj15nhwfreho" path="res://scripts/resources/reliquias/balanceado_whiskas.tres" id="11_whis"]
+[ext_resource type="Resource" uid="uid://jqicxov7kwy1" path="res://scripts/resources/reliquias/armadura_gato.tres" id="12_arma"]
+[ext_resource type="Resource" uid="uid://bpw3shdksb1v5" path="res://scripts/resources/reliquias/almuerzo_duenia.tres" id="13_almu"]
+[ext_resource type="Resource" uid="uid://cv7e0lifc61g8" path="res://scripts/resources/reliquias/magiclick.tres" id="14_magi"]
+[ext_resource type="Resource" uid="uid://4o8c2qa6dfir" path="res://scripts/resources/reliquias/agujas_crochet.tres" id="15_aguj"]
+[ext_resource type="Script" uid="uid://c7ogyqxnq7236" path="res://scripts/pelotitas_custom/pelotita_base.gd" id="16_pelo"]
+[ext_resource type="Resource" uid="uid://d2y2wdiwxf7pa" path="res://scripts/resources/BolaPelosChicle.tres" id="17_chic"]
+[ext_resource type="Resource" uid="uid://7vcfjwmh5spv" path="res://scripts/resources/BolaPelosEspejismo.tres" id="18_espe"]
+[ext_resource type="Resource" uid="uid://vpcwlt8nkqws" path="res://scripts/resources/BolaPelosIgnea.tres" id="19_igne"]
+[ext_resource type="Texture2D" uid="uid://bhi3nf0jngdpb" path="res://assets/tapir.jpg" id="20_5lb6f"]
+[ext_resource type="Resource" uid="uid://bp6yjcorvvb2y" path="res://scripts/resources/BolaPelosMate.tres" id="20_mate"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_or7t7"]
+viewport_path = NodePath("UIComidasElegidas/SubViewportComidas")
+
+[node name="SalaTienda" type="Control" unique_id=1468592656 node_paths=PackedStringArray("fila_reliquias", "fila_comidas", "boton_remover_comida", "boton_curar_vida", "boton_continuar", "panel_remover", "contenedor_remover", "boton_cancelar_remover", "vista_foco", "oscurecedor", "boton_volver_foco", "boton_comprar_foco")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_tema")
+script = ExtResource("1_tienda")
+pool_reliquias = Array[ExtResource("4_rel")]([ExtResource("5_rasc"), ExtResource("6_tapi"), ExtResource("7_tiro"), ExtResource("8_messi"), ExtResource("9_mace"), ExtResource("10_almo"), ExtResource("11_whis"), ExtResource("12_arma"), ExtResource("13_almu"), ExtResource("14_magi"), ExtResource("15_aguj")])
+pool_comidas = Array[ExtResource("16_pelo")]([ExtResource("17_chic"), ExtResource("18_espe"), ExtResource("19_igne"), ExtResource("20_mate")])
+fuente_boton_comprar = 30
+color_compra_alcanza = Color(0.098799996, 0.76, 0.098799996, 1)
+color_compra_no_alcanza = Color(0.85, 0, 0, 1)
+escala_foco = 1.5
+"tamaño_icono_moneda" = 60
+fila_reliquias = NodePath("FondoTienda/Contenido/FilaReliquias")
+fila_comidas = NodePath("FondoTienda/Contenido/FilaComidas")
+boton_remover_comida = NodePath("FondoTienda/Servicios/BotonRemoverComida")
+boton_curar_vida = NodePath("FondoTienda/Servicios/BotonCurarVida")
+boton_continuar = NodePath("FondoTienda/BotonContinuar")
+panel_remover = NodePath("PanelRemover")
+contenedor_remover = NodePath("PanelRemover/CuadroRemover/ContenedorRemover")
+boton_cancelar_remover = NodePath("PanelRemover/CuadroRemover/ContenedorRemover/BotonCancelar")
+vista_foco = NodePath("VistaFoco")
+oscurecedor = NodePath("VistaFoco/Oscurecedor")
+boton_volver_foco = NodePath("VistaFoco/BotonVolverFoco")
+boton_comprar_foco = NodePath("VistaFoco/BotonComprarFoco")
+
+[node name="FondoPlaceholder" type="ColorRect" parent="." unique_id=291575427]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12, 0.09, 0.07, 1)
+
+[node name="FondoTienda" type="TextureRect" parent="." unique_id=1824474966]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("20_5lb6f")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Contenido" type="VBoxContainer" parent="FondoTienda" unique_id=2073999011]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 140.0
+offset_top = 129.0
+offset_right = -140.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="FilaReliquias" type="HBoxContainer" parent="FondoTienda/Contenido" unique_id=896058916]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="FilaComidas" type="HBoxContainer" parent="FondoTienda/Contenido" unique_id=1753655252]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Servicios" type="VBoxContainer" parent="FondoTienda" unique_id=1078942441]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 76.0
+offset_top = -60.0
+offset_right = 214.0
+offset_bottom = 60.0
+grow_vertical = 2
+theme_override_constants/separation = 24
+
+[node name="BotonRemoverComida" type="Button" parent="FondoTienda/Servicios" unique_id=1408762894]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "Remover comida"
+
+[node name="BotonCurarVida" type="Button" parent="FondoTienda/Servicios" unique_id=1532162385]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "Curar 1 vida"
+
+[node name="BotonContinuar" type="Button" parent="FondoTienda" unique_id=167360771]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -281.0
+offset_top = -30.0
+offset_right = -81.0
+offset_bottom = 30.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "Continuar"
+
+[node name="VistaFoco" type="Control" parent="." unique_id=1453480589]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Oscurecedor" type="ColorRect" parent="VistaFoco" unique_id=929028591]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.65)
+
+[node name="BotonVolverFoco" type="Button" parent="VistaFoco" unique_id=929028592]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -560.0
+offset_top = -40.0
+offset_right = -360.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "Volver"
+
+[node name="BotonComprarFoco" type="Button" parent="VistaFoco" unique_id=929028593]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 360.0
+offset_top = -40.0
+offset_right = 560.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "Comprar"
+
+[node name="PanelRemover" type="Control" parent="." unique_id=1453480588]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FondoRemover" type="ColorRect" parent="PanelRemover" unique_id=929028590]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="CuadroRemover" parent="PanelRemover" unique_id=150895819 instance=ExtResource("3_cuadro")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -350.0
+offset_right = 300.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ContenedorRemover" type="VBoxContainer" parent="PanelRemover/CuadroRemover" unique_id=1681119167]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 150.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="LabelRemover" type="Label" parent="PanelRemover/CuadroRemover/ContenedorRemover" unique_id=1088145881]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Elegi que comida remover"
+horizontal_alignment = 1
+
+[node name="BotonCancelar" type="Button" parent="PanelRemover/CuadroRemover/ContenedorRemover" unique_id=579587378]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 28
+text = "Cancelar"
+
+[node name="HUD" parent="." unique_id=868250571 instance=ExtResource("2_hud")]
+layout_mode = 1
+
+[node name="UIComidasElegidas" parent="HUD" index="0" unique_id=1447058340]
+visible = false
+texture = SubResource("ViewportTexture_or7t7")
+
+[node name="CanvasLayer" parent="HUD" index="1" unique_id=1032973156]
+layer = 3
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=96406493]
+
+[editable path="HUD"]

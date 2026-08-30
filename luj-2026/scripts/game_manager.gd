@@ -34,6 +34,19 @@ static var vidas_inicializadas: bool = false
 @export_range(0.1, 1.0, 0.05) var porcentaje_ovillos_requerido : float = 0.30
 ##reliquias con las que arranca la run, para probar
 @export var reliquias_iniciales : Array[Reliquia] = []
+##monedas con las que arranca la run
+@export var monedas_iniciales : int = 0
+
+@export_group("Rareza")
+##probabilidad en porcentaje de rareza comun
+@export var probabilidad_comun : float = 60.0
+##probabilidad en porcentaje de rareza rara
+@export var probabilidad_raro : float = 25.0
+##probabilidad en porcentaje de rareza epica
+@export var probabilidad_epico : float = 10.0
+##probabilidad en porcentaje de rareza legendaria
+@export var probabilidad_legendario : float = 5.0
+@export_group("")
 
 
 var bolas_restantes : int = 0:
@@ -63,6 +76,8 @@ func _ready() -> void:
 	if ReliquiasManager.obtenidas.is_empty():
 		for reliquia in reliquias_iniciales:
 			ReliquiasManager.obtener(reliquia)
+		if monedas_iniciales > 0:
+			Global.actualizar_monedas(monedas_iniciales)
 
 	reiniciar_nivel()
 	
@@ -272,3 +287,25 @@ func reiniciar_nivel_actual() -> void:
 #
 #func restablecer_tablero_pelotitas(): #la dejo por si metemos el efecto "al ser golpeado restablece el tablero de ovillos"
 	#pass
+
+
+func sortear_rareza() -> Rareza.Nivel:
+	var azar : float = randf() * (probabilidad_comun + probabilidad_raro + probabilidad_epico + probabilidad_legendario)
+	var acumulado : float = 0.0
+	var probabilidades : Array[float] = [probabilidad_comun, probabilidad_raro, probabilidad_epico, probabilidad_legendario]
+	for nivel in probabilidades.size():
+		acumulado += probabilidades[nivel]
+		if azar <= acumulado:
+			return nivel
+	return Rareza.Nivel.COMUN
+
+
+static func filtrar_por_rareza(candidatos : Array, rareza : Rareza.Nivel) -> Array:
+	var filtrados : Array = []
+	var nivel : int = rareza
+	while nivel >= Rareza.Nivel.COMUN and filtrados.is_empty():
+		filtrados = candidatos.filter(func(item : Resource) -> bool: return item.rareza == nivel)
+		nivel -= 1
+	if filtrados.is_empty():
+		return candidatos
+	return filtrados

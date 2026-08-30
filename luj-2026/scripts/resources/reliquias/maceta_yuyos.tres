@@ -5,8 +5,8 @@
 
 [resource]
 script = ExtResource("1_rel")
-nombre = "Maceta con yuyos"
+nombre = "Maceta con Yuyos"
 descripcion = "+30% {velocidad:texto/velocidad} de disparo
 
-Estan todos comidos..."
+\"Estan todos comidos...\""
 icono = ExtResource("2_rel")

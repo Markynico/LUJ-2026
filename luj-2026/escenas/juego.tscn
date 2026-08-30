@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://bws3j2014uxn2" path="res://assets/columnas.png" id="4_w7gqy"]
 [ext_resource type="Script" uid="uid://bh3lxufik2p65" path="res://scripts/niveles/cargador_de_nivel.gd" id="5_carg"]
 [ext_resource type="Script" uid="uid://mrkgoq2v1cix" path="res://scripts/niveles/selector_de_niveles.gd" id="6_selec"]
-[ext_resource type="Resource" uid="uid://cnaktgatgx54i" path="res://niveles/Nivel5.tres" id="9_w7gqy"]
 [ext_resource type="PackedScene" uid="uid://bjrqwv4iyx66g" path="res://escenas/selector_comidas.tscn" id="11_qfdc2"]
 [ext_resource type="Script" uid="uid://bojjht8bbil08" path="res://scripts/UICargadorPelotitas.gd" id="13_eu1no"]
 [ext_resource type="PackedScene" uid="uid://c87sy1bku6et8" path="res://escenas/componentes/texture_rect_cargador.tscn" id="14_uryky"]
@@ -35,12 +34,13 @@ viewport_path = NodePath("UICargadorPelotitas/SubViewportCargador")
 
 [sub_resource type="Theme" id="Theme_g56wh"]
 
-[node name="Juego" type="Node2D" unique_id=1865884372 node_paths=PackedStringArray("game_manager", "gato", "cargador", "selector", "camara")]
+[node name="Juego" type="Node2D" unique_id=1865884372 node_paths=PackedStringArray("game_manager", "gato", "cargador", "selector", "selector_comidas", "camara")]
 script = ExtResource("0_juego")
 game_manager = NodePath("GameManager")
 gato = NodePath("Gato")
 cargador = NodePath("CargadorDeNivel")
 selector = NodePath("SelectorDeNiveles")
+selector_comidas = NodePath("SelectorComidas")
 camara = NodePath("Camera2D")
 zoom_disparo = Vector2(3.5, 3.5)
 duracion_zoom = 2.0
@@ -79,6 +79,7 @@ gato = NodePath("../Gato")
 cargador_nivel = NodePath("../CargadorDeNivel")
 selector_niveles = NodePath("../SelectorDeNiveles")
 porcentaje_ovillos_requerido = 0.4
+monedas_iniciales = 500
 
 [node name="Gato" parent="." unique_id=69399080 node_paths=PackedStringArray("game_manager") instance=ExtResource("3_qnwci")]
 position = Vector2(927, 207)
@@ -94,7 +95,6 @@ game_manager = NodePath("../GameManager")
 
 [node name="CargadorDeNivel" type="Node2D" parent="." unique_id=1344270759 node_paths=PackedStringArray("estructura")]
 script = ExtResource("5_carg")
-nivel = ExtResource("9_w7gqy")
 estructura = NodePath("../EstructuraDeNivel")
 
 [node name="SelectorDeNiveles" type="Node2D" parent="." unique_id=1344270760 node_paths=PackedStringArray("cargador")]
@@ -102,12 +102,16 @@ script = ExtResource("6_selec")
 cargador = NodePath("../CargadorDeNivel")
 divisores_minimos = 1
 divisores_maximos = 3
-chance_loot = 0.35
-chance_tienda = 0.2
+chance_normal = 0.0
+chance_loot = 0.0
+chance_tienda = 1.0
+salas_entre_tiendas = 0
 salas_entre_loots = 0
 alto_salida = 100.0
 
 [node name="SelectorComidas" parent="." unique_id=1764529133 instance=ExtResource("11_qfdc2")]
+escala_tarjeta = null
+"tamaño_tarjeta" = null
 
 [node name="EstructuraDeNivel" parent="." unique_id=1258707596 instance=ExtResource("4_t4q8c")]
 position = Vector2(0, 6)

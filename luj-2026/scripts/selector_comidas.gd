@@ -3,13 +3,21 @@
 class_name SelectorComidas
 extends Control
 
+signal seleccion_terminada
+
 
 @export var ui_contenedor_comidas : HBoxContainer
 @export var canvas_layer : CanvasLayer
-const escena_panel_comida : PackedScene = preload("res://escenas/componentes/panel_comida.tscn")
+const escena_tarjeta : PackedScene = preload("uid://u6k76f6lyw8y")
 @export var comidas_a_mostrar : int = 3
+##escala de las tarjetas de comida
+@export var escala_tarjeta : float = 0.6
+##tamaño base de la tarjeta
+@export var tamaño_tarjeta : Vector2 = Vector2(500, 600)
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
 	%LabelAviso.hide()
 	esconder_selector_comidas()
 	elegir_comidas_aleatorias() #dsp le puedo agregar q se tenga q verificar si ya tenia tal comida para no mostrarla (?
@@ -22,10 +30,32 @@ func elegir_comidas_aleatorias():
 
 
 func crear_panel_comida(comida_a_mostrar : PelotitaBase):
-	var instancia_panel : PanelComida = escena_panel_comida.instantiate()
-	instancia_panel.avanzar_comida_elegida.connect(avanzar)
-	instancia_panel.set_info_comida(comida_a_mostrar)
-	ui_contenedor_comidas.add_child(instancia_panel)
+	var puesto : VBoxContainer = VBoxContainer.new()
+	var envoltura : Control = Control.new()
+	var tarjeta : Tarjeta = escena_tarjeta.instantiate()
+	var boton : Button = Button.new()
+	var precio : int = Rareza.precio_de(comida_a_mostrar)
+	envoltura.custom_minimum_size = tamaño_tarjeta * escala_tarjeta
+	tarjeta.size = tamaño_tarjeta
+	tarjeta.scale = Vector2.ONE * escala_tarjeta
+	tarjeta.recurso = comida_a_mostrar
+	boton.text = "Elegir  %d" % precio
+	boton.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	boton.disabled = Global.monedas < precio
+	boton.pressed.connect(elegir_comida.bind(comida_a_mostrar))
+	envoltura.add_child(tarjeta)
+	puesto.add_child(envoltura)
+	puesto.add_child(boton)
+	ui_contenedor_comidas.add_child(puesto)
+
+
+func elegir_comida(comida : PelotitaBase) -> void:
+	var precio : int = Rareza.precio_de(comida)
+	if Global.monedas < precio:
+		return
+	Global.actualizar_monedas(-precio)
+	Global.actualizar_comidas_elegidas(comida)
+	avanzar()
 
 func limpiar_comidas_anteriores():
 	#if ui_contenedor_comidas.get_child_count() <=0:
@@ -36,6 +66,7 @@ func limpiar_comidas_anteriores():
 #la llamo con una signal desde los paneles y sino tmb desde el boton omitir con la signal de pressed
 func avanzar(): #sea pq elige una comida o pq pone en omitir
 	esconder_selector_comidas()
+	seleccion_terminada.emit()
 
 
 func mostrar_selector_comidas(): #2 muestro el selector y pauso el juego, pero solo la ui sigue recibiendo inputs

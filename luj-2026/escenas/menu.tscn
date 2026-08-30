@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://84aw1fbg7kwq" path="res://assets/Michinko Logo.png" id="11_6m0pt"]
 [ext_resource type="Script" uid="uid://ldkn2qu0rnkn" path="res://scripts/resources/datos_gato.gd" id="12_dgato"]
 [ext_resource type="Resource" uid="uid://c0y7jrcb8f0k" path="res://scripts/resources/gatos_michinko.tres" id="13_michi"]
-[ext_resource type="PackedScene" path="res://escenas/opciones.tscn" id="14_opc"]
+[ext_resource type="PackedScene" uid="uid://cbqiu7echm444" path="res://escenas/opciones.tscn" id="14_opc"]
 [ext_resource type="Material" uid="uid://bw1r2eimk66te" path="res://scripts/shaders/material_brillo_radial.tres" id="15_brillo"]
 [ext_resource type="PackedScene" uid="uid://che0rryy8c7cq" path="res://escenas/gato.tscn" id="15_xxdvs"]
 [ext_resource type="PackedScene" uid="uid://bh6v3wn4vlcem" path="res://escenas/componentes/cuadro_ui.tscn" id="17_lemrg"]

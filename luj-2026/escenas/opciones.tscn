@@ -56,10 +56,10 @@ grow_vertical = 2
 color_marco = Color(0, 0, 0, 0.36862746)
 
 [node name="Panel" type="PanelContainer" parent="." unique_id=1937994719]
-offset_left = 660.0
-offset_top = 90.0
-offset_right = 1260.0
-offset_bottom = 990.0
+offset_left = 705.0
+offset_top = 151.0
+offset_right = 1215.0
+offset_bottom = 943.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_s8bbw")
 
 [node name="Contenido" type="VBoxContainer" parent="Panel" unique_id=1706576892]
@@ -71,7 +71,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("3_4n5yr")
 theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 72
+theme_override_font_sizes/font_size = 56
 text = "Opciones"
 horizontal_alignment = 1
 
@@ -84,9 +84,8 @@ theme_override_font_sizes/font_size = 36
 text = "-Musica-"
 
 [node name="SliderMusica" type="HSlider" parent="Panel/Contenido" unique_id=244358315]
-custom_minimum_size = Vector2(450, 50)
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-size_flags_horizontal = 4
 theme_override_styles/slider = SubResource("StyleBoxFlat_os4os")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_l6ykc")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_aowak")
@@ -103,9 +102,8 @@ theme_override_font_sizes/font_size = 36
 text = "-Efectos-"
 
 [node name="SliderEfectos" type="HSlider" parent="Panel/Contenido" unique_id=1771846758]
-custom_minimum_size = Vector2(450, 50)
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-size_flags_horizontal = 4
 theme_override_styles/slider = SubResource("StyleBoxFlat_os4os")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_l6ykc")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_aowak")
@@ -122,10 +120,10 @@ theme_override_font_sizes/font_size = 36
 text = "-Pantalla-"
 
 [node name="OpcionVentana" type="OptionButton" parent="Panel/Contenido" unique_id=1185103328]
-custom_minimum_size = Vector2(450, 50)
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
+fit_to_longest_item = false
 item_count = 3
 popup/item_0/text = "Pantalla completa exclusiva"
 popup/item_0/id = 0
@@ -143,10 +141,10 @@ theme_override_font_sizes/font_size = 36
 text = "-Resolucion-"
 
 [node name="OpcionResolucion" type="OptionButton" parent="Panel/Contenido" unique_id=1421476468]
-custom_minimum_size = Vector2(450, 50)
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
+fit_to_longest_item = false
 item_count = 6
 popup/item_0/text = "3840 x 2160"
 popup/item_0/id = 0
@@ -170,10 +168,10 @@ theme_override_font_sizes/font_size = 36
 text = "-Vsync-"
 
 [node name="OpcionVsync" type="OptionButton" parent="Panel/Contenido" unique_id=1391238492]
-custom_minimum_size = Vector2(450, 50)
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
+fit_to_longest_item = false
 item_count = 3
 popup/item_0/text = "Desactivado"
 popup/item_0/id = 0
@@ -192,4 +190,4 @@ size_flags_horizontal = 4
 theme = ExtResource("3_4n5yr")
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 40
-text = "CERRAR"
+text = "Cerrar"

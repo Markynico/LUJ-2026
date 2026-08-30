@@ -6,5 +6,8 @@
 [resource]
 script = ExtResource("1_rel")
 nombre = "Magiclick"
-descripcion = "Los {explosivo:icono} explotan instantáneamente."
+rareza = 2
+descripcion = "Los {explosivo:icono} explotan instantáneamente.
+
+\"*Click*\""
 icono = ExtResource("2_rel")
