@@ -2,26 +2,24 @@
 
 [ext_resource type="Script" uid="uid://fopa4trrkrbv" path="res://scripts/hud.gd" id="1_m5lxu"]
 [ext_resource type="Script" uid="uid://bvukoufew36l2" path="res://scripts/ui_comidas_elegidas.gd" id="2_5u87e"]
-[ext_resource type="Script" uid="uid://bojjht8bbil08" path="res://scripts/UICargadorPelotitas.gd" id="3_0sskl"]
-[ext_resource type="PackedScene" uid="uid://c87sy1bku6et8" path="res://escenas/componentes/texture_rect_cargador.tscn" id="4_hrvm2"]
+[ext_resource type="PackedScene" uid="uid://bh6v3wn4vlcem" path="res://escenas/componentes/cuadro_ui.tscn" id="3_0sskl"]
+[ext_resource type="Theme" uid="uid://cwsrathd8xljh" path="res://themes/theme_label_numeritos.tres" id="4_hrvm2"]
+[ext_resource type="Texture2D" uid="uid://csdrv6d6trs4a" path="res://assets/icono_ovillo_moneda.png" id="5_8qmdo"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_37ege"]
 viewport_path = NodePath("UIComidasElegidas/SubViewportComidas")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_hrvm2"]
-viewport_path = NodePath("UICargadorPelotitas/SubViewportCargador")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel_hud"]
 content_margin_left = 16.0
 content_margin_top = 10.0
 content_margin_right = 16.0
 content_margin_bottom = 10.0
-bg_color = Color(0.109804, 0.12549, 0.180392, 0.9)
+bg_color = Color(0.10980392, 0.1254902, 0.18039216, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.28, 0.33, 0.48, 0.8)
+border_color = Color(0.2784314, 0.32941177, 0.47843137, 1)
 corner_radius_top_left = 14
 corner_radius_top_right = 14
 corner_radius_bottom_right = 14
@@ -37,6 +35,9 @@ font_color = Color(0.7, 0.76, 0.92, 1)
 font_color = Color(1, 0.92, 0.5, 1)
 outline_size = 2
 outline_color = Color(0.1, 0.08, 0.02, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0sskl"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_badge"]
 font_size = 12
@@ -60,7 +61,7 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
-shadow_color = Color(0.15, 0.8, 0.4, 0.4)
+shadow_color = Color(1, 0.8, 0.4, 0.4)
 shadow_size = 4
 
 [sub_resource type="LabelSettings" id="LabelSettings_progreso"]
@@ -126,30 +127,6 @@ icon_mode = 0
 icon_scale = 0.5
 fixed_icon_size = Vector2i(250, 250)
 
-[node name="UICargadorPelotitas" type="Sprite2D" parent="." unique_id=1862702493]
-z_index = 50
-position = Vector2(560, 587)
-texture = SubResource("ViewportTexture_hrvm2")
-script = ExtResource("3_0sskl")
-
-[node name="SubViewportCargador" type="SubViewport" parent="UICargadorPelotitas" unique_id=1187095001]
-transparent_bg = true
-
-[node name="VboxPelotitas" type="VBoxContainer" parent="UICargadorPelotitas/SubViewportCargador" unique_id=275765224]
-unique_name_in_owner = true
-z_index = 55
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="se_borra_solo" parent="UICargadorPelotitas/SubViewportCargador/VboxPelotitas" unique_id=2143947696 instance=ExtResource("4_hrvm2")]
-layout_mode = 2
-
-[node name="se_borra_solo2" parent="UICargadorPelotitas/SubViewportCargador/VboxPelotitas" unique_id=1594653062 instance=ExtResource("4_hrvm2")]
-layout_mode = 2
-
-[node name="se_borra_solo3" parent="UICargadorPelotitas/SubViewportCargador/VboxPelotitas" unique_id=1062992600 instance=ExtResource("4_hrvm2")]
-layout_mode = 2
-
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1032973156]
 
 [node name="MarginSuperior" type="MarginContainer" parent="CanvasLayer" unique_id=1796348773]
@@ -208,10 +185,18 @@ size_flags_horizontal = 3
 mouse_filter = 2
 
 [node name="PanelProgreso" type="PanelContainer" parent="CanvasLayer/MarginSuperior/HBoxHUD" unique_id=781316756]
-custom_minimum_size = Vector2(340, 68)
+custom_minimum_size = Vector2(340, 111)
+custom_maximum_size = Vector2(340, 111)
+propagate_maximum_size = false
 layout_mode = 2
+size_flags_stretch_ratio = 0.0
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_panel_hud")
+theme_override_styles/panel = SubResource("StyleBoxFlat_0sskl")
+
+[node name="CuadroUI" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelProgreso" unique_id=280403763 instance=ExtResource("3_0sskl")]
+z_index = -1
+layout_mode = 2
+radio_esquinas = 15
 
 [node name="VBoxProgreso" type="VBoxContainer" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelProgreso" unique_id=1746689928]
 layout_mode = 2
@@ -219,20 +204,30 @@ mouse_filter = 2
 theme_override_constants/separation = 6
 alignment = 1
 
-[node name="HBoxProgresoHeader" type="HBoxContainer" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelProgreso/VBoxProgreso" unique_id=1150031160]
+[node name="LabelMetaBadge2" type="Label" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelProgreso/VBoxProgreso" unique_id=2060134967]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 5)
+theme = ExtResource("4_hrvm2")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0.48235294)
+theme_override_constants/outline_size = 0
+text = "Elimina 0 ovillos para ganar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxProgresoHeaderYANOSEUSA" type="HBoxContainer" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelProgreso/VBoxProgreso" unique_id=1150031160]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="LabelObjetivoTitulo" type="Label" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelProgreso/VBoxProgreso/HBoxProgresoHeader" unique_id=1384448355]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "OBJETIVO DE NIVEL"
-label_settings = SubResource("LabelSettings_seccion")
-
-[node name="LabelMetaBadge" type="Label" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelProgreso/VBoxProgreso/HBoxProgresoHeader" unique_id=701565132]
+[node name="LabelMetaBadge" type="Label" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelProgreso/VBoxProgreso/HBoxProgresoHeaderYANOSEUSA" unique_id=701565132]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
-text = "Faltan ovillos"
+theme = ExtResource("4_hrvm2")
+text = "0 OVILLOS"
 label_settings = SubResource("LabelSettings_badge")
 horizontal_alignment = 2
 
@@ -247,9 +242,43 @@ show_percentage = false
 
 [node name="LabelOvillos" type="Label" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelProgreso/VBoxProgreso" unique_id=228814905]
 unique_name_in_owner = true
+propagate_maximum_size = true
 layout_mode = 2
-text = "Ovillos: 0 / 0  (Meta: 0 | 70%)"
+size_flags_vertical = 6
+theme = ExtResource("4_hrvm2")
+text = "Ovillos: 0 / 0  (Meta: 0)"
 label_settings = SubResource("LabelSettings_progreso")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelProgreso/VBoxProgreso" unique_id=573025666]
+propagate_maximum_size = false
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -9)
+alignment = 1
+
+[node name="TexturaMonedas" type="TextureRect" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelProgreso/VBoxProgreso/HBoxContainer" unique_id=1546500910]
+custom_minimum_size = Vector2(40, 40)
+propagate_maximum_size = true
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_8qmdo")
+expand_mode = 5
+
+[node name="Monedas" type="Label" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelProgreso/VBoxProgreso/HBoxContainer" unique_id=599543815]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("4_hrvm2")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.8352941, 0.8352941, 0.8352941, 0.18431373)
+theme_override_constants/outline_size = 0
+text = "Monedas: "
+horizontal_alignment = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=764577966]
 anchors_preset = 10
@@ -262,13 +291,6 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Bolas de pelo restantes:"
-
-[node name="Monedas" type="Label" parent="CanvasLayer/HBoxContainer" unique_id=599543815]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 10
-text = "Monedas: "
-horizontal_alignment = 2
 
 [node name="BannerNotificacion" type="PanelContainer" parent="CanvasLayer" unique_id=1420914603]
 unique_name_in_owner = true

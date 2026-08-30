@@ -12,17 +12,28 @@
 [ext_resource type="Script" uid="uid://mrkgoq2v1cix" path="res://scripts/niveles/selector_de_niveles.gd" id="6_selec"]
 [ext_resource type="Resource" uid="uid://cnaktgatgx54i" path="res://niveles/Nivel5.tres" id="9_w7gqy"]
 [ext_resource type="PackedScene" uid="uid://bjrqwv4iyx66g" path="res://escenas/selector_comidas.tscn" id="11_qfdc2"]
+[ext_resource type="Script" uid="uid://bojjht8bbil08" path="res://scripts/UICargadorPelotitas.gd" id="13_eu1no"]
+[ext_resource type="PackedScene" uid="uid://c87sy1bku6et8" path="res://escenas/componentes/texture_rect_cargador.tscn" id="14_uryky"]
+[ext_resource type="Theme" uid="uid://bjkvjfhj8dr8y" path="res://themes/theme_ui_general.tres" id="15_aj17q"]
+[ext_resource type="FontFile" uid="uid://dwg47e0trev3j" path="res://fuentes/Bungee-Regular.ttf" id="16_0mevy"]
+[ext_resource type="PackedScene" uid="uid://dy3jqoayfdkwm" path="res://escenas/Ovillo.tscn" id="18_ax6j8"]
+[ext_resource type="Resource" uid="uid://cy6q6prk7gt7p" path="res://scripts/resources/ovillo_catnip.tres" id="19_djp4b"]
+[ext_resource type="Resource" uid="uid://dky2mbnm2rn0l" path="res://scripts/resources/ovillo_monedas.tres" id="20_c7o2b"]
+[ext_resource type="Resource" uid="uid://fumr1qv4h1ho" path="res://scripts/resources/ovillo_rebobinar.tres" id="21_lwh54"]
+[ext_resource type="Resource" uid="uid://d3ks2dut6iacd" path="res://scripts/resources/ovillo_explosivo_final.tres" id="22_okgri"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_w7gqy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jhh3k"]
 size = Vector2(1180.5, 45.99997)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_w7gqy"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_qjtjc"]
 viewport_path = NodePath("PanelInfoIzquierdo/SubViewportIzq")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_6nwa0"]
-viewport_path = NodePath("PanelInfoDerecho/SubViewportDer")
+[sub_resource type="ViewportTexture" id="ViewportTexture_7nkol"]
+viewport_path = NodePath("UICargadorPelotitas/SubViewportCargador")
+
+[sub_resource type="Theme" id="Theme_g56wh"]
 
 [node name="Juego" type="Node2D" unique_id=1865884372 node_paths=PackedStringArray("game_manager", "gato", "cargador", "selector", "camara")]
 script = ExtResource("0_juego")
@@ -127,13 +138,88 @@ position = Vector2(209.25, 9)
 shape = SubResource("RectangleShape2D_jhh3k")
 
 [node name="PanelInfoIzquierdo" parent="EstructuraDeNivel" index="3" unique_id=1428603965]
-texture = SubResource("ViewportTexture_w7gqy")
-
-[node name="PanelInfoDerecho" parent="EstructuraDeNivel" index="4" unique_id=1908544833]
-texture = SubResource("ViewportTexture_6nwa0")
+texture = SubResource("ViewportTexture_qjtjc")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2055805025]
 position = Vector2(960, 540)
+
+[node name="UICargadorPelotitas" type="Sprite2D" parent="." unique_id=1790705375]
+z_index = 50
+position = Vector2(301, 608)
+texture = SubResource("ViewportTexture_7nkol")
+script = ExtResource("13_eu1no")
+escena_textura_pelotita = ExtResource("14_uryky")
+
+[node name="SubViewportCargador" type="SubViewport" parent="UICargadorPelotitas" unique_id=1211465181]
+transparent_bg = true
+
+[node name="ContenedorNomas" type="VBoxContainer" parent="UICargadorPelotitas/SubViewportCargador" unique_id=2006147675]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -92.5
+offset_right = 25.0
+offset_bottom = 92.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="LabelContador" type="Label" parent="UICargadorPelotitas/SubViewportCargador/ContenedorNomas" unique_id=1900104617]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("15_aj17q")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0.5568628)
+theme_override_colors/font_outline_color = Color(0.2592937, 0.2592937, 0.2592937, 1)
+theme_override_fonts/font = ExtResource("16_0mevy")
+theme_override_font_sizes/font_size = 24
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VboxPelotitas" type="VBoxContainer" parent="UICargadorPelotitas/SubViewportCargador/ContenedorNomas" unique_id=1973885574]
+unique_name_in_owner = true
+z_index = 55
+layout_mode = 2
+theme = SubResource("Theme_g56wh")
+
+[node name="se_borra_solo" parent="UICargadorPelotitas/SubViewportCargador/ContenedorNomas/VboxPelotitas" unique_id=2143947696 instance=ExtResource("14_uryky")]
+layout_mode = 2
+
+[node name="se_borra_solo2" parent="UICargadorPelotitas/SubViewportCargador/ContenedorNomas/VboxPelotitas" unique_id=1755216870 instance=ExtResource("14_uryky")]
+layout_mode = 2
+
+[node name="se_borra_solo3" parent="UICargadorPelotitas/SubViewportCargador/ContenedorNomas/VboxPelotitas" unique_id=84875516 instance=ExtResource("14_uryky")]
+layout_mode = 2
+
+[node name="PanelInfoOvillos" type="Sprite2D" parent="." unique_id=199587355]
+position = Vector2(1878, 811)
+
+[node name="ContenedorOvillos" type="Node2D" parent="PanelInfoOvillos" unique_id=195605175]
+
+[node name="Ovillo" parent="PanelInfoOvillos/ContenedorOvillos" unique_id=142733400 instance=ExtResource("18_ax6j8")]
+position = Vector2(-177, -181)
+
+[node name="Ovillo2" parent="PanelInfoOvillos/ContenedorOvillos" unique_id=1271856268 instance=ExtResource("18_ax6j8")]
+position = Vector2(-126, -181)
+tipo_ovillo = ExtResource("19_djp4b")
+
+[node name="Ovillo4" parent="PanelInfoOvillos/ContenedorOvillos" unique_id=563399426 instance=ExtResource("18_ax6j8")]
+position = Vector2(-76, -181)
+tipo_ovillo = ExtResource("20_c7o2b")
+
+[node name="Ovillo6" parent="PanelInfoOvillos/ContenedorOvillos" unique_id=2101167952 instance=ExtResource("18_ax6j8")]
+position = Vector2(-22, -181)
+tipo_ovillo = ExtResource("21_lwh54")
+
+[node name="Ovillo7" parent="PanelInfoOvillos/ContenedorOvillos" unique_id=463417971 instance=ExtResource("18_ax6j8")]
+position = Vector2(-177, -77)
+tipo_ovillo = ExtResource("22_okgri")
 
 [connection signal="nivel_completado" from="GameManager" to="SelectorComidas" method="_on_game_manager_nivel_completado"]
 
