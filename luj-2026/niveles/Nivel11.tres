@@ -1,0 +1,65 @@
+[gd_resource type="Resource" script_class="NivelData" format=3 uid="uid://c4rean1bkp013"]
+
+[ext_resource type="Script" uid="uid://1owdr3bm0age" path="res://scripts/niveles/forma_data.gd" id="1_wh7gp"]
+[ext_resource type="Script" uid="uid://4yxin8siliwu" path="res://scripts/niveles/nivel_data.gd" id="2_s84x2"]
+
+[sub_resource type="Resource" id="Resource_ttl7s"]
+script = ExtResource("1_wh7gp")
+posicion = Vector2(641.51355, 576.7081)
+separacion_ovillos = 20.0
+"tamaño" = Vector2(176.61475, 99.28699)
+
+[sub_resource type="Resource" id="Resource_js734"]
+script = ExtResource("1_wh7gp")
+posicion = Vector2(616, 577)
+separacion_ovillos = 20.0
+"tamaño" = Vector2(67.06781, 56.265198)
+
+[sub_resource type="Resource" id="Resource_kou2f"]
+script = ExtResource("1_wh7gp")
+posicion = Vector2(635.6095, 537.9147)
+separacion_ovillos = 20.0
+"tamaño" = Vector2(314.58398, 131.77951)
+
+[sub_resource type="Resource" id="Resource_lr0vc"]
+script = ExtResource("1_wh7gp")
+posicion = Vector2(800, 526)
+separacion_ovillos = 20.0
+"tamaño" = Vector2(366.6549, 128.2761)
+
+[sub_resource type="Resource" id="Resource_7e15n"]
+script = ExtResource("1_wh7gp")
+posicion = Vector2(826.9929, 705.26654)
+separacion_ovillos = 20.0
+"tamaño" = Vector2(489.0537, 200.26794)
+
+[sub_resource type="Resource" id="Resource_psed6"]
+script = ExtResource("1_wh7gp")
+posicion = Vector2(1107.9388, 667.48175)
+separacion_ovillos = 20.0
+"tamaño" = Vector2(506.94556, 121.22864)
+
+[sub_resource type="Resource" id="Resource_0l3bg"]
+script = ExtResource("1_wh7gp")
+posicion = Vector2(731.16754, 702.90216)
+separacion_ovillos = 20.0
+"tamaño" = Vector2(297.40295, 308.06946)
+
+[sub_resource type="Resource" id="Resource_455q4"]
+script = ExtResource("1_wh7gp")
+posicion = Vector2(1013.8121, 652.9763)
+separacion_ovillos = 20.0
+"tamaño" = Vector2(862.692, 208.21777)
+
+[sub_resource type="Resource" id="Resource_byono"]
+script = ExtResource("1_wh7gp")
+posicion = Vector2(938.92334, 466.15717)
+separacion_ovillos = 20.0
+"tamaño" = Vector2(712.91455, 165.42053)
+
+[resource]
+script = ExtResource("2_s84x2")
+nombre = "Nivel11"
+formas = Array[ExtResource("1_wh7gp")]([SubResource("Resource_ttl7s"), SubResource("Resource_js734"), SubResource("Resource_kou2f"), SubResource("Resource_lr0vc"), SubResource("Resource_7e15n"), SubResource("Resource_psed6"), SubResource("Resource_0l3bg"), SubResource("Resource_455q4"), SubResource("Resource_byono")])
+posicion_divisiones = Vector2(349, 1080)
+ancho_divisiones = 1241.0
