@@ -287,4 +287,4 @@ func lanzar() -> void:
 func preparar_bola() -> void:
 	if animation_player:
 		animation_player.stop()
-		animation_player.play("escupir_bola")
+		animation_player.play("escupir_bola") #esto llama a la funcion escupir_bola en el disparador

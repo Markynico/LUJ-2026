@@ -16,6 +16,7 @@ enum EstadoDeJuego {
 	ESPERANDO, # Al iniciar el nivel y elegir los poderes
 	TIENDA, # Mientras se compra
 	LANZANDO_BOLAS,
+	ESPERANDO_BOLA, #aver si soluciona el bug, para q espere hasta q termine la animacion y recien ahi tire y descuente la bola
 	LANZANDO_GATO,
 	NIVEL_COMPLETADO,
 	GAME_OVER,
@@ -54,6 +55,7 @@ func _enter_tree() -> void:
 	instancia_actual = self
 
 func _ready() -> void:
+	Global.cargador_pelotitas_actualizado.connect(_on_cargador_pelotitas_actualizado)
 	# Persistencia de vidas entre recargas de nivel
 	if not vidas_inicializadas:
 		vidas_guardadas = vidas_maximas
@@ -179,13 +181,20 @@ func reiniciar_vidas() -> void:
 func disparar_bola() -> void:
 	if estado_actual != EstadoDeJuego.LANZANDO_BOLAS:
 		return
-	if not get_tree().get_nodes_in_group("bolas_de_pelos").is_empty():
+
+	if Global.cargador_de_pelotitas.is_empty():
 		return
 
-	if bolas_restantes > 0:
-		bolas_restantes -= 1
-		bola_usada.emit(bolas_restantes)
-		gato_lanza_bola.emit()
+	if not get_tree().get_nodes_in_group("bolas_de_pelos").is_empty():
+		return
+	
+	
+	#if bolas_restantes > 0:
+		#bolas_restantes -= 1
+		##bolas_restantes = Global.cargador_de_pelotitas.size() #aver si soluciona el bug
+		#bola_usada.emit(bolas_restantes)
+	estado_actual = EstadoDeJuego.ESPERANDO_BOLA
+	gato_lanza_bola.emit()
 
 
 func registrar_salida_de_bola() -> void:
@@ -272,3 +281,11 @@ func reiniciar_nivel_actual() -> void:
 #
 #func restablecer_tablero_pelotitas(): #la dejo por si metemos el efecto "al ser golpeado restablece el tablero de ovillos"
 	#pass
+
+
+func _on_cargador_pelotitas_actualizado():
+	print("en teoria acabo de tira una bola, recibido en game manager")
+	if Global.cargador_de_pelotitas.size() != 0:
+		estado_actual = EstadoDeJuego.LANZANDO_BOLAS
+	else:
+		cambiar_gato()
