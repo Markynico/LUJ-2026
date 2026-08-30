@@ -284,7 +284,8 @@ func reiniciar_nivel_actual() -> void:
 
 
 func _on_cargador_pelotitas_actualizado():
-	print("en teoria acabo de tira una bola, recibido en game manager")
+	#print("en teoria acabo de tira una bola, recibido en game manager")
+	#el diablo q es ete codigo jdasjasdj
 	if Global.cargador_de_pelotitas.size() != 0:
 		estado_actual = EstadoDeJuego.LANZANDO_BOLAS
 	else:
