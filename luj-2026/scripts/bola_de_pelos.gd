@@ -28,6 +28,12 @@ var fue_duplicada : bool = false #probando, seguro lo saco de aca
 var contador_rebotes : int = 0
 var limites_juego : Rect2
 
+
+var vector_x : int = randi_range(-500, 500)
+var vector_y : int = randi_range(-500, 500)
+
+var impulso_pelotita_duplicada : Vector2 = Vector2(vector_x, vector_y)
+
 func _ready() -> void:
 	var tamanio_juego : Vector2 = Vector2(ProjectSettings.get_setting("display/window/size/viewport_width"), ProjectSettings.get_setting("display/window/size/viewport_height"))
 	limites_juego = Rect2(Vector2.ZERO, tamanio_juego).grow(margen_borde)
@@ -83,6 +89,8 @@ func duplicar_pelotita():
 	var pelotita_nueva : BolaDePelos = duplicate()
 	pelotita_nueva.fue_duplicada = true #evito q la duplicada tambien se duplique
 	get_parent().add_child(pelotita_nueva)
+	pelotita_nueva.global_position = global_position
+	pelotita_nueva.apply_impulse(impulso_pelotita_duplicada)
 	fue_duplicada = true
 
 func sonido_rebote():
