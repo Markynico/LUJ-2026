@@ -27,6 +27,7 @@ extends Node2D
 
 var sala_actual : Node
 var sala_pendiente : int = -1
+var primera_sala : bool = true
 var capa_salas : CanvasLayer
 var posicion_camara_inicial : Vector2
 var zoom_camara_inicial : Vector2
@@ -77,11 +78,21 @@ func al_terminar_seleccion_comidas() -> void:
 func cambiar_sala(tipo : TipoDeSala.Tipo) -> void:
 	var es_nivel : bool = tipo == TipoDeSala.Tipo.NORMAL
 	var ruta : String = escenas_por_sala.get(tipo, "")
-	if not es_nivel and selector_comidas and selector_comidas.canvas_layer.visible:
+	if selector_comidas and selector_comidas.canvas_layer.visible:
 		sala_pendiente = tipo
 		return
 	if not es_nivel and ruta.is_empty():
 		return
+	if primera_sala:
+		primera_sala = false
+		aplicar_sala(tipo)
+		return
+	Transicion.transicionar(aplicar_sala.bind(tipo))
+
+
+func aplicar_sala(tipo : TipoDeSala.Tipo) -> void:
+	var es_nivel : bool = tipo == TipoDeSala.Tipo.NORMAL
+	var ruta : String = escenas_por_sala.get(tipo, "")
 	if sala_actual:
 		sala_actual.queue_free()
 		sala_actual = null

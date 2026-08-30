@@ -71,6 +71,7 @@ theme_override_constants/separation = 14
 custom_minimum_size = Vector2(158, 158)
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_filter = 2
 texture = ExtResource("5_dfqys")
 expand_mode = 1
 stretch_mode = 5
@@ -88,6 +89,7 @@ horizontal_alignment = 1
 [node name="LabelDescripcion" type="RichTextLabel" parent="Margen/Contenido" unique_id=1919030934]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "Los [img=24x39]uid://dhf7cpyrxnlhx[/img]  explotan instantáneamente."

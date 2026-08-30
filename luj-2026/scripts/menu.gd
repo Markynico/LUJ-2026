@@ -3,6 +3,8 @@ extends Node2D
 
 ##escena que se carga al confirmar el gato
 @export_file("*.tscn") var escena_juego : String = "uid://hli2qjvrii4o"
+##escena de la coleccion
+@export_file("*.tscn") var escena_coleccion : String = "res://escenas/coleccion.tscn"
 ##gatos disponibles para elegir
 @export var gatos : Array[DatosGato]
 
@@ -20,6 +22,7 @@ extends Node2D
 
 @export_group("Botones")
 @export var boton_jugar : Button
+@export var boton_coleccion : Button
 @export var boton_opciones : Button
 @export var boton_salir : Button
 
@@ -50,6 +53,8 @@ func _ready() -> void:
 	zoom_inicial = camara.zoom
 	panel_info.visible = false
 	boton_jugar.pressed.connect(abrir_seleccion)
+	if boton_coleccion:
+		boton_coleccion.pressed.connect(abrir_coleccion)
 	boton_opciones.pressed.connect(opciones.show)
 	boton_salir.pressed.connect(salir)
 	boton_confirmar.pressed.connect(confirmar)
@@ -91,7 +96,7 @@ func confirmar() -> void:
 	detener_purr()
 	if not gatos.is_empty():
 		Global.gato_elegido = gatos[gato_actual]
-	get_tree().change_scene_to_file(escena_juego)
+	Transicion.cambiar_escena(escena_juego)
 
 
 func iniciar_purr() -> void:
@@ -117,6 +122,10 @@ func detener_purr() -> void:
 	tween_purr = reproductor.create_tween()
 	tween_purr.tween_property(reproductor, "volume_db", -40.0, duracion_fade_purr)
 	tween_purr.tween_callback(AudioManager.detener_sfx.bind(reproductor))
+
+
+func abrir_coleccion() -> void:
+	Transicion.cambiar_escena(escena_coleccion)
 
 
 func salir() -> void:

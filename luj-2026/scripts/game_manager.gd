@@ -29,6 +29,8 @@ static var vidas_inicializadas: bool = false
 @export var gato : Gato
 @export var cargador_nivel : CargadorDeNivel
 @export var selector_niveles : SelectorDeNiveles
+##escena del menu principal a la que vuelve el game over
+@export_file("*.tscn") var escena_menu : String = "uid://c30ry4xehty4"
 @export var bolas_maximas : int = 4
 @export var vidas_maximas : int = 3
 @export_range(0.1, 1.0, 0.05) var porcentaje_ovillos_requerido : float = 0.30
@@ -240,21 +242,26 @@ func finalizar_nivel(tipo_sala : int = -1) -> void:
 				sala_pedida.emit(tipo_sala)
 			)
 	else:
-		# FALLÓ LA META -> Pierde vida y reinicia nivel
+		# FALLÓ LA META -> Pierde vida y avanza igual a la siguiente sala
 		perder_vida(1)
 		nivel_completado.emit(false)
 		
 		if vidas_actuales > 0:
-			print("Nivel fallado. Vidas restantes: %d. Reiniciando nivel en 1.5s..." % vidas_actuales)
-			get_tree().create_timer(1.5).timeout.connect(func():
-				reiniciar_nivel_actual()
-			)
+			estado_actual = EstadoDeJuego.NIVEL_COMPLETADO
+			if tipo_sala >= 0:
+				print("Nivel fallado. Vidas restantes: %d. Avanzando a la siguiente sala..." % vidas_actuales)
+				get_tree().create_timer(1.2).timeout.connect(func():
+					sala_pedida.emit(tipo_sala)
+				)
+			else:
+				print("Nivel fallado sin salida elegida. Vidas restantes: %d. Reiniciando nivel..." % vidas_actuales)
+				get_tree().create_timer(1.5).timeout.connect(func():
+					reiniciar_nivel_actual()
+				)
 		else:
-			print("GAME OVER - Fin del juego. Reiniciando vidas...")
+			print("GAME OVER - Volviendo al menu principal...")
 			vidas_guardadas = vidas_maximas
-			get_tree().create_timer(2.0).timeout.connect(func():
-				reiniciar_nivel_actual()
-			)
+			get_tree().create_timer(2.0).timeout.connect(volver_al_menu)
 
 func fallar_por_atasco() -> void:
 	if estado_actual != EstadoDeJuego.LANZANDO_GATO or finalizando:
@@ -267,7 +274,7 @@ func fallar_por_atasco() -> void:
 		get_tree().create_timer(1.5).timeout.connect(reiniciar_nivel_actual)
 	else:
 		vidas_guardadas = vidas_maximas
-		get_tree().create_timer(2.0).timeout.connect(reiniciar_nivel_actual)
+		get_tree().create_timer(2.0).timeout.connect(volver_al_menu)
 
 
 func al_rebobinar_rebote ()-> void:
@@ -309,3 +316,10 @@ static func filtrar_por_rareza(candidatos : Array, rareza : Rareza.Nivel) -> Arr
 	if filtrados.is_empty():
 		return candidatos
 	return filtrados
+
+
+func volver_al_menu() -> void:
+	vidas_inicializadas = false
+	ReliquiasManager.obtenidas.clear()
+	ReliquiasManager.explosion_instantanea = false
+	Transicion.cambiar_escena(escena_menu)

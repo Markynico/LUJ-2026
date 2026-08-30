@@ -6,6 +6,7 @@ signal continuar_pedido
 ##reliquias que pueden aparecer, se elige una al azar entre las que no se tienen
 @export var reliquias_posibles : Array[Reliquia] = []
 @export var tarjeta : Tarjeta
+@export var foco : FocoTarjetas
 @export var boton_aceptar : Button
 @export var boton_rechazar : Button
 
@@ -28,6 +29,11 @@ func _ready() -> void:
 	reliquia = candidatos.pick_random()
 	ReliquiasManager.ultima_ofrecida = reliquia
 	tarjeta.recurso = reliquia
+	tarjeta.clickeada.connect(al_click_tarjeta)
+
+
+func al_click_tarjeta() -> void:
+	foco.abrir(tarjeta)
 
 
 func aceptar() -> void:

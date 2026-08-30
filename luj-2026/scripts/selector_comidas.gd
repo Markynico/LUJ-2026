@@ -8,10 +8,11 @@ signal seleccion_terminada
 
 @export var ui_contenedor_comidas : HBoxContainer
 @export var canvas_layer : CanvasLayer
+@export var foco : FocoTarjetas
 const escena_tarjeta : PackedScene = preload("uid://u6k76f6lyw8y")
 @export var comidas_a_mostrar : int = 3
 ##escala de las tarjetas de comida
-@export var escala_tarjeta : float = 0.6
+@export var escala_tarjeta : float = 0.85
 ##tamaño base de la tarjeta
 @export var tamaño_tarjeta : Vector2 = Vector2(500, 600)
 
@@ -19,6 +20,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	%LabelAviso.hide()
+	foco.accion_pedida.connect(elegir_en_foco)
 	esconder_selector_comidas()
 	elegir_comidas_aleatorias() #dsp le puedo agregar q se tenga q verificar si ya tenia tal comida para no mostrarla (?
 
@@ -30,23 +32,33 @@ func elegir_comidas_aleatorias():
 
 
 func crear_panel_comida(comida_a_mostrar : PelotitaBase):
-	var puesto : VBoxContainer = VBoxContainer.new()
 	var envoltura : Control = Control.new()
 	var tarjeta : Tarjeta = escena_tarjeta.instantiate()
-	var boton : Button = Button.new()
+	var boton : Button
 	var precio : int = Rareza.precio_de(comida_a_mostrar)
 	envoltura.custom_minimum_size = tamaño_tarjeta * escala_tarjeta
 	tarjeta.size = tamaño_tarjeta
 	tarjeta.scale = Vector2.ONE * escala_tarjeta
 	tarjeta.recurso = comida_a_mostrar
-	boton.text = "Elegir  %d" % precio
-	boton.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	envoltura.add_child(tarjeta)
+	ui_contenedor_comidas.add_child(envoltura)
+	boton = tarjeta.mostrar_boton_precio(precio)
 	boton.disabled = Global.monedas < precio
 	boton.pressed.connect(elegir_comida.bind(comida_a_mostrar))
-	envoltura.add_child(tarjeta)
-	puesto.add_child(envoltura)
-	puesto.add_child(boton)
-	ui_contenedor_comidas.add_child(puesto)
+	tarjeta.clickeada.connect(al_click_tarjeta.bind(tarjeta, boton))
+
+
+func al_click_tarjeta(tarjeta : Tarjeta, boton : Button) -> void:
+	if foco.esta_abierto():
+		return
+	tarjeta.estilizar_boton_precio(foco.boton_accion, Rareza.precio_de(tarjeta.recurso))
+	foco.boton_accion.disabled = boton.disabled
+	foco.con_accion = true
+	foco.abrir(tarjeta, boton.get_parent())
+
+
+func elegir_en_foco(tarjeta : Tarjeta) -> void:
+	elegir_comida(tarjeta.recurso)
 
 
 func elegir_comida(comida : PelotitaBase) -> void:
@@ -73,12 +85,12 @@ func mostrar_selector_comidas(): #2 muestro el selector y pauso el juego, pero s
 	#Global.eligiendo_comidas.emit() #para avisarle a game manager q cambie de estado a seleccionando comidas
 	elegir_comidas_aleatorias()
 	canvas_layer.show()
-	Global.pausar_juego()
+	Transicion.filtrar_musica(true)
 
 
 func esconder_selector_comidas():
 	canvas_layer.hide()
-	Global.reanudar_juego()
+	Transicion.filtrar_musica(false)
 
 #1 cada vez q terminamoms un nivel se muestra el selector de comidas
 func _on_game_manager_nivel_completado(exito: bool) -> void: #signal conectada en la escena de juego

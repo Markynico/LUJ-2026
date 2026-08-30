@@ -21,13 +21,14 @@
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jhh3k"]
 
-[node name="Menu" type="Node2D" unique_id=1421157520 node_paths=PackedStringArray("camara", "foco_seleccion", "boton_jugar", "boton_opciones", "boton_salir", "panel_info", "label_nombre", "label_descripcion", "boton_confirmar", "boton_volver", "brillo_seleccion", "opciones")]
+[node name="Menu" type="Node2D" unique_id=1421157520 node_paths=PackedStringArray("camara", "foco_seleccion", "boton_jugar", "boton_coleccion", "boton_opciones", "boton_salir", "panel_info", "label_nombre", "label_descripcion", "boton_confirmar", "boton_volver", "brillo_seleccion", "opciones")]
 script = ExtResource("1_menu")
 gatos = Array[ExtResource("12_dgato")]([ExtResource("13_michi")])
 zoom_seleccion = Vector2(3.5, 3.5)
 camara = NodePath("Camera2D")
 foco_seleccion = NodePath("Gato/FocoSeleccion")
 boton_jugar = NodePath("BotonEstandarteJugar")
+boton_coleccion = NodePath("BotonEstandarteColeccion")
 boton_opciones = NodePath("BotonEstandarteOpciones")
 boton_salir = NodePath("BotonEstandarteSalir")
 panel_info = NodePath("UISeleccion/CuadroUI")

@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://8l4mghblkql7"]
 
+[ext_resource type="PackedScene" path="res://escenas/componentes/foco_tarjetas.tscn" id="1_foco"]
+[ext_resource type="Texture2D" uid="uid://bhi3nf0jngdpb" path="res://assets/tapir.jpg" id="1_fondo"]
 [ext_resource type="Script" uid="uid://ddjnfonlvbcs6" path="res://scripts/sala_loot.gd" id="1_loot"]
 [ext_resource type="PackedScene" uid="uid://u6k76f6lyw8y" path="res://escenas/componentes/tarjeta.tscn" id="1_tarj"]
 [ext_resource type="Resource" uid="uid://d1g05k4oam2p8" path="res://scripts/resources/reliquias/rascador.tres" id="2_rascador"]
@@ -14,8 +16,9 @@
 [ext_resource type="Resource" uid="uid://bpw3shdksb1v5" path="res://scripts/resources/reliquias/almuerzo_duenia.tres" id="12_almue"]
 [ext_resource type="Resource" uid="uid://cv7e0lifc61g8" path="res://scripts/resources/reliquias/magiclick.tres" id="13_magic"]
 [ext_resource type="Resource" uid="uid://4o8c2qa6dfir" path="res://scripts/resources/reliquias/agujas_crochet.tres" id="14_aguja"]
+[ext_resource type="Material" uid="uid://bw1r2eimk66te" path="res://scripts/shaders/material_brillo_radial.tres" id="15_s1p1j"]
 
-[node name="SalaLoot" type="Control" unique_id=879506484 node_paths=PackedStringArray("tarjeta", "boton_aceptar", "boton_rechazar")]
+[node name="SalaLoot" type="Control" unique_id=879506484 node_paths=PackedStringArray("tarjeta", "foco", "boton_aceptar", "boton_rechazar")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -26,17 +29,40 @@ grow_vertical = 2
 script = ExtResource("1_loot")
 reliquias_posibles = Array[ExtResource("6_reliquia")]([ExtResource("2_rascador"), ExtResource("4_tapita"), ExtResource("5_tiro"), ExtResource("7_messi"), ExtResource("8_maceta"), ExtResource("9_almoh"), ExtResource("10_whisk"), ExtResource("11_armad"), ExtResource("12_almue"), ExtResource("13_magic"), ExtResource("14_aguja")])
 tarjeta = NodePath("Contenido/Tarjeta")
+foco = NodePath("FocoTarjetas")
 boton_aceptar = NodePath("Contenido/Botones/BotonAceptar")
 boton_rechazar = NodePath("Contenido/Botones/BotonRechazar")
 
-[node name="Fondo" type="ColorRect" parent="." unique_id=597946726]
+[node name="Fondo" type="TextureRect" parent="." unique_id=597946726]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.2, 0.2, 0.2, 1)
+texture = ExtResource("1_fondo")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="RecorteBrillo" type="Control" parent="." unique_id=954844282]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BrilloSeleccion" type="ColorRect" parent="RecorteBrillo" unique_id=1237858899]
+z_as_relative = false
+material = ExtResource("15_s1p1j")
+layout_mode = 0
+offset_left = 37.0
+offset_top = -380.0
+offset_right = 1886.0
+offset_bottom = 1469.0
+mouse_filter = 2
 
 [node name="Contenido" type="VBoxContainer" parent="." unique_id=1106326221]
 layout_mode = 1
@@ -57,10 +83,14 @@ size_flags_horizontal = 4
 layout_mode = 2
 alignment = 1
 
+[node name="BotonRechazar" type="Button" parent="Contenido/Botones" unique_id=1117320794]
+layout_mode = 2
+text = "Rechazar"
+
 [node name="BotonAceptar" type="Button" parent="Contenido/Botones" unique_id=1553232663]
 layout_mode = 2
 text = "Aceptar"
 
-[node name="BotonRechazar" type="Button" parent="Contenido/Botones" unique_id=1117320794]
-layout_mode = 2
-text = "Rechazar"
+[node name="FocoTarjetas" parent="." unique_id=161925282 instance=ExtResource("1_foco")]
+layout_mode = 1
+con_accion = false
