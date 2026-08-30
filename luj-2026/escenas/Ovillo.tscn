@@ -52,6 +52,7 @@ texture = ExtResource("4_dcous")
 shape = SubResource("CircleShape2D_37ege")
 
 [node name="PergaminoInfo" parent="." unique_id=1923268390 instance=ExtResource("6_dcous")]
+visible = false
 scale = Vector2(0.35, 0.35)
 
 [node name="NumeroImpacto" parent="." unique_id=633406525 instance=ExtResource("7_vkchq")]
