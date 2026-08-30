@@ -131,7 +131,7 @@ func actualizar_progreso_ovillos(obtenidos: int, requeridos: int, total: int, po
 			label_meta_badge.modulate = Color(0.35, 0.95, 0.55, 1.0)
 		else:
 			var faltan = max(0, requeridos - obtenidos)
-			label_meta_badge.text = "elimina %d ovillos para ganar" % faltan
+			label_meta_badge.text = "consigue %d puntos para ganar" % faltan
 			label_meta_badge.modulate = Color(0.85, 0.88, 0.95, 0.8)
 
 func al_alcanzar_meta(es_meta: bool) -> void:
@@ -142,7 +142,7 @@ func al_completar_nivel(exito: bool) -> void:
 	if exito:
 		mostrar_notificacion("¡NIVEL SUPERADO! 🎉", Color(0.35, 0.95, 0.55))
 	else:
-		mostrar_notificacion("¡No alcanzaste la meta! Perdiste una vida 💔", Color(1.0, 0.4, 0.4))
+		mostrar_notificacion("¡No alcanzaste la meta! Perdiste una vida ", Color(1.0, 0.4, 0.4))
 
 func al_game_over() -> void:
 	mostrar_notificacion("GAME OVER 💀 Sin vidas restantes", Color(1.0, 0.25, 0.25))

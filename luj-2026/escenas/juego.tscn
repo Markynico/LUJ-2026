@@ -55,7 +55,6 @@ texture = ExtResource("2_qfdc2")
 expand_mode = 5
 
 [node name="Baranda" type="TextureRect" parent="Fondo" unique_id=238465989]
-z_index = 11
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
