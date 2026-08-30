@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cvo1oqa6q40ut" path="res://scripts/gato.gd" id="1_vrxw6"]
 [ext_resource type="PackedScene" uid="uid://brhfmi38jresg" path="res://escenas/componentes/disparador_pelotita.tscn" id="3_bbvk0"]
-[ext_resource type="Texture2D" uid="uid://cbapxh718cgxk" path="res://assets/sprites_gato/gato_bola.png" id="3_ewiyr"]
 [ext_resource type="Texture2D" uid="uid://bwcsatf82vn2s" path="res://assets/sprites_gato/gato 4_POSTVOMITO.png" id="5_ucdm4"]
 [ext_resource type="Texture2D" uid="uid://yuk4ffxvbvp1" path="res://assets/sprites_gato/gato 2_VOMITANDO1.png" id="6_2wj7v"]
 [ext_resource type="Texture2D" uid="uid://ce2o07vo1mggk" path="res://assets/sprites_gato/gato 1_IDLE_BLINK 1.png" id="6_nqle2"]
@@ -126,8 +125,9 @@ contact_monitor = true
 max_contacts_reported = 8
 script = ExtResource("1_vrxw6")
 imagen_normal = ExtResource("10_2wj7v")
-imagen_bolita = ExtResource("3_ewiyr")
+imagen_bolita = ExtResource("6_2wj7v")
 imagen_orgulloso = ExtResource("9_7xk13")
+escala_bolita = 0.26
 sprite = NodePath("Sprite2D")
 colision = NodePath("CollisionShape2D")
 disparador_pelotitas = NodePath("DisparadorPelotita")

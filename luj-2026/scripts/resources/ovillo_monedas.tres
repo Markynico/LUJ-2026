@@ -13,7 +13,9 @@ metadata/_custom_type_script = "uid://teghc6v6rp6c"
 
 [resource]
 script = ExtResource("2_w3p2q")
-nombre = "OVILLO MONEDAS"
+nombre = "Ovillo de Monedas"
+descripcion = "Da {monedas} monedas al impactar.
+{puntos} Puntos."
 color = Color(0.74, 0.5426667, 0, 1)
 decoracion = ExtResource("1_fa0qx")
 "decoracion_teñida" = ExtResource("2_3ok5b")

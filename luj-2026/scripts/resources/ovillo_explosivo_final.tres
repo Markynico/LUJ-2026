@@ -12,7 +12,9 @@ metadata/_custom_type_script = "uid://cv3xugh8gva3y"
 
 [resource]
 script = ExtResource("4_qu7k5")
-nombre = "OVILLO EXPLOSIVO"
+nombre = "Ovillo Explosivo"
+descripcion = "Explota después de un tiempo al impactar. Rompe ovillos y empuja la pelota dentro del área de explosión.
+{puntos} Puntos."
 color = Color(0.8, 0.17280002, 0.12800002, 1)
 decoracion = ExtResource("1_uj1e1")
 "decoracion_teñida" = ExtResource("2_50tys")

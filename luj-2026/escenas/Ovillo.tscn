@@ -49,6 +49,7 @@ scale = Vector2(0.06, 0.06)
 texture = ExtResource("4_dcous")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1818122697]
+visible = false
 shape = SubResource("CircleShape2D_37ege")
 
 [node name="PergaminoInfo" parent="." unique_id=1923268390 instance=ExtResource("6_dcous")]

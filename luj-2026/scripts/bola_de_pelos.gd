@@ -23,7 +23,6 @@ extends RigidBody2D
 ##distancia fuera de los bordes del juego a la que se elimina la bola
 @export var margen_borde : float = 200.0
 
-
 var fue_duplicada : bool = false #probando, seguro lo saco de aca
 var contador_rebotes : int = 0
 var limites_juego : Rect2
@@ -95,7 +94,7 @@ func duplicar_pelotita():
 
 func sonido_rebote():
 	var pitch_extra : float = minf(contador_rebotes * incremento_pitch, pitch_extra_maximo)
-	contador_rebotes += 1
+	contador_rebotes += 1 #pq el sonido de rebote suma contador ?
 	AudioManager.reproducir_sfx_en(EfectoDeSonido.Tipo.REBOTE, global_position, pitch_extra)
 
 

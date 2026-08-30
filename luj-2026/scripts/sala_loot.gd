@@ -5,9 +5,8 @@ signal continuar_pedido
 
 ##reliquias que pueden aparecer, se elige una al azar entre las que no se tienen
 @export var reliquias_posibles : Array[Reliquia] = []
-@export var icono : TextureRect
-@export var label_nombre : Label
-@export var label_descripcion : Label
+@export var tarjeta : Tarjeta
+@export var foco : FocoTarjetas
 @export var boton_aceptar : Button
 @export var boton_rechazar : Button
 
@@ -20,16 +19,27 @@ func _ready() -> void:
 	)
 	boton_aceptar.pressed.connect(aceptar)
 	boton_rechazar.pressed.connect(rechazar)
+	foco.accion_pedida.connect(al_accion_foco)
 	if candidatos.is_empty():
 		continuar_pedido.emit.call_deferred()
 		return
 	if candidatos.size() > 1:
 		candidatos.erase(ReliquiasManager.ultima_ofrecida)
+	if GameManager.instancia_actual:
+		candidatos = GameManager.filtrar_por_rareza(candidatos, GameManager.instancia_actual.sortear_rareza())
 	reliquia = candidatos.pick_random()
 	ReliquiasManager.ultima_ofrecida = reliquia
-	icono.texture = reliquia.icono
-	label_nombre.text = reliquia.nombre
-	label_descripcion.text = reliquia.descripcion
+	tarjeta.recurso = reliquia
+	tarjeta.clickeada.connect(al_click_tarjeta)
+
+
+func al_click_tarjeta() -> void:
+	foco.boton_accion.text = boton_aceptar.text
+	foco.abrir(tarjeta, boton_aceptar)
+
+
+func al_accion_foco(elegida : Tarjeta) -> void:
+	aceptar()
 
 
 func aceptar() -> void:

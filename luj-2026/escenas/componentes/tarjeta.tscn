@@ -6,7 +6,7 @@
 [ext_resource type="Theme" uid="uid://bjkvjfhj8dr8y" path="res://themes/theme_ui_general.tres" id="5_cbjq2"]
 [ext_resource type="Texture2D" uid="uid://cgiw5gf0n4eao" path="res://assets/reliquias/magiclick.png" id="5_dfqys"]
 
-[node name="Tarjeta" type="TextureRect" unique_id=1697798897 node_paths=PackedStringArray("icono", "label_nombre", "label_descripcion", "label_tipo")]
+[node name="Tarjeta" type="TextureRect" unique_id=1697798897 node_paths=PackedStringArray("icono", "label_nombre", "label_descripcion", "label_tipo", "label_rareza")]
 texture_filter = 2
 offset_right = 500.0
 offset_bottom = 600.0
@@ -19,6 +19,23 @@ icono = NodePath("Margen/Contenido/Icono")
 label_nombre = NodePath("Margen/Contenido/LabelNombre")
 label_descripcion = NodePath("Margen/Contenido/LabelDescripcion")
 label_tipo = NodePath("LabelTipo")
+label_rareza = NodePath("LabelRareza")
+
+[node name="LabelRareza" type="Label" parent="." unique_id=1697798901]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -180.0
+offset_top = 94.0
+offset_right = -33.0
+offset_bottom = 129.0
+grow_horizontal = 0
+theme = ExtResource("5_cbjq2")
+theme_override_colors/font_color = Color(0.53333336, 0, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "Épico"
+horizontal_alignment = 2
 
 [node name="LabelTipo" type="Label" parent="." unique_id=1697798900]
 layout_mode = 1
@@ -55,6 +72,7 @@ theme_override_constants/separation = 14
 custom_minimum_size = Vector2(158, 158)
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_filter = 2
 texture = ExtResource("5_dfqys")
 expand_mode = 1
 stretch_mode = 5
@@ -63,7 +81,7 @@ stretch_mode = 5
 layout_mode = 2
 theme = ExtResource("5_cbjq2")
 theme_type_variation = &"LabelTitulo"
-theme_override_colors/font_color = Color(0.79, 0.08690001, 0.09861816, 1)
+theme_override_colors/font_color = Color(0.89, 0.09790001, 0.11110146, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 44
 text = "Magiclick"
@@ -72,7 +90,10 @@ horizontal_alignment = 1
 [node name="LabelDescripcion" type="RichTextLabel" parent="Margen/Contenido" unique_id=1919030934]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
-text = "Los [img=24x39]uid://dhf7cpyrxnlhx[/img]  explotan instantáneamente."
+text = "Los [img=24x39]uid://dhf7cpyrxnlhx[/img]  explotan instantáneamente.
+
+\"*Click*\""
 horizontal_alignment = 1

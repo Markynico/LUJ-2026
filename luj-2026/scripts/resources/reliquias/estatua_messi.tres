@@ -5,9 +5,10 @@
 
 [resource]
 script = ExtResource("1_rel")
-nombre = "Estatua de oro de Messi"
+nombre = "Estatua de Oro de Messi"
+rareza = 3
 descripcion = "X2 {velocidad:texto/velocidad} de disparo
 X0.5 {gravedad:texto/gravedad}
 
-Vamo Messi"
+\"Vamo Messi!\""
 icono = ExtResource("2_rel")

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://b7ake41m2od3h"]
+
+[ext_resource type="Script" uid="uid://cy0y10pt5og74" path="res://scripts/transicion.gd" id="1_trans"]
+
+[node name="Transicion" type="CanvasLayer" unique_id=1194951252 node_paths=PackedStringArray("fade")]
+layer = 100
+script = ExtResource("1_trans")
+duracion = 3.0
+frecuencia_cerrada = 250.0
+fade = NodePath("Fade")
+
+[node name="Fade" type="ColorRect" parent="." unique_id=2089032325]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

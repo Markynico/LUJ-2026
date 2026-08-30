@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_tapita")
 rebotes_extra = 0
-nombre = "Tapita de lapicera"
+nombre = "Tapita de Lapicera"
 descripcion = "Muestra la trayectoria del último disparo.
 
-¿Por qué mi gato juega con esto?"
+\"¿Por qué mi gato juega con esto?\""
 icono = ExtResource("1_yhcti")

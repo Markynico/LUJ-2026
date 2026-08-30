@@ -5,7 +5,8 @@
 
 [resource]
 script = ExtResource("3_35iyd")
-nombre = "OVILLO NORMAL"
+nombre = "Ovillo Normal"
+descripcion = "Otorga {puntos} puntos al impactar."
 color = Color(1, 0.8926667, 0.72, 1)
 valor_spawn = 55.0
 color_numeros_impacto = Color(0.92099476, 0.9209946, 0.9209946, 1)

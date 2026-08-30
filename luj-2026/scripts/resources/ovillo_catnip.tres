@@ -11,7 +11,9 @@ metadata/_custom_type_script = "uid://ugt4i2thqhvm"
 
 [resource]
 script = ExtResource("2_v2j64")
-nombre = "OVILLO CATNIP"
+nombre = "Ovillo de Catnip"
+descripcion = "Duplica los puntos que dan los ovillos por 3 segundos.
+{puntos} Puntos."
 color = Color(0.36655998, 0.58, 0.17979999, 1)
 decoracion = ExtResource("1_v2j64")
 puntaje = 15

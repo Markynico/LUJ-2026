@@ -129,7 +129,7 @@ func explotar(nodo_explosion : Explosion): #lo llamo en el EfectoExplosion
 func duplicar_recompensas() -> void: #la llama efecto_ovillo_catnip
 	if !activado:
 		return
-	print("MULTIPLICÓ")
+	#print("MULTIPLICÓ")
 	multiplicador = 2
 	
 
@@ -163,11 +163,12 @@ func animacion_titilar(shader_real : ShaderMaterial):
 func convertir_explosivo(ovillo : Ovillo, efecto_bomba : OvilloBase) -> void:
 	if ovillo.tipo_ovillo == efecto_bomba:
 		return
+	sprite_decoracion.show()
+	sprite_decoracion.texture = efecto_bomba.decoracion #vemos si le agrega la mecha de explosivo
 	ovillo.cambiar_tipo(efecto_bomba)
 
 func cambiar_tipo(nuevo_tipo : OvilloBase) -> void:
 	reactivar_ovillo()
 	tipo_ovillo = nuevo_tipo
-
 	if sprite_normal and tipo_ovillo.sprite:
 		sprite_normal.texture = tipo_ovillo.sprite

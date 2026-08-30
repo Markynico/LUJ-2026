@@ -1,0 +1,68 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://c8gsyvrtlld62" path="res://scripts/foco_tarjetas.gd" id="1_foco"]
+[ext_resource type="Theme" uid="uid://bjkvjfhj8dr8y" path="res://themes/theme_ui_general.tres" id="2_tema"]
+
+[node name="FocoTarjetas" type="Control" node_paths=PackedStringArray("capa", "oscurecedor", "boton_volver", "boton_accion")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_tema")
+script = ExtResource("1_foco")
+capa = NodePath("Capa")
+oscurecedor = NodePath("Capa/Oscurecedor")
+boton_volver = NodePath("Capa/BotonVolver")
+boton_accion = NodePath("Capa/BotonAccion")
+
+[node name="Capa" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Oscurecedor" type="ColorRect" parent="Capa"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.65)
+
+[node name="BotonVolver" type="Button" parent="Capa"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -560.0
+offset_top = -40.0
+offset_right = -360.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "Volver"
+
+[node name="BotonAccion" type="Button" parent="Capa"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 360.0
+offset_top = -40.0
+offset_right = 560.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "Elegir"

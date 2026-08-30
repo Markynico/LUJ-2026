@@ -49,7 +49,7 @@ func preparar_datos_disparo() -> DatosDisparo:
 	return datos
 
 
-func escupir_bola () -> void:
+func escupir_bola () -> void: #se llama desde el animation player del gato
 		var tipo_pelotita = Global.cargador_de_pelotitas.pop_front()
 		if tipo_pelotita == null:
 			return
@@ -60,8 +60,10 @@ func escupir_bola () -> void:
 		velocidad_inicial = velocidad_congelada
 		datos = preparar_datos_disparo()
 		instancia.gravity_scale = datos.gravedad.y / gravedad_default
+		instancia.top_level = true
 		add_child(instancia)
+		instancia.global_position = global_position
 		#instancia.global_position = posicion_mouse
 		instancia.apply_impulse(datos.velocidad_inicial)
-		Global.cargador_pelotitas_actualizado.emit()
+		Global.cargador_pelotitas_actualizado.emit() #voy a probar avisarle al game manaeger q salga del estado esperando bola
 		bola_escupida.emit()

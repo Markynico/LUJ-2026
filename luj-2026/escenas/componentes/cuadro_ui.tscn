@@ -21,6 +21,7 @@ script = ExtResource("0_cuadro")
 radio_esquinas = 20
 mascara_fondo = NodePath("MascaraFondo")
 marco = NodePath("MascaraFondo/Fondo/MarginContainer/Marco")
+color_marco = Color(0.43137255, 0.38039216, 0.23529412, 1)
 
 [node name="MascaraFondo" type="Panel" parent="." unique_id=457795614]
 show_behind_parent = true
@@ -57,6 +58,7 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="Marco" type="NinePatchRect" parent="MascaraFondo/Fondo/MarginContainer" unique_id=1454117022]
+self_modulate = Color(0.43137255, 0.38039216, 0.23529412, 1)
 layout_mode = 2
 texture = ExtResource("2_marco")
 patch_margin_left = 195
