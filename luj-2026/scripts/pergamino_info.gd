@@ -2,6 +2,7 @@ class_name PergaminoInfo
 extends PanelContainer
 
 var tween : Tween = null
+var tipo_ovillo_mostrado : OvilloBase
 @onready var nombre_text: RichTextLabel = %NombreText
 @onready var info_text: RichTextLabel = %InfoText
 
@@ -19,6 +20,7 @@ func _on_mouse_exited() -> void:
 
 func set_activo(activar : bool):
 	if activar:
+		actualizar_texto()
 		show()
 		modulate.a = 0.0
 		tween_opacidad(1.0)
@@ -28,9 +30,17 @@ func set_activo(activar : bool):
 		hide()
 
 func set_texto_ovillo(tipo_ovillo : OvilloBase): #probandooooo, ya chusmeo si hago una funcion para ovillo y otra para bolita o todo en una
-	nombre_text.text = tipo_ovillo.nombre
-	#descr = tipo_ovillo.descripcion
-	info_text.text = "al golpear suma " + str(tipo_ovillo.cant_monedas) + " monedas"
+	tipo_ovillo_mostrado = tipo_ovillo
+	actualizar_texto()
+
+
+func actualizar_texto():
+	var puntos : int
+	if not tipo_ovillo_mostrado:
+		return
+	puntos = roundi(tipo_ovillo_mostrado.puntaje * ReliquiasManager.multiplicador_puntos_para(tipo_ovillo_mostrado))
+	nombre_text.text = tipo_ovillo_mostrado.nombre
+	info_text.text = tipo_ovillo_mostrado.descripcion.format({"puntos": puntos, "monedas": tipo_ovillo_mostrado.cant_monedas})
 
 
 func tween_opacidad(valor_final : float):
