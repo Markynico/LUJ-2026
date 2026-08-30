@@ -3,7 +3,9 @@ class_name UICargadorPelotitas
 extends Sprite2D
 
 @onready var vbox_pelotitas: VBoxContainer = %VboxPelotitas
-@export var escena_textura_pelotita : PackedScene = preload("res://escenas/componentes/texture_rect_cargador.tscn")
+@onready var label_contador: Label = %LabelContador
+@export var escena_textura_pelotita : PackedScene 
+#var contador : int = 0 #para poner en el label nomas
 
 func _ready() -> void:
 	Global.cargador_pelotitas_actualizado.connect(_on_cargador_pelotitas_actualizado)
@@ -18,6 +20,7 @@ func _on_cargador_pelotitas_actualizado():
 		var instancia_imagen : TextureRect = escena_textura_pelotita.instantiate()
 		instancia_imagen.texture = pelotita.textura
 		vbox_pelotitas.add_child(instancia_imagen)
+	label_contador.text = str(cargador_actual.size())
 
 func limpiar_cargador():
 	for nodo in vbox_pelotitas.get_children():

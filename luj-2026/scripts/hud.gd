@@ -8,7 +8,7 @@ extends Control
 @onready var label_bolas : Label = %LabelBolas
 @onready var barra_ovillos : ProgressBar = %BarraOvillos
 @onready var label_ovillos : Label = %LabelOvillos
-@onready var label_meta_badge : Label = %LabelMetaBadge
+@onready var label_meta_badge : Label = %LabelMetaBadge2
 @onready var banner_notificacion : PanelContainer = %BannerNotificacion
 @onready var label_notificacion : Label = %LabelNotificacion
 @onready var bolas_restantes_label : Label = %BolasRestantes if has_node("%BolasRestantes") else null
@@ -121,7 +121,9 @@ func actualizar_progreso_ovillos(obtenidos: int, requeridos: int, total: int, po
 		var pct_nivel = 0
 		if game_manager:
 			pct_nivel = int(game_manager.porcentaje_ovillos_requerido * 100.0)
-		label_ovillos.text = "Puntos: %d / %d  (Meta: %d | %d%%)" % [obtenidos, total, requeridos, pct_nivel]
+		#label_ovillos.text = "Puntos: %d / %d  (Meta: %d | %d%%)" % [obtenidos, total, requeridos, pct_nivel]
+		label_ovillos.text = "Puntos: %d / %d  (Meta: %d)" % [obtenidos, total, requeridos]
+		
 	
 	if label_meta_badge:
 		if obtenidos >= requeridos:
@@ -129,7 +131,7 @@ func actualizar_progreso_ovillos(obtenidos: int, requeridos: int, total: int, po
 			label_meta_badge.modulate = Color(0.35, 0.95, 0.55, 1.0)
 		else:
 			var faltan = max(0, requeridos - obtenidos)
-			label_meta_badge.text = "Faltan %d puntos para ganar" % faltan
+			label_meta_badge.text = "elimina %d ovillos para ganar" % faltan
 			label_meta_badge.modulate = Color(0.85, 0.88, 0.95, 0.8)
 
 func al_alcanzar_meta(es_meta: bool) -> void:
