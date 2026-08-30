@@ -26,7 +26,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jhh3k"]
 size = Vector2(1180.5, 45.99997)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_qjtjc"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_jmpcq"]
 viewport_path = NodePath("PanelInfoIzquierdo/SubViewportIzq")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_7nkol"]
@@ -102,16 +102,9 @@ script = ExtResource("6_selec")
 cargador = NodePath("../CargadorDeNivel")
 divisores_minimos = 1
 divisores_maximos = 3
-chance_normal = 0.0
-chance_loot = 0.0
-chance_tienda = 1.0
-salas_entre_tiendas = 0
-salas_entre_loots = 0
 alto_salida = 100.0
 
 [node name="SelectorComidas" parent="." unique_id=1764529133 instance=ExtResource("11_qfdc2")]
-escala_tarjeta = null
-"tamaño_tarjeta" = null
 
 [node name="EstructuraDeNivel" parent="." unique_id=1258707596 instance=ExtResource("4_t4q8c")]
 position = Vector2(0, 6)
@@ -142,7 +135,7 @@ position = Vector2(209.25, 9)
 shape = SubResource("RectangleShape2D_jhh3k")
 
 [node name="PanelInfoIzquierdo" parent="EstructuraDeNivel" index="3" unique_id=1428603965]
-texture = SubResource("ViewportTexture_qjtjc")
+texture = SubResource("ViewportTexture_jmpcq")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2055805025]
 position = Vector2(960, 540)

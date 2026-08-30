@@ -19,6 +19,7 @@ func _ready() -> void:
 	)
 	boton_aceptar.pressed.connect(aceptar)
 	boton_rechazar.pressed.connect(rechazar)
+	foco.accion_pedida.connect(al_accion_foco)
 	if candidatos.is_empty():
 		continuar_pedido.emit.call_deferred()
 		return
@@ -33,7 +34,12 @@ func _ready() -> void:
 
 
 func al_click_tarjeta() -> void:
-	foco.abrir(tarjeta)
+	foco.boton_accion.text = boton_aceptar.text
+	foco.abrir(tarjeta, boton_aceptar)
+
+
+func al_accion_foco(elegida : Tarjeta) -> void:
+	aceptar()
 
 
 func aceptar() -> void:

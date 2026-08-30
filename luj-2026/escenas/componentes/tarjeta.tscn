@@ -32,8 +32,9 @@ offset_right = -33.0
 offset_bottom = 129.0
 grow_horizontal = 0
 theme = ExtResource("5_cbjq2")
+theme_override_colors/font_color = Color(0.53333336, 0, 1, 1)
 theme_override_font_sizes/font_size = 28
-text = "Rareza"
+text = "Épico"
 horizontal_alignment = 2
 
 [node name="LabelTipo" type="Label" parent="." unique_id=1697798900]
@@ -80,7 +81,7 @@ stretch_mode = 5
 layout_mode = 2
 theme = ExtResource("5_cbjq2")
 theme_type_variation = &"LabelTitulo"
-theme_override_colors/font_color = Color(0.79, 0.08690001, 0.09861816, 1)
+theme_override_colors/font_color = Color(0.89, 0.09790001, 0.11110146, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 44
 text = "Magiclick"
@@ -92,5 +93,7 @@ size_flags_vertical = 3
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
-text = "Los [img=24x39]uid://dhf7cpyrxnlhx[/img]  explotan instantáneamente."
+text = "Los [img=24x39]uid://dhf7cpyrxnlhx[/img]  explotan instantáneamente.
+
+\"*Click*\""
 horizontal_alignment = 1

@@ -8,6 +8,8 @@ extends Node
 
 func _ready() -> void: #TODO arreglar bug de q tengo q hacer click para q se vean las primeras pelotitas
 	Global.eligio_una_comida.connect(_on_eligio_una_comida)
+	if game_manager:
+		game_manager.nivel_reiniciado.connect(crear_cargador_de_pelotitas)
 	#crear_cargador_inicial() #solo con pelotitas normales
 	crear_cargador_de_pelotitas()
 

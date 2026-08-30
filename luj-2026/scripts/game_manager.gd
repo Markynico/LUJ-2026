@@ -11,6 +11,7 @@ signal meta_alcanzada(es_meta : bool)
 signal nivel_completado(exito : bool)
 signal game_over
 signal sala_pedida(tipo_sala : TipoDeSala.Tipo)
+signal nivel_reiniciado
 
 enum EstadoDeJuego {
 	ESPERANDO, # Al iniciar el nivel y elegir los poderes
@@ -112,6 +113,7 @@ func reiniciar_nivel() -> void:
 	vidas_actuales = vidas_guardadas
 	ReliquiasManager.al_empezar_nivel(self)
 	estado_actual = EstadoDeJuego.LANZANDO_BOLAS
+	nivel_reiniciado.emit()
 	call_deferred("escanear_ovillos_existentes")
 
 func conectar_sala(cargador : CargadorDeNivel, selector : SelectorDeNiveles) -> void:
@@ -219,7 +221,7 @@ func disparar_bola() -> void:
 func registrar_salida_de_bola() -> void:
 	if estado_actual != EstadoDeJuego.LANZANDO_BOLAS:
 		return
-	if bolas_restantes > 0:
+	if not Global.cargador_de_pelotitas.is_empty():
 		return
 	if get_tree().get_nodes_in_group("bolas_de_pelos").is_empty():
 		cambiar_gato()
@@ -339,7 +341,5 @@ func volver_al_menu() -> void:
 func _on_cargador_pelotitas_actualizado():
 	#print("en teoria acabo de tira una bola, recibido en game manager")
 	#el diablo q es ete codigo jdasjasdj
-	if Global.cargador_de_pelotitas.size() != 0:
+	if estado_actual == EstadoDeJuego.ESPERANDO_BOLA:
 		estado_actual = EstadoDeJuego.LANZANDO_BOLAS
-	else:
-		cambiar_gato()
