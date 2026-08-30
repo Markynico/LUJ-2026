@@ -102,6 +102,7 @@ mouse_filter = 2
 script = ExtResource("1_m5lxu")
 
 [node name="UIComidasElegidas" type="Sprite2D" parent="." unique_id=1447058340 node_paths=PackedStringArray("item_list")]
+modulate = Color(1, 1, 1, 0)
 position = Vector2(240, 538)
 texture = SubResource("ViewportTexture_37ege")
 script = ExtResource("2_5u87e")
