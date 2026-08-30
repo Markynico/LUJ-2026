@@ -1,0 +1,131 @@
+[gd_resource type="Resource" script_class="NivelData" format=3 uid="uid://bjkpc3k3po6y8"]
+
+[ext_resource type="Script" uid="uid://1owdr3bm0age" path="res://scripts/niveles/forma_data.gd" id="1_srgcd"]
+[ext_resource type="Script" uid="uid://4yxin8siliwu" path="res://scripts/niveles/nivel_data.gd" id="2_a5hyq"]
+
+[sub_resource type="Curve2D" id="Curve2D_3rcfc"]
+bake_interval = 2.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -519.27155, -239.6593, 0, 0, 0, 0, -5.2715454, -239.6593)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_k6o7j"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 287, 1)
+}
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_dy8py"]
+script = ExtResource("1_srgcd")
+tipo = "path"
+curva = SubResource("Curve2D_3rcfc")
+recorrido = SubResource("Curve2D_k6o7j")
+posicion_recorrido = Vector2(963, 803)
+
+[sub_resource type="Curve2D" id="Curve2D_v2wo0"]
+bake_interval = 2.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -519.27155, -239.6593, 0, 0, 0, 0, -5.2715454, -239.6593)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_aaqu8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -250, 1)
+}
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_l6fim"]
+script = ExtResource("1_srgcd")
+tipo = "path"
+curva = SubResource("Curve2D_v2wo0")
+recorrido = SubResource("Curve2D_aaqu8")
+posicion_recorrido = Vector2(1523, 719)
+
+[sub_resource type="Curve2D" id="Curve2D_v2uwi"]
+bake_interval = 2.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -519.27155, -239.6593, 0, 0, 0, 0, -5.2715454, -239.6593)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_fv47y"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -254, -1)
+}
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_4vyah"]
+script = ExtResource("1_srgcd")
+tipo = "path"
+curva = SubResource("Curve2D_v2uwi")
+recorrido = SubResource("Curve2D_fv47y")
+posicion_recorrido = Vector2(1520, 893)
+
+[sub_resource type="Curve2D" id="Curve2D_lirxy"]
+bake_interval = 2.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -519.27155, -239.6593, 0, 0, 0, 0, -5.2715454, -239.6593)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_11qui"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -252, 1)
+}
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_h5ild"]
+script = ExtResource("1_srgcd")
+tipo = "path"
+curva = SubResource("Curve2D_lirxy")
+recorrido = SubResource("Curve2D_11qui")
+posicion_recorrido = Vector2(1518, 1067)
+
+[sub_resource type="Curve2D" id="Curve2D_21qfi"]
+bake_interval = 2.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -519.27155, -239.6593, 0, 0, 0, 0, -5.2715454, -239.6593)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_gh00e"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 274, 1)
+}
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_k71bl"]
+script = ExtResource("1_srgcd")
+tipo = "path"
+curva = SubResource("Curve2D_21qfi")
+recorrido = SubResource("Curve2D_gh00e")
+posicion_recorrido = Vector2(963, 993)
+
+[sub_resource type="Curve2D" id="Curve2D_8bqvx"]
+bake_interval = 2.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -519.27155, -239.6593, 0, 0, 0, 0, -5.2715454, -239.6593)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_c7tsa"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 273, 1)
+}
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_0ufwj"]
+script = ExtResource("1_srgcd")
+tipo = "path"
+curva = SubResource("Curve2D_8bqvx")
+recorrido = SubResource("Curve2D_c7tsa")
+posicion_recorrido = Vector2(958, 634)
+
+[resource]
+script = ExtResource("2_a5hyq")
+nombre = "Nivel9"
+formas = Array[ExtResource("1_srgcd")]([SubResource("Resource_dy8py"), SubResource("Resource_l6fim"), SubResource("Resource_4vyah"), SubResource("Resource_h5ild"), SubResource("Resource_k71bl"), SubResource("Resource_0ufwj")])
+posicion_divisiones = Vector2(349, 1080)
+ancho_divisiones = 1241.0

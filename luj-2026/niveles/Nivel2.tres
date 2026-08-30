@@ -7,13 +7,13 @@
 script = ExtResource("1_x4xo4")
 tipo = "circulo"
 posicion = Vector2(971, 599)
-radio = 333.0
+radio = 245.22275
 
 [sub_resource type="Resource" id="Resource_iyr54"]
 script = ExtResource("1_x4xo4")
 tipo = "circulo"
 posicion = Vector2(971, 603)
-radio = 222.0
+radio = 178.74986
 
 [sub_resource type="Resource" id="Resource_mskso"]
 script = ExtResource("1_x4xo4")
@@ -36,12 +36,12 @@ radio = 33.490974
 [sub_resource type="Resource" id="Resource_ohvn7"]
 script = ExtResource("1_x4xo4")
 tipo = "circulo"
-posicion = Vector2(500, 400)
+posicion = Vector2(500, 500)
 
 [sub_resource type="Resource" id="Resource_5f4we"]
 script = ExtResource("1_x4xo4")
 tipo = "circulo"
-posicion = Vector2(1440, 400)
+posicion = Vector2(1440, 500)
 
 [sub_resource type="Resource" id="Resource_2gqwu"]
 script = ExtResource("1_x4xo4")
