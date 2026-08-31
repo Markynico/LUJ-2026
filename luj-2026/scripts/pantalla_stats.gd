@@ -1,3 +1,4 @@
+@tool
 class_name PantallaStats
 extends Control
 
@@ -19,10 +20,24 @@ extends Control
 @export var contenedor_stats : GridContainer
 @export var contenedor_reliquias : HBoxContainer
 @export var boton_volver : Button
+@export var gato : GatoStats
 
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		agregar_stat("Tiempo", "00:00")
+		agregar_stat("Puntos totales", "0")
+		agregar_stat("Mejor nivel", "0")
+		agregar_stat("Niveles", "0 ganados / 0 perdidos")
+		agregar_stat("Monedas conseguidas", "0")
+		agregar_stat("Monedas gastadas", "0")
+		agregar_stat("Comidas compradas", "0")
+		agregar_stat("Ovillos rotos", "0")
+		agregar_stat("Bolas disparadas", "0")
+		return
 	label_titulo.text = titulo_victoria if EstadisticasRun.gano_la_run else titulo_derrota
+	if gato:
+		gato.mostrar(EstadisticasRun.gano_la_run)
 	boton_volver.pressed.connect(volver_al_menu)
 	agregar_stat("Tiempo", formatear_tiempo(EstadisticasRun.duracion_segundos()))
 	agregar_stat("Puntos totales", str(EstadisticasRun.puntos_totales))

@@ -26,4 +26,4 @@ func porcentaje_para(niveles_jugados : float) -> float:
 	var progreso : float = 1.0
 	if niveles_para_ganar > 1:
 		progreso = clampf(niveles_jugados / float(niveles_para_ganar - 1), 0.0, 1.0)
-	return lerpf(porcentaje_inicial, porcentaje_final, pow(progreso, exponente_curva))
+	return lerpf(porcentaje_inicial, porcentaje_final, 1.0 - pow(1.0 - progreso, exponente_curva))
