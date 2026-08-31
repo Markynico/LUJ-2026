@@ -3,15 +3,19 @@
 [ext_resource type="Script" uid="uid://cfntnlipj1a7f" path="res://scripts/selector_comidas.gd" id="1_nxnv0"]
 [ext_resource type="FontFile" uid="uid://daev32fyu3g8a" path="res://assets/fuentes/CARDINAL-ALTERNATE.TTF" id="2_a6dfu"]
 [ext_resource type="FontFile" uid="uid://e1pwbxfir4hk" path="res://assets/fuentes/CARDINAL.TTF" id="3_3ilur"]
+[ext_resource type="Texture2D" uid="uid://denhvkktlq0d5" path="res://assets/comidas/taco gato michinko color 1 (1).png" id="6_4cwsb"]
+[ext_resource type="FontFile" uid="uid://dwg47e0trev3j" path="res://fuentes/Bungee-Regular.ttf" id="6_twn7f"]
+[ext_resource type="Texture2D" uid="uid://cpyv42o86b3eq" path="res://assets/placeholders/bolaspelo_placeholder/bola_ignea.png" id="7_hcdma"]
 [ext_resource type="PackedScene" path="res://escenas/componentes/foco_tarjetas.tscn" id="90_foco"]
 [ext_resource type="Theme" uid="uid://bjkvjfhj8dr8y" path="res://themes/theme_ui_general.tres" id="91_tema"]
 
-[node name="SelectorComidas" type="Control" unique_id=1764529133 node_paths=PackedStringArray("ui_contenedor_comidas", "canvas_layer", "foco")]
+[node name="SelectorComidas" type="Control" unique_id=1764529133 node_paths=PackedStringArray("ui_contenedor_comidas", "canvas_layer", "canvas_layer_info", "foco")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_nxnv0")
 ui_contenedor_comidas = NodePath("CanvasLayer/HBoxPanelesComida")
 canvas_layer = NodePath("CanvasLayer")
+canvas_layer_info = NodePath("LayerInfo")
 foco = NodePath("CanvasLayer/FocoTarjetas")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=807540918]
@@ -32,16 +36,31 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -161.0
-offset_top = -78.0
+offset_left = -193.0
+offset_top = -159.0
 offset_right = -87.0
-offset_bottom = -50.0
+offset_bottom = -95.0
 grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource("91_tema")
 theme_override_fonts/font = ExtResource("2_a6dfu")
 theme_override_font_sizes/font_size = 47
 text = "Omitir"
+
+[node name="ButtonInfo" type="Button" parent="CanvasLayer" unique_id=1262809766]
+process_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 150.0
+offset_top = -159.0
+offset_right = 400.0
+offset_bottom = -95.0
+grow_vertical = 0
+theme = ExtResource("91_tema")
+theme_override_fonts/font = ExtResource("2_a6dfu")
+theme_override_font_sizes/font_size = 47
+text = "¿cómo funciona?"
 
 [node name="HBoxPanelesComida" type="HBoxContainer" parent="CanvasLayer" unique_id=565757173]
 anchors_preset = 8
@@ -104,7 +123,104 @@ size_flags_horizontal = 4
 theme = ExtResource("91_tema")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 35
-text = "100% de probabilidad de obtener al menos 1 bola de pelos de esta comida."
+text = "100% de probabilidad de obtener al menos 1 bola de pelos con este efecto en tu próximo cargador."
 horizontal_alignment = 1
 
+[node name="LayerInfo" type="CanvasLayer" parent="." unique_id=940649049]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="LayerInfo" unique_id=600471048]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.11764706, 0.11764706, 0.11764706, 0.8784314)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LayerInfo" unique_id=1338613975]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -893.5
+offset_top = -368.25
+offset_right = 893.5
+offset_bottom = 368.25
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelInfo1" type="Label" parent="LayerInfo/VBoxContainer" unique_id=1974054748]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/line_spacing = 7
+theme_override_constants/paragraph_spacing = 1
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("6_twn7f")
+theme_override_font_sizes/font_size = 33
+text = "Comprar una comida en este menú garantiza que obtendrás al menos UNA bola de pelos 
+con el efecto elegido en tu próximo cargador.
+
+En los niveles posteriores, las bolas de pelo se generarán 
+aleatoriamente según las comidas compradas hasta el momento.
+
+Comprar la misma comida varias veces aumentará sus probabilidades de aparecer."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelEjemplo" type="Label" parent="LayerInfo/VBoxContainer" unique_id=2088899282]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("3_3ilur")
+theme_override_font_sizes/font_size = 58
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LayerInfo/VBoxContainer" unique_id=479593130]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="InfoComidaEjemplo" type="TextureRect" parent="LayerInfo/VBoxContainer/HBoxContainer" unique_id=1592386350]
+custom_minimum_size = Vector2(222, 222)
+layout_mode = 2
+texture = ExtResource("6_4cwsb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LabelFlechita" type="Label" parent="LayerInfo/VBoxContainer/HBoxContainer" unique_id=1794858929]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("3_3ilur")
+theme_override_font_sizes/font_size = 58
+text = "->"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfoBolaEjemplo" type="TextureRect" parent="LayerInfo/VBoxContainer/HBoxContainer" unique_id=1502500603]
+custom_minimum_size = Vector2(222, 222)
+layout_mode = 2
+texture = ExtResource("7_hcdma")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ButtonCerrarInfo" type="Button" parent="LayerInfo" unique_id=212783669]
+process_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 150.0
+offset_top = -159.0
+offset_right = 400.0
+offset_bottom = -95.0
+grow_vertical = 0
+theme = ExtResource("91_tema")
+theme_override_fonts/font = ExtResource("2_a6dfu")
+theme_override_font_sizes/font_size = 47
+text = "Cerrar
+"
+
 [connection signal="pressed" from="CanvasLayer/ButtonOmitir" to="." method="avanzar"]
+[connection signal="pressed" from="CanvasLayer/ButtonInfo" to="." method="_on_button_info_pressed"]
+[connection signal="pressed" from="LayerInfo/ButtonCerrarInfo" to="." method="_on_button_cerrar_info_pressed"]
