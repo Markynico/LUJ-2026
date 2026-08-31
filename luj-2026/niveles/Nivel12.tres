@@ -1,0 +1,128 @@
+[gd_resource type="Resource" script_class="NivelData" format=3 uid="uid://d4i42l3jgijv6"]
+
+[ext_resource type="Script" uid="uid://1owdr3bm0age" path="res://scripts/niveles/forma_data.gd" id="1_forma"]
+[ext_resource type="Script" uid="uid://4yxin8siliwu" path="res://scripts/niveles/nivel_data.gd" id="2_nivel"]
+
+[sub_resource type="Resource" id="Resource_engranaje_centro"]
+script = ExtResource("1_forma")
+tipo = "obstaculo_circulo"
+posicion = Vector2(970, 600)
+radio = 65.0
+
+[sub_resource type="Resource" id="Resource_anillo_centro_1"]
+script = ExtResource("1_forma")
+tipo = "circulo"
+posicion = Vector2(970, 600)
+separacion_ovillos = 38.0
+radio = 110.0
+
+[sub_resource type="Resource" id="Resource_anillo_centro_2"]
+script = ExtResource("1_forma")
+tipo = "circulo"
+posicion = Vector2(970, 600)
+separacion_ovillos = 45.0
+radio = 160.0
+
+[sub_resource type="Resource" id="Resource_engranaje_izq"]
+script = ExtResource("1_forma")
+tipo = "obstaculo_circulo"
+posicion = Vector2(620, 520)
+radio = 50.0
+
+[sub_resource type="Resource" id="Resource_anillo_izq"]
+script = ExtResource("1_forma")
+tipo = "circulo"
+posicion = Vector2(620, 520)
+separacion_ovillos = 38.0
+radio = 90.0
+
+[sub_resource type="Resource" id="Resource_engranaje_der"]
+script = ExtResource("1_forma")
+tipo = "obstaculo_circulo"
+posicion = Vector2(1320, 520)
+radio = 50.0
+
+[sub_resource type="Resource" id="Resource_anillo_der"]
+script = ExtResource("1_forma")
+tipo = "circulo"
+posicion = Vector2(1320, 520)
+separacion_ovillos = 38.0
+radio = 90.0
+
+[sub_resource type="Curve2D" id="Curve2D_orbita_izq"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 180, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_pendulo_izq"]
+script = ExtResource("1_forma")
+tipo = "circulo"
+separacion_ovillos = 30.0
+radio = 40.0
+recorrido = SubResource("Curve2D_orbita_izq")
+posicion_recorrido = Vector2(530, 720)
+velocidad = 110.0
+
+[sub_resource type="Curve2D" id="Curve2D_orbita_der"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -180, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_pendulo_der"]
+script = ExtResource("1_forma")
+tipo = "circulo"
+separacion_ovillos = 30.0
+radio = 40.0
+recorrido = SubResource("Curve2D_orbita_der")
+posicion_recorrido = Vector2(1410, 720)
+velocidad = 110.0
+
+[sub_resource type="Resource" id="Resource_aguja_sup_1"]
+script = ExtResource("1_forma")
+tipo = "obstaculo_rectangulo"
+posicion = Vector2(800, 390)
+rotacion = 0.5235988
+"tamaño" = Vector2(180, 24)
+
+[sub_resource type="Resource" id="Resource_aguja_sup_2"]
+script = ExtResource("1_forma")
+tipo = "obstaculo_rectangulo"
+posicion = Vector2(1140, 390)
+rotacion = -0.5235988
+"tamaño" = Vector2(180, 24)
+
+[sub_resource type="Curve2D" id="Curve2D_arco_inf"]
+bake_interval = 2.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 550, 880, 0, 0, 0, 0, 970, 810, 0, 0, 0, 0, 1390, 880)
+}
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_path_arco_inf"]
+script = ExtResource("1_forma")
+tipo = "path"
+separacion_ovillos = 36.0
+curva = SubResource("Curve2D_arco_inf")
+
+[sub_resource type="Resource" id="Resource_deflector_inf_izq"]
+script = ExtResource("1_forma")
+tipo = "obstaculo_rectangulo"
+posicion = Vector2(750, 920)
+rotacion = -0.3490659
+"tamaño" = Vector2(200, 24)
+
+[sub_resource type="Resource" id="Resource_deflector_inf_der"]
+script = ExtResource("1_forma")
+tipo = "obstaculo_rectangulo"
+posicion = Vector2(1190, 920)
+rotacion = 0.3490659
+"tamaño" = Vector2(200, 24)
+
+[resource]
+script = ExtResource("2_nivel")
+nombre = "Nivel12"
+formas = Array[ExtResource("1_forma")]([SubResource("Resource_engranaje_centro"), SubResource("Resource_anillo_centro_1"), SubResource("Resource_anillo_centro_2"), SubResource("Resource_engranaje_izq"), SubResource("Resource_anillo_izq"), SubResource("Resource_engranaje_der"), SubResource("Resource_anillo_der"), SubResource("Resource_pendulo_izq"), SubResource("Resource_pendulo_der"), SubResource("Resource_aguja_sup_1"), SubResource("Resource_aguja_sup_2"), SubResource("Resource_path_arco_inf"), SubResource("Resource_deflector_inf_izq"), SubResource("Resource_deflector_inf_der")])
+posicion_divisiones = Vector2(349, 1080)
+ancho_divisiones = 1241.0

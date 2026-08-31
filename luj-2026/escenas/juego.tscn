@@ -27,7 +27,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jhh3k"]
 size = Vector2(1180.5, 45.99997)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_qjtjc"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ax6j8"]
 viewport_path = NodePath("PanelInfoIzquierdo/SubViewportIzq")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_7nkol"]
@@ -135,7 +135,7 @@ shape = SubResource("RectangleShape2D_jhh3k")
 
 [node name="PanelInfoIzquierdo" parent="EstructuraDeNivel" index="3" unique_id=1428603965]
 visible = false
-texture = SubResource("ViewportTexture_qjtjc")
+texture = SubResource("ViewportTexture_ax6j8")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2055805025]
 position = Vector2(960, 540)
