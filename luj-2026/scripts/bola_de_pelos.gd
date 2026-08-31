@@ -100,7 +100,8 @@ func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, lo
 		return
 	if not body is Ovillo:
 		contador_rebotes = 0
-		linear_velocity *= amortiguacion_rebote
+		if not ReliquiasManager.bolas_atraviesan:
+			linear_velocity *= amortiguacion_rebote
 	for efecto in tipo_pelotita.efectos:
 		efecto.impactar_con_objeto(self, body)
 	sonido_rebote()

@@ -48,6 +48,18 @@ extends Node2D
 @export_group("Opciones")
 @export var opciones : Opciones
 
+@export_group("Guante")
+@export var guante_caricia : GuanteCaricia
+@export var gato_menu : Gato
+##decibeles que sube el purr mientras se acaricia
+@export var aumento_purr_caricia : float = 4.0
+##segundos que tarda el purr en subir al acariciar
+@export var duracion_subida_purr : float = 0.3
+##segundos que el purr se mantiene fuerte despues de la caricia
+@export var duracion_extra_purr : float = 5.0
+##segundos que tarda el purr en volver a su volumen original
+@export var duracion_bajada_purr : float = 1.5
+
 var gato_actual : int = 0
 var posicion_inicial : Vector2
 var zoom_inicial : Vector2
@@ -56,6 +68,8 @@ var tween : Tween
 var tween_panel : Tween
 var reproductor_purr : Node
 var tween_purr : Tween
+var tween_purr_caricia : Tween
+var volumen_purr_base : float = 0.0
 var dificultad_elegida : DificultadRun
 var botones_dificultad : Array[Button] = []
 
@@ -72,6 +86,9 @@ func _ready() -> void:
 	boton_salir.pressed.connect(salir)
 	boton_confirmar.pressed.connect(confirmar)
 	boton_volver.pressed.connect(cerrar_seleccion)
+	if guante_caricia:
+		guante_caricia.caricia_iniciada.connect(al_iniciar_caricia)
+		guante_caricia.caricia_terminada.connect(al_terminar_caricia)
 	armar_panel_dificultad()
 	mostrar_gato()
 
@@ -133,10 +150,15 @@ func abrir_seleccion() -> void:
 	habilitar_botones_menu(false)
 	mover_camara(foco_seleccion.global_position, zoom_seleccion)
 	tween.chain().tween_callback(mostrar_panel.bind(true))
+	if guante_caricia:
+		guante_caricia.activo = true
 
 
 func cerrar_seleccion() -> void:
 	en_seleccion = false
+	terminar_orgulloso()
+	if guante_caricia:
+		guante_caricia.activo = false
 	detener_purr()
 	mostrar_panel(false)
 	mover_camara(posicion_inicial, zoom_inicial)
@@ -159,6 +181,7 @@ func iniciar_purr() -> void:
 	if tween_purr:
 		tween_purr.kill()
 	volumen_final = reproductor_purr.volume_db
+	volumen_purr_base = volumen_final
 	reproductor_purr.volume_db = -40.0
 	tween_purr = create_tween()
 	tween_purr.tween_property(reproductor_purr, "volume_db", volumen_final, duracion_fade_purr)
@@ -171,11 +194,39 @@ func detener_purr(duracion : float = -1.0) -> void:
 		duracion = duracion_fade_purr
 	if not is_instance_valid(reproductor) or not reproductor.playing:
 		return
+	if tween_purr_caricia:
+		tween_purr_caricia.kill()
 	if tween_purr:
 		tween_purr.kill()
 	tween_purr = reproductor.create_tween()
 	tween_purr.tween_property(reproductor, "volume_db", -40.0, duracion)
 	tween_purr.tween_callback(AudioManager.detener_sfx.bind(reproductor))
+
+
+func al_iniciar_caricia() -> void:
+	if gato_menu:
+		gato_menu.orgulloso = true
+	if not is_instance_valid(reproductor_purr):
+		return
+	if tween_purr_caricia:
+		tween_purr_caricia.kill()
+	tween_purr_caricia = create_tween()
+	tween_purr_caricia.tween_property(reproductor_purr, "volume_db", volumen_purr_base + aumento_purr_caricia, duracion_subida_purr)
+
+
+func al_terminar_caricia() -> void:
+	if tween_purr_caricia:
+		tween_purr_caricia.kill()
+	tween_purr_caricia = create_tween()
+	tween_purr_caricia.tween_interval(duracion_extra_purr)
+	tween_purr_caricia.tween_callback(terminar_orgulloso)
+	if is_instance_valid(reproductor_purr):
+		tween_purr_caricia.tween_property(reproductor_purr, "volume_db", volumen_purr_base, duracion_bajada_purr)
+
+
+func terminar_orgulloso() -> void:
+	if gato_menu:
+		gato_menu.orgulloso = false
 
 
 func abrir_coleccion() -> void:

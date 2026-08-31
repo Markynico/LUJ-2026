@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/guante_caricia.gd" id="1_guante"]
+[ext_resource type="Texture2D" uid="uid://dav52vti76wn5" path="res://assets/animacion guante/guante1.png" id="2_guant"]
+[ext_resource type="Texture2D" uid="uid://cwxd10uusyc3x" path="res://assets/animacion guante/guante2.png" id="3_guant"]
+[ext_resource type="Texture2D" uid="uid://c1pym3b4g7vlo" path="res://assets/animacion guante/guante3.png" id="4_guant"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_guant"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_guant")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_guant")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_guant")
+}],
+"loop": false,
+"name": &"acariciar",
+"speed": 4.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_guant"]
+radius = 60.0
+
+[node name="GuanteCaricia" type="Node2D" node_paths=PackedStringArray("guante", "area", "posicion_hover", "posicion_caricia")]
+script = ExtResource("1_guante")
+guante = NodePath("Guante")
+area = NodePath("Area2D")
+posicion_hover = NodePath("PosicionHover")
+posicion_caricia = NodePath("PosicionCaricia")
+
+[node name="Guante" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -40)
+sprite_frames = SubResource("SpriteFrames_guant")
+animation = &"acariciar"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_guant")
+
+[node name="PosicionHover" type="Marker2D" parent="."]
+position = Vector2(0, -40)
+
+[node name="PosicionCaricia" type="Marker2D" parent="."]
+position = Vector2(0, -20)

@@ -124,7 +124,7 @@ func sonar_blink() -> void:
 
 
 func puede_blinkear() -> bool:
-	if listo_para_lanzar or _fue_lanzado:
+	if listo_para_lanzar or _fue_lanzado or orgulloso:
 		return false
 	if not animation_player or animation_player.is_playing():
 		return false

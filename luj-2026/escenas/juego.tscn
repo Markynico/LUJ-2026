@@ -41,11 +41,9 @@ size = Vector2(1180.5, 45.99997)
 size = Vector2(55.5, 28)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_4uv1g"]
-resource_local_to_scene = true
 viewport_path = NodePath("PanelInfoIzquierdo/SubViewportIzq")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_7nkol"]
-resource_local_to_scene = true
 viewport_path = NodePath("UICargadorPelotitas/SubViewportCargador")
 
 [sub_resource type="Theme" id="Theme_g56wh"]
