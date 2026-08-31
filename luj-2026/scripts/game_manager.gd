@@ -11,6 +11,7 @@ signal meta_alcanzada(es_meta : bool)
 signal nivel_completado(exito : bool)
 signal game_over
 signal sala_pedida(tipo_sala : TipoDeSala.Tipo)
+signal nivel_reiniciado
 
 enum EstadoDeJuego {
 	ESPERANDO, # Al iniciar el nivel y elegir los poderes
@@ -30,11 +31,26 @@ static var vidas_inicializadas: bool = false
 @export var gato : Gato
 @export var cargador_nivel : CargadorDeNivel
 @export var selector_niveles : SelectorDeNiveles
+##escena del menu principal a la que vuelve el game over
+@export_file("*.tscn") var escena_menu : String = "uid://c30ry4xehty4"
 @export var bolas_maximas : int = 4
 @export var vidas_maximas : int = 3
 @export_range(0.1, 1.0, 0.05) var porcentaje_ovillos_requerido : float = 0.30
 ##reliquias con las que arranca la run, para probar
 @export var reliquias_iniciales : Array[Reliquia] = []
+##monedas con las que arranca la run
+@export var monedas_iniciales : int = 0
+
+@export_group("Rareza")
+##probabilidad en porcentaje de rareza comun
+@export var probabilidad_comun : float = 60.0
+##probabilidad en porcentaje de rareza rara
+@export var probabilidad_raro : float = 25.0
+##probabilidad en porcentaje de rareza epica
+@export var probabilidad_epico : float = 10.0
+##probabilidad en porcentaje de rareza legendaria
+@export var probabilidad_legendario : float = 5.0
+@export_group("")
 
 
 var bolas_restantes : int = 0:
@@ -65,6 +81,8 @@ func _ready() -> void:
 	if ReliquiasManager.obtenidas.is_empty():
 		for reliquia in reliquias_iniciales:
 			ReliquiasManager.obtener(reliquia)
+		if monedas_iniciales > 0:
+			Global.actualizar_monedas(monedas_iniciales)
 
 	reiniciar_nivel()
 	
@@ -95,6 +113,7 @@ func reiniciar_nivel() -> void:
 	vidas_actuales = vidas_guardadas
 	ReliquiasManager.al_empezar_nivel(self)
 	estado_actual = EstadoDeJuego.LANZANDO_BOLAS
+	nivel_reiniciado.emit()
 	call_deferred("escanear_ovillos_existentes")
 
 func conectar_sala(cargador : CargadorDeNivel, selector : SelectorDeNiveles) -> void:
@@ -154,7 +173,8 @@ func emitir_actualizacion_ovillos() -> void:
 		porcentaje_actual = float(puntos_obtenidos) / float(puntos_totales)
 	puntos_actualizados.emit(puntos_obtenidos, puntos_requeridos, puntos_totales, porcentaje_actual)
 
-# ======= SISTEMA DE VIDAS ==========
+# ======= SISTEMA DE VIDAS ===
+
 
 func perder_vida(cantidad : int = 1) -> void:
 	vidas_actuales = clampi(vidas_actuales - cantidad, 0, vidas_maximas)
@@ -176,7 +196,8 @@ func reiniciar_vidas() -> void:
 	vidas_actuales = vidas_maximas
 	vidas_cambiadas.emit(vidas_actuales, vidas_maximas)
 
-# ======= DISPARO Y FIN DE NIVEL ==========
+# ======= DISPARO Y FIN DE NIVEL ===
+
 
 func disparar_bola() -> void:
 	if estado_actual != EstadoDeJuego.LANZANDO_BOLAS:
@@ -200,7 +221,7 @@ func disparar_bola() -> void:
 func registrar_salida_de_bola() -> void:
 	if estado_actual != EstadoDeJuego.LANZANDO_BOLAS:
 		return
-	if bolas_restantes > 0:
+	if not Global.cargador_de_pelotitas.is_empty():
 		return
 	if get_tree().get_nodes_in_group("bolas_de_pelos").is_empty():
 		cambiar_gato()
@@ -234,21 +255,26 @@ func finalizar_nivel(tipo_sala : int = -1) -> void:
 				sala_pedida.emit(tipo_sala)
 			)
 	else:
-		# FALLÓ LA META -> Pierde vida y reinicia nivel
+		# FALLÓ LA META -> Pierde vida y avanza igual a la siguiente sala
 		perder_vida(1)
 		nivel_completado.emit(false)
 		
 		if vidas_actuales > 0:
-			print("Nivel fallado. Vidas restantes: %d. Reiniciando nivel en 1.5s..." % vidas_actuales)
-			get_tree().create_timer(1.5).timeout.connect(func():
-				reiniciar_nivel_actual()
-			)
+			estado_actual = EstadoDeJuego.NIVEL_COMPLETADO
+			if tipo_sala >= 0:
+				print("Nivel fallado. Vidas restantes: %d. Avanzando a la siguiente sala..." % vidas_actuales)
+				get_tree().create_timer(1.2).timeout.connect(func():
+					sala_pedida.emit(tipo_sala)
+				)
+			else:
+				print("Nivel fallado sin salida elegida. Vidas restantes: %d. Reiniciando nivel..." % vidas_actuales)
+				get_tree().create_timer(1.5).timeout.connect(func():
+					reiniciar_nivel_actual()
+				)
 		else:
-			print("GAME OVER - Fin del juego. Reiniciando vidas...")
+			print("GAME OVER - Volviendo al menu principal...")
 			vidas_guardadas = vidas_maximas
-			get_tree().create_timer(2.0).timeout.connect(func():
-				reiniciar_nivel_actual()
-			)
+			get_tree().create_timer(2.0).timeout.connect(volver_al_menu)
 
 func fallar_por_atasco() -> void:
 	if estado_actual != EstadoDeJuego.LANZANDO_GATO or finalizando:
@@ -261,7 +287,7 @@ func fallar_por_atasco() -> void:
 		get_tree().create_timer(1.5).timeout.connect(reiniciar_nivel_actual)
 	else:
 		vidas_guardadas = vidas_maximas
-		get_tree().create_timer(2.0).timeout.connect(reiniciar_nivel_actual)
+		get_tree().create_timer(2.0).timeout.connect(volver_al_menu)
 
 
 func al_rebobinar_rebote ()-> void:
@@ -283,10 +309,37 @@ func reiniciar_nivel_actual() -> void:
 	#pass
 
 
+func sortear_rareza() -> Rareza.Nivel:
+	var azar : float = randf() * (probabilidad_comun + probabilidad_raro + probabilidad_epico + probabilidad_legendario)
+	var acumulado : float = 0.0
+	var probabilidades : Array[float] = [probabilidad_comun, probabilidad_raro, probabilidad_epico, probabilidad_legendario]
+	for nivel in probabilidades.size():
+		acumulado += probabilidades[nivel]
+		if azar <= acumulado:
+			return nivel
+	return Rareza.Nivel.COMUN
+
+
+static func filtrar_por_rareza(candidatos : Array, rareza : Rareza.Nivel) -> Array:
+	var filtrados : Array = []
+	var nivel : int = rareza
+	while nivel >= Rareza.Nivel.COMUN and filtrados.is_empty():
+		filtrados = candidatos.filter(func(item : Resource) -> bool: return item.rareza == nivel)
+		nivel -= 1
+	if filtrados.is_empty():
+		return candidatos
+	return filtrados
+
+
+func volver_al_menu() -> void:
+	vidas_inicializadas = false
+	ReliquiasManager.obtenidas.clear()
+	ReliquiasManager.explosion_instantanea = false
+	Transicion.cambiar_escena(escena_menu)
+
+
 func _on_cargador_pelotitas_actualizado():
 	#print("en teoria acabo de tira una bola, recibido en game manager")
 	#el diablo q es ete codigo jdasjasdj
-	if Global.cargador_de_pelotitas.size() != 0:
+	if estado_actual == EstadoDeJuego.ESPERANDO_BOLA:
 		estado_actual = EstadoDeJuego.LANZANDO_BOLAS
-	else:
-		cambiar_gato()

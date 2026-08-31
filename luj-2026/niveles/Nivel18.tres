@@ -1,0 +1,108 @@
+[gd_resource type="Resource" script_class="NivelData" format=3 uid="uid://bahj6avbn5f"]
+
+[ext_resource type="Script" uid="uid://1owdr3bm0age" path="res://scripts/niveles/forma_data.gd" id="1_forma"]
+[ext_resource type="Script" uid="uid://4yxin8siliwu" path="res://scripts/niveles/nivel_data.gd" id="2_nivel"]
+
+[sub_resource type="Resource" id="Resource_3ix2k"]
+script = ExtResource("1_forma")
+tipo = "obstaculo_rectangulo"
+posicion = Vector2(600, 620)
+"tamaño" = Vector2(50, 420)
+
+[sub_resource type="Resource" id="Resource_m27rp"]
+script = ExtResource("1_forma")
+tipo = "obstaculo_circulo"
+posicion = Vector2(600, 390)
+radio = 55.0
+
+[sub_resource type="Resource" id="Resource_2atbt"]
+script = ExtResource("1_forma")
+posicion = Vector2(702.78204, 379.32642)
+separacion_ovillos = 32.0
+"tamaño" = Vector2(54.171753, 84.91785)
+
+[sub_resource type="Resource" id="Resource_doy7q"]
+script = ExtResource("1_forma")
+tipo = "obstaculo_rectangulo"
+posicion = Vector2(1340, 620)
+"tamaño" = Vector2(50, 420)
+
+[sub_resource type="Resource" id="Resource_gyw1p"]
+script = ExtResource("1_forma")
+tipo = "obstaculo_circulo"
+posicion = Vector2(1340, 390)
+radio = 55.0
+
+[sub_resource type="Resource" id="Resource_knvqt"]
+script = ExtResource("1_forma")
+posicion = Vector2(1247.4272, 385.91486)
+separacion_ovillos = 32.0
+"tamaño" = Vector2(36.602417, 95.166504)
+
+[sub_resource type="Curve2D" id="Curve2D_byogl"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_x68ww"]
+script = ExtResource("1_forma")
+tipo = "obstaculo_rectangulo"
+"tamaño" = Vector2(260, 28)
+recorrido = SubResource("Curve2D_byogl")
+posicion_recorrido = Vector2(970, 520)
+
+[sub_resource type="Curve2D" id="Curve2D_5dvid"]
+bake_interval = 2.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 640, 480, 0, 0, 0, 0, 970, 420, 0, 0, 0, 0, 1300, 480)
+}
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_1jja1"]
+script = ExtResource("1_forma")
+tipo = "path"
+separacion_ovillos = 35.0
+curva = SubResource("Curve2D_5dvid")
+
+[sub_resource type="Resource" id="Resource_784vk"]
+script = ExtResource("1_forma")
+tipo = "circulo"
+posicion = Vector2(970, 680)
+separacion_ovillos = 34.0
+radio = 75.0
+
+[sub_resource type="Resource" id="Resource_qxri2"]
+script = ExtResource("1_forma")
+tipo = "circulo"
+posicion = Vector2(780, 800)
+separacion_ovillos = 30.0
+radio = 50.0
+
+[sub_resource type="Resource" id="Resource_jf47p"]
+script = ExtResource("1_forma")
+tipo = "circulo"
+posicion = Vector2(1160, 800)
+separacion_ovillos = 30.0
+radio = 50.0
+
+[sub_resource type="Resource" id="Resource_volve"]
+script = ExtResource("1_forma")
+tipo = "obstaculo_rectangulo"
+posicion = Vector2(740, 930)
+rotacion = -0.3490659
+"tamaño" = Vector2(220, 24)
+
+[sub_resource type="Resource" id="Resource_hdvl8"]
+script = ExtResource("1_forma")
+tipo = "obstaculo_rectangulo"
+posicion = Vector2(1200, 930)
+rotacion = 0.3490659
+"tamaño" = Vector2(220, 24)
+
+[resource]
+script = ExtResource("2_nivel")
+nombre = "Nivel18"
+formas = Array[ExtResource("1_forma")]([SubResource("Resource_3ix2k"), SubResource("Resource_m27rp"), SubResource("Resource_2atbt"), SubResource("Resource_doy7q"), SubResource("Resource_gyw1p"), SubResource("Resource_knvqt"), SubResource("Resource_x68ww"), SubResource("Resource_1jja1"), SubResource("Resource_784vk"), SubResource("Resource_qxri2"), SubResource("Resource_jf47p"), SubResource("Resource_volve"), SubResource("Resource_hdvl8")])
+posicion_divisiones = Vector2(349, 1080)
+ancho_divisiones = 1241.0

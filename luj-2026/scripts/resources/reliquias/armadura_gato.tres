@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_rel")
-nombre = "Armadura para gatos"
+nombre = "Armadura para Gatos"
+rareza = 2
 descripcion = "Michinko ya no tiene límite para romper ovillos al caer."
 icono = ExtResource("2_rel")

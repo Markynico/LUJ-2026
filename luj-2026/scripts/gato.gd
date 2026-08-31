@@ -142,6 +142,8 @@ func _process(delta : float) -> void:
 func procesar_movimiento_horizontal(delta : float) -> void:
 	if not movimiento_horizontal_habilitado or not freeze:
 		return
+	if esta_escupiendo():
+		return
 	
 	var input_x : float = 0.0
 	if Input.is_key_pressed(KEY_A) or Input.is_key_pressed(KEY_LEFT) or Input.is_action_pressed("ui_left"):

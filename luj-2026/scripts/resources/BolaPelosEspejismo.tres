@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c31lbqa2grch4" path="res://scripts/pelotitas_custom/efectos_pelotita.gd" id="1_eb33o"]
 [ext_resource type="Resource" uid="uid://bvv1rqdfseda7" path="res://scripts/resources/EfectoEspejismo.tres" id="2_eer0r"]
-[ext_resource type="Texture2D" uid="uid://dx353b6iil2jy" path="res://icon.svg" id="3_eer0r"]
+[ext_resource type="Texture2D" uid="uid://bm70i2hqdpo7y" path="res://assets/comidas/58e920a1eb97430e8190650f.png" id="3_eer0r"]
 [ext_resource type="Script" uid="uid://c7ogyqxnq7236" path="res://scripts/pelotitas_custom/pelotita_base.gd" id="3_khwvm"]
 [ext_resource type="Texture2D" uid="uid://bxdmp5afef08u" path="res://assets/placeholders/bolaspelo_placeholder/placeholder_bola_de_pelos_michinkO3.png" id="4_y0u2k"]
 
@@ -13,7 +13,9 @@ colors = PackedColorArray(0.060909323, 0.70404303, 0.89633286, 1, 0.84702045, 0.
 [resource]
 script = ExtResource("3_khwvm")
 nombre = "Pedazo de espejo"
-descripcion = "Cada 3 impactos se duplica. Los duplicados desaparecen tras el primer impacto."
+descripcion = "Cada 3 impactos se duplica. Los duplicados desaparecen tras el primer impacto.
+
+\"No sabemos como se pudo comer esto...\""
 textura = ExtResource("4_y0u2k")
 colores_estela = SubResource("Gradient_mfh0k")
 imagen_comida_asociada = ExtResource("3_eer0r")

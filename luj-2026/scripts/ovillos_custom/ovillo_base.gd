@@ -2,6 +2,8 @@ class_name OvilloBase
 extends Resource
 
 @export var nombre : String = ""
+##descripcion que se muestra en el popover del ovillo y en las tarjetas
+@export_multiline var descripcion : String = ""
 ##sprite propio del tipo, opcional: si queda vacio se usa el sprite base de la escena
 @export var sprite : Texture
 ##color con el que se tiñe el sprite base

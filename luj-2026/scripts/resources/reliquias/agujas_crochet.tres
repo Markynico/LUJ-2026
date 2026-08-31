@@ -8,6 +8,9 @@
 [resource]
 script = ExtResource("1_rel")
 tipos_objetivo = Array[ExtResource("4_rel")]([ExtResource("3_rel")])
-nombre = "Agujas de crochet"
-descripcion = "Los {ovillo_normal:icono} dan el doble de puntos."
+nombre = "Agujas de Crochet"
+rareza = 1
+descripcion = "Los {ovillo_normal:icono} dan el doble de puntos.
+
+\"Podría tejer algo con esto...\""
 icono = ExtResource("2_rel")

@@ -5,9 +5,9 @@
 
 [resource]
 script = ExtResource("1_rel")
-nombre = "Almuerzo de la dueña"
+nombre = "Almuerzo de la Dueña"
 descripcion = "50% probabilidad de curar 1 {vida:ambos/vida} ó
 50% probabilidad de perder 1 {vida:ambos/vida}
 
-Michinko la puta que te parió."
+\"Michinko la puta que te parió.\""
 icono = ExtResource("2_rel")

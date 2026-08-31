@@ -2,6 +2,7 @@ class_name Reliquia
 extends Resource
 
 @export var nombre : String = ""
+@export var rareza : Rareza.Nivel = Rareza.Nivel.COMUN
 @export_multiline var descripcion : String = ""
 @export var icono : Texture2D:
 	set(valor):

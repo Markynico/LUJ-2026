@@ -12,7 +12,9 @@ metadata/_custom_type_script = "uid://ct20i2qr4wb6k"
 
 [resource]
 script = ExtResource("2_q4f2x")
-nombre = "OVILLO REBOBINAR"
+nombre = "Ovillo Rebobinador"
+descripcion = "Devuelve la última bola utilizada al cargador.
+{puntos} Puntos."
 color = Color(0.48125008, 0.23100002, 0.66, 1)
 decoracion = ExtResource("1_6fw7n")
 "decoracion_teñida" = ExtResource("2_o6654")

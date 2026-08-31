@@ -33,6 +33,10 @@ signal nivel_construido
 @export var niveles_aleatorios : Array[NivelData] = []
 ##carpeta de donde se cargan los niveles cuando la lista esta vacia
 @export_dir var carpeta_niveles : String = "res://niveles"
+##niveles que deben pasar antes de poder repetir el mismo
+@export var niveles_sin_repetir : int = 2
+
+var historial_niveles : Array[NivelData] = []
 
 
 func _ready() -> void:
@@ -50,7 +54,17 @@ func construir_nivel_elegido() -> void:
 
 func elegir_nivel() -> NivelData:
 	var disponibles : Array[NivelData] = niveles_aleatorios if not niveles_aleatorios.is_empty() else cargar_carpeta()
-	return disponibles.pick_random() if not disponibles.is_empty() else null
+	var candidatos : Array[NivelData] = disponibles.filter(func(dato : NivelData) -> bool: return not historial_niveles.has(dato))
+	var elegido : NivelData
+	if disponibles.is_empty():
+		return null
+	if candidatos.is_empty():
+		candidatos = disponibles
+	elegido = candidatos.pick_random()
+	historial_niveles.append(elegido)
+	while historial_niveles.size() > niveles_sin_repetir:
+		historial_niveles.pop_front()
+	return elegido
 
 
 func cargar_carpeta() -> Array[NivelData]:

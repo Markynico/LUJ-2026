@@ -11,8 +11,11 @@ colors = PackedColorArray(0.7392886, 0.4366194, 0.5612622, 1, 0.30041242, 0.6552
 
 [resource]
 script = ExtResource("3_k4i4d")
-nombre = "Chicle"
-descripcion = "{rebote:texto/Rebota} mucho mas de lo normal."
+nombre = "Chicle Globo"
+descripcion = "{rebote:texto/Rebota} mucho mas de lo normal.
+
+\"*Boing*\""
+rareza = 1
 textura = ExtResource("5_fkiue")
 colores_estela = SubResource("Gradient_clc7a")
 imagen_comida_asociada = ExtResource("2_fkiue")

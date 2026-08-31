@@ -11,7 +11,10 @@ colors = PackedColorArray(0.32444704, 0.4023873, 0.104124404, 1, 0.09524963, 0.2
 
 [resource]
 script = ExtResource("2_h5w4i")
-nombre = "BolaPelosMate"
+nombre = "Mate"
+descripcion = "Esta bola de pelos se separa en dos, pero {rebote:texto/rebota} poco.
+
+\"Y dicen que la yerba facilita la digestión. \""
 textura = ExtResource("5_gi5oo")
 colores_estela = SubResource("Gradient_2e4jd")
 imagen_comida_asociada = ExtResource("3_vv0hs")

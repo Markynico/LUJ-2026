@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://bws3j2014uxn2" path="res://assets/columnas.png" id="4_w7gqy"]
 [ext_resource type="Script" uid="uid://bh3lxufik2p65" path="res://scripts/niveles/cargador_de_nivel.gd" id="5_carg"]
 [ext_resource type="Script" uid="uid://mrkgoq2v1cix" path="res://scripts/niveles/selector_de_niveles.gd" id="6_selec"]
-[ext_resource type="Resource" uid="uid://cnaktgatgx54i" path="res://niveles/Nivel5.tres" id="9_w7gqy"]
 [ext_resource type="PackedScene" uid="uid://bjrqwv4iyx66g" path="res://escenas/selector_comidas.tscn" id="11_qfdc2"]
 [ext_resource type="Script" uid="uid://bojjht8bbil08" path="res://scripts/UICargadorPelotitas.gd" id="13_eu1no"]
 [ext_resource type="PackedScene" uid="uid://c87sy1bku6et8" path="res://escenas/componentes/texture_rect_cargador.tscn" id="14_uryky"]
@@ -22,6 +21,7 @@
 [ext_resource type="Resource" uid="uid://dky2mbnm2rn0l" path="res://scripts/resources/ovillo_monedas.tres" id="20_c7o2b"]
 [ext_resource type="Resource" uid="uid://fumr1qv4h1ho" path="res://scripts/resources/ovillo_rebobinar.tres" id="21_lwh54"]
 [ext_resource type="Resource" uid="uid://d3ks2dut6iacd" path="res://scripts/resources/ovillo_explosivo_final.tres" id="22_okgri"]
+[ext_resource type="Script" uid="uid://cn6qcniqf0qev" path="res://scripts/estante_reliquias.gd" id="23_estante"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qjtjc"]
 render_priority = 0
@@ -32,7 +32,7 @@ shader = ExtResource("3_37pxk")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jhh3k"]
 size = Vector2(1180.5, 45.99997)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_qjtjc"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ax6j8"]
 viewport_path = NodePath("PanelInfoIzquierdo/SubViewportIzq")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_7nkol"]
@@ -40,12 +40,13 @@ viewport_path = NodePath("UICargadorPelotitas/SubViewportCargador")
 
 [sub_resource type="Theme" id="Theme_g56wh"]
 
-[node name="Juego" type="Node2D" unique_id=1865884372 node_paths=PackedStringArray("game_manager", "gato", "cargador", "selector", "camara")]
+[node name="Juego" type="Node2D" unique_id=1865884372 node_paths=PackedStringArray("game_manager", "gato", "cargador", "selector", "selector_comidas", "camara")]
 script = ExtResource("0_juego")
 game_manager = NodePath("GameManager")
 gato = NodePath("Gato")
 cargador = NodePath("CargadorDeNivel")
 selector = NodePath("SelectorDeNiveles")
+selector_comidas = NodePath("SelectorComidas")
 camara = NodePath("Camera2D")
 zoom_disparo = Vector2(3.5, 3.5)
 duracion_zoom = 2.0
@@ -59,8 +60,6 @@ texture = ExtResource("2_qfdc2")
 expand_mode = 5
 
 [node name="Baranda" type="TextureRect" parent="Fondo" unique_id=238465989]
-z_index = 11
-material = SubResource("ShaderMaterial_qjtjc")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -100,7 +99,6 @@ game_manager = NodePath("../GameManager")
 
 [node name="CargadorDeNivel" type="Node2D" parent="." unique_id=1344270759 node_paths=PackedStringArray("estructura")]
 script = ExtResource("5_carg")
-nivel = ExtResource("9_w7gqy")
 estructura = NodePath("../EstructuraDeNivel")
 
 [node name="SelectorDeNiveles" type="Node2D" parent="." unique_id=1344270760 node_paths=PackedStringArray("cargador")]
@@ -108,9 +106,6 @@ script = ExtResource("6_selec")
 cargador = NodePath("../CargadorDeNivel")
 divisores_minimos = 1
 divisores_maximos = 3
-chance_loot = 0.35
-chance_tienda = 0.2
-salas_entre_loots = 0
 alto_salida = 100.0
 
 [node name="SelectorComidas" parent="." unique_id=1764529133 instance=ExtResource("11_qfdc2")]
@@ -144,7 +139,8 @@ position = Vector2(209.25, 9)
 shape = SubResource("RectangleShape2D_jhh3k")
 
 [node name="PanelInfoIzquierdo" parent="EstructuraDeNivel" index="3" unique_id=1428603965]
-texture = SubResource("ViewportTexture_qjtjc")
+visible = false
+texture = SubResource("ViewportTexture_ax6j8")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2055805025]
 position = Vector2(960, 540)
@@ -207,6 +203,7 @@ layout_mode = 2
 position = Vector2(1878, 811)
 
 [node name="ContenedorOvillos" type="Node2D" parent="PanelInfoOvillos" unique_id=195605175]
+visible = false
 
 [node name="Ovillo" parent="PanelInfoOvillos/ContenedorOvillos" unique_id=142733400 instance=ExtResource("18_ax6j8")]
 position = Vector2(-177, -181)
@@ -226,6 +223,13 @@ tipo_ovillo = ExtResource("21_lwh54")
 [node name="Ovillo7" parent="PanelInfoOvillos/ContenedorOvillos" unique_id=463417971 instance=ExtResource("18_ax6j8")]
 position = Vector2(-177, -77)
 tipo_ovillo = ExtResource("22_okgri")
+
+[node name="EstanteReliquias" type="Node2D" parent="PanelInfoOvillos" unique_id=1930177204]
+script = ExtResource("23_estante")
+origen = Vector2(-177, -181)
+alto_icono = 60.0
+posicion_tarjeta = Vector2(1000, 200)
+escala_tarjeta = 1.2
 
 [connection signal="nivel_completado" from="GameManager" to="SelectorComidas" method="_on_game_manager_nivel_completado"]
 
