@@ -6,61 +6,50 @@
 [sub_resource type="Resource" id="Resource_0s1od"]
 script = ExtResource("1_0s1od")
 tipo = "obstaculo_rectangulo"
-posicion = Vector2(550, 430)
+posicion = Vector2(950, 600)
 rotacion = 0.0034906585
 
 [sub_resource type="Resource" id="Resource_c1atb"]
 script = ExtResource("1_0s1od")
-tipo = "obstaculo_rectangulo"
-posicion = Vector2(1400, 430)
-rotacion = -0.0034906585
-
-[sub_resource type="Resource" id="Resource_pg0eg"]
-script = ExtResource("1_0s1od")
-tipo = "obstaculo_rectangulo"
-posicion = Vector2(550, 770)
-rotacion = 0.0017453292
-
-[sub_resource type="Resource" id="Resource_b2q21"]
-script = ExtResource("1_0s1od")
-tipo = "obstaculo_rectangulo"
-posicion = Vector2(950, 600)
-rotacion = 0.0034906585
-
-[sub_resource type="Resource" id="Resource_61cym"]
-script = ExtResource("1_0s1od")
-tipo = "obstaculo_rectangulo"
-posicion = Vector2(1400, 770)
-
-[sub_resource type="Resource" id="Resource_acxbn"]
-script = ExtResource("1_0s1od")
 posicion = Vector2(950, 600)
 "tamaño" = Vector2(260, 155)
 
-[sub_resource type="Resource" id="Resource_2ik1b"]
+[sub_resource type="Resource" id="Resource_pg0eg"]
 script = ExtResource("1_0s1od")
 posicion = Vector2(548.85583, 429.82242)
 "tamaño" = Vector2(260, 155)
 
-[sub_resource type="Resource" id="Resource_ynvk2"]
+[sub_resource type="Resource" id="Resource_b2q21"]
 script = ExtResource("1_0s1od")
 posicion = Vector2(550.1869, 771.88947)
 "tamaño" = Vector2(260, 155)
 
-[sub_resource type="Resource" id="Resource_ahm7c"]
+[sub_resource type="Resource" id="Resource_61cym"]
 script = ExtResource("1_0s1od")
 posicion = Vector2(1399.365, 429.82242)
 "tamaño" = Vector2(260, 155)
 
-[sub_resource type="Resource" id="Resource_2pay2"]
+[sub_resource type="Resource" id="Resource_acxbn"]
 script = ExtResource("1_0s1od")
 posicion = Vector2(1399.365, 770.5584)
 rotacion = -0.0034906585
 "tamaño" = Vector2(260, 155)
 
+[sub_resource type="Resource" id="Resource_2ik1b"]
+script = ExtResource("1_0s1od")
+tipo = "obstaculo_circulo"
+posicion = Vector2(1168.5934, 757.7857)
+radio = 31.05824
+
+[sub_resource type="Resource" id="Resource_ynvk2"]
+script = ExtResource("1_0s1od")
+tipo = "obstaculo_circulo"
+posicion = Vector2(742.5403, 763.64215)
+radio = 35.168858
+
 [resource]
 script = ExtResource("2_c1atb")
 nombre = "Nivel6"
-formas = Array[ExtResource("1_0s1od")]([SubResource("Resource_0s1od"), SubResource("Resource_c1atb"), SubResource("Resource_pg0eg"), SubResource("Resource_b2q21"), SubResource("Resource_61cym"), SubResource("Resource_acxbn"), SubResource("Resource_2ik1b"), SubResource("Resource_ynvk2"), SubResource("Resource_ahm7c"), SubResource("Resource_2pay2")])
+formas = Array[ExtResource("1_0s1od")]([SubResource("Resource_0s1od"), SubResource("Resource_c1atb"), SubResource("Resource_pg0eg"), SubResource("Resource_b2q21"), SubResource("Resource_61cym"), SubResource("Resource_acxbn"), SubResource("Resource_2ik1b"), SubResource("Resource_ynvk2")])
 posicion_divisiones = Vector2(349, 1080)
 ancho_divisiones = 1241.0

@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="NivelData" format=3 uid="uid://caahj6avbn5f"]
+
+[ext_resource type="Script" uid="uid://1owdr3bm0age" path="res://scripts/niveles/forma_data.gd" id="1_forma"]
+[ext_resource type="Script" uid="uid://4yxin8siliwu" path="res://scripts/niveles/nivel_data.gd" id="2_nivel"]
+
+[sub_resource type="Resource" id="Resource_ftfjl"]
+script = ExtResource("1_forma")
+tipo = "obstaculo_rectangulo"
+posicion = Vector2(620, 440)
+rotacion = 0.6108652
+"tamaño" = Vector2(300, 24)
+
+[sub_resource type="Resource" id="Resource_pl34o"]
+script = ExtResource("1_forma")
+tipo = "obstaculo_rectangulo"
+posicion = Vector2(1320, 580)
+rotacion = -0.6108652
+"tamaño" = Vector2(300, 24)
+
+[sub_resource type="Resource" id="Resource_b8w5w"]
+script = ExtResource("1_forma")
+tipo = "obstaculo_rectangulo"
+posicion = Vector2(620, 720)
+rotacion = 0.6108652
+"tamaño" = Vector2(300, 24)
+
+[sub_resource type="Resource" id="Resource_doyc4"]
+script = ExtResource("1_forma")
+tipo = "circulo"
+posicion = Vector2(1000, 460)
+separacion_ovillos = 32.0
+radio = 65.0
+
+[sub_resource type="Resource" id="Resource_a7ene"]
+script = ExtResource("1_forma")
+tipo = "circulo"
+posicion = Vector2(940, 600)
+separacion_ovillos = 32.0
+radio = 65.0
+
+[sub_resource type="Resource" id="Resource_yek0p"]
+script = ExtResource("1_forma")
+tipo = "circulo"
+posicion = Vector2(1000, 740)
+separacion_ovillos = 32.0
+radio = 65.0
+
+[sub_resource type="Resource" id="Resource_qrcai"]
+script = ExtResource("1_forma")
+tipo = "obstaculo_circulo"
+posicion = Vector2(940, 600)
+radio = 35.0
+
+[sub_resource type="Curve2D" id="Curve2D_2hf5m"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 360, 0)
+}
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_egm8t"]
+script = ExtResource("1_forma")
+tipo = "circulo"
+separacion_ovillos = 28.0
+radio = 45.0
+recorrido = SubResource("Curve2D_2hf5m")
+posicion_recorrido = Vector2(790, 840)
+velocidad = 130.0
+
+[resource]
+script = ExtResource("2_nivel")
+nombre = "Nivel37"
+formas = Array[ExtResource("1_forma")]([SubResource("Resource_ftfjl"), SubResource("Resource_pl34o"), SubResource("Resource_b8w5w"), SubResource("Resource_doyc4"), SubResource("Resource_a7ene"), SubResource("Resource_yek0p"), SubResource("Resource_qrcai"), SubResource("Resource_egm8t")])
+posicion_divisiones = Vector2(349, 1080)
+ancho_divisiones = 1241.0

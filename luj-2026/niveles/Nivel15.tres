@@ -110,14 +110,14 @@ radio = 50.0
 [sub_resource type="Resource" id="Resource_jvqy0"]
 script = ExtResource("1_forma")
 tipo = "obstaculo_rectangulo"
-posicion = Vector2(650, 930)
+posicion = Vector2(1546.0205, 814.2463)
 rotacion = -0.4014257
 "tamaño" = Vector2(180, 24)
 
 [sub_resource type="Resource" id="Resource_yldeb"]
 script = ExtResource("1_forma")
 tipo = "obstaculo_rectangulo"
-posicion = Vector2(1290, 930)
+posicion = Vector2(389.69254, 805.6718)
 rotacion = 0.4014257
 "tamaño" = Vector2(180, 24)
 
