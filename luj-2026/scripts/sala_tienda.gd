@@ -119,8 +119,8 @@ func abrir_foco(compra : Dictionary) -> void:
 	if foco.esta_abierto():
 		return
 	compra_en_foco = compra
-	compra["tarjeta"].estilizar_boton_precio(foco.boton_accion, precio_de(compra["item"]))
-	foco.con_accion = not compra["boton"].disabled
+	compra["tarjeta"].estilizar_boton_precio(foco.boton_accion, precio_de(compra["item"]), true)
+	foco.con_accion = compra["boton"].visible
 	actualizar_botones()
 	foco.abrir(compra["tarjeta"], compra["boton"].get_parent())
 

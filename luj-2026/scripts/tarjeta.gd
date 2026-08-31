@@ -26,11 +26,17 @@ signal clickeada
 ##fuente del boton de precio
 @export var fuente_boton : FontFile = preload("uid://dwg47e0trev3j")
 ##tamaño de fuente del boton de precio
-@export var tamaño_fuente_boton : int = 26
+@export var tamaño_fuente_boton : int = 22
 ##alto del icono de moneda
-@export var tamaño_icono : int = 48
+@export var tamaño_icono : int = 38
 ##relleno interno del boton (horizontal, vertical)
-@export var relleno_boton : Vector2 = Vector2(22, 12)
+@export var relleno_boton : Vector2 = Vector2(16, 8)
+##tamaño de fuente del boton de compra en el foco
+@export var tamaño_fuente_foco : int = 30
+##ancho maximo del icono de moneda en el foco
+@export var tamaño_icono_foco : int = 60
+##relleno interno del boton de compra en el foco
+@export var relleno_foco : Vector2 = Vector2(30, 16)
 ##margen del boton con los bordes de la tarjeta
 @export var margen_boton : int = 24
 ##color del boton cuando alcanza la plata
@@ -44,6 +50,17 @@ signal clickeada
 @export var label_descripcion : RichTextLabel
 @export var label_tipo : Label
 @export var label_rareza : Label
+
+@export_group("Ajuste de fuentes")
+##tamaño minimo al que se achica la descripcion para entrar sin scroll
+@export var tamaño_minimo_descripcion : int = 12
+##tamaño minimo al que se achica el nombre para no tocar los bordes
+@export var tamaño_minimo_nombre : int = 24
+##margen lateral minimo del nombre con el borde de la tarjeta
+@export var margen_nombre : float = 20.0
+
+var tamaño_base_descripcion : int = 0
+var tamaño_base_nombre : int = 0
 
 
 var borde_hover : Panel
@@ -117,11 +134,40 @@ func actualizar_tarjeta() -> void:
 		return
 	if label_nombre and "nombre" in recurso:
 		label_nombre.text = recurso.nombre
+		ajustar_fuente_nombre.call_deferred()
 	if label_descripcion and "descripcion" in recurso:
 		if recurso.has_method("descripcion_para_mostrar"):
 			label_descripcion.text = Resaltador.formatear(recurso.descripcion_para_mostrar())
 		else:
 			label_descripcion.text = Resaltador.formatear(recurso.descripcion)
+		ajustar_fuente_descripcion.call_deferred()
+
+
+func ajustar_fuente_descripcion() -> void:
+	var tamaño : int
+	if not label_descripcion or not is_inside_tree():
+		return
+	if tamaño_base_descripcion == 0:
+		tamaño_base_descripcion = label_descripcion.get_theme_font_size("normal_font_size")
+	tamaño = tamaño_base_descripcion
+	label_descripcion.add_theme_font_size_override("normal_font_size", tamaño)
+	while tamaño > tamaño_minimo_descripcion and label_descripcion.get_content_height() > label_descripcion.size.y:
+		tamaño -= 1
+		label_descripcion.add_theme_font_size_override("normal_font_size", tamaño)
+
+
+func ajustar_fuente_nombre() -> void:
+	var fuente : Font
+	var tamaño : int
+	if not label_nombre or not is_inside_tree():
+		return
+	if tamaño_base_nombre == 0:
+		tamaño_base_nombre = label_nombre.get_theme_font_size("font_size")
+	fuente = label_nombre.get_theme_font("font")
+	tamaño = tamaño_base_nombre
+	while tamaño > tamaño_minimo_nombre and fuente.get_string_size(label_nombre.text, HORIZONTAL_ALIGNMENT_CENTER, -1, tamaño).x > label_nombre.size.x - margen_nombre * 2.0:
+		tamaño -= 1
+	label_nombre.add_theme_font_size_override("font_size", tamaño)
 	if icono:
 		icono.texture = obtener_icono()
 	if label_tipo:
@@ -169,44 +215,48 @@ func mostrar_boton_precio(precio : int) -> Button:
 	return boton_precio
 
 
-func estilizar_boton_precio(boton : Button, precio : int) -> void:
+func estilizar_boton_precio(boton : Button, precio : int, en_foco : bool = false) -> void:
+	var relleno : Vector2 = relleno_foco if en_foco else relleno_boton
 	boton.text = str(precio)
 	boton.icon = icono_moneda
 	boton.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	boton.add_theme_font_override("font", fuente_boton)
-	boton.add_theme_font_size_override("font_size", tamaño_fuente_boton)
-	boton.add_theme_constant_override("icon_max_width", tamaño_icono)
+	boton.add_theme_font_size_override("font_size", tamaño_fuente_foco if en_foco else tamaño_fuente_boton)
+	boton.add_theme_constant_override("icon_max_width", tamaño_icono_foco if en_foco else tamaño_icono)
 	for nombre in ["font_color", "font_hover_color", "font_pressed_color", "font_hover_pressed_color", "font_focus_color"]:
 		boton.add_theme_color_override(nombre, Color.WHITE)
-	for estado in ["normal", "hover", "pressed"]:
-		achicar_estilo(boton, estado)
+	for estado in ["normal", "hover", "pressed", "disabled"]:
+		achicar_estilo(boton, estado, relleno)
 	colorear_por_monedas(boton, precio)
 
 
-func achicar_estilo(boton : Button, estado : String) -> void:
+func achicar_estilo(boton : Button, estado : String, relleno : Vector2) -> void:
 	var estilo : StyleBoxFlat = boton.get_theme_stylebox(estado).duplicate()
 	estilo.expand_margin_left = 0.0
 	estilo.expand_margin_top = 0.0
 	estilo.expand_margin_right = 0.0
 	estilo.expand_margin_bottom = 0.0
-	estilo.content_margin_left = relleno_boton.x
-	estilo.content_margin_top = relleno_boton.y
-	estilo.content_margin_right = relleno_boton.x
-	estilo.content_margin_bottom = relleno_boton.y
+	estilo.content_margin_left = relleno.x
+	estilo.content_margin_top = relleno.y
+	estilo.content_margin_right = relleno.x
+	estilo.content_margin_bottom = relleno.y
 	estilo.set_meta("bg_original", estilo.bg_color)
 	estilo.set_meta("borde_original", estilo.border_color)
 	boton.add_theme_stylebox_override(estado, estilo)
 
 
 func colorear_por_monedas(boton : Button, precio : int) -> void:
-	var color : Color = color_alcanza if Global.monedas >= precio else color_no_alcanza
+	var alcanza : bool = Global.monedas >= precio
+	if not boton.visible:
+		return
+	boton.disabled = not alcanza
 	for estado in ["normal", "hover", "pressed"]:
 		var estilo : StyleBoxFlat = boton.get_theme_stylebox(estado)
 		if estilo and estilo.has_meta("bg_original"):
-			estilo.bg_color = estilo.get_meta("bg_original").lerp(color, 0.6)
-			estilo.border_color = estilo.get_meta("borde_original").lerp(color, 0.6).darkened(0.3)
+			estilo.bg_color = estilo.get_meta("bg_original").lerp(color_alcanza, 0.6)
+			estilo.border_color = estilo.get_meta("borde_original").lerp(color_alcanza, 0.6).darkened(0.3)
 
 
 func al_cambiar_monedas(monedas : int) -> void:
-	if boton_precio and not boton_precio.disabled:
+	if boton_precio and boton_precio.visible:
 		colorear_por_monedas(boton_precio, precio_actual)

@@ -51,7 +51,7 @@ func crear_panel_comida(comida_a_mostrar : PelotitaBase):
 func al_click_tarjeta(tarjeta : Tarjeta, boton : Button) -> void:
 	if foco.esta_abierto():
 		return
-	tarjeta.estilizar_boton_precio(foco.boton_accion, Rareza.precio_de(tarjeta.recurso))
+	tarjeta.estilizar_boton_precio(foco.boton_accion, Rareza.precio_de(tarjeta.recurso), true)
 	foco.boton_accion.disabled = boton.disabled
 	foco.con_accion = true
 	foco.abrir(tarjeta, boton.get_parent())
