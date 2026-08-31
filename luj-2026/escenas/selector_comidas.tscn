@@ -43,22 +43,6 @@ theme_override_fonts/font = ExtResource("2_a6dfu")
 theme_override_font_sizes/font_size = 47
 text = "Omitir"
 
-[node name="LabelTitulo" type="Label" parent="CanvasLayer" unique_id=1857620278]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -531.5
-offset_top = 53.0
-offset_right = 531.5
-offset_bottom = 120.0
-grow_horizontal = 2
-theme_override_constants/outline_size = 6
-theme_override_fonts/font = ExtResource("3_3ilur")
-theme_override_font_sizes/font_size = 55
-text = "Seleccioná una comida:"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="HBoxPanelesComida" type="HBoxContainer" parent="CanvasLayer" unique_id=565757173]
 anchors_preset = 8
 anchor_left = 0.5
@@ -94,5 +78,33 @@ text = "holi, los paneles de comida se instancian x codigo por eso puede estar v
 igual se pueden previsualizar con un @tool"
 
 [node name="FocoTarjetas" parent="CanvasLayer" unique_id=567522368 instance=ExtResource("90_foco")]
+
+[node name="VBoxTitulo" type="VBoxContainer" parent="CanvasLayer" unique_id=2132234138]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -770.5
+offset_top = 43.0
+offset_right = 770.5
+offset_bottom = 204.0
+grow_horizontal = 2
+
+[node name="LabelTitulo" type="Label" parent="CanvasLayer/VBoxTitulo" unique_id=1857620278]
+layout_mode = 2
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("3_3ilur")
+theme_override_font_sizes/font_size = 65
+text = "Seleccioná una comida:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelDescripcion" type="Label" parent="CanvasLayer/VBoxTitulo" unique_id=1860160079]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("91_tema")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 35
+text = "100% de probabilidad de obtener al menos 1 bola de pelos de esta comida."
+horizontal_alignment = 1
 
 [connection signal="pressed" from="CanvasLayer/ButtonOmitir" to="." method="avanzar"]

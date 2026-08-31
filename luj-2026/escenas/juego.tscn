@@ -27,7 +27,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jhh3k"]
 size = Vector2(1180.5, 45.99997)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ax6j8"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_qjtjc"]
 viewport_path = NodePath("PanelInfoIzquierdo/SubViewportIzq")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_7nkol"]
@@ -135,7 +135,7 @@ shape = SubResource("RectangleShape2D_jhh3k")
 
 [node name="PanelInfoIzquierdo" parent="EstructuraDeNivel" index="3" unique_id=1428603965]
 visible = false
-texture = SubResource("ViewportTexture_ax6j8")
+texture = SubResource("ViewportTexture_qjtjc")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2055805025]
 position = Vector2(960, 540)
@@ -149,6 +149,8 @@ escena_textura_pelotita = ExtResource("14_uryky")
 
 [node name="SubViewportCargador" type="SubViewport" parent="UICargadorPelotitas" unique_id=1211465181]
 transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
 
 [node name="ContenedorNomas" type="VBoxContainer" parent="UICargadorPelotitas/SubViewportCargador" unique_id=2006147675]
 anchors_preset = 8

@@ -3,8 +3,8 @@ class_name CargadorManager
 extends Node
 
 @export var game_manager : GameManager
-@export var pelotita_normal : PelotitaBase
-#var cargador : Array[PelotitaBase] #probando, lo saco x ahora pq creo q prefiero usar el cargador de global
+@export var pelotita_normal : PelotitaBase #al final me convenia meter esto en el global
+
 
 func _ready() -> void: #TODO arreglar bug de q tengo q hacer click para q se vean las primeras pelotitas
 	Global.eligio_una_comida.connect(_on_eligio_una_comida)
@@ -27,21 +27,19 @@ func _on_eligio_una_comida():
 #para q se cree un array de pelotitas que de verdad puedo tirar, 4 normales + las q tenga segun las comidas elegidas y todo de forma aleatoria
 func crear_cargador_de_pelotitas():
 	Global.cargador_de_pelotitas.clear()
-	for i in game_manager.bolas_maximas:
-		if Global.comidas_elegidas.is_empty():
-			print("como no hay comidas elegidas, seguramente recien emmpezo el juego o hay un bug :p, crear cargador con pelotita normal")
-			Global.agregar_pelotita_al_cargador(pelotita_normal)
-		else: #sino ya elegimos almenos una comida
-			var pelotita_aleatoria = Global.comidas_elegidas.pick_random() #random segun las comidas q elegimos
-			Global.agregar_pelotita_al_cargador(pelotita_aleatoria)
+	#print("comidas elegidas vale: ", Global.comidas_elegidas)
+	if Global.comidas_elegidas.is_empty():
+		print("como no hay comidas elegidas, seguramente recien emmpezo el juego o hay un bug :p, crear car(gador con pelotita normal")
+		Global.comidas_elegidas.append(pelotita_normal) #fuerzo a q la primer comida elegida sea la normal (ya probe setear con @export la normal pero por algun motivo no anda asiq lo hago por codigo aca)
+
+	var ultima_comida : PelotitaBase = Global.comidas_elegidas.back() #para q siempre salga al menos UNA de la ultima comida q compraste
+	Global.agregar_pelotita_al_cargador(ultima_comida)
+	for i in game_manager.bolas_maximas - 1: #-1 pq le meti a la fuerza la ultima comida, si queremos q al comprar siempre sume 1 mas al cargador le sacamos el -1
+		var pelotita_aleatoria = Global.comidas_elegidas.pick_random() #random segun las comidas q elegimos
+		Global.agregar_pelotita_al_cargador(pelotita_aleatoria)
+
 	Global.cargador_de_pelotitas.shuffle() #reordeno el cargador como a godot le pinte
 	Global.cargador_pelotitas_actualizado.emit()
 	#Global.actualizar_cargador_pelotitas(cargador) #ahora si, siempre un cargador de 6 pelotitas / lo q valga el maximo
 
-
-func agregar_pelotita_al_cargador(): #TODO para que el ovillo violeta funcione con esto pero creo q conviene hacerlo con una funcion a global
-	#q pelotita?
-	#cargador.append(pelotitanueva)
-	#y avisar q se actualizo para q el hud tambien se entere
-	#Global.actualizar_cargador_pelotitas
-	pass
+#dale bocaaaaaaaaaaaaa

@@ -7,5 +7,6 @@
 script = ExtResource("1_2ho1f")
 nombre = "Michinko"
 textura = ExtResource("2_53e11")
-descripcion = "Michinko tiene un estómago mágico que convierte la comida en bolas de pelo mágicas.
-Lo que tiene de mágico le falta en neuronas, pero lo queremos igual."
+descripcion = "Michinko tiene un estómago especial que convierte la comida en bolas de pelo mágicas.
+
+Lo que tiene de especial le falta en neuronas, pero lo queremos igual."
