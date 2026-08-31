@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dnyb8516ireeo"]
 
 [ext_resource type="Script" uid="uid://cu2a30bi7qyi8" path="res://scripts/sala_tienda.gd" id="1_tienda"]
-[ext_resource type="PackedScene" uid="uid://b07gjr8bpk3tm" path="res://escenas/hud.tscn" id="2_hud"]
 [ext_resource type="PackedScene" path="res://escenas/componentes/foco_tarjetas.tscn" id="2_foco"]
+[ext_resource type="PackedScene" uid="uid://b07gjr8bpk3tm" path="res://escenas/hud.tscn" id="2_hud"]
 [ext_resource type="Theme" uid="uid://bjkvjfhj8dr8y" path="res://themes/theme_ui_general.tres" id="2_tema"]
 [ext_resource type="Script" uid="uid://5lbsfhx8xug1" path="res://scripts/reliquias/reliquia.gd" id="4_rel"]
 [ext_resource type="Resource" uid="uid://d1g05k4oam2p8" path="res://scripts/resources/reliquias/rascador.tres" id="5_rasc"]
@@ -37,7 +37,6 @@ theme = ExtResource("2_tema")
 script = ExtResource("1_tienda")
 pool_reliquias = Array[ExtResource("4_rel")]([ExtResource("5_rasc"), ExtResource("6_tapi"), ExtResource("7_tiro"), ExtResource("8_messi"), ExtResource("9_mace"), ExtResource("10_almo"), ExtResource("11_whis"), ExtResource("12_arma"), ExtResource("13_almu"), ExtResource("14_magi"), ExtResource("15_aguj")])
 pool_comidas = Array[ExtResource("16_pelo")]([ExtResource("17_chic"), ExtResource("18_espe"), ExtResource("19_igne"), ExtResource("20_mate")])
-escala_foco = 1.5
 fila_reliquias = NodePath("FondoTienda/Contenido/FilaReliquias")
 fila_comidas = NodePath("FondoTienda/Contenido/FilaComidas")
 boton_curar_vida = NodePath("FondoTienda/Servicios/BotonCurarVida")
@@ -121,7 +120,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 36
 text = "Continuar"
 
-[node name="FocoTarjetas" parent="." instance=ExtResource("2_foco")]
+[node name="FocoTarjetas" parent="." unique_id=366085534 instance=ExtResource("2_foco")]
 layout_mode = 1
 
 [node name="HUD" parent="." unique_id=868250571 instance=ExtResource("2_hud")]

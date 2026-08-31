@@ -13,6 +13,7 @@ var monedas : int = 0
 var gato_elegido : DatosGato
 var puntos : int = 0
 
+@export var bola_de_pelos_normal : PelotitaBase
 ##aca pongamos los resource de todas las bolitas de pelo q existen (bueno de los efectos en realidad), no importa el orden pq despues uso otro array para elegir y ordenar
 @export var bolas_de_pelo_existentes : Array[PelotitaBase] #en resumen todas las q existen
 

@@ -1,34 +1,20 @@
 [gd_scene format=3 uid="uid://c87sy1bku6et8"]
 
 [ext_resource type="Texture2D" uid="uid://dljb32hglhe5q" path="res://assets/placeholders/bolaspelo_placeholder/placeholder_bola_de_pelos_michinko2.png" id="1_gldi5"]
-[ext_resource type="PackedScene" uid="uid://bh6v3wn4vlcem" path="res://escenas/componentes/cuadro_ui.tscn" id="2_duxjc"]
+[ext_resource type="Script" uid="uid://gwbyp82oxk5m" path="res://scripts/texture_rect_cargador.gd" id="2_ktqvi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_duxjc"]
 bg_color = Color(0.17254902, 0.17254902, 0.17254902, 0.76862746)
 
-[node name="TextureRectCargador" type="TextureRect" unique_id=2143947696]
+[node name="TextureRectCargador" type="TextureRect" unique_id=2143947696 node_paths=PackedStringArray("pergamino")]
 custom_minimum_size = Vector2(50, 50)
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 0
 texture = ExtResource("1_gldi5")
 expand_mode = 3
-
-[node name="CuadroUI" parent="." unique_id=280403763 instance=ExtResource("2_duxjc")]
-visible = false
-z_index = -1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -21.5
-offset_top = -36.5
-offset_right = 21.5
-offset_bottom = 36.5
-grow_horizontal = 2
-grow_vertical = 2
-radio_esquinas = 0
+script = ExtResource("2_ktqvi")
+pergamino = NodePath("")
 
 [node name="Panel" type="Panel" parent="." unique_id=1121273155]
 z_index = -5
@@ -44,4 +30,5 @@ offset_right = 29.0
 offset_bottom = 27.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_duxjc")

@@ -23,13 +23,13 @@ extends RigidBody2D
 ##distancia fuera de los bordes del juego a la que se elimina la bola
 @export var margen_borde : float = 200.0
 
-var fue_duplicada : bool = false #probando, seguro lo saco de aca
+var fue_duplicada : bool = false #se usa para efecto espejismo
 var contador_rebotes : int = 0
 var limites_juego : Rect2
 
 
-var vector_x : int = randi_range(-500, 500)
-var vector_y : int = randi_range(-500, 500)
+var vector_x : int = randi_range(-300, 300) #estaba en -500 , 500 y el de abajo tmb
+var vector_y : int = randi_range(-300, 300)
 
 var impulso_pelotita_duplicada : Vector2 = Vector2(vector_x, vector_y)
 
