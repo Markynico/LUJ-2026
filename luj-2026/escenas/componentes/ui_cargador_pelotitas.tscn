@@ -7,7 +7,8 @@
 [ext_resource type="StyleBox" path="res://themes/fondo_cargador.tres" id="5_fondo"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_7nkol"]
-viewport_path = NodePath("UICargadorPelotitas/SubViewportCargador")
+resource_local_to_scene = true
+viewport_path = NodePath("SubViewportCargador")
 
 [sub_resource type="Theme" id="Theme_g56wh"]
 

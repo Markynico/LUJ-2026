@@ -19,6 +19,10 @@ extends RigidBody2D
 ##tope del pitch extra acumulado por rebotes
 @export var pitch_extra_maximo : float = 1.0
 
+@export_group("FISICA")
+##fraccion de la velocidad que conserva la bola al chocar con paredes y obstaculos, 1 = sin perdida
+@export_range(0.0, 1.0) var amortiguacion_rebote : float = 0.85
+
 @export_group("LIMITES")
 ##distancia fuera de los bordes del juego a la que se elimina la bola
 @export var margen_borde : float = 200.0
@@ -96,6 +100,7 @@ func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, lo
 		return
 	if not body is Ovillo:
 		contador_rebotes = 0
+		linear_velocity *= amortiguacion_rebote
 	for efecto in tipo_pelotita.efectos:
 		efecto.impactar_con_objeto(self, body)
 	sonido_rebote()

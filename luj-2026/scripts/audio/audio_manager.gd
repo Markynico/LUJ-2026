@@ -121,6 +121,13 @@ func detener_musica() -> void:
 	fade.tween_callback(reproductor_activo.stop)
 
 
+func clip_actual() -> String:
+	var reproduccion : AudioStreamPlayback = reproductor_activo.get_stream_playback() if reproductor_activo.playing else null
+	if reproduccion is AudioStreamPlaybackInteractive:
+		return String(reproductor_activo.stream.get_clip_name(reproduccion.get_current_clip_index()))
+	return ""
+
+
 func cambiar_clip(nombre : String) -> void:
 	var reproduccion : AudioStreamPlayback = reproductor_activo.get_stream_playback() if reproductor_activo.playing else null
 	if reproduccion is AudioStreamPlaybackInteractive:

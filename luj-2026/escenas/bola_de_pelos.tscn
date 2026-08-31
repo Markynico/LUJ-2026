@@ -28,6 +28,7 @@ script = ExtResource("1_q2vq6")
 tipo_pelotita = ExtResource("2_rguhl")
 sprite_bola = NodePath("SpriteBola")
 estela_movimiento = NodePath("EstelaMovimiento")
+amortiguacion_rebote = 0.6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1988233965]
 shape = SubResource("CircleShape2D_37ege")

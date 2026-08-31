@@ -47,6 +47,7 @@
 [ext_resource type="Texture2D" uid="uid://clbwk8g62651y" path="res://assets/maribrujagatamagica.png" id="45_lly1i"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_4s28l"]
+resource_local_to_scene = true
 viewport_path = NodePath("UIComidasElegidas/SubViewportComidas")
 
 [node name="SalaTienda" type="Control" unique_id=1468592656 node_paths=PackedStringArray("fila_reliquias", "fila_comidas", "boton_curar_vida", "texto_curar", "boton_continuar", "foco")]
