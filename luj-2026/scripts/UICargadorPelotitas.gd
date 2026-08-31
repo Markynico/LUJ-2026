@@ -17,9 +17,11 @@ func _on_cargador_pelotitas_actualizado():
 	limpiar_cargador()
 	var cargador_actual : Array[PelotitaBase]= Global.get_cargador_de_pelotitas()
 	for pelotita in cargador_actual:
-		var instancia_imagen : TextureRect = escena_textura_pelotita.instantiate()
+		#print("cargador actual vale: ", cargador_actual , " y pelotita vale: ", pelotita)
+		var instancia_imagen : TextureRectCargadorBolas = escena_textura_pelotita.instantiate()
 		instancia_imagen.texture = pelotita.textura
 		vbox_pelotitas.add_child(instancia_imagen)
+		#instancia_imagen.set_texto_bolapelos(pelotita)
 	label_contador.text = str(cargador_actual.size())
 
 func limpiar_cargador():

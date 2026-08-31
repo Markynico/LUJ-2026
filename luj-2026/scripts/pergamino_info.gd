@@ -6,16 +6,17 @@ var tipo_ovillo_mostrado : OvilloBase
 @onready var nombre_text: RichTextLabel = %NombreText
 @onready var info_text: RichTextLabel = %InfoText
 
+#TODO consulta, sacamo el pergamino de la bola de pelos????? 
 
 func _ready() -> void:
 	hide()
 
 func _on_mouse_entered() -> void:
-	print("mostrar")
+	print("mostrar (en pergamino)")
 	set_activo(true)
 
 func _on_mouse_exited() -> void:
-	print("esconder")
+	print("esconder (en pergamino)")
 	set_activo(false)
 
 func set_activo(activar : bool):
@@ -32,6 +33,13 @@ func set_activo(activar : bool):
 func set_texto_ovillo(tipo_ovillo : OvilloBase): #probandooooo, ya chusmeo si hago una funcion para ovillo y otra para bolita o todo en una
 	tipo_ovillo_mostrado = tipo_ovillo
 	actualizar_texto()
+
+func set_texto_bolapelos(tipo_pelotita : PelotitaBase): #parece q no funca
+	if tipo_ovillo_mostrado == null:
+		return
+	print("tipo pelotita anda? ", tipo_pelotita)
+	nombre_text.text = tipo_pelotita.efectos[0].nombre_comida #siempre debe tener al menos un efecto, sino revisar q puede dar algun bug
+	info_text.text = tipo_ovillo_mostrado.descripcion
 
 
 func actualizar_texto():

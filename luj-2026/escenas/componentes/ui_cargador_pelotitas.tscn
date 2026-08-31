@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://cgp27dbv4vnak"]
+
+[ext_resource type="Script" uid="uid://bojjht8bbil08" path="res://scripts/UICargadorPelotitas.gd" id="1_bvwkh"]
+[ext_resource type="PackedScene" uid="uid://c87sy1bku6et8" path="res://escenas/componentes/texture_rect_cargador.tscn" id="2_4ifrc"]
+[ext_resource type="Theme" uid="uid://bjkvjfhj8dr8y" path="res://themes/theme_ui_general.tres" id="3_57oyg"]
+[ext_resource type="FontFile" uid="uid://dwg47e0trev3j" path="res://fuentes/Bungee-Regular.ttf" id="4_agxao"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7nkol"]
+viewport_path = NodePath("UICargadorPelotitas/SubViewportCargador")
+
+[sub_resource type="Theme" id="Theme_g56wh"]
+
+[node name="UICargadorPelotitas" type="Sprite2D" unique_id=77670310]
+z_index = 50
+texture = SubResource("ViewportTexture_7nkol")
+script = ExtResource("1_bvwkh")
+escena_textura_pelotita = ExtResource("2_4ifrc")
+
+[node name="SubViewportCargador" type="SubViewport" parent="." unique_id=1050565886]
+transparent_bg = true
+
+[node name="ContenedorNomas" type="VBoxContainer" parent="SubViewportCargador" unique_id=664572171]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -92.5
+offset_right = 25.0
+offset_bottom = 92.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="LabelContador" type="Label" parent="SubViewportCargador/ContenedorNomas" unique_id=1950072310]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_57oyg")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0.5568628)
+theme_override_colors/font_outline_color = Color(0.2592937, 0.2592937, 0.2592937, 1)
+theme_override_fonts/font = ExtResource("4_agxao")
+theme_override_font_sizes/font_size = 24
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VboxPelotitas" type="VBoxContainer" parent="SubViewportCargador/ContenedorNomas" unique_id=1781613423]
+unique_name_in_owner = true
+z_index = 55
+layout_mode = 2
+theme = SubResource("Theme_g56wh")
+
+[node name="se_borra_solo" parent="SubViewportCargador/ContenedorNomas/VboxPelotitas" unique_id=2143947696 instance=ExtResource("2_4ifrc")]
+layout_mode = 2
+
+[node name="se_borra_solo2" parent="SubViewportCargador/ContenedorNomas/VboxPelotitas" unique_id=204125159 instance=ExtResource("2_4ifrc")]
+layout_mode = 2
+
+[node name="se_borra_solo3" parent="SubViewportCargador/ContenedorNomas/VboxPelotitas" unique_id=1533880420 instance=ExtResource("2_4ifrc")]
+layout_mode = 2
