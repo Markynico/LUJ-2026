@@ -20,13 +20,13 @@ signal nivel_elegido(tipo : TipoDeSala.Tipo)
 @export_group("Chances de sala")
 ##peso de las salas normales al sortear cada salida
 @export_range(0.0, 1.0, 0.05) var chance_normal : float = 1.0
-##peso de las salas de loot al sortear cada salida
+##peso de las salas de loot al sortear cada salida, se usa si no hay dificultad activa
 @export_range(0.0, 1.0, 0.05) var chance_loot : float = 0.25
-##probabilidad de que aparezca una tienda entre las salidas, nunca mas de una
+##probabilidad de que aparezca una tienda entre las salidas, se usa si no hay dificultad activa
 @export_range(0.0, 1.0, 0.05) var chance_tienda : float = 0.25
-##salas minimas que tienen que pasar entre una tienda y la siguiente
+##salas minimas entre tiendas, se usa si no hay dificultad activa
 @export_range(0, 20, 1) var salas_entre_tiendas : int = 3
-##salas minimas que tienen que pasar entre una sala de loot y la siguiente
+##salas minimas entre salas de loot, se usa si no hay dificultad activa
 @export_range(0, 20, 1) var salas_entre_loots : int = 3
 @export_group("")
 ##alto del area de cada salida
@@ -34,8 +34,8 @@ signal nivel_elegido(tipo : TipoDeSala.Tipo)
 
 var salidas : Array[SalidaDeNivel] = []
 var eleccion_hecha : bool = false
-var salas_desde_tienda : int = 0
-var salas_desde_loot : int = 0
+var salas_desde_tienda : int = 999
+var salas_desde_loot : int = 999
 
 
 func _ready() -> void:
@@ -88,8 +88,13 @@ func colocar_salidas() -> void:
 
 func elegir_tipos(cantidad : int) -> Array[TipoDeSala.Tipo]:
 	var tipos : Array[TipoDeSala.Tipo] = []
+	var dificultad : DificultadRun = GameManager.dificultad_actual
 	var peso_normal : float = chance_normal if tipos_disponibles.has(TipoDeSala.Tipo.NORMAL) else 0.0
-	var peso_loot : float = chance_loot if tipos_disponibles.has(TipoDeSala.Tipo.LOOT) and salas_desde_loot >= salas_entre_loots else 0.0
+	var chance_loot_activa : float = dificultad.chance_loot if dificultad else chance_loot
+	var chance_tienda_activa : float = dificultad.chance_tienda if dificultad else chance_tienda
+	var entre_tiendas : int = dificultad.salas_entre_tiendas if dificultad else salas_entre_tiendas
+	var entre_loots : int = dificultad.salas_entre_loots if dificultad else salas_entre_loots
+	var peso_loot : float = chance_loot_activa if tipos_disponibles.has(TipoDeSala.Tipo.LOOT) and salas_desde_loot >= entre_loots else 0.0
 	var total : float = peso_normal + peso_loot
 	var azar : float
 	for i in cantidad:
@@ -98,7 +103,7 @@ func elegir_tipos(cantidad : int) -> Array[TipoDeSala.Tipo]:
 			continue
 		azar = randf() * total
 		tipos.append(TipoDeSala.Tipo.NORMAL if azar < peso_normal else TipoDeSala.Tipo.LOOT)
-	if tipos_disponibles.has(TipoDeSala.Tipo.TIENDA) and salas_desde_tienda >= salas_entre_tiendas and cantidad > 0 and randf() < chance_tienda:
+	if tipos_disponibles.has(TipoDeSala.Tipo.TIENDA) and salas_desde_tienda >= entre_tiendas and cantidad > 0 and randf() < chance_tienda_activa:
 		tipos[randi_range(0, cantidad - 1)] = TipoDeSala.Tipo.TIENDA
 	return tipos
 

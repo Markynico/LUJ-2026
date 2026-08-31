@@ -40,7 +40,7 @@ static var niveles_ganados_run : int = 0
 @export_file("*.tscn") var escena_stats : String = "res://escenas/pantalla_stats.tscn"
 @export var bolas_maximas : int = 4
 @export var vidas_maximas : int = 3
-@export_range(0.1, 1.0, 0.05) var porcentaje_ovillos_requerido : float = 0.30
+@export_range(0.1, 1.0, 0.05, "or_greater") var porcentaje_ovillos_requerido : float = 0.30
 ##reliquias con las que arranca la run, para probar
 @export var reliquias_iniciales : Array[Reliquia] = []
 ##monedas con las que arranca la run

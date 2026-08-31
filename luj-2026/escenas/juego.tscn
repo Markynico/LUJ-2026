@@ -115,10 +115,8 @@ script = ExtResource("6_selec")
 cargador = NodePath("../CargadorDeNivel")
 divisores_minimos = 1
 divisores_maximos = 3
-chance_loot = 1.0
-chance_tienda = 1.0
-salas_entre_tiendas = 0
-salas_entre_loots = 0
+chance_tienda = 0.4
+salas_entre_tiendas = 2
 alto_salida = 100.0
 
 [node name="CargadorDeNivel" type="Node2D" parent="." unique_id=1344270759 node_paths=PackedStringArray("estructura")]

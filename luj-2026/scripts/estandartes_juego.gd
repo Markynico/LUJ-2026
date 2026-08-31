@@ -14,6 +14,8 @@ extends Node2D
 @export var confirmacion_menu : ConfirmationDialog
 ##tamaño de fuente del texto del dialogo de confirmacion
 @export var tamaño_texto_confirmacion : int = 28
+##estilo del panel del dialogo de confirmacion
+@export var estilo_panel_confirmacion : StyleBox = preload("res://themes/panel_dialogo.tres")
 
 var coleccion : Coleccion
 var capa_overlay : CanvasLayer
@@ -28,6 +30,7 @@ func _ready() -> void:
 	confirmacion_menu.get_label().horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	confirmacion_menu.get_ok_button().add_theme_stylebox_override("focus", StyleBoxEmpty.new())
 	confirmacion_menu.get_cancel_button().add_theme_stylebox_override("focus", StyleBoxEmpty.new())
+	confirmacion_menu.add_theme_stylebox_override("panel", estilo_panel_confirmacion)
 	opciones.process_mode = Node.PROCESS_MODE_ALWAYS
 	opciones.visibility_changed.connect(actualizar_pausa)
 

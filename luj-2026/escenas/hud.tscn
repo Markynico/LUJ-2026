@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cmgxgm42kfbke" path="res://assets/moneda cara.png" id="5_8qmdo"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_37ege"]
+resource_local_to_scene = true
 viewport_path = NodePath("UIComidasElegidas/SubViewportComidas")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0sskl"]
@@ -35,7 +36,7 @@ shadow_size = 4
 
 [sub_resource type="LabelSettings" id="LabelSettings_progreso"]
 font_size = 14
-font_color = Color(0.9, 0.93, 1, 1)
+font_color = Color(0, 0, 0, 1)
 
 [node name="HUD" type="Control" unique_id=197422415]
 layout_mode = 3

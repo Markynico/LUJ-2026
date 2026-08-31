@@ -6,7 +6,7 @@
 layer = 100
 script = ExtResource("1_trans")
 duracion = 3.0
-frecuencia_cerrada = 250.0
+frecuencia_cerrada = 500.0
 fade = NodePath("Fade")
 
 [node name="Fade" type="ColorRect" parent="." unique_id=2089032325]

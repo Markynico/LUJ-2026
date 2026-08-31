@@ -19,6 +19,10 @@ extends Node2D
 @export var offset_zoom : Vector2 = Vector2(0, 120)
 ##tipo de sala con la que arranca la partida
 @export var sala_inicial : TipoDeSala.Tipo = TipoDeSala.Tipo.NORMAL
+##clip de la musica interactiva que suena en la tienda
+@export var clip_musica_tienda : String = "Michinko Tienda Loop"
+##clip al que se vuelve al salir de la tienda
+@export var clip_musica_nivel : String = "Michinko Niveles Loop"
 ##ruta de la escena de sala para cada tipo, los niveles normales no usan escena
 @export var escenas_por_sala : Dictionary[TipoDeSala.Tipo, String] = {
 	TipoDeSala.Tipo.TIENDA: "res://escenas/sala_tienda.tscn",
@@ -93,6 +97,10 @@ func cambiar_sala(tipo : TipoDeSala.Tipo) -> void:
 func aplicar_sala(tipo : TipoDeSala.Tipo) -> void:
 	var es_nivel : bool = tipo == TipoDeSala.Tipo.NORMAL
 	var ruta : String = escenas_por_sala.get(tipo, "")
+	if tipo == TipoDeSala.Tipo.TIENDA:
+		AudioManager.cambiar_clip(clip_musica_tienda)
+	elif AudioManager.clip_actual() == clip_musica_tienda:
+		AudioManager.cambiar_clip(clip_musica_nivel)
 	if sala_actual:
 		sala_actual.queue_free()
 		sala_actual = null

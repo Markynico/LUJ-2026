@@ -12,7 +12,7 @@
 [ext_resource type="Resource" uid="uid://dkj1neptxih4s" path="res://sonidos/efectos/whoosh_camara.tres" id="8_vqrne"]
 [ext_resource type="Resource" uid="uid://rjmfpyrr7new" path="res://sonidos/efectos/mecha.tres" id="9_mecha"]
 [ext_resource type="Resource" uid="uid://cuh3pua873ioa" path="res://sonidos/efectos/explosion.tres" id="10_expl"]
-[ext_resource type="AudioStream" uid="uid://cxhoaolq6rof8" path="res://assets/audio/musica/Michinko Niveles.ogg" id="10_gmpbd"]
+[ext_resource type="AudioStream" uid="uid://dpdjifkxlnvjt" path="res://assets/audio/musica/Michinko Niveles intro.ogg" id="10_gmpbd"]
 [ext_resource type="Resource" path="res://sonidos/efectos/rebobinar.tres" id="11_rebo"]
 [ext_resource type="AudioStream" uid="uid://fywkbutvka3e" path="res://assets/audio/musica/Michinko Niveles Loop.ogg" id="11_vqrne"]
 [ext_resource type="Resource" path="res://sonidos/efectos/catnip.tres" id="12_cat"]
@@ -21,6 +21,7 @@
 [ext_resource type="Resource" uid="uid://c2fwayaqpurn4" path="res://sonidos/efectos/michinko_blink.tres" id="15_blink"]
 [ext_resource type="Resource" uid="uid://cfwcm3g8tptx2" path="res://sonidos/efectos/explosion_grande.tres" id="16_explg"]
 [ext_resource type="Resource" path="res://sonidos/efectos/comprar.tres" id="17_compr"]
+[ext_resource type="AudioStream" uid="uid://bf3ha7ydphfwu" path="res://assets/audio/musica/Michinko Tienda Loop.ogg" id="18_tienda"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_xcvd1"]
 clip_count = 2
@@ -33,8 +34,8 @@ clip_1/stream = ExtResource("6_pej0h")
 clip_1/auto_advance = 0
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_smreb"]
-clip_count = 2
-clip_0/name = &"Michinko Niveles"
+clip_count = 3
+clip_0/name = &"Michinko Niveles Intro"
 clip_0/stream = ExtResource("10_gmpbd")
 clip_0/auto_advance = 1
 clip_0/next_clip = 1
@@ -42,6 +43,24 @@ clip_1/name = &"Michinko Niveles Loop"
 clip_1/stream = ExtResource("11_vqrne")
 clip_1/auto_advance = 1
 clip_1/next_clip = 1
+clip_2/name = &"Michinko Tienda Loop"
+clip_2/stream = ExtResource("18_tienda")
+clip_2/auto_advance = 1
+clip_2/next_clip = 2
+_transitions = {
+Vector2i(-1, 2): {
+"fade_beats": 2.0,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(2, -1): {
+"fade_beats": 2.0,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+}
+}
 
 [node name="AudioManager" type="Node" unique_id=1480012408]
 process_mode = 3

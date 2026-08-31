@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cbqiu7echm444" path="res://escenas/opciones.tscn" id="14_opc"]
 [ext_resource type="Material" uid="uid://bw1r2eimk66te" path="res://scripts/shaders/material_brillo_radial.tres" id="15_brillo"]
 [ext_resource type="PackedScene" uid="uid://che0rryy8c7cq" path="res://escenas/gato.tscn" id="15_xxdvs"]
+[ext_resource type="PackedScene" path="res://escenas/componentes/guante_caricia.tscn" id="17_guant"]
 [ext_resource type="PackedScene" uid="uid://bh6v3wn4vlcem" path="res://escenas/componentes/cuadro_ui.tscn" id="17_lemrg"]
 [ext_resource type="Theme" uid="uid://bjkvjfhj8dr8y" path="res://themes/theme_ui_general.tres" id="18_xxdvs"]
 [ext_resource type="Script" uid="uid://colmyx75iuvr3" path="res://scripts/dificultad_run.gd" id="19_dif"]
@@ -29,7 +30,7 @@
 color = Color(0.43137255, 0.38039216, 0.23529412, 1)
 thickness = 3
 
-[node name="Menu" type="Node2D" unique_id=1421157520 node_paths=PackedStringArray("camara", "foco_seleccion", "boton_jugar", "boton_coleccion", "boton_opciones", "boton_salir", "panel_info", "label_nombre", "label_descripcion", "boton_confirmar", "boton_volver", "brillo_seleccion", "contenedor_dificultades", "opciones")]
+[node name="Menu" type="Node2D" unique_id=1421157520 node_paths=PackedStringArray("camara", "foco_seleccion", "boton_jugar", "boton_coleccion", "boton_opciones", "boton_salir", "panel_info", "label_nombre", "label_descripcion", "boton_confirmar", "boton_volver", "brillo_seleccion", "contenedor_dificultades", "opciones", "guante_caricia", "gato_menu")]
 script = ExtResource("1_menu")
 gatos = Array[ExtResource("12_dgato")]([ExtResource("13_michi")])
 dificultades = Array[ExtResource("19_dif")]([ExtResource("20_dfac"), ExtResource("21_dmed"), ExtResource("22_ddif")])
@@ -48,11 +49,18 @@ boton_volver = NodePath("UISeleccion/CuadroUI/Botones/BotonVolver")
 brillo_seleccion = NodePath("RecorteBrillo/BrilloSeleccion")
 contenedor_dificultades = NodePath("UISeleccion/CuadroUI/MarginContainer/Contenido/ContenedorDificultades")
 opciones = NodePath("Opciones")
+guante_caricia = NodePath("Gato/GuanteCaricia")
+gato_menu = NodePath("Gato")
+aumento_purr_caricia = 9.0
+duracion_subida_purr = 0.5
+duracion_extra_purr = 7.0
+duracion_bajada_purr = 3.0
 
 [node name="Fondo" type="TextureRect" parent="." unique_id=660928265]
 offset_right = 2560.0
 offset_bottom = 1440.0
 scale = Vector2(0.75, 0.75)
+mouse_filter = 2
 texture = ExtResource("4_20bhr")
 expand_mode = 5
 
@@ -61,6 +69,7 @@ z_index = 11
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 texture = ExtResource("5_lji1a")
 
 [node name="OscurecerArriba" type="ColorRect" parent="Fondo" unique_id=1153278734]
@@ -68,6 +77,7 @@ material = SubResource("CanvasItemMaterial_jhh3k")
 layout_mode = 0
 offset_right = 2564.0
 offset_bottom = 366.6667
+mouse_filter = 2
 color = Color(0.063333325, 0, 0.2, 0.1882353)
 
 [node name="BotonEstandarteColeccion" parent="." unique_id=2120989071 instance=ExtResource("3_2owot")]
@@ -118,6 +128,7 @@ offset_top = 449.0
 offset_right = 1644.0
 offset_bottom = 938.0
 scale = Vector2(0.695, 0.695)
+mouse_filter = 2
 texture = ExtResource("11_6m0pt")
 
 [node name="RecorteBrillo" type="Control" parent="." unique_id=1802822706]
@@ -150,6 +161,13 @@ escala_normal = 0.32
 
 [node name="FocoSeleccion" type="Marker2D" parent="Gato" unique_id=159663655]
 position = Vector2(129, 14)
+
+[node name="GuanteCaricia" parent="Gato" unique_id=144748130 instance=ExtResource("17_guant")]
+position = Vector2(46, -51)
+duracion_fade = 0.5
+repeticiones = 4
+duracion_movimiento = 1.0
+escala_guante = 0.13
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1343517546]
 position = Vector2(960, 540)
@@ -205,7 +223,7 @@ theme_override_styles/separator = SubResource("StyleBoxLine_7nkol")
 layout_mode = 2
 theme = ExtResource("18_xxdvs")
 theme_override_font_sizes/font_size = 40
-text = "Dificultad:"
+text = "Dificultad;"
 horizontal_alignment = 1
 
 [node name="ContenedorDificultades" type="HBoxContainer" parent="UISeleccion/CuadroUI/MarginContainer/Contenido" unique_id=1090412812]
