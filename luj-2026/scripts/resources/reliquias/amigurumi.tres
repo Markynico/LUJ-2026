@@ -12,4 +12,4 @@ descripcion = "Las salas de loot ofrecen 3 opciones de reliquias para elegir.
 \"Hecho con amor\""
 icono = ExtResource("2_rel")
 condicion_desbloqueo = "reliquias_adquiridas"
-cantidad_desbloqueo = 5
+cantidad_desbloqueo = 10

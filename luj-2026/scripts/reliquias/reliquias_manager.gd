@@ -47,6 +47,13 @@ func multiplicador_monedas_para(tipo_ovillo : OvilloBase) -> float:
 	return multiplicador
 
 
+func reemplazo_para(tipo_ovillo : OvilloBase) -> OvilloBase:
+	var resultado : OvilloBase = tipo_ovillo
+	for reliquia in obtenidas:
+		resultado = reliquia.reemplazar_ovillo(resultado)
+	return resultado
+
+
 func multiplicador_spawn_para(tipo_ovillo : OvilloBase) -> float:
 	var multiplicador : float = 1.0
 	for reliquia in obtenidas:

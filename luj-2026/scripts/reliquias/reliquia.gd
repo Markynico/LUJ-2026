@@ -48,6 +48,10 @@ func multiplicador_spawn(tipo_ovillo : OvilloBase) -> float:
 	return 1.0
 
 
+func reemplazar_ovillo(tipo_ovillo : OvilloBase) -> OvilloBase:
+	return tipo_ovillo
+
+
 func multiplicador_monedas(tipo_ovillo : OvilloBase) -> float:
 	return 1.0
 

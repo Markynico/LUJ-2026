@@ -3,28 +3,33 @@ extends Control
 
 @export var game_manager : GameManager
 @export var textura_corazon : Texture2D = preload("res://iconos_custom/heart.svg")
+##shader que dibuja el contorno del icono de dificultad siguiendo el sprite
+@export var shader_contorno : Shader = preload("res://scripts/shaders/contorno_seleccion.gdshader")
+##grosor del contorno del icono de dificultad
+@export var grosor_contorno_dificultad : float = 5.0
+##color de la barra de progreso mientras no se llego al objetivo
+@export var color_barra_falta : Color = Color(0.8, 0.18, 0.15)
+##color de la barra de progreso al cumplir el objetivo, pulsa hacia mas claro
+@export var color_barra_meta : Color = Color(0.2, 0.75, 0.48)
 
 @onready var contenedor_vidas : HBoxContainer = %ContenedorVidas
 @onready var label_bolas : Label = %LabelBolas
 @onready var barra_ovillos : ProgressBar = %BarraOvillos
 @onready var label_ovillos : Label = %LabelOvillos
-@onready var label_meta_badge : Label = %LabelMetaBadge2
-@onready var banner_notificacion : PanelContainer = %BannerNotificacion
-@onready var label_notificacion : Label = %LabelNotificacion
+@onready var label_salas : Label = %LabelSalas
+@onready var icono_dificultad : TextureRect = %IconoDificultad
 @onready var bolas_restantes_label : Label = %BolasRestantes if has_node("%BolasRestantes") else null
 @onready var monedas_label : Label = %Monedas if has_node("%Monedas") else null
 
 var corazones : Array[TextureRect] = []
-var tween_notif : Tween
+var tween_barra : Tween
+var meta_barra : int = -1
 
 func _ready() -> void:
 	if not game_manager:
 		game_manager = get_tree().root.find_child("GameManager", true, false) as GameManager
 	if not game_manager and GameManager.instancia_actual:
 		game_manager = GameManager.instancia_actual
-	
-	if banner_notificacion:
-		banner_notificacion.visible = false
 	
 	# Monedas globales
 	actualizar_monedas(Global.monedas)
@@ -34,13 +39,12 @@ func _ready() -> void:
 		game_manager.bola_usada.connect(actualizar_bolas_restantes)
 		game_manager.vidas_cambiadas.connect(actualizar_vidas)
 		game_manager.puntos_actualizados.connect(actualizar_progreso_ovillos)
-		game_manager.meta_alcanzada.connect(al_alcanzar_meta)
 		game_manager.nivel_completado.connect(al_completar_nivel)
-		game_manager.game_over.connect(al_game_over)
-		
+
 		# Inicializar vistas
 		actualizar_vidas(game_manager.vidas_actuales, game_manager.vidas_maximas)
 		actualizar_bolas_restantes(game_manager.bolas_restantes)
+		actualizar_salas()
 	else:
 		crear_corazones(3, 3)
 
@@ -110,59 +114,49 @@ func actualizar_bolas_restantes(cantidad: int) -> void:
 
 func actualizar_monedas(monedas: int) -> void:
 	if monedas_label:
-		monedas_label.text = "Monedas: " + str(monedas)
+		monedas_label.text = str(monedas)
 
 func actualizar_progreso_ovillos(obtenidos: int, requeridos: int, total: int, porcentaje_actual: float) -> void:
 	if barra_ovillos:
-		barra_ovillos.max_value = max(total, 1)
-		barra_ovillos.value = obtenidos
-	
-	if label_ovillos:
-		var pct_nivel = 0
-		if game_manager:
-			pct_nivel = int(game_manager.porcentaje_ovillos_requerido * 100.0)
-		#label_ovillos.text = "Puntos: %d / %d  (Meta: %d | %d%%)" % [obtenidos, total, requeridos, pct_nivel]
-		label_ovillos.text = "Puntos: %d / %d  (Meta: %d)" % [obtenidos, total, requeridos]
-		
-	
-	if label_meta_badge:
-		if obtenidos >= requeridos:
-			label_meta_badge.text = "✓ ¡META CUMPLIDA!"
-			label_meta_badge.modulate = Color(0.35, 0.95, 0.55, 1.0)
-		else:
-			var faltan = max(0, requeridos - obtenidos)
-			label_meta_badge.text = "elimina %d ovillos para ganar" % faltan
-			label_meta_badge.modulate = Color(0.85, 0.88, 0.95, 0.8)
+		barra_ovillos.max_value = max(requeridos, 1)
+		barra_ovillos.value = min(obtenidos, requeridos)
+		colorear_barra(obtenidos >= requeridos)
 
-func al_alcanzar_meta(es_meta: bool) -> void:
-	if es_meta:
-		mostrar_notificacion("¡Meta de nivel alcanzada! 🎉", Color(0.35, 0.95, 0.55))
+	if label_ovillos:
+		label_ovillos.text = "Puntos: %d / %d" % [obtenidos, requeridos]
+
+	actualizar_salas()
+
+func colorear_barra(meta_cumplida: bool) -> void:
+	var relleno : StyleBoxFlat = barra_ovillos.get_theme_stylebox("fill")
+	if int(meta_cumplida) == meta_barra:
+		return
+	meta_barra = int(meta_cumplida)
+	if tween_barra and tween_barra.is_valid():
+		tween_barra.kill()
+	if meta_cumplida:
+		relleno.bg_color = color_barra_meta
+		tween_barra = barra_ovillos.create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		tween_barra.tween_property(relleno, "bg_color", color_barra_meta.lightened(0.4), 0.5)
+		tween_barra.tween_property(relleno, "bg_color", color_barra_meta, 0.5)
+		tween_barra.set_loops()
+	else:
+		relleno.bg_color = color_barra_falta
+
+func actualizar_salas() -> void:
+	if not label_salas:
+		return
+	var total_salas : int = 0
+	if GameManager.dificultad_actual:
+		total_salas = GameManager.dificultad_actual.niveles_para_ganar
+		if icono_dificultad:
+			icono_dificultad.texture = GameManager.dificultad_actual.icono
+			if not icono_dificultad.material:
+				icono_dificultad.material = ShaderMaterial.new()
+				icono_dificultad.material.shader = shader_contorno
+				icono_dificultad.material.set_shader_parameter("grosor", grosor_contorno_dificultad)
+			icono_dificultad.material.set_shader_parameter("color_borde", GameManager.dificultad_actual.color_seleccion)
+	label_salas.text = "Salas: %d / %d" % [GameManager.niveles_ganados_run, total_salas]
 
 func al_completar_nivel(exito: bool) -> void:
-	if exito:
-		mostrar_notificacion("¡NIVEL SUPERADO! 🎉", Color(0.35, 0.95, 0.55))
-	else:
-		mostrar_notificacion("¡No alcanzaste la meta! Perdiste una vida 💔", Color(1.0, 0.4, 0.4))
-
-func al_game_over() -> void:
-	mostrar_notificacion("GAME OVER 💀 Sin vidas restantes", Color(1.0, 0.25, 0.25))
-
-func mostrar_notificacion(texto: String, color_texto: Color = Color.WHITE) -> void:
-	if not banner_notificacion or not label_notificacion:
-		return
-	
-	label_notificacion.text = texto
-	label_notificacion.modulate = color_texto
-	banner_notificacion.visible = true
-	banner_notificacion.modulate.a = 0.0
-	banner_notificacion.position.y = 80.0
-	
-	if tween_notif and tween_notif.is_valid():
-		tween_notif.kill()
-	
-	tween_notif = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	tween_notif.tween_property(banner_notificacion, "modulate:a", 1.0, 0.2)
-	tween_notif.parallel().tween_property(banner_notificacion, "position:y", 105.0, 0.25)
-	tween_notif.tween_interval(1.8)
-	tween_notif.chain().tween_property(banner_notificacion, "modulate:a", 0.0, 0.3)
-	tween_notif.finished.connect(func(): banner_notificacion.visible = false)
+	actualizar_salas()

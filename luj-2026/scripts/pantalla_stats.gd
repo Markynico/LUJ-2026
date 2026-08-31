@@ -11,6 +11,8 @@ extends Control
 @export var alto_icono_reliquia : float = 64.0
 ##tamaño de fuente de las filas de stats
 @export var tamaño_fuente_stats : int = 38
+##fuente de las filas de stats
+@export var fuente_stats : Font = preload("uid://dwg47e0trev3j")
 
 @export_group("Nodos")
 @export var label_titulo : Label
@@ -39,6 +41,8 @@ func agregar_stat(nombre : String, valor : String) -> void:
 	var label_valor : Label = Label.new()
 	label_nombre.text = nombre
 	label_valor.text = valor
+	label_nombre.add_theme_font_override("font", fuente_stats)
+	label_valor.add_theme_font_override("font", fuente_stats)
 	label_nombre.add_theme_font_size_override("font_size", tamaño_fuente_stats)
 	label_valor.add_theme_font_size_override("font_size", tamaño_fuente_stats)
 	label_valor.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT

@@ -15,3 +15,6 @@ descripcion = "Los {rebobinar:icono} dan el triple de puntos.
 
 \"¿Qué se supone que es este artefacto?\""
 icono = ExtResource("2_rel")
+condicion_desbloqueo = "ovillos_rotos_de_tipo"
+cantidad_desbloqueo = 25
+ovillo_objetivo = ExtResource("3_rel")

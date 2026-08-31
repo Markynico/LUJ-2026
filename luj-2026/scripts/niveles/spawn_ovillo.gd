@@ -25,7 +25,7 @@ func _draw() -> void:
 func instanciar_ovillo() -> void:
 	if not escena_ovillo:
 		return
-	var tipo = elegir_ovillo()
+	var tipo : OvilloBase = ReliquiasManager.reemplazo_para(elegir_ovillo())
 	var ovillo : Ovillo= escena_ovillo.instantiate()
 	ovillo.tipo_ovillo = tipo
 	add_child(ovillo)

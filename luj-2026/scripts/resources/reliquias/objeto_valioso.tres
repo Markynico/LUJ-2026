@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="ReliquiaObjetoValioso" format=3 uid="uid://cwu013pqyv4wp"]
 
+[ext_resource type="Resource" uid="uid://oe7n6flqxgn6" path="res://scripts/resources/dificultades/dificultad_media.tres" id="1_8sfuv"]
 [ext_resource type="Script" uid="uid://500ygl8unvu8" path="res://scripts/reliquias/reliquia_objeto_valioso.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://oxa36ljbg4m1" path="res://assets/reliquias/objeto valioso.png" id="2_rel"]
 
@@ -11,3 +12,6 @@ descripcion = "Todos los ovillos dan el doble de puntos. Hay una pequeña probab
 
 \"Me parece que las cenizas de la abuela estaban acá...\""
 icono = ExtResource("2_rel")
+condicion_desbloqueo = "runs_ganadas_en_dificultad"
+cantidad_desbloqueo = 1
+dificultad_objetivo = ExtResource("1_8sfuv")

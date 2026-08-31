@@ -58,9 +58,14 @@ signal clickeada
 @export var tamaño_minimo_nombre : int = 24
 ##margen lateral minimo del nombre con el borde de la tarjeta
 @export var margen_nombre : float = 20.0
+##tamaño minimo al que se achica la rareza para no pisar el sello
+@export var tamaño_minimo_rareza : int = 14
+##ancho maximo del texto de rareza antes de achicarse, para no pisar el sello
+@export var ancho_maximo_rareza : float = 147.0
 
 var tamaño_base_descripcion : int = 0
 var tamaño_base_nombre : int = 0
+var tamaño_base_rareza : int = 0
 
 
 var borde_hover : Panel
@@ -71,6 +76,12 @@ var precio_actual : int = 0
 
 func _ready() -> void:
 	actualizar_tarjeta()
+	if label_descripcion:
+		label_descripcion.resized.connect(ajustar_fuente_descripcion)
+	if label_nombre:
+		label_nombre.resized.connect(ajustar_fuente_nombre)
+	if label_rareza:
+		label_rareza.resized.connect(ajustar_fuente_rareza)
 	if Engine.is_editor_hint():
 		return
 	crear_borde_hover()
@@ -141,6 +152,15 @@ func actualizar_tarjeta() -> void:
 		else:
 			label_descripcion.text = Resaltador.formatear(recurso.descripcion)
 		ajustar_fuente_descripcion.call_deferred()
+	if icono:
+		icono.texture = obtener_icono()
+	if label_tipo:
+		label_tipo.text = obtener_tipo()
+	if label_rareza and "rareza" in recurso:
+		label_rareza.text = Rareza.nombre_de(recurso.rareza)
+		label_rareza.add_theme_color_override("font_color", Rareza.color_de(recurso.rareza))
+		ajustar_fuente_rareza.call_deferred()
+	actualizar_color_borde()
 
 
 func ajustar_fuente_descripcion() -> void:
@@ -168,14 +188,20 @@ func ajustar_fuente_nombre() -> void:
 	while tamaño > tamaño_minimo_nombre and fuente.get_string_size(label_nombre.text, HORIZONTAL_ALIGNMENT_CENTER, -1, tamaño).x > label_nombre.size.x - margen_nombre * 2.0:
 		tamaño -= 1
 	label_nombre.add_theme_font_size_override("font_size", tamaño)
-	if icono:
-		icono.texture = obtener_icono()
-	if label_tipo:
-		label_tipo.text = obtener_tipo()
-	if label_rareza and "rareza" in recurso:
-		label_rareza.text = Rareza.nombre_de(recurso.rareza)
-		label_rareza.add_theme_color_override("font_color", Rareza.color_de(recurso.rareza))
-	actualizar_color_borde()
+
+
+func ajustar_fuente_rareza() -> void:
+	var fuente : Font
+	var tamaño : int
+	if not label_rareza or not is_inside_tree():
+		return
+	if tamaño_base_rareza == 0:
+		tamaño_base_rareza = label_rareza.get_theme_font_size("font_size")
+	fuente = label_rareza.get_theme_font("font")
+	tamaño = tamaño_base_rareza
+	while tamaño > tamaño_minimo_rareza and fuente.get_string_size(label_rareza.text, HORIZONTAL_ALIGNMENT_RIGHT, -1, tamaño).x > ancho_maximo_rareza:
+		tamaño -= 1
+	label_rareza.add_theme_font_size_override("font_size", tamaño)
 
 
 func obtener_tipo() -> String:

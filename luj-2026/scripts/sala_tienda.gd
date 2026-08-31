@@ -49,9 +49,7 @@ func poblar_ofertas() -> void:
 	for reliquia in Progreso.filtrar_desbloqueadas(pool_reliquias):
 		if not ReliquiasManager.obtenidas.has(reliquia):
 			reliquias.append(reliquia)
-	for comida in pool_comidas:
-		if comida:
-			comidas.append(comida)
+	comidas = Progreso.filtrar_desbloqueadas(pool_comidas)
 	armar_fila(fila_reliquias, elegir_oferta(reliquias, cantidad_reliquias))
 	armar_fila(fila_comidas, elegir_oferta(comidas, cantidad_comidas))
 

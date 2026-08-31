@@ -6,8 +6,10 @@
 [resource]
 script = ExtResource("1_rel")
 nombre = "Bola de Cristal"
-rareza = 1
+rareza = 2
 descripcion = "Las salidas del nivel se ven siempre.
 
 \"Reluciente como cabeza de pelado\""
 icono = ExtResource("1_phkcm")
+condicion_desbloqueo = "niveles_ganados"
+cantidad_desbloqueo = 50

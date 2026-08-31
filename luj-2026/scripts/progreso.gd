@@ -2,6 +2,7 @@ extends Node
 
 const RUTA_ARCHIVO : String = "user://progreso.cfg"
 const CARPETA_RELIQUIAS : String = "res://scripts/resources/reliquias"
+const CARPETA_COMIDAS : String = "res://scripts/resources"
 const SECCION_CONTADORES : String = "contadores"
 const SECCION_DESBLOQUEOS : String = "desbloqueos"
 
@@ -21,6 +22,9 @@ var contadores : Dictionary = {
 var ovillos_rotos_por_tipo : Dictionary = {}
 var runs_ganadas_por_rango : Dictionary = {}
 var reliquias_desbloqueadas : Array[String] = []
+var recursos_con_condicion : Array[Resource] = []
+var cache_condiciones_lista : bool = false
+var snapshot_run : Array[String] = []
 
 
 func _ready() -> void:
@@ -50,23 +54,85 @@ func acumular_run() -> void:
 	guardar()
 
 
-func revisar_desbloqueos() -> void:
+func cargar_recursos_con_condicion() -> void:
 	var recurso : Resource
+	if cache_condiciones_lista:
+		return
+	cache_condiciones_lista = true
+	for carpeta in [CARPETA_RELIQUIAS, CARPETA_COMIDAS]:
+		for archivo in DirAccess.get_files_at(carpeta):
+			if archivo.get_extension() != "tres":
+				continue
+			recurso = load(carpeta.path_join(archivo))
+			if not (recurso is Reliquia or recurso is PelotitaBase):
+				continue
+			if recurso.condicion_desbloqueo.is_empty() or recurso.condicion_desbloqueo == "Ninguna":
+				continue
+			recursos_con_condicion.append(recurso)
+
+
+func empezar_run() -> void:
+	cargar_recursos_con_condicion()
+	for recurso in recursos_con_condicion:
+		esta_desbloqueada(recurso)
+	snapshot_run = reliquias_desbloqueadas.duplicate()
+
+
+func revisar_desbloqueos() -> void:
 	var ya_desbloqueadas : Array[String] = reliquias_desbloqueadas.duplicate()
-	for archivo in DirAccess.get_files_at(CARPETA_RELIQUIAS):
-		if archivo.get_extension() != "tres":
+	cargar_recursos_con_condicion()
+	for recurso in recursos_con_condicion:
+		if not ya_desbloqueadas.has(recurso.resource_path) and esta_desbloqueada(recurso):
+			Notificaciones.mostrar_desbloqueo(recurso)
+
+
+func revisar_desbloqueos_en_vivo() -> void:
+	var hubo_nuevas : bool = false
+	if not EstadisticasRun.run_activa:
+		return
+	for recurso in recursos_con_condicion:
+		if reliquias_desbloqueadas.has(recurso.resource_path):
 			continue
-		recurso = load(CARPETA_RELIQUIAS.path_join(archivo))
-		if recurso is Reliquia and not ya_desbloqueadas.has(recurso.resource_path) and esta_desbloqueada(recurso):
-			if not (recurso.condicion_desbloqueo.is_empty() or recurso.condicion_desbloqueo == "Ninguna"):
-				Notificaciones.mostrar_desbloqueo(recurso)
+		if valor_condicion(recurso) + parcial_condicion(recurso) >= recurso.cantidad_desbloqueo:
+			reliquias_desbloqueadas.append(recurso.resource_path)
+			Notificaciones.mostrar_desbloqueo(recurso)
+			hubo_nuevas = true
+	if hubo_nuevas:
+		guardar()
+
+
+func parcial_condicion(recurso : Resource) -> int:
+	match recurso.condicion_desbloqueo:
+		"niveles_ganados":
+			return EstadisticasRun.niveles_ganados
+		"niveles_perdidos":
+			return EstadisticasRun.niveles_perdidos
+		"ovillos_rotos":
+			return EstadisticasRun.ovillos_rotos
+		"ovillos_rotos_de_tipo":
+			if not recurso.ovillo_objetivo:
+				return 0
+			return EstadisticasRun.ovillos_rotos_por_tipo.get(EstadisticasRun.clave_de_ovillo(recurso.ovillo_objetivo), 0)
+		"bolas_disparadas":
+			return EstadisticasRun.bolas_disparadas
+		"monedas_conseguidas":
+			return EstadisticasRun.monedas_conseguidas
+		"items_comprados":
+			return EstadisticasRun.comidas_compradas + EstadisticasRun.reliquias_adquiridas.size()
+		"reliquias_adquiridas":
+			return EstadisticasRun.reliquias_adquiridas.size()
+		"curas_compradas":
+			return EstadisticasRun.curas_compradas
+		"reliquias_de_loot":
+			return EstadisticasRun.reliquias_de_loot
+	return 0
 
 
 func valor_de(contador : String) -> int:
 	return contadores.get(contador, 0)
 
 
-func esta_desbloqueada(reliquia : Reliquia) -> bool:
+func esta_desbloqueada(reliquia : Resource) -> bool:
 	if reliquia.condicion_desbloqueo.is_empty() or reliquia.condicion_desbloqueo == "Ninguna":
 		return true
 	if reliquias_desbloqueadas.has(reliquia.resource_path):
@@ -94,7 +160,7 @@ const TEXTOS_CONDICION : Dictionary = {
 }
 
 
-func descripcion_condicion(reliquia : Reliquia) -> String:
+func descripcion_condicion(reliquia : Resource) -> String:
 	var plantilla : String = TEXTOS_CONDICION.get(reliquia.condicion_desbloqueo, "")
 	if plantilla.is_empty():
 		return ""
@@ -113,7 +179,7 @@ func nombre_corto_ovillo(tipo : OvilloBase) -> String:
 	return nombre
 
 
-func valor_condicion(reliquia : Reliquia) -> int:
+func valor_condicion(reliquia : Resource) -> int:
 	if reliquia.condicion_desbloqueo == "ovillos_rotos_de_tipo":
 		if not reliquia.ovillo_objetivo:
 			return 0
@@ -132,7 +198,15 @@ func runs_ganadas_desde(rango_minimo : int) -> int:
 
 
 func filtrar_desbloqueadas(reliquias : Array) -> Array:
-	return reliquias.filter(func(reliquia : Reliquia) -> bool: return reliquia and esta_desbloqueada(reliquia))
+	if EstadisticasRun.run_activa:
+		return reliquias.filter(func(reliquia : Resource) -> bool: return reliquia and disponible_en_run(reliquia))
+	return reliquias.filter(func(reliquia : Resource) -> bool: return reliquia and esta_desbloqueada(reliquia))
+
+
+func disponible_en_run(recurso : Resource) -> bool:
+	if recurso.condicion_desbloqueo.is_empty() or recurso.condicion_desbloqueo == "Ninguna":
+		return true
+	return snapshot_run.has(recurso.resource_path)
 
 
 func guardar() -> void:

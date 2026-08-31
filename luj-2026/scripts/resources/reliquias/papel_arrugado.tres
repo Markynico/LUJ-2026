@@ -6,7 +6,8 @@
 [resource]
 script = ExtResource("1_rel")
 nombre = "Papel Arrugado"
-descripcion = "Muestra qué salas hay tras las salidas del nivel, sin decir cuál es cuál.
-
-\"Seguro no tenía anotado nada importante\""
+rareza = 1
+descripcion = "\"Seguro no tenía anotado nada importante...\""
 icono = ExtResource("1_x4tn5")
+condicion_desbloqueo = "niveles_ganados"
+cantidad_desbloqueo = 10

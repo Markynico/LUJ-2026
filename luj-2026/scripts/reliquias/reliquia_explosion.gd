@@ -7,6 +7,18 @@ extends Reliquia
 @export var probabilidad : float = 100.0
 ##probabilidad en porcentaje de perder una vida cuando explota una bomba
 @export var probabilidad_perder_vida : float = 0.0
+##ovillo que se sustituye al spawnear, opcional
+@export var ovillo_a_reemplazar : OvilloBase
+##ovillo que aparece en lugar del reemplazado
+@export var ovillo_reemplazo : OvilloBase
+
+
+func reemplazar_ovillo(tipo_ovillo : OvilloBase) -> OvilloBase:
+	if not ovillo_a_reemplazar or not ovillo_reemplazo:
+		return tipo_ovillo
+	if tipo_ovillo == ovillo_a_reemplazar or tipo_ovillo.contar_como == ovillo_a_reemplazar:
+		return ovillo_reemplazo
+	return tipo_ovillo
 
 
 func al_explotar(explosion : Explosion) -> void:

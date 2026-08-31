@@ -19,6 +19,7 @@ enum Tipo {
 	WHOOSH_CAMARA_RAPIDO,
 	MICHINKO_PURR,
 	MICHINKO_BLINK,
+	EXPLOSION_GRANDE,
 }
 
 ##tipo de efecto con el que se pide desde el codigo

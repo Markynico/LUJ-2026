@@ -14,4 +14,13 @@ func descripcion_para_mostrar() -> String:
 	if nombres.is_empty():
 		return descripcion
 	nombres.sort()
+	for indice in nombres.size():
+		nombres[indice] = colorear_nombre(nombres[indice])
 	return descripcion + "\n\nSalidas: " + ", ".join(nombres)
+
+
+func colorear_nombre(nombre : String) -> String:
+	for tipo in TipoDeSala.NOMBRES:
+		if TipoDeSala.NOMBRES[tipo].capitalize() == nombre:
+			return "[color=#%s]%s[/color]" % [Color(TipoDeSala.COLORES[tipo], 1.0).to_html(false), nombre]
+	return nombre

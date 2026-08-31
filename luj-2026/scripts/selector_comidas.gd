@@ -25,9 +25,12 @@ func _ready() -> void:
 	elegir_comidas_aleatorias() #dsp le puedo agregar q se tenga q verificar si ya tenia tal comida para no mostrarla (?
 
 func elegir_comidas_aleatorias():
+	var desbloqueadas : Array = Progreso.filtrar_desbloqueadas(Global.bolas_de_pelo_existentes)
 	limpiar_comidas_anteriores()
+	if desbloqueadas.is_empty():
+		return
 	for comida in range(comidas_a_mostrar): #para solo elegir 3 comidas
-		var nueva_comida = Global.bolas_de_pelo_existentes.pick_random()
+		var nueva_comida = desbloqueadas.pick_random()
 		crear_panel_comida(nueva_comida)
 
 

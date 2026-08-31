@@ -55,13 +55,13 @@ func crear_tarjeta(grilla : GridContainer, item : Resource) -> void:
 	tarjeta.recurso = item
 	envoltura.add_child(tarjeta)
 	grilla.add_child(envoltura)
-	if item is Reliquia and not Progreso.esta_desbloqueada(item):
+	if "condicion_desbloqueo" in item and not Progreso.esta_desbloqueada(item):
 		bloquear_tarjeta(envoltura, tarjeta, item)
 	else:
 		tarjeta.clickeada.connect(al_click_tarjeta.bind(tarjeta))
 
 
-func bloquear_tarjeta(envoltura : Control, tarjeta : Tarjeta, reliquia : Reliquia) -> void:
+func bloquear_tarjeta(envoltura : Control, tarjeta : Tarjeta, reliquia : Resource) -> void:
 	var etiqueta : Label = Label.new()
 	tarjeta.modulate = color_bloqueada
 	tarjeta.hover_activado = false

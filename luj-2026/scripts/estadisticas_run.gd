@@ -41,6 +41,7 @@ func empezar_run() -> void:
 	reliquias_de_loot = 0
 	dificultad = GameManager.dificultad_actual
 	gano_la_run = false
+	Progreso.empezar_run()
 
 
 func terminar_run(gano : bool) -> void:
@@ -64,6 +65,7 @@ func registrar_nivel(puntos : int, gano : bool) -> void:
 		niveles_ganados += 1
 	else:
 		niveles_perdidos += 1
+	Progreso.revisar_desbloqueos_en_vivo()
 
 
 func registrar_monedas(cambio : int) -> void:
@@ -71,6 +73,7 @@ func registrar_monedas(cambio : int) -> void:
 		return
 	if cambio > 0:
 		monedas_conseguidas += cambio
+		Progreso.revisar_desbloqueos_en_vivo()
 	else:
 		monedas_gastadas -= cambio
 
@@ -78,6 +81,7 @@ func registrar_monedas(cambio : int) -> void:
 func registrar_comida_comprada() -> void:
 	if run_activa:
 		comidas_compradas += 1
+		Progreso.revisar_desbloqueos_en_vivo()
 
 
 func registrar_ovillo_roto(tipo : OvilloBase = null) -> void:
@@ -88,27 +92,34 @@ func registrar_ovillo_roto(tipo : OvilloBase = null) -> void:
 	if tipo:
 		clave = clave_de_ovillo(tipo)
 		ovillos_rotos_por_tipo[clave] = ovillos_rotos_por_tipo.get(clave, 0) + 1
+	Progreso.revisar_desbloqueos_en_vivo()
 
 
 static func clave_de_ovillo(tipo : OvilloBase) -> String:
+	if tipo.contar_como:
+		return tipo.contar_como.resource_path.get_file().get_basename()
 	return tipo.resource_path.get_file().get_basename()
 
 
 func registrar_bola_disparada() -> void:
 	if run_activa:
 		bolas_disparadas += 1
+		Progreso.revisar_desbloqueos_en_vivo()
 
 
 func registrar_cura_comprada() -> void:
 	if run_activa:
 		curas_compradas += 1
+		Progreso.revisar_desbloqueos_en_vivo()
 
 
 func registrar_reliquia_loot() -> void:
 	if run_activa:
 		reliquias_de_loot += 1
+		Progreso.revisar_desbloqueos_en_vivo()
 
 
 func al_obtener_reliquia(reliquia : Reliquia) -> void:
 	if run_activa:
 		reliquias_adquiridas.append(reliquia)
+		Progreso.revisar_desbloqueos_en_vivo()

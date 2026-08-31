@@ -196,10 +196,12 @@ func perder_vida(cantidad : int = 1) -> void:
 	vidas_guardadas = vidas_actuales
 	vidas_cambiadas.emit(vidas_actuales, vidas_maximas)
 	
-	if vidas_actuales <= 0:
+	if vidas_actuales <= 0 and estado_actual != EstadoDeJuego.GAME_OVER:
 		estado_actual = EstadoDeJuego.GAME_OVER
 		game_over.emit()
 		print("GAME OVER - Sin vidas restantes")
+		vidas_guardadas = vidas_maximas
+		get_tree().create_timer(2.0).timeout.connect(volver_al_menu)
 
 func ganar_vida(cantidad : int = 1) -> void:
 	vidas_actuales = clampi(vidas_actuales + cantidad, 0, vidas_maximas)
@@ -295,10 +297,6 @@ func finalizar_nivel(tipo_sala : int = -1) -> void:
 				get_tree().create_timer(1.5).timeout.connect(func():
 					reiniciar_nivel_actual()
 				)
-		else:
-			print("GAME OVER - Volviendo al menu principal...")
-			vidas_guardadas = vidas_maximas
-			get_tree().create_timer(2.0).timeout.connect(volver_al_menu)
 
 func fallar_por_atasco() -> void:
 	if estado_actual != EstadoDeJuego.LANZANDO_GATO or finalizando:
@@ -309,9 +307,6 @@ func fallar_por_atasco() -> void:
 	nivel_completado.emit(false)
 	if vidas_actuales > 0:
 		get_tree().create_timer(1.5).timeout.connect(reiniciar_nivel_actual)
-	else:
-		vidas_guardadas = vidas_maximas
-		get_tree().create_timer(2.0).timeout.connect(volver_al_menu)
 
 
 func al_rebobinar_rebote ()-> void:
