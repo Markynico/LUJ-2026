@@ -18,12 +18,21 @@
 [ext_resource type="PackedScene" uid="uid://che0rryy8c7cq" path="res://escenas/gato.tscn" id="15_xxdvs"]
 [ext_resource type="PackedScene" uid="uid://bh6v3wn4vlcem" path="res://escenas/componentes/cuadro_ui.tscn" id="17_lemrg"]
 [ext_resource type="Theme" uid="uid://bjkvjfhj8dr8y" path="res://themes/theme_ui_general.tres" id="18_xxdvs"]
+[ext_resource type="Script" uid="uid://colmyx75iuvr3" path="res://scripts/dificultad_run.gd" id="19_dif"]
+[ext_resource type="Resource" uid="uid://0m7rprypwofd" path="res://scripts/resources/dificultades/dificultad_facil.tres" id="20_dfac"]
+[ext_resource type="Resource" uid="uid://oe7n6flqxgn6" path="res://scripts/resources/dificultades/dificultad_media.tres" id="21_dmed"]
+[ext_resource type="Resource" uid="uid://bwtp6rro6y6j3" path="res://scripts/resources/dificultades/dificultad_dificil.tres" id="22_ddif"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jhh3k"]
 
-[node name="Menu" type="Node2D" unique_id=1421157520 node_paths=PackedStringArray("camara", "foco_seleccion", "boton_jugar", "boton_coleccion", "boton_opciones", "boton_salir", "panel_info", "label_nombre", "label_descripcion", "boton_confirmar", "boton_volver", "brillo_seleccion", "opciones")]
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_7nkol"]
+color = Color(0.43137255, 0.38039216, 0.23529412, 1)
+thickness = 3
+
+[node name="Menu" type="Node2D" unique_id=1421157520 node_paths=PackedStringArray("camara", "foco_seleccion", "boton_jugar", "boton_coleccion", "boton_opciones", "boton_salir", "panel_info", "label_nombre", "label_descripcion", "boton_confirmar", "boton_volver", "brillo_seleccion", "contenedor_dificultades", "opciones")]
 script = ExtResource("1_menu")
 gatos = Array[ExtResource("12_dgato")]([ExtResource("13_michi")])
+dificultades = Array[ExtResource("19_dif")]([ExtResource("20_dfac"), ExtResource("21_dmed"), ExtResource("22_ddif")])
 zoom_seleccion = Vector2(3.5, 3.5)
 camara = NodePath("Camera2D")
 foco_seleccion = NodePath("Gato/FocoSeleccion")
@@ -34,9 +43,10 @@ boton_salir = NodePath("BotonEstandarteSalir")
 panel_info = NodePath("UISeleccion/CuadroUI")
 label_nombre = NodePath("UISeleccion/CuadroUI/MarginContainer/Contenido/LabelNombre")
 label_descripcion = NodePath("UISeleccion/CuadroUI/MarginContainer/Contenido/LabelDescripcion")
-boton_confirmar = NodePath("UISeleccion/CuadroUI/MarginContainer/Contenido/Botones/BotonConfirmar")
-boton_volver = NodePath("UISeleccion/CuadroUI/MarginContainer/Contenido/Botones/BotonVolver")
+boton_confirmar = NodePath("UISeleccion/CuadroUI/Botones/BotonConfirmar")
+boton_volver = NodePath("UISeleccion/CuadroUI/Botones/BotonVolver")
 brillo_seleccion = NodePath("RecorteBrillo/BrilloSeleccion")
+contenedor_dificultades = NodePath("UISeleccion/CuadroUI/MarginContainer/Contenido/ContenedorDificultades")
 opciones = NodePath("Opciones")
 
 [node name="Fondo" type="TextureRect" parent="." unique_id=660928265]
@@ -150,9 +160,9 @@ visible = false
 
 [node name="CuadroUI" parent="UISeleccion" unique_id=280403763 instance=ExtResource("17_lemrg")]
 offset_left = 981.0
-offset_top = 114.0
+offset_top = 62.0
 offset_right = 1841.0
-offset_bottom = 834.0
+offset_bottom = 966.0
 color_marco = Color(0.43256575, 0.3823087, 0.23654541, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="UISeleccion/CuadroUI" unique_id=1404693134]
@@ -165,7 +175,7 @@ grow_vertical = 2
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 80
 theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 90
+theme_override_constants/margin_bottom = 230
 
 [node name="Contenido" type="VBoxContainer" parent="UISeleccion/CuadroUI/MarginContainer" unique_id=1134529845]
 layout_mode = 2
@@ -181,23 +191,49 @@ horizontal_alignment = 1
 
 [node name="LabelDescripcion" type="Label" parent="UISeleccion/CuadroUI/MarginContainer/Contenido" unique_id=65272968]
 layout_mode = 2
-size_flags_vertical = 3
 theme = ExtResource("18_xxdvs")
 theme_override_font_sizes/font_size = 43
 text = "Descripcion"
 autowrap_mode = 2
 
-[node name="Botones" type="HBoxContainer" parent="UISeleccion/CuadroUI/MarginContainer/Contenido" unique_id=661753733]
+[node name="SeparadorDificultad" type="HSeparator" parent="UISeleccion/CuadroUI/MarginContainer/Contenido" unique_id=1090412815]
 layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_7nkol")
+
+[node name="LabelDificultad" type="Label" parent="UISeleccion/CuadroUI/MarginContainer/Contenido" unique_id=1090412814]
+layout_mode = 2
+theme = ExtResource("18_xxdvs")
+theme_override_font_sizes/font_size = 40
+text = "Dificultad:"
+horizontal_alignment = 1
+
+[node name="ContenedorDificultades" type="HBoxContainer" parent="UISeleccion/CuadroUI/MarginContainer/Contenido" unique_id=1090412812]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Botones" type="HBoxContainer" parent="UISeleccion/CuadroUI" unique_id=661753733]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -170.0
+offset_bottom = -90.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_constants/separation = 157
 alignment = 1
 
-[node name="BotonVolver" type="Button" parent="UISeleccion/CuadroUI/MarginContainer/Contenido/Botones" unique_id=1153163657]
+[node name="BotonVolver" type="Button" parent="UISeleccion/CuadroUI/Botones" unique_id=1153163657]
 layout_mode = 2
+size_flags_vertical = 8
 theme = ExtResource("18_xxdvs")
 text = "Volver"
 
-[node name="BotonConfirmar" type="Button" parent="UISeleccion/CuadroUI/MarginContainer/Contenido/Botones" unique_id=1808989309]
+[node name="BotonConfirmar" type="Button" parent="UISeleccion/CuadroUI/Botones" unique_id=1808989309]
 layout_mode = 2
+size_flags_vertical = 8
 theme = ExtResource("18_xxdvs")
 text = "Confirmar"

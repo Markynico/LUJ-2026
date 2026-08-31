@@ -29,6 +29,7 @@ func _ready() -> void:
 	if sprite_desactivado:
 		sprite_desactivado.hide()
 	if tipo_ovillo:
+		scale = Vector2.ONE * tipo_ovillo.escala
 		if sprite_normal:
 			if tipo_ovillo.sprite:
 				sprite_normal.texture = tipo_ovillo.sprite
@@ -109,7 +110,7 @@ func reactivar_ovillo() -> void:
 
 func explotar(nodo_explosion : Explosion): #lo llamo en el EfectoExplosion
 	if ReliquiasManager.explosion_instantanea:
-		AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.EXPLOSION)
+		AudioManager.reproducir_sfx(tipo_ovillo.efecto_al_explotar)
 		nodo_explosion.activar_explosion()
 		return
 	var reproductor_mecha : AudioStreamPlayer = AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.MECHA)
@@ -122,7 +123,7 @@ func explotar(nodo_explosion : Explosion): #lo llamo en el EfectoExplosion
 	sprite_normal.hide() #los vuelvo a esconder como si se hubiera desactivado recien ahora
 	sprite_desactivado.show()
 	AudioManager.detener_sfx(reproductor_mecha)
-	AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.EXPLOSION)
+	AudioManager.reproducir_sfx(tipo_ovillo.efecto_al_explotar)
 	nodo_explosion.activar_explosion()
 	tween.kill()
 
@@ -130,13 +131,19 @@ func duplicar_recompensas() -> void: #la llama efecto_ovillo_catnip
 	if !activado:
 		return
 	#print("MULTIPLICÓ")
-	multiplicador = 2
-	
+	if ReliquiasManager.catnip_stackeable:
+		multiplicador *= 2
+	else:
+		multiplicador = 2
+
 
 func fin_duplicar() -> void:
 	if !activado:
 		return
-	multiplicador = 1
+	if ReliquiasManager.catnip_stackeable:
+		multiplicador = maxi(1, multiplicador / 2)
+	else:
+		multiplicador = 1
 
 func obtener_puntaje () -> int:
 	if not tipo_ovillo:
@@ -147,7 +154,7 @@ func obtener_puntaje () -> int:
 func obtener_monedas () -> int:
 	if not tipo_ovillo:
 		return 0
-	return tipo_ovillo.cant_monedas * multiplicador
+	return roundi(tipo_ovillo.cant_monedas * multiplicador * ReliquiasManager.multiplicador_monedas_para(tipo_ovillo))
 
 func congelar() -> void:
 	pass
@@ -161,14 +168,16 @@ func animacion_titilar(shader_real : ShaderMaterial):
 	tween.tween_property(shader_real,"shader_parameter/time",1.0,1)
 
 func convertir_explosivo(ovillo : Ovillo, efecto_bomba : OvilloBase) -> void:
-	if ovillo.tipo_ovillo == efecto_bomba:
+	var bomba : OvilloBase = ReliquiasManager.reemplazo_para(efecto_bomba)
+	if ovillo.tipo_ovillo == bomba:
 		return
 	sprite_decoracion.show()
-	sprite_decoracion.texture = efecto_bomba.decoracion #vemos si le agrega la mecha de explosivo
-	ovillo.cambiar_tipo(efecto_bomba)
+	sprite_decoracion.texture = bomba.decoracion #vemos si le agrega la mecha de explosivo
+	ovillo.cambiar_tipo(bomba)
 
 func cambiar_tipo(nuevo_tipo : OvilloBase) -> void:
 	reactivar_ovillo()
 	tipo_ovillo = nuevo_tipo
+	scale = Vector2.ONE * tipo_ovillo.escala
 	if sprite_normal and tipo_ovillo.sprite:
 		sprite_normal.texture = tipo_ovillo.sprite

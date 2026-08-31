@@ -5,6 +5,10 @@ signal reliquia_obtenida(reliquia : Reliquia)
 var obtenidas : Array[Reliquia] = []
 var game_manager_actual : GameManager
 var explosion_instantanea : bool = false
+var catnip_stackeable : bool = false
+var opciones_loot : int = 1
+var salidas_reveladas : bool = false
+var bolas_atraviesan : bool = false
 var ultima_ofrecida : Reliquia
 
 
@@ -34,3 +38,60 @@ func multiplicador_puntos_para(tipo_ovillo : OvilloBase) -> float:
 	for reliquia in obtenidas:
 		multiplicador *= reliquia.multiplicador_puntos(tipo_ovillo)
 	return multiplicador
+
+
+func multiplicador_monedas_para(tipo_ovillo : OvilloBase) -> float:
+	var multiplicador : float = 1.0
+	for reliquia in obtenidas:
+		multiplicador *= reliquia.multiplicador_monedas(tipo_ovillo)
+	return multiplicador
+
+
+func reemplazo_para(tipo_ovillo : OvilloBase) -> OvilloBase:
+	var resultado : OvilloBase = tipo_ovillo
+	for reliquia in obtenidas:
+		resultado = reliquia.reemplazar_ovillo(resultado)
+	return resultado
+
+
+func multiplicador_spawn_para(tipo_ovillo : OvilloBase) -> float:
+	var multiplicador : float = 1.0
+	for reliquia in obtenidas:
+		multiplicador *= reliquia.multiplicador_spawn(tipo_ovillo)
+	return multiplicador
+
+
+func descuento_tienda() -> float:
+	var descuento : float = 0.0
+	for reliquia in obtenidas:
+		descuento = maxf(descuento, reliquia.descuento_tienda())
+	return descuento
+
+
+func multiplicador_rebote() -> float:
+	var multiplicador : float = 1.0
+	for reliquia in obtenidas:
+		multiplicador *= reliquia.multiplicador_rebote()
+	return multiplicador
+
+
+func multiplicador_dificultad() -> float:
+	var multiplicador : float = 1.0
+	for reliquia in obtenidas:
+		multiplicador *= reliquia.multiplicador_dificultad()
+	return multiplicador
+
+
+func al_explotar(explosion : Explosion) -> void:
+	for reliquia in obtenidas:
+		reliquia.al_explotar(explosion)
+
+
+func al_rebotar() -> void:
+	for reliquia in obtenidas.duplicate():
+		reliquia.al_rebotar(game_manager_actual)
+
+
+func al_disparar() -> void:
+	for reliquia in obtenidas.duplicate():
+		reliquia.al_disparar(game_manager_actual)

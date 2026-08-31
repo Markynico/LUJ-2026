@@ -11,3 +11,5 @@ descripcion = "Permite mover a Michinko con A y D.
 
 “Juega más con la caja en la que vino que con el rascador en sí...”"
 icono = ExtResource("1_ddxfj")
+condicion_desbloqueo = "runs_ganadas"
+cantidad_desbloqueo = 1

@@ -82,6 +82,8 @@ func colocar_salidas() -> void:
 		salida.global_position = divisiones.to_global(Vector2(centros[i], 0))
 		salida.elegida.connect(al_elegir_salida)
 		salidas.append(salida)
+	if ReliquiasManager.salidas_reveladas:
+		mostrar_salidas()
 
 
 func elegir_tipos(cantidad : int) -> Array[TipoDeSala.Tipo]:

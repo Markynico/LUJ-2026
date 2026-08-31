@@ -100,6 +100,8 @@ func animar(destino : Vector2, escala : Vector2, alpha : float) -> void:
 
 func entrar_nodo_retorno() -> void:
 	var tween_retorno : Tween
+	if not is_instance_valid(nodo_retorno):
+		return
 	if not nodo_retorno or not con_accion:
 		if nodo_retorno:
 			nodo_retorno.show()
@@ -112,14 +114,26 @@ func entrar_nodo_retorno() -> void:
 	tween_retorno.tween_property(nodo_retorno, "position", nodo_retorno.position - Vector2(40.0, 0.0), 0.25)
 
 
+func cerrar_inmediato() -> void:
+	if not tarjeta_actual:
+		return
+	if tween:
+		tween.kill()
+	terminar_cierre()
+
+
 func terminar_cierre() -> void:
 	var tarjeta : Tarjeta = tarjeta_actual
 	if not tarjeta:
 		return
 	remove_child(tarjeta)
-	padre_original.add_child(tarjeta)
-	padre_original.move_child(tarjeta, indice_original)
-	tarjeta.position = posicion_local_original
+	if is_instance_valid(padre_original):
+		padre_original.add_child(tarjeta)
+		padre_original.move_child(tarjeta, indice_original)
+		tarjeta.position = posicion_local_original
+		tarjeta.scale = escala_original
+	else:
+		tarjeta.queue_free()
 	tarjeta.hover_activado = true
 	boton_accion.scale = Vector2.ONE
 	hide()

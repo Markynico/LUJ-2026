@@ -7,6 +7,8 @@ extends Node2D
 @export_file("*.tscn") var escena_coleccion : String = "res://escenas/coleccion.tscn"
 ##gatos disponibles para elegir
 @export var gatos : Array[DatosGato]
+##dificultades entre las que se elige antes de la run
+@export var dificultades : Array[DificultadRun]
 
 @export_group("Camara")
 ##zoom de la camara durante la seleccion de gato
@@ -34,6 +36,15 @@ extends Node2D
 @export var boton_volver : Button
 @export var brillo_seleccion : ColorRect
 
+@export_group("Seleccion de dificultad")
+@export var contenedor_dificultades : BoxContainer
+##alto en pixeles de los botones de dificultad, el ancho sale de la proporcion del icono
+@export var tamaño_boton_dificultad : float = 110.0
+##grosor del contorno de la dificultad seleccionada
+@export var grosor_borde_dificultad : float = 5.0
+##shader que dibuja el contorno siguiendo el sprite
+@export var shader_contorno : Shader = preload("res://scripts/shaders/contorno_seleccion.gdshader")
+
 @export_group("Opciones")
 @export var opciones : Opciones
 
@@ -45,6 +56,8 @@ var tween : Tween
 var tween_panel : Tween
 var reproductor_purr : Node
 var tween_purr : Tween
+var dificultad_elegida : DificultadRun
+var botones_dificultad : Array[Button] = []
 
 
 func _ready() -> void:
@@ -59,7 +72,45 @@ func _ready() -> void:
 	boton_salir.pressed.connect(salir)
 	boton_confirmar.pressed.connect(confirmar)
 	boton_volver.pressed.connect(cerrar_seleccion)
+	armar_panel_dificultad()
 	mostrar_gato()
+
+
+func armar_panel_dificultad() -> void:
+	var boton : Button
+	if not contenedor_dificultades:
+		return
+	for dificultad in dificultades:
+		if not dificultad:
+			continue
+		boton = Button.new()
+		boton.icon = dificultad.icono
+		boton.expand_icon = true
+		boton.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		boton.custom_minimum_size = Vector2(tamaño_boton_dificultad * dificultad.icono.get_width() / dificultad.icono.get_height(), tamaño_boton_dificultad) * dificultad.escala_icono if dificultad.icono else Vector2.ONE * tamaño_boton_dificultad
+		boton.material = ShaderMaterial.new()
+		boton.material.shader = shader_contorno
+		boton.material.set_shader_parameter("grosor", grosor_borde_dificultad)
+		for nombre_estilo in ["normal", "hover", "pressed", "focus"]:
+			boton.add_theme_stylebox_override(nombre_estilo, StyleBoxEmpty.new())
+		aplicar_borde_dificultad(boton, Color.TRANSPARENT)
+		boton.pressed.connect(elegir_dificultad.bind(dificultad, boton))
+		contenedor_dificultades.add_child(boton)
+		botones_dificultad.append(boton)
+	if not botones_dificultad.is_empty():
+		var indice_medio : int = mini(1, botones_dificultad.size() - 1)
+		elegir_dificultad(dificultades[indice_medio], botones_dificultad[indice_medio])
+
+
+func elegir_dificultad(dificultad : DificultadRun, boton : Button) -> void:
+	dificultad_elegida = dificultad
+	for otro in botones_dificultad:
+		aplicar_borde_dificultad(otro, Color.TRANSPARENT)
+	aplicar_borde_dificultad(boton, dificultad.color_seleccion)
+
+
+func aplicar_borde_dificultad(boton : Button, color : Color) -> void:
+	boton.material.set_shader_parameter("color_borde", color)
 
 
 func mostrar_gato() -> void:
@@ -96,6 +147,7 @@ func confirmar() -> void:
 	detener_purr()
 	if not gatos.is_empty():
 		Global.gato_elegido = gatos[gato_actual]
+	GameManager.dificultad_actual = dificultad_elegida
 	Transicion.cambiar_escena(escena_juego)
 
 

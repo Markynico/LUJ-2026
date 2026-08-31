@@ -19,6 +19,9 @@ static func color_de(nivel : Nivel) -> Color:
 
 static func precio_de(item : Resource) -> int:
 	var tabla : Array[int] = PRECIOS_COMIDAS
+	var multiplicador : float = 1.0
 	if item is Reliquia:
 		tabla = PRECIOS_RELIQUIAS
-	return tabla[clampi(item.rareza, 0, tabla.size() - 1)]
+	if GameManager.dificultad_actual:
+		multiplicador = GameManager.dificultad_actual.multiplicador_precios
+	return roundi(tabla[clampi(item.rareza, 0, tabla.size() - 1)] * multiplicador)

@@ -13,3 +13,9 @@ const NOMBRES := {
 	Tipo.TIENDA: "TIENDA",
 	Tipo.LOOT: "LOOT",
 }
+
+const ICONOS := {
+	Tipo.NORMAL: preload("uid://3wnyoemdmxtx"),
+	Tipo.TIENDA: preload("uid://dl56bloo3lch3"),
+	Tipo.LOOT: preload("uid://bbmh6ucjcwp1i"),
+}

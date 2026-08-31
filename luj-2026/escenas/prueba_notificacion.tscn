@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://knbhby5udbu8"]
+
+[sub_resource type="GDScript" id="GDScript_prueba"]
+script/source = "extends Node
+
+func _ready() -> void:
+	var carpeta : String = \"res://scripts/resources/reliquias\"
+	var recurso : Resource
+	for archivo in DirAccess.get_files_at(carpeta):
+		if archivo.get_extension() != \"tres\":
+			continue
+		recurso = load(carpeta.path_join(archivo))
+		if recurso is Reliquia and recurso.icono:
+			Notificaciones.mostrar_desbloqueo(recurso)
+"
+
+[node name="PruebaNotificacion" type="Node" unique_id=1260031791]
+script = SubResource("GDScript_prueba")

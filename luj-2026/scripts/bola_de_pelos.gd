@@ -46,6 +46,25 @@ func _ready() -> void:
 	
 	for efecto in tipo_pelotita.efectos:
 		efecto.al_crearse(self)
+	if ReliquiasManager.bolas_atraviesan:
+		activar_fantasma()
+
+
+func activar_fantasma() -> void:
+	var area : Area2D = Area2D.new()
+	var colision : CollisionShape2D = CollisionShape2D.new()
+	collision_mask &= ~2
+	colision.shape = $CollisionShape2D.shape
+	area.collision_layer = 0
+	area.collision_mask = 2
+	area.body_entered.connect(al_atravesar_ovillo)
+	area.add_child(colision)
+	add_child(area)
+
+
+func al_atravesar_ovillo(body : Node) -> void:
+	if body is Ovillo:
+		body.recibir_impacto(self)
 
 func normal_de_contacto(objeto : Node2D) -> Vector2:
 	var estado : PhysicsDirectBodyState2D = PhysicsServer2D.body_get_direct_state(get_rid())
@@ -95,6 +114,7 @@ func duplicar_pelotita():
 func sonido_rebote():
 	var pitch_extra : float = minf(contador_rebotes * incremento_pitch, pitch_extra_maximo)
 	contador_rebotes += 1 #pq el sonido de rebote suma contador ?
+	ReliquiasManager.al_rebotar()
 	AudioManager.reproducir_sfx_en(EfectoDeSonido.Tipo.REBOTE, global_position, pitch_extra)
 
 

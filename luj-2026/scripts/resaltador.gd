@@ -53,9 +53,11 @@ static func reemplazo(coincidencia : RegExMatch) -> String:
 
 static func etiqueta_icono(ruta : String) -> String:
 	var textura : Texture2D = load(ruta)
+	var region : Rect2i
 	var alto : int = TAMAÑO_ICONO
 	if not textura:
 		return ""
-	if textura.get_width() > 0:
-		alto = roundi(TAMAÑO_ICONO * float(textura.get_height()) / float(textura.get_width()))
-	return "[img=%dx%d]%s[/img] " % [TAMAÑO_ICONO, alto, ruta]
+	region = textura.get_image().get_used_rect()
+	if region.size.x > 0:
+		alto = roundi(TAMAÑO_ICONO * float(region.size.y) / float(region.size.x))
+	return "[img width=%d height=%d region=%d,%d,%d,%d]%s[/img] " % [TAMAÑO_ICONO, alto, region.position.x, region.position.y, region.size.x, region.size.y, ruta]

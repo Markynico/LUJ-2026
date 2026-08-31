@@ -35,6 +35,11 @@ signal nivel_construido
 @export_dir var carpeta_niveles : String = "res://niveles"
 ##niveles que deben pasar antes de poder repetir el mismo
 @export var niveles_sin_repetir : int = 2
+##nivel que se muestra solo como vista previa en el editor, no afecta al juego
+@export var nivel_vista_previa : NivelData:
+	set(valor):
+		nivel_vista_previa = valor
+		mostrar_vista_previa()
 
 var historial_niveles : Array[NivelData] = []
 
@@ -80,15 +85,16 @@ func cargar_carpeta() -> Array[NivelData]:
 
 
 func mostrar_vista_previa() -> void:
+	var nivel_editor : NivelData = nivel if nivel else nivel_vista_previa
 	if not Engine.is_editor_hint() or not is_inside_tree():
 		return
 	if es_raiz_editada():
 		acomodar_divisiones(null)
 		return
 	limpiar_formas_sin_dueño()
-	if nivel:
-		instanciar_formas(nivel)
-		aplicar_divisiones(nivel)
+	if nivel_editor:
+		instanciar_formas(nivel_editor)
+		aplicar_divisiones(nivel_editor)
 
 
 func es_raiz_editada() -> bool:

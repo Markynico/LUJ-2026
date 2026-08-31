@@ -27,12 +27,17 @@ enum EstadoDeJuego {
 static var instancia_actual: GameManager
 static var vidas_guardadas: int = 3
 static var vidas_inicializadas: bool = false
+static var dificultad_actual : DificultadRun
+static var niveles_jugados : int = 0
+static var niveles_ganados_run : int = 0
 
 @export var gato : Gato
 @export var cargador_nivel : CargadorDeNivel
 @export var selector_niveles : SelectorDeNiveles
 ##escena del menu principal a la que vuelve el game over
 @export_file("*.tscn") var escena_menu : String = "uid://c30ry4xehty4"
+##pantalla de stats que se muestra al terminar la run
+@export_file("*.tscn") var escena_stats : String = "res://escenas/pantalla_stats.tscn"
 @export var bolas_maximas : int = 4
 @export var vidas_maximas : int = 3
 @export_range(0.1, 1.0, 0.05) var porcentaje_ovillos_requerido : float = 0.30
@@ -40,6 +45,8 @@ static var vidas_inicializadas: bool = false
 @export var reliquias_iniciales : Array[Reliquia] = []
 ##monedas con las que arranca la run
 @export var monedas_iniciales : int = 0
+##dificultad que se usa si no se eligio ninguna en el menu
+@export var dificultad_default : DificultadRun = preload("res://scripts/resources/dificultades/dificultad_facil.tres")
 
 @export_group("Rareza")
 ##probabilidad en porcentaje de rareza comun
@@ -76,6 +83,11 @@ func _ready() -> void:
 	if not vidas_inicializadas:
 		vidas_guardadas = vidas_maximas
 		vidas_inicializadas = true
+		niveles_jugados = 0
+		niveles_ganados_run = 0
+		if not dificultad_actual:
+			dificultad_actual = dificultad_default
+		EstadisticasRun.empezar_run()
 	vidas_actuales = vidas_guardadas
 
 	if ReliquiasManager.obtenidas.is_empty():
@@ -104,6 +116,8 @@ func _ready() -> void:
 	call_deferred("escanear_ovillos_existentes")
 
 func reiniciar_nivel() -> void:
+	if dificultad_actual:
+		porcentaje_ovillos_requerido = dificultad_actual.porcentaje_para(niveles_jugados * ReliquiasManager.multiplicador_dificultad())
 	finalizando = false
 	es_meta_cumplida = false
 	puntos_totales = 0
@@ -146,6 +160,7 @@ func registrar_ovillo(ovillo : Ovillo) -> void:
 
 func registrar_ovillo_destruido(ovillo : Ovillo) -> void:
 	puntos_obtenidos += puntaje_de(ovillo)
+	EstadisticasRun.registrar_ovillo_roto(ovillo.tipo_ovillo)
 	emitir_actualizacion_ovillos()
 	
 	if not es_meta_cumplida and puntos_obtenidos >= puntos_requeridos:
@@ -181,10 +196,12 @@ func perder_vida(cantidad : int = 1) -> void:
 	vidas_guardadas = vidas_actuales
 	vidas_cambiadas.emit(vidas_actuales, vidas_maximas)
 	
-	if vidas_actuales <= 0:
+	if vidas_actuales <= 0 and estado_actual != EstadoDeJuego.GAME_OVER:
 		estado_actual = EstadoDeJuego.GAME_OVER
 		game_over.emit()
 		print("GAME OVER - Sin vidas restantes")
+		vidas_guardadas = vidas_maximas
+		get_tree().create_timer(2.0).timeout.connect(volver_al_menu)
 
 func ganar_vida(cantidad : int = 1) -> void:
 	vidas_actuales = clampi(vidas_actuales + cantidad, 0, vidas_maximas)
@@ -243,13 +260,21 @@ func finalizar_nivel(tipo_sala : int = -1) -> void:
 	
 	print("Evaluando nivel. Puntos: %d / Requeridos: %d" % [puntos_obtenidos, puntos_requeridos])
 	
+	niveles_jugados += 1
 	if puntos_obtenidos >= puntos_requeridos:
 		# ¡ÉXITO!
 		estado_actual = EstadoDeJuego.NIVEL_COMPLETADO
 		es_meta_cumplida = true
+		niveles_ganados_run += 1
+		EstadisticasRun.registrar_nivel(puntos_obtenidos, true)
+		if dificultad_actual and niveles_ganados_run >= dificultad_actual.niveles_para_ganar:
+			print("¡RUN GANADA!")
+			nivel_completado.emit(true)
+			get_tree().create_timer(2.0).timeout.connect(volver_al_menu.bind(true))
+			return
 		nivel_completado.emit(true)
 		print("¡NIVEL SUPERADO CON ÉXITO!")
-		
+
 		if tipo_sala >= 0:
 			get_tree().create_timer(1.2).timeout.connect(func():
 				sala_pedida.emit(tipo_sala)
@@ -257,6 +282,7 @@ func finalizar_nivel(tipo_sala : int = -1) -> void:
 	else:
 		# FALLÓ LA META -> Pierde vida y avanza igual a la siguiente sala
 		perder_vida(1)
+		EstadisticasRun.registrar_nivel(puntos_obtenidos, false)
 		nivel_completado.emit(false)
 		
 		if vidas_actuales > 0:
@@ -271,10 +297,6 @@ func finalizar_nivel(tipo_sala : int = -1) -> void:
 				get_tree().create_timer(1.5).timeout.connect(func():
 					reiniciar_nivel_actual()
 				)
-		else:
-			print("GAME OVER - Volviendo al menu principal...")
-			vidas_guardadas = vidas_maximas
-			get_tree().create_timer(2.0).timeout.connect(volver_al_menu)
 
 func fallar_por_atasco() -> void:
 	if estado_actual != EstadoDeJuego.LANZANDO_GATO or finalizando:
@@ -285,9 +307,6 @@ func fallar_por_atasco() -> void:
 	nivel_completado.emit(false)
 	if vidas_actuales > 0:
 		get_tree().create_timer(1.5).timeout.connect(reiniciar_nivel_actual)
-	else:
-		vidas_guardadas = vidas_maximas
-		get_tree().create_timer(2.0).timeout.connect(volver_al_menu)
 
 
 func al_rebobinar_rebote ()-> void:
@@ -331,11 +350,17 @@ static func filtrar_por_rareza(candidatos : Array, rareza : Rareza.Nivel) -> Arr
 	return filtrados
 
 
-func volver_al_menu() -> void:
+func volver_al_menu(gano : bool = false) -> void:
+	EstadisticasRun.terminar_run(gano)
+	dificultad_actual = null
 	vidas_inicializadas = false
 	ReliquiasManager.obtenidas.clear()
 	ReliquiasManager.explosion_instantanea = false
-	Transicion.cambiar_escena(escena_menu)
+	ReliquiasManager.catnip_stackeable = false
+	ReliquiasManager.opciones_loot = 1
+	ReliquiasManager.salidas_reveladas = false
+	ReliquiasManager.bolas_atraviesan = false
+	Transicion.cambiar_escena(escena_stats if not escena_stats.is_empty() else escena_menu)
 
 
 func _on_cargador_pelotitas_actualizado():

@@ -14,5 +14,16 @@ extends Resource
 ##imagen q se va a mostrar en el selector de comidas, la idea es q una pelotita este asociada a una comida si no me equivoco no?
 @export var imagen_comida_asociada : Texture2D
 
+@export_group("Desbloqueo")
+##contador de Progreso que desbloquea la comida, Ninguna = desbloqueada de entrada
+@export_enum("Ninguna", "runs_jugadas", "runs_ganadas", "runs_ganadas_en_dificultad", "niveles_ganados", "niveles_perdidos", "ovillos_rotos", "ovillos_rotos_de_tipo", "bolas_disparadas", "monedas_conseguidas", "items_comprados", "reliquias_adquiridas", "curas_compradas", "reliquias_de_loot") var condicion_desbloqueo : String = "Ninguna"
+##valor que debe alcanzar el contador para desbloquearla
+@export var cantidad_desbloqueo : int = 0
+##tipo de ovillo que cuenta cuando la condicion es ovillos_rotos_de_tipo
+@export var ovillo_objetivo : OvilloBase
+##dificultad minima cuando la condicion es runs_ganadas_en_dificultad
+@export var dificultad_objetivo : DificultadRun
+@export_group("")
+
 #@export var multiplicador_monedas : int = 1 #si queremos que la pelotita multiplique las monedas del ovillo, perooo me parece q lo voy a meter en un efecto no aca
 @export var efectos: Array[EfectosPelotita] #ahora ta aca adentro pq me mezclaba q esten separados

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ReliquiaMonedasOvillo" format=3 uid="uid://cp3tlgrgjrk76"]
+
+[ext_resource type="Script" uid="uid://d13ovhr65hhwo" path="res://scripts/reliquias/reliquia_monedas_ovillo.gd" id="1_rel"]
+[ext_resource type="Texture2D" uid="uid://bequ45lam4nqd" path="res://assets/reliquias/acuñadora de monedas.png" id="2_rel"]
+[ext_resource type="Resource" uid="uid://dky2mbnm2rn0l" path="res://scripts/resources/ovillo_monedas.tres" id="3_rel"]
+[ext_resource type="Script" uid="uid://bbkyk2anhunsd" path="res://scripts/ovillos_custom/ovillo_base.gd" id="4_rel"]
+
+[resource]
+script = ExtResource("1_rel")
+tipos_objetivo = Array[ExtResource("4_rel")]([ExtResource("3_rel")])
+nombre = "Acuñadora de Monedas"
+rareza = 1
+descripcion = "Los {ovillo_monedas:icono} dan el doble de {monedas:icono}."
+icono = ExtResource("2_rel")
+condicion_desbloqueo = "ovillos_rotos_de_tipo"
+cantidad_desbloqueo = 100
+ovillo_objetivo = ExtResource("3_rel")

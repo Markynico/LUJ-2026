@@ -25,9 +25,12 @@ func _ready() -> void:
 	elegir_comidas_aleatorias() #dsp le puedo agregar q se tenga q verificar si ya tenia tal comida para no mostrarla (?
 
 func elegir_comidas_aleatorias():
+	var desbloqueadas : Array = Progreso.filtrar_desbloqueadas(Global.bolas_de_pelo_existentes)
 	limpiar_comidas_anteriores()
+	if desbloqueadas.is_empty():
+		return
 	for comida in range(comidas_a_mostrar): #para solo elegir 3 comidas
-		var nueva_comida = Global.bolas_de_pelo_existentes.pick_random()
+		var nueva_comida = desbloqueadas.pick_random()
 		crear_panel_comida(nueva_comida)
 
 
@@ -51,7 +54,7 @@ func crear_panel_comida(comida_a_mostrar : PelotitaBase):
 func al_click_tarjeta(tarjeta : Tarjeta, boton : Button) -> void:
 	if foco.esta_abierto():
 		return
-	tarjeta.estilizar_boton_precio(foco.boton_accion, Rareza.precio_de(tarjeta.recurso))
+	tarjeta.estilizar_boton_precio(foco.boton_accion, Rareza.precio_de(tarjeta.recurso), true)
 	foco.boton_accion.disabled = boton.disabled
 	foco.con_accion = true
 	foco.abrir(tarjeta, boton.get_parent())
@@ -77,6 +80,7 @@ func limpiar_comidas_anteriores():
 
 #la llamo con una signal desde los paneles y sino tmb desde el boton omitir con la signal de pressed
 func avanzar(): #sea pq elige una comida o pq pone en omitir
+	foco.cerrar_inmediato()
 	esconder_selector_comidas()
 	seleccion_terminada.emit()
 

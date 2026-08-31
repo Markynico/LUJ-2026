@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://ckebjsyvf51xv" path="res://assets/sprites_gato/gato 1_IDLE_BLINK 4.png" id="9_i3vll"]
 [ext_resource type="Texture2D" uid="uid://ds6gl78d1ayev" path="res://assets/sprites_gato/gato 1_idle.png" id="10_2wj7v"]
 [ext_resource type="Texture2D" uid="uid://ddmq0njqiqsuf" path="res://assets/sprites_gato/gato 1_IDLE_BLINK 5.png" id="10_xa348"]
+[ext_resource type="Texture2D" uid="uid://opl0ohjtrung" path="res://assets/estrella.png" id="14_nqle2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dklp6"]
 radius = 33.01515
@@ -110,20 +111,41 @@ tracks/0/keys = {
 "values": [ExtResource("10_2wj7v")]
 }
 
+[sub_resource type="Animation" id="Animation_emxb7"]
+resource_name = "orgulloso"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_7xk13")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2wj7v"]
 _data = {
 &"RESET": SubResource("Animation_4fwun"),
 &"blink": SubResource("Animation_pcv4d"),
 &"escupir_bola": SubResource("Animation_ucdm4"),
-&"idle": SubResource("Animation_5rjvg")
+&"idle": SubResource("Animation_5rjvg"),
+&"orgulloso": SubResource("Animation_emxb7")
 }
 
-[node name="Gato" type="RigidBody2D" unique_id=69399080 node_paths=PackedStringArray("sprite", "colision", "disparador_pelotitas", "animation_player", "timer_blink")]
+[sub_resource type="Curve" id="Curve_jhh3k"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.24770641, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Gato" type="RigidBody2D" unique_id=69399080 node_paths=PackedStringArray("sprite", "colision", "disparador_pelotitas", "animation_player", "timer_blink", "particulas_orgulloso")]
 collision_layer = 8
 collision_mask = 19
 contact_monitor = true
 max_contacts_reported = 8
 script = ExtResource("1_vrxw6")
+orgulloso = null
 imagen_normal = ExtResource("10_2wj7v")
 imagen_bolita = ExtResource("6_2wj7v")
 imagen_orgulloso = ExtResource("9_7xk13")
@@ -133,6 +155,7 @@ colision = NodePath("CollisionShape2D")
 disparador_pelotitas = NodePath("DisparadorPelotita")
 animation_player = NodePath("AnimationPlayer")
 timer_blink = NodePath("TimerBlink")
+particulas_orgulloso = NodePath("CPUParticles2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=36343804]
 z_as_relative = false
@@ -142,6 +165,7 @@ scale = Vector2(0.21, 0.21)
 texture = ExtResource("10_2wj7v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1688846017]
+visible = false
 position = Vector2(-2, 0)
 shape = SubResource("CircleShape2D_dklp6")
 
@@ -153,3 +177,16 @@ one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1084193647]
 libraries/ = SubResource("AnimationLibrary_2wj7v")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1739879889]
+position = Vector2(17, -19)
+emitting = false
+amount = 3
+texture = ExtResource("14_nqle2")
+emission_shape = 2
+emission_sphere_radius = 26.97
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+scale_amount_min = 0.1
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_jhh3k")

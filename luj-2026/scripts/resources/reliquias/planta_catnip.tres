@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ReliquiaSpawnOvillo" format=3 uid="uid://druivdavm0d32"]
+
+[ext_resource type="Script" uid="uid://hbrdyxmfe5s0" path="res://scripts/reliquias/reliquia_spawn_ovillo.gd" id="1_rel"]
+[ext_resource type="Texture2D" uid="uid://qisy5qvroqtu" path="res://assets/reliquias/planta de catnip.png" id="2_rel"]
+[ext_resource type="Resource" uid="uid://cy6q6prk7gt7p" path="res://scripts/resources/ovillo_catnip.tres" id="3_rel"]
+[ext_resource type="Script" uid="uid://bbkyk2anhunsd" path="res://scripts/ovillos_custom/ovillo_base.gd" id="4_rel"]
+
+[resource]
+script = ExtResource("1_rel")
+tipos_objetivo = Array[ExtResource("4_rel")]([ExtResource("3_rel")])
+nombre = "Planta de Catnip"
+descripcion = "Más de probabilidad de que aparezcan  {catnip:icono}
+
+\"No dura ni una semana\""
+icono = ExtResource("2_rel")
+condicion_desbloqueo = "ovillos_rotos_de_tipo"
+cantidad_desbloqueo = 10
+ovillo_objetivo = ExtResource("3_rel")

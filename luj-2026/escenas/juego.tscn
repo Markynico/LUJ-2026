@@ -21,13 +21,17 @@
 [ext_resource type="Resource" uid="uid://fumr1qv4h1ho" path="res://scripts/resources/ovillo_rebobinar.tres" id="21_lwh54"]
 [ext_resource type="Resource" uid="uid://d3ks2dut6iacd" path="res://scripts/resources/ovillo_explosivo_final.tres" id="22_okgri"]
 [ext_resource type="Script" uid="uid://cn6qcniqf0qev" path="res://scripts/estante_reliquias.gd" id="23_estante"]
+[ext_resource type="Resource" uid="uid://b48kcm8swtxie" path="res://niveles/Nivel2.tres" id="24_nprev"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_w7gqy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jhh3k"]
 size = Vector2(1180.5, 45.99997)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_qjtjc"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_so1p1"]
+size = Vector2(55.5, 28)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_37pxk"]
 viewport_path = NodePath("PanelInfoIzquierdo/SubViewportIzq")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_7nkol"]
@@ -92,16 +96,21 @@ offset_right = -41.0
 offset_bottom = 11.0
 game_manager = NodePath("../GameManager")
 
-[node name="CargadorDeNivel" type="Node2D" parent="." unique_id=1344270759 node_paths=PackedStringArray("estructura")]
-script = ExtResource("5_carg")
-estructura = NodePath("../EstructuraDeNivel")
-
 [node name="SelectorDeNiveles" type="Node2D" parent="." unique_id=1344270760 node_paths=PackedStringArray("cargador")]
 script = ExtResource("6_selec")
 cargador = NodePath("../CargadorDeNivel")
 divisores_minimos = 1
 divisores_maximos = 3
+chance_loot = 1.0
+chance_tienda = 1.0
+salas_entre_tiendas = 0
+salas_entre_loots = 0
 alto_salida = 100.0
+
+[node name="CargadorDeNivel" type="Node2D" parent="." unique_id=1344270759 node_paths=PackedStringArray("estructura")]
+script = ExtResource("5_carg")
+estructura = NodePath("../EstructuraDeNivel")
+nivel_vista_previa = ExtResource("24_nprev")
 
 [node name="SelectorComidas" parent="." unique_id=1764529133 instance=ExtResource("11_qfdc2")]
 
@@ -122,6 +131,11 @@ scale = Vector2(0.285, 2.32)
 position = Vector2(167.5, 5.999817)
 shape = SubResource("RectangleShape2D_jhh3k")
 
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="EstructuraDeNivel/ParedIzquierda" index="2" unique_id=1596216274]
+position = Vector2(602, -5.0000286)
+rotation = -0.7853982
+shape = SubResource("RectangleShape2D_so1p1")
+
 [node name="ParedDerecha" parent="EstructuraDeNivel" index="2" unique_id=536931780]
 collision_mask = 15
 
@@ -133,9 +147,14 @@ scale = Vector2(0.285, 2.32)
 position = Vector2(209.25, 9)
 shape = SubResource("RectangleShape2D_jhh3k")
 
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="EstructuraDeNivel/ParedDerecha" index="2" unique_id=1954069531]
+position = Vector2(599, 21.99997)
+rotation = 0.7853982
+shape = SubResource("RectangleShape2D_so1p1")
+
 [node name="PanelInfoIzquierdo" parent="EstructuraDeNivel" index="3" unique_id=1428603965]
 visible = false
-texture = SubResource("ViewportTexture_qjtjc")
+texture = SubResource("ViewportTexture_37pxk")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2055805025]
 position = Vector2(960, 540)

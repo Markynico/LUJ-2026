@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://ixhdovhw6132"]
+
+[ext_resource type="Script" uid="uid://8urpfxjvakqo" path="res://scripts/notificaciones.gd" id="1_notif"]
+
+[node name="Notificaciones" type="CanvasLayer" unique_id=1115701344]
+layer = 120
+script = ExtResource("1_notif")
+grosor_contorno_nombre = 5
+color_contorno_nombre = Color(0, 0, 0, 0.45490196)

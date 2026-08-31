@@ -7,6 +7,12 @@ signal escupir_bola
 
 ##gato de adorno: sin disparador ni trayectoria, para el menu
 @export var decorativo : bool = false
+##fija el estado orgulloso (sprite + particulas) apenas arranca, tambien en el editor
+@export var orgulloso : bool = false:
+	set(valor):
+		orgulloso = valor
+		if is_inside_tree():
+			aplicar_orgulloso()
 @export var fuerza_disparo : float = 1.0
 ##ovillos que puede romper el gato al ser lanzado
 @export var impactos_maximos : int = 4
@@ -47,6 +53,7 @@ signal escupir_bola
 @export var disparador_pelotitas : DisparadorPelotita
 @export var animation_player : AnimationPlayer
 @export var timer_blink : Timer
+@export var particulas_orgulloso : CPUParticles2D
 @export var game_manager : GameManager
 
 var movimiento_horizontal_habilitado : bool = false
@@ -62,11 +69,10 @@ var tiempo_quieto : float = 0.0
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
+		aplicar_orgulloso()
 		return
 	posicion_inicial = global_position
-	if sprite:
-		sprite.texture = imagen_normal
-		sprite.scale = Vector2.ONE * escala_normal
+	aplicar_orgulloso()
 	freeze = true
 	if colision:
 		colision.set_deferred("disabled", true)
@@ -97,6 +103,7 @@ func al_terminar_animacion(nombre : StringName) -> void:
 	if nombre == &"escupir_bola" or nombre == &"blink":
 		if sprite:
 			sprite.texture = imagen_normal
+		emitir_particulas(false)
 		programar_blink()
 
 
@@ -161,10 +168,12 @@ func procesar_movimiento_horizontal(delta : float) -> void:
 func actualizar_orientacion() -> void:
 	if esta_apuntando():
 		sprite.flip_h = get_global_mouse_position().x < global_position.x
+		espejar_particulas(sprite.flip_h)
 		return
 	if esta_escupiendo():
 		return
 	sprite.flip_h = false
+	espejar_particulas(false)
 
 
 func esta_escupiendo() -> bool:
@@ -240,6 +249,7 @@ func reiniciar() -> void:
 		sprite.texture = imagen_normal
 		sprite.scale = Vector2.ONE * escala_normal
 		sprite.z_index = 0
+	emitir_particulas(false)
 	freeze = true
 	if colision:
 		colision.set_deferred("disabled", true)
@@ -264,6 +274,7 @@ func preparar_lanzamiento() -> void:
 	if sprite:
 		sprite.texture = imagen_orgulloso
 		sprite.scale = Vector2.ONE * escala_normal
+	emitir_particulas(true)
 	call_deferred("habilitar_lanzamiento")
 
 func habilitar_lanzamiento() -> void:
@@ -277,6 +288,7 @@ func lanzar() -> void:
 		sprite.texture = imagen_bolita
 		sprite.scale = Vector2.ONE * escala_bolita
 		sprite.z_index = z_lanzado
+	emitir_particulas(false)
 	freeze = false
 	if colision:
 		colision.set_deferred("disabled", false)
@@ -290,3 +302,22 @@ func preparar_bola() -> void:
 	if animation_player:
 		animation_player.stop()
 		animation_player.play("escupir_bola") #esto llama a la funcion escupir_bola en el disparador
+
+
+func emitir_particulas(encendido : bool) -> void:
+	if particulas_orgulloso:
+		particulas_orgulloso.emitting = encendido
+
+
+func espejar_particulas(espejado : bool) -> void:
+	if not particulas_orgulloso:
+		return
+	particulas_orgulloso.position.x = -absf(particulas_orgulloso.position.x) if espejado else absf(particulas_orgulloso.position.x)
+	particulas_orgulloso.scale.x = -1.0 if espejado else 1.0
+
+
+func aplicar_orgulloso() -> void:
+	if sprite:
+		sprite.texture = imagen_orgulloso if orgulloso else imagen_normal
+		sprite.scale = Vector2.ONE * escala_normal
+	emitir_particulas(orgulloso)

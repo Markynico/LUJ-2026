@@ -22,6 +22,10 @@ AudioManager="*res://escenas/audio_manager.tscn"
 ReliquiasManager="*uid://dj4vmras633kq"
 Global2="uid://btuoalh7saemw"
 Transicion="*res://escenas/transicion.tscn"
+EstadisticasRun="*res://scripts/estadisticas_run.gd"
+Progreso="*res://scripts/progreso.gd"
+Ajustes="*res://scripts/ajustes.gd"
+Notificaciones="*res://escenas/notificaciones.tscn"
 
 [display]
 

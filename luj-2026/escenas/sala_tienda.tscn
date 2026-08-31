@@ -16,6 +16,25 @@
 [ext_resource type="Resource" uid="uid://bpw3shdksb1v5" path="res://scripts/resources/reliquias/almuerzo_duenia.tres" id="13_almu"]
 [ext_resource type="Resource" uid="uid://cv7e0lifc61g8" path="res://scripts/resources/reliquias/magiclick.tres" id="14_magi"]
 [ext_resource type="Resource" uid="uid://4o8c2qa6dfir" path="res://scripts/resources/reliquias/agujas_crochet.tres" id="15_aguj"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/cassette_roto.tres" id="23_cass"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/planta_catnip.tres" id="24_plan"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/tarjeta_puntos.tres" id="25_tarp"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/catnip_puro.tres" id="26_catp"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/bolsa_polvora.tres" id="27_bols"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/barril_polvora.tres" id="28_barr"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/pouch_balanceado.tres" id="29_pouc"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/amigurumi.tres" id="30_amig"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/puntero_laser.tres" id="31_punt"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/acuñadora.tres" id="32_acun"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/lata_atun.tres" id="33_lata"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/tarjeta_credito.tres" id="34_tcre"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/bola_cristal.tres" id="35_bcri"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/papel_arrugado.tres" id="36_papel"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/canica_vidrio.tres" id="37_cani"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/caja_carton.tres" id="38_ccar"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/objeto_valioso.tres" id="39_oval"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/caja_fosforos.tres" id="40_cfos"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/dvd.tres" id="41_dvd"]
 [ext_resource type="Script" uid="uid://c7ogyqxnq7236" path="res://scripts/pelotitas_custom/pelotita_base.gd" id="16_pelo"]
 [ext_resource type="Resource" uid="uid://d2y2wdiwxf7pa" path="res://scripts/resources/BolaPelosChicle.tres" id="17_chic"]
 [ext_resource type="Resource" uid="uid://7vcfjwmh5spv" path="res://scripts/resources/BolaPelosEspejismo.tres" id="18_espe"]
@@ -35,7 +54,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_tema")
 script = ExtResource("1_tienda")
-pool_reliquias = Array[ExtResource("4_rel")]([ExtResource("5_rasc"), ExtResource("6_tapi"), ExtResource("7_tiro"), ExtResource("8_messi"), ExtResource("9_mace"), ExtResource("10_almo"), ExtResource("11_whis"), ExtResource("12_arma"), ExtResource("13_almu"), ExtResource("14_magi"), ExtResource("15_aguj")])
+pool_reliquias = Array[ExtResource("4_rel")]([ExtResource("5_rasc"), ExtResource("6_tapi"), ExtResource("7_tiro"), ExtResource("8_messi"), ExtResource("9_mace"), ExtResource("10_almo"), ExtResource("11_whis"), ExtResource("12_arma"), ExtResource("13_almu"), ExtResource("14_magi"), ExtResource("15_aguj"), ExtResource("23_cass"), ExtResource("24_plan"), ExtResource("25_tarp"), ExtResource("26_catp"), ExtResource("27_bols"), ExtResource("28_barr"), ExtResource("29_pouc"), ExtResource("30_amig"), ExtResource("31_punt"), ExtResource("32_acun"), ExtResource("33_lata"), ExtResource("34_tcre"), ExtResource("35_bcri"), ExtResource("36_papel"), ExtResource("37_cani"), ExtResource("38_ccar"), ExtResource("39_oval"), ExtResource("40_cfos"), ExtResource("41_dvd")])
 pool_comidas = Array[ExtResource("16_pelo")]([ExtResource("17_chic"), ExtResource("18_espe"), ExtResource("19_igne"), ExtResource("20_mate")])
 fila_reliquias = NodePath("FondoTienda/Contenido/FilaReliquias")
 fila_comidas = NodePath("FondoTienda/Contenido/FilaComidas")

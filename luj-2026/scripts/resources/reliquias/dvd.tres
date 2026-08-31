@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ReliquiaDVD" format=3 uid="uid://buacltdoirwq8"]
+
+[ext_resource type="Script" uid="uid://cc8si1q1h1xay" path="res://scripts/reliquias/reliquia_dvd.gd" id="1_rel"]
+[ext_resource type="Texture2D" uid="uid://dse6gpb8sv6v1" path="res://assets/reliquias/DVD.png" id="2_rel"]
+
+[resource]
+script = ExtResource("1_rel")
+nombre = "Salvapantallas de DVD"
+rareza = 3
+descripcion = "Las bolas salen en línea recta, sin {gravedad}, y atraviesan los ovillos sin rebotar.
+
+\"Faltan 500 años para que se inventen los DVD\""
+icono = ExtResource("2_rel")
+condicion_desbloqueo = "runs_ganadas"
+cantidad_desbloqueo = 5
