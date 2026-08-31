@@ -6,10 +6,11 @@
 
 [resource]
 script = ExtResource("1_rel")
+multiplicador = 1.5
 probabilidad = 50.0
 nombre = "Bolsita de pólvora"
 rareza = 1
-descripcion = "Los {explosivo:icono} tienen  chance de explotar con el doble de fuerza y área.
+descripcion = "Los {explosivo:icono} tienen chance de explotar con más fuerza y mayor área.
 
 \"Es basicamente un chaskibum gigante\""
 icono = ExtResource("2_rel")

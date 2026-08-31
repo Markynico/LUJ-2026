@@ -43,6 +43,7 @@ clip_1/auto_advance = 1
 clip_1/next_clip = 1
 
 [node name="AudioManager" type="Node" unique_id=1480012408]
+process_mode = 3
 script = ExtResource("1_audio")
 efectos = Array[ExtResource("2_8eov3")]([ExtResource("2_rebote"), ExtResource("2_romper"), ExtResource("3_moneda"), ExtResource("4_abrir"), ExtResource("5_cerrar"), ExtResource("8_vqrne"), ExtResource("9_mecha"), ExtResource("10_expl"), ExtResource("11_rebo"), ExtResource("12_cat"), ExtResource("13_wrap"), ExtResource("14_purr"), ExtResource("15_blink"), ExtResource("16_explg")])
 volumen_inicial_musica = 0.458

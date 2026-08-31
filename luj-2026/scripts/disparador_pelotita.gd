@@ -27,12 +27,12 @@ func _ready() -> void:
 	muestra.free()
 
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		#esta moviendo el mouse
-		#posicion_mouse = get_viewport().get_mouse_position()
-		posicion_mouse = get_global_mouse_position()
-		velocidad_inicial = (global_position - posicion_mouse) * fuerza_disparo #no lo normalizo para q justamente dispare mas fuerte si el mouse esta lejos
+func _process(delta : float) -> void:
+	posicion_mouse = get_global_mouse_position()
+	velocidad_inicial = (global_position - posicion_mouse) * fuerza_disparo #no lo normalizo para q justamente dispare mas fuerte si el mouse esta lejos
+
+
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			bolitas_creadas += 1

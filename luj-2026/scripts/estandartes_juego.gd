@@ -11,6 +11,9 @@ extends Node2D
 @export var boton_coleccion : BotonEstandarte
 @export var boton_menu : BotonEstandarte
 @export var opciones : Opciones
+@export var confirmacion_menu : ConfirmationDialog
+##tamaño de fuente del texto del dialogo de confirmacion
+@export var tamaño_texto_confirmacion : int = 28
 
 var coleccion : Coleccion
 var capa_overlay : CanvasLayer
@@ -19,7 +22,12 @@ var capa_overlay : CanvasLayer
 func _ready() -> void:
 	boton_opciones.pressed.connect(opciones.show)
 	boton_coleccion.pressed.connect(abrir_coleccion)
-	boton_menu.pressed.connect(ir_al_menu)
+	boton_menu.pressed.connect(confirmacion_menu.popup_centered)
+	confirmacion_menu.confirmed.connect(ir_al_menu)
+	confirmacion_menu.get_label().add_theme_font_size_override("font_size", tamaño_texto_confirmacion)
+	confirmacion_menu.get_label().horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	confirmacion_menu.get_ok_button().add_theme_stylebox_override("focus", StyleBoxEmpty.new())
+	confirmacion_menu.get_cancel_button().add_theme_stylebox_override("focus", StyleBoxEmpty.new())
 	opciones.process_mode = Node.PROCESS_MODE_ALWAYS
 	opciones.visibility_changed.connect(actualizar_pausa)
 

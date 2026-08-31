@@ -144,7 +144,7 @@ func cerrar_seleccion() -> void:
 
 
 func confirmar() -> void:
-	detener_purr()
+	detener_purr(Transicion.duracion)
 	if not gatos.is_empty():
 		Global.gato_elegido = gatos[gato_actual]
 	GameManager.dificultad_actual = dificultad_elegida
@@ -164,15 +164,17 @@ func iniciar_purr() -> void:
 	tween_purr.tween_property(reproductor_purr, "volume_db", volumen_final, duracion_fade_purr)
 
 
-func detener_purr() -> void:
+func detener_purr(duracion : float = -1.0) -> void:
 	var reproductor : Node = reproductor_purr
 	reproductor_purr = null
+	if duracion < 0.0:
+		duracion = duracion_fade_purr
 	if not is_instance_valid(reproductor) or not reproductor.playing:
 		return
 	if tween_purr:
 		tween_purr.kill()
 	tween_purr = reproductor.create_tween()
-	tween_purr.tween_property(reproductor, "volume_db", -40.0, duracion_fade_purr)
+	tween_purr.tween_property(reproductor, "volume_db", -40.0, duracion)
 	tween_purr.tween_callback(AudioManager.detener_sfx.bind(reproductor))
 
 

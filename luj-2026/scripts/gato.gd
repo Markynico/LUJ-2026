@@ -144,6 +144,9 @@ func _process(delta : float) -> void:
 		return
 	procesar_movimiento_horizontal(delta)
 	actualizar_orientacion()
+	if listo_para_lanzar:
+		posicion_mouse = get_global_mouse_position()
+		velocidad_inicial = (global_position - posicion_mouse) * fuerza_disparo
 
 
 func procesar_movimiento_horizontal(delta : float) -> void:
@@ -225,10 +228,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if not listo_para_lanzar:
 		return
-	
-	if event is InputEventMouseMotion: # Se está moviendo el mouse
-		posicion_mouse = get_global_mouse_position()
-		velocidad_inicial = (global_position - posicion_mouse) * fuerza_disparo
 	
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
