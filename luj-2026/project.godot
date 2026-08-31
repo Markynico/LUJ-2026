@@ -10,10 +10,13 @@ config_version=5
 
 [application]
 
-config/name="LUJ-2026"
+config/name="Michinko"
+config/description="Juego realizado para la Level Up Jam 2026 :))
+Muchas gracias BAGD <3"
+config/version="1"
 run/main_scene="uid://c30ry4xehty4"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://bj4ecf6q6tu81"
 
 [autoload]
 
@@ -36,6 +39,10 @@ window/size/initial_screen=2
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/main_scene="uid://dmc7utikh5oir"
+
+[editor]
+
+export/convert_text_resources_to_binary=false
 
 [editor_plugins]
 
