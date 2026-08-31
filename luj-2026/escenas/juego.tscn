@@ -40,29 +40,13 @@ size = Vector2(1180.5, 45.99997)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_so1p1"]
 size = Vector2(55.5, 28)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_4uv1g"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ew7ae"]
 viewport_path = NodePath("PanelInfoIzquierdo/SubViewportIzq")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_7nkol"]
 viewport_path = NodePath("UICargadorPelotitas/SubViewportCargador")
 
 [sub_resource type="Theme" id="Theme_g56wh"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dialogo"]
-content_margin_left = 24.0
-content_margin_top = 24.0
-content_margin_right = 24.0
-content_margin_bottom = 16.0
-bg_color = Color(0.66351694, 0.6020768, 0.427031, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.43137255, 0.38039216, 0.23529412, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
 
 [node name="Juego" type="Node2D" unique_id=1865884372 node_paths=PackedStringArray("game_manager", "gato", "cargador", "selector", "selector_comidas", "camara")]
 script = ExtResource("0_juego")
@@ -187,7 +171,7 @@ shape = SubResource("RectangleShape2D_so1p1")
 
 [node name="PanelInfoIzquierdo" parent="EstructuraDeNivel" index="3" unique_id=1428603965]
 visible = false
-texture = SubResource("ViewportTexture_4uv1g")
+texture = SubResource("ViewportTexture_ew7ae")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2055805025]
 position = Vector2(960, 540)
@@ -352,7 +336,6 @@ size = Vector2i(560, 210)
 borderless = true
 transparent = true
 theme = ExtResource("15_aj17q")
-theme_override_styles/panel = SubResource("StyleBoxFlat_dialogo")
 ok_button_text = "Confirmar"
 dialog_text = "Esto va a terminar la run actual.
 ¿Volver al menú?"

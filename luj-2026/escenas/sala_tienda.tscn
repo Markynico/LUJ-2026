@@ -42,11 +42,14 @@
 [ext_resource type="Resource" uid="uid://l4rvd76vwgiu" path="res://scripts/resources/reliquias/caja_fosforos.tres" id="40_cfos"]
 [ext_resource type="Resource" uid="uid://buacltdoirwq8" path="res://scripts/resources/reliquias/dvd.tres" id="41_dvd"]
 [ext_resource type="PackedScene" path="res://escenas/componentes/michinko_ovillo.tscn" id="42_l2lnn"]
+[ext_resource type="PackedScene" path="res://escenas/componentes/velas_vidas.tscn" id="43_velas"]
+[ext_resource type="FontFile" uid="uid://dwg47e0trev3j" path="res://fuentes/Bungee-Regular.ttf" id="44_bungee"]
+[ext_resource type="Texture2D" uid="uid://clbwk8g62651y" path="res://assets/maribrujagatamagica.png" id="45_lly1i"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_l2lnn"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_4s28l"]
 viewport_path = NodePath("UIComidasElegidas/SubViewportComidas")
 
-[node name="SalaTienda" type="Control" unique_id=1468592656 node_paths=PackedStringArray("fila_reliquias", "fila_comidas", "boton_curar_vida", "boton_continuar", "foco")]
+[node name="SalaTienda" type="Control" unique_id=1468592656 node_paths=PackedStringArray("fila_reliquias", "fila_comidas", "boton_curar_vida", "texto_curar", "boton_continuar", "foco")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,6 +63,7 @@ pool_comidas = Array[ExtResource("16_pelo")]([ExtResource("17_chic"), ExtResourc
 fila_reliquias = NodePath("FondoTienda/Contenido/FilaReliquias")
 fila_comidas = NodePath("FondoTienda/Contenido/FilaComidas")
 boton_curar_vida = NodePath("FondoTienda/Servicios/BotonCurarVida")
+texto_curar = NodePath("FondoTienda/Servicios/BotonCurarVida/TextoCurar")
 boton_continuar = NodePath("FondoTienda/BotonContinuar")
 foco = NodePath("FocoTarjetas")
 
@@ -112,18 +116,42 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 76.0
-offset_top = -60.0
-offset_right = 214.0
-offset_bottom = 60.0
+offset_left = 94.0
+offset_top = -68.0
+offset_right = 314.0
+offset_bottom = 68.0
 grow_vertical = 2
 theme_override_constants/separation = 24
 
+[node name="EspacioVidas" type="Control" parent="FondoTienda/Servicios" unique_id=1210050353]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VelasVidas" parent="FondoTienda/Servicios/EspacioVidas" unique_id=1210050354 instance=ExtResource("43_velas")]
+position = Vector2(45, 60)
+scale = Vector2(0.08, 0.08)
+separacion = Vector2(600, 0)
+
 [node name="BotonCurarVida" type="Button" parent="FondoTienda/Servicios" unique_id=1532162385]
+custom_minimum_size = Vector2(220, 42)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 24
-text = "Curar 1 vida"
+
+[node name="TextoCurar" type="RichTextLabel" parent="FondoTienda/Servicios/BotonCurarVida" unique_id=1532162386]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("44_bungee")
+theme_override_font_sizes/normal_font_size = 17
+bbcode_enabled = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
 
 [node name="BotonContinuar" type="Button" parent="FondoTienda" unique_id=167360771]
 layout_mode = 1
@@ -142,6 +170,7 @@ theme_override_font_sizes/font_size = 36
 text = "Continuar"
 
 [node name="FocoTarjetas" parent="." unique_id=366085534 instance=ExtResource("2_foco")]
+visible = false
 z_index = 2
 layout_mode = 1
 
@@ -150,7 +179,7 @@ layout_mode = 1
 
 [node name="UIComidasElegidas" parent="HUD" index="0" unique_id=1447058340]
 visible = false
-texture = SubResource("ViewportTexture_l2lnn")
+texture = SubResource("ViewportTexture_4s28l")
 
 [node name="CanvasLayer" parent="HUD" index="1" unique_id=1032973156]
 layer = 3
@@ -159,5 +188,11 @@ layer = 3
 position = Vector2(175.00003, 797.00006)
 scale = Vector2(0.33148143, 0.3314815)
 flip_h = true
+
+[node name="Maribrujagatamagica" type="Sprite2D" parent="." unique_id=502438799]
+modulate = Color(0.43, 0.3784, 0.23650001, 0.627451)
+position = Vector2(1715.9999, 335)
+scale = Vector2(0.29200006, 0.29200006)
+texture = ExtResource("45_lly1i")
 
 [editable path="HUD"]

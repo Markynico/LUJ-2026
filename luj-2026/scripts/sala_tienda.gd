@@ -13,6 +13,8 @@ signal continuar_pedido
 @export var cantidad_comidas : int = 3
 ##precio en monedas de curar una vida
 @export var precio_curar_vida : int = 50
+##aumento del precio de curar por cada vida ya comprada en esta tienda, 0.25 = 25%
+@export var aumento_por_cura : float = 0.25
 ##escena de la tarjeta de item
 @export var escena_tarjeta : PackedScene = preload("uid://u6k76f6lyw8y")
 ##tamaño base de la tarjeta, se escala solo para que entre la fila
@@ -24,11 +26,13 @@ signal continuar_pedido
 @export var fila_reliquias : HBoxContainer
 @export var fila_comidas : HBoxContainer
 @export var boton_curar_vida : Button
+@export var texto_curar : RichTextLabel
 @export var boton_continuar : Button
 @export var foco : FocoTarjetas
 
 var compra_en_foco : Dictionary = {}
 var botones_compra : Array = []
+var curas_compradas_aca : int = 0
 
 
 func _ready() -> void:
@@ -37,7 +41,7 @@ func _ready() -> void:
 	foco.accion_pedida.connect(comprar_en_foco)
 	foco.cerrado.connect(al_cerrar_foco)
 	Global.monedas_cambiadas.connect(actualizar_monedas)
-	boton_curar_vida.text = "Curar 1 vida  %d" % precio_curar_vida
+	actualizar_texto_curar()
 	actualizar_monedas(Global.monedas)
 	poblar_ofertas()
 
@@ -148,6 +152,7 @@ func comprar(item : Resource, boton : Button) -> bool:
 	if Global.monedas < precio_de(item):
 		return false
 	Global.actualizar_monedas(-precio_de(item))
+	AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.COMPRAR)
 	if item is Reliquia:
 		ReliquiasManager.obtener(item)
 	elif item is PelotitaBase:
@@ -167,18 +172,29 @@ func actualizar_botones() -> void:
 	var game_manager : GameManager = GameManager.instancia_actual
 	if not compra_en_foco.is_empty() and foco.con_accion:
 		compra_en_foco["tarjeta"].colorear_por_monedas(foco.boton_accion, precio_de(compra_en_foco["item"]))
-	boton_curar_vida.disabled = Global.monedas < precio_curar_vida
+	boton_curar_vida.disabled = Global.monedas < precio_curar_actual()
 	if game_manager:
 		boton_curar_vida.disabled = boton_curar_vida.disabled or game_manager.vidas_actuales >= game_manager.vidas_maximas
 
 
+func precio_curar_actual() -> int:
+	return roundi(precio_curar_vida * pow(1.0 + aumento_por_cura, curas_compradas_aca))
+
+
+func actualizar_texto_curar() -> void:
+	texto_curar.text = "[center]" + Resaltador.formatear("Curar 1 {vida:icono} por {monedas:icono} %d" % precio_curar_actual())
+
+
 func curar_vida() -> void:
 	var game_manager : GameManager = GameManager.instancia_actual
-	if Global.monedas < precio_curar_vida or not game_manager:
+	if Global.monedas < precio_curar_actual() or not game_manager:
 		return
 	if game_manager.vidas_actuales >= game_manager.vidas_maximas:
 		return
-	Global.actualizar_monedas(-precio_curar_vida)
+	Global.actualizar_monedas(-precio_curar_actual())
+	AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.COMPRAR)
+	curas_compradas_aca += 1
 	game_manager.ganar_vida(1)
 	EstadisticasRun.registrar_cura_comprada()
+	actualizar_texto_curar()
 	actualizar_botones()

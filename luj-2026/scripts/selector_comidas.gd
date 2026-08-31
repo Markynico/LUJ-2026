@@ -69,6 +69,7 @@ func elegir_comida(comida : PelotitaBase) -> void:
 	if Global.monedas < precio:
 		return
 	Global.actualizar_monedas(-precio)
+	AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.COMPRAR)
 	Global.actualizar_comidas_elegidas(comida)
 	avanzar()
 

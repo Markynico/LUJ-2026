@@ -20,6 +20,8 @@ extends Resource
 @export var efecto_al_explotar : EfectoDeSonido.Tipo = EfectoDeSonido.Tipo.EXPLOSION
 ##escala visual y de colision del ovillo
 @export var escala : float = 1.0
+##segundos que dura la mecha si este ovillo explota
+@export var duracion_mecha : float = 1.0
 ##ovillo como el que cuenta este tipo en estadisticas y desbloqueos, opcional
 @export var contar_como : OvilloBase
 ##cantidad de monedas q obtendra el jugador cuando le peguemos a este ovillo
