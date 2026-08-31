@@ -6,7 +6,8 @@
 [resource]
 script = ExtResource("1_rel")
 nombre = "Pouch de Balanceado"
-descripcion = "Cura 1 {vida} cada 150 {rebote:texto/rebotes}. Se gasta a las 2 {vida:ambosvidas} curadas."
+descripcion = "Cura 1 {vida:icono} cada 150 {rebote:texto/rebotes}.
+Se gasta a las 2 {vida:icono} curadas."
 icono = ExtResource("2_rel")
 condicion_desbloqueo = "curas_compradas"
 cantidad_desbloqueo = 5

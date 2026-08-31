@@ -56,11 +56,11 @@ func agregar_reliquia(reliquia : Reliquia) -> void:
 	colision.shape = forma
 	area.add_child(colision)
 	area.mouse_entered.connect(mostrar_tarjeta.bind(reliquia))
-	area.mouse_exited.connect(tarjeta.hide)
+	area.mouse_exited.connect(tarjeta.desaparecer)
 	sprite.add_child(area)
 	add_child(sprite)
 
 
 func mostrar_tarjeta(reliquia : Reliquia) -> void:
 	tarjeta.recurso = reliquia
-	tarjeta.show()
+	tarjeta.aparecer()

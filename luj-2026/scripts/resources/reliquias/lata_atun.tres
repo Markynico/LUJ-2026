@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_rel")
 nombre = "Lata de Atún"
-descripcion = "Te cura 1 {vida}.
+descripcion = "Cura 1 {vida:icono}.
 
 \"Todavía no se inventaron las latas pero bue…\""
 icono = ExtResource("2_rel")

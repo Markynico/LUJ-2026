@@ -9,33 +9,6 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_37ege"]
 viewport_path = NodePath("UIComidasElegidas/SubViewportComidas")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel_hud"]
-content_margin_left = 16.0
-content_margin_top = 10.0
-content_margin_right = 16.0
-content_margin_bottom = 10.0
-bg_color = Color(0.10980392, 0.1254902, 0.18039216, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.2784314, 0.32941177, 0.47843137, 1)
-corner_radius_top_left = 14
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
-shadow_color = Color(0, 0, 0, 0.3)
-shadow_size = 6
-
-[sub_resource type="LabelSettings" id="LabelSettings_seccion"]
-font_size = 12
-font_color = Color(0.7, 0.76, 0.92, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_bolas"]
-font_color = Color(1, 0.92, 0.5, 1)
-outline_size = 2
-outline_color = Color(0.1, 0.08, 0.02, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0sskl"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
@@ -117,41 +90,6 @@ theme_override_constants/margin_right = 20
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 20
-
-[node name="PanelVidasBolas" type="PanelContainer" parent="CanvasLayer/MarginSuperior/HBoxHUD" unique_id=946678465]
-custom_minimum_size = Vector2(240, 68)
-layout_mode = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_panel_hud")
-
-[node name="VBoxVidasBolas" type="VBoxContainer" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelVidasBolas" unique_id=1751878294]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/separation = 6
-alignment = 1
-
-[node name="HBoxVidas" type="HBoxContainer" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelVidasBolas/VBoxVidasBolas" unique_id=1339436826]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/separation = 10
-
-[node name="LabelVidasTitulo" type="Label" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelVidasBolas/VBoxVidasBolas/HBoxVidas" unique_id=1946624985]
-layout_mode = 2
-text = "VIDAS:"
-label_settings = SubResource("LabelSettings_seccion")
-
-[node name="ContenedorVidas" type="HBoxContainer" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelVidasBolas/VBoxVidasBolas/HBoxVidas" unique_id=628779073]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/separation = 6
-
-[node name="LabelBolas" type="Label" parent="CanvasLayer/MarginSuperior/HBoxHUD/PanelVidasBolas/VBoxVidasBolas" unique_id=407916706]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-text = "Bolas restantes: 20"
-label_settings = SubResource("LabelSettings_bolas")
 
 [node name="Spacer" type="Control" parent="CanvasLayer/MarginSuperior/HBoxHUD" unique_id=1023086998]
 layout_mode = 2

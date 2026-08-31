@@ -19,6 +19,8 @@ signal clickeada
 @export var pulso_minimo : float = 0.55
 ##segundos de cada ida o vuelta de la pulsacion
 @export var pulso_duracion : float = 0.6
+##segundos del fade in y out cuando se usa como tarjeta de hover
+@export var duracion_fade : float = 0.15
 
 @export_group("Boton de precio")
 ##icono de moneda del boton de precio
@@ -70,6 +72,7 @@ var tamaño_base_rareza : int = 0
 
 var borde_hover : Panel
 var tween_borde : Tween
+var tween_fade : Tween
 var boton_precio : Button
 var precio_actual : int = 0
 
@@ -88,6 +91,26 @@ func _ready() -> void:
 	mouse_entered.connect(al_hover.bind(true))
 	mouse_exited.connect(al_hover.bind(false))
 	gui_input.connect(al_gui_input)
+
+
+func aparecer() -> void:
+	if tween_fade:
+		tween_fade.kill()
+	if not visible:
+		modulate.a = 0.0
+	show()
+	tween_fade = create_tween()
+	tween_fade.tween_property(self, "modulate:a", 1.0, duracion_fade)
+
+
+func desaparecer() -> void:
+	if not visible:
+		return
+	if tween_fade:
+		tween_fade.kill()
+	tween_fade = create_tween()
+	tween_fade.tween_property(self, "modulate:a", 0.0, duracion_fade)
+	tween_fade.tween_callback(hide)
 
 
 func crear_borde_hover() -> void:

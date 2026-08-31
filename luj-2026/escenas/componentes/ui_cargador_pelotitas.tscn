@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c87sy1bku6et8" path="res://escenas/componentes/texture_rect_cargador.tscn" id="2_4ifrc"]
 [ext_resource type="Theme" uid="uid://bjkvjfhj8dr8y" path="res://themes/theme_ui_general.tres" id="3_57oyg"]
 [ext_resource type="FontFile" uid="uid://dwg47e0trev3j" path="res://fuentes/Bungee-Regular.ttf" id="4_agxao"]
+[ext_resource type="StyleBox" path="res://themes/fondo_cargador.tres" id="5_fondo"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_7nkol"]
 viewport_path = NodePath("UICargadorPelotitas/SubViewportCargador")
@@ -18,6 +19,22 @@ escena_textura_pelotita = ExtResource("2_4ifrc")
 
 [node name="SubViewportCargador" type="SubViewport" parent="." unique_id=1050565886]
 transparent_bg = true
+
+[node name="CuadroFondo" type="Panel" parent="SubViewportCargador" unique_id=1387420156]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = -106.5
+offset_right = 39.0
+offset_bottom = 106.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("5_fondo")
 
 [node name="ContenedorNomas" type="VBoxContainer" parent="SubViewportCargador" unique_id=664572171]
 anchors_preset = 8

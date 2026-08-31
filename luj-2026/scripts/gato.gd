@@ -220,7 +220,7 @@ func atascarse() -> void:
 		GameManager.instancia_actual.fallar_por_atasco()
 
 # ============ INPUT ==============
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if Engine.is_editor_hint():
 		return
 	if not listo_para_lanzar:

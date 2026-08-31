@@ -7,7 +7,7 @@
 script = ExtResource("1_rel")
 nombre = "Almohadón"
 rareza = 1
-descripcion = "+1 {vida:ambos/vida} máxima.
+descripcion = "+1 {slot_vida:icono} máximo.
 
 \"Después seguro se termina acostando en la caja en vez de acá\""
 icono = ExtResource("2_rel")

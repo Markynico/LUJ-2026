@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://0s8klgt0dmqn"]
+
+[ext_resource type="Script" uid="uid://bjhl4m8w5jyvc" path="res://scripts/vela_vida.gd" id="1_vela"]
+[ext_resource type="Texture2D" uid="uid://g6eqp4jjyvf5" path="res://assets/frames vela/Vela encendida0000.png" id="2_enc0"]
+[ext_resource type="Texture2D" uid="uid://bfrl038m3jxcf" path="res://assets/frames vela/Vela encendida0001.png" id="3_enc1"]
+[ext_resource type="Texture2D" uid="uid://cliptjujiaycw" path="res://assets/frames vela/Vela encendida0002.png" id="4_enc2"]
+[ext_resource type="Texture2D" uid="uid://budg8nvrveok2" path="res://assets/frames vela/Vela encendida0003.png" id="5_enc3"]
+[ext_resource type="Texture2D" uid="uid://ddk3jx18ohhkj" path="res://assets/frames vela/Vela Apagada0000.png" id="6_apa0"]
+[ext_resource type="Texture2D" uid="uid://cpri1s2tvub85" path="res://assets/frames vela/Vela Apagada0001.png" id="7_apa1"]
+[ext_resource type="Texture2D" uid="uid://dv6p5sgapjhxg" path="res://assets/frames vela/Vela Apagada0002.png" id="8_apa2"]
+[ext_resource type="Texture2D" uid="uid://0nrtjhigxvu" path="res://assets/frames vela/Vela Apagada0003.png" id="9_apa3"]
+[ext_resource type="Texture2D" uid="uid://bjwvx341ela0m" path="res://assets/frames vela/Vela Apagada0004.png" id="10_apa4"]
+[ext_resource type="Texture2D" uid="uid://b8c4bp78xtnoq" path="res://assets/frames vela/Vela Apagada0005.png" id="11_apa5"]
+[ext_resource type="Texture2D" uid="uid://dytqgn3iogsvx" path="res://assets/frames vela/Vela Apagada0006.png" id="12_apa6"]
+[ext_resource type="Texture2D" uid="uid://bi0wa5h75do3v" path="res://assets/frames vela/Vela Apagada0007.png" id="13_apa7"]
+[ext_resource type="Texture2D" uid="uid://cucbudcj05ymj" path="res://assets/frames vela/vela muerta.png" id="14_muerta"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vela"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_apa0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_apa1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_apa2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_apa3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_apa4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_apa5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_apa6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_apa7")
+}],
+"loop": 1,
+"name": &"apagandose",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_enc0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_enc1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_enc2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_enc3")
+}],
+"loop": 1,
+"name": &"encendida",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_muerta")
+}],
+"loop": 0,
+"name": &"muerta",
+"speed": 5.0
+}]
+
+[node name="VelaVida" type="AnimatedSprite2D" unique_id=1855201658]
+sprite_frames = SubResource("SpriteFrames_vela")
+animation = &"encendida"
+autoplay = "encendida"
+frame_progress = 0.77419627
+script = ExtResource("1_vela")
+duracion_apagandose = 20.0
+offset_muerta = Vector2(8, 94)
