@@ -46,8 +46,7 @@
 [ext_resource type="FontFile" uid="uid://dwg47e0trev3j" path="res://fuentes/Bungee-Regular.ttf" id="44_bungee"]
 [ext_resource type="Texture2D" uid="uid://clbwk8g62651y" path="res://assets/maribrujagatamagica.png" id="45_lly1i"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_4s28l"]
-resource_local_to_scene = true
+[sub_resource type="ViewportTexture" id="ViewportTexture_lly1i"]
 viewport_path = NodePath("UIComidasElegidas/SubViewportComidas")
 
 [node name="SalaTienda" type="Control" unique_id=1468592656 node_paths=PackedStringArray("fila_reliquias", "fila_comidas", "boton_curar_vida", "texto_curar", "boton_continuar", "foco")]
@@ -130,7 +129,8 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="VelasVidas" parent="FondoTienda/Servicios/EspacioVidas" unique_id=1210050354 instance=ExtResource("43_velas")]
-position = Vector2(45, 60)
+z_index = 1
+position = Vector2(20, 48)
 scale = Vector2(0.08, 0.08)
 separacion = Vector2(600, 0)
 
@@ -180,7 +180,7 @@ layout_mode = 1
 
 [node name="UIComidasElegidas" parent="HUD" index="0" unique_id=1447058340]
 visible = false
-texture = SubResource("ViewportTexture_4s28l")
+texture = SubResource("ViewportTexture_lly1i")
 
 [node name="CanvasLayer" parent="HUD" index="1" unique_id=1032973156]
 layer = 3

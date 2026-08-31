@@ -72,11 +72,30 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="VelaVida" type="AnimatedSprite2D" unique_id=1855201658]
+[sub_resource type="Gradient" id="Gradient_p8bc8"]
+interpolation_mode = 2
+interpolation_color_space = 2
+colors = PackedColorArray(1, 0.76862746, 0.35686275, 1, 0.82, 0.16400003, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jhh3k"]
+gradient = SubResource("Gradient_p8bc8")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="VelaVida" type="AnimatedSprite2D" unique_id=1855201658 node_paths=PackedStringArray("luz")]
 sprite_frames = SubResource("SpriteFrames_vela")
 animation = &"encendida"
 autoplay = "encendida"
-frame_progress = 0.77419627
+frame_progress = 0.4136953
 script = ExtResource("1_vela")
 duracion_apagandose = 20.0
 offset_muerta = Vector2(8, 94)
+luz = NodePath("PointLight2D")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=2029227492]
+position = Vector2(-51.000004, -318)
+scale = Vector2(9.65625, 9.656249)
+energy = 0.6
+range_layer_max = 2
+texture = SubResource("GradientTexture2D_jhh3k")
