@@ -57,6 +57,7 @@ func acomodar_vista_previa() -> void:
 
 
 func actualizar_velas(vidas_actuales : int, vidas_maximas : int) -> void:
+	var existentes : int = velas.size()
 	while velas.size() < vidas_maximas:
 		agregar_vela()
 	while velas.size() > vidas_maximas:
@@ -64,6 +65,8 @@ func actualizar_velas(vidas_actuales : int, vidas_maximas : int) -> void:
 	for i in velas.size():
 		if i < vidas_actuales:
 			velas[i].encender()
+		elif i >= existentes:
+			velas[i].matar()
 		else:
 			velas[i].apagar()
 

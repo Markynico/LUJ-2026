@@ -21,6 +21,9 @@ enum Estado { ENCENDIDA, APAGANDOSE, MUERTA }
 			estado = Estado.MUERTA if vista_previa_muerta else Estado.APAGANDOSE
 			aplicar_estado()
 
+@export_group("NODOS")
+@export var luz : PointLight2D
+
 var estado : Estado = Estado.ENCENDIDA
 var timer_muerte : SceneTreeTimer
 
@@ -46,6 +49,14 @@ func apagar() -> void:
 	timer_muerte.timeout.connect(morir.bind(timer_muerte))
 
 
+func matar() -> void:
+	if estado == Estado.MUERTA:
+		return
+	estado = Estado.MUERTA
+	timer_muerte = null
+	aplicar_estado()
+
+
 func morir(timer : SceneTreeTimer) -> void:
 	if timer != timer_muerte or estado != Estado.APAGANDOSE:
 		return
@@ -60,6 +71,8 @@ func desaparecer() -> void:
 
 
 func aplicar_estado() -> void:
+	if luz:
+		luz.enabled = estado == Estado.ENCENDIDA
 	if not sprite_frames:
 		return
 	match estado:
