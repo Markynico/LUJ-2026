@@ -145,7 +145,6 @@ collision_mask = 19
 contact_monitor = true
 max_contacts_reported = 8
 script = ExtResource("1_vrxw6")
-orgulloso = null
 imagen_normal = ExtResource("10_2wj7v")
 imagen_bolita = ExtResource("6_2wj7v")
 imagen_orgulloso = ExtResource("9_7xk13")

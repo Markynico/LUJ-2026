@@ -210,6 +210,8 @@ horizontal_alignment = 1
 
 [node name="ContenedorDificultades" type="HBoxContainer" parent="UISeleccion/CuadroUI/MarginContainer/Contenido" unique_id=1090412812]
 layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(38, 0)
 theme_override_constants/separation = 40
 alignment = 1
 
