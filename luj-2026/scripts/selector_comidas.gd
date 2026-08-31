@@ -8,6 +8,7 @@ signal seleccion_terminada
 
 @export var ui_contenedor_comidas : HBoxContainer
 @export var canvas_layer : CanvasLayer
+@export var canvas_layer_info : CanvasLayer
 @export var foco : FocoTarjetas
 const escena_tarjeta : PackedScene = preload("uid://u6k76f6lyw8y")
 @export var comidas_a_mostrar : int = 3
@@ -95,8 +96,17 @@ func mostrar_selector_comidas(): #2 muestro el selector y pauso el juego, pero s
 
 func esconder_selector_comidas():
 	canvas_layer.hide()
+	canvas_layer_info.hide()
 	Transicion.filtrar_musica(false)
 
 #1 cada vez q terminamoms un nivel se muestra el selector de comidas
 func _on_game_manager_nivel_completado(exito: bool) -> void: #signal conectada en la escena de juego
 	mostrar_selector_comidas()
+
+
+func _on_button_info_pressed() -> void:
+	canvas_layer_info.show()
+
+
+func _on_button_cerrar_info_pressed() -> void:
+	canvas_layer_info.hide()

@@ -3,12 +3,13 @@
 [ext_resource type="Texture2D" uid="uid://dljb32hglhe5q" path="res://assets/placeholders/bolaspelo_placeholder/placeholder_bola_de_pelos_michinko2.png" id="1_gldi5"]
 [ext_resource type="Script" uid="uid://gwbyp82oxk5m" path="res://scripts/texture_rect_cargador.gd" id="2_ktqvi"]
 
-[node name="TextureRectCargador" type="TextureRect" unique_id=2143947696 node_paths=PackedStringArray("pergamino")]
+[node name="TextureRectCargador" type="TextureRect" unique_id=2143947696]
+texture_filter = 3
 custom_minimum_size = Vector2(50, 50)
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 0
 texture = ExtResource("1_gldi5")
 expand_mode = 3
+stretch_mode = 5
 script = ExtResource("2_ktqvi")
-pergamino = NodePath("")
