@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ReliquiaTarjetaCredito" format=3 uid="uid://cihtrwgsv5g8s"]
+
+[ext_resource type="Script" uid="uid://cmyt0i3rp36r5" path="res://scripts/reliquias/reliquia_tarjeta_credito.gd" id="1_rel"]
+[ext_resource type="Texture2D" uid="uid://bmshljiy45b7g" path="res://assets/reliquias/tarjeta de credito.png" id="2_rel"]
+
+[resource]
+script = ExtResource("1_rel")
+nombre = "Tarjeta de crédito"
+rareza = 2
+descripcion = "25% de descuento en la tienda. La dificultad escala 50% más rápido.
+
+\"Ya fue lo saco en cuotas\""
+icono = ExtResource("2_rel")
+condicion_desbloqueo = "items_comprados"
+cantidad_desbloqueo = 10

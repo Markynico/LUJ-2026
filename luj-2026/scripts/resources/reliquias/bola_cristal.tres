@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ReliquiaBolaCristal" format=3 uid="uid://bkjitt5ynko8u"]
+
+[ext_resource type="Texture2D" uid="uid://dtq6yoigy4ju4" path="res://assets/reliquias/bola de cristal.png" id="1_phkcm"]
+[ext_resource type="Script" uid="uid://coqxqp65jh0xk" path="res://scripts/reliquias/reliquia_bola_cristal.gd" id="1_rel"]
+
+[resource]
+script = ExtResource("1_rel")
+nombre = "Bola de cristal"
+rareza = 1
+descripcion = "Las salidas del nivel se ven desde el principio."
+icono = ExtResource("1_phkcm")

@@ -9,3 +9,5 @@ nombre = "Armadura para Gatos"
 rareza = 2
 descripcion = "Michinko ya no tiene límite para romper ovillos al caer."
 icono = ExtResource("2_rel")
+condicion_desbloqueo = "niveles_ganados"
+cantidad_desbloqueo = 5

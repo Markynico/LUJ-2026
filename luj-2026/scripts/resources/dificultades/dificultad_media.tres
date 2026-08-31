@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DificultadRun" format=3 uid="uid://oe7n6flqxgn6"]
+
+[ext_resource type="Script" uid="uid://colmyx75iuvr3" path="res://scripts/dificultad_run.gd" id="1_dif"]
+[ext_resource type="Texture2D" uid="uid://dmd7g1ic6s8dq" path="res://assets/dificultad media.png" id="2_icono"]
+
+[resource]
+script = ExtResource("1_dif")
+nombre = "Medio"
+icono = ExtResource("2_icono")
+color_seleccion = Color(1, 0.6, 0.1, 1)
+escala_icono = 1.2
+rango = 1
+porcentaje_inicial = 0.31
+porcentaje_final = 0.87
+exponente_curva = 1.5
+niveles_para_ganar = 15
+multiplicador_precios = 1.5

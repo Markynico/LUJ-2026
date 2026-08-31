@@ -35,7 +35,7 @@ func elegir_ovillo() -> OvilloBase:
 	var valor_spawn_total : float = 0.0
 	
 	for ovillo in tipo_ovillos:
-		valor_spawn_total += ovillo.valor_spawn 
+		valor_spawn_total += ovillo.valor_spawn * ReliquiasManager.multiplicador_spawn_para(ovillo)
 		#Calcula el valor total de todos los tipos de ovillo
 	
 	var valor_aleatorio : float = randf_range(0.0, valor_spawn_total)
@@ -45,7 +45,7 @@ func elegir_ovillo() -> OvilloBase:
 	#vuelve a recorrer el arreglo y chequea el avance del valor
 	#de los ovillos con el numero aleatorio elegido
 	for ovillo in tipo_ovillos:
-		valor_a_elegir += ovillo.valor_spawn
+		valor_a_elegir += ovillo.valor_spawn * ReliquiasManager.multiplicador_spawn_para(ovillo)
 		if valor_aleatorio <= valor_a_elegir:
 			return ovillo
 	

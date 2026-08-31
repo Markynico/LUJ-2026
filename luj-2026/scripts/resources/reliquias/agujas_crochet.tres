@@ -14,3 +14,5 @@ descripcion = "Los {ovillo_normal:icono} dan el doble de puntos.
 
 \"Podría tejer algo con esto...\""
 icono = ExtResource("2_rel")
+condicion_desbloqueo = "ovillos_rotos"
+cantidad_desbloqueo = 300

@@ -11,3 +11,5 @@ descripcion = "-1 {vida:ambos/vida} máxima
 
 \"Por favor no le compres esta mierda a tu gato.\""
 icono = ExtResource("2_rel")
+condicion_desbloqueo = "niveles_perdidos"
+cantidad_desbloqueo = 5

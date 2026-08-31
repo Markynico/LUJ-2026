@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DificultadRun" format=3 uid="uid://bwtp6rro6y6j3"]
+
+[ext_resource type="Script" uid="uid://colmyx75iuvr3" path="res://scripts/dificultad_run.gd" id="1_dif"]
+[ext_resource type="Texture2D" uid="uid://dbh4cm5upkxnq" path="res://assets/dificultad dificil.png" id="2_icono"]
+
+[resource]
+script = ExtResource("1_dif")
+nombre = "Difícil"
+icono = ExtResource("2_icono")
+color_seleccion = Color(0.9, 0.15, 0.15, 1)
+escala_icono = 1.05
+rango = 2
+porcentaje_inicial = 0.44
+porcentaje_final = 0.95
+exponente_curva = 2.0
+niveles_para_ganar = 20
+multiplicador_precios = 2.0

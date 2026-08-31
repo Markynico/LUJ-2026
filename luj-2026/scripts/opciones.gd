@@ -9,6 +9,8 @@ const RESOLUCIONES : Array[Vector2i] = [Vector2i(3840, 2160), Vector2i(2560, 144
 @export var opcion_resolucion : OptionButton
 @export var opcion_vsync : OptionButton
 @export var boton_cerrar : Button
+@export var boton_resetear : Button
+@export var confirmacion_reset : ConfirmationDialog
 
 
 func _ready() -> void:
@@ -19,12 +21,15 @@ func _ready() -> void:
 	opcion_resolucion.select(RESOLUCIONES.find(DisplayServer.window_get_size()))
 	opcion_vsync.select(DisplayServer.window_get_vsync_mode())
 	actualizar_resolucion_habilitada()
-	slider_musica.value_changed.connect(AudioManager.cambiar_volumen_musica)
-	slider_efectos.value_changed.connect(AudioManager.cambiar_volumen_sfx)
+	slider_musica.value_changed.connect(Ajustes.cambiar_volumen_musica)
+	slider_efectos.value_changed.connect(Ajustes.cambiar_volumen_efectos)
 	opcion_ventana.item_selected.connect(cambiar_ventana)
 	opcion_resolucion.item_selected.connect(cambiar_resolucion)
-	opcion_vsync.item_selected.connect(cambiar_vsync)
+	opcion_vsync.item_selected.connect(Ajustes.cambiar_vsync)
 	boton_cerrar.pressed.connect(hide)
+	if boton_resetear and confirmacion_reset:
+		boton_resetear.pressed.connect(confirmacion_reset.popup_centered)
+		confirmacion_reset.confirmed.connect(Progreso.resetear)
 
 
 func volumen_de_bus(nombre_bus : String) -> float:
@@ -43,32 +48,12 @@ func indice_de_ventana() -> int:
 
 
 func cambiar_ventana(indice : int) -> void:
-	match indice:
-		0:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
-		1:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-		2:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+	Ajustes.cambiar_ventana(indice)
 	actualizar_resolucion_habilitada()
 
 
 func cambiar_resolucion(indice : int) -> void:
-	var pantalla : Vector2i = DisplayServer.screen_get_size()
-	var posicion_pantalla : Vector2i = DisplayServer.screen_get_position()
-	DisplayServer.window_set_size(RESOLUCIONES[indice])
-	DisplayServer.window_set_position(posicion_pantalla + (pantalla - RESOLUCIONES[indice]) / 2)
-
-
-func cambiar_vsync(indice : int) -> void:
-	match indice:
-		0:
-			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
-		1:
-			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
-		2:
-			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ADAPTIVE)
+	Ajustes.cambiar_resolucion(indice)
 
 
 func actualizar_resolucion_habilitada() -> void:

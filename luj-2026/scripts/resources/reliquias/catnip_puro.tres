@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ReliquiaCatnipPuro" format=3 uid="uid://b0wiyen41o3t2"]
+
+[ext_resource type="Script" uid="uid://dt8hns6rwqeqf" path="res://scripts/reliquias/reliquia_catnip_puro.gd" id="1_rel"]
+[ext_resource type="Resource" uid="uid://cy6q6prk7gt7p" path="res://scripts/resources/ovillo_catnip.tres" id="2_j63x8"]
+[ext_resource type="Texture2D" uid="uid://bt0w4bqv1gqf0" path="res://assets/reliquias/catnip puro.png" id="2_rel"]
+
+[resource]
+script = ExtResource("1_rel")
+nombre = "Catnip 100% puro"
+rareza = 2
+descripcion = "El efecto de los ovillos de {catnip} se puede stackear.
+
+\"De la buena\""
+icono = ExtResource("2_rel")
+condicion_desbloqueo = "ovillos_rotos_de_tipo"
+cantidad_desbloqueo = 50
+ovillo_objetivo = ExtResource("2_j63x8")

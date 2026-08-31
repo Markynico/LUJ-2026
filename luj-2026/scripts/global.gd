@@ -25,6 +25,7 @@ var comidas_elegidas : Array[PelotitaBase] #INFO: es parecido a la de arriba, pe
 
 func actualizar_monedas(valor):
 	monedas += valor
+	EstadisticasRun.registrar_monedas(valor)
 	monedas_cambiadas.emit(monedas)
 
 func actualizar_puntos(valor):
@@ -34,6 +35,7 @@ func actualizar_puntos(valor):
 #el panel ejecuta esta funcion dsp de elegir una comida especifica
 func actualizar_comidas_elegidas(pelotita_nueva : PelotitaBase):
 	print("global, elegimos una comida")
+	EstadisticasRun.registrar_comida_comprada()
 	comidas_elegidas.append(pelotita_nueva)
 	eligio_una_comida.emit() #para avisarle al cargador q obtenga comidas_elegidas de este script
 

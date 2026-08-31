@@ -65,5 +65,7 @@ func escupir_bola () -> void: #se llama desde el animation player del gato
 		instancia.global_position = global_position
 		#instancia.global_position = posicion_mouse
 		instancia.apply_impulse(datos.velocidad_inicial)
+		EstadisticasRun.registrar_bola_disparada()
+		ReliquiasManager.al_disparar()
 		Global.cargador_pelotitas_actualizado.emit() #voy a probar avisarle al game manaeger q salga del estado esperando bola
 		bola_escupida.emit()

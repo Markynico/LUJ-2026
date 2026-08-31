@@ -77,6 +77,7 @@ func limpiar_comidas_anteriores():
 
 #la llamo con una signal desde los paneles y sino tmb desde el boton omitir con la signal de pressed
 func avanzar(): #sea pq elige una comida o pq pone en omitir
+	foco.cerrar_inmediato()
 	esconder_selector_comidas()
 	seleccion_terminada.emit()
 

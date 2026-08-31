@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ReliquiaPapelArrugado" format=3 uid="uid://c7n5s17avea5j"]
+
+[ext_resource type="Script" uid="uid://db0riluhqkad8" path="res://scripts/reliquias/reliquia_papel_arrugado.gd" id="1_rel"]
+[ext_resource type="Texture2D" uid="uid://dlf2vt6dhdjnd" path="res://assets/reliquias/papel arrugado.png" id="1_x4tn5"]
+
+[resource]
+script = ExtResource("1_rel")
+nombre = "Papel arrugado"
+descripcion = "Muestra qué salas hay tras las salidas del nivel, sin decir cuál es cuál.
+
+\"Seguro no tenía anotado nada importante\""
+icono = ExtResource("1_x4tn5")

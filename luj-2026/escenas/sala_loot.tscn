@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" path="res://escenas/componentes/foco_tarjetas.tscn" id="1_foco"]
 [ext_resource type="Texture2D" uid="uid://bhi3nf0jngdpb" path="res://assets/tapir.jpg" id="1_fondo"]
 [ext_resource type="Script" uid="uid://ddjnfonlvbcs6" path="res://scripts/sala_loot.gd" id="1_loot"]
-[ext_resource type="PackedScene" uid="uid://u6k76f6lyw8y" path="res://escenas/componentes/tarjeta.tscn" id="1_tarj"]
 [ext_resource type="Resource" uid="uid://d1g05k4oam2p8" path="res://scripts/resources/reliquias/rascador.tres" id="2_rascador"]
 [ext_resource type="Resource" uid="uid://b85q6u2n8x3j1" path="res://scripts/resources/reliquias/tapita_lapicera.tres" id="4_tapita"]
 [ext_resource type="Resource" uid="uid://chsjfpl7ukql7" path="res://scripts/resources/reliquias/tiro_extra.tres" id="5_tiro"]
@@ -16,10 +15,29 @@
 [ext_resource type="Resource" uid="uid://bpw3shdksb1v5" path="res://scripts/resources/reliquias/almuerzo_duenia.tres" id="12_almue"]
 [ext_resource type="Resource" uid="uid://cv7e0lifc61g8" path="res://scripts/resources/reliquias/magiclick.tres" id="13_magic"]
 [ext_resource type="Resource" uid="uid://4o8c2qa6dfir" path="res://scripts/resources/reliquias/agujas_crochet.tres" id="14_aguja"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/cassette_roto.tres" id="23_cass"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/planta_catnip.tres" id="24_plan"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/tarjeta_puntos.tres" id="25_tarp"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/catnip_puro.tres" id="26_catp"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/bolsa_polvora.tres" id="27_bols"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/barril_polvora.tres" id="28_barr"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/pouch_balanceado.tres" id="29_pouc"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/amigurumi.tres" id="30_amig"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/puntero_laser.tres" id="31_punt"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/acuñadora.tres" id="32_acun"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/lata_atun.tres" id="33_lata"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/tarjeta_credito.tres" id="34_tcre"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/bola_cristal.tres" id="35_bcri"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/papel_arrugado.tres" id="36_papel"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/canica_vidrio.tres" id="37_cani"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/caja_carton.tres" id="38_ccar"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/objeto_valioso.tres" id="39_oval"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/caja_fosforos.tres" id="40_cfos"]
+[ext_resource type="Resource" path="res://scripts/resources/reliquias/dvd.tres" id="41_dvd"]
 [ext_resource type="Material" uid="uid://bw1r2eimk66te" path="res://scripts/shaders/material_brillo_radial.tres" id="15_s1p1j"]
 [ext_resource type="Theme" uid="uid://bjkvjfhj8dr8y" path="res://themes/theme_ui_general.tres" id="16_tema"]
 
-[node name="SalaLoot" type="Control" unique_id=879506484 node_paths=PackedStringArray("tarjeta", "foco", "boton_aceptar", "boton_rechazar")]
+[node name="SalaLoot" type="Control" unique_id=879506484 node_paths=PackedStringArray("contenedor_tarjetas", "foco", "boton_aceptar", "boton_rechazar")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -29,8 +47,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("16_tema")
 script = ExtResource("1_loot")
-reliquias_posibles = Array[ExtResource("6_reliquia")]([ExtResource("2_rascador"), ExtResource("4_tapita"), ExtResource("5_tiro"), ExtResource("7_messi"), ExtResource("8_maceta"), ExtResource("9_almoh"), ExtResource("10_whisk"), ExtResource("11_armad"), ExtResource("12_almue"), ExtResource("13_magic"), ExtResource("14_aguja")])
-tarjeta = NodePath("Contenido/Tarjeta")
+reliquias_posibles = Array[ExtResource("6_reliquia")]([ExtResource("2_rascador"), ExtResource("4_tapita"), ExtResource("5_tiro"), ExtResource("7_messi"), ExtResource("8_maceta"), ExtResource("9_almoh"), ExtResource("10_whisk"), ExtResource("11_armad"), ExtResource("12_almue"), ExtResource("13_magic"), ExtResource("14_aguja"), ExtResource("23_cass"), ExtResource("24_plan"), ExtResource("25_tarp"), ExtResource("26_catp"), ExtResource("27_bols"), ExtResource("28_barr"), ExtResource("29_pouc"), ExtResource("30_amig"), ExtResource("31_punt"), ExtResource("32_acun"), ExtResource("33_lata"), ExtResource("34_tcre"), ExtResource("35_bcri"), ExtResource("36_papel"), ExtResource("37_cani"), ExtResource("38_ccar"), ExtResource("39_oval"), ExtResource("40_cfos"), ExtResource("41_dvd")])
+contenedor_tarjetas = NodePath("Contenido/ContenedorTarjetas")
 foco = NodePath("FocoTarjetas")
 boton_aceptar = NodePath("Contenido/Botones/BotonAceptar")
 boton_rechazar = NodePath("Contenido/Botones/BotonRechazar")
@@ -77,10 +95,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 29
 
-[node name="Tarjeta" parent="Contenido" unique_id=1648717189 instance=ExtResource("1_tarj")]
-custom_minimum_size = Vector2(500, 600)
+[node name="ContenedorTarjetas" type="HBoxContainer" parent="Contenido" unique_id=1648717189]
 layout_mode = 2
-size_flags_horizontal = 4
+theme_override_constants/separation = 50
+alignment = 1
 
 [node name="Botones" type="HBoxContainer" parent="Contenido" unique_id=1124909329]
 layout_mode = 2

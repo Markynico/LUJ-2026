@@ -5,6 +5,7 @@ var explosion_scene: PackedScene = preload("res://escenas/componentes/explosion.
 
 func al_recibir_impacto(ovillo: Ovillo):
 	var explosion = explosion_scene.instantiate()
+	ReliquiasManager.al_explotar(explosion)
 	ovillo.get_parent().call_deferred("add_child", explosion)
 	explosion.set_deferred("global_position", ovillo.global_position)
 	ovillo.explotar(explosion) #aca le digo al ovillo q explote

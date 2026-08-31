@@ -13,6 +13,12 @@ extends Control
 @export var escena_tarjeta : PackedScene = preload("uid://u6k76f6lyw8y")
 ##escena del menu a la que vuelve el boton
 @export_file("*.tscn") var escena_menu : String = "uid://c30ry4xehty4"
+##color con el que se oscurecen las tarjetas bloqueadas
+@export var color_bloqueada : Color = Color(0.35, 0.35, 0.35)
+##tamaño de fuente del texto de condicion de desbloqueo
+@export var tamaño_fuente_condicion : int = 34
+##fuente del texto de condicion de desbloqueo
+@export var fuente_condicion : Font = preload("uid://dwg47e0trev3j")
 
 @export_group("Nodos")
 @export var grilla_reliquias : GridContainer
@@ -47,9 +53,29 @@ func crear_tarjeta(grilla : GridContainer, item : Resource) -> void:
 	tarjeta.size = tamaño_tarjeta
 	tarjeta.scale = Vector2.ONE * escala_tarjeta
 	tarjeta.recurso = item
-	tarjeta.clickeada.connect(al_click_tarjeta.bind(tarjeta))
 	envoltura.add_child(tarjeta)
 	grilla.add_child(envoltura)
+	if item is Reliquia and not Progreso.esta_desbloqueada(item):
+		bloquear_tarjeta(envoltura, tarjeta, item)
+	else:
+		tarjeta.clickeada.connect(al_click_tarjeta.bind(tarjeta))
+
+
+func bloquear_tarjeta(envoltura : Control, tarjeta : Tarjeta, reliquia : Reliquia) -> void:
+	var etiqueta : Label = Label.new()
+	tarjeta.modulate = color_bloqueada
+	tarjeta.hover_activado = false
+	if tarjeta.icono:
+		tarjeta.icono.self_modulate = Color.BLACK
+	etiqueta.text = "%s\n%d/%d" % [Progreso.descripcion_condicion(reliquia), Progreso.valor_condicion(reliquia), reliquia.cantidad_desbloqueo]
+	etiqueta.add_theme_font_override("font", fuente_condicion)
+	etiqueta.add_theme_font_size_override("font_size", tamaño_fuente_condicion)
+	etiqueta.add_theme_color_override("font_color", Color.WHITE)
+	etiqueta.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	etiqueta.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	etiqueta.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	etiqueta.set_anchors_preset(Control.PRESET_FULL_RECT)
+	envoltura.add_child(etiqueta)
 
 
 func al_click_tarjeta(tarjeta : Tarjeta) -> void:

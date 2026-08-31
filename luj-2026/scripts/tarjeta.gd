@@ -118,7 +118,10 @@ func actualizar_tarjeta() -> void:
 	if label_nombre and "nombre" in recurso:
 		label_nombre.text = recurso.nombre
 	if label_descripcion and "descripcion" in recurso:
-		label_descripcion.text = Resaltador.formatear(recurso.descripcion)
+		if recurso.has_method("descripcion_para_mostrar"):
+			label_descripcion.text = Resaltador.formatear(recurso.descripcion_para_mostrar())
+		else:
+			label_descripcion.text = Resaltador.formatear(recurso.descripcion)
 	if icono:
 		icono.texture = obtener_icono()
 	if label_tipo:

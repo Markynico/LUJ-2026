@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="DificultadRun" format=3 uid="uid://0m7rprypwofd"]
+
+[ext_resource type="Script" uid="uid://colmyx75iuvr3" path="res://scripts/dificultad_run.gd" id="1_dif"]
+[ext_resource type="Texture2D" uid="uid://bp1qyy3ksenhp" path="res://assets/dificultad facil.png" id="2_icono"]
+
+[resource]
+script = ExtResource("1_dif")
+nombre = "Fácil"
+icono = ExtResource("2_icono")
+color_seleccion = Color(0.2, 0.8, 0.3, 1)

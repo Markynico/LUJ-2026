@@ -46,8 +46,8 @@ func poblar_ofertas() -> void:
 	var reliquias : Array = []
 	var comidas : Array = []
 	await get_tree().process_frame
-	for reliquia in pool_reliquias:
-		if reliquia and not ReliquiasManager.obtenidas.has(reliquia):
+	for reliquia in Progreso.filtrar_desbloqueadas(pool_reliquias):
+		if not ReliquiasManager.obtenidas.has(reliquia):
 			reliquias.append(reliquia)
 	for comida in pool_comidas:
 		if comida:
@@ -76,7 +76,7 @@ func elegir_oferta(candidatos : Array, cantidad : int) -> Array:
 
 
 func precio_de(item : Resource) -> int:
-	return Rareza.precio_de(item)
+	return roundi(Rareza.precio_de(item) * (1.0 - ReliquiasManager.descuento_tienda()))
 
 
 func armar_fila(fila : HBoxContainer, items : Array) -> void:
@@ -154,6 +154,7 @@ func comprar(item : Resource, boton : Button) -> bool:
 		ReliquiasManager.obtener(item)
 	elif item is PelotitaBase:
 		Global.agregar_pelotita_al_cargador(item)
+		EstadisticasRun.registrar_comida_comprada()
 	boton.disabled = true
 	boton.hide()
 	actualizar_botones()
@@ -181,4 +182,5 @@ func curar_vida() -> void:
 		return
 	Global.actualizar_monedas(-precio_curar_vida)
 	game_manager.ganar_vida(1)
+	EstadisticasRun.registrar_cura_comprada()
 	actualizar_botones()

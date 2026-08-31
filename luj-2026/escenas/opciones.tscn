@@ -24,7 +24,7 @@ bg_color = Color(0, 0, 0, 1)
 shadow_color = Color(0.18717614, 0.18717614, 0.18717614, 0.6)
 shadow_size = 1
 
-[node name="Opciones" type="CanvasLayer" unique_id=1122886871 node_paths=PackedStringArray("slider_musica", "slider_efectos", "opcion_ventana", "opcion_resolucion", "opcion_vsync", "boton_cerrar")]
+[node name="Opciones" type="CanvasLayer" unique_id=1122886871 node_paths=PackedStringArray("slider_musica", "slider_efectos", "opcion_ventana", "opcion_resolucion", "opcion_vsync", "boton_cerrar", "boton_resetear", "confirmacion_reset")]
 layer = 2
 script = ExtResource("1_opc")
 slider_musica = NodePath("Panel/Contenido/SliderMusica")
@@ -33,6 +33,8 @@ opcion_ventana = NodePath("Panel/Contenido/OpcionVentana")
 opcion_resolucion = NodePath("Panel/Contenido/OpcionResolucion")
 opcion_vsync = NodePath("Panel/Contenido/OpcionVsync")
 boton_cerrar = NodePath("Panel/Contenido/BotonCerrar")
+boton_resetear = NodePath("Panel/Contenido/BotonResetear")
+confirmacion_reset = NodePath("ConfirmacionReset")
 
 [node name="Fondo" type="ColorRect" parent="." unique_id=2072488780]
 visible = false
@@ -184,6 +186,13 @@ popup/item_2/id = 2
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
+[node name="BotonResetear" type="Button" parent="Panel/Contenido" unique_id=396325211]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_4n5yr")
+theme_override_font_sizes/font_size = 24
+text = "Resetear progreso"
+
 [node name="BotonCerrar" type="Button" parent="Panel/Contenido" unique_id=396325210]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -191,3 +200,10 @@ theme = ExtResource("3_4n5yr")
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 40
 text = "Cerrar"
+
+[node name="ConfirmacionReset" type="ConfirmationDialog" parent="." unique_id=396325212]
+title = "Resetear progreso"
+size = Vector2i(520, 140)
+ok_button_text = "Resetear"
+dialog_text = "Se van a borrar todos los stats y desbloqueos acumulados. ¿Seguro?"
+cancel_button_text = "Cancelar"

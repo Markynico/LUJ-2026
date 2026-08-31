@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ReliquiaExplosion" format=3 uid="uid://w0nxscbh8a51"]
+
+[ext_resource type="Script" uid="uid://rh5uy6oohjtf" path="res://scripts/reliquias/reliquia_explosion.gd" id="1_rel"]
+[ext_resource type="Resource" uid="uid://d3ks2dut6iacd" path="res://scripts/resources/ovillo_explosivo_final.tres" id="2_5hr6c"]
+[ext_resource type="Texture2D" uid="uid://dyywitlk5tg0d" path="res://assets/reliquias/bolsa de polvora.png" id="2_rel"]
+
+[resource]
+script = ExtResource("1_rel")
+probabilidad = 50.0
+nombre = "Bolsita de pólvora"
+rareza = 1
+descripcion = "Los {explosivo} tienen 50% de chance de explotar con el doble de fuerza y área."
+icono = ExtResource("2_rel")
+condicion_desbloqueo = "ovillos_rotos_de_tipo"
+cantidad_desbloqueo = 25
+ovillo_objetivo = ExtResource("2_5hr6c")

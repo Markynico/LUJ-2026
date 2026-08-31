@@ -130,13 +130,19 @@ func duplicar_recompensas() -> void: #la llama efecto_ovillo_catnip
 	if !activado:
 		return
 	#print("MULTIPLICÓ")
-	multiplicador = 2
-	
+	if ReliquiasManager.catnip_stackeable:
+		multiplicador *= 2
+	else:
+		multiplicador = 2
+
 
 func fin_duplicar() -> void:
 	if !activado:
 		return
-	multiplicador = 1
+	if ReliquiasManager.catnip_stackeable:
+		multiplicador = maxi(1, multiplicador / 2)
+	else:
+		multiplicador = 1
 
 func obtener_puntaje () -> int:
 	if not tipo_ovillo:
@@ -147,7 +153,7 @@ func obtener_puntaje () -> int:
 func obtener_monedas () -> int:
 	if not tipo_ovillo:
 		return 0
-	return tipo_ovillo.cant_monedas * multiplicador
+	return roundi(tipo_ovillo.cant_monedas * multiplicador * ReliquiasManager.multiplicador_monedas_para(tipo_ovillo))
 
 func congelar() -> void:
 	pass
