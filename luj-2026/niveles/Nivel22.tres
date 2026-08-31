@@ -1,0 +1,124 @@
+[gd_resource type="Resource" script_class="NivelData" format=3 uid="uid://4ahj6avbn5f"]
+
+[ext_resource type="Script" uid="uid://1owdr3bm0age" path="res://scripts/niveles/forma_data.gd" id="1_forma"]
+[ext_resource type="Script" uid="uid://4yxin8siliwu" path="res://scripts/niveles/nivel_data.gd" id="2_nivel"]
+
+[sub_resource type="Resource" id="Resource_0k66h"]
+script = ExtResource("1_forma")
+posicion = Vector2(970, 420)
+rotacion = 0.7853982
+separacion_ovillos = 32.0
+"tamaño" = Vector2(90, 90)
+
+[sub_resource type="Resource" id="Resource_qh86w"]
+script = ExtResource("1_forma")
+posicion = Vector2(740, 540)
+rotacion = 0.7853982
+separacion_ovillos = 30.0
+"tamaño" = Vector2(80, 80)
+
+[sub_resource type="Resource" id="Resource_frmgr"]
+script = ExtResource("1_forma")
+posicion = Vector2(1200, 540)
+rotacion = 0.7853982
+separacion_ovillos = 30.0
+"tamaño" = Vector2(80, 80)
+
+[sub_resource type="Resource" id="Resource_sp5qm"]
+script = ExtResource("1_forma")
+posicion = Vector2(580, 680)
+rotacion = 0.7853982
+separacion_ovillos = 30.0
+"tamaño" = Vector2(80, 80)
+
+[sub_resource type="Resource" id="Resource_ip7h6"]
+script = ExtResource("1_forma")
+posicion = Vector2(970, 680)
+rotacion = 0.7853982
+separacion_ovillos = 32.0
+"tamaño" = Vector2(90, 90)
+
+[sub_resource type="Resource" id="Resource_c11mo"]
+script = ExtResource("1_forma")
+posicion = Vector2(1360, 680)
+rotacion = 0.7853982
+separacion_ovillos = 30.0
+"tamaño" = Vector2(80, 80)
+
+[sub_resource type="Resource" id="Resource_66lin"]
+script = ExtResource("1_forma")
+tipo = "obstaculo_circulo"
+posicion = Vector2(850, 480)
+radio = 26.0
+
+[sub_resource type="Resource" id="Resource_sanql"]
+script = ExtResource("1_forma")
+tipo = "obstaculo_circulo"
+posicion = Vector2(1090, 480)
+radio = 26.0
+
+[sub_resource type="Resource" id="Resource_y7v5g"]
+script = ExtResource("1_forma")
+tipo = "obstaculo_circulo"
+posicion = Vector2(660, 610)
+radio = 26.0
+
+[sub_resource type="Resource" id="Resource_7mjaj"]
+script = ExtResource("1_forma")
+tipo = "obstaculo_circulo"
+posicion = Vector2(850, 610)
+radio = 26.0
+
+[sub_resource type="Resource" id="Resource_ntndw"]
+script = ExtResource("1_forma")
+tipo = "obstaculo_circulo"
+posicion = Vector2(1090, 610)
+radio = 26.0
+
+[sub_resource type="Resource" id="Resource_ppnba"]
+script = ExtResource("1_forma")
+tipo = "obstaculo_circulo"
+posicion = Vector2(1280, 610)
+radio = 26.0
+
+[sub_resource type="Curve2D" id="Curve2D_e1kfb"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 360, 0)
+}
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_kgjur"]
+script = ExtResource("1_forma")
+tipo = "obstaculo_rectangulo"
+"tamaño" = Vector2(170, 24)
+recorrido = SubResource("Curve2D_e1kfb")
+posicion_recorrido = Vector2(790, 780)
+velocidad = 120.0
+
+[sub_resource type="Resource" id="Resource_bhjxn"]
+script = ExtResource("1_forma")
+tipo = "obstaculo_rectangulo"
+posicion = Vector2(1508.8613, 720.64606)
+rotacion = -0.3490659
+"tamaño" = Vector2(220, 24)
+
+[sub_resource type="Resource" id="Resource_u0lk8"]
+script = ExtResource("1_forma")
+tipo = "obstaculo_rectangulo"
+posicion = Vector2(413.98993, 718.5027)
+rotacion = 0.3490659
+"tamaño" = Vector2(220, 24)
+
+[sub_resource type="Resource" id="Resource_t4tg3"]
+script = ExtResource("1_forma")
+tipo = "circulo"
+posicion = Vector2(970, 890)
+separacion_ovillos = 30.0
+radio = 50.0
+
+[resource]
+script = ExtResource("2_nivel")
+nombre = "Nivel22"
+formas = Array[ExtResource("1_forma")]([SubResource("Resource_0k66h"), SubResource("Resource_qh86w"), SubResource("Resource_frmgr"), SubResource("Resource_sp5qm"), SubResource("Resource_ip7h6"), SubResource("Resource_c11mo"), SubResource("Resource_66lin"), SubResource("Resource_sanql"), SubResource("Resource_y7v5g"), SubResource("Resource_7mjaj"), SubResource("Resource_ntndw"), SubResource("Resource_ppnba"), SubResource("Resource_kgjur"), SubResource("Resource_bhjxn"), SubResource("Resource_u0lk8"), SubResource("Resource_t4tg3")])
+posicion_divisiones = Vector2(349, 1080)
+ancho_divisiones = 1241.0

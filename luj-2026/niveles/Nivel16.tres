@@ -3,108 +3,103 @@
 [ext_resource type="Script" uid="uid://1owdr3bm0age" path="res://scripts/niveles/forma_data.gd" id="1_forma"]
 [ext_resource type="Script" uid="uid://4yxin8siliwu" path="res://scripts/niveles/nivel_data.gd" id="2_nivel"]
 
-[sub_resource type="Curve2D" id="Curve2D_barra_1"]
+[sub_resource type="Curve2D" id="Curve2D_7t3hq"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 380, 0)
 }
 point_count = 2
 
-[sub_resource type="Resource" id="Resource_barra_cruzada_1"]
+[sub_resource type="Resource" id="Resource_m6b8w"]
 script = ExtResource("1_forma")
 tipo = "obstaculo_rectangulo"
 "tamaño" = Vector2(240, 26)
-recorrido = SubResource("Curve2D_barra_1")
+recorrido = SubResource("Curve2D_7t3hq")
 posicion_recorrido = Vector2(600, 460)
 velocidad = 130.0
-ida_y_vuelta = true
 
-[sub_resource type="Curve2D" id="Curve2D_barra_2"]
+[sub_resource type="Curve2D" id="Curve2D_t1swy"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -380, 0)
 }
 point_count = 2
 
-[sub_resource type="Resource" id="Resource_barra_cruzada_2"]
+[sub_resource type="Resource" id="Resource_3gm72"]
 script = ExtResource("1_forma")
 tipo = "obstaculo_rectangulo"
 "tamaño" = Vector2(240, 26)
-recorrido = SubResource("Curve2D_barra_2")
+recorrido = SubResource("Curve2D_t1swy")
 posicion_recorrido = Vector2(1340, 560)
 velocidad = 130.0
-ida_y_vuelta = true
 
-[sub_resource type="Resource" id="Resource_bumper_centro"]
+[sub_resource type="Resource" id="Resource_gnrrr"]
 script = ExtResource("1_forma")
 tipo = "obstaculo_circulo"
 posicion = Vector2(970, 680)
 radio = 60.0
 
-[sub_resource type="Resource" id="Resource_anillo_centro"]
+[sub_resource type="Resource" id="Resource_spvt6"]
 script = ExtResource("1_forma")
 tipo = "circulo"
 posicion = Vector2(970, 680)
-radio = 105.0
 separacion_ovillos = 40.0
+radio = 105.0
 
-[sub_resource type="Resource" id="Resource_pod_sup_izq"]
+[sub_resource type="Resource" id="Resource_odxsr"]
 script = ExtResource("1_forma")
 tipo = "circulo"
 posicion = Vector2(560, 420)
-radio = 55.0
 separacion_ovillos = 32.0
+radio = 55.0
 
-[sub_resource type="Resource" id="Resource_pod_sup_der"]
+[sub_resource type="Resource" id="Resource_3bm1q"]
 script = ExtResource("1_forma")
 tipo = "circulo"
 posicion = Vector2(1380, 420)
-radio = 55.0
 separacion_ovillos = 32.0
+radio = 55.0
 
-[sub_resource type="Resource" id="Resource_pod_mid_izq"]
+[sub_resource type="Resource" id="Resource_4ljpa"]
 script = ExtResource("1_forma")
-tipo = "rectangulo"
 posicion = Vector2(560, 680)
 rotacion = 0.7853982
-"tamaño" = Vector2(80, 80)
 separacion_ovillos = 32.0
+"tamaño" = Vector2(80, 80)
 
-[sub_resource type="Resource" id="Resource_pod_mid_der"]
+[sub_resource type="Resource" id="Resource_g8ohe"]
 script = ExtResource("1_forma")
-tipo = "rectangulo"
 posicion = Vector2(1380, 680)
 rotacion = 0.7853982
-"tamaño" = Vector2(80, 80)
 separacion_ovillos = 32.0
+"tamaño" = Vector2(80, 80)
 
-[sub_resource type="Curve2D" id="Curve2D_onda_inf"]
+[sub_resource type="Curve2D" id="Curve2D_csbdc"]
 bake_interval = 2.0
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 500, 830, 0, 0, 0, 0, 730, 890, 0, 0, 0, 0, 970, 830, 0, 0, 0, 0, 1210, 890, 0, 0, 0, 0, 1440, 830)
 }
 point_count = 5
 
-[sub_resource type="Resource" id="Resource_path_onda_inf"]
+[sub_resource type="Resource" id="Resource_0tnh4"]
 script = ExtResource("1_forma")
 tipo = "path"
-posicion = Vector2(0, 0)
 separacion_ovillos = 36.0
-curva = SubResource("Curve2D_onda_inf")
+curva = SubResource("Curve2D_csbdc")
 
-[sub_resource type="Resource" id="Resource_guia_inf_1"]
+[sub_resource type="Resource" id="Resource_lje60"]
 script = ExtResource("1_forma")
 tipo = "obstaculo_circulo"
-posicion = Vector2(800, 940)
+posicion = Vector2(439.87698, 751.36414)
 radio = 30.0
 
-[sub_resource type="Resource" id="Resource_guia_inf_2"]
+[sub_resource type="Resource" id="Resource_8aksh"]
 script = ExtResource("1_forma")
 tipo = "obstaculo_circulo"
-posicion = Vector2(1140, 940)
+posicion = Vector2(1504.4102, 740.6462)
 radio = 30.0
 
 [resource]
 script = ExtResource("2_nivel")
 nombre = "Nivel16"
-formas = Array[ExtResource("1_forma")]([SubResource("Resource_barra_cruzada_1"), SubResource("Resource_barra_cruzada_2"), SubResource("Resource_bumper_centro"), SubResource("Resource_anillo_centro"), SubResource("Resource_pod_sup_izq"), SubResource("Resource_pod_sup_der"), SubResource("Resource_pod_mid_izq"), SubResource("Resource_pod_mid_der"), SubResource("Resource_path_onda_inf"), SubResource("Resource_guia_inf_1"), SubResource("Resource_guia_inf_2")])
+formas = Array[ExtResource("1_forma")]([SubResource("Resource_m6b8w"), SubResource("Resource_3gm72"), SubResource("Resource_gnrrr"), SubResource("Resource_spvt6"), SubResource("Resource_odxsr"), SubResource("Resource_3bm1q"), SubResource("Resource_4ljpa"), SubResource("Resource_g8ohe"), SubResource("Resource_0tnh4"), SubResource("Resource_lje60"), SubResource("Resource_8aksh")])
 posicion_divisiones = Vector2(349, 1080)
 ancho_divisiones = 1241.0
