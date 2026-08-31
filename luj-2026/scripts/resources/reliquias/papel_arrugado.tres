@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_rel")
-nombre = "Papel arrugado"
+nombre = "Papel Arrugado"
 descripcion = "Muestra qué salas hay tras las salidas del nivel, sin decir cuál es cuál.
 
 \"Seguro no tenía anotado nada importante\""

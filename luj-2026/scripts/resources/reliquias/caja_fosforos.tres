@@ -9,9 +9,9 @@
 script = ExtResource("1_rel")
 tipos_objetivo = Array[ExtResource("4_rel")]([ExtResource("3_rel")])
 multiplicador = 2.0
-nombre = "Caja de fósforos"
+nombre = "Caja de Fósforos"
 rareza = 1
-descripcion = "Los niveles comienzan con más {explosivo}.
+descripcion = "Los niveles comienzan con más {explosivo:icono}.
 
 \"*Fttshhhh...*\""
 icono = ExtResource("2_rel")

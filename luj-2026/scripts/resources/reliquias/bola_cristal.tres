@@ -5,7 +5,9 @@
 
 [resource]
 script = ExtResource("1_rel")
-nombre = "Bola de cristal"
+nombre = "Bola de Cristal"
 rareza = 1
-descripcion = "Las salidas del nivel se ven desde el principio."
+descripcion = "Las salidas del nivel se ven siempre.
+
+\"Reluciente como cabeza de pelado\""
 icono = ExtResource("1_phkcm")

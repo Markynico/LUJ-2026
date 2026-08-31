@@ -7,7 +7,7 @@
 script = ExtResource("1_rel")
 nombre = "Amigurumi de Michinko"
 rareza = 2
-descripcion = "Las salas de loot ofrecen 3 reliquias para elegir.
+descripcion = "Las salas de loot ofrecen 3 opciones de reliquias para elegir.
 
 \"Hecho con amor\""
 icono = ExtResource("2_rel")

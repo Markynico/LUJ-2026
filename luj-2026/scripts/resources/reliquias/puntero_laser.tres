@@ -1,13 +1,11 @@
-[gd_resource type="Resource" script_class="ReliquiaTrayectoria" format=3]
+[gd_resource type="Resource" script_class="ReliquiaTrayectoria" format=3 uid="uid://cw1vlulvddawu"]
 
 [ext_resource type="Script" uid="uid://c10w7ju8dhdve" path="res://scripts/reliquias/reliquia_trayectoria.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://caksnlc5x1ijb" path="res://assets/reliquias/puntero laser.png" id="2_rel"]
 
 [resource]
 script = ExtResource("1_rel")
-rebotes_predichos = 5
-pasos = 240
-nombre = "Puntero láser"
+nombre = "Puntero Láser"
 rareza = 1
 descripcion = "La guía de disparo muestra el recorrido de la bolita y sus {rebote:texto/rebotes}.
 

@@ -1,15 +1,13 @@
-[gd_resource type="Resource" script_class="ReliquiaDescuentoTienda" format=3]
+[gd_resource type="Resource" script_class="ReliquiaDescuentoTienda" format=3 uid="uid://cpjq87qwggr17"]
 
 [ext_resource type="Script" uid="uid://bqr1b8teh4lws" path="res://scripts/reliquias/reliquia_descuento_tienda.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://e4xdfjit1gq8" path="res://assets/reliquias/tarjeta de puntos.png" id="2_rel"]
 
 [resource]
 script = ExtResource("1_rel")
-descuento = 0.15
-descuento_miercoles = 0.5
-nombre = "Tarjeta de puntos"
+nombre = "Tarjeta de Puntos"
 rareza = 1
 descripcion = "15% de descuento en la tienda. 50% los miércoles.
 
-\"¿Cómo llegó esto acá?\""
+\"¿Y el 70% en la segunda unidad?\""
 icono = ExtResource("2_rel")

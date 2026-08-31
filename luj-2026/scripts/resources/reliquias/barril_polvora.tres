@@ -7,10 +7,13 @@
 [resource]
 script = ExtResource("1_rel")
 probabilidad_perder_vida = 5.0
-nombre = "Barril de pólvora"
-rareza = 2
-descripcion = "Todos los {explosivo} explotan con 200% de fuerza y radio. 5% de chance de perder 1 {vida} cuando explota una bomba."
+nombre = "Barril de Pólvora"
+rareza = 3
+descripcion = "Todos los {explosivo:icono} explotan con doble de fuerza y radio.
+Baja chance de perder 1 {vida} cuando explota una bomba.
+
+\"Tengo un mal presentimiento...\""
 icono = ExtResource("2_rel")
 condicion_desbloqueo = "ovillos_rotos_de_tipo"
-cantidad_desbloqueo = 50
+cantidad_desbloqueo = 150
 ovillo_objetivo = ExtResource("2_pvms4")

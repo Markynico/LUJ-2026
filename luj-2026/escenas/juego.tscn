@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://cexjr0e4owki" path="res://escenas/estructura_de_nivel.tscn" id="4_t4q8c"]
 [ext_resource type="Texture2D" uid="uid://bws3j2014uxn2" path="res://assets/columnas.png" id="4_w7gqy"]
 [ext_resource type="Script" uid="uid://bh3lxufik2p65" path="res://scripts/niveles/cargador_de_nivel.gd" id="5_carg"]
+[ext_resource type="Script" uid="uid://5lbsfhx8xug1" path="res://scripts/reliquias/reliquia.gd" id="6_ax6j8"]
 [ext_resource type="Script" uid="uid://mrkgoq2v1cix" path="res://scripts/niveles/selector_de_niveles.gd" id="6_selec"]
+[ext_resource type="Resource" uid="uid://bkjitt5ynko8u" path="res://scripts/resources/reliquias/bola_cristal.tres" id="7_djp4b"]
 [ext_resource type="PackedScene" uid="uid://bjrqwv4iyx66g" path="res://escenas/selector_comidas.tscn" id="11_qfdc2"]
 [ext_resource type="Script" uid="uid://bojjht8bbil08" path="res://scripts/UICargadorPelotitas.gd" id="13_eu1no"]
 [ext_resource type="PackedScene" uid="uid://c87sy1bku6et8" path="res://escenas/componentes/texture_rect_cargador.tscn" id="14_uryky"]
@@ -21,13 +23,17 @@
 [ext_resource type="Resource" uid="uid://fumr1qv4h1ho" path="res://scripts/resources/ovillo_rebobinar.tres" id="21_lwh54"]
 [ext_resource type="Resource" uid="uid://d3ks2dut6iacd" path="res://scripts/resources/ovillo_explosivo_final.tres" id="22_okgri"]
 [ext_resource type="Script" uid="uid://cn6qcniqf0qev" path="res://scripts/estante_reliquias.gd" id="23_estante"]
+[ext_resource type="Resource" uid="uid://b48kcm8swtxie" path="res://niveles/Nivel2.tres" id="24_nprev"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_w7gqy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jhh3k"]
 size = Vector2(1180.5, 45.99997)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_qjtjc"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_so1p1"]
+size = Vector2(55.5, 28)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_djp4b"]
 viewport_path = NodePath("PanelInfoIzquierdo/SubViewportIzq")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_7nkol"]
@@ -80,6 +86,7 @@ gato = NodePath("../Gato")
 cargador_nivel = NodePath("../CargadorDeNivel")
 selector_niveles = NodePath("../SelectorDeNiveles")
 porcentaje_ovillos_requerido = 0.4
+reliquias_iniciales = Array[ExtResource("6_ax6j8")]([ExtResource("7_djp4b")])
 
 [node name="Gato" parent="." unique_id=69399080 node_paths=PackedStringArray("game_manager") instance=ExtResource("3_qnwci")]
 position = Vector2(927, 207)
@@ -93,16 +100,21 @@ offset_right = -41.0
 offset_bottom = 11.0
 game_manager = NodePath("../GameManager")
 
-[node name="CargadorDeNivel" type="Node2D" parent="." unique_id=1344270759 node_paths=PackedStringArray("estructura")]
-script = ExtResource("5_carg")
-estructura = NodePath("../EstructuraDeNivel")
-
 [node name="SelectorDeNiveles" type="Node2D" parent="." unique_id=1344270760 node_paths=PackedStringArray("cargador")]
 script = ExtResource("6_selec")
 cargador = NodePath("../CargadorDeNivel")
 divisores_minimos = 1
 divisores_maximos = 3
+chance_loot = 1.0
+chance_tienda = 1.0
+salas_entre_tiendas = 0
+salas_entre_loots = 0
 alto_salida = 100.0
+
+[node name="CargadorDeNivel" type="Node2D" parent="." unique_id=1344270759 node_paths=PackedStringArray("estructura")]
+script = ExtResource("5_carg")
+estructura = NodePath("../EstructuraDeNivel")
+nivel_vista_previa = ExtResource("24_nprev")
 
 [node name="SelectorComidas" parent="." unique_id=1764529133 instance=ExtResource("11_qfdc2")]
 
@@ -123,6 +135,11 @@ scale = Vector2(0.285, 2.32)
 position = Vector2(167.5, 5.999817)
 shape = SubResource("RectangleShape2D_jhh3k")
 
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="EstructuraDeNivel/ParedIzquierda" index="2" unique_id=1596216274]
+position = Vector2(602, -5.0000286)
+rotation = -0.7853982
+shape = SubResource("RectangleShape2D_so1p1")
+
 [node name="ParedDerecha" parent="EstructuraDeNivel" index="2" unique_id=536931780]
 collision_mask = 15
 
@@ -134,9 +151,14 @@ scale = Vector2(0.285, 2.32)
 position = Vector2(209.25, 9)
 shape = SubResource("RectangleShape2D_jhh3k")
 
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="EstructuraDeNivel/ParedDerecha" index="2" unique_id=1954069531]
+position = Vector2(599, 21.99997)
+rotation = 0.7853982
+shape = SubResource("RectangleShape2D_so1p1")
+
 [node name="PanelInfoIzquierdo" parent="EstructuraDeNivel" index="3" unique_id=1428603965]
 visible = false
-texture = SubResource("ViewportTexture_qjtjc")
+texture = SubResource("ViewportTexture_djp4b")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2055805025]
 position = Vector2(960, 540)

@@ -8,8 +8,10 @@
 [resource]
 script = ExtResource("1_rel")
 tipos_objetivo = Array[ExtResource("4_rel")]([ExtResource("3_rel")])
-nombre = "Planta de catnip"
-descripcion = "25% más de probabilidad de que aparezcan ovillos de {catnip}."
+nombre = "Planta de Catnip"
+descripcion = "Más de probabilidad de que aparezcan  {catnip:icono}
+
+\"No dura ni una semana\""
 icono = ExtResource("2_rel")
 condicion_desbloqueo = "ovillos_rotos_de_tipo"
 cantidad_desbloqueo = 10

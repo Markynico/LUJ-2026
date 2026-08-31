@@ -26,11 +26,11 @@ signal clickeada
 ##fuente del boton de precio
 @export var fuente_boton : FontFile = preload("uid://dwg47e0trev3j")
 ##tamaño de fuente del boton de precio
-@export var tamaño_fuente_boton : int = 30
+@export var tamaño_fuente_boton : int = 26
 ##alto del icono de moneda
-@export var tamaño_icono : int = 60
+@export var tamaño_icono : int = 48
 ##relleno interno del boton (horizontal, vertical)
-@export var relleno_boton : Vector2 = Vector2(30, 16)
+@export var relleno_boton : Vector2 = Vector2(22, 12)
 ##margen del boton con los bordes de la tarjeta
 @export var margen_boton : int = 24
 ##color del boton cuando alcanza la plata
@@ -160,8 +160,7 @@ func mostrar_boton_precio(precio : int) -> Button:
 	boton_precio = Button.new()
 	margen.set_anchors_preset(Control.PRESET_FULL_RECT)
 	margen.add_theme_constant_override("margin_bottom", margen_boton)
-	margen.add_theme_constant_override("margin_right", margen_boton)
-	boton_precio.size_flags_horizontal = Control.SIZE_SHRINK_END
+	boton_precio.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	boton_precio.size_flags_vertical = Control.SIZE_SHRINK_END
 	margen.add_child(boton_precio)
 	add_child(margen)

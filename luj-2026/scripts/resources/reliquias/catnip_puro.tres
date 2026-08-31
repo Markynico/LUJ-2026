@@ -6,12 +6,12 @@
 
 [resource]
 script = ExtResource("1_rel")
-nombre = "Catnip 100% puro"
+nombre = "Catnip 100% Puro"
 rareza = 2
-descripcion = "El efecto de los ovillos de {catnip} se puede stackear.
+descripcion = "El efecto de los {catnip:icono} se puede stackear.
 
 \"De la buena\""
 icono = ExtResource("2_rel")
 condicion_desbloqueo = "ovillos_rotos_de_tipo"
-cantidad_desbloqueo = 50
+cantidad_desbloqueo = 100
 ovillo_objetivo = ExtResource("2_j63x8")

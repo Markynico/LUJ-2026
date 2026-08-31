@@ -5,7 +5,9 @@
 
 [resource]
 script = ExtResource("1_rel")
-nombre = "Objeto valioso al borde del estante"
+nombre = "Vasija a Punto de Caerse"
 rareza = 3
-descripcion = "Todos los ovillos dan el doble de puntos. 1% de probabilidad de perder una {vida} por disparo."
+descripcion = "Todos los ovillos dan el doble de puntos. Hay una pequeña probabilidad de perder una {vida} por disparo.
+
+\"Me parece que las cenizas de la abuela estaban acá...\""
 icono = ExtResource("2_rel")

@@ -9,7 +9,9 @@ script = ExtResource("1_rel")
 probabilidad = 50.0
 nombre = "Bolsita de pólvora"
 rareza = 1
-descripcion = "Los {explosivo} tienen 50% de chance de explotar con el doble de fuerza y área."
+descripcion = "Los {explosivo:icono} tienen  chance de explotar con el doble de fuerza y área.
+
+\"Es basicamente un chaskibum gigante\""
 icono = ExtResource("2_rel")
 condicion_desbloqueo = "ovillos_rotos_de_tipo"
 cantidad_desbloqueo = 25

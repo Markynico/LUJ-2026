@@ -5,6 +5,6 @@
 
 [resource]
 script = ExtResource("1_rel")
-nombre = "Pouch de balanceado"
-descripcion = "Cura 1 {vida} cada 150 {rebote:texto/rebotes}. Se gasta a las 2 vidas curadas."
+nombre = "Pouch de Balanceado"
+descripcion = "Cura 1 {vida} cada 150 {rebote:texto/rebotes}. Se gasta a las 2 {vida:ambosvidas} curadas."
 icono = ExtResource("2_rel")

@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_rel")
-nombre = "Tarjeta de crédito"
+nombre = "Tarjeta de Crédito"
 rareza = 2
 descripcion = "25% de descuento en la tienda. La dificultad escala 50% más rápido.
 

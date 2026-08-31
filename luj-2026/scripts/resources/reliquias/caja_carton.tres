@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_rel")
 slots_extra = 2
-nombre = "Caja de cartón"
+nombre = "Caja del Rascador"
 rareza = 2
 descripcion = "+2 slots de {vida}.
 

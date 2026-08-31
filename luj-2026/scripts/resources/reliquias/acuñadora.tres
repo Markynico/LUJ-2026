@@ -8,10 +8,10 @@
 [resource]
 script = ExtResource("1_rel")
 tipos_objetivo = Array[ExtResource("4_rel")]([ExtResource("3_rel")])
-nombre = "Acuñadora de monedas"
+nombre = "Acuñadora de Monedas"
 rareza = 1
-descripcion = "Los {ovillo_monedas} dan el doble de {monedas}."
+descripcion = "Los {ovillo_monedas:icono} dan el doble de {monedas:icono}."
 icono = ExtResource("2_rel")
 condicion_desbloqueo = "ovillos_rotos_de_tipo"
-cantidad_desbloqueo = 50
+cantidad_desbloqueo = 100
 ovillo_objetivo = ExtResource("3_rel")

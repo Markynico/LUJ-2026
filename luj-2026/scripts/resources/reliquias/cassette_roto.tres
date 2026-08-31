@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ReliquiaPuntosOvillo" format=3]
+[gd_resource type="Resource" script_class="ReliquiaPuntosOvillo" format=3 uid="uid://dw1ucm0wln1yo"]
 
 [ext_resource type="Script" uid="uid://dmcn1v2kypih7" path="res://scripts/reliquias/reliquia_puntos_ovillo.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://bp6l0c3qd3et0" path="res://assets/reliquias/cassette roto.png" id="2_rel"]
@@ -9,9 +9,9 @@
 script = ExtResource("1_rel")
 tipos_objetivo = Array[ExtResource("4_rel")]([ExtResource("3_rel")])
 multiplicador = 3.0
-nombre = "Cassette"
+nombre = "Cassette Roto"
 rareza = 1
-descripcion = "Los {rebobinar} dan el triple de puntos.
+descripcion = "Los {rebobinar:icono} dan el triple de puntos.
 
 \"¿Qué se supone que es este artefacto?\""
 icono = ExtResource("2_rel")
