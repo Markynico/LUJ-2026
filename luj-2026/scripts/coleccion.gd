@@ -1,6 +1,8 @@
 class_name Coleccion
 extends Control
 
+signal cerrada
+
 ##reliquias que muestra la coleccion
 @export var pool_reliquias : Array[Reliquia] = []
 ##comidas que muestra la coleccion
@@ -83,4 +85,7 @@ func al_click_tarjeta(tarjeta : Tarjeta) -> void:
 
 
 func volver_al_menu() -> void:
-	Transicion.cambiar_escena(escena_menu)
+	if cerrada.get_connections().is_empty():
+		Transicion.cambiar_escena(escena_menu)
+	else:
+		cerrada.emit()

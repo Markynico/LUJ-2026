@@ -165,7 +165,7 @@ func animacion_titilar(shader_real : ShaderMaterial):
 	tween = create_tween()
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(shader_real,"shader_parameter/time",1.0,1)
+	tween.tween_property(shader_real,"shader_parameter/time",1.0,tipo_ovillo.duracion_mecha)
 
 func convertir_explosivo(ovillo : Ovillo, efecto_bomba : OvilloBase) -> void:
 	var bomba : OvilloBase = ReliquiasManager.reemplazo_para(efecto_bomba)

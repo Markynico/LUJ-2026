@@ -8,7 +8,8 @@ const PALABRAS : Dictionary = {
 	"monedas": {"color": Color("D9AD21"), "icono": "uid://cmgxgm42kfbke", "modo": "texto"},
 	"ovillo_monedas": {"color": Color("d9a702ff"), "icono": "uid://csdrv6d6trs4a", "modo": "texto"},
 	"ovillo_normal": {"color": Color("998042ff"), "icono": "uid://dbxxyb6slkgym", "modo": "texto"},
-	"vida": {"color": Color("911328ff"), "icono": "", "modo": "texto"},
+	"vida": {"color": Color("911328ff"), "icono": "uid://bfrl038m3jxcf", "modo": "texto", "escala": 0.7},
+	"slot_vida": {"color": Color("8a7468ff"), "icono": "uid://cucbudcj05ymj", "modo": "texto", "escala": 1.5},
 	"velocidad": {"color": Color("4b7dbfff"), "icono": "", "modo": "texto"},
 	"gravedad": {"color": Color("7e70f4ff"), "icono": "", "modo": "texto"},
 	"tiros": {"color": Color("2d9677ff"), "icono": "", "modo": "texto"},
@@ -43,7 +44,7 @@ static func reemplazo(coincidencia : RegExMatch) -> String:
 		modo = datos.get("modo", "texto")
 	icono = datos.get("icono", "")
 	if (modo == "icono" or modo == "ambos") and not icono.is_empty():
-		partes += etiqueta_icono(icono)
+		partes += etiqueta_icono(icono, datos.get("escala", 1.0))
 	if modo == "texto" or modo == "ambos":
 		partes += "[color=#%s]%s[/color]" % [datos["color"].to_html(false), visible]
 	if partes.is_empty():
@@ -51,13 +52,14 @@ static func reemplazo(coincidencia : RegExMatch) -> String:
 	return partes
 
 
-static func etiqueta_icono(ruta : String) -> String:
+static func etiqueta_icono(ruta : String, escala : float = 1.0) -> String:
 	var textura : Texture2D = load(ruta)
 	var region : Rect2i
-	var alto : int = TAMAÑO_ICONO
+	var ancho : int = roundi(TAMAÑO_ICONO * escala)
+	var alto : int = ancho
 	if not textura:
 		return ""
 	region = textura.get_image().get_used_rect()
 	if region.size.x > 0:
-		alto = roundi(TAMAÑO_ICONO * float(region.size.y) / float(region.size.x))
-	return "[img width=%d height=%d region=%d,%d,%d,%d]%s[/img] " % [TAMAÑO_ICONO, alto, region.position.x, region.position.y, region.size.x, region.size.y, ruta]
+		alto = roundi(ancho * float(region.size.y) / float(region.size.x))
+	return "[img width=%d height=%d region=%d,%d,%d,%d]%s[/img] " % [ancho, alto, region.position.x, region.position.y, region.size.x, region.size.y, ruta]

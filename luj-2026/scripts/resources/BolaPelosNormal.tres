@@ -16,7 +16,8 @@ metadata/_custom_type_script = "uid://5i4oxxen13xa"
 
 [resource]
 script = ExtResource("1_07tsf")
-nombre = "NORMAL"
+nombre = "Panchosvaldo"
+descripcion = "Todo normal, la comida clásica de un gato."
 textura = ExtResource("4_8pm5w")
 colores_estela = SubResource("Gradient_pxh3y")
 imagen_comida_asociada = ExtResource("2_vlnik")

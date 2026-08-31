@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EfectoDeSonido" format=3]
+
+[ext_resource type="AudioStream" uid="uid://b1ilrnk037lkj" path="res://assets/audio/sfx/comprar_item.wav" id="1_stream"]
+[ext_resource type="Script" uid="uid://bf2u7khywdugp" path="res://scripts/audio/efecto_de_sonido.gd" id="2_script"]
+
+[resource]
+script = ExtResource("2_script")
+tipo = 8
+streams = Array[AudioStream]([ExtResource("1_stream")])
+limite_simultaneos = 4

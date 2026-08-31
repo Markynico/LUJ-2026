@@ -9,6 +9,8 @@ extends Line2D
 
 @export var mostrar_camino_previo : bool = false
 @export var color_camino_previo : Color = Color(0.4, 0.75, 1.0, 0.45)
+##segundos del fade de la trayectoria cuando el mouse esta sobre la ui y el click no dispara
+@export var duracion_fade_ui : float = 0.15
 
 var hay_impacto : bool = false
 var centro_impacto : Vector2
@@ -28,10 +30,12 @@ func _on_disparo_realizado() -> void:
 		puntos_camino_previo = calcular_puntos(datos)
 		queue_redraw()
 
-func _process(_delta : float) -> void:
+func _process(delta : float) -> void:
+	var sobre_ui : bool = get_viewport().gui_get_hovered_control() != null
 	visible = hay_algo_para_disparar()
 	if visible:
 		dibujar_trayectoria()
+		modulate.a = move_toward(modulate.a, 0.0 if sobre_ui else 1.0, delta / maxf(duracion_fade_ui, 0.01))
 
 func ajustar_datos_para_gato(datos : DatosDisparo) -> void:
 	datos.velocidad_inicial = -gato.velocidad_inicial

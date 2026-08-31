@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://rh5uy6oohjtf" path="res://scripts/reliquias/reliquia_explosion.gd" id="1_rel"]
 [ext_resource type="Resource" uid="uid://d3ks2dut6iacd" path="res://scripts/resources/ovillo_explosivo_final.tres" id="2_pvms4"]
 [ext_resource type="Texture2D" uid="uid://cpyotu2a1o1vd" path="res://assets/reliquias/barril de polvora.png" id="2_rel"]
-[ext_resource type="Resource" path="res://scripts/resources/ovillo_explosivo_potenciado.tres" id="3_pot"]
+[ext_resource type="Resource" uid="uid://c1h6r4503qfwr" path="res://scripts/resources/ovillo_explosivo_potenciado.tres" id="3_pot"]
 
 [resource]
 script = ExtResource("1_rel")
@@ -13,7 +13,7 @@ ovillo_reemplazo = ExtResource("3_pot")
 nombre = "Barril de Pólvora"
 rareza = 3
 descripcion = "Convierte a todos los {explosivo:icono} en MEGA que explotan con doble de fuerza y radio.
-Baja chance de perder 1 {vida} cuando explota una bomba.
+Baja chance de recibir 1 {vida:icono} de daño cuando explota una bomba.
 
 \"Tengo un mal presentimiento...\""
 icono = ExtResource("2_rel")

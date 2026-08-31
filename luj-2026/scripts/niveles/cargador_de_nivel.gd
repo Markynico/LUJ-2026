@@ -21,6 +21,21 @@ signal nivel_construido
 	"obstaculo_rectangulo": preload("uid://cobstrect00a1"),
 	"obstaculo_circulo": preload("uid://cobstcirc00a1"),
 }
+##color de todos los obstaculos del nivel, pisa el color propio de cada uno
+@export var color_obstaculos : Color = Color(0.85, 0.85, 0.85):
+	set(valor):
+		color_obstaculos = valor
+		aplicar_color_obstaculos()
+##color del borde interior de todos los obstaculos
+@export var color_borde_obstaculos : Color = Color(0.55, 0.55, 0.55):
+	set(valor):
+		color_borde_obstaculos = valor
+		aplicar_color_obstaculos()
+##grosor del borde interior de todos los obstaculos, 0 = sin borde
+@export var grosor_borde_obstaculos : float = 0.0:
+	set(valor):
+		grosor_borde_obstaculos = maxf(valor, 0.0)
+		aplicar_color_obstaculos()
 ##escena que envuelve a una forma para moverla por un recorrido
 @export var escena_recorrido : PackedScene = preload("uid://crecorrido00a1")
 ##escena con los divisores de la parte de abajo
@@ -199,6 +214,17 @@ func instanciar_formas(datos_nivel : NivelData, dueño : Node = null) -> void:
 		forma.aplicar_datos(datos)
 		if datos.recorrido:
 			agregar_recorrido(forma, dueño).aplicar_datos(datos)
+	aplicar_color_obstaculos()
+
+
+func aplicar_color_obstaculos() -> void:
+	if not is_inside_tree():
+		return
+	for raiz in obtener_raices_de_formas():
+		for obstaculo in raiz.find_children("*", "Obstaculo", true, false):
+			obstaculo.color = color_obstaculos
+			obstaculo.color_borde = color_borde_obstaculos
+			obstaculo.grosor_borde = grosor_borde_obstaculos
 
 
 func crear_forma(tipo : String, dueño : Node = null) -> Node2D:

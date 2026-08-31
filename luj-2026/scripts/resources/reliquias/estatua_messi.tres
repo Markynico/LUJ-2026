@@ -11,7 +11,7 @@ rareza = 3
 descripcion = "X2 {velocidad:texto/velocidad} de disparo
 X0.5 {gravedad:texto/gravedad}
 
-\"La cabra\""
+\"Gracias por tanto Capitán\""
 icono = ExtResource("2_rel")
 condicion_desbloqueo = "runs_ganadas_en_dificultad"
 cantidad_desbloqueo = 1

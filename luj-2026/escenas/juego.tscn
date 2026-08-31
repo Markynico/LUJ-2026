@@ -22,6 +22,15 @@
 [ext_resource type="Resource" uid="uid://d3ks2dut6iacd" path="res://scripts/resources/ovillo_explosivo_final.tres" id="22_okgri"]
 [ext_resource type="Script" uid="uid://cn6qcniqf0qev" path="res://scripts/estante_reliquias.gd" id="23_estante"]
 [ext_resource type="Resource" uid="uid://b48kcm8swtxie" path="res://niveles/Nivel2.tres" id="24_nprev"]
+[ext_resource type="StyleBox" path="res://themes/fondo_cargador.tres" id="25_fondo"]
+[ext_resource type="PackedScene" path="res://escenas/componentes/velas_vidas.tscn" id="26_velas"]
+[ext_resource type="Script" uid="uid://f003kg156na2" path="res://scripts/estandartes_juego.gd" id="27_estjue"]
+[ext_resource type="PackedScene" uid="uid://cwcb53v5re82r" path="res://escenas/componentes/boton_estandarte.tscn" id="28_est"]
+[ext_resource type="Texture2D" uid="uid://b58mkku4omi7s" path="res://assets/estandartes/estandarteopcionesarriba.png" id="29_opcarr"]
+[ext_resource type="Texture2D" uid="uid://bnjrf64bqbily" path="res://assets/estandartes/estandarteopcionesabajo.png" id="30_opcaba"]
+[ext_resource type="Texture2D" uid="uid://bgwfassbyybmg" path="res://assets/estandartes/estandartesalirarriba.png" id="31_salarr"]
+[ext_resource type="Texture2D" uid="uid://re7kh2u4s8ut" path="res://assets/estandartes/estandartesalirabajo.png" id="32_salaba"]
+[ext_resource type="PackedScene" uid="uid://cbqiu7echm444" path="res://escenas/opciones.tscn" id="33_opc"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_w7gqy"]
 
@@ -31,7 +40,7 @@ size = Vector2(1180.5, 45.99997)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_so1p1"]
 size = Vector2(55.5, 28)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_djp4b"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ew7ae"]
 viewport_path = NodePath("PanelInfoIzquierdo/SubViewportIzq")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_7nkol"]
@@ -55,6 +64,7 @@ offset_zoom = Vector2(0, 80)
 offset_right = 2560.0
 offset_bottom = 1440.0
 scale = Vector2(0.75, 0.75)
+mouse_filter = 2
 texture = ExtResource("2_qfdc2")
 expand_mode = 5
 
@@ -62,6 +72,7 @@ expand_mode = 5
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 texture = ExtResource("3_w7gqy")
 
 [node name="Columnas" type="TextureRect" parent="Fondo" unique_id=196968001]
@@ -69,6 +80,7 @@ z_index = 10
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 texture = ExtResource("4_w7gqy")
 
 [node name="OscurecerArriba" type="ColorRect" parent="Fondo" unique_id=313093460]
@@ -76,6 +88,7 @@ material = SubResource("CanvasItemMaterial_w7gqy")
 layout_mode = 0
 offset_right = 2564.0
 offset_bottom = 366.6667
+mouse_filter = 2
 color = Color(0.063333325, 0, 0.2, 0.1882353)
 
 [node name="GameManager" parent="." unique_id=627731887 node_paths=PackedStringArray("gato", "cargador_nivel", "selector_niveles") instance=ExtResource("1_mf1lf")]
@@ -110,6 +123,9 @@ alto_salida = 100.0
 
 [node name="CargadorDeNivel" type="Node2D" parent="." unique_id=1344270759 node_paths=PackedStringArray("estructura")]
 script = ExtResource("5_carg")
+color_obstaculos = Color(0.36862746, 0.19215687, 0.1254902, 1)
+color_borde_obstaculos = Color(0.17, 0.06870834, 0.059500005, 1)
+grosor_borde_obstaculos = 3.0
 estructura = NodePath("../EstructuraDeNivel")
 nivel_vista_previa = ExtResource("24_nprev")
 
@@ -155,7 +171,7 @@ shape = SubResource("RectangleShape2D_so1p1")
 
 [node name="PanelInfoIzquierdo" parent="EstructuraDeNivel" index="3" unique_id=1428603965]
 visible = false
-texture = SubResource("ViewportTexture_djp4b")
+texture = SubResource("ViewportTexture_ew7ae")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2055805025]
 position = Vector2(960, 540)
@@ -171,6 +187,22 @@ escena_textura_pelotita = ExtResource("14_uryky")
 transparent_bg = true
 handle_input_locally = false
 render_target_update_mode = 4
+
+[node name="CuadroFondo" type="Panel" parent="UICargadorPelotitas/SubViewportCargador" unique_id=902113847]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -91.0
+offset_right = 14.0
+offset_bottom = 91.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("25_fondo")
 
 [node name="ContenedorNomas" type="VBoxContainer" parent="UICargadorPelotitas/SubViewportCargador" unique_id=2006147675]
 anchors_preset = 8
@@ -247,6 +279,67 @@ origen = Vector2(-177, -181)
 alto_icono = 60.0
 posicion_tarjeta = Vector2(1000, 200)
 escala_tarjeta = 1.2
+
+[node name="VelasVidas" parent="." unique_id=1204773305 instance=ExtResource("26_velas")]
+z_index = 15
+position = Vector2(366, 72)
+scale = Vector2(0.08, 0.08)
+separacion = Vector2(600, 0)
+
+[node name="EstandartesJuego" type="Node2D" parent="." unique_id=1671920433 node_paths=PackedStringArray("boton_opciones", "boton_coleccion", "boton_menu", "opciones", "confirmacion_menu")]
+process_mode = 3
+position = Vector2(-1094, 297)
+script = ExtResource("27_estjue")
+boton_opciones = NodePath("BotonEstandarteOpciones")
+boton_coleccion = NodePath("BotonEstandarteColeccion")
+boton_menu = NodePath("BotonEstandarteMenu")
+opciones = NodePath("Opciones")
+confirmacion_menu = NodePath("ConfirmacionMenu")
+
+[node name="BotonEstandarteColeccion" parent="EstandartesJuego" unique_id=1748265902 instance=ExtResource("28_est")]
+z_index = 14
+offset_left = 1097.0
+offset_top = -12.0
+offset_right = 1477.0
+offset_bottom = 756.0
+scale = Vector2(0.25, 0.25)
+texto = "Colección"
+
+[node name="BotonEstandarteOpciones" parent="EstandartesJuego" unique_id=1259307648 instance=ExtResource("28_est")]
+z_index = 14
+offset_left = 1216.0
+offset_top = -12.0
+offset_right = 1596.0
+offset_bottom = 756.0
+scale = Vector2(0.25, 0.25)
+textura_fija = ExtResource("29_opcarr")
+textura_tela = ExtResource("30_opcaba")
+texto = "Opciones"
+
+[node name="BotonEstandarteMenu" parent="EstandartesJuego" unique_id=1094821760 instance=ExtResource("28_est")]
+z_index = 14
+offset_left = 1336.0
+offset_top = -12.0
+offset_right = 1716.0
+offset_bottom = 756.0
+scale = Vector2(0.25, 0.25)
+textura_fija = ExtResource("31_salarr")
+textura_tela = ExtResource("32_salaba")
+texto = "Menú"
+
+[node name="Opciones" parent="EstandartesJuego" unique_id=1616456830 instance=ExtResource("33_opc")]
+visible = false
+
+[node name="ConfirmacionMenu" type="ConfirmationDialog" parent="EstandartesJuego" unique_id=1866021473]
+transparent_bg = true
+size = Vector2i(560, 210)
+borderless = true
+transparent = true
+theme = ExtResource("15_aj17q")
+ok_button_text = "Confirmar"
+dialog_text = "Esto va a terminar la run actual.
+¿Volver al menú?"
+cancel_button_text = "Cancelar"
 
 [connection signal="nivel_completado" from="GameManager" to="SelectorComidas" method="_on_game_manager_nivel_completado"]
 

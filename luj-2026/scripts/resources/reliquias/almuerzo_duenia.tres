@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_rel")
 nombre = "Almuerzo de la Dueña"
-descripcion = "50% probabilidad de curar 1 {vida:ambos/vida} ó
-50% probabilidad de perder 1 {vida:ambos/vida}
+descripcion = "50% probabilidad de curar 1 {vida:icono} ó
+50% probabilidad recibir 1 {vida:icono} de daño.
 
 \"Michinko la puta que te parió.\""
 icono = ExtResource("2_rel")

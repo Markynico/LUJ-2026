@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://b580vvptmr04r" path="res://scripts/trayectoria_disparo.gd" id="1_6vpaq"]
 
+[sub_resource type="Gradient" id="Gradient_inicio"]
+offsets = PackedFloat32Array(0.036458332, 0.12, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.4862745, 1, 1, 1, 0.4862745)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_37ege"]
 radius = 11.0
 
@@ -9,6 +13,7 @@ radius = 11.0
 z_index = 10
 width = 3.0
 default_color = Color(1, 1, 1, 0.4862745)
+gradient = SubResource("Gradient_inicio")
 script = ExtResource("1_6vpaq")
 detector = NodePath("Detector")
 

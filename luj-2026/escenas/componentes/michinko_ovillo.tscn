@@ -1,0 +1,116 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/michinko_ovillo.gd" id="1_michi"]
+
+[ext_resource type="Texture2D" uid="uid://f47vcckjmepg" path="res://assets/sprites_gato/frames gif any/1.png" id="f1"]
+[ext_resource type="Texture2D" uid="uid://bly2atq0am7qh" path="res://assets/sprites_gato/frames gif any/2.png" id="f2"]
+[ext_resource type="Texture2D" uid="uid://bcgnikfluppey" path="res://assets/sprites_gato/frames gif any/3.png" id="f3"]
+[ext_resource type="Texture2D" uid="uid://bgemrknyuln2o" path="res://assets/sprites_gato/frames gif any/4.png" id="f4"]
+[ext_resource type="Texture2D" uid="uid://cmhhmnicnepbr" path="res://assets/sprites_gato/frames gif any/5.png" id="f5"]
+[ext_resource type="Texture2D" uid="uid://gji02yw35618" path="res://assets/sprites_gato/frames gif any/6.png" id="f6"]
+[ext_resource type="Texture2D" uid="uid://dhpt6kmsyyjpp" path="res://assets/sprites_gato/frames gif any/7.png" id="f7"]
+[ext_resource type="Texture2D" uid="uid://c0er1gorfswkl" path="res://assets/sprites_gato/frames gif any/8.png" id="f8"]
+[ext_resource type="Texture2D" uid="uid://cnyr758qqkava" path="res://assets/sprites_gato/frames gif any/9.png" id="f9"]
+[ext_resource type="Texture2D" uid="uid://dg01j4wn88wkq" path="res://assets/sprites_gato/frames gif any/10.png" id="f10"]
+[ext_resource type="Texture2D" uid="uid://sjw56a7vgp5e" path="res://assets/sprites_gato/frames gif any/11.png" id="f11"]
+[ext_resource type="Texture2D" uid="uid://cq7yruktuplsx" path="res://assets/sprites_gato/frames gif any/12.png" id="f12"]
+[ext_resource type="Texture2D" uid="uid://c62svyhxexawa" path="res://assets/sprites_gato/frames gif any/13.png" id="f13"]
+[ext_resource type="Texture2D" uid="uid://05gg43p6qq4q" path="res://assets/sprites_gato/frames gif any/14.png" id="f14"]
+[ext_resource type="Texture2D" uid="uid://dq3vcxubqqryj" path="res://assets/sprites_gato/frames gif any/15.png" id="f15"]
+[ext_resource type="Texture2D" uid="uid://bctgdgdemnbeu" path="res://assets/sprites_gato/frames gif any/16.png" id="f16"]
+[ext_resource type="Texture2D" uid="uid://bm8bpw5nc65xl" path="res://assets/sprites_gato/frames gif any/17.png" id="f17"]
+[ext_resource type="Texture2D" uid="uid://ckbopbp8ajvs6" path="res://assets/sprites_gato/frames gif any/18.png" id="f18"]
+[ext_resource type="Texture2D" uid="uid://bmmt6qyr0s5di" path="res://assets/sprites_gato/frames gif any/19.png" id="f19"]
+[ext_resource type="Texture2D" uid="uid://b8xlf3v0ki3t7" path="res://assets/sprites_gato/frames gif any/20.png" id="f20"]
+[ext_resource type="Texture2D" uid="uid://cfiabpbnipsso" path="res://assets/sprites_gato/frames gif any/21.png" id="f21"]
+[ext_resource type="Texture2D" uid="uid://cxqngbeumjxva" path="res://assets/sprites_gato/frames gif any/22.png" id="f22"]
+[ext_resource type="Texture2D" uid="uid://c4hdvfxixynhn" path="res://assets/sprites_gato/frames gif any/23.png" id="f23"]
+[ext_resource type="Texture2D" uid="uid://dmb3v14ai8rfj" path="res://assets/sprites_gato/frames gif any/24.png" id="f24"]
+[ext_resource type="Texture2D" uid="uid://boub0edcwcc7w" path="res://assets/sprites_gato/frames gif any/25.png" id="f25"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_michi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("f18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f19")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f23")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f24")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f25")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("f17")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="MichinkoOvillo" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_michi")
+script = ExtResource("1_michi")
