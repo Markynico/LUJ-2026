@@ -28,6 +28,7 @@ extends RigidBody2D
 @export var margen_borde : float = 200.0
 
 var fue_duplicada : bool = false #se usa para efecto espejismo
+var impactos_ovillos : int = 0
 var contador_rebotes : int = 0
 var limites_juego : Rect2
 
@@ -108,14 +109,14 @@ func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, lo
 
 
 func duplicar_pelotita():
-	if fue_duplicada: #para solo duplicarla una sola vez
+	if fue_duplicada: #las copias no se dividen
 		return
 	var pelotita_nueva : BolaDePelos = duplicate()
 	pelotita_nueva.fue_duplicada = true #evito q la duplicada tambien se duplique
+	pelotita_nueva.impactos_ovillos = 0
 	get_parent().add_child(pelotita_nueva)
 	pelotita_nueva.global_position = global_position
 	pelotita_nueva.apply_impulse(impulso_pelotita_duplicada)
-	fue_duplicada = true
 
 func sonido_rebote():
 	var pitch_extra : float = minf(contador_rebotes * incremento_pitch, pitch_extra_maximo)
