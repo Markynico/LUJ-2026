@@ -23,6 +23,18 @@ var comidas_elegidas : Array[PelotitaBase] #INFO: es parecido a la de arriba, pe
 #le pongo export nomas para meterle la pelotita normal y que empiece con esa pelotita hasta q seleccionemos comida
 @export var cargador_de_pelotitas : Array[PelotitaBase]  #aca si, solo las q puede disparar 4 normales + las q haya en bolas_de_pelo_disponibles, perdonsisehacelioesqtengosueño
 
+var cargador_inicial : Array[PelotitaBase]
+
+
+func _ready() -> void:
+	cargador_inicial = cargador_de_pelotitas.duplicate()
+
+
+func reiniciar_pelotitas() -> void:
+	comidas_elegidas.clear()
+	cargador_de_pelotitas = cargador_inicial.duplicate()
+	cargador_pelotitas_actualizado.emit()
+
 
 func actualizar_monedas(valor):
 	monedas += valor

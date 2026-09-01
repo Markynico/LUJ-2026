@@ -13,9 +13,10 @@ colors = PackedColorArray(0.060909323, 0.70404303, 0.89633286, 1, 0.84702045, 0.
 [resource]
 script = ExtResource("3_khwvm")
 nombre = "Pedazo de espejo"
-descripcion = "Cada 3 impactos se duplica. Los duplicados desaparecen tras el primer impacto.
+descripcion = "Cada 6 impactos con ovillos se duplica.
 
 \"No sabemos como se pudo comer esto...\""
+rareza = 1
 textura = ExtResource("4_y0u2k")
 colores_estela = SubResource("Gradient_mfh0k")
 imagen_comida_asociada = ExtResource("3_eer0r")
