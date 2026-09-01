@@ -1,0 +1,359 @@
+[gd_scene format=3 uid="uid://cbqqjbdppa6h"]
+
+[ext_resource type="Script" uid="uid://dpolim6kjfg07" path="res://scripts/tutorial_express.gd" id="1_8q2gd"]
+[ext_resource type="Theme" uid="uid://cwsrathd8xljh" path="res://themes/theme_label_numeritos.tres" id="1_k7vcc"]
+[ext_resource type="Theme" uid="uid://bjkvjfhj8dr8y" path="res://themes/theme_ui_general.tres" id="3_u0j35"]
+
+[sub_resource type="Animation" id="Animation_gtlk6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("anim2/LabelTuto2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("anim3/LabelTuto3:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("anim4/LabelTuto4:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_k7vcc"]
+resource_name = "tutorial_1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("anim1/LabelTuto1:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.64, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("anim2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("anim1:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_u0j35"]
+resource_name = "tutorial_2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("anim2/LabelTuto2:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("anim1:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("anim2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_s2grv"]
+resource_name = "tutorial_3"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("anim3:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("anim2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("anim3/LabelTuto3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_55p3j"]
+resource_name = "tutorial_4"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("anim3:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("anim4:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("anim4/LabelTuto4:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8q2gd"]
+_data = {
+&"RESET": SubResource("Animation_gtlk6"),
+&"tutorial_1": SubResource("Animation_k7vcc"),
+&"tutorial_2": SubResource("Animation_u0j35"),
+&"tutorial_3": SubResource("Animation_s2grv"),
+&"tutorial_4": SubResource("Animation_55p3j")
+}
+
+[node name="TutorialExpress" type="Node2D" unique_id=913511299]
+script = ExtResource("1_8q2gd")
+num_maximo_animaciones = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2025105296]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_8q2gd")
+
+[node name="anim1" type="CanvasLayer" parent="." unique_id=1388574761]
+visible = false
+
+[node name="LabelTuto1" type="Label" parent="anim1" unique_id=1991766333]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -284.5
+offset_top = -265.0
+offset_right = 284.5
+offset_bottom = -203.33334
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_k7vcc")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.63529414)
+theme_override_constants/outline_size = 9
+theme_override_constants/shadow_outline_size = 11
+theme_override_font_sizes/font_size = 22
+text = "Hola! parece que es tu primer partida
+vamos a aprender como funciona el juego :)
+
+presiona espacio para continuar"
+horizontal_alignment = 1
+
+[node name="anim2" type="CanvasLayer" parent="." unique_id=608155970]
+visible = false
+
+[node name="LabelTuto2" type="Label" parent="anim2" unique_id=826739787]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 382.0
+offset_top = -297.33334
+offset_right = 951.0
+offset_bottom = -171.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_k7vcc")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.63529414)
+theme_override_constants/outline_size = 9
+theme_override_constants/shadow_outline_size = 11
+theme_override_font_sizes/font_size = 22
+text = "El objetivo de michinko es romper los 
+ovilllos y obtener la cantidad necesaria
+de puntos para avanzar de nivel"
+
+[node name="Flechita" type="Label" parent="anim2/LabelTuto2" unique_id=1945357031]
+layout_mode = 0
+offset_left = 311.0
+offset_top = -29.666656
+offset_right = 370.0
+offset_bottom = 24.333344
+rotation = -1.5707964
+theme = ExtResource("3_u0j35")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 44
+text = "-->"
+
+[node name="anim3" type="CanvasLayer" parent="." unique_id=805392542]
+visible = false
+
+[node name="LabelTuto3" type="Label" parent="anim3" unique_id=1162212213]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -820.0
+offset_top = -332.0
+offset_right = -251.0
+offset_bottom = -205.66666
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_k7vcc")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.63529414)
+theme_override_constants/outline_size = 9
+theme_override_constants/shadow_outline_size = 11
+theme_override_font_sizes/font_size = 22
+text = "tus vidas estan representadas por estas velas.
+si no consigues la cantidad minima de puntos
+se apagaran"
+horizontal_alignment = 1
+
+[node name="Flechita3" type="Label" parent="anim3/LabelTuto3" unique_id=1010737001]
+layout_mode = 0
+offset_left = 282.0
+offset_top = -15.0
+offset_right = 341.0
+offset_bottom = 39.0
+rotation = -1.5707964
+theme = ExtResource("3_u0j35")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 44
+text = "-->"
+
+[node name="anim4" type="CanvasLayer" parent="." unique_id=198086603]
+visible = false
+
+[node name="LabelTuto4" type="Label" parent="anim4" unique_id=1313344670]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -605.0
+offset_top = 50.0
+offset_right = 24.0
+offset_bottom = 176.33337
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_k7vcc")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.63529414)
+theme_override_constants/outline_size = 9
+theme_override_constants/shadow_outline_size = 11
+theme_override_font_sizes/font_size = 22
+text = "tienes solamente 4 disparos y algunas
+ bolas de pelo tienen efectos especiales
+cuida muy bien tus tiros"
+
+[node name="Flechita4" type="Label" parent="anim4/LabelTuto4" unique_id=543981906]
+layout_mode = 0
+offset_left = 64.0
+offset_top = -15.0
+offset_right = 123.0
+offset_bottom = 39.0
+rotation = 3.1415927
+theme = ExtResource("3_u0j35")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 44
+text = "-->"
