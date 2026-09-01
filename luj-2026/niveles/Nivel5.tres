@@ -12,6 +12,7 @@ point_count = 2
 [sub_resource type="Resource" id="Resource_bion8"]
 script = ExtResource("1_siuc4")
 tipo = "obstaculo_rectangulo"
+rotacion = 0.06981317
 "tamaño" = Vector2(234.38501, 37.293365)
 recorrido = SubResource("Curve2D_siuc4")
 posicion_recorrido = Vector2(506, 354)
@@ -26,6 +27,7 @@ point_count = 2
 [sub_resource type="Resource" id="Resource_ox8xb"]
 script = ExtResource("1_siuc4")
 tipo = "obstaculo_rectangulo"
+rotacion = -0.07005979
 "tamaño" = Vector2(259.4405, 36.310608)
 recorrido = SubResource("Curve2D_3kmfi")
 posicion_recorrido = Vector2(1419, 434)

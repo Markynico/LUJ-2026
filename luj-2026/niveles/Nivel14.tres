@@ -7,7 +7,7 @@
 script = ExtResource("1_forma")
 tipo = "obstaculo_rectangulo"
 posicion = Vector2(970, 420)
-rotacion = -0.0052359877
+rotacion = -0.06981317
 "tamaño" = Vector2(260, 24)
 
 [sub_resource type="Resource" id="Resource_v2hhl"]
@@ -20,14 +20,14 @@ separacion_ovillos = 35.0
 script = ExtResource("1_forma")
 tipo = "obstaculo_rectangulo"
 posicion = Vector2(750, 558.669)
-rotacion = 0.0052359877
+rotacion = -0.06981317
 "tamaño" = Vector2(280, 24)
 
 [sub_resource type="Resource" id="Resource_hpvlr"]
 script = ExtResource("1_forma")
 tipo = "obstaculo_rectangulo"
 posicion = Vector2(1190, 560)
-rotacion = -0.0052359877
+rotacion = 0.06981317
 "tamaño" = Vector2(280, 24)
 
 [sub_resource type="Resource" id="Resource_ek5rx"]
@@ -61,21 +61,21 @@ velocidad = 130.0
 script = ExtResource("1_forma")
 tipo = "obstaculo_rectangulo"
 posicion = Vector2(580, 710)
-rotacion = 0.0052359877
+rotacion = 0.06981317
 "tamaño" = Vector2(260, 24)
 
 [sub_resource type="Resource" id="Resource_5lot8"]
 script = ExtResource("1_forma")
 tipo = "obstaculo_rectangulo"
 posicion = Vector2(970, 710)
-rotacion = 0.0052359877
+rotacion = 0.06981317
 "tamaño" = Vector2(240, 24)
 
 [sub_resource type="Resource" id="Resource_5suxq"]
 script = ExtResource("1_forma")
 tipo = "obstaculo_rectangulo"
 posicion = Vector2(1360, 710)
-rotacion = -0.0052359877
+rotacion = -0.06981317
 "tamaño" = Vector2(260, 24)
 
 [sub_resource type="Resource" id="Resource_cw05p"]
