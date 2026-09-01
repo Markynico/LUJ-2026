@@ -6,9 +6,10 @@
 [resource]
 script = ExtResource("1_rel")
 slots_extra = 2
+slots_llenos = true
 nombre = "Caja del Rascador"
 rareza = 2
-descripcion = "+2 {slot_vida:icono}.
+descripcion = "+2 {vida:icono}.
 
 \"Home sweet home\""
 icono = ExtResource("2_rel")

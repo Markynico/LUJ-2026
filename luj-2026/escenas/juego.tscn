@@ -99,7 +99,6 @@ porcentaje_ovillos_requerido = 0.4
 
 [node name="Gato" parent="." unique_id=69399080 node_paths=PackedStringArray("game_manager") instance=ExtResource("3_qnwci")]
 position = Vector2(927, 207)
-orgulloso = false
 escala_normal = 0.32
 game_manager = NodePath("../GameManager")
 

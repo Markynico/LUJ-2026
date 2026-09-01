@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_6jmjm")
-fuerza_rebote = 50.0
+fuerza_rebote = 75.0
 metadata/_custom_type_script = "uid://bjrd3g5wyl6et"

@@ -360,6 +360,7 @@ func volver_al_menu(gano : bool = false) -> void:
 	ReliquiasManager.opciones_loot = 1
 	ReliquiasManager.salidas_reveladas = false
 	ReliquiasManager.bolas_atraviesan = false
+	Global.reiniciar_pelotitas()
 	Transicion.cambiar_escena(escena_stats if not escena_stats.is_empty() else escena_menu)
 
 
