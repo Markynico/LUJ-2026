@@ -72,42 +72,42 @@ estructura = NodePath("EstructuraDeNivel")
 position = Vector2(349, 1080)
 ancho_total = 1241.0
 
-[node name="FormaPath" type="Path2D" parent="." unique_id=954027863 instance=ExtResource("8_43wpl")]
+[node name="FormaPath" type="Path2D" parent="." unique_id=1949672991 instance=ExtResource("8_43wpl")]
 position = Vector2(970, 818)
 curve = SubResource("Curve2D_pevrx")
 script = ExtResource("9_x3fkq")
 
-[node name="FormaPath2" type="Path2D" parent="." unique_id=1968713053 instance=ExtResource("8_43wpl")]
+[node name="FormaPath2" type="Path2D" parent="." unique_id=1139532308 instance=ExtResource("8_43wpl")]
 position = Vector2(971, 737)
 curve = SubResource("Curve2D_k61t0")
 script = ExtResource("9_x3fkq")
 
-[node name="FormaPath3" type="Path2D" parent="." unique_id=282635386 instance=ExtResource("8_43wpl")]
+[node name="FormaPath3" type="Path2D" parent="." unique_id=1061401831 instance=ExtResource("8_43wpl")]
 position = Vector2(970.2953, 706.79614)
 curve = SubResource("Curve2D_xrhlm")
 script = ExtResource("9_x3fkq")
 
-[node name="FormaPath4" type="Path2D" parent="." unique_id=1979474202 instance=ExtResource("8_43wpl")]
+[node name="FormaPath4" type="Path2D" parent="." unique_id=1179852309 instance=ExtResource("8_43wpl")]
 position = Vector2(971.2953, 625.79614)
 curve = SubResource("Curve2D_6wvn0")
 script = ExtResource("9_x3fkq")
 
-[node name="FormaPath5" type="Path2D" parent="." unique_id=1526646190 instance=ExtResource("8_43wpl")]
+[node name="FormaPath5" type="Path2D" parent="." unique_id=1188932691 instance=ExtResource("8_43wpl")]
 position = Vector2(970.2953, 601.79614)
 curve = SubResource("Curve2D_43wpl")
 script = ExtResource("9_x3fkq")
 
-[node name="FormaPath6" type="Path2D" parent="." unique_id=1648661897 instance=ExtResource("8_43wpl")]
+[node name="FormaPath6" type="Path2D" parent="." unique_id=1714465072 instance=ExtResource("8_43wpl")]
 position = Vector2(971.2953, 520.79614)
 curve = SubResource("Curve2D_x3fkq")
 script = ExtResource("9_x3fkq")
 
-[node name="FormaPath7" type="Path2D" parent="." unique_id=1190651056 instance=ExtResource("8_43wpl")]
+[node name="FormaPath7" type="Path2D" parent="." unique_id=1719732824 instance=ExtResource("8_43wpl")]
 position = Vector2(970.2953, 490.79614)
 curve = SubResource("Curve2D_wilmi")
 script = ExtResource("9_x3fkq")
 
-[node name="FormaPath8" type="Path2D" parent="." unique_id=820167603 instance=ExtResource("8_43wpl")]
+[node name="FormaPath8" type="Path2D" parent="." unique_id=1263489098 instance=ExtResource("8_43wpl")]
 position = Vector2(971.2953, 409.79614)
 curve = SubResource("Curve2D_uxw3d")
 script = ExtResource("9_x3fkq")

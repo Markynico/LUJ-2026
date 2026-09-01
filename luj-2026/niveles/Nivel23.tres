@@ -7,18 +7,21 @@
 script = ExtResource("1_forma")
 tipo = "obstaculo_rectangulo"
 posicion = Vector2(700, 620)
+rotacion = 0.06981317
 "tamaño" = Vector2(36, 400)
 
 [sub_resource type="Resource" id="Resource_pi4s6"]
 script = ExtResource("1_forma")
 tipo = "obstaculo_rectangulo"
 posicion = Vector2(1240, 620)
+rotacion = -0.06981317
 "tamaño" = Vector2(36, 400)
 
 [sub_resource type="Resource" id="Resource_532a6"]
 script = ExtResource("1_forma")
 tipo = "obstaculo_rectangulo"
 posicion = Vector2(970, 640)
+rotacion = 0.017453292
 "tamaño" = Vector2(40, 320)
 
 [sub_resource type="Resource" id="Resource_nko47"]
