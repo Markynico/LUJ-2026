@@ -11,6 +11,8 @@ const VERSION_ARCHIVO : int = 2
 const SECCION_RUN_EN_CURSO : String = "run_en_curso"
 const SEGUNDOS_ENTRE_GUARDADOS : float = 3.0
 const SEPARADOR_CONDICIONES : String = ", "
+const COLOR_CONDICION_CUMPLIDA : Color = Color("12a13a")
+const COLOR_CONDICION_PENDIENTE : Color = Color("e0392e")
 const SEPARADOR_ULTIMA_CONDICION : String = " y "
 
 const TEXTOS_CONDICION : Dictionary = {
@@ -268,9 +270,14 @@ func descripcion_condiciones(recurso : Resource) -> String:
 
 func contadores_condiciones(recurso : Resource) -> String:
 	var partes : PackedStringArray = PackedStringArray()
+	var valor : int
+	var color : Color
 	for condicion in condiciones_de(recurso):
-		partes.append("%d/%d" % [mini(valor_condicion(condicion) + (parcial_condicion(condicion) if EstadisticasRun.run_activa else 0), condicion.cantidad), condicion.cantidad])
-	return unir_naturalmente(partes)
+		valor = mini(valor_condicion(condicion) + (parcial_condicion(condicion) if EstadisticasRun.run_activa else 0), condicion.cantidad)
+		color = COLOR_CONDICION_CUMPLIDA if valor >= condicion.cantidad else COLOR_CONDICION_PENDIENTE
+		partes.append("[color=#%s]%d/%d[/color]" % [color.to_html(false), valor, condicion.cantidad])
+	return "
+".join(partes)
 
 
 func unir_naturalmente(partes : PackedStringArray) -> String:

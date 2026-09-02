@@ -92,7 +92,9 @@ func bloquear_tarjeta(envoltura : Control, tarjeta : Tarjeta, reliquia : Resourc
 func texto_plano(texto : String) -> String:
 	var regex : RegEx = RegEx.new()
 	regex.compile("\\{[^}]*\\}")
-	return regex.sub(texto, "OO", true)
+	texto = regex.sub(texto, "OO", true)
+	regex.compile("\\[[^\\]]*\\]")
+	return regex.sub(texto, "", true)
 
 
 func tamaño_fuente_que_entra(texto : String, espacio : Vector2) -> int:
