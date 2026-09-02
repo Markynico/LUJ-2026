@@ -18,10 +18,10 @@ extends Control
 @export_group("Tarjeta de hover")
 ##escena de la tarjeta que se muestra al pasar el mouse por una reliquia
 @export var escena_tarjeta : PackedScene = preload("uid://u6k76f6lyw8y")
-##posicion en pantalla de la tarjeta de hover
-@export var posicion_tarjeta : Vector2 = Vector2(1330, 240)
+##separacion en pixeles entre el icono y la tarjeta que aparece arriba
+@export var separacion_tarjeta : float = 12.0
 ##escala de la tarjeta de hover
-@export var escala_tarjeta : float = 0.6
+@export var escala_tarjeta : float = 0.85
 
 @export_group("Nodos")
 @export var label_titulo : Label
@@ -80,14 +80,20 @@ func crear_tarjeta_hover() -> void:
 	var capa : CanvasLayer = CanvasLayer.new()
 	tarjeta = escena_tarjeta.instantiate()
 	tarjeta.hover_activado = false
-	tarjeta.position = posicion_tarjeta
 	tarjeta.scale = Vector2.ONE * escala_tarjeta
 	tarjeta.hide()
 	capa.add_child(tarjeta)
 	add_child(capa)
 
 
-func mostrar_tarjeta(reliquia : Reliquia) -> void:
+func mostrar_tarjeta(reliquia : Reliquia, icono : Control) -> void:
+	var tamaño : Vector2 = tarjeta.size * escala_tarjeta
+	var limite : Vector2 = get_viewport_rect().size
+	var rect : Rect2 = icono.get_global_rect()
+	var posicion : Vector2 = Vector2(rect.get_center().x - tamaño.x * 0.5, rect.position.y - separacion_tarjeta - tamaño.y)
+	if posicion.y < 0.0:
+		posicion.y = rect.end.y + separacion_tarjeta
+	tarjeta.position = posicion.clamp(Vector2.ZERO, (limite - tamaño).max(Vector2.ZERO))
 	tarjeta.recurso = reliquia
 	tarjeta.aparecer()
 
@@ -104,7 +110,7 @@ func mostrar_reliquias() -> void:
 		icono.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		icono.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		icono.custom_minimum_size = Vector2(reliquia.icono.get_width() * alto_icono_reliquia / reliquia.icono.get_height(), alto_icono_reliquia)
-		icono.mouse_entered.connect(mostrar_tarjeta.bind(reliquia))
+		icono.mouse_entered.connect(mostrar_tarjeta.bind(reliquia, icono))
 		icono.mouse_exited.connect(func() -> void: tarjeta.desaparecer())
 		contenedor_reliquias.add_child(icono)
 

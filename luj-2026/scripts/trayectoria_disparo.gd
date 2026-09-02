@@ -118,6 +118,8 @@ func calcular_puntos(datos : DatosDisparo) -> PackedVector2Array:
 	puntos.append(posicion)
 	for i in datos.pasos:
 		velocidad += datos.gravedad * datos.intervalo
+		if datos.velocidad_constante and not velocidad.is_zero_approx():
+			velocidad = velocidad.normalized() * datos.velocidad_inicial.length()
 		velocidad_angular *= maxf(0.0, 1.0 - datos.amortiguacion_angular * datos.intervalo)
 		movimiento = velocidad * datos.intervalo
 		detector.target_position = movimiento
@@ -151,7 +153,11 @@ func calcular_puntos(datos : DatosDisparo) -> PackedVector2Array:
 				if cuerpo.tipo_ovillo:
 					impulso_extra += cuerpo.tipo_ovillo.rebote_extra * ReliquiasManager.multiplicador_rebote()
 			frontalidad = clampf(-velocidad.normalized().dot(normal), 0.0, 1.0)
-			velocidad = tangente * velocidad_tangencial + normal * (impulso_normal * datos.restitucion + impulso_extra * frontalidad)
+			if datos.velocidad_constante:
+				velocidad = velocidad.bounce(normal).normalized() * datos.velocidad_inicial.length()
+				velocidad_angular = 0.0
+			else:
+				velocidad = tangente * velocidad_tangencial + normal * (impulso_normal * datos.restitucion + impulso_extra * frontalidad)
 			posicion += normal * 0.5
 		else:
 			posicion += movimiento
