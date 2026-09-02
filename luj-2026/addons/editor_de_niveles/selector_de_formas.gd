@@ -5,6 +5,7 @@ extends Node
 var manijas : ManijasForma
 var plugin : EditorPlugin
 var control_viewport : Control
+var selector_ovillos : SelectorDeOvillos
 
 
 func _init(manejador_manijas : ManijasForma, plugin_editor : EditorPlugin, control_viewport_2d : Control) -> void:
@@ -19,6 +20,8 @@ func _input(evento : InputEvent) -> void:
 		plugin.update_overlays()
 		return
 	if not es_click_izquierdo(evento) or not control_viewport or not control_viewport.is_visible_in_tree():
+		return
+	if selector_ovillos and selector_ovillos.activo:
 		return
 	posicion = control_viewport.get_local_mouse_position()
 	if not Rect2(Vector2.ZERO, control_viewport.size).has_point(posicion):

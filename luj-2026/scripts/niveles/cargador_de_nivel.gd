@@ -4,6 +4,8 @@ extends Node2D
 
 signal nivel_construido
 
+const RUTA_NIVEL_PRUEBA := "user://nivel_prueba.tres"
+
 ##nivel que se construye al iniciar, si esta vacio se usan las formas que ya son hijas del nodo
 @export var nivel : NivelData:
 	set(valor):
@@ -59,6 +61,7 @@ signal nivel_construido
 		mostrar_vista_previa()
 
 var historial_niveles : Array[NivelData] = []
+var nivel_prueba : NivelData
 
 
 func _ready() -> void:
@@ -69,9 +72,20 @@ func _ready() -> void:
 
 
 func construir_nivel_elegido() -> void:
-	var elegido : NivelData = nivel if nivel else elegir_nivel()
+	var elegido : NivelData = tomar_nivel_de_prueba()
+	if not elegido:
+		elegido = nivel if nivel else elegir_nivel()
 	if elegido:
 		construir_nivel(elegido)
+
+
+func tomar_nivel_de_prueba() -> NivelData:
+	if not nivel_prueba and FileAccess.file_exists(RUTA_NIVEL_PRUEBA):
+		nivel_prueba = ResourceLoader.load(RUTA_NIVEL_PRUEBA, "", ResourceLoader.CACHE_MODE_IGNORE)
+		DirAccess.remove_absolute(RUTA_NIVEL_PRUEBA)
+	if nivel_prueba and GameManager.niveles_jugados > 0:
+		nivel_prueba = null
+	return nivel_prueba
 
 
 func elegir_nivel() -> NivelData:
