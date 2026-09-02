@@ -17,22 +17,31 @@ func _draw() -> void:
 	if not Engine.is_editor_hint():
 		return
 	super()
-	draw_arc(Vector2.ZERO, radio, 0.0, TAU, SEGMENTOS_DIBUJO, COLOR_DIBUJO, GROSOR_DIBUJO)
+	for desplazamiento in desplazamientos_de_anillos():
+		if radio + desplazamiento <= 0.0:
+			continue
+		draw_arc(Vector2.ZERO, radio + desplazamiento, 0.0, TAU, SEGMENTOS_DIBUJO, COLOR_DIBUJO, GROSOR_DIBUJO)
 
 
 func obtener_contorno() -> PackedVector2Array:
+	return contorno_desplazado(0.0)
+
+
+func contorno_desplazado(desplazamiento : float) -> PackedVector2Array:
 	var contorno : PackedVector2Array = PackedVector2Array()
+	if radio + desplazamiento <= 0.0:
+		return contorno
 	for i in SEGMENTOS_DIBUJO:
-		contorno.append(Vector2.from_angle(TAU * i / SEGMENTOS_DIBUJO) * radio)
+		contorno.append(Vector2.from_angle(TAU * i / SEGMENTOS_DIBUJO) * (radio + desplazamiento))
 	return contorno
 
 
 func obtener_radio_exterior() -> float:
-	return radio
+	return radio + (anillos_exteriores * separacion_anillos if permite_anillos() else 0.0)
 
 
 func obtener_puntos() -> PackedVector2Array:
-	return puntos_sobre_poligono(a_global(obtener_contorno()))
+	return puntos_con_anillos()
 
 
 func obtener_manijas() -> PackedVector2Array:

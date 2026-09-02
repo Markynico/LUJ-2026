@@ -18,6 +18,8 @@ signal nivel_construido
 	"rectangulo": preload("uid://cformarect0a1"),
 	"circulo": preload("uid://cformacirc0a1"),
 	"path": preload("uid://cformabe000a1"),
+	"linea": preload("uid://cformalinea01"),
+	"poligono": preload("uid://cformapolig01"),
 	"obstaculo_rectangulo": preload("uid://cobstrect00a1"),
 	"obstaculo_circulo": preload("uid://cobstcirc00a1"),
 }
@@ -210,6 +212,9 @@ func buscar_estructura(nodo : Node) -> EstructuraDeNivel:
 func instanciar_formas(datos_nivel : NivelData, dueño : Node = null) -> void:
 	var forma : Node2D
 	for datos in datos_nivel.formas:
+		if not datos:
+			push_warning("El nivel %s tiene una forma nula, se saltea" % datos_nivel.nombre)
+			continue
 		forma = crear_forma(datos.tipo, dueño)
 		forma.aplicar_datos(datos)
 		if datos.recorrido:

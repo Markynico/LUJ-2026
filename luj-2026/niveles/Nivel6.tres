@@ -6,12 +6,12 @@
 [sub_resource type="Resource" id="Resource_0s1od"]
 script = ExtResource("1_0s1od")
 tipo = "obstaculo_rectangulo"
-posicion = Vector2(950, 600)
+posicion = Vector2(965.1, 600)
 rotacion = 0.04917529
 
 [sub_resource type="Resource" id="Resource_c1atb"]
 script = ExtResource("1_0s1od")
-posicion = Vector2(950, 600)
+posicion = Vector2(965.1, 600)
 "tamaño" = Vector2(260, 155)
 
 [sub_resource type="Resource" id="Resource_pg0eg"]
@@ -47,9 +47,78 @@ tipo = "obstaculo_circulo"
 posicion = Vector2(742.5403, 763.64215)
 radio = 35.168858
 
+[sub_resource type="Resource" id="Resource_ahm7c"]
+script = ExtResource("1_0s1od")
+posicion = Vector2(965.1, 597.3104)
+"tamaño" = Vector2(317.90015, 202.40002)
+
+[sub_resource type="Resource" id="Resource_2pay2"]
+script = ExtResource("1_0s1od")
+posicion = Vector2(965.1, 597.3104)
+"tamaño" = Vector2(368.50012, 255.20001)
+
+[sub_resource type="Resource" id="Resource_hkaja"]
+script = ExtResource("1_0s1od")
+posicion = Vector2(549.51044, 428.46042)
+"tamaño" = Vector2(321.19998, 218.89996)
+
+[sub_resource type="Resource" id="Resource_gvij1"]
+script = ExtResource("1_0s1od")
+posicion = Vector2(1397.6105, 429.01038)
+"tamaño" = Vector2(321.19998, 218.89996)
+
+[sub_resource type="Resource" id="Resource_pengw"]
+script = ExtResource("1_0s1od")
+posicion = Vector2(547.3104, 771.1104)
+"tamaño" = Vector2(321.19998, 218.89996)
+
+[sub_resource type="Resource" id="Resource_ik5w5"]
+script = ExtResource("1_0s1od")
+posicion = Vector2(1397.1506, 768.94574)
+"tamaño" = Vector2(321.19998, 218.89996)
+
+[sub_resource type="Curve2D" id="Curve2D_v5rwl"]
+bake_interval = 2.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -140.50012, 276.30145, 0, 0, 0, 0, 294.49988, 276.30145)
+}
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_ad22a"]
+script = ExtResource("1_0s1od")
+tipo = "path"
+posicion = Vector2(893.5001, 605.69855)
+curva = SubResource("Curve2D_v5rwl")
+
+[sub_resource type="Curve2D" id="Curve2D_aaowv"]
+bake_interval = 2.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -455.3999, -120.05005, 0, 0, 0, 0, -128.3999, -120.05005)
+}
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_p6fue"]
+script = ExtResource("1_0s1od")
+tipo = "path"
+posicion = Vector2(839.3999, 715.05005)
+curva = SubResource("Curve2D_aaowv")
+
+[sub_resource type="Curve2D" id="Curve2D_2n0co"]
+bake_interval = 2.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -149.49976, -218.45001, 0, 0, 0, 0, 281.50024, -216.45001)
+}
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_wlctc"]
+script = ExtResource("1_0s1od")
+tipo = "path"
+posicion = Vector2(906.49976, 598.45)
+curva = SubResource("Curve2D_2n0co")
+
 [resource]
 script = ExtResource("2_c1atb")
 nombre = "Nivel6"
-formas = Array[ExtResource("1_0s1od")]([SubResource("Resource_0s1od"), SubResource("Resource_c1atb"), SubResource("Resource_pg0eg"), SubResource("Resource_b2q21"), SubResource("Resource_61cym"), SubResource("Resource_acxbn"), SubResource("Resource_2ik1b"), SubResource("Resource_ynvk2")])
+formas = Array[ExtResource("1_0s1od")]([SubResource("Resource_0s1od"), SubResource("Resource_c1atb"), SubResource("Resource_pg0eg"), SubResource("Resource_b2q21"), SubResource("Resource_61cym"), SubResource("Resource_acxbn"), SubResource("Resource_2ik1b"), SubResource("Resource_ynvk2"), SubResource("Resource_ahm7c"), SubResource("Resource_2pay2"), SubResource("Resource_hkaja"), SubResource("Resource_gvij1"), SubResource("Resource_pengw"), SubResource("Resource_ik5w5"), SubResource("Resource_ad22a"), SubResource("Resource_p6fue"), SubResource("Resource_wlctc")])
 posicion_divisiones = Vector2(349, 1080)
 ancho_divisiones = 1241.0
