@@ -54,8 +54,25 @@ const TIPOS : Dictionary = {
 		"carpeta_resources": "res://scripts/resources/ovillos/",
 		"carpetas_existentes": ["res://scripts/resources/ovillos/", "res://scripts/resources/"],
 	},
+	"Estado de ovillo": {
+		"script_base": "res://scripts/ovillos_custom/estados/estado_ovillo.gd",
+		"script_hooks": "res://scripts/ovillos_custom/estados/efecto_estado_ovillo.gd",
+		"script_contenedor": "res://scripts/ovillos_custom/estados/estado_ovillo.gd",
+		"clase_base": "EstadoOvillo",
+		"clase_contenedor": "EstadoOvillo",
+		"propiedad_efectos": "",
+		"propiedad_icono": "decoracion",
+		"nombre_en_efecto": "",
+		"con_rareza": false,
+		"con_textura": false,
+		"etiqueta_icono": "Decoracion",
+		"carpeta_scripts": "res://scripts/ovillos_custom/estados/",
+		"prefijo_script": "estado_",
+		"carpeta_resources": "res://scripts/resources/estados/",
+		"carpetas_existentes": ["res://scripts/resources/estados/"],
+	},
 }
-const NO_SON_HOOKS : Array[String] = ["rebote_simple", "descripcion_para_mostrar", "fuentes"]
+const NO_SON_HOOKS : Array[String] = ["rebote_simple", "descripcion_para_mostrar", "fuentes", "iniciar", "gastar_carga", "pasar_turno"]
 const ACENTOS : Dictionary = {"á": "a", "é": "e", "í": "i", "ó": "o", "ú": "u", "ü": "u", "ñ": "n"}
 
 @export var selector_tipo : OptionButton

@@ -20,7 +20,7 @@ func activar_explosion(): #se llama desde OVILLO
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Ovillo:
-		body.recibir_impacto()
+		body.recibir_explosion()
 	if body is BolaDePelos and empuja_bolas:
 		empujar_bola(body)
 

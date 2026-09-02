@@ -127,6 +127,11 @@ func multiplicador_velocidad_escupida() -> float:
 	return multiplicador
 
 
+func al_spawnear_ovillo(ovillo : Ovillo) -> void:
+	for reliquia in fuentes():
+		reliquia.al_spawnear_ovillo(ovillo)
+
+
 func escupida_instantanea() -> bool:
 	for reliquia in fuentes():
 		if reliquia.escupida_instantanea():

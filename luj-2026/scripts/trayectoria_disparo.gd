@@ -20,6 +20,7 @@ var hay_impacto : bool = false
 var centro_impacto : Vector2
 var gato : Gato
 var rastros : Array[RastroBola] = []
+var tipo_pelotita_simulada : PelotitaBase
 
 func _ready() -> void:
 	gato = disparador.get_parent() as Gato
@@ -111,6 +112,7 @@ func calcular_puntos(datos : DatosDisparo) -> PackedVector2Array:
 		posicion = gato.global_position
 	if not detector:
 		return puntos
+	tipo_pelotita_simulada = datos.tipo_pelotita
 	detector.clear_exceptions()
 	detector.global_position = posicion
 	puntos.append(posicion)
@@ -165,6 +167,8 @@ func puede_atravesar(colisionador : Object, indice_forma : int, velocidad : Vect
 	var direccion_bloqueo : Vector2
 	if not colisionador is CollisionObject2D:
 		return false
+	if colisionador is Ovillo and not colisionador.simular_impacto(tipo_pelotita_simulada).rebotar:
+		return true
 	id_dueño = colisionador.shape_find_owner(indice_forma)
 	nodo_forma = colisionador.shape_owner_get_owner(id_dueño) as CollisionShape2D
 	if nodo_forma == null or not nodo_forma.one_way_collision:

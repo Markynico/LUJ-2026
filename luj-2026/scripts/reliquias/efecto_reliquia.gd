@@ -72,3 +72,7 @@ func multiplicador_velocidad_escupida() -> float:
 
 func escupida_instantanea() -> bool:
 	return false
+
+
+func al_spawnear_ovillo(ovillo : Ovillo) -> void:
+	pass

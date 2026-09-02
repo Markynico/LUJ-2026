@@ -53,6 +53,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func preparar_datos_disparo() -> DatosDisparo:
 	var datos : DatosDisparo = DatosDisparo.new()
+	datos.tipo_pelotita = Global.cargador_de_pelotitas.front() if not Global.cargador_de_pelotitas.is_empty() else null
 	datos.velocidad_inicial = (-velocidad_inicial).limit_length(velocidad_maxima)
 	datos.gravedad *= escala_gravedad_bola
 	datos.fuerza_rebote = fuerza_rebote_bola

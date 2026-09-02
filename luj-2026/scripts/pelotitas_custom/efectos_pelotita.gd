@@ -26,7 +26,12 @@ func rebote_simple(pelotita : BolaDePelos ,objeto_a_impactar : Node2D):
 		extra = (fuerza_rebote + objeto_a_impactar.tipo_ovillo.rebote_extra) * ReliquiasManager.multiplicador_rebote()
 	if objeto_a_impactar.has_method("recibir_impacto"):
 		objeto_a_impactar.recibir_impacto(pelotita)
+	if objeto_a_impactar is Ovillo and objeto_a_impactar.ultimo_resultado and not objeto_a_impactar.ultimo_resultado.rebotar:
+		pelotita.add_collision_exception_with(objeto_a_impactar)
+		return
 	pelotita.rebotar(normal, extra)
+	if objeto_a_impactar is Ovillo:
+		objeto_a_impactar.al_rebotar_bola(pelotita)
 
 func al_crearse(pelotita : BolaDePelos):
 	pass
