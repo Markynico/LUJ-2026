@@ -1,14 +1,25 @@
-[gd_resource type="Resource" script_class="ReliquiaDVD" format=3 uid="uid://buacltdoirwq8"]
+[gd_resource type="Resource" script_class="Reliquia" format=3 uid="uid://buacltdoirwq8"]
 
 [ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_cond"]
-[ext_resource type="Script" uid="uid://cc8si1q1h1xay" path="res://scripts/reliquias/reliquia_dvd.gd" id="1_rel"]
+[ext_resource type="Script" uid="uid://5lbsfhx8xug1" path="res://scripts/reliquias/reliquia.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://dse6gpb8sv6v1" path="res://assets/reliquias/DVD.png" id="2_rel"]
 [ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="2_xlsl2"]
+[ext_resource type="Script" uid="uid://bvhxnhetlks4x" path="res://scripts/reliquias/efectos/efecto_disparo.gd" id="e_disparo"]
+[ext_resource type="Script" uid="uid://fywjwpquq7b7" path="res://scripts/reliquias/efectos/efecto_flag_manager.gd" id="e_flag"]
 
 [sub_resource type="Resource" id="CondicionDesbloqueo_1"]
 script = ExtResource("1_cond")
 contador = "runs_ganadas"
 cantidad = 5
+
+[sub_resource type="Resource" id="Efecto_1"]
+script = ExtResource("e_flag")
+flag = 3
+
+[sub_resource type="Resource" id="Efecto_2"]
+script = ExtResource("e_disparo")
+multiplicador_gravedad = 0.0
+rebotes_predichos_maximos = 0
 
 [resource]
 script = ExtResource("1_rel")
@@ -18,4 +29,5 @@ descripcion = "Las bolas salen en línea recta, sin {gravedad}, y atraviesan los
 
 \"Faltan 500 años para que se inventen los DVD\""
 icono = ExtResource("2_rel")
+efectos = Array[ExtResource("2_xlsl2")]([SubResource("Efecto_1"), SubResource("Efecto_2")])
 condiciones_desbloqueo = Array[ExtResource("1_cond")]([SubResource("CondicionDesbloqueo_1")])

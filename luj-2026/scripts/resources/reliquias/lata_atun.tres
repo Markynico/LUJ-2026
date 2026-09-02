@@ -1,8 +1,20 @@
-[gd_resource type="Resource" script_class="ReliquiaCuraInmediata" format=3 uid="uid://dqkvtjg3x0gb7"]
+[gd_resource type="Resource" script_class="Reliquia" format=3 uid="uid://dqkvtjg3x0gb7"]
 
-[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_m2nvm"]
-[ext_resource type="Script" uid="uid://cpvw88wgobgnx" path="res://scripts/reliquias/reliquia_cura_inmediata.gd" id="1_rel"]
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_ettlf"]
+[ext_resource type="Script" uid="uid://5lbsfhx8xug1" path="res://scripts/reliquias/reliquia.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://nnxkli40gefp" path="res://assets/reliquias/lata de atun.png" id="2_rel"]
+[ext_resource type="Script" uid="uid://dh16ugenolabs" path="res://scripts/reliquias/acciones/accion_reliquia.gd" id="e_acc_base"]
+[ext_resource type="Script" uid="uid://cm4aymif3jaf5" path="res://scripts/reliquias/acciones/accion_curar.gd" id="e_acc_curar"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="e_efr"]
+[ext_resource type="Script" uid="uid://ddsnu5korq388" path="res://scripts/reliquias/efectos/efecto_en_hook.gd" id="e_enhook"]
+
+[sub_resource type="Resource" id="Efecto_1"]
+script = ExtResource("e_acc_curar")
+
+[sub_resource type="Resource" id="Efecto_2"]
+script = ExtResource("e_enhook")
+acciones = Array[ExtResource("e_acc_base")]([SubResource("Efecto_1")])
+hook = "al_obtener"
 
 [resource]
 script = ExtResource("1_rel")
@@ -11,3 +23,4 @@ descripcion = "Cura 1 {vida:icono}.
 
 \"Todavía no se inventaron las latas pero bue…\""
 icono = ExtResource("2_rel")
+efectos = Array[ExtResource("e_efr")]([SubResource("Efecto_2")])

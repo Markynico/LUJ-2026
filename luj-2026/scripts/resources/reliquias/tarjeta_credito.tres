@@ -1,9 +1,12 @@
-[gd_resource type="Resource" script_class="ReliquiaTarjetaCredito" format=3 uid="uid://cihtrwgsv5g8s"]
+[gd_resource type="Resource" script_class="Reliquia" format=3 uid="uid://cihtrwgsv5g8s"]
 
 [ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_cond"]
-[ext_resource type="Script" uid="uid://cmyt0i3rp36r5" path="res://scripts/reliquias/reliquia_tarjeta_credito.gd" id="1_rel"]
+[ext_resource type="Script" uid="uid://5lbsfhx8xug1" path="res://scripts/reliquias/reliquia.gd" id="1_rel"]
 [ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="2_qqrrp"]
 [ext_resource type="Texture2D" uid="uid://bmshljiy45b7g" path="res://assets/reliquias/tarjeta de credito.png" id="2_rel"]
+[ext_resource type="Script" uid="uid://bbkyk2anhunsd" path="res://scripts/ovillos_custom/ovillo_base.gd" id="5_ymuos"]
+[ext_resource type="Script" uid="uid://fjyu1j2262tn" path="res://scripts/reliquias/efectos/efecto_descuento_tienda.gd" id="e_descuento"]
+[ext_resource type="Script" uid="uid://bb1k1rxvpqrte" path="res://scripts/reliquias/efectos/efecto_multiplicador.gd" id="e_multiplicador"]
 
 [sub_resource type="Resource" id="CondicionDesbloqueo_1"]
 script = ExtResource("1_cond")
@@ -16,13 +19,22 @@ contador = "monedas_gastadas"
 cantidad = 3000
 metadata/_custom_type_script = "uid://bus0kgj1moqjc"
 
+[sub_resource type="Resource" id="Efecto_1"]
+script = ExtResource("e_descuento")
+descuento = 0.5
+
+[sub_resource type="Resource" id="Efecto_2"]
+script = ExtResource("e_multiplicador")
+que = 4
+multiplicador = 1.5
+
 [resource]
 script = ExtResource("1_rel")
-descuento = 0.5
 nombre = "Tarjeta de Crédito"
 rareza = 2
 descripcion = "50% de descuento en la tienda. La dificultad escala 50% más rápido.
 
 \"Ya fue lo saco en cuotas\""
 icono = ExtResource("2_rel")
+efectos = Array[ExtResource("2_qqrrp")]([SubResource("Efecto_1"), SubResource("Efecto_2")])
 condiciones_desbloqueo = Array[ExtResource("1_cond")]([SubResource("CondicionDesbloqueo_1"), SubResource("Resource_xlsl2")])

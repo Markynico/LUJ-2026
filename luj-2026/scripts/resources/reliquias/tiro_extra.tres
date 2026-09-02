@@ -1,8 +1,13 @@
-[gd_resource type="Resource" script_class="ReliquiaTiroExtra" format=3 uid="uid://chsjfpl7ukql7"]
+[gd_resource type="Resource" script_class="Reliquia" format=3 uid="uid://chsjfpl7ukql7"]
 
-[ext_resource type="Script" uid="uid://dsqblwwo80x0m" path="res://scripts/reliquias/reliquia_tiro_extra.gd" id="1_reliquia"]
+[ext_resource type="Script" uid="uid://5lbsfhx8xug1" path="res://scripts/reliquias/reliquia.gd" id="1_reliquia"]
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_u78ec"]
 [ext_resource type="Texture2D" uid="uid://bymp1mcxn0fpt" path="res://assets/helado_michinko_color_1.png" id="1_utfq5"]
-[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_ydmgh"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="e_efr"]
+[ext_resource type="Script" uid="uid://c8riw0arhgdrv" path="res://scripts/reliquias/efectos/efecto_tiros_extra.gd" id="e_tiros"]
+
+[sub_resource type="Resource" id="Efecto_1"]
+script = ExtResource("e_tiros")
 
 [resource]
 script = ExtResource("1_reliquia")
@@ -11,3 +16,4 @@ descripcion = "+1 {tiros:texto/tiro} extra en cada nivel.
 
 \"...Qué asco.\""
 icono = ExtResource("1_utfq5")
+efectos = Array[ExtResource("e_efr")]([SubResource("Efecto_1")])

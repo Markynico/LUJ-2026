@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="ReliquiaExplosion" format=3 uid="uid://0nj1hbfuuix5"]
+[gd_resource type="Resource" script_class="Reliquia" format=3 uid="uid://0nj1hbfuuix5"]
 
 [ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_cond"]
-[ext_resource type="Script" uid="uid://rh5uy6oohjtf" path="res://scripts/reliquias/reliquia_explosion.gd" id="1_rel"]
+[ext_resource type="Script" uid="uid://5lbsfhx8xug1" path="res://scripts/reliquias/reliquia.gd" id="1_rel"]
 [ext_resource type="Resource" uid="uid://d3ks2dut6iacd" path="res://scripts/resources/ovillo_explosivo_final.tres" id="2_pvms4"]
 [ext_resource type="Texture2D" uid="uid://cpyotu2a1o1vd" path="res://assets/reliquias/barril de polvora.png" id="2_rel"]
 [ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="3_kkkwn"]
 [ext_resource type="Resource" uid="uid://c1h6r4503qfwr" path="res://scripts/resources/ovillo_explosivo_potenciado.tres" id="3_pot"]
+[ext_resource type="Script" uid="uid://ct2m24r0ru45f" path="res://scripts/reliquias/efectos/efecto_explosion_reliquia.gd" id="e_explosion"]
+[ext_resource type="Script" uid="uid://c4h2xxi1ieq0y" path="res://scripts/reliquias/efectos/efecto_reemplazo_ovillo.gd" id="e_reemplazo"]
 
 [sub_resource type="Resource" id="CondicionDesbloqueo_1"]
 script = ExtResource("1_cond")
@@ -18,16 +20,23 @@ script = ExtResource("1_cond")
 contador = "niveles_limpios"
 metadata/_custom_type_script = "uid://bus0kgj1moqjc"
 
-[resource]
-script = ExtResource("1_rel")
+[sub_resource type="Resource" id="Efecto_1"]
+script = ExtResource("e_explosion")
 probabilidad_perder_vida = 5.0
+
+[sub_resource type="Resource" id="Efecto_2"]
+script = ExtResource("e_reemplazo")
 ovillo_a_reemplazar = ExtResource("2_pvms4")
 ovillo_reemplazo = ExtResource("3_pot")
+
+[resource]
+script = ExtResource("1_rel")
 nombre = "Barril de Pólvora"
 rareza = 3
-descripcion = "Convierte a todos los {explosivo:icono} en MEGA que explotan con doble de fuerza y radio.
+descripcion = "Convierte a todos los {explosivo:icono} en [b][shake rate=20.0 level=8]MEGA[/shake][/b] que explotan con doble de fuerza y radio.
 Baja chance de recibir 1 {vida:icono} de daño cuando explota una bomba.
 
 \"Tengo un mal presentimiento...\""
 icono = ExtResource("2_rel")
+efectos = Array[ExtResource("3_kkkwn")]([SubResource("Efecto_1"), SubResource("Efecto_2")])
 condiciones_desbloqueo = Array[ExtResource("1_cond")]([SubResource("CondicionDesbloqueo_1"), SubResource("Resource_x4xo4")])

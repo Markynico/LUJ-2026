@@ -1,14 +1,28 @@
-[gd_resource type="Resource" script_class="ReliquiaCuraPorRebotes" format=3 uid="uid://fn0odl7hctra"]
+[gd_resource type="Resource" script_class="Reliquia" format=3 uid="uid://fn0odl7hctra"]
 
 [ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_cond"]
-[ext_resource type="Script" uid="uid://bdk38vhxkr24m" path="res://scripts/reliquias/reliquia_cura_por_rebotes.gd" id="1_rel"]
+[ext_resource type="Script" uid="uid://5lbsfhx8xug1" path="res://scripts/reliquias/reliquia.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://d0h1davg6ltwb" path="res://assets/reliquias/pouch de balanceado.png" id="2_rel"]
 [ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="2_uox8f"]
+[ext_resource type="Script" uid="uid://dh16ugenolabs" path="res://scripts/reliquias/acciones/accion_reliquia.gd" id="e_acc_base"]
+[ext_resource type="Script" uid="uid://cm4aymif3jaf5" path="res://scripts/reliquias/acciones/accion_curar.gd" id="e_acc_curar"]
+[ext_resource type="Script" uid="uid://ddsnu5korq388" path="res://scripts/reliquias/efectos/efecto_en_hook.gd" id="e_enhook"]
 
 [sub_resource type="Resource" id="CondicionDesbloqueo_1"]
 script = ExtResource("1_cond")
 contador = "curas_compradas"
 cantidad = 5
+
+[sub_resource type="Resource" id="Efecto_1"]
+script = ExtResource("e_acc_curar")
+solo_si_falta_vida = true
+
+[sub_resource type="Resource" id="Efecto_2"]
+script = ExtResource("e_enhook")
+cada = 150
+usos_maximos = 2
+acciones = Array[ExtResource("e_acc_base")]([SubResource("Efecto_1")])
+hook = "al_rebotar"
 
 [resource]
 script = ExtResource("1_rel")
@@ -16,4 +30,5 @@ nombre = "Pouch de Balanceado"
 descripcion = "Cura 1 {vida:icono} cada 150 {rebote:texto/rebotes}.
 Se gasta a las 2 {vida:icono} curadas."
 icono = ExtResource("2_rel")
+efectos = Array[ExtResource("2_uox8f")]([SubResource("Efecto_2")])
 condiciones_desbloqueo = Array[ExtResource("1_cond")]([SubResource("CondicionDesbloqueo_1")])

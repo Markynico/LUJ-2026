@@ -1,18 +1,24 @@
-[gd_resource type="Resource" script_class="ReliquiaSpawnOvillo" format=3 uid="uid://l4rvd76vwgiu"]
+[gd_resource type="Resource" script_class="Reliquia" format=3 uid="uid://l4rvd76vwgiu"]
 
-[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_4y8f4"]
-[ext_resource type="Script" uid="uid://hbrdyxmfe5s0" path="res://scripts/reliquias/reliquia_spawn_ovillo.gd" id="1_rel"]
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_nqfq4"]
+[ext_resource type="Script" uid="uid://5lbsfhx8xug1" path="res://scripts/reliquias/reliquia.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://ddupfvc3rjey2" path="res://assets/reliquias/caja de fosforos.png" id="2_rel"]
 [ext_resource type="Resource" uid="uid://d3ks2dut6iacd" path="res://scripts/resources/ovillo_explosivo_final.tres" id="3_rel"]
 [ext_resource type="Script" uid="uid://bbkyk2anhunsd" path="res://scripts/ovillos_custom/ovillo_base.gd" id="4_rel"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="e_efr"]
+[ext_resource type="Script" uid="uid://bb1k1rxvpqrte" path="res://scripts/reliquias/efectos/efecto_multiplicador.gd" id="e_multiplicador"]
+
+[sub_resource type="Resource" id="Efecto_1"]
+script = ExtResource("e_multiplicador")
+que = 2
+tipos_objetivo = Array[ExtResource("4_rel")]([ExtResource("3_rel")])
 
 [resource]
 script = ExtResource("1_rel")
-tipos_objetivo = Array[ExtResource("4_rel")]([ExtResource("3_rel")])
-multiplicador = 2.0
 nombre = "Caja de Fósforos"
 rareza = 1
 descripcion = "Los niveles comienzan con más {explosivo:icono}.
 
 \"*Fttshhhh...*\""
 icono = ExtResource("2_rel")
+efectos = Array[ExtResource("e_efr")]([SubResource("Efecto_1")])

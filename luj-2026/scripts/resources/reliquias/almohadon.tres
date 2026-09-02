@@ -1,8 +1,13 @@
-[gd_resource type="Resource" script_class="ReliquiaAlmohadon" format=3 uid="uid://duu7f1aj2t4g7"]
+[gd_resource type="Resource" script_class="Reliquia" format=3 uid="uid://duu7f1aj2t4g7"]
 
-[ext_resource type="Script" uid="uid://cesrtpp8vkgog" path="res://scripts/reliquias/reliquia_almohadon.gd" id="1_rel"]
-[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_yxnu2"]
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_k00yo"]
+[ext_resource type="Script" uid="uid://5lbsfhx8xug1" path="res://scripts/reliquias/reliquia.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://cmvt6vvalxdnx" path="res://assets/reliquias/almohadon.png" id="2_rel"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="e_efr"]
+[ext_resource type="Script" uid="uid://dvuyv3xng8oje" path="res://scripts/reliquias/efectos/efecto_slots_vida.gd" id="e_slots"]
+
+[sub_resource type="Resource" id="Efecto_1"]
+script = ExtResource("e_slots")
 
 [resource]
 script = ExtResource("1_rel")
@@ -12,3 +17,4 @@ descripcion = "+1 {slot_vida:icono} máximo.
 
 \"Después seguro se termina acostando en la caja en vez de acá\""
 icono = ExtResource("2_rel")
+efectos = Array[ExtResource("e_efr")]([SubResource("Efecto_1")])
