@@ -22,6 +22,7 @@ decoracion = ExtResource("1_fa0qx")
 material_brillo_decoracion = ExtResource("4_brillo")
 efecto_al_romper = 2
 cant_monedas = 1
+rebote_extra = 0.0
 valor_spawn = 30.0
 efectos_al_recibir_impacto = Array[ExtResource("1_rx7yq")]([SubResource("Resource_3vil1")])
 metadata/_custom_type_script = "uid://bbkyk2anhunsd"

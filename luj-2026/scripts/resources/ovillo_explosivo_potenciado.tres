@@ -23,6 +23,7 @@ efecto_al_explotar = 17
 escala = 1.25
 duracion_mecha = 2.0
 contar_como = ExtResource("5_base")
+rebote_extra = 0.0
 puntaje = 10
 valor_spawn = 2.5
 efectos_al_recibir_impacto = Array[ExtResource("2_hlo4y")]([SubResource("Resource_pv7le")])

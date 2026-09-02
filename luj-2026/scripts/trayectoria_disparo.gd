@@ -81,10 +81,18 @@ func calcular_puntos(datos : DatosDisparo) -> PackedVector2Array:
 	var posicion : Vector2 = disparador.global_position
 	var velocidad : Vector2 = datos.velocidad_inicial
 	var rebotes_restantes : int = datos.rebotes
+	var velocidad_angular : float = 0.0
 	var movimiento : Vector2
 	var normal : Vector2
+	var tangente : Vector2
+	var velocidad_normal : float
+	var velocidad_tangencial : float
+	var impulso_normal : float
+	var impulso_friccion : float
+	var deslizamiento : float
 	var cuerpo : Node
-	var fuerza_rebote : float
+	var impulso_extra : float
+	var frontalidad : float
 	if gato and gato.listo_para_lanzar:
 		posicion = gato.global_position
 	if not detector:
@@ -94,6 +102,7 @@ func calcular_puntos(datos : DatosDisparo) -> PackedVector2Array:
 	puntos.append(posicion)
 	for i in datos.pasos:
 		velocidad += datos.gravedad * datos.intervalo
+		velocidad_angular *= maxf(0.0, 1.0 - datos.amortiguacion_angular * datos.intervalo)
 		movimiento = velocidad * datos.intervalo
 		detector.target_position = movimiento
 		detector.clear_exceptions()
@@ -111,11 +120,22 @@ func calcular_puntos(datos : DatosDisparo) -> PackedVector2Array:
 				break
 			rebotes_restantes -= 1
 			normal = detector.get_collision_normal(0)
-			fuerza_rebote = datos.fuerza_rebote
+			tangente = Vector2(-normal.y, normal.x)
+			velocidad_normal = velocidad.dot(normal)
+			velocidad_tangencial = velocidad.dot(tangente)
+			impulso_normal = maxf(0.0, -velocidad_normal)
+			deslizamiento = velocidad_tangencial - velocidad_angular * datos.radio
+			impulso_friccion = clampf(-deslizamiento / 3.0, -datos.friccion * impulso_normal, datos.friccion * impulso_normal)
+			velocidad_tangencial += impulso_friccion
+			velocidad_angular -= 2.0 * impulso_friccion / datos.radio
+			impulso_extra = 0.0
 			cuerpo = detector.get_collider(0)
-			if cuerpo is Ovillo and cuerpo.tipo_ovillo:
-				fuerza_rebote += cuerpo.tipo_ovillo.rebote_extra
-			velocidad = velocidad.slide(normal) * datos.factor_friccion + normal * fuerza_rebote
+			if cuerpo is Ovillo:
+				impulso_extra = datos.fuerza_rebote
+				if cuerpo.tipo_ovillo:
+					impulso_extra += cuerpo.tipo_ovillo.rebote_extra * ReliquiasManager.multiplicador_rebote()
+			frontalidad = clampf(-velocidad.normalized().dot(normal), 0.0, 1.0)
+			velocidad = tangente * velocidad_tangencial + normal * (impulso_normal * datos.restitucion + impulso_extra * frontalidad)
 			posicion += normal * 0.5
 		else:
 			posicion += movimiento

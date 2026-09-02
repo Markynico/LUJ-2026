@@ -3,7 +3,7 @@ extends Resource
 
 
 #@export var cantidad_rebotes : int
-##fuerza de rebote, ojo q necesita un valor alto, con 200 minimo anda bien
+##impulso extra que recibe la pelotita al golpear un ovillo, ademas del rebote fisico; contra paredes y obstaculos no aplica
 @export var fuerza_rebote : float = 200
 @export var nombre_comida : String 
 #@export var imagen_bola_de_pelos : Texture2D
@@ -20,14 +20,13 @@ func impactar_con_objeto(pelotita : BolaDePelos ,objeto_a_impactar : Node2D):
 ##no es necesario que se sobre escriba, pero la dejo aca por si queremos evitar escribir mil veces la misma funcion para un simple rebote
 func rebote_simple(pelotita : BolaDePelos ,objeto_a_impactar : Node2D):
 	var normal : Vector2 = pelotita.normal_de_contacto(objeto_a_impactar)
-	var fuerza : float = fuerza_rebote
+	var extra : float = 0.0
 	pelotita.separar_del_contacto(objeto_a_impactar)
 	if objeto_a_impactar is Ovillo:
-		fuerza += objeto_a_impactar.tipo_ovillo.rebote_extra #para q se sume el rebote de la pelotita + el rebote del ovillo (si es q corresponde)
-	fuerza *= ReliquiasManager.multiplicador_rebote()
+		extra = (fuerza_rebote + objeto_a_impactar.tipo_ovillo.rebote_extra) * ReliquiasManager.multiplicador_rebote()
 	if objeto_a_impactar.has_method("recibir_impacto"):
 		objeto_a_impactar.recibir_impacto(pelotita)
-	pelotita.apply_central_impulse(normal * fuerza)
+	pelotita.rebotar(normal, extra)
 
 func al_crearse(pelotita : BolaDePelos):
 	pass
