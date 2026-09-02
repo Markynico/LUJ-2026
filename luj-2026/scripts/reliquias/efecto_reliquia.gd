@@ -76,3 +76,7 @@ func escupida_instantanea() -> bool:
 
 func al_spawnear_ovillo(ovillo : Ovillo) -> void:
 	pass
+
+
+func multiplicador_duracion(que : String) -> float:
+	return 1.0

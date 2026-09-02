@@ -132,6 +132,13 @@ func al_spawnear_ovillo(ovillo : Ovillo) -> void:
 		reliquia.al_spawnear_ovillo(ovillo)
 
 
+func multiplicador_duracion_para(que : String) -> float:
+	var multiplicador : float = 1.0
+	for reliquia in fuentes():
+		multiplicador *= reliquia.multiplicador_duracion(que)
+	return multiplicador
+
+
 func escupida_instantanea() -> bool:
 	for reliquia in fuentes():
 		if reliquia.escupida_instantanea():

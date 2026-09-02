@@ -29,7 +29,7 @@ func fuentes() -> Array:
 
 func iniciar() -> void:
 	estado = self
-	tiros_restantes = duracion_tiros
+	tiros_restantes = roundi(duracion_tiros * ReliquiasManager.multiplicador_duracion_para("estados_ovillo")) if duracion_tiros > 0 else 0
 	cargas_restantes = cargas
 
 
