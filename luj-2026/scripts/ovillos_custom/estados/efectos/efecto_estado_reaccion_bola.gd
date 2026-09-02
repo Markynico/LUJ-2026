@@ -15,6 +15,8 @@ enum Bola { REBOTA, ATRAVIESA, SE_FRENA }
 @export var bola : Bola = Bola.REBOTA
 ##si el impacto gasta una carga del estado
 @export var gastar_carga : bool = false
+##si el gato lanzado gasta uno de sus impactos al chocar este ovillo
+@export var cuenta_para_el_gato : bool = true
 ##si el impacto quita el estado
 @export var quitar_estado : bool = false
 
@@ -36,6 +38,7 @@ func resolver_impacto(ovillo : Ovillo, tipo_bola : PelotitaBase, resultado : Res
 	resultado.romper = romper
 	resultado.rebotar = bola == Bola.REBOTA
 	resultado.atravesar = bola == Bola.ATRAVIESA
+	resultado.cuenta_para_el_gato = cuenta_para_el_gato
 	if gastar_carga and estado:
 		resultado.gastar_carga.append(estado)
 	if quitar_estado and estado:

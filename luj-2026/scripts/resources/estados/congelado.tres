@@ -9,11 +9,13 @@
 [sub_resource type="Resource" id="Resource_lvktv"]
 script = ExtResource("3_fgesx")
 bola = 1
+cuenta_para_el_gato = false
 metadata/_custom_type_script = "uid://cu8ortgafb8cn"
 
 [sub_resource type="Resource" id="Resource_ew7ae"]
 script = ExtResource("3_fgesx")
 bolas_que_aplican_este_estado = true
+bola = 1
 metadata/_custom_type_script = "uid://cu8ortgafb8cn"
 
 [sub_resource type="Resource" id="Resource_explc"]
