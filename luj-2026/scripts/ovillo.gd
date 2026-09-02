@@ -266,10 +266,12 @@ func obtener_puntaje () -> int:
 	#print(name, " puntaje: ", tipo_ovillo.puntaje, " x ", multiplicador)
 	return pasar_por_estados("modificar_puntaje", roundi(tipo_ovillo.puntaje * multiplicador * ReliquiasManager.multiplicador_puntos_para(tipo_ovillo)))
 
-func obtener_monedas () -> int:
+func obtener_monedas (base : int = -1) -> int:
 	if not tipo_ovillo:
 		return 0
-	return pasar_por_estados("modificar_monedas", roundi(tipo_ovillo.cant_monedas * multiplicador * multiplicador_oro * ReliquiasManager.multiplicador_monedas_para(tipo_ovillo)))
+	if base < 0:
+		base = tipo_ovillo.cant_monedas
+	return pasar_por_estados("modificar_monedas", roundi(base * multiplicador * multiplicador_oro * ReliquiasManager.multiplicador_monedas_para(tipo_ovillo)))
 
 
 func pasar_por_estados(metodo : String, valor : int) -> int:
