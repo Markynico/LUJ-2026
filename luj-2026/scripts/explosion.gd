@@ -9,6 +9,9 @@ extends Node2D
 ##fuerza del impulso que reciben las bolas en el centro de la explosion
 @export var fuerza_impulso : float = 1500.0
 
+var estado_a_aplicar : EstadoOvillo
+var rompe_ovillos : bool = true
+
 func _ready() -> void:
 	animated_sprite_explosion.animation_finished.connect(queue_free)
 
@@ -20,7 +23,10 @@ func activar_explosion(): #se llama desde OVILLO
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Ovillo:
-		body.recibir_explosion()
+		if estado_a_aplicar:
+			body.aplicar_estado(estado_a_aplicar)
+		if rompe_ovillos:
+			body.recibir_explosion()
 	if body is BolaDePelos and empuja_bolas:
 		empujar_bola(body)
 

@@ -103,7 +103,7 @@ func quitar_estado(estado : EstadoOvillo) -> void:
 
 
 func actualizar_visual_estados() -> void:
-	var tinte : Color = Color.WHITE
+	var color : Color = tipo_ovillo.color if tipo_ovillo else Color.WHITE
 	if sprite_estado:
 		sprite_estado.visible = false
 		for estado in estados:
@@ -111,9 +111,12 @@ func actualizar_visual_estados() -> void:
 				sprite_estado.texture = estado.decoracion
 				sprite_estado.visible = true
 	for estado in estados:
-		tinte *= estado.color_tinte
+		if estado.cambiar_color:
+			color = estado.color
 	if sprite_normal:
-		sprite_normal.modulate = tinte
+		sprite_normal.self_modulate = color
+	if sprite_decoracion_teñida:
+		sprite_decoracion_teñida.self_modulate = color
 
 
 func al_empezar_turno() -> void:
@@ -214,6 +217,8 @@ func reactivar_ovillo() -> void:
 
 
 func explotar(nodo_explosion : Explosion): #lo llamo en el EfectoExplosion
+	for fuente in fuentes_estados():
+		fuente.al_explotar(self, nodo_explosion)
 	if ReliquiasManager.explosion_instantanea:
 		AudioManager.reproducir_sfx(tipo_ovillo.efecto_al_explotar)
 		nodo_explosion.activar_explosion()
@@ -304,3 +309,4 @@ func cambiar_tipo(nuevo_tipo : OvilloBase) -> void:
 	scale = Vector2.ONE * tipo_ovillo.escala
 	if sprite_normal and tipo_ovillo.sprite:
 		sprite_normal.texture = tipo_ovillo.sprite
+	actualizar_visual_estados()

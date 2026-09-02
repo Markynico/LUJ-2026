@@ -5,8 +5,10 @@ extends EfectoEstadoOvillo
 @export_multiline var descripcion : String = ""
 ##textura que se dibuja sobre el ovillo mientras tiene el estado
 @export var decoracion : Texture2D
-##color con el que se tiñe el ovillo mientras tiene el estado
-@export var color_tinte : Color = Color.WHITE
+##si esta prendido, el ovillo cambia su color base por el del estado mientras lo tiene
+@export var cambiar_color : bool = false
+##color que reemplaza al del ovillo mientras tiene el estado
+@export var color : Color = Color.WHITE
 ##tiros que dura el estado, 0 = hasta que algo lo quite
 @export var duracion_tiros : int = 0
 ##veces que puede gastarse una carga antes de quitarse, 0 = infinitas

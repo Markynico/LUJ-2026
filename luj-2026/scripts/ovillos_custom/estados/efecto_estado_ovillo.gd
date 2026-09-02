@@ -20,6 +20,10 @@ func resolver_explosion(ovillo : Ovillo, resultado : ResultadoImpacto) -> void:
 	pass
 
 
+func al_explotar(ovillo : Ovillo, explosion : Explosion) -> void:
+	pass
+
+
 func al_romperse(ovillo : Ovillo) -> void:
 	pass
 
