@@ -2,13 +2,15 @@
 
 [ext_resource type="Script" path="res://addons/creador_de_items/dock_creador_de_items.gd" id="1_dock"]
 
-[node name="Creador de items" type="ScrollContainer" node_paths=PackedStringArray("selector_tipo", "campo_nombre", "selector_rareza", "campo_descripcion", "selector_icono", "fila_textura", "selector_textura", "contenedor_hooks", "boton_crear", "etiqueta_estado")]
+[node name="Creador de items" type="ScrollContainer" node_paths=PackedStringArray("selector_tipo", "selector_existente", "campo_nombre", "selector_rareza", "campo_descripcion", "etiqueta_icono", "selector_icono", "fila_textura", "selector_textura", "contenedor_hooks", "boton_crear", "etiqueta_estado")]
 horizontal_scroll_mode = 0
 script = ExtResource("1_dock")
 selector_tipo = NodePath("Columna/SelectorTipo")
+selector_existente = NodePath("Columna/SelectorExistente")
 campo_nombre = NodePath("Columna/CampoNombre")
 selector_rareza = NodePath("Columna/SelectorRareza")
 campo_descripcion = NodePath("Columna/CampoDescripcion")
+etiqueta_icono = NodePath("Columna/FilaIcono/EtiquetaIcono")
 selector_icono = NodePath("Columna/FilaIcono/SelectorIcono")
 fila_textura = NodePath("Columna/FilaTextura")
 selector_textura = NodePath("Columna/FilaTextura/SelectorTextura")
@@ -21,6 +23,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="SelectorTipo" type="OptionButton" parent="Columna"]
+layout_mode = 2
+
+[node name="SelectorExistente" type="OptionButton" parent="Columna"]
 layout_mode = 2
 
 [node name="CampoNombre" type="LineEdit" parent="Columna"]
@@ -53,7 +58,7 @@ layout_mode = 2
 
 [node name="EtiquetaTextura" type="Label" parent="Columna/FilaTextura"]
 layout_mode = 2
-text = "Bola"
+text = "Sprite bola"
 
 [node name="SelectorTextura" type="EditorResourcePicker" parent="Columna/FilaTextura"]
 layout_mode = 2
