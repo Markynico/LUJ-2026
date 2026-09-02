@@ -19,13 +19,22 @@ func _draw() -> void:
 	if not Engine.is_editor_hint():
 		return
 	super()
-	vertices = obtener_vertices()
-	vertices.append(vertices[0])
-	draw_polyline(vertices, COLOR_DIBUJO, GROSOR_DIBUJO)
+	for desplazamiento in desplazamientos_de_anillos():
+		vertices = contorno_desplazado(desplazamiento)
+		if vertices.is_empty():
+			continue
+		vertices.append(vertices[0])
+		draw_polyline(vertices, COLOR_DIBUJO, GROSOR_DIBUJO)
 
 
 func obtener_vertices() -> PackedVector2Array:
-	var mitad : Vector2 = tamaño * 0.5
+	return contorno_desplazado(0.0)
+
+
+func contorno_desplazado(desplazamiento : float) -> PackedVector2Array:
+	var mitad : Vector2 = tamaño * 0.5 + Vector2.ONE * desplazamiento
+	if mitad.x <= 0.0 or mitad.y <= 0.0:
+		return PackedVector2Array()
 	return PackedVector2Array([
 		Vector2(-mitad.x, -mitad.y),
 		Vector2(mitad.x, -mitad.y),
@@ -39,11 +48,11 @@ func obtener_contorno() -> PackedVector2Array:
 
 
 func obtener_radio_exterior() -> float:
-	return tamaño.y * 0.5
+	return tamaño.y * 0.5 + (anillos_exteriores * separacion_anillos if permite_anillos() else 0.0)
 
 
 func obtener_puntos() -> PackedVector2Array:
-	return puntos_sobre_poligono(a_global(obtener_vertices()))
+	return puntos_con_anillos()
 
 
 func obtener_manijas() -> PackedVector2Array:

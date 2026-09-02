@@ -2,85 +2,156 @@
 
 [ext_resource type="Script" uid="uid://cvnp2t8klxr25" path="res://addons/editor_de_niveles/dock_editor_de_niveles.gd" id="1_dock"]
 
-[node name="Editor de niveles" type="VBoxContainer" unique_id=1439805482 node_paths=PackedStringArray("boton_rectangulo", "boton_circulo", "boton_path", "boton_obstaculo_rectangulo", "boton_obstaculo_circulo", "boton_agregar_recorrido", "boton_quitar_recorrido", "boton_nuevo", "boton_guardar", "boton_cargar", "campo_nombre")]
+[node name="Editor de niveles" type="HBoxContainer" unique_id=1439805482 node_paths=PackedStringArray("boton_rectangulo", "boton_circulo", "boton_path", "boton_linea", "boton_poligono", "boton_obstaculo_rectangulo", "boton_obstaculo_circulo", "boton_agregar_recorrido", "boton_quitar_recorrido", "toggle_simetria_horizontal", "toggle_simetria_vertical", "toggle_previsualizar", "toggle_seleccionar_ovillos", "boton_eliminar_ovillos", "boton_restaurar_ovillos", "boton_probar", "boton_nuevo", "boton_guardar", "boton_cargar", "campo_nombre")]
 script = ExtResource("1_dock")
-boton_rectangulo = NodePath("BotonRectangulo")
-boton_circulo = NodePath("BotonCirculo")
-boton_path = NodePath("BotonPath")
-boton_obstaculo_rectangulo = NodePath("BotonObstaculoRectangulo")
-boton_obstaculo_circulo = NodePath("BotonObstaculoCirculo")
-boton_agregar_recorrido = NodePath("BotonAgregarRecorrido")
-boton_quitar_recorrido = NodePath("BotonQuitarRecorrido")
-boton_nuevo = NodePath("BotonNuevo")
-boton_guardar = NodePath("BotonGuardar")
-boton_cargar = NodePath("BotonCargar")
-campo_nombre = NodePath("CampoNombre")
+boton_rectangulo = NodePath("Izquierda/BotonRectangulo")
+boton_circulo = NodePath("Izquierda/BotonCirculo")
+boton_path = NodePath("Izquierda/BotonPath")
+boton_linea = NodePath("Izquierda/BotonLinea")
+boton_poligono = NodePath("Izquierda/BotonPoligono")
+boton_obstaculo_rectangulo = NodePath("Izquierda/BotonObstaculoRectangulo")
+boton_obstaculo_circulo = NodePath("Izquierda/BotonObstaculoCirculo")
+boton_agregar_recorrido = NodePath("Izquierda/BotonAgregarRecorrido")
+boton_quitar_recorrido = NodePath("Izquierda/BotonQuitarRecorrido")
+toggle_simetria_horizontal = NodePath("Derecha/ToggleSimetriaHorizontal")
+toggle_simetria_vertical = NodePath("Derecha/ToggleSimetriaVertical")
+toggle_previsualizar = NodePath("Derecha/TogglePrevisualizar")
+toggle_seleccionar_ovillos = NodePath("Derecha/ToggleSeleccionarOvillos")
+boton_eliminar_ovillos = NodePath("Derecha/BotonEliminarOvillos")
+boton_restaurar_ovillos = NodePath("Derecha/BotonRestaurarOvillos")
+boton_probar = NodePath("Derecha/BotonProbar")
+boton_nuevo = NodePath("Derecha/BotonNuevo")
+boton_guardar = NodePath("Derecha/BotonGuardar")
+boton_cargar = NodePath("Derecha/BotonCargar")
+campo_nombre = NodePath("Derecha/CampoNombre")
 
-[node name="EtiquetaFormas" type="Label" parent="." unique_id=1304654036]
+[node name="Izquierda" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EtiquetaFormas" type="Label" parent="Izquierda" unique_id=1304654036]
 layout_mode = 2
 text = "Formas"
 
-[node name="BotonRectangulo" type="Button" parent="." unique_id=1270800419]
+[node name="BotonRectangulo" type="Button" parent="Izquierda" unique_id=1270800419]
 layout_mode = 2
 text = "Rectangulo"
 
-[node name="BotonCirculo" type="Button" parent="."]
+[node name="BotonCirculo" type="Button" parent="Izquierda"]
 layout_mode = 2
 text = "Circulo"
 
-[node name="BotonPath" type="Button" parent="."]
+[node name="BotonPath" type="Button" parent="Izquierda"]
 layout_mode = 2
 text = "Path"
 
-[node name="SeparadorObstaculos" type="HSeparator" parent="."]
+[node name="BotonLinea" type="Button" parent="Izquierda"]
+layout_mode = 2
+text = "Linea"
+
+[node name="BotonPoligono" type="Button" parent="Izquierda"]
+layout_mode = 2
+text = "Poligono con grilla"
+
+[node name="SeparadorObstaculos" type="HSeparator" parent="Izquierda"]
 layout_mode = 2
 
-[node name="EtiquetaObstaculos" type="Label" parent="."]
+[node name="EtiquetaObstaculos" type="Label" parent="Izquierda"]
 layout_mode = 2
 text = "Obstaculos"
 
-[node name="BotonObstaculoRectangulo" type="Button" parent="."]
+[node name="BotonObstaculoRectangulo" type="Button" parent="Izquierda"]
 layout_mode = 2
 text = "Rectangulo solido"
 
-[node name="BotonObstaculoCirculo" type="Button" parent="."]
+[node name="BotonObstaculoCirculo" type="Button" parent="Izquierda"]
 layout_mode = 2
 text = "Circulo solido"
 
-[node name="SeparadorRecorrido" type="HSeparator" parent="."]
+[node name="SeparadorRecorrido" type="HSeparator" parent="Izquierda"]
 layout_mode = 2
 
-[node name="EtiquetaRecorrido" type="Label" parent="."]
+[node name="EtiquetaRecorrido" type="Label" parent="Izquierda"]
 layout_mode = 2
 text = "Recorrido"
 
-[node name="BotonAgregarRecorrido" type="Button" parent="."]
+[node name="BotonAgregarRecorrido" type="Button" parent="Izquierda"]
 layout_mode = 2
 text = "Agregar recorrido"
 
-[node name="BotonQuitarRecorrido" type="Button" parent="."]
+[node name="BotonQuitarRecorrido" type="Button" parent="Izquierda"]
 layout_mode = 2
 text = "Quitar recorrido"
 
-[node name="Separador" type="HSeparator" parent="." unique_id=1386849823]
+[node name="Derecha" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EtiquetaSimetria" type="Label" parent="Derecha"]
+layout_mode = 2
+text = "Simetria"
+
+[node name="ToggleSimetriaHorizontal" type="CheckButton" parent="Derecha"]
+layout_mode = 2
+text = "Horizontal"
+
+[node name="ToggleSimetriaVertical" type="CheckButton" parent="Derecha"]
+layout_mode = 2
+text = "Vertical"
+
+[node name="SeparadorPrevisualizar" type="HSeparator" parent="Derecha"]
 layout_mode = 2
 
-[node name="EtiquetaNivel" type="Label" parent="." unique_id=1163254849]
+[node name="EtiquetaPrevisualizar" type="Label" parent="Derecha"]
+layout_mode = 2
+text = "Movimiento"
+
+[node name="TogglePrevisualizar" type="CheckButton" parent="Derecha"]
+layout_mode = 2
+text = "Previsualizar"
+
+[node name="SeparadorOvillos" type="HSeparator" parent="Derecha"]
+layout_mode = 2
+
+[node name="EtiquetaOvillos" type="Label" parent="Derecha"]
+layout_mode = 2
+text = "Ovillos"
+
+[node name="ToggleSeleccionarOvillos" type="CheckButton" parent="Derecha"]
+layout_mode = 2
+text = "Seleccionar"
+
+[node name="BotonEliminarOvillos" type="Button" parent="Derecha"]
+layout_mode = 2
+text = "Eliminar seleccionados"
+
+[node name="BotonRestaurarOvillos" type="Button" parent="Derecha"]
+layout_mode = 2
+text = "Restaurar"
+
+[node name="Separador" type="HSeparator" parent="Derecha" unique_id=1386849823]
+layout_mode = 2
+
+[node name="EtiquetaNivel" type="Label" parent="Derecha" unique_id=1163254849]
 layout_mode = 2
 text = "Nivel"
 
-[node name="BotonNuevo" type="Button" parent="."]
+[node name="BotonNuevo" type="Button" parent="Derecha"]
 layout_mode = 2
 text = "Nuevo nivel"
 
-[node name="CampoNombre" type="LineEdit" parent="." unique_id=887389719]
+[node name="CampoNombre" type="LineEdit" parent="Derecha" unique_id=887389719]
 layout_mode = 2
 placeholder_text = "nombre del nivel"
 
-[node name="BotonGuardar" type="Button" parent="." unique_id=147577921]
+[node name="BotonGuardar" type="Button" parent="Derecha" unique_id=147577921]
 layout_mode = 2
 text = "Guardar nivel"
 
-[node name="BotonCargar" type="Button" parent="." unique_id=553191197]
+[node name="BotonCargar" type="Button" parent="Derecha" unique_id=553191197]
 layout_mode = 2
 text = "Cargar nivel"
+
+[node name="BotonProbar" type="Button" parent="Derecha"]
+layout_mode = 2
+text = "Probar nivel"

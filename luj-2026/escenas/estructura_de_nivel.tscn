@@ -13,7 +13,6 @@ size = Vector2(869.9999, 39)
 size = Vector2(869.9999, 39)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_lxg71"]
-resource_local_to_scene = true
 viewport_path = NodePath("PanelInfoIzquierdo/SubViewportIzq")
 
 [node name="EstructuraDeNivel" type="Node2D" unique_id=1258707596 node_paths=PackedStringArray("pared_izquierda", "pared_derecha", "piso_gato")]
@@ -58,6 +57,7 @@ texture = SubResource("ViewportTexture_lxg71")
 transparent_bg = true
 
 [node name="Panel" type="Panel" parent="PanelInfoIzquierdo/SubViewportIzq" unique_id=1023388696]
+visible = false
 offset_right = 297.0
 offset_bottom = 372.0
 

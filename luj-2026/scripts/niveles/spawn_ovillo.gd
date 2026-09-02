@@ -4,22 +4,43 @@ extends Node2D
 
 ##escena del ovillo que aparece en este punto al correr el juego
 @export var escena_ovillo : PackedScene = preload("uid://dy3jqoayfdkwm")
-##radio del circulito de vista previa en el editor
+##radio de respaldo de la vista previa si el ovillo no tiene collider circular
 @export var radio_vista_previa : float = 8.0
 @export var color_vista_previa : Color = Color(1.0, 0.8, 0.2, 0.8)
 
 @export var tipo_ovillos : Array[OvilloBase]
 
+var radio_colision : float = 0.0
+var anulado : bool = false:
+	set(valor):
+		anulado = valor
+		queue_redraw()
+
 
 func _ready() -> void:
-	if Engine.is_editor_hint():
+	if Engine.is_editor_hint() or anulado:
 		return
 	instanciar_ovillo()
 
 
 func _draw() -> void:
-	if Engine.is_editor_hint():
-		draw_circle(Vector2.ZERO, radio_vista_previa, color_vista_previa)
+	if Engine.is_editor_hint() and not anulado:
+		draw_circle(Vector2.ZERO, obtener_radio_colision(), color_vista_previa)
+
+
+func obtener_radio_colision() -> float:
+	var ovillo : Node
+	var colision : CollisionShape2D
+	if radio_colision > 0.0:
+		return radio_colision
+	radio_colision = radio_vista_previa
+	if escena_ovillo:
+		ovillo = escena_ovillo.instantiate()
+		colision = ovillo.get_node_or_null("CollisionShape2D")
+		if colision and colision.shape is CircleShape2D:
+			radio_colision = colision.shape.radius
+		ovillo.free()
+	return radio_colision
 
 
 func instanciar_ovillo() -> void:

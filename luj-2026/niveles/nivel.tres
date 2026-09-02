@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="NivelData" format=3 uid="uid://csugspaplyvqe"]
+
+[ext_resource type="Script" uid="uid://1owdr3bm0age" path="res://scripts/niveles/forma_data.gd" id="1_1mhi6"]
+[ext_resource type="Script" uid="uid://4yxin8siliwu" path="res://scripts/niveles/nivel_data.gd" id="2_hyq3l"]
+
+[sub_resource type="Curve2D" id="Curve2D_rwpio"]
+bake_interval = 2.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -446.9333, -2, 0, 0, 0, 0, 851.0667, -2)
+}
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_6dleq"]
+script = ExtResource("1_1mhi6")
+tipo = "path"
+posicion = Vector2(769.9333, 617)
+repeticiones = 6
+separacion_repeticiones = 43
+eje_repeticiones = 1
+velocidad_desplazamiento = 17.585
+alternar_direccion_repeticiones = true
+efecto_ladrillo = true
+curva = SubResource("Curve2D_rwpio")
+
+[resource]
+script = ExtResource("2_hyq3l")
+formas = Array[ExtResource("1_1mhi6")]([SubResource("Resource_6dleq")])
+posicion_divisiones = Vector2(349, 1080)
+ancho_divisiones = 1241.0

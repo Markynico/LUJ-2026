@@ -26,10 +26,7 @@ func pedir_regenerar() -> void:
 	if regeneracion_pendiente:
 		return
 	regeneracion_pendiente = true
-	if Engine.is_editor_hint():
-		regenerar.call_deferred()
-	else:
-		reposicionar.call_deferred()
+	reposicionar.call_deferred()
 
 
 func reposicionar() -> void:
@@ -41,17 +38,25 @@ func reposicionar() -> void:
 		return
 	for i in puntos.size():
 		get_child(i).global_position = puntos[i]
+		get_child(i).anulado = es_hueco(i)
 
 
 func regenerar() -> void:
 	var spawn : Node2D
+	var puntos : PackedVector2Array
 	regeneracion_pendiente = false
 	for hijo in get_children():
 		remove_child(hijo)
 		hijo.queue_free()
 	if not forma or not escena_spawn:
 		return
-	for punto in forma.obtener_puntos():
+	puntos = forma.obtener_puntos()
+	for i in puntos.size():
 		spawn = escena_spawn.instantiate()
+		spawn.anulado = es_hueco(i)
 		add_child(spawn)
-		spawn.global_position = punto
+		spawn.global_position = puntos[i]
+
+
+func es_hueco(indice : int) -> bool:
+	return "huecos" in forma and forma.huecos.has(indice)
