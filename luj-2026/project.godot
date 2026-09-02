@@ -29,6 +29,7 @@ EstadisticasRun="*res://scripts/estadisticas_run.gd"
 Progreso="*res://scripts/progreso.gd"
 Ajustes="*res://scripts/ajustes.gd"
 Notificaciones="*res://escenas/notificaciones.tscn"
+Explicaciones="*res://escenas/explicaciones.tscn"
 
 [display]
 

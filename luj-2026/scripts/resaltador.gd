@@ -2,21 +2,21 @@ class_name Resaltador
 extends RefCounted
 
 const PALABRAS : Dictionary = {
-	"explosivo": {"color": Color("E33B2E"), "icono": "uid://dhf7cpyrxnlhx", "modo": "texto"},
-	"catnip": {"color": Color("7DC43D"), "icono": "uid://4j10avmo472q", "modo": "texto"},
-	"rebobinar": {"color": Color("A64FE3"), "icono": "uid://d1d8tmba154nk", "modo": "texto"},
-	"monedas": {"color": Color("D9AD21"), "icono": "uid://cmgxgm42kfbke", "modo": "texto"},
-	"ovillo_monedas": {"color": Color("d9a702ff"), "icono": "uid://csdrv6d6trs4a", "modo": "texto"},
-	"ovillo_normal": {"color": Color("998042ff"), "icono": "uid://dbxxyb6slkgym", "modo": "texto"},
-	"vida": {"color": Color("911328ff"), "icono": "uid://bfrl038m3jxcf", "modo": "texto", "escala": 0.7},
-	"slot_vida": {"color": Color("8a7468ff"), "icono": "uid://cucbudcj05ymj", "modo": "texto", "escala": 1.5},
-	"velocidad": {"color": Color("4b7dbfff"), "icono": "", "modo": "texto"},
-	"gravedad": {"color": Color("7e70f4ff"), "icono": "", "modo": "texto"},
-	"tiros": {"color": Color("2d9677ff"), "icono": "", "modo": "texto"},
-	"rebote": {"color": Color("c95fb8ff"), "icono": "", "modo": "texto"},
-	"facil": {"color": Color("6cc04a"), "icono": "uid://bp1qyy3ksenhp", "modo": "texto", "borde": Color(0.2, 0.8, 0.3)},
-	"media": {"color": Color("e0a030"), "icono": "uid://dmd7g1ic6s8dq", "modo": "texto", "escala": 1.2, "borde": Color(1.0, 0.6, 0.1)},
-	"dificil": {"color": Color("d84a3c"), "icono": "uid://dbh4cm5upkxnq", "modo": "texto", "escala": 1.5, "borde": Color(0.9, 0.15, 0.15)},
+	"explosivo": {"color": Color("E33B2E"), "icono": "uid://dhf7cpyrxnlhx", "modo": "texto", "titulo": "{explosivo:texto/Ovillo explosivo}", "explicacion": "Al romperse prende la mecha y explota, rompiendo los ovillos cercanos y empujando la bola."},
+	"catnip": {"color": Color("7DC43D"), "icono": "uid://4j10avmo472q", "modo": "texto", "titulo": "{catnip:texto/Catnip}", "explicacion": "Mientras dura, los ovillos que rompas dan el doble de puntos."},
+	"rebobinar": {"color": Color("A64FE3"), "icono": "uid://d1d8tmba154nk", "modo": "texto", "titulo": "{rebobinar:texto/Rebobinar}", "explicacion": "Devuelve la bola al gato para tirarla de nuevo sin gastar un tiro."},
+	"monedas": {"color": Color("D9AD21"), "icono": "uid://cmgxgm42kfbke", "modo": "texto", "titulo": "{monedas:texto/Monedas}", "explicacion": "Sirven para comprar reliquias y comidas."},
+	"ovillo_monedas": {"color": Color("d9a702ff"), "icono": "uid://csdrv6d6trs4a", "modo": "texto", "titulo": "{ovillo_monedas:texto/Ovillo de monedas}", "explicacion": "Ademas de puntos, da {monedas} al romperse."},
+	"ovillo_normal": {"color": Color("998042ff"), "icono": "uid://dbxxyb6slkgym", "modo": "texto", "titulo": "{ovillo_normal:texto/Ovillo normal}", "explicacion": "Suma puntos al romperse."},
+	"vida": {"color": Color("911328ff"), "icono": "uid://bfrl038m3jxcf", "modo": "texto", "escala": 0.7, "titulo": "{vida:texto/Vidas}", "explicacion": "Perdes una al no llegar a la meta de un nivel. Cuando llega a cero, termina la run."},
+	"slot_vida": {"color": Color("8a7468ff"), "icono": "uid://cucbudcj05ymj", "modo": "texto", "escala": 1.5, "titulo": "{slot_vida:texto/Slots de vida}", "explicacion": "Cantidad maxima de vidas que podes tener a la vez."},
+	"velocidad": {"color": Color("4b7dbfff"), "icono": "", "modo": "texto", "titulo": "{velocidad:texto/Velocidad}", "explicacion": "Con cuanta fuerza sale la bola al escupirla."},
+	"gravedad": {"color": Color("7e70f4ff"), "icono": "", "modo": "texto", "titulo": "{gravedad:texto/Gravedad}", "explicacion": "Cuanto cae la bola mientras vuela. 0 gravedad = tiro recto."},
+	"tiros": {"color": Color("2d9677ff"), "icono": "", "modo": "texto", "titulo": "{tiros:texto/Tiros}", "explicacion": "Bolas máximas que el gato puede escupir en cada nivel."},
+	"rebote": {"color": Color("c95fb8ff"), "icono": "", "modo": "texto", "titulo": "{rebote:texto/Rebote}", "explicacion": "Cuánto rebota la bola al impactar."},
+	"facil": {"color": Color("6cc04a"), "icono": "uid://bp1qyy3ksenhp", "modo": "texto", "borde": Color(0.2, 0.8, 0.3), "titulo": "{facil:texto/Dificultad facil}", "explicacion": "Pocas salas para ganar la run y metas mas bajas por nivel."},
+	"media": {"color": Color("e0a030"), "icono": "uid://dmd7g1ic6s8dq", "modo": "texto", "escala": 1.2, "borde": Color(1.0, 0.6, 0.1), "titulo": "{media:texto/Dificultad media}", "explicacion": "Mas salas para ganar la run y metas mas exigentes."},
+	"dificil": {"color": Color("d84a3c"), "icono": "uid://dbh4cm5upkxnq", "modo": "texto", "escala": 1.5, "borde": Color(0.9, 0.15, 0.15), "titulo": "{dificil:texto/Dificultad dificil}", "explicacion": "La run mas larga, con las metas mas altas por nivel."},
 }
 const TAMAÑO_ICONO : int = 24
 const GROSOR_BORDE : int = 5
@@ -58,7 +58,22 @@ static func reemplazo(coincidencia : RegExMatch, escala_iconos : float = 1.0) ->
 		partes += "[color=#%s]%s[/color]" % [datos["color"].to_html(false), visible]
 	if partes.is_empty():
 		partes = visible
+	if datos.has("explicacion"):
+		partes = "[url=%s]%s[/url]" % [clave, partes]
 	return partes
+
+
+static func explicacion(clave : String) -> Dictionary:
+	var datos : Dictionary = PALABRAS.get(clave, {})
+	if not datos.has("explicacion"):
+		return {}
+	return {"titulo": datos.get("titulo", clave), "texto": datos["explicacion"]}
+
+
+static func conectar_hover(etiqueta : RichTextLabel) -> void:
+	etiqueta.meta_underlined = false
+	etiqueta.meta_hover_started.connect(func(meta : Variant) -> void: Explicaciones.mostrar(str(meta)))
+	etiqueta.meta_hover_ended.connect(func(meta : Variant) -> void: Explicaciones.ocultar())
 
 
 static func etiqueta_icono(ruta : String, escala : float = 1.0) -> String:

@@ -74,7 +74,8 @@ func bloquear_tarjeta(envoltura : Control, tarjeta : Tarjeta, reliquia : Resourc
 		tarjeta.icono.self_modulate = Color.BLACK
 	etiqueta.bbcode_enabled = true
 	etiqueta.scroll_active = false
-	etiqueta.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	etiqueta.mouse_filter = Control.MOUSE_FILTER_PASS
+	Resaltador.conectar_hover(etiqueta)
 	etiqueta.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	etiqueta.add_theme_font_override("normal_font", fuente_condicion)
 	etiqueta.add_theme_font_size_override("normal_font_size", tamaño_fuente_que_entra(texto_plano(texto), envoltura.custom_minimum_size - Vector2.ONE * margen_texto_condicion * 2.0))

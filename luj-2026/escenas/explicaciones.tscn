@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://3bpwac2xhsaa"]
+
+[ext_resource type="Script" path="res://scripts/explicaciones.gd" id="1_expl"]
+[ext_resource type="PackedScene" uid="uid://dymyh3ifxvug3" path="res://escenas/componentes/pergamino_info.tscn" id="2_perg"]
+
+[node name="Explicaciones" type="CanvasLayer" node_paths=PackedStringArray("pergamino", "temporizador")]
+process_mode = 3
+layer = 50
+script = ExtResource("1_expl")
+pergamino = NodePath("PergaminoInfo")
+temporizador = NodePath("Temporizador")
+
+[node name="PergaminoInfo" parent="." instance=ExtResource("2_perg")]
+custom_minimum_size = Vector2(661, 0)
+offset_right = 661.0
+offset_bottom = 0.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Temporizador" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true

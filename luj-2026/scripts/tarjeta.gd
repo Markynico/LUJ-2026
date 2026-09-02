@@ -88,6 +88,8 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	crear_borde_hover()
+	if label_descripcion:
+		Resaltador.conectar_hover(label_descripcion)
 	mouse_entered.connect(al_hover.bind(true))
 	mouse_exited.connect(al_hover.bind(false))
 	gui_input.connect(al_gui_input)

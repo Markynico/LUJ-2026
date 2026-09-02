@@ -2,6 +2,8 @@ class_name DificultadRun
 extends Resource
 
 @export var nombre : String = ""
+##texto del pergamino al pasar el mouse por el icono, vacio = se arma solo con los numeros de la dificultad
+@export_multiline var descripcion : String = ""
 ##icono del boton en el selector de dificultad
 @export var icono : Texture2D
 ##color del borde cuando la dificultad esta seleccionada
@@ -37,3 +39,11 @@ func porcentaje_para(niveles_jugados : float) -> float:
 	if niveles_para_ganar > 1:
 		progreso = clampf(niveles_jugados / float(niveles_para_ganar - 1), 0.0, 1.0)
 	return lerpf(porcentaje_inicial, porcentaje_final, 1.0 - pow(1.0 - progreso, exponente_curva))
+
+
+func descripcion_para_mostrar() -> String:
+	if not descripcion.is_empty():
+		return descripcion
+	return "%d salas para ganar la run.
+Meta del %d%% al %d%% de los ovillos.
+Precios x%.1f." % [niveles_para_ganar, roundi(porcentaje_inicial * 100.0), roundi(porcentaje_final * 100.0), multiplicador_precios]
