@@ -10,5 +10,6 @@ var friccion : float = 0.6
 var radio : float = 11.0
 var amortiguacion_angular : float = 1.0
 var rebotes : int = 0
+var velocidad_constante : bool = false
 var pasos : int = 120
 var intervalo : float = 1.0 / 60.0

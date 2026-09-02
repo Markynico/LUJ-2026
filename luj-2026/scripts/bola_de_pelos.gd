@@ -30,6 +30,8 @@ extends RigidBody2D
 var fue_duplicada : bool = false #se usa para efecto espejismo
 var impactos_ovillos : int = 0
 var objeto_ultimo_rebote : Node2D
+var velocidad_constante : bool = false
+var rapidez_constante : float = 0.0
 var frame_ultimo_rebote : int = -1
 var contador_rebotes : int = 0
 var limites_juego : Rect2
@@ -77,11 +79,17 @@ func al_atravesar_ovillo(body : Node) -> void:
 
 func _integrate_forces(estado : PhysicsDirectBodyState2D) -> void:
 	velocidad_entrante = velocidad_previa + estado.total_gravity * estado.step
+	if velocidad_constante and rapidez_constante > 0.0 and not estado.linear_velocity.is_zero_approx():
+		estado.linear_velocity = estado.linear_velocity.normalized() * rapidez_constante
 	velocidad_previa = estado.linear_velocity
 
 
 func rebotar(normal : Vector2, impulso_extra : float) -> void:
 	var velocidad_normal : float = velocidad_entrante.dot(normal)
+	if velocidad_constante and rapidez_constante > 0.0:
+		linear_velocity = velocidad_entrante.bounce(normal).normalized() * rapidez_constante
+		angular_velocity = 0.0
+		return
 	var tangencial : Vector2 = linear_velocity - linear_velocity.dot(normal) * normal
 	var frontalidad : float = clampf(-velocidad_entrante.normalized().dot(normal), 0.0, 1.0)
 	var saliente : float = impulso_extra * frontalidad
@@ -140,6 +148,8 @@ func duplicar_pelotita():
 	var pelotita_nueva : BolaDePelos = duplicate()
 	pelotita_nueva.fue_duplicada = true #evito q la duplicada tambien se duplique
 	pelotita_nueva.impactos_ovillos = 0
+	pelotita_nueva.velocidad_constante = velocidad_constante
+	pelotita_nueva.rapidez_constante = rapidez_constante
 	get_parent().add_child(pelotita_nueva)
 	pelotita_nueva.global_position = global_position
 	pelotita_nueva.apply_impulse(impulso_pelotita_duplicada)

@@ -20,6 +20,7 @@ flag = 3
 script = ExtResource("e_disparo")
 multiplicador_gravedad = 0.0
 rebotes_predichos_maximos = 0
+velocidad_constante = true
 
 [resource]
 script = ExtResource("1_rel")
