@@ -7,28 +7,48 @@ extends Line2D
 ##color del circulo que marca donde impacta la bola
 @export var color_impacto : Color = Color.WHITE
 
+##deja un rastro en vivo de cada bola disparada, lo activa la tapita de lapicera
 @export var mostrar_camino_previo : bool = false
-@export var color_camino_previo : Color = Color(0.4, 0.75, 1.0, 0.45)
+##escena del rastro que sigue a cada bola
+@export var escena_rastro : PackedScene = preload("uid://crastrobola0a1")
+##segundos del fade de los rastros cuando arranca el siguiente disparo
+@export var duracion_fade_rastro : float = 0.5
 ##segundos del fade de la trayectoria cuando el mouse esta sobre la ui y el click no dispara
 @export var duracion_fade_ui : float = 0.15
 
 var hay_impacto : bool = false
 var centro_impacto : Vector2
 var gato : Gato
-var puntos_camino_previo : PackedVector2Array = PackedVector2Array()
+var rastros : Array[RastroBola] = []
 
 func _ready() -> void:
 	gato = disparador.get_parent() as Gato
 	if disparador:
-		disparador.disparo.connect(_on_disparo_realizado)
+		disparador.disparo.connect(desvanecer_rastros)
+	get_tree().node_added.connect(al_agregar_nodo)
 
-func _on_disparo_realizado() -> void:
-	if mostrar_camino_previo:
-		var datos : DatosDisparo = disparador.preparar_datos_disparo()
-		if gato and gato.listo_para_lanzar:
-			ajustar_datos_para_gato(datos)
-		puntos_camino_previo = calcular_puntos(datos)
-		queue_redraw()
+func al_agregar_nodo(nodo : Node) -> void:
+	if mostrar_camino_previo and nodo is BolaDePelos:
+		crear_rastro.call_deferred(nodo)
+
+func crear_rastro(bola : BolaDePelos) -> void:
+	var rastro : RastroBola
+	if not is_instance_valid(bola) or not escena_rastro:
+		return
+	rastro = escena_rastro.instantiate()
+	disparador.add_child(rastro)
+	rastro.seguir(bola)
+	rastros.append(rastro)
+
+func desvanecer_rastros() -> void:
+	var tween : Tween
+	for rastro in rastros:
+		if not is_instance_valid(rastro):
+			continue
+		tween = rastro.create_tween()
+		tween.tween_property(rastro, "modulate:a", 0.0, duracion_fade_rastro)
+		tween.tween_callback(rastro.queue_free)
+	rastros.clear()
 
 func _process(delta : float) -> void:
 	var sobre_ui : bool = get_viewport().gui_get_hovered_control() != null
@@ -64,12 +84,6 @@ func dibujar_trayectoria() -> void:
 	queue_redraw()
 
 func _draw() -> void:
-	if mostrar_camino_previo and puntos_camino_previo.size() > 1:
-		var puntos_locales := PackedVector2Array()
-		for p in puntos_camino_previo:
-			puntos_locales.append(to_local(p))
-		draw_polyline(puntos_locales, color_camino_previo, 2.5, true)
-	
 	if hay_impacto:
 		draw_circle(to_local(centro_impacto), radio_de_la_bola(), color_impacto)
 
