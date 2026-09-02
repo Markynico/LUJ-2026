@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="NivelData" format=3 uid="uid://doafhf1w3igf"]
+
+[ext_resource type="Script" uid="uid://1owdr3bm0age" path="res://scripts/niveles/forma_data.gd" id="1_wsijb"]
+[ext_resource type="Script" uid="uid://4yxin8siliwu" path="res://scripts/niveles/nivel_data.gd" id="2_1fcmn"]
+
+[sub_resource type="Resource" id="Resource_pswkl"]
+script = ExtResource("1_wsijb")
+posicion = Vector2(925, 647)
+anillos_interiores = 3
+velocidad_desplazamiento = 50.0
+alternar_direccion_anillos = true
+huecos = PackedInt32Array(4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 102, 103, 104, 105, 106, 107, 108, 109)
+"tamaño" = Vector2(625.3611, 380.8856)
+poligono = PackedVector2Array()
+
+[resource]
+script = ExtResource("2_1fcmn")
+nombre = "asdasd"
+formas = Array[ExtResource("1_wsijb")]([SubResource("Resource_pswkl")])
+posicion_divisiones = Vector2(353.24, 1086)
+ancho_divisiones = 1199.52

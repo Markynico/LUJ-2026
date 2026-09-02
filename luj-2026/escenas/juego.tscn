@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bws3j2014uxn2" path="res://assets/columnas.png" id="4_w7gqy"]
 [ext_resource type="Script" uid="uid://bh3lxufik2p65" path="res://scripts/niveles/cargador_de_nivel.gd" id="5_carg"]
 [ext_resource type="Script" uid="uid://mrkgoq2v1cix" path="res://scripts/niveles/selector_de_niveles.gd" id="6_selec"]
+[ext_resource type="Resource" uid="uid://hj6avbn5f" path="res://niveles/Nivel17.tres" id="10_qghtc"]
 [ext_resource type="PackedScene" uid="uid://bjrqwv4iyx66g" path="res://escenas/selector_comidas.tscn" id="11_qfdc2"]
 [ext_resource type="Script" uid="uid://bojjht8bbil08" path="res://scripts/UICargadorPelotitas.gd" id="13_eu1no"]
 [ext_resource type="PackedScene" uid="uid://c87sy1bku6et8" path="res://escenas/componentes/texture_rect_cargador.tscn" id="14_uryky"]
@@ -69,6 +70,8 @@ texture = ExtResource("2_qfdc2")
 expand_mode = 5
 
 [node name="Baranda" type="TextureRect" parent="Fondo" unique_id=238465989]
+z_index = 1
+z_as_relative = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -98,6 +101,8 @@ selector_niveles = NodePath("../SelectorDeNiveles")
 porcentaje_ovillos_requerido = 0.4
 
 [node name="Gato" parent="." unique_id=69399080 node_paths=PackedStringArray("game_manager") instance=ExtResource("3_qnwci")]
+z_index = 5
+z_as_relative = false
 position = Vector2(927, 207)
 escala_normal = 0.32
 game_manager = NodePath("../GameManager")
@@ -120,6 +125,7 @@ alto_salida = 100.0
 
 [node name="CargadorDeNivel" type="Node2D" parent="." unique_id=1344270759 node_paths=PackedStringArray("estructura")]
 script = ExtResource("5_carg")
+nivel = ExtResource("10_qghtc")
 color_obstaculos = Color(0.36862746, 0.19215687, 0.1254902, 1)
 color_borde_obstaculos = Color(0.17, 0.06870834, 0.059500005, 1)
 grosor_borde_obstaculos = 3.0

@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="NivelData" format=3 uid="uid://mffibgea4lc4"]
+
+[ext_resource type="Script" uid="uid://1owdr3bm0age" path="res://scripts/niveles/forma_data.gd" id="1_j0uid"]
+[ext_resource type="Script" uid="uid://4yxin8siliwu" path="res://scripts/niveles/nivel_data.gd" id="2_m56xd"]
+
+[sub_resource type="Curve2D" id="Curve2D_j0uid"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -641.1221, -0.3883667)
+}
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_m56xd"]
+script = ExtResource("1_j0uid")
+anillos_interiores = 7
+separacion_anillos = 29
+velocidad_desplazamiento = 100.0
+alternar_direccion_anillos = true
+huecos = PackedInt32Array(30, 31, 32, 33, 62, 63, 64, 65, 75, 76, 77, 78, 89, 90, 91, 100, 101, 102, 111, 112, 113, 114, 120, 121, 122, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154)
+"tamaño" = Vector2(444.42947, 444.42947)
+poligono = PackedVector2Array()
+recorrido = SubResource("Curve2D_j0uid")
+posicion_recorrido = Vector2(1261.1221, 621.38837)
+velocidad = 50.0
+
+[resource]
+script = ExtResource("2_m56xd")
+nombre = "Nivel43"
+formas = Array[ExtResource("1_j0uid")]([SubResource("Resource_m56xd")])
+posicion_divisiones = Vector2(353.24, 1086)
+ancho_divisiones = 1199.52
