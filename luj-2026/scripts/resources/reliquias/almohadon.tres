@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="ReliquiaAlmohadon" format=3 uid="uid://duu7f1aj2t4g7"]
 
 [ext_resource type="Script" uid="uid://cesrtpp8vkgog" path="res://scripts/reliquias/reliquia_almohadon.gd" id="1_rel"]
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_yxnu2"]
 [ext_resource type="Texture2D" uid="uid://cmvt6vvalxdnx" path="res://assets/reliquias/almohadon.png" id="2_rel"]
 
 [resource]

@@ -72,6 +72,7 @@ var puntos_obtenidos : int = 0
 var puntos_requeridos : int = 0
 var es_meta_cumplida : bool = false
 var ovillos_registrados : Array[Ovillo] = []
+var ovillos_destruidos : int = 0
 var finalizando : bool = false
 
 func _enter_tree() -> void:
@@ -123,6 +124,7 @@ func reiniciar_nivel() -> void:
 	puntos_totales = 0
 	puntos_obtenidos = 0
 	ovillos_registrados.clear()
+	ovillos_destruidos = 0
 	bolas_restantes = bolas_maximas
 	vidas_actuales = vidas_guardadas
 	ReliquiasManager.al_empezar_nivel(self)
@@ -160,6 +162,7 @@ func registrar_ovillo(ovillo : Ovillo) -> void:
 
 func registrar_ovillo_destruido(ovillo : Ovillo) -> void:
 	puntos_obtenidos += puntaje_de(ovillo)
+	ovillos_destruidos += 1
 	EstadisticasRun.registrar_ovillo_roto(ovillo.tipo_ovillo)
 	emitir_actualizacion_ovillos()
 	
@@ -266,7 +269,7 @@ func finalizar_nivel(tipo_sala : int = -1) -> void:
 		estado_actual = EstadoDeJuego.NIVEL_COMPLETADO
 		es_meta_cumplida = true
 		niveles_ganados_run += 1
-		EstadisticasRun.registrar_nivel(puntos_obtenidos, true)
+		EstadisticasRun.registrar_nivel(puntos_obtenidos, true, nivel_limpio())
 		if dificultad_actual and niveles_ganados_run >= dificultad_actual.niveles_para_ganar:
 			print("¡RUN GANADA!")
 			nivel_completado.emit(true)
@@ -297,6 +300,10 @@ func finalizar_nivel(tipo_sala : int = -1) -> void:
 				get_tree().create_timer(1.5).timeout.connect(func():
 					reiniciar_nivel_actual()
 				)
+
+func nivel_limpio() -> bool:
+	return not ovillos_registrados.is_empty() and ovillos_destruidos >= ovillos_registrados.size()
+
 
 func fallar_por_atasco() -> void:
 	if estado_actual != EstadoDeJuego.LANZANDO_GATO or finalizando:

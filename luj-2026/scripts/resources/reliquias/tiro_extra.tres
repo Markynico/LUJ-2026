@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dsqblwwo80x0m" path="res://scripts/reliquias/reliquia_tiro_extra.gd" id="1_reliquia"]
 [ext_resource type="Texture2D" uid="uid://bymp1mcxn0fpt" path="res://assets/helado_michinko_color_1.png" id="1_utfq5"]
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_ydmgh"]
 
 [resource]
 script = ExtResource("1_reliquia")

@@ -10,14 +10,8 @@ extends Resource
 		emit_changed()
 
 @export_group("Desbloqueo")
-##contador de Progreso que desbloquea la reliquia, Ninguna = desbloqueada de entrada
-@export_enum("Ninguna", "runs_jugadas", "runs_ganadas", "runs_ganadas_en_dificultad", "niveles_ganados", "niveles_perdidos", "ovillos_rotos", "ovillos_rotos_de_tipo", "bolas_disparadas", "monedas_conseguidas", "items_comprados", "reliquias_adquiridas", "curas_compradas", "reliquias_de_loot") var condicion_desbloqueo : String = "Ninguna"
-##valor que debe alcanzar el contador para desbloquearla
-@export var cantidad_desbloqueo : int = 0
-##tipo de ovillo que cuenta cuando la condicion es ovillos_rotos_de_tipo
-@export var ovillo_objetivo : OvilloBase
-##dificultad minima cuando la condicion es runs_ganadas_en_dificultad
-@export var dificultad_objetivo : DificultadRun
+##condiciones que deben cumplirse todas para desbloquear la reliquia, vacio = desbloqueada de entrada
+@export var condiciones_desbloqueo : Array[CondicionDesbloqueo] = []
 
 
 func descripcion_para_mostrar() -> String:

@@ -1,7 +1,13 @@
 [gd_resource type="Resource" script_class="ReliquiaWhiskas" format=3 uid="uid://jj15nhwfreho"]
 
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_cond"]
 [ext_resource type="Script" uid="uid://d0gvrmnx4r1rk" path="res://scripts/reliquias/reliquia_whiskas.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://cvsvsfqjfm6t5" path="res://assets/reliquias/balanceado whiskas.png" id="2_rel"]
+
+[sub_resource type="Resource" id="CondicionDesbloqueo_1"]
+script = ExtResource("1_cond")
+contador = "niveles_perdidos"
+cantidad = 5
 
 [resource]
 script = ExtResource("1_rel")
@@ -11,5 +17,4 @@ descripcion = "-1 {slot_vida:icono} máximo.
 
 \"Por favor no le compres esta mierda a tu gato.\""
 icono = ExtResource("2_rel")
-condicion_desbloqueo = "niveles_perdidos"
-cantidad_desbloqueo = 5
+condiciones_desbloqueo = Array[ExtResource("1_cond")]([SubResource("CondicionDesbloqueo_1")])

@@ -4,4 +4,6 @@
 
 [resource]
 script = ExtResource("1_lebhf")
+en_tienda = false
+en_coleccion = false
 metadata/_custom_type_script = "uid://bioywlrwf246j"

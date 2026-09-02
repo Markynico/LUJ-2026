@@ -1,7 +1,13 @@
 [gd_resource type="Resource" script_class="ReliquiaDVD" format=3 uid="uid://buacltdoirwq8"]
 
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_cond"]
 [ext_resource type="Script" uid="uid://cc8si1q1h1xay" path="res://scripts/reliquias/reliquia_dvd.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://dse6gpb8sv6v1" path="res://assets/reliquias/DVD.png" id="2_rel"]
+
+[sub_resource type="Resource" id="CondicionDesbloqueo_1"]
+script = ExtResource("1_cond")
+contador = "runs_ganadas"
+cantidad = 5
 
 [resource]
 script = ExtResource("1_rel")
@@ -11,5 +17,4 @@ descripcion = "Las bolas salen en línea recta, sin {gravedad}, y atraviesan los
 
 \"Faltan 500 años para que se inventen los DVD\""
 icono = ExtResource("2_rel")
-condicion_desbloqueo = "runs_ganadas"
-cantidad_desbloqueo = 5
+condiciones_desbloqueo = Array[ExtResource("1_cond")]([SubResource("CondicionDesbloqueo_1")])

@@ -1,7 +1,13 @@
 [gd_resource type="Resource" script_class="ReliquiaOpcionesLoot" format=3 uid="uid://dv0hawoomj0fa"]
 
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_cond"]
 [ext_resource type="Script" uid="uid://emd61ttv1ajj" path="res://scripts/reliquias/reliquia_opciones_loot.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://c0s8mgjvka2e6" path="res://assets/reliquias/amigurumi.png" id="2_rel"]
+
+[sub_resource type="Resource" id="CondicionDesbloqueo_1"]
+script = ExtResource("1_cond")
+contador = "reliquias_adquiridas"
+cantidad = 10
 
 [resource]
 script = ExtResource("1_rel")
@@ -11,5 +17,4 @@ descripcion = "Las salas de loot ofrecen 3 opciones de reliquias para elegir.
 
 \"Hecho con amor\""
 icono = ExtResource("2_rel")
-condicion_desbloqueo = "reliquias_adquiridas"
-cantidad_desbloqueo = 10
+condiciones_desbloqueo = Array[ExtResource("1_cond")]([SubResource("CondicionDesbloqueo_1")])

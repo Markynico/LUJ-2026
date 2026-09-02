@@ -1,7 +1,13 @@
 [gd_resource type="Resource" script_class="ReliquiaPapelArrugado" format=3 uid="uid://c7n5s17avea5j"]
 
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_cond"]
 [ext_resource type="Script" uid="uid://db0riluhqkad8" path="res://scripts/reliquias/reliquia_papel_arrugado.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://dlf2vt6dhdjnd" path="res://assets/reliquias/papel arrugado.png" id="1_x4tn5"]
+
+[sub_resource type="Resource" id="CondicionDesbloqueo_1"]
+script = ExtResource("1_cond")
+contador = "niveles_ganados"
+cantidad = 10
 
 [resource]
 script = ExtResource("1_rel")
@@ -9,5 +15,4 @@ nombre = "Papel Arrugado"
 rareza = 1
 descripcion = "\"Seguro no tenía anotado nada importante...\""
 icono = ExtResource("1_x4tn5")
-condicion_desbloqueo = "niveles_ganados"
-cantidad_desbloqueo = 10
+condiciones_desbloqueo = Array[ExtResource("1_cond")]([SubResource("CondicionDesbloqueo_1")])

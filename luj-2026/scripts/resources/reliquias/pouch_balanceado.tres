@@ -1,7 +1,13 @@
 [gd_resource type="Resource" script_class="ReliquiaCuraPorRebotes" format=3 uid="uid://fn0odl7hctra"]
 
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_cond"]
 [ext_resource type="Script" uid="uid://bdk38vhxkr24m" path="res://scripts/reliquias/reliquia_cura_por_rebotes.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://d0h1davg6ltwb" path="res://assets/reliquias/pouch de balanceado.png" id="2_rel"]
+
+[sub_resource type="Resource" id="CondicionDesbloqueo_1"]
+script = ExtResource("1_cond")
+contador = "curas_compradas"
+cantidad = 5
 
 [resource]
 script = ExtResource("1_rel")
@@ -9,5 +15,4 @@ nombre = "Pouch de Balanceado"
 descripcion = "Cura 1 {vida:icono} cada 150 {rebote:texto/rebotes}.
 Se gasta a las 2 {vida:icono} curadas."
 icono = ExtResource("2_rel")
-condicion_desbloqueo = "curas_compradas"
-cantidad_desbloqueo = 5
+condiciones_desbloqueo = Array[ExtResource("1_cond")]([SubResource("CondicionDesbloqueo_1")])
