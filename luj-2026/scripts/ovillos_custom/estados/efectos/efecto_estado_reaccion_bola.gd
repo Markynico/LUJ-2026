@@ -1,14 +1,18 @@
 class_name EfectoEstadoReaccionBola
 extends EfectoEstadoOvillo
 
-##tipos de bola a los que reacciona, vacio = todas
+enum Bola { REBOTA, ATRAVIESA, SE_FRENA }
+
+##tipos de bola a los que reacciona, vacio = todas; ojo: si la bola a su vez aplica este estado, usa la opcion de abajo en vez de la lista, porque referenciarla desde aca arma un ciclo que Godot no puede cargar
 @export var bolas : Array[PelotitaBase] = []
+##reacciona a las bolas que aplican este mismo estado, por ejemplo la bola de hielo para el congelado
+@export var bolas_que_aplican_este_estado : bool = false
 ##si esta prendido reacciona a las bolas que NO estan en la lista
 @export var invertir : bool = false
 ##si el ovillo se rompe con el impacto
 @export var romper : bool = true
-##si la bola rebota contra el ovillo o lo atraviesa
-@export var rebotar : bool = true
+##que hace la bola: rebota normal, atraviesa el ovillo sin frenarse ni desviarse, o se frena sin impulso de rebote
+@export var bola : Bola = Bola.REBOTA
 ##si el impacto gasta una carga del estado
 @export var gastar_carga : bool = false
 ##si el impacto quita el estado
@@ -16,16 +20,22 @@ extends EfectoEstadoOvillo
 
 
 func reacciona_a(tipo_bola : PelotitaBase) -> bool:
-	if bolas.is_empty():
+	var coincide : bool = tipo_bola in bolas
+	if bolas.is_empty() and not bolas_que_aplican_este_estado:
 		return true
-	return (tipo_bola in bolas) != invertir
+	if bolas_que_aplican_este_estado and tipo_bola and estado:
+		for efecto in tipo_bola.efectos:
+			if efecto is EfectoComidaAplicarEstado and efecto.estado and efecto.estado.nombre == estado.nombre:
+				coincide = true
+	return coincide != invertir
 
 
 func resolver_impacto(ovillo : Ovillo, tipo_bola : PelotitaBase, resultado : ResultadoImpacto) -> void:
 	if not reacciona_a(tipo_bola):
 		return
 	resultado.romper = romper
-	resultado.rebotar = rebotar
+	resultado.rebotar = bola == Bola.REBOTA
+	resultado.atravesar = bola == Bola.ATRAVIESA
 	if gastar_carga and estado:
 		resultado.gastar_carga.append(estado)
 	if quitar_estado and estado:

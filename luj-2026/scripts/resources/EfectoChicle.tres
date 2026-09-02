@@ -5,5 +5,4 @@
 [resource]
 script = ExtResource("1_wp4ow")
 fuerza_rebote = 400.0
-nombre_comida = "Chicle"
 metadata/_custom_type_script = "uid://c31lbqa2grch4"

@@ -28,7 +28,7 @@ const TIPOS : Dictionary = {
 		"clase_contenedor": "PelotitaBase",
 		"propiedad_efectos": "efectos",
 		"propiedad_icono": "imagen_comida_asociada",
-		"nombre_en_efecto": "nombre_comida",
+		"nombre_en_efecto": "",
 		"con_rareza": true,
 		"con_textura": true,
 		"etiqueta_icono": "Sprite comida",

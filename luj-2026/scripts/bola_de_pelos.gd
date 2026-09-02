@@ -29,6 +29,8 @@ extends RigidBody2D
 
 var fue_duplicada : bool = false #se usa para efecto espejismo
 var impactos_ovillos : int = 0
+var objeto_ultimo_rebote : Node2D
+var frame_ultimo_rebote : int = -1
 var contador_rebotes : int = 0
 var limites_juego : Rect2
 var velocidad_previa : Vector2 = Vector2.ZERO
@@ -121,6 +123,15 @@ func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, lo
 	for efecto in tipo_pelotita.efectos:
 		efecto.impactar_con_objeto(self, body)
 	sonido_rebote()
+
+
+func registrar_rebote(objeto : Node2D) -> bool:
+	var frame : int = Engine.get_physics_frames()
+	if objeto == objeto_ultimo_rebote and frame == frame_ultimo_rebote:
+		return false
+	objeto_ultimo_rebote = objeto
+	frame_ultimo_rebote = frame
+	return true
 
 
 func duplicar_pelotita():

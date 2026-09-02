@@ -38,7 +38,7 @@ func set_texto_bolapelos(tipo_pelotita : PelotitaBase): #parece q no funca
 	if tipo_ovillo_mostrado == null:
 		return
 	print("tipo pelotita anda? ", tipo_pelotita)
-	nombre_text.text = tipo_pelotita.efectos[0].nombre_comida #siempre debe tener al menos un efecto, sino revisar q puede dar algun bug
+	nombre_text.text = tipo_pelotita.nombre
 	info_text.text = Resaltador.formatear(tipo_ovillo_mostrado.descripcion)
 
 

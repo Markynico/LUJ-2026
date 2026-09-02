@@ -167,7 +167,7 @@ func puede_atravesar(colisionador : Object, indice_forma : int, velocidad : Vect
 	var direccion_bloqueo : Vector2
 	if not colisionador is CollisionObject2D:
 		return false
-	if colisionador is Ovillo and not colisionador.simular_impacto(tipo_pelotita_simulada).rebotar:
+	if colisionador is Ovillo and colisionador.simular_impacto(tipo_pelotita_simulada).atravesar:
 		return true
 	id_dueño = colisionador.shape_find_owner(indice_forma)
 	nodo_forma = colisionador.shape_owner_get_owner(id_dueño) as CollisionShape2D
