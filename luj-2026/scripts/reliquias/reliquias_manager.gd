@@ -103,3 +103,32 @@ func al_rebotar() -> void:
 func al_disparar() -> void:
 	for reliquia in fuentes():
 		reliquia.al_disparar(game_manager_actual)
+
+
+func al_romper_ovillo(ovillo : Ovillo) -> void:
+	for reliquia in fuentes():
+		reliquia.al_romper_ovillo(ovillo)
+
+
+func al_terminar_nivel(game_manager : GameManager, gano : bool, limpio : bool) -> void:
+	for reliquia in fuentes():
+		reliquia.al_terminar_nivel(game_manager, gano, limpio)
+
+
+func al_perder_bola(bola : BolaDePelos) -> void:
+	for reliquia in fuentes():
+		reliquia.al_perder_bola(bola)
+
+
+func multiplicador_velocidad_escupida() -> float:
+	var multiplicador : float = 1.0
+	for reliquia in fuentes():
+		multiplicador *= reliquia.multiplicador_velocidad_escupida()
+	return multiplicador
+
+
+func escupida_instantanea() -> bool:
+	for reliquia in fuentes():
+		if reliquia.escupida_instantanea():
+			return true
+	return false

@@ -143,4 +143,5 @@ func sonido_rebote():
 #eliminar la bola de pelos cuando sale de la pantalla
 func _physics_process(_delta : float) -> void:
 	if not limites_juego.has_point(global_position):
+		ReliquiasManager.al_perder_bola(self)
 		queue_free()

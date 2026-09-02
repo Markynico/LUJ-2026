@@ -164,6 +164,7 @@ func registrar_ovillo_destruido(ovillo : Ovillo) -> void:
 	puntos_obtenidos += puntaje_de(ovillo)
 	ovillos_destruidos += 1
 	EstadisticasRun.registrar_ovillo_roto(ovillo.tipo_ovillo)
+	ReliquiasManager.al_romper_ovillo(ovillo)
 	emitir_actualizacion_ovillos()
 	
 	if not es_meta_cumplida and puntos_obtenidos >= puntos_requeridos:
@@ -270,6 +271,7 @@ func finalizar_nivel(tipo_sala : int = -1) -> void:
 		es_meta_cumplida = true
 		niveles_ganados_run += 1
 		EstadisticasRun.registrar_nivel(puntos_obtenidos, true, nivel_limpio())
+		ReliquiasManager.al_terminar_nivel(self, true, nivel_limpio())
 		if dificultad_actual and niveles_ganados_run >= dificultad_actual.niveles_para_ganar:
 			print("¡RUN GANADA!")
 			nivel_completado.emit(true)
@@ -286,6 +288,7 @@ func finalizar_nivel(tipo_sala : int = -1) -> void:
 		# FALLÓ LA META -> Pierde vida y avanza igual a la siguiente sala
 		perder_vida(1)
 		EstadisticasRun.registrar_nivel(puntos_obtenidos, false)
+		ReliquiasManager.al_terminar_nivel(self, false, false)
 		nivel_completado.emit(false)
 		
 		if vidas_actuales > 0:

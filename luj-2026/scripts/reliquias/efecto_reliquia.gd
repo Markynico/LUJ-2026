@@ -56,3 +56,19 @@ func al_rebotar(game_manager : GameManager) -> void:
 
 func al_disparar(game_manager : GameManager) -> void:
 	pass
+
+
+func al_terminar_nivel(game_manager : GameManager, gano : bool, limpio : bool) -> void:
+	pass
+
+
+func al_perder_bola(bola : BolaDePelos) -> void:
+	pass
+
+
+func multiplicador_velocidad_escupida() -> float:
+	return 1.0
+
+
+func escupida_instantanea() -> bool:
+	return false
