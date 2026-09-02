@@ -47,6 +47,7 @@ mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("2_exk88")
 theme_override_font_sizes/normal_font_size = 47
 bbcode_enabled = true
+meta_underlined = false
 text = "vo jugador si estas viendo esto, es un bug :p"
 fit_content = true
 
@@ -62,5 +63,6 @@ mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("2_exk88")
 theme_override_font_sizes/normal_font_size = 47
 bbcode_enabled = true
+meta_underlined = false
 text = "abcde"
 fit_content = true
