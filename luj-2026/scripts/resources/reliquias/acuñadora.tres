@@ -10,7 +10,7 @@
 [sub_resource type="Resource" id="CondicionDesbloqueo_1"]
 script = ExtResource("1_cond")
 contador = "ovillos_rotos_de_tipo"
-cantidad = 100
+cantidad = 500
 ovillo_objetivo = ExtResource("3_rel")
 
 [resource]

@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="CondicionDesbloqueo_1"]
 script = ExtResource("1_cond")
-contador = "reliquias_adquiridas"
+contador = "reliquias_de_loot"
 cantidad = 10
 
 [resource]
