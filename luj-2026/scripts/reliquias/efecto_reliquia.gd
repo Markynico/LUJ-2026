@@ -2,20 +2,24 @@ class_name EfectoReliquia
 extends Resource
 
 
-func al_obtener(game_manager : GameManager) -> void:
+func evento(nombre : String, contexto : Dictionary) -> void:
 	pass
+
+
+func al_obtener(game_manager : GameManager) -> void:
+	evento("al_obtener", {"game_manager": game_manager})
 
 
 func al_empezar_nivel(game_manager : GameManager) -> void:
-	pass
+	evento("al_empezar_nivel", {"game_manager": game_manager})
 
 
 func al_romper_ovillo(ovillo : Ovillo) -> void:
-	pass
+	evento("al_romper_ovillo", {"ovillo": ovillo})
 
 
 func al_preparar_disparo(datos : DatosDisparo) -> void:
-	pass
+	evento("al_preparar_disparo", {"datos": datos})
 
 
 func multiplicador_puntos(tipo_ovillo : OvilloBase) -> float:
@@ -47,23 +51,23 @@ func multiplicador_rebote() -> float:
 
 
 func al_explotar(explosion : Explosion) -> void:
-	pass
+	evento("al_explotar", {"explosion": explosion})
 
 
 func al_rebotar(game_manager : GameManager) -> void:
-	pass
+	evento("al_rebotar", {"game_manager": game_manager})
 
 
 func al_disparar(game_manager : GameManager) -> void:
-	pass
+	evento("al_disparar", {"game_manager": game_manager})
 
 
 func al_terminar_nivel(game_manager : GameManager, gano : bool, limpio : bool) -> void:
-	pass
+	evento("al_terminar_nivel", {"game_manager": game_manager, "gano": gano, "limpio": limpio})
 
 
 func al_perder_bola(bola : BolaDePelos) -> void:
-	pass
+	evento("al_perder_bola", {"bola": bola})
 
 
 func multiplicador_velocidad_escupida() -> float:
@@ -75,7 +79,7 @@ func escupida_instantanea() -> bool:
 
 
 func al_spawnear_ovillo(ovillo : Ovillo) -> void:
-	pass
+	evento("al_spawnear_ovillo", {"ovillo": ovillo})
 
 
 func multiplicador_duracion(que : String) -> float:

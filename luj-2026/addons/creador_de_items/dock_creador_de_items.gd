@@ -72,7 +72,7 @@ const TIPOS : Dictionary = {
 		"carpetas_existentes": ["res://scripts/resources/estados/"],
 	},
 }
-const NO_SON_HOOKS : Array[String] = ["rebote_simple", "descripcion_para_mostrar", "fuentes", "iniciar", "gastar_carga", "pasar_turno"]
+const NO_SON_HOOKS : Array[String] = ["rebote_simple", "evento", "descripcion_para_mostrar", "fuentes", "iniciar", "gastar_carga", "pasar_turno"]
 const ACENTOS : Dictionary = {"á": "a", "é": "e", "í": "i", "ó": "o", "ú": "u", "ü": "u", "ñ": "n"}
 
 @export var selector_tipo : OptionButton
