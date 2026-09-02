@@ -41,9 +41,23 @@ func porcentaje_para(niveles_jugados : float) -> float:
 	return lerpf(porcentaje_inicial, porcentaje_final, 1.0 - pow(1.0 - progreso, exponente_curva))
 
 
-func descripcion_para_mostrar() -> String:
+func exigencia_promedio() -> float:
+	return (porcentaje_inicial + porcentaje_final) * 0.5
+
+
+func descripcion_para_mostrar(referencia : DificultadRun = null) -> String:
+	var multiplicador_meta : float = 1.0
+	var multiplicador_precio : float = multiplicador_precios
 	if not descripcion.is_empty():
 		return descripcion
+	if referencia and referencia.exigencia_promedio() > 0.0:
+		multiplicador_meta = exigencia_promedio() / referencia.exigencia_promedio()
+	if referencia and referencia.multiplicador_precios > 0.0:
+		multiplicador_precio = multiplicador_precios / referencia.multiplicador_precios
 	return "%d salas para ganar la run.
-Meta del %d%% al %d%% de los ovillos.
-Precios x%.1f." % [niveles_para_ganar, roundi(porcentaje_inicial * 100.0), roundi(porcentaje_final * 100.0), multiplicador_precios]
+Meta de puntos %s.
+Precios %s." % [niveles_para_ganar, resaltar("x%.1f" % multiplicador_meta), resaltar("x%.1f" % multiplicador_precio)]
+
+
+func resaltar(texto : String) -> String:
+	return "[color=#%s]%s[/color]" % [color_seleccion.to_html(false), texto]

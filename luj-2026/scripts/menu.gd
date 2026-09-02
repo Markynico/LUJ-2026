@@ -122,7 +122,14 @@ func armar_panel_dificultad() -> void:
 
 
 func mostrar_pergamino_dificultad(dificultad : DificultadRun) -> void:
-	Explicaciones.mostrar_texto(Progreso.placeholder_dificultad(dificultad).replace(":icono", ":texto/" + dificultad.nombre), dificultad.descripcion_para_mostrar())
+	Explicaciones.mostrar_texto(Progreso.placeholder_dificultad(dificultad).replace(":icono", ":texto/" + dificultad.nombre), dificultad.descripcion_para_mostrar(dificultad_referencia()))
+
+
+func dificultad_referencia() -> DificultadRun:
+	for dificultad in dificultades:
+		if dificultad and dificultad.rango == 1:
+			return dificultad
+	return dificultades[0] if not dificultades.is_empty() else null
 
 
 func elegir_dificultad(dificultad : DificultadRun, boton : Button) -> void:
