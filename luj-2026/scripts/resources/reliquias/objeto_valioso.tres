@@ -1,8 +1,33 @@
-[gd_resource type="Resource" script_class="ReliquiaObjetoValioso" format=3 uid="uid://cwu013pqyv4wp"]
+[gd_resource type="Resource" script_class="Reliquia" format=3 uid="uid://cwu013pqyv4wp"]
 
 [ext_resource type="Resource" uid="uid://oe7n6flqxgn6" path="res://scripts/resources/dificultades/dificultad_media.tres" id="1_8sfuv"]
-[ext_resource type="Script" uid="uid://500ygl8unvu8" path="res://scripts/reliquias/reliquia_objeto_valioso.gd" id="1_rel"]
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_cond"]
+[ext_resource type="Script" uid="uid://5lbsfhx8xug1" path="res://scripts/reliquias/reliquia.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://oxa36ljbg4m1" path="res://assets/reliquias/objeto valioso.png" id="2_rel"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="3_m3b1f"]
+[ext_resource type="Script" uid="uid://bbkyk2anhunsd" path="res://scripts/ovillos_custom/ovillo_base.gd" id="5_rcnbq"]
+[ext_resource type="Script" uid="uid://dh16ugenolabs" path="res://scripts/reliquias/acciones/accion_reliquia.gd" id="e_acc_base"]
+[ext_resource type="Script" uid="uid://cm4aymif3jaf5" path="res://scripts/reliquias/acciones/accion_curar.gd" id="e_acc_curar"]
+[ext_resource type="Script" uid="uid://ddsnu5korq388" path="res://scripts/reliquias/efectos/efecto_en_hook.gd" id="e_enhook"]
+[ext_resource type="Script" uid="uid://bb1k1rxvpqrte" path="res://scripts/reliquias/efectos/efecto_multiplicador.gd" id="e_multiplicador"]
+
+[sub_resource type="Resource" id="CondicionDesbloqueo_1"]
+script = ExtResource("1_cond")
+contador = "runs_ganadas_en_dificultad"
+dificultad_objetivo = ExtResource("1_8sfuv")
+
+[sub_resource type="Resource" id="Efecto_1"]
+script = ExtResource("e_multiplicador")
+
+[sub_resource type="Resource" id="Efecto_2"]
+script = ExtResource("e_acc_curar")
+vidas = -1
+
+[sub_resource type="Resource" id="Efecto_3"]
+script = ExtResource("e_enhook")
+probabilidad = 1.0
+acciones = Array[ExtResource("e_acc_base")]([SubResource("Efecto_2")])
+hook = "al_disparar"
 
 [resource]
 script = ExtResource("1_rel")
@@ -12,6 +37,5 @@ descripcion = "Todos los ovillos dan el doble de puntos. Hay una pequeña probab
 
 \"Me parece que las cenizas de la abuela estaban acá...\""
 icono = ExtResource("2_rel")
-condicion_desbloqueo = "runs_ganadas_en_dificultad"
-cantidad_desbloqueo = 1
-dificultad_objetivo = ExtResource("1_8sfuv")
+efectos = Array[ExtResource("3_m3b1f")]([SubResource("Efecto_1"), SubResource("Efecto_3")])
+condiciones_desbloqueo = Array[ExtResource("1_cond")]([SubResource("CondicionDesbloqueo_1")])

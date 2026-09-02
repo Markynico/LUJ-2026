@@ -15,6 +15,8 @@ signal clickeada
 @export var hover_activado : bool = true
 ##grosor del borde de hover en pixeles
 @export var grosor_borde : int = 8
+##radio de las esquinas redondeadas del fondo y del borde de hover
+@export var radio_esquinas : float = 24.0
 ##alpha minimo de la pulsacion del borde
 @export var pulso_minimo : float = 0.55
 ##segundos de cada ida o vuelta de la pulsacion
@@ -87,7 +89,10 @@ func _ready() -> void:
 		label_rareza.resized.connect(ajustar_fuente_rareza)
 	if Engine.is_editor_hint():
 		return
+	aplicar_esquinas()
 	crear_borde_hover()
+	if label_descripcion:
+		Resaltador.conectar_hover(label_descripcion)
 	mouse_entered.connect(al_hover.bind(true))
 	mouse_exited.connect(al_hover.bind(false))
 	gui_input.connect(al_gui_input)
@@ -113,12 +118,22 @@ func desaparecer() -> void:
 	tween_fade.tween_callback(hide)
 
 
+func aplicar_esquinas() -> void:
+	if not material is ShaderMaterial:
+		return
+	material = material.duplicate()
+	material.set_shader_parameter("radio", radio_esquinas)
+	material.set_shader_parameter("tamanio", size)
+	resized.connect(func() -> void: material.set_shader_parameter("tamanio", size))
+
+
 func crear_borde_hover() -> void:
 	var estilo : StyleBoxFlat = StyleBoxFlat.new()
 	borde_hover = Panel.new()
 	estilo.draw_center = false
 	estilo.set_border_width_all(grosor_borde)
 	estilo.set_expand_margin_all(grosor_borde)
+	estilo.set_corner_radius_all(roundi(radio_esquinas + grosor_borde))
 	borde_hover.add_theme_stylebox_override("panel", estilo)
 	borde_hover.set_anchors_preset(Control.PRESET_FULL_RECT)
 	borde_hover.mouse_filter = Control.MOUSE_FILTER_IGNORE

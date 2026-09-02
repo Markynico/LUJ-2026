@@ -1,15 +1,22 @@
-[gd_resource type="Resource" script_class="ReliquiaAlmohadon" format=3 uid="uid://bgs8t52m1hi7a"]
+[gd_resource type="Resource" script_class="Reliquia" format=3 uid="uid://bgs8t52m1hi7a"]
 
-[ext_resource type="Script" uid="uid://cesrtpp8vkgog" path="res://scripts/reliquias/reliquia_almohadon.gd" id="1_rel"]
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_a7tx4"]
+[ext_resource type="Script" uid="uid://5lbsfhx8xug1" path="res://scripts/reliquias/reliquia.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://d2t0yxrryd1r7" path="res://assets/reliquias/caja de carton.png" id="2_rel"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="e_efr"]
+[ext_resource type="Script" uid="uid://dvuyv3xng8oje" path="res://scripts/reliquias/efectos/efecto_slots_vida.gd" id="e_slots"]
+
+[sub_resource type="Resource" id="Efecto_1"]
+script = ExtResource("e_slots")
+slots = 2
+llenar_slots_nuevos = true
 
 [resource]
 script = ExtResource("1_rel")
-slots_extra = 2
-slots_llenos = true
 nombre = "Caja del Rascador"
 rareza = 2
 descripcion = "+2 {vida:icono}.
 
 \"Home sweet home\""
 icono = ExtResource("2_rel")
+efectos = Array[ExtResource("e_efr")]([SubResource("Efecto_1")])

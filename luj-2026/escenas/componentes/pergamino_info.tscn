@@ -8,7 +8,11 @@ content_margin_left = 24.0
 content_margin_top = 12.0
 content_margin_right = 24.0
 content_margin_bottom = 12.0
-bg_color = Color(0, 0, 0, 0.54901963)
+bg_color = Color(0, 0, 0, 0.8)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exk88"]
 bg_color = Color(0.89059, 0.89059, 0.8905901, 1)
@@ -43,6 +47,7 @@ mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("2_exk88")
 theme_override_font_sizes/normal_font_size = 47
 bbcode_enabled = true
+meta_underlined = false
 text = "vo jugador si estas viendo esto, es un bug :p"
 fit_content = true
 
@@ -58,5 +63,6 @@ mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("2_exk88")
 theme_override_font_sizes/normal_font_size = 47
 bbcode_enabled = true
+meta_underlined = false
 text = "abcde"
 fit_content = true

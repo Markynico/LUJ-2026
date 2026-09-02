@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c7ogyqxnq7236" path="res://scripts/pelotitas_custom/pelotita_base.gd" id="1_07tsf"]
 [ext_resource type="Script" uid="uid://c31lbqa2grch4" path="res://scripts/pelotitas_custom/efectos_pelotita.gd" id="1_53lk3"]
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_gsday"]
 [ext_resource type="Script" uid="uid://5i4oxxen13xa" path="res://scripts/pelotitas_custom/efecto_rebote_normal.gd" id="2_8pm5w"]
 [ext_resource type="Texture2D" uid="uid://iveykdb8nubi" path="res://assets/comidas/pancho osvaldo michinko color 1.png" id="2_vlnik"]
 [ext_resource type="Texture2D" uid="uid://dagnb3uggrplo" path="res://assets/placeholders/bolaspelo_placeholder/placeholder_bola_de_pelos_michinko.png" id="4_8pm5w"]
@@ -21,5 +22,6 @@ descripcion = "Todo normal, la comida clásica de un gato."
 textura = ExtResource("4_8pm5w")
 colores_estela = SubResource("Gradient_pxh3y")
 imagen_comida_asociada = ExtResource("2_vlnik")
+en_tienda = false
 efectos = Array[ExtResource("1_53lk3")]([SubResource("Resource_8vl5g")])
 metadata/_custom_type_script = "uid://c7ogyqxnq7236"

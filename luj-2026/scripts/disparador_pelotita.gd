@@ -17,13 +17,24 @@ var posicion_mouse : Vector2
 var bolitas_creadas : int = 0
 var escala_gravedad_bola : float = 1.0
 var fuerza_rebote_bola : float = 200.0
+var restitucion_bola : float = 0.85
+var friccion_bola : float = 0.0
+var radio_bola : float = 11.0
+var amortiguacion_angular_bola : float = 1.0
 
 
 func _ready() -> void:
 	var muestra : BolaDePelos = escena_pelotita_prueba.instantiate()
+	var colision : CollisionShape2D = muestra.get_node_or_null("CollisionShape2D")
 	escala_gravedad_bola = muestra.gravity_scale
 	if muestra.tipo_pelotita and not muestra.tipo_pelotita.efectos.is_empty():
 		fuerza_rebote_bola = muestra.tipo_pelotita.efectos[0].fuerza_rebote
+	restitucion_bola = muestra.amortiguacion_rebote
+	if muestra.physics_material_override:
+		friccion_bola = muestra.physics_material_override.friction
+	if colision and colision.shape is CircleShape2D:
+		radio_bola = colision.shape.radius
+	amortiguacion_angular_bola = ProjectSettings.get_setting("physics/2d/default_angular_damp", 1.0) + muestra.angular_damp
 	muestra.free()
 
 
@@ -42,9 +53,14 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func preparar_datos_disparo() -> DatosDisparo:
 	var datos : DatosDisparo = DatosDisparo.new()
+	datos.tipo_pelotita = Global.cargador_de_pelotitas.front() if not Global.cargador_de_pelotitas.is_empty() else null
 	datos.velocidad_inicial = (-velocidad_inicial).limit_length(velocidad_maxima)
 	datos.gravedad *= escala_gravedad_bola
 	datos.fuerza_rebote = fuerza_rebote_bola
+	datos.restitucion = restitucion_bola
+	datos.friccion = friccion_bola
+	datos.radio = radio_bola
+	datos.amortiguacion_angular = amortiguacion_angular_bola
 	ReliquiasManager.al_preparar_disparo(datos)
 	return datos
 

@@ -36,6 +36,14 @@ func reiniciar_pelotitas() -> void:
 	cargador_pelotitas_actualizado.emit()
 
 
+func reiniciar_run() -> void:
+	monedas = 0
+	puntos = 0
+	monedas_cambiadas.emit(monedas)
+	puntos_cambiados.emit(puntos)
+	reiniciar_pelotitas()
+
+
 func actualizar_monedas(valor):
 	monedas += valor
 	EstadisticasRun.registrar_monedas(valor)

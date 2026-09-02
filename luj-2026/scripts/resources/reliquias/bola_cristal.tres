@@ -1,7 +1,25 @@
-[gd_resource type="Resource" script_class="ReliquiaBolaCristal" format=3 uid="uid://bkjitt5ynko8u"]
+[gd_resource type="Resource" script_class="Reliquia" format=3 uid="uid://bkjitt5ynko8u"]
 
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_cond"]
 [ext_resource type="Texture2D" uid="uid://dtq6yoigy4ju4" path="res://assets/reliquias/bola de cristal.png" id="1_phkcm"]
-[ext_resource type="Script" uid="uid://coqxqp65jh0xk" path="res://scripts/reliquias/reliquia_bola_cristal.gd" id="1_rel"]
+[ext_resource type="Script" uid="uid://5lbsfhx8xug1" path="res://scripts/reliquias/reliquia.gd" id="1_rel"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="2_46tsh"]
+[ext_resource type="Script" uid="uid://dh16ugenolabs" path="res://scripts/reliquias/acciones/accion_reliquia.gd" id="e_acc_base"]
+[ext_resource type="Script" uid="uid://cffmjamnmu52r" path="res://scripts/reliquias/acciones/accion_mostrar_salidas.gd" id="e_acc_salidas"]
+[ext_resource type="Script" uid="uid://ddsnu5korq388" path="res://scripts/reliquias/efectos/efecto_en_hook.gd" id="e_enhook"]
+
+[sub_resource type="Resource" id="CondicionDesbloqueo_1"]
+script = ExtResource("1_cond")
+contador = "niveles_ganados"
+cantidad = 50
+
+[sub_resource type="Resource" id="Efecto_1"]
+script = ExtResource("e_acc_salidas")
+
+[sub_resource type="Resource" id="Efecto_2"]
+script = ExtResource("e_enhook")
+acciones = Array[ExtResource("e_acc_base")]([SubResource("Efecto_1")])
+hook = "al_obtener"
 
 [resource]
 script = ExtResource("1_rel")
@@ -11,5 +29,5 @@ descripcion = "Las salidas del nivel se ven siempre.
 
 \"Reluciente como cabeza de pelado\""
 icono = ExtResource("1_phkcm")
-condicion_desbloqueo = "niveles_ganados"
-cantidad_desbloqueo = 50
+efectos = Array[ExtResource("2_46tsh")]([SubResource("Efecto_2")])
+condiciones_desbloqueo = Array[ExtResource("1_cond")]([SubResource("CondicionDesbloqueo_1")])

@@ -1,7 +1,15 @@
 [gd_resource type="Resource" script_class="ReliquiaDescuentoTienda" format=3 uid="uid://cpjq87qwggr17"]
 
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_2pbt4"]
 [ext_resource type="Script" uid="uid://bqr1b8teh4lws" path="res://scripts/reliquias/reliquia_descuento_tienda.gd" id="1_rel"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="2_idd66"]
 [ext_resource type="Texture2D" uid="uid://e4xdfjit1gq8" path="res://assets/reliquias/tarjeta de puntos.png" id="2_rel"]
+
+[sub_resource type="Resource" id="Resource_d2qvj"]
+script = ExtResource("1_2pbt4")
+contador = "monedas_gastadas"
+cantidad = 1000
+metadata/_custom_type_script = "uid://bus0kgj1moqjc"
 
 [resource]
 script = ExtResource("1_rel")
@@ -11,3 +19,4 @@ descripcion = "15% de descuento en la tienda. 50% los miércoles.
 
 \"¿Y el 70% en la segunda unidad?\""
 icono = ExtResource("2_rel")
+condiciones_desbloqueo = Array[ExtResource("1_2pbt4")]([SubResource("Resource_d2qvj")])

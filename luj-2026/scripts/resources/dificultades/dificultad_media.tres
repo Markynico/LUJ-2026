@@ -14,6 +14,5 @@ porcentaje_inicial = 0.6
 porcentaje_final = 1.0
 exponente_curva = 1.5
 niveles_para_ganar = 15
-multiplicador_precios = 1.5
 chance_tienda = 0.4
 salas_entre_tiendas = 2

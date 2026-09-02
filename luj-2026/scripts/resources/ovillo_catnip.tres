@@ -16,6 +16,7 @@ descripcion = "Duplica los puntos que dan los ovillos por 3 segundos.
 {puntos} Puntos."
 color = Color(0.36655998, 0.58, 0.17979999, 1)
 decoracion = ExtResource("1_v2j64")
+rebote_extra = 0.0
 puntaje = 15
 valor_spawn = 3.0
 efectos_al_recibir_impacto = Array[ExtResource("1_2nyhu")]([SubResource("Resource_v2j64")])

@@ -1,13 +1,20 @@
-[gd_resource type="Resource" script_class="ReliquiaMaceta" format=3 uid="uid://c8mxf5blpvrvr"]
+[gd_resource type="Resource" script_class="Reliquia" format=3 uid="uid://c8mxf5blpvrvr"]
 
-[ext_resource type="Script" uid="uid://dtne5k6agsuv5" path="res://scripts/reliquias/reliquia_maceta.gd" id="1_rel"]
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_8mq8p"]
+[ext_resource type="Script" uid="uid://5lbsfhx8xug1" path="res://scripts/reliquias/reliquia.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://ck3ymj3kdu2e7" path="res://assets/reliquias/maceta con yuyos.png" id="2_rel"]
+[ext_resource type="Script" uid="uid://bvhxnhetlks4x" path="res://scripts/reliquias/efectos/efecto_disparo.gd" id="e_disparo"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="e_efr"]
+
+[sub_resource type="Resource" id="Efecto_1"]
+script = ExtResource("e_disparo")
+multiplicador_velocidad = 1.25
 
 [resource]
 script = ExtResource("1_rel")
-multiplicador_velocidad = 1.25
 nombre = "Maceta con Yuyos"
 descripcion = "+25% {velocidad:texto/velocidad} de disparo
 
 \"Estan todos comidos...\""
 icono = ExtResource("2_rel")
+efectos = Array[ExtResource("e_efr")]([SubResource("Efecto_1")])

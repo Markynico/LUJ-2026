@@ -9,10 +9,14 @@
 [ext_resource type="PackedScene" uid="uid://cexjr0e4owki" path="res://escenas/estructura_de_nivel.tscn" id="4_t4q8c"]
 [ext_resource type="Texture2D" uid="uid://bws3j2014uxn2" path="res://assets/columnas.png" id="4_w7gqy"]
 [ext_resource type="Script" uid="uid://bh3lxufik2p65" path="res://scripts/niveles/cargador_de_nivel.gd" id="5_carg"]
+[ext_resource type="Script" uid="uid://5lbsfhx8xug1" path="res://scripts/reliquias/reliquia.gd" id="6_2608v"]
 [ext_resource type="Script" uid="uid://mrkgoq2v1cix" path="res://scripts/niveles/selector_de_niveles.gd" id="6_selec"]
-[ext_resource type="Resource" uid="uid://hj6avbn5f" path="res://niveles/Nivel17.tres" id="10_qghtc"]
+[ext_resource type="Resource" uid="uid://0nj1hbfuuix5" path="res://scripts/resources/reliquias/barril_polvora.tres" id="7_w2ooc"]
+[ext_resource type="Script" uid="uid://c7ogyqxnq7236" path="res://scripts/pelotitas_custom/pelotita_base.gd" id="8_ew7ae"]
+[ext_resource type="Resource" uid="uid://8m1yr604l01d" path="res://scripts/resources/comidas/cubito_de_hielo.tres" id="9_pq56j"]
 [ext_resource type="PackedScene" uid="uid://bjrqwv4iyx66g" path="res://escenas/selector_comidas.tscn" id="11_qfdc2"]
 [ext_resource type="Script" uid="uid://bojjht8bbil08" path="res://scripts/UICargadorPelotitas.gd" id="13_eu1no"]
+[ext_resource type="Resource" uid="uid://d4m42l3jgijv6" path="res://niveles/Nivel16.tres" id="14_pq56j"]
 [ext_resource type="PackedScene" uid="uid://c87sy1bku6et8" path="res://escenas/componentes/texture_rect_cargador.tscn" id="14_uryky"]
 [ext_resource type="Theme" uid="uid://bjkvjfhj8dr8y" path="res://themes/theme_ui_general.tres" id="15_aj17q"]
 [ext_resource type="FontFile" uid="uid://dwg47e0trev3j" path="res://fuentes/Bungee-Regular.ttf" id="16_0mevy"]
@@ -41,7 +45,7 @@ size = Vector2(1180.5, 45.99997)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_so1p1"]
 size = Vector2(55.5, 28)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_4uv1g"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_2608v"]
 viewport_path = NodePath("PanelInfoIzquierdo/SubViewportIzq")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_7nkol"]
@@ -99,6 +103,8 @@ gato = NodePath("../Gato")
 cargador_nivel = NodePath("../CargadorDeNivel")
 selector_niveles = NodePath("../SelectorDeNiveles")
 porcentaje_ovillos_requerido = 0.4
+reliquias_iniciales = Array[ExtResource("6_2608v")]([ExtResource("7_w2ooc")])
+comidas_iniciales = Array[ExtResource("8_ew7ae")]([ExtResource("9_pq56j")])
 
 [node name="Gato" parent="." unique_id=69399080 node_paths=PackedStringArray("game_manager") instance=ExtResource("3_qnwci")]
 z_index = 5
@@ -125,7 +131,7 @@ alto_salida = 100.0
 
 [node name="CargadorDeNivel" type="Node2D" parent="." unique_id=1344270759 node_paths=PackedStringArray("estructura")]
 script = ExtResource("5_carg")
-nivel = ExtResource("10_qghtc")
+nivel = ExtResource("14_pq56j")
 color_obstaculos = Color(0.36862746, 0.19215687, 0.1254902, 1)
 color_borde_obstaculos = Color(0.17, 0.06870834, 0.059500005, 1)
 grosor_borde_obstaculos = 3.0
@@ -174,7 +180,7 @@ shape = SubResource("RectangleShape2D_so1p1")
 
 [node name="PanelInfoIzquierdo" parent="EstructuraDeNivel" index="3" unique_id=1428603965]
 visible = false
-texture = SubResource("ViewportTexture_4uv1g")
+texture = SubResource("ViewportTexture_2608v")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2055805025]
 position = Vector2(960, 540)

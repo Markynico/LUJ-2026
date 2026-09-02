@@ -8,6 +8,7 @@ script = ExtResource("1_dif")
 nombre = "Fácil"
 icono = ExtResource("2_icono")
 color_seleccion = Color(0.2, 0.8, 0.3, 1)
+multiplicador_precios = 0.7
 chance_loot = 0.4
 chance_tienda = 0.6
 salas_entre_tiendas = 1

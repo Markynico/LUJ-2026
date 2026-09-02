@@ -1,13 +1,21 @@
-[gd_resource type="Resource" script_class="ReliquiaTapitaLapicera" format=3 uid="uid://b85q6u2n8x3j1"]
+[gd_resource type="Resource" script_class="Reliquia" format=3 uid="uid://b85q6u2n8x3j1"]
 
-[ext_resource type="Script" uid="uid://xvfnx8tvy8tf" path="res://scripts/reliquias/reliquia_tapita_lapicera.gd" id="1_tapita"]
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_iugoo"]
+[ext_resource type="Script" uid="uid://5lbsfhx8xug1" path="res://scripts/reliquias/reliquia.gd" id="1_tapita"]
 [ext_resource type="Texture2D" uid="uid://dk2de6ghg7k22" path="res://assets/reliquias/tapita de lapicera.png" id="1_yhcti"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="e_efr"]
+[ext_resource type="Script" uid="uid://bo4ag3htv8dc7" path="res://scripts/reliquias/efectos/efecto_trayectoria.gd" id="e_trayectoria"]
+
+[sub_resource type="Resource" id="Efecto_1"]
+script = ExtResource("e_trayectoria")
+pasos_minimos = 220
+mostrar_rastro = true
 
 [resource]
 script = ExtResource("1_tapita")
-rebotes_extra = 0
 nombre = "Tapita de Lapicera"
 descripcion = "Muestra la trayectoria del último disparo.
 
 \"¿Por qué mi gato juega con esto?\""
 icono = ExtResource("1_yhcti")
+efectos = Array[ExtResource("e_efr")]([SubResource("Efecto_1")])

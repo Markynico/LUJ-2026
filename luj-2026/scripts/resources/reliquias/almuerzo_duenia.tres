@@ -1,7 +1,26 @@
-[gd_resource type="Resource" script_class="ReliquiaAlmuerzo" format=3 uid="uid://bpw3shdksb1v5"]
+[gd_resource type="Resource" script_class="Reliquia" format=3 uid="uid://bpw3shdksb1v5"]
 
-[ext_resource type="Script" uid="uid://fufph1pces5a" path="res://scripts/reliquias/reliquia_almuerzo.gd" id="1_rel"]
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_kfvxt"]
+[ext_resource type="Script" uid="uid://5lbsfhx8xug1" path="res://scripts/reliquias/reliquia.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://phum3pcjd0od" path="res://assets/reliquias/almuerzo de la dueña.png" id="2_rel"]
+[ext_resource type="Script" uid="uid://dh16ugenolabs" path="res://scripts/reliquias/acciones/accion_reliquia.gd" id="e_acc_base"]
+[ext_resource type="Script" uid="uid://cm4aymif3jaf5" path="res://scripts/reliquias/acciones/accion_curar.gd" id="e_acc_curar"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="e_efr"]
+[ext_resource type="Script" uid="uid://ddsnu5korq388" path="res://scripts/reliquias/efectos/efecto_en_hook.gd" id="e_enhook"]
+
+[sub_resource type="Resource" id="Efecto_3"]
+script = ExtResource("e_acc_curar")
+
+[sub_resource type="Resource" id="Efecto_2"]
+script = ExtResource("e_acc_curar")
+vidas = -1
+
+[sub_resource type="Resource" id="Efecto_4"]
+script = ExtResource("e_enhook")
+probabilidad = 50.0
+acciones = Array[ExtResource("e_acc_base")]([SubResource("Efecto_3")])
+acciones_si_falla = Array[ExtResource("e_acc_base")]([SubResource("Efecto_2")])
+hook = "al_obtener"
 
 [resource]
 script = ExtResource("1_rel")
@@ -11,3 +30,4 @@ descripcion = "50% probabilidad de curar 1 {vida:icono} ó
 
 \"Michinko la puta que te parió.\""
 icono = ExtResource("2_rel")
+efectos = Array[ExtResource("e_efr")]([SubResource("Efecto_4")])

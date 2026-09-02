@@ -4,43 +4,7 @@
 [ext_resource type="PackedScene" path="res://escenas/componentes/foco_tarjetas.tscn" id="2_foco"]
 [ext_resource type="PackedScene" uid="uid://b07gjr8bpk3tm" path="res://escenas/hud.tscn" id="2_hud"]
 [ext_resource type="Theme" uid="uid://bjkvjfhj8dr8y" path="res://themes/theme_ui_general.tres" id="2_tema"]
-[ext_resource type="Script" uid="uid://5lbsfhx8xug1" path="res://scripts/reliquias/reliquia.gd" id="4_rel"]
-[ext_resource type="Resource" uid="uid://d1g05k4oam2p8" path="res://scripts/resources/reliquias/rascador.tres" id="5_rasc"]
-[ext_resource type="Resource" uid="uid://b85q6u2n8x3j1" path="res://scripts/resources/reliquias/tapita_lapicera.tres" id="6_tapi"]
-[ext_resource type="Resource" uid="uid://chsjfpl7ukql7" path="res://scripts/resources/reliquias/tiro_extra.tres" id="7_tiro"]
-[ext_resource type="Resource" uid="uid://cja6y5nb157vd" path="res://scripts/resources/reliquias/estatua_messi.tres" id="8_messi"]
-[ext_resource type="Resource" uid="uid://c8mxf5blpvrvr" path="res://scripts/resources/reliquias/maceta_yuyos.tres" id="9_mace"]
-[ext_resource type="Resource" uid="uid://duu7f1aj2t4g7" path="res://scripts/resources/reliquias/almohadon.tres" id="10_almo"]
-[ext_resource type="Resource" uid="uid://jj15nhwfreho" path="res://scripts/resources/reliquias/balanceado_whiskas.tres" id="11_whis"]
-[ext_resource type="Resource" uid="uid://jqicxov7kwy1" path="res://scripts/resources/reliquias/armadura_gato.tres" id="12_arma"]
-[ext_resource type="Resource" uid="uid://bpw3shdksb1v5" path="res://scripts/resources/reliquias/almuerzo_duenia.tres" id="13_almu"]
-[ext_resource type="Resource" uid="uid://cv7e0lifc61g8" path="res://scripts/resources/reliquias/magiclick.tres" id="14_magi"]
-[ext_resource type="Resource" uid="uid://4o8c2qa6dfir" path="res://scripts/resources/reliquias/agujas_crochet.tres" id="15_aguj"]
-[ext_resource type="Script" uid="uid://c7ogyqxnq7236" path="res://scripts/pelotitas_custom/pelotita_base.gd" id="16_pelo"]
-[ext_resource type="Resource" uid="uid://d2y2wdiwxf7pa" path="res://scripts/resources/BolaPelosChicle.tres" id="17_chic"]
-[ext_resource type="Resource" uid="uid://7vcfjwmh5spv" path="res://scripts/resources/BolaPelosEspejismo.tres" id="18_espe"]
-[ext_resource type="Resource" uid="uid://vpcwlt8nkqws" path="res://scripts/resources/BolaPelosIgnea.tres" id="19_igne"]
 [ext_resource type="Texture2D" uid="uid://bhi3nf0jngdpb" path="res://assets/tapir.jpg" id="20_5lb6f"]
-[ext_resource type="Resource" uid="uid://bp6yjcorvvb2y" path="res://scripts/resources/BolaPelosMate.tres" id="20_mate"]
-[ext_resource type="Resource" uid="uid://dw1ucm0wln1yo" path="res://scripts/resources/reliquias/cassette_roto.tres" id="23_cass"]
-[ext_resource type="Resource" uid="uid://druivdavm0d32" path="res://scripts/resources/reliquias/planta_catnip.tres" id="24_plan"]
-[ext_resource type="Resource" uid="uid://cpjq87qwggr17" path="res://scripts/resources/reliquias/tarjeta_puntos.tres" id="25_tarp"]
-[ext_resource type="Resource" uid="uid://b0wiyen41o3t2" path="res://scripts/resources/reliquias/catnip_puro.tres" id="26_catp"]
-[ext_resource type="Resource" uid="uid://w0nxscbh8a51" path="res://scripts/resources/reliquias/bolsa_polvora.tres" id="27_bols"]
-[ext_resource type="Resource" uid="uid://0nj1hbfuuix5" path="res://scripts/resources/reliquias/barril_polvora.tres" id="28_barr"]
-[ext_resource type="Resource" uid="uid://fn0odl7hctra" path="res://scripts/resources/reliquias/pouch_balanceado.tres" id="29_pouc"]
-[ext_resource type="Resource" uid="uid://dv0hawoomj0fa" path="res://scripts/resources/reliquias/amigurumi.tres" id="30_amig"]
-[ext_resource type="Resource" uid="uid://cw1vlulvddawu" path="res://scripts/resources/reliquias/puntero_laser.tres" id="31_punt"]
-[ext_resource type="Resource" uid="uid://cp3tlgrgjrk76" path="res://scripts/resources/reliquias/acuñadora.tres" id="32_acun"]
-[ext_resource type="Resource" uid="uid://dqkvtjg3x0gb7" path="res://scripts/resources/reliquias/lata_atun.tres" id="33_lata"]
-[ext_resource type="Resource" uid="uid://cihtrwgsv5g8s" path="res://scripts/resources/reliquias/tarjeta_credito.tres" id="34_tcre"]
-[ext_resource type="Resource" uid="uid://bkjitt5ynko8u" path="res://scripts/resources/reliquias/bola_cristal.tres" id="35_bcri"]
-[ext_resource type="Resource" uid="uid://c7n5s17avea5j" path="res://scripts/resources/reliquias/papel_arrugado.tres" id="36_papel"]
-[ext_resource type="Resource" uid="uid://b1vqgs58a78qs" path="res://scripts/resources/reliquias/canica_vidrio.tres" id="37_cani"]
-[ext_resource type="Resource" uid="uid://bgs8t52m1hi7a" path="res://scripts/resources/reliquias/caja_carton.tres" id="38_ccar"]
-[ext_resource type="Resource" uid="uid://cwu013pqyv4wp" path="res://scripts/resources/reliquias/objeto_valioso.tres" id="39_oval"]
-[ext_resource type="Resource" uid="uid://l4rvd76vwgiu" path="res://scripts/resources/reliquias/caja_fosforos.tres" id="40_cfos"]
-[ext_resource type="Resource" uid="uid://buacltdoirwq8" path="res://scripts/resources/reliquias/dvd.tres" id="41_dvd"]
 [ext_resource type="PackedScene" path="res://escenas/componentes/michinko_ovillo.tscn" id="42_l2lnn"]
 [ext_resource type="PackedScene" path="res://escenas/componentes/velas_vidas.tscn" id="43_velas"]
 [ext_resource type="FontFile" uid="uid://dwg47e0trev3j" path="res://fuentes/Bungee-Regular.ttf" id="44_bungee"]
@@ -58,8 +22,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_tema")
 script = ExtResource("1_tienda")
-pool_reliquias = Array[ExtResource("4_rel")]([ExtResource("5_rasc"), ExtResource("6_tapi"), ExtResource("7_tiro"), ExtResource("8_messi"), ExtResource("9_mace"), ExtResource("10_almo"), ExtResource("11_whis"), ExtResource("12_arma"), ExtResource("13_almu"), ExtResource("14_magi"), ExtResource("15_aguj"), ExtResource("23_cass"), ExtResource("24_plan"), ExtResource("25_tarp"), ExtResource("26_catp"), ExtResource("27_bols"), ExtResource("28_barr"), ExtResource("29_pouc"), ExtResource("30_amig"), ExtResource("31_punt"), ExtResource("32_acun"), ExtResource("33_lata"), ExtResource("34_tcre"), ExtResource("35_bcri"), ExtResource("36_papel"), ExtResource("37_cani"), ExtResource("38_ccar"), ExtResource("39_oval"), ExtResource("40_cfos"), ExtResource("41_dvd")])
-pool_comidas = Array[ExtResource("16_pelo")]([ExtResource("17_chic"), ExtResource("18_espe"), ExtResource("19_igne"), ExtResource("20_mate")])
 fila_reliquias = NodePath("FondoTienda/Contenido/FilaReliquias")
 fila_comidas = NodePath("FondoTienda/Contenido/FilaComidas")
 boton_curar_vida = NodePath("FondoTienda/Servicios/BotonCurarVida")
@@ -150,6 +112,7 @@ mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("44_bungee")
 theme_override_font_sizes/normal_font_size = 17
 bbcode_enabled = true
+meta_underlined = false
 scroll_active = false
 autowrap_mode = 0
 vertical_alignment = 1

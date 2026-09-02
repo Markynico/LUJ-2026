@@ -17,6 +17,8 @@ posicion = Vector2(1007, 599)
 repeticiones = 2
 separacion_repeticiones = 42
 eje_repeticiones = 1
+huecos = PackedInt32Array()
+poligono = PackedVector2Array()
 curva = SubResource("Curve2D_a78u5")
 
 [sub_resource type="Curve2D" id="Curve2D_1heas"]
@@ -34,6 +36,8 @@ escala = Vector2(-1, 1)
 repeticiones = 2
 separacion_repeticiones = 42
 eje_repeticiones = 1
+huecos = PackedInt32Array()
+poligono = PackedVector2Array()
 curva = SubResource("Curve2D_1heas")
 
 [sub_resource type="Resource" id="Resource_ah7di"]
@@ -41,7 +45,9 @@ script = ExtResource("1_a78u5")
 tipo = "obstaculo_rectangulo"
 posicion = Vector2(431.32974, 797.33234)
 rotacion = 0.32989925
+huecos = PackedInt32Array()
 "tamaño" = Vector2(200.15436, 16.344604)
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_ghasj"]
 script = ExtResource("1_a78u5")
@@ -49,33 +55,43 @@ tipo = "obstaculo_rectangulo"
 posicion = Vector2(1507.6703, 797.33234)
 rotacion = -0.32989925
 escala = Vector2(-1, 1)
+huecos = PackedInt32Array()
 "tamaño" = Vector2(200.15436, 16.344604)
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_fc7mp"]
 script = ExtResource("1_a78u5")
 tipo = "obstaculo_circulo"
 posicion = Vector2(969.3518, 665.1209)
+huecos = PackedInt32Array()
 radio = 40.998608
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_817jb"]
 script = ExtResource("1_a78u5")
 tipo = "obstaculo_circulo"
 posicion = Vector2(666.34283, 496.93903)
+huecos = PackedInt32Array()
 radio = 41.41095
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_edmu5"]
 script = ExtResource("1_a78u5")
 tipo = "obstaculo_circulo"
 posicion = Vector2(1272.6572, 496.93903)
 escala = Vector2(-1, 1)
+huecos = PackedInt32Array()
 radio = 41.41095
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_jgh6e"]
 script = ExtResource("1_a78u5")
 tipo = "circulo"
 posicion = Vector2(971.0012, 468.03854)
 anillos_interiores = 4
+huecos = PackedInt32Array()
 radio = 118.42712
+poligono = PackedVector2Array()
 
 [sub_resource type="Curve2D" id="Curve2D_2ujiw"]
 bake_interval = 2.0
@@ -92,6 +108,8 @@ escala = Vector2(0.9327732, 0.88505745)
 repeticiones = 2
 separacion_repeticiones = 40
 eje_repeticiones = 1
+huecos = PackedInt32Array()
+poligono = PackedVector2Array()
 curva = SubResource("Curve2D_2ujiw")
 
 [sub_resource type="Curve2D" id="Curve2D_lrecq"]
@@ -109,6 +127,8 @@ escala = Vector2(-0.9327732, 0.88505745)
 repeticiones = 2
 separacion_repeticiones = 40
 eje_repeticiones = 1
+huecos = PackedInt32Array()
+poligono = PackedVector2Array()
 curva = SubResource("Curve2D_lrecq")
 
 [sub_resource type="Resource" id="Resource_71phc"]
@@ -116,7 +136,9 @@ script = ExtResource("1_a78u5")
 tipo = "circulo"
 posicion = Vector2(784.0149, 599.4647)
 separacion_ovillos = 33.0
+huecos = PackedInt32Array()
 radio = 36.380627
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_ilpnl"]
 script = ExtResource("1_a78u5")
@@ -124,14 +146,18 @@ tipo = "circulo"
 posicion = Vector2(1154.9851, 599.4647)
 escala = Vector2(-1, 1)
 separacion_ovillos = 33.0
+huecos = PackedInt32Array()
 radio = 36.380627
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_35aje"]
 script = ExtResource("1_a78u5")
 tipo = "circulo"
 posicion = Vector2(762.23486, 419.1747)
 separacion_ovillos = 34.0
+huecos = PackedInt32Array()
 radio = 40.094654
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_0fg12"]
 script = ExtResource("1_a78u5")
@@ -139,7 +165,9 @@ tipo = "circulo"
 posicion = Vector2(1176.7651, 419.1747)
 escala = Vector2(-1, 1)
 separacion_ovillos = 34.0
+huecos = PackedInt32Array()
 radio = 40.094654
+poligono = PackedVector2Array()
 
 [resource]
 script = ExtResource("2_bulom")

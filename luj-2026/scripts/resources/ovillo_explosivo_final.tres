@@ -18,6 +18,7 @@ descripcion = "Explota después de un tiempo al impactar. Rompe ovillos y empuja
 color = Color(0.8, 0.17280002, 0.12800002, 1)
 decoracion = ExtResource("1_uj1e1")
 "decoracion_teñida" = ExtResource("2_50tys")
+rebote_extra = 0.0
 puntaje = 10
 valor_spawn = 2.5
 efectos_al_recibir_impacto = Array[ExtResource("2_hlo4y")]([SubResource("Resource_pv7le")])

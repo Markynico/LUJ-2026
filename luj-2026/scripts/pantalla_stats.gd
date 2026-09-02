@@ -15,12 +15,22 @@ extends Control
 ##fuente de las filas de stats
 @export var fuente_stats : Font = preload("uid://dwg47e0trev3j")
 
+@export_group("Tarjeta de hover")
+##escena de la tarjeta que se muestra al pasar el mouse por una reliquia
+@export var escena_tarjeta : PackedScene = preload("uid://u6k76f6lyw8y")
+##posicion en pantalla de la tarjeta de hover
+@export var posicion_tarjeta : Vector2 = Vector2(1330, 240)
+##escala de la tarjeta de hover
+@export var escala_tarjeta : float = 0.6
+
 @export_group("Nodos")
 @export var label_titulo : Label
 @export var contenedor_stats : GridContainer
 @export var contenedor_reliquias : HBoxContainer
 @export var boton_volver : Button
 @export var gato : GatoStats
+
+var tarjeta : Tarjeta
 
 
 func _ready() -> void:
@@ -66,8 +76,26 @@ func agregar_stat(nombre : String, valor : String) -> void:
 	contenedor_stats.add_child(label_valor)
 
 
+func crear_tarjeta_hover() -> void:
+	var capa : CanvasLayer = CanvasLayer.new()
+	tarjeta = escena_tarjeta.instantiate()
+	tarjeta.hover_activado = false
+	tarjeta.position = posicion_tarjeta
+	tarjeta.scale = Vector2.ONE * escala_tarjeta
+	tarjeta.hide()
+	capa.add_child(tarjeta)
+	add_child(capa)
+
+
+func mostrar_tarjeta(reliquia : Reliquia) -> void:
+	tarjeta.recurso = reliquia
+	tarjeta.aparecer()
+
+
 func mostrar_reliquias() -> void:
 	var icono : TextureRect
+	if not tarjeta:
+		crear_tarjeta_hover()
 	for reliquia in EstadisticasRun.reliquias_adquiridas:
 		if not reliquia.icono:
 			continue
@@ -76,7 +104,8 @@ func mostrar_reliquias() -> void:
 		icono.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		icono.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		icono.custom_minimum_size = Vector2(reliquia.icono.get_width() * alto_icono_reliquia / reliquia.icono.get_height(), alto_icono_reliquia)
-		icono.tooltip_text = reliquia.nombre
+		icono.mouse_entered.connect(mostrar_tarjeta.bind(reliquia))
+		icono.mouse_exited.connect(func() -> void: tarjeta.desaparecer())
 		contenedor_reliquias.add_child(icono)
 
 

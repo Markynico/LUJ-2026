@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EfectoComidaAplicarEstado" format=3 uid="uid://b6qcuay1h3qds"]
+
+[ext_resource type="Script" uid="uid://chd3514ju0mtk" path="res://scripts/pelotitas_custom/efecto_comida_aplicar_estado.gd" id="1_script"]
+[ext_resource type="Resource" uid="uid://bsbjgoe4owind" path="res://scripts/resources/estados/congelado.tres" id="2_estado"]
+[ext_resource type="Script" uid="uid://bbkyk2anhunsd" path="res://scripts/ovillos_custom/ovillo_base.gd" id="3_t7dt4"]
+
+[resource]
+script = ExtResource("1_script")
+estado = ExtResource("2_estado")
+romper_solo_si_ya_lo_tenia = true

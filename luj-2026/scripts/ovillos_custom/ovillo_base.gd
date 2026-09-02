@@ -1,6 +1,8 @@
 class_name OvilloBase
 extends Resource
 
+enum BrilloEn { OVILLO, DECORACION }
+
 @export var nombre : String = ""
 ##descripcion que se muestra en el popover del ovillo y en las tarjetas
 @export_multiline var descripcion : String = ""
@@ -14,6 +16,8 @@ extends Resource
 @export var decoracion_teñida : Texture
 ##material de brillo opcional que se dibuja sobre la decoracion
 @export var material_brillo_decoracion : ShaderMaterial
+##sobre que sprite se dibuja el brillo: el ovillo entero o solo la decoracion
+@export var brillo_en : BrilloEn = BrilloEn.OVILLO
 ##efecto de sonido que suena al romper este ovillo
 @export var efecto_al_romper : EfectoDeSonido.Tipo = EfectoDeSonido.Tipo.ROMPER_OVILLO
 ##efecto de sonido que suena si este ovillo explota

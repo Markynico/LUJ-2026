@@ -38,8 +38,14 @@ func set_texto_bolapelos(tipo_pelotita : PelotitaBase): #parece q no funca
 	if tipo_ovillo_mostrado == null:
 		return
 	print("tipo pelotita anda? ", tipo_pelotita)
-	nombre_text.text = tipo_pelotita.efectos[0].nombre_comida #siempre debe tener al menos un efecto, sino revisar q puede dar algun bug
-	info_text.text = tipo_ovillo_mostrado.descripcion
+	nombre_text.text = tipo_pelotita.nombre
+	info_text.text = Resaltador.formatear(tipo_ovillo_mostrado.descripcion)
+
+
+func set_texto_mecanica(titulo : String, texto : String) -> void:
+	tipo_ovillo_mostrado = null
+	nombre_text.text = titulo
+	info_text.text = texto
 
 
 func actualizar_texto():
@@ -47,8 +53,8 @@ func actualizar_texto():
 	if not tipo_ovillo_mostrado:
 		return
 	puntos = roundi(tipo_ovillo_mostrado.puntaje * ReliquiasManager.multiplicador_puntos_para(tipo_ovillo_mostrado))
-	nombre_text.text = tipo_ovillo_mostrado.nombre
-	info_text.text = tipo_ovillo_mostrado.descripcion.format({"puntos": puntos, "monedas": tipo_ovillo_mostrado.cant_monedas})
+	nombre_text.text = titulo_ovillo(tipo_ovillo_mostrado)
+	info_text.text = Resaltador.formatear(tipo_ovillo_mostrado.descripcion.format({"puntos": puntos, "monedas": tipo_ovillo_mostrado.cant_monedas}))
 
 
 func tween_opacidad(valor_final : float):
@@ -58,3 +64,10 @@ func tween_opacidad(valor_final : float):
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(self, "modulate:a", valor_final, 0.3)
+
+
+func titulo_ovillo(tipo : OvilloBase) -> String:
+	var placeholder : String = Progreso.placeholder_ovillo(tipo)
+	if placeholder.begins_with("{"):
+		return Resaltador.formatear(placeholder.replace(":icono", ":texto/" + tipo.nombre))
+	return "[color=#%s]%s[/color]" % [tipo.color.to_html(false), tipo.nombre]

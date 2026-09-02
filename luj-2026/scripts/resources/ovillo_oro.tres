@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="OvilloBase" format=3 uid="uid://csd66g4gp4y05"]
+
+[ext_resource type="Script" uid="uid://fd1odbauo3fr" path="res://scripts/ovillos_custom/efecto_ovillo_base.gd" id="1_base"]
+[ext_resource type="Script" uid="uid://bbkyk2anhunsd" path="res://scripts/ovillos_custom/ovillo_base.gd" id="2_ovillo"]
+[ext_resource type="Script" uid="uid://c5s2d5d2dsfnl" path="res://scripts/ovillos_custom/efecto_ovillo_oro.gd" id="3_oro"]
+[ext_resource type="Script" uid="uid://teghc6v6rp6c" path="res://scripts/ovillos_custom/efecto_monedas.gd" id="3_pnwuh"]
+[ext_resource type="Material" uid="uid://cfouekfi03sjc" path="res://scripts/shaders/material_brillo_moneda.tres" id="4_brillo"]
+
+[sub_resource type="Resource" id="Resource_oro"]
+script = ExtResource("3_oro")
+
+[sub_resource type="Resource" id="Resource_x4xo4"]
+script = ExtResource("3_pnwuh")
+monedas = 10
+metadata/_custom_type_script = "uid://teghc6v6rp6c"
+
+[resource]
+script = ExtResource("2_ovillo")
+nombre = "Ovillo de Oro"
+descripcion = "Duplica las {monedas:icono} que ganes durante 5 segundos.
+{puntos} Puntos."
+color = Color(0.74, 0.5426667, 0, 1)
+material_brillo_decoracion = ExtResource("4_brillo")
+efecto_al_romper = 2
+cant_monedas = 10
+rebote_extra = 0.0
+valor_spawn = 3.0
+efectos_al_recibir_impacto = Array[ExtResource("1_base")]([SubResource("Resource_oro"), SubResource("Resource_x4xo4")])
+metadata/_custom_type_script = "uid://bbkyk2anhunsd"

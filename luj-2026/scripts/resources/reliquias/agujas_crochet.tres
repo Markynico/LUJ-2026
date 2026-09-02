@@ -1,18 +1,29 @@
-[gd_resource type="Resource" script_class="ReliquiaPuntosOvillo" format=3 uid="uid://4o8c2qa6dfir"]
+[gd_resource type="Resource" script_class="Reliquia" format=3 uid="uid://4o8c2qa6dfir"]
 
-[ext_resource type="Script" uid="uid://dmcn1v2kypih7" path="res://scripts/reliquias/reliquia_puntos_ovillo.gd" id="1_rel"]
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_cond"]
+[ext_resource type="Script" uid="uid://5lbsfhx8xug1" path="res://scripts/reliquias/reliquia.gd" id="1_rel"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="2_c1koy"]
 [ext_resource type="Texture2D" uid="uid://ceagi84k2o2ge" path="res://assets/reliquias/agujas de crochet.png" id="2_rel"]
 [ext_resource type="Resource" uid="uid://7s3l7jelg8oy" path="res://scripts/resources/ovillo_normal_final.tres" id="3_rel"]
 [ext_resource type="Script" uid="uid://bbkyk2anhunsd" path="res://scripts/ovillos_custom/ovillo_base.gd" id="4_rel"]
+[ext_resource type="Script" uid="uid://bb1k1rxvpqrte" path="res://scripts/reliquias/efectos/efecto_multiplicador.gd" id="e_multiplicador"]
+
+[sub_resource type="Resource" id="CondicionDesbloqueo_1"]
+script = ExtResource("1_cond")
+contador = "ovillos_rotos"
+cantidad = 1000
+
+[sub_resource type="Resource" id="Efecto_1"]
+script = ExtResource("e_multiplicador")
+tipos_objetivo = Array[ExtResource("4_rel")]([ExtResource("3_rel")])
 
 [resource]
 script = ExtResource("1_rel")
-tipos_objetivo = Array[ExtResource("4_rel")]([ExtResource("3_rel")])
 nombre = "Agujas de Crochet"
 rareza = 1
 descripcion = "Los {ovillo_normal:icono} dan el doble de puntos.
 
 \"Podría tejer algo con esto...\""
 icono = ExtResource("2_rel")
-condicion_desbloqueo = "ovillos_rotos"
-cantidad_desbloqueo = 300
+efectos = Array[ExtResource("2_c1koy")]([SubResource("Efecto_1")])
+condiciones_desbloqueo = Array[ExtResource("1_cond")]([SubResource("CondicionDesbloqueo_1")])

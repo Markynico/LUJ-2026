@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dljb32hglhe5q" path="res://assets/placeholders/bolaspelo_placeholder/placeholder_bola_de_pelos_michinko2.png" id="7_0ct46"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bola"]
-friction = 0.0
+friction = 0.6
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_37ege"]
 radius = 11.0
@@ -27,7 +27,7 @@ script = ExtResource("1_q2vq6")
 tipo_pelotita = ExtResource("2_rguhl")
 sprite_bola = NodePath("SpriteBola")
 estela_movimiento = NodePath("EstelaMovimiento")
-amortiguacion_rebote = 0.5
+amortiguacion_rebote = 0.4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1988233965]
 shape = SubResource("CircleShape2D_37ege")

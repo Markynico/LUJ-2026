@@ -59,6 +59,7 @@ signal escupir_bola
 var movimiento_horizontal_habilitado : bool = false
 
 var velocidad_inicial : Vector2
+var velocidad_antes_del_paso : Vector2 = Vector2.ZERO
 var posicion_mouse : Vector2
 var listo_para_lanzar : bool
 var _fue_lanzado : bool = false
@@ -100,6 +101,8 @@ func _ready() -> void:
 func al_terminar_animacion(nombre : StringName) -> void:
 	if listo_para_lanzar:
 		return
+	if nombre == &"escupir_bola":
+		animation_player.speed_scale = 1.0
 	if nombre == &"escupir_bola" or nombre == &"blink":
 		if sprite:
 			sprite.texture = imagen_normal
@@ -135,7 +138,12 @@ func al_chocar(body : Node) -> void:
 	if not _fue_lanzado or _finalizo_ronda:
 		return
 	if body is Ovillo and ovillos_rotos < impactos_maximos:
-		ovillos_rotos += 1
+		var resultado : ResultadoImpacto = body.simular_impacto(null)
+		if resultado.cuenta_para_el_gato:
+			ovillos_rotos += 1
+		if resultado.atravesar:
+			add_collision_exception_with(body)
+			linear_velocity = velocidad_antes_del_paso
 		body.recibir_impacto()
 
 # ============ PROCESS / DETECCIÓN DE FIN DE NIVEL =============
@@ -196,6 +204,7 @@ func esta_apuntando() -> bool:
 
 
 func _physics_process(delta: float) -> void:
+	velocidad_antes_del_paso = linear_velocity
 	if Engine.is_editor_hint():
 		return
 	if _fue_lanzado and not _finalizo_ronda:
@@ -298,9 +307,24 @@ func lanzar() -> void:
 	tiempo_quieto = 0.0
 
 func preparar_bola() -> void:
-	if animation_player:
-		animation_player.stop()
-		animation_player.play("escupir_bola") #esto llama a la funcion escupir_bola en el disparador
+	if not animation_player:
+		return
+	animation_player.stop()
+	animation_player.speed_scale = ReliquiasManager.multiplicador_velocidad_escupida()
+	animation_player.play("escupir_bola")
+	if ReliquiasManager.escupida_instantanea():
+		animation_player.seek(tiempo_de_escupida("escupir_bola") + 0.01, true)
+		disparador_pelotitas.escupir_bola()
+
+
+func tiempo_de_escupida(nombre : StringName) -> float:
+	var animacion : Animation = animation_player.get_animation(nombre)
+	if not animacion:
+		return 0.0
+	for pista in animacion.get_track_count():
+		if animacion.track_get_type(pista) == Animation.TYPE_METHOD and animacion.track_get_key_count(pista) > 0:
+			return animacion.track_get_key_time(pista, 0)
+	return 0.0
 
 
 func emitir_particulas(encendido : bool) -> void:

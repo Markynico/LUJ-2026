@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://dockcreadoritm1"]
+
+[ext_resource type="Script" path="res://addons/creador_de_items/dock_creador_de_items.gd" id="1_dock"]
+
+[node name="Creador de items" type="ScrollContainer" node_paths=PackedStringArray("selector_tipo", "selector_existente", "campo_nombre", "selector_rareza", "campo_descripcion", "etiqueta_icono", "selector_icono", "fila_textura", "selector_textura", "contenedor_hooks", "boton_crear", "etiqueta_estado")]
+horizontal_scroll_mode = 0
+script = ExtResource("1_dock")
+selector_tipo = NodePath("Columna/SelectorTipo")
+selector_existente = NodePath("Columna/SelectorExistente")
+campo_nombre = NodePath("Columna/CampoNombre")
+selector_rareza = NodePath("Columna/SelectorRareza")
+campo_descripcion = NodePath("Columna/CampoDescripcion")
+etiqueta_icono = NodePath("Columna/FilaIcono/EtiquetaIcono")
+selector_icono = NodePath("Columna/FilaIcono/SelectorIcono")
+fila_textura = NodePath("Columna/FilaTextura")
+selector_textura = NodePath("Columna/FilaTextura/SelectorTextura")
+contenedor_hooks = NodePath("Columna/Hooks")
+boton_crear = NodePath("Columna/BotonCrear")
+etiqueta_estado = NodePath("Columna/EtiquetaEstado")
+
+[node name="Columna" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SelectorTipo" type="OptionButton" parent="Columna"]
+layout_mode = 2
+
+[node name="SelectorExistente" type="OptionButton" parent="Columna"]
+layout_mode = 2
+
+[node name="CampoNombre" type="LineEdit" parent="Columna"]
+layout_mode = 2
+placeholder_text = "Nombre"
+
+[node name="SelectorRareza" type="OptionButton" parent="Columna"]
+layout_mode = 2
+
+[node name="CampoDescripcion" type="TextEdit" parent="Columna"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+placeholder_text = "Descripcion"
+wrap_mode = 1
+
+[node name="FilaIcono" type="HBoxContainer" parent="Columna"]
+layout_mode = 2
+
+[node name="EtiquetaIcono" type="Label" parent="Columna/FilaIcono"]
+layout_mode = 2
+text = "Icono"
+
+[node name="SelectorIcono" type="EditorResourcePicker" parent="Columna/FilaIcono"]
+layout_mode = 2
+size_flags_horizontal = 3
+base_type = "Texture2D"
+
+[node name="FilaTextura" type="HBoxContainer" parent="Columna"]
+layout_mode = 2
+
+[node name="EtiquetaTextura" type="Label" parent="Columna/FilaTextura"]
+layout_mode = 2
+text = "Sprite bola"
+
+[node name="SelectorTextura" type="EditorResourcePicker" parent="Columna/FilaTextura"]
+layout_mode = 2
+size_flags_horizontal = 3
+base_type = "Texture2D"
+
+[node name="SeparadorHooks" type="HSeparator" parent="Columna"]
+layout_mode = 2
+
+[node name="EtiquetaHooks" type="Label" parent="Columna"]
+layout_mode = 2
+text = "Hooks del script"
+
+[node name="Hooks" type="VBoxContainer" parent="Columna"]
+layout_mode = 2
+
+[node name="BotonCrear" type="Button" parent="Columna"]
+layout_mode = 2
+text = "Crear"
+
+[node name="EtiquetaEstado" type="Label" parent="Columna"]
+layout_mode = 2
+autowrap_mode = 3

@@ -1,8 +1,21 @@
-[gd_resource type="Resource" script_class="ReliquiaMessi" format=3 uid="uid://cja6y5nb157vd"]
+[gd_resource type="Resource" script_class="Reliquia" format=3 uid="uid://cja6y5nb157vd"]
 
 [ext_resource type="Resource" uid="uid://bwtp6rro6y6j3" path="res://scripts/resources/dificultades/dificultad_dificil.tres" id="1_bux0k"]
-[ext_resource type="Script" uid="uid://v30ldg5twv23" path="res://scripts/reliquias/reliquia_messi.gd" id="1_rel"]
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_cond"]
+[ext_resource type="Script" uid="uid://5lbsfhx8xug1" path="res://scripts/reliquias/reliquia.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://ber6xmqybwe5f" path="res://assets/reliquias/estatua de messi de oro.png" id="2_rel"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="3_b1a3m"]
+[ext_resource type="Script" uid="uid://bvhxnhetlks4x" path="res://scripts/reliquias/efectos/efecto_disparo.gd" id="e_disparo"]
+
+[sub_resource type="Resource" id="CondicionDesbloqueo_1"]
+script = ExtResource("1_cond")
+contador = "runs_ganadas_en_dificultad"
+dificultad_objetivo = ExtResource("1_bux0k")
+
+[sub_resource type="Resource" id="Efecto_1"]
+script = ExtResource("e_disparo")
+multiplicador_gravedad = 0.5
+multiplicador_velocidad = 2.0
 
 [resource]
 script = ExtResource("1_rel")
@@ -13,6 +26,5 @@ X0.5 {gravedad:texto/gravedad}
 
 \"Gracias por tanto Capitán\""
 icono = ExtResource("2_rel")
-condicion_desbloqueo = "runs_ganadas_en_dificultad"
-cantidad_desbloqueo = 1
-dificultad_objetivo = ExtResource("1_bux0k")
+efectos = Array[ExtResource("3_b1a3m")]([SubResource("Efecto_1")])
+condiciones_desbloqueo = Array[ExtResource("1_cond")]([SubResource("CondicionDesbloqueo_1")])

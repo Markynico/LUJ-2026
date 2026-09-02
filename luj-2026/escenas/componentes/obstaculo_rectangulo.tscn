@@ -7,6 +7,7 @@
 script = ExtResource("1_forma")
 
 [node name="Obstaculo" type="StaticBody2D" parent="." node_paths=PackedStringArray("forma")]
+z_index = 1
 collision_mask = 0
 script = ExtResource("2_solido")
 forma = NodePath("..")

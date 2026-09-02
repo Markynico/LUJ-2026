@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="EstadoCongelado" format=3 uid="uid://bsbjgoe4owind"]
+
+[ext_resource type="Script" uid="uid://dkycp3a8he1fr" path="res://scripts/ovillos_custom/estados/efecto_estado_ovillo.gd" id="1_37m4p"]
+[ext_resource type="Script" uid="uid://g801q0o76te7" path="res://scripts/ovillos_custom/estados/estado_congelado.gd" id="2_ag5b6"]
+[ext_resource type="Script" uid="uid://c7ogyqxnq7236" path="res://scripts/pelotitas_custom/pelotita_base.gd" id="2_domnm"]
+[ext_resource type="Script" uid="uid://cu8ortgafb8cn" path="res://scripts/ovillos_custom/estados/efectos/efecto_estado_reaccion_bola.gd" id="3_fgesx"]
+[ext_resource type="Script" uid="uid://ccm4bijh6l5hg" path="res://scripts/ovillos_custom/estados/efectos/efecto_estado_explotar_contagiando.gd" id="4_expl"]
+
+[sub_resource type="Resource" id="Resource_lvktv"]
+script = ExtResource("3_fgesx")
+bola = 1
+cuenta_para_el_gato = false
+metadata/_custom_type_script = "uid://cu8ortgafb8cn"
+
+[sub_resource type="Resource" id="Resource_ew7ae"]
+script = ExtResource("3_fgesx")
+bolas_que_aplican_este_estado = true
+bola = 1
+metadata/_custom_type_script = "uid://cu8ortgafb8cn"
+
+[sub_resource type="Resource" id="Resource_explc"]
+script = ExtResource("4_expl")
+
+[resource]
+script = ExtResource("2_ag5b6")
+nombre = "Congelado"
+descripcion = "Los ovillos congelados son quebradizos y se rompen sin crear rebotes."
+cambiar_color = true
+color = Color(0, 0.8166666, 1, 1)
+efectos = Array[ExtResource("1_37m4p")]([SubResource("Resource_lvktv"), SubResource("Resource_ew7ae"), SubResource("Resource_explc")])

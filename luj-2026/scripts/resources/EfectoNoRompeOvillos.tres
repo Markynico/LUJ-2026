@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="EfectoNoRompeOvillos" format=3 uid="uid://ci0gglmcoqiqi"]
+
+[ext_resource type="Script" uid="uid://5dnx41v8b336" path="res://scripts/pelotitas_custom/efecto_no_rompe_ovillos.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
