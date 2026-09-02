@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://addons/creador_de_items/dock_creador_de_items.gd" id="1_dock"]
 
-[node name="Creador de items" type="ScrollContainer" node_paths=PackedStringArray("selector_tipo", "selector_existente", "campo_nombre", "selector_rareza", "campo_descripcion", "etiqueta_icono", "selector_icono", "fila_textura", "selector_textura", "contenedor_hooks", "boton_crear", "etiqueta_estado")]
+[node name="Creador de items" type="ScrollContainer" node_paths=PackedStringArray("selector_tipo", "selector_existente", "campo_nombre", "selector_rareza", "campo_descripcion", "etiqueta_icono", "selector_icono", "fila_textura", "selector_textura", "contenedor_hooks", "boton_crear", "boton_borrar", "etiqueta_estado")]
 horizontal_scroll_mode = 0
 script = ExtResource("1_dock")
 selector_tipo = NodePath("Columna/SelectorTipo")
@@ -16,6 +16,7 @@ fila_textura = NodePath("Columna/FilaTextura")
 selector_textura = NodePath("Columna/FilaTextura/SelectorTextura")
 contenedor_hooks = NodePath("Columna/Hooks")
 boton_crear = NodePath("Columna/BotonCrear")
+boton_borrar = NodePath("Columna/BotonBorrar")
 etiqueta_estado = NodePath("Columna/EtiquetaEstado")
 
 [node name="Columna" type="VBoxContainer" parent="."]
@@ -78,6 +79,11 @@ layout_mode = 2
 [node name="BotonCrear" type="Button" parent="Columna"]
 layout_mode = 2
 text = "Crear"
+
+[node name="BotonBorrar" type="Button" parent="Columna"]
+visible = false
+layout_mode = 2
+text = "Borrar item"
 
 [node name="EtiquetaEstado" type="Label" parent="Columna"]
 layout_mode = 2

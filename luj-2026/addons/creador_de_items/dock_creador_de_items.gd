@@ -86,12 +86,14 @@ const ACENTOS : Dictionary = {"á": "a", "é": "e", "í": "i", "ó": "o", "ú": 
 @export var selector_textura : EditorResourcePicker
 @export var contenedor_hooks : VBoxContainer
 @export var boton_crear : Button
+@export var boton_borrar : Button
 @export var etiqueta_estado : Label
 
 var casillas : Array[CheckBox] = []
 var hooks : Array[Dictionary] = []
 var existentes : Array[Resource] = []
 var editando : Resource
+var dialogo_borrar : ConfirmationDialog
 
 
 func _ready() -> void:
@@ -104,6 +106,10 @@ func _ready() -> void:
 	selector_tipo.item_selected.connect(al_cambiar_tipo)
 	selector_existente.item_selected.connect(al_elegir_existente)
 	boton_crear.pressed.connect(crear_o_guardar)
+	boton_borrar.pressed.connect(confirmar_borrado)
+	dialogo_borrar = ConfirmationDialog.new()
+	dialogo_borrar.confirmed.connect(borrar_existente)
+	add_child(dialogo_borrar)
 	visibility_changed.connect(al_cambiar_visibilidad)
 	al_cambiar_tipo(0)
 
@@ -190,6 +196,7 @@ func limpiar_campos() -> void:
 	selector_icono.edited_resource = null
 	selector_textura.edited_resource = null
 	boton_crear.text = "Crear"
+	boton_borrar.visible = false
 
 
 func cargar_campos(recurso : Resource) -> void:
@@ -201,6 +208,7 @@ func cargar_campos(recurso : Resource) -> void:
 	if datos_tipo()["con_textura"]:
 		selector_textura.edited_resource = recurso.textura
 	boton_crear.text = "Guardar"
+	boton_borrar.visible = true
 
 
 func efecto_de(recurso : Resource) -> Resource:
@@ -496,6 +504,54 @@ func guardar_existente() -> void:
 	EditorInterface.edit_resource(editando)
 	armar_existentes()
 	avisar((etiqueta_estado.text + "\n").strip_edges() + "\nGuardado " + editando.resource_path)
+
+
+func archivos_a_borrar() -> PackedStringArray:
+	var rutas : PackedStringArray = []
+	var script : Script = script_editable(editando)
+	var efecto : Resource = efecto_de(editando)
+	if not editando:
+		return rutas
+	rutas.append(editando.resource_path)
+	if tiene_efectos() and efecto and not efecto.resource_path.is_empty() and not efecto.resource_path.contains("::") and efecto.resource_path.begins_with(datos_tipo()["carpeta_resources"]):
+		rutas.append(efecto.resource_path)
+	if script and script.resource_path != datos_tipo()["script_base"] and script.resource_path.begins_with(datos_tipo()["carpeta_scripts"]):
+		rutas.append(script.resource_path)
+	return rutas
+
+
+func confirmar_borrado() -> void:
+	var rutas : PackedStringArray = archivos_a_borrar()
+	if rutas.is_empty():
+		return
+	dialogo_borrar.dialog_text = "Se van a borrar estos archivos:
+" + "
+".join(rutas)
+	dialogo_borrar.popup_centered()
+
+
+func borrar_existente() -> void:
+	var rutas : PackedStringArray = archivos_a_borrar()
+	var sistema : EditorFileSystem = EditorInterface.get_resource_filesystem()
+	editando = null
+	existentes.clear()
+	selector_existente.clear()
+	limpiar_campos()
+	armar_hooks([])
+	for ruta in rutas:
+		if ruta.ends_with(".gd"):
+			continue
+		DirAccess.remove_absolute(ruta)
+		sistema.update_file(ruta)
+	for ruta in rutas:
+		if not ruta.ends_with(".gd"):
+			continue
+		DirAccess.remove_absolute(ruta)
+		if FileAccess.file_exists(ruta + ".uid"):
+			DirAccess.remove_absolute(ruta + ".uid")
+		sistema.update_file(ruta)
+	armar_existentes()
+	avisar("Borrado: " + ", ".join(rutas))
 
 
 func reemplazar_script(viejo : Resource, script : Script) -> Resource:
