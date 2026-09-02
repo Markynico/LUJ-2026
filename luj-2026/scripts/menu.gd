@@ -112,11 +112,17 @@ func armar_panel_dificultad() -> void:
 			boton.add_theme_stylebox_override(nombre_estilo, StyleBoxEmpty.new())
 		aplicar_borde_dificultad(boton, Color.TRANSPARENT)
 		boton.pressed.connect(elegir_dificultad.bind(dificultad, boton))
+		boton.mouse_entered.connect(mostrar_pergamino_dificultad.bind(dificultad))
+		boton.mouse_exited.connect(Explicaciones.ocultar)
 		contenedor_dificultades.add_child(boton)
 		botones_dificultad.append(boton)
 	if not botones_dificultad.is_empty():
 		var indice_medio : int = mini(1, botones_dificultad.size() - 1)
 		elegir_dificultad(dificultades[indice_medio], botones_dificultad[indice_medio])
+
+
+func mostrar_pergamino_dificultad(dificultad : DificultadRun) -> void:
+	Explicaciones.mostrar_texto(Progreso.placeholder_dificultad(dificultad).replace(":icono", ":texto/" + dificultad.nombre), dificultad.descripcion_para_mostrar())
 
 
 func elegir_dificultad(dificultad : DificultadRun, boton : Button) -> void:

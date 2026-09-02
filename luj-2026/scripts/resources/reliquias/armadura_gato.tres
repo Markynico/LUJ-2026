@@ -1,7 +1,14 @@
 [gd_resource type="Resource" script_class="ReliquiaArmadura" format=3 uid="uid://jqicxov7kwy1"]
 
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_cond"]
 [ext_resource type="Script" uid="uid://eyqrubc1hwg1" path="res://scripts/reliquias/reliquia_armadura.gd" id="1_rel"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="2_h4nut"]
 [ext_resource type="Texture2D" uid="uid://jomecfaawdn4" path="res://assets/reliquias/armadura de gato.png" id="2_rel"]
+
+[sub_resource type="Resource" id="CondicionDesbloqueo_1"]
+script = ExtResource("1_cond")
+contador = "niveles_ganados"
+cantidad = 25
 
 [resource]
 script = ExtResource("1_rel")
@@ -9,5 +16,4 @@ nombre = "Armadura para Gatos"
 rareza = 2
 descripcion = "Michinko ya no tiene límite para romper ovillos al caer."
 icono = ExtResource("2_rel")
-condicion_desbloqueo = "niveles_ganados"
-cantidad_desbloqueo = 25
+condiciones_desbloqueo = Array[ExtResource("1_cond")]([SubResource("CondicionDesbloqueo_1")])

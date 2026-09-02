@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="PelotitaBase" format=3 uid="uid://d2y2wdiwxf7pa"]
 
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_k4i4d"]
 [ext_resource type="Script" uid="uid://c31lbqa2grch4" path="res://scripts/pelotitas_custom/efectos_pelotita.gd" id="1_mog8v"]
 [ext_resource type="Texture2D" uid="uid://b4mjou370ar2a" path="res://assets/placeholders/bazooka.png" id="2_fkiue"]
 [ext_resource type="Resource" uid="uid://baoihoh3kxp21" path="res://scripts/resources/EfectoChicle.tres" id="2_k4i4d"]

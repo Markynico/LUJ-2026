@@ -1,7 +1,13 @@
 [gd_resource type="Resource" script_class="ReliquiaRascador" format=3 uid="uid://d1g05k4oam2p8"]
 
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_cond"]
 [ext_resource type="Texture2D" uid="uid://bva0qy2gl0b7b" path="res://assets/reliquias/rascador.png" id="1_ddxfj"]
 [ext_resource type="Script" uid="uid://clj8t7dfecp6v" path="res://scripts/reliquias/reliquia_rascador.gd" id="1_rascador"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="2_7ku88"]
+
+[sub_resource type="Resource" id="CondicionDesbloqueo_1"]
+script = ExtResource("1_cond")
+contador = "runs_ganadas"
 
 [resource]
 script = ExtResource("1_rascador")
@@ -11,5 +17,4 @@ descripcion = "Permite mover a Michinko con A y D.
 
 “Juega más con la caja en la que vino que con el rascador en sí...”"
 icono = ExtResource("1_ddxfj")
-condicion_desbloqueo = "runs_ganadas"
-cantidad_desbloqueo = 1
+condiciones_desbloqueo = Array[ExtResource("1_cond")]([SubResource("CondicionDesbloqueo_1")])

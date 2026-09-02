@@ -100,6 +100,8 @@ func _ready() -> void:
 func al_terminar_animacion(nombre : StringName) -> void:
 	if listo_para_lanzar:
 		return
+	if nombre == &"escupir_bola":
+		animation_player.speed_scale = 1.0
 	if nombre == &"escupir_bola" or nombre == &"blink":
 		if sprite:
 			sprite.texture = imagen_normal
@@ -298,9 +300,24 @@ func lanzar() -> void:
 	tiempo_quieto = 0.0
 
 func preparar_bola() -> void:
-	if animation_player:
-		animation_player.stop()
-		animation_player.play("escupir_bola") #esto llama a la funcion escupir_bola en el disparador
+	if not animation_player:
+		return
+	animation_player.stop()
+	animation_player.speed_scale = ReliquiasManager.multiplicador_velocidad_escupida()
+	animation_player.play("escupir_bola")
+	if ReliquiasManager.escupida_instantanea():
+		animation_player.seek(tiempo_de_escupida("escupir_bola") + 0.01, true)
+		disparador_pelotitas.escupir_bola()
+
+
+func tiempo_de_escupida(nombre : StringName) -> float:
+	var animacion : Animation = animation_player.get_animation(nombre)
+	if not animacion:
+		return 0.0
+	for pista in animacion.get_track_count():
+		if animacion.track_get_type(pista) == Animation.TYPE_METHOD and animacion.track_get_key_count(pista) > 0:
+			return animacion.track_get_key_time(pista, 0)
+	return 0.0
 
 
 func emitir_particulas(encendido : bool) -> void:

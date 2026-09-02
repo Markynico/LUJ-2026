@@ -1,8 +1,16 @@
 [gd_resource type="Resource" script_class="ReliquiaMagiclick" format=3 uid="uid://cv7e0lifc61g8"]
 
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_cond"]
 [ext_resource type="Script" uid="uid://bemtpj6j14v1n" path="res://scripts/reliquias/reliquia_magiclick.gd" id="1_rel"]
 [ext_resource type="Resource" uid="uid://d3ks2dut6iacd" path="res://scripts/resources/ovillo_explosivo_final.tres" id="2_q5cfh"]
 [ext_resource type="Texture2D" uid="uid://cgiw5gf0n4eao" path="res://assets/reliquias/magiclick.png" id="2_rel"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="3_m5olc"]
+
+[sub_resource type="Resource" id="CondicionDesbloqueo_1"]
+script = ExtResource("1_cond")
+contador = "ovillos_rotos_de_tipo"
+cantidad = 100
+ovillo_objetivo = ExtResource("2_q5cfh")
 
 [resource]
 script = ExtResource("1_rel")
@@ -12,6 +20,4 @@ descripcion = "Los {explosivo:icono} explotan instantáneamente.
 
 \"*Click*\""
 icono = ExtResource("2_rel")
-condicion_desbloqueo = "ovillos_rotos_de_tipo"
-cantidad_desbloqueo = 100
-ovillo_objetivo = ExtResource("2_q5cfh")
+condiciones_desbloqueo = Array[ExtResource("1_cond")]([SubResource("CondicionDesbloqueo_1")])

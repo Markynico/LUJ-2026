@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="ReliquiaSpawnOvillo" format=3 uid="uid://l4rvd76vwgiu"]
 
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_4y8f4"]
 [ext_resource type="Script" uid="uid://hbrdyxmfe5s0" path="res://scripts/reliquias/reliquia_spawn_ovillo.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://ddupfvc3rjey2" path="res://assets/reliquias/caja de fosforos.png" id="2_rel"]
 [ext_resource type="Resource" uid="uid://d3ks2dut6iacd" path="res://scripts/resources/ovillo_explosivo_final.tres" id="3_rel"]

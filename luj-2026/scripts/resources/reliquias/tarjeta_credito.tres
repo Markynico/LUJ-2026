@@ -1,15 +1,28 @@
 [gd_resource type="Resource" script_class="ReliquiaTarjetaCredito" format=3 uid="uid://cihtrwgsv5g8s"]
 
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_cond"]
 [ext_resource type="Script" uid="uid://cmyt0i3rp36r5" path="res://scripts/reliquias/reliquia_tarjeta_credito.gd" id="1_rel"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="2_qqrrp"]
 [ext_resource type="Texture2D" uid="uid://bmshljiy45b7g" path="res://assets/reliquias/tarjeta de credito.png" id="2_rel"]
+
+[sub_resource type="Resource" id="CondicionDesbloqueo_1"]
+script = ExtResource("1_cond")
+contador = "items_comprados"
+cantidad = 10
+
+[sub_resource type="Resource" id="Resource_xlsl2"]
+script = ExtResource("1_cond")
+contador = "monedas_gastadas"
+cantidad = 3000
+metadata/_custom_type_script = "uid://bus0kgj1moqjc"
 
 [resource]
 script = ExtResource("1_rel")
+descuento = 0.5
 nombre = "Tarjeta de Crédito"
 rareza = 2
-descripcion = "25% de descuento en la tienda. La dificultad escala 50% más rápido.
+descripcion = "50% de descuento en la tienda. La dificultad escala 50% más rápido.
 
 \"Ya fue lo saco en cuotas\""
 icono = ExtResource("2_rel")
-condicion_desbloqueo = "items_comprados"
-cantidad_desbloqueo = 10
+condiciones_desbloqueo = Array[ExtResource("1_cond")]([SubResource("CondicionDesbloqueo_1"), SubResource("Resource_xlsl2")])

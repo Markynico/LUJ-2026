@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="ReliquiaTapitaLapicera" format=3 uid="uid://b85q6u2n8x3j1"]
 
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_d2few"]
 [ext_resource type="Script" uid="uid://xvfnx8tvy8tf" path="res://scripts/reliquias/reliquia_tapita_lapicera.gd" id="1_tapita"]
 [ext_resource type="Texture2D" uid="uid://dk2de6ghg7k22" path="res://assets/reliquias/tapita de lapicera.png" id="1_yhcti"]
 

@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="ReliquiaCuraInmediata" format=3 uid="uid://dqkvtjg3x0gb7"]
 
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_m2nvm"]
 [ext_resource type="Script" uid="uid://cpvw88wgobgnx" path="res://scripts/reliquias/reliquia_cura_inmediata.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://nnxkli40gefp" path="res://assets/reliquias/lata de atun.png" id="2_rel"]
 

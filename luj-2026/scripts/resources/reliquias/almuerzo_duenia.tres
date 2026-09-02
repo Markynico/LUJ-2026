@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="ReliquiaAlmuerzo" format=3 uid="uid://bpw3shdksb1v5"]
 
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_0gkaf"]
 [ext_resource type="Script" uid="uid://fufph1pces5a" path="res://scripts/reliquias/reliquia_almuerzo.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://phum3pcjd0od" path="res://assets/reliquias/almuerzo de la dueña.png" id="2_rel"]
 

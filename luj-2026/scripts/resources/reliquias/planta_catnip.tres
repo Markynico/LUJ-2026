@@ -1,9 +1,17 @@
 [gd_resource type="Resource" script_class="ReliquiaSpawnOvillo" format=3 uid="uid://druivdavm0d32"]
 
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_cond"]
 [ext_resource type="Script" uid="uid://hbrdyxmfe5s0" path="res://scripts/reliquias/reliquia_spawn_ovillo.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://qisy5qvroqtu" path="res://assets/reliquias/planta de catnip.png" id="2_rel"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="3_e2vcf"]
 [ext_resource type="Resource" uid="uid://cy6q6prk7gt7p" path="res://scripts/resources/ovillo_catnip.tres" id="3_rel"]
 [ext_resource type="Script" uid="uid://bbkyk2anhunsd" path="res://scripts/ovillos_custom/ovillo_base.gd" id="4_rel"]
+
+[sub_resource type="Resource" id="CondicionDesbloqueo_1"]
+script = ExtResource("1_cond")
+contador = "ovillos_rotos_de_tipo"
+cantidad = 10
+ovillo_objetivo = ExtResource("3_rel")
 
 [resource]
 script = ExtResource("1_rel")
@@ -13,6 +21,4 @@ descripcion = "Más de probabilidad de que aparezcan  {catnip:icono}
 
 \"No dura ni una semana\""
 icono = ExtResource("2_rel")
-condicion_desbloqueo = "ovillos_rotos_de_tipo"
-cantidad_desbloqueo = 10
-ovillo_objetivo = ExtResource("3_rel")
+condiciones_desbloqueo = Array[ExtResource("1_cond")]([SubResource("CondicionDesbloqueo_1")])

@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="ReliquiaMaceta" format=3 uid="uid://c8mxf5blpvrvr"]
 
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_dq766"]
 [ext_resource type="Script" uid="uid://dtne5k6agsuv5" path="res://scripts/reliquias/reliquia_maceta.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://ck3ymj3kdu2e7" path="res://assets/reliquias/maceta con yuyos.png" id="2_rel"]
 

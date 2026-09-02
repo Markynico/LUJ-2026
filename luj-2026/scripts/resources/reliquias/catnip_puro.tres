@@ -1,17 +1,30 @@
 [gd_resource type="Resource" script_class="ReliquiaCatnipPuro" format=3 uid="uid://b0wiyen41o3t2"]
 
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_cond"]
 [ext_resource type="Script" uid="uid://dt8hns6rwqeqf" path="res://scripts/reliquias/reliquia_catnip_puro.gd" id="1_rel"]
 [ext_resource type="Resource" uid="uid://cy6q6prk7gt7p" path="res://scripts/resources/ovillo_catnip.tres" id="2_j63x8"]
 [ext_resource type="Texture2D" uid="uid://bt0w4bqv1gqf0" path="res://assets/reliquias/catnip puro.png" id="2_rel"]
+[ext_resource type="Resource" uid="uid://druivdavm0d32" path="res://scripts/resources/reliquias/planta_catnip.tres" id="3_mct3k"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="4_8g647"]
+
+[sub_resource type="Resource" id="CondicionDesbloqueo_1"]
+script = ExtResource("1_cond")
+contador = "ovillos_rotos_de_tipo"
+cantidad = 200
+ovillo_objetivo = ExtResource("2_j63x8")
+
+[sub_resource type="Resource" id="Resource_d2qvj"]
+script = ExtResource("1_cond")
+contador = "reliquia_desbloqueada"
+reliquia_objetivo = ExtResource("3_mct3k")
+metadata/_custom_type_script = "uid://bus0kgj1moqjc"
 
 [resource]
 script = ExtResource("1_rel")
 nombre = "Catnip 100% Puro"
-rareza = 2
+rareza = 3
 descripcion = "El efecto de los {catnip:icono} se puede stackear.
 
 \"De la buena\""
 icono = ExtResource("2_rel")
-condicion_desbloqueo = "ovillos_rotos_de_tipo"
-cantidad_desbloqueo = 100
-ovillo_objetivo = ExtResource("2_j63x8")
+condiciones_desbloqueo = Array[ExtResource("1_cond")]([SubResource("CondicionDesbloqueo_1"), SubResource("Resource_d2qvj")])

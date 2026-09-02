@@ -6,9 +6,16 @@
 [ext_resource type="Theme" uid="uid://bjkvjfhj8dr8y" path="res://themes/theme_ui_general.tres" id="5_cbjq2"]
 [ext_resource type="Texture2D" uid="uid://cgiw5gf0n4eao" path="res://assets/reliquias/magiclick.png" id="5_dfqys"]
 [ext_resource type="FontFile" uid="uid://dwg47e0trev3j" path="res://fuentes/Bungee-Regular.ttf" id="6_bungee"]
+[ext_resource type="Shader" path="res://scripts/shaders/esquinas_redondeadas.gdshader" id="7_esquinas"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_esquinas"]
+shader = ExtResource("7_esquinas")
+shader_parameter/radio = 24.0
+shader_parameter/tamanio = Vector2(500, 600)
 
 [node name="Tarjeta" type="TextureRect" unique_id=1697798897 node_paths=PackedStringArray("icono", "label_nombre", "label_descripcion", "label_tipo", "label_rareza")]
 texture_filter = 2
+material = SubResource("ShaderMaterial_esquinas")
 offset_right = 500.0
 offset_bottom = 600.0
 theme = ExtResource("5_cbjq2")
@@ -96,7 +103,7 @@ horizontal_alignment = 1
 [node name="LabelDescripcion" type="RichTextLabel" parent="Margen/Contenido" unique_id=1919030934]
 layout_mode = 2
 size_flags_vertical = 3
-mouse_filter = 2
+mouse_filter = 1
 theme_override_fonts/normal_font = ExtResource("6_bungee")
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true

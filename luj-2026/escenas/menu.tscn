@@ -156,7 +156,6 @@ mouse_filter = 2
 z_as_relative = false
 position = Vector2(1481, 209)
 decorativo = true
-orgulloso = false
 escala_normal = 0.32
 
 [node name="FocoSeleccion" type="Marker2D" parent="Gato" unique_id=159663655]

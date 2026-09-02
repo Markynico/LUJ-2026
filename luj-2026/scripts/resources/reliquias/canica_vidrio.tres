@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="ReliquiaRebote" format=3 uid="uid://b1vqgs58a78qs"]
 
 [ext_resource type="Script" uid="uid://d3d64vcm42nl7" path="res://scripts/reliquias/reliquia_rebote.gd" id="1_rel"]
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_va2ak"]
 [ext_resource type="Texture2D" uid="uid://cat33kmm4itfl" path="res://assets/reliquias/canica de vidrio.png" id="2_rel"]
 
 [resource]

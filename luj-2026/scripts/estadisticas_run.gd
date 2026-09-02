@@ -9,6 +9,7 @@ var reliquias_adquiridas : Array[Reliquia] = []
 var comidas_compradas : int = 0
 var niveles_ganados : int = 0
 var niveles_perdidos : int = 0
+var niveles_limpios : int = 0
 var mejor_puntaje_nivel : int = 0
 var ovillos_rotos : int = 0
 var ovillos_rotos_por_tipo : Dictionary = {}
@@ -33,6 +34,7 @@ func empezar_run() -> void:
 	comidas_compradas = 0
 	niveles_ganados = 0
 	niveles_perdidos = 0
+	niveles_limpios = 0
 	mejor_puntaje_nivel = 0
 	ovillos_rotos = 0
 	ovillos_rotos_por_tipo.clear()
@@ -56,7 +58,7 @@ func duracion_segundos() -> float:
 	return (Time.get_ticks_msec() - inicio_run_msec) / 1000.0
 
 
-func registrar_nivel(puntos : int, gano : bool) -> void:
+func registrar_nivel(puntos : int, gano : bool, limpio : bool = false) -> void:
 	if not run_activa:
 		return
 	puntos_totales += puntos
@@ -65,6 +67,8 @@ func registrar_nivel(puntos : int, gano : bool) -> void:
 		niveles_ganados += 1
 	else:
 		niveles_perdidos += 1
+	if limpio:
+		niveles_limpios += 1
 	Progreso.revisar_desbloqueos_en_vivo()
 
 
@@ -73,9 +77,9 @@ func registrar_monedas(cambio : int) -> void:
 		return
 	if cambio > 0:
 		monedas_conseguidas += cambio
-		Progreso.revisar_desbloqueos_en_vivo()
 	else:
 		monedas_gastadas -= cambio
+	Progreso.revisar_desbloqueos_en_vivo()
 
 
 func registrar_comida_comprada() -> void:

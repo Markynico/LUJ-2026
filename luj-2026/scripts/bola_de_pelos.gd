@@ -20,7 +20,7 @@ extends RigidBody2D
 @export var pitch_extra_maximo : float = 1.0
 
 @export_group("FISICA")
-##fraccion de la velocidad que conserva la bola al chocar con paredes y obstaculos, 1 = sin perdida
+##coeficiente de restitucion: fraccion de la velocidad normal que devuelve cada rebote, 1 = rebote perfecto, 0 = se pega a la superficie
 @export_range(0.0, 1.0) var amortiguacion_rebote : float = 0.85
 
 @export_group("LIMITES")
@@ -31,6 +31,8 @@ var fue_duplicada : bool = false #se usa para efecto espejismo
 var impactos_ovillos : int = 0
 var contador_rebotes : int = 0
 var limites_juego : Rect2
+var velocidad_previa : Vector2 = Vector2.ZERO
+var velocidad_entrante : Vector2 = Vector2.ZERO
 
 
 var vector_x : int = randi_range(-300, 300) #estaba en -500 , 500 y el de abajo tmb
@@ -71,6 +73,21 @@ func al_atravesar_ovillo(body : Node) -> void:
 	if body is Ovillo:
 		body.recibir_impacto(self)
 
+func _integrate_forces(estado : PhysicsDirectBodyState2D) -> void:
+	velocidad_entrante = velocidad_previa + estado.total_gravity * estado.step
+	velocidad_previa = estado.linear_velocity
+
+
+func rebotar(normal : Vector2, impulso_extra : float) -> void:
+	var velocidad_normal : float = velocidad_entrante.dot(normal)
+	var tangencial : Vector2 = linear_velocity - linear_velocity.dot(normal) * normal
+	var frontalidad : float = clampf(-velocidad_entrante.normalized().dot(normal), 0.0, 1.0)
+	var saliente : float = impulso_extra * frontalidad
+	if velocidad_normal < 0.0:
+		saliente += -velocidad_normal * amortiguacion_rebote
+	linear_velocity = tangencial + normal * saliente
+
+
 func normal_de_contacto(objeto : Node2D) -> Vector2:
 	var estado : PhysicsDirectBodyState2D = PhysicsServer2D.body_get_direct_state(get_rid())
 	var normal : Vector2
@@ -101,8 +118,6 @@ func _on_body_shape_entered(body_rid: RID, body: Node, body_shape_index: int, lo
 		return
 	if not body is Ovillo:
 		contador_rebotes = 0
-		if not ReliquiasManager.bolas_atraviesan:
-			linear_velocity *= amortiguacion_rebote
 	for efecto in tipo_pelotita.efectos:
 		efecto.impactar_con_objeto(self, body)
 	sonido_rebote()
@@ -128,4 +143,5 @@ func sonido_rebote():
 #eliminar la bola de pelos cuando sale de la pantalla
 func _physics_process(_delta : float) -> void:
 	if not limites_juego.has_point(global_position):
+		ReliquiasManager.al_perder_bola(self)
 		queue_free()

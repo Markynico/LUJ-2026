@@ -7,28 +7,49 @@ extends Line2D
 ##color del circulo que marca donde impacta la bola
 @export var color_impacto : Color = Color.WHITE
 
+##deja un rastro en vivo de cada bola disparada, lo activa la tapita de lapicera
 @export var mostrar_camino_previo : bool = false
-@export var color_camino_previo : Color = Color(0.4, 0.75, 1.0, 0.45)
+##escena del rastro que sigue a cada bola
+@export var escena_rastro : PackedScene = preload("uid://crastrobola0a1")
+##segundos del fade de los rastros cuando arranca el siguiente disparo
+@export var duracion_fade_rastro : float = 0.5
 ##segundos del fade de la trayectoria cuando el mouse esta sobre la ui y el click no dispara
 @export var duracion_fade_ui : float = 0.15
 
 var hay_impacto : bool = false
 var centro_impacto : Vector2
 var gato : Gato
-var puntos_camino_previo : PackedVector2Array = PackedVector2Array()
+var rastros : Array[RastroBola] = []
+var tipo_pelotita_simulada : PelotitaBase
 
 func _ready() -> void:
 	gato = disparador.get_parent() as Gato
 	if disparador:
-		disparador.disparo.connect(_on_disparo_realizado)
+		disparador.disparo.connect(desvanecer_rastros)
+	get_tree().node_added.connect(al_agregar_nodo)
 
-func _on_disparo_realizado() -> void:
-	if mostrar_camino_previo:
-		var datos : DatosDisparo = disparador.preparar_datos_disparo()
-		if gato and gato.listo_para_lanzar:
-			ajustar_datos_para_gato(datos)
-		puntos_camino_previo = calcular_puntos(datos)
-		queue_redraw()
+func al_agregar_nodo(nodo : Node) -> void:
+	if mostrar_camino_previo and nodo is BolaDePelos:
+		crear_rastro.call_deferred(nodo)
+
+func crear_rastro(bola : BolaDePelos) -> void:
+	var rastro : RastroBola
+	if not is_instance_valid(bola) or not escena_rastro:
+		return
+	rastro = escena_rastro.instantiate()
+	disparador.add_child(rastro)
+	rastro.seguir(bola)
+	rastros.append(rastro)
+
+func desvanecer_rastros() -> void:
+	var tween : Tween
+	for rastro in rastros:
+		if not is_instance_valid(rastro):
+			continue
+		tween = rastro.create_tween()
+		tween.tween_property(rastro, "modulate:a", 0.0, duracion_fade_rastro)
+		tween.tween_callback(rastro.queue_free)
+	rastros.clear()
 
 func _process(delta : float) -> void:
 	var sobre_ui : bool = get_viewport().gui_get_hovered_control() != null
@@ -64,12 +85,6 @@ func dibujar_trayectoria() -> void:
 	queue_redraw()
 
 func _draw() -> void:
-	if mostrar_camino_previo and puntos_camino_previo.size() > 1:
-		var puntos_locales := PackedVector2Array()
-		for p in puntos_camino_previo:
-			puntos_locales.append(to_local(p))
-		draw_polyline(puntos_locales, color_camino_previo, 2.5, true)
-	
 	if hay_impacto:
 		draw_circle(to_local(centro_impacto), radio_de_la_bola(), color_impacto)
 
@@ -81,19 +96,29 @@ func calcular_puntos(datos : DatosDisparo) -> PackedVector2Array:
 	var posicion : Vector2 = disparador.global_position
 	var velocidad : Vector2 = datos.velocidad_inicial
 	var rebotes_restantes : int = datos.rebotes
+	var velocidad_angular : float = 0.0
 	var movimiento : Vector2
 	var normal : Vector2
+	var tangente : Vector2
+	var velocidad_normal : float
+	var velocidad_tangencial : float
+	var impulso_normal : float
+	var impulso_friccion : float
+	var deslizamiento : float
 	var cuerpo : Node
-	var fuerza_rebote : float
+	var impulso_extra : float
+	var frontalidad : float
 	if gato and gato.listo_para_lanzar:
 		posicion = gato.global_position
 	if not detector:
 		return puntos
+	tipo_pelotita_simulada = datos.tipo_pelotita
 	detector.clear_exceptions()
 	detector.global_position = posicion
 	puntos.append(posicion)
 	for i in datos.pasos:
 		velocidad += datos.gravedad * datos.intervalo
+		velocidad_angular *= maxf(0.0, 1.0 - datos.amortiguacion_angular * datos.intervalo)
 		movimiento = velocidad * datos.intervalo
 		detector.target_position = movimiento
 		detector.clear_exceptions()
@@ -111,11 +136,22 @@ func calcular_puntos(datos : DatosDisparo) -> PackedVector2Array:
 				break
 			rebotes_restantes -= 1
 			normal = detector.get_collision_normal(0)
-			fuerza_rebote = datos.fuerza_rebote
+			tangente = Vector2(-normal.y, normal.x)
+			velocidad_normal = velocidad.dot(normal)
+			velocidad_tangencial = velocidad.dot(tangente)
+			impulso_normal = maxf(0.0, -velocidad_normal)
+			deslizamiento = velocidad_tangencial - velocidad_angular * datos.radio
+			impulso_friccion = clampf(-deslizamiento / 3.0, -datos.friccion * impulso_normal, datos.friccion * impulso_normal)
+			velocidad_tangencial += impulso_friccion
+			velocidad_angular -= 2.0 * impulso_friccion / datos.radio
+			impulso_extra = 0.0
 			cuerpo = detector.get_collider(0)
-			if cuerpo is Ovillo and cuerpo.tipo_ovillo:
-				fuerza_rebote += cuerpo.tipo_ovillo.rebote_extra
-			velocidad = velocidad.slide(normal) * datos.factor_friccion + normal * fuerza_rebote
+			if cuerpo is Ovillo:
+				impulso_extra = datos.fuerza_rebote
+				if cuerpo.tipo_ovillo:
+					impulso_extra += cuerpo.tipo_ovillo.rebote_extra * ReliquiasManager.multiplicador_rebote()
+			frontalidad = clampf(-velocidad.normalized().dot(normal), 0.0, 1.0)
+			velocidad = tangente * velocidad_tangencial + normal * (impulso_normal * datos.restitucion + impulso_extra * frontalidad)
 			posicion += normal * 0.5
 		else:
 			posicion += movimiento
@@ -131,6 +167,8 @@ func puede_atravesar(colisionador : Object, indice_forma : int, velocidad : Vect
 	var direccion_bloqueo : Vector2
 	if not colisionador is CollisionObject2D:
 		return false
+	if colisionador is Ovillo and not colisionador.simular_impacto(tipo_pelotita_simulada).rebotar:
+		return true
 	id_dueño = colisionador.shape_find_owner(indice_forma)
 	nodo_forma = colisionador.shape_owner_get_owner(id_dueño) as CollisionShape2D
 	if nodo_forma == null or not nodo_forma.one_way_collision:
