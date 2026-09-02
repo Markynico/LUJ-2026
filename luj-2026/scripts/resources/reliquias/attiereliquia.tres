@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ReliquiaAttiereliquia" format=3 uid="uid://bj5irjuw5gg3x"]
+
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_056ru"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="2_4h27k"]
+[ext_resource type="Script" uid="uid://brnwunugdod80" path="res://scripts/reliquias/reliquia_attiereliquia.gd" id="3_hj4ps"]
+[ext_resource type="Script" uid="uid://bb1k1rxvpqrte" path="res://scripts/reliquias/efectos/efecto_multiplicador.gd" id="3_ne70a"]
+[ext_resource type="Script" uid="uid://bbkyk2anhunsd" path="res://scripts/ovillos_custom/ovillo_base.gd" id="4_7nn3g"]
+
+[sub_resource type="Resource" id="Resource_ne70a"]
+script = ExtResource("3_ne70a")
+metadata/_custom_type_script = "uid://bb1k1rxvpqrte"
+
+[resource]
+script = ExtResource("3_hj4ps")
+nombre = "attiereliquia"
+rareza = 3
+descripcion = "asdasd"
+efectos = Array[ExtResource("2_4h27k")]([SubResource("Resource_ne70a")])

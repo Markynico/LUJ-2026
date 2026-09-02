@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_cond"]
 [ext_resource type="Script" uid="uid://500ygl8unvu8" path="res://scripts/reliquias/reliquia_objeto_valioso.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://oxa36ljbg4m1" path="res://assets/reliquias/objeto valioso.png" id="2_rel"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="3_m3b1f"]
 
 [sub_resource type="Resource" id="CondicionDesbloqueo_1"]
 script = ExtResource("1_cond")

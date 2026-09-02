@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://rh5uy6oohjtf" path="res://scripts/reliquias/reliquia_explosion.gd" id="1_rel"]
 [ext_resource type="Resource" uid="uid://d3ks2dut6iacd" path="res://scripts/resources/ovillo_explosivo_final.tres" id="2_pvms4"]
 [ext_resource type="Texture2D" uid="uid://cpyotu2a1o1vd" path="res://assets/reliquias/barril de polvora.png" id="2_rel"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="3_kkkwn"]
 [ext_resource type="Resource" uid="uid://c1h6r4503qfwr" path="res://scripts/resources/ovillo_explosivo_potenciado.tres" id="3_pot"]
 
 [sub_resource type="Resource" id="CondicionDesbloqueo_1"]

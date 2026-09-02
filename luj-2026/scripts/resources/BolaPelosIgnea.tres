@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="PelotitaBase" format=3 uid="uid://vpcwlt8nkqws"]
 
 [ext_resource type="Script" uid="uid://c31lbqa2grch4" path="res://scripts/pelotitas_custom/efectos_pelotita.gd" id="1_d1vni"]
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_hjwoq"]
 [ext_resource type="Resource" uid="uid://dhfl3nr18ocme" path="res://scripts/resources/EfectoIgnea.tres" id="2_3h511"]
 [ext_resource type="Texture2D" uid="uid://denhvkktlq0d5" path="res://assets/comidas/taco gato michinko color 1 (1).png" id="2_55oik"]
 [ext_resource type="Script" uid="uid://c7ogyqxnq7236" path="res://scripts/pelotitas_custom/pelotita_base.gd" id="2_yh2yi"]

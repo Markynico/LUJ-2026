@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_cond"]
 [ext_resource type="Texture2D" uid="uid://dtq6yoigy4ju4" path="res://assets/reliquias/bola de cristal.png" id="1_phkcm"]
 [ext_resource type="Script" uid="uid://coqxqp65jh0xk" path="res://scripts/reliquias/reliquia_bola_cristal.gd" id="1_rel"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="2_46tsh"]
 
 [sub_resource type="Resource" id="CondicionDesbloqueo_1"]
 script = ExtResource("1_cond")

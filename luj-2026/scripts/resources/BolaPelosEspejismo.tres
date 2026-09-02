@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="PelotitaBase" format=3 uid="uid://7vcfjwmh5spv"]
 
 [ext_resource type="Script" uid="uid://c31lbqa2grch4" path="res://scripts/pelotitas_custom/efectos_pelotita.gd" id="1_eb33o"]
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_khwvm"]
 [ext_resource type="Resource" uid="uid://bvv1rqdfseda7" path="res://scripts/resources/EfectoEspejismo.tres" id="2_eer0r"]
 [ext_resource type="Texture2D" uid="uid://bm70i2hqdpo7y" path="res://assets/comidas/58e920a1eb97430e8190650f.png" id="3_eer0r"]
 [ext_resource type="Script" uid="uid://c7ogyqxnq7236" path="res://scripts/pelotitas_custom/pelotita_base.gd" id="3_khwvm"]

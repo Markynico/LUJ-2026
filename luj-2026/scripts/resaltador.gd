@@ -4,7 +4,7 @@ extends RefCounted
 const PALABRAS : Dictionary = {
 	"explosivo": {"color": Color("E33B2E"), "icono": "uid://dhf7cpyrxnlhx", "modo": "texto", "titulo": "{explosivo:texto/Ovillo explosivo}", "explicacion": "Al romperse prende la mecha y explota, rompiendo los ovillos cercanos y empujando la bola."},
 	"catnip": {"color": Color("7DC43D"), "icono": "uid://4j10avmo472q", "modo": "texto", "titulo": "{catnip:texto/Catnip}", "explicacion": "Mientras dura, los ovillos que rompas dan el doble de puntos."},
-	"rebobinar": {"color": Color("A64FE3"), "icono": "uid://d1d8tmba154nk", "modo": "texto", "titulo": "{rebobinar:texto/Rebobinar}", "explicacion": "Devuelve la bola al gato para tirarla de nuevo sin gastar un tiro."},
+	"rebobinar": {"color": Color("A64FE3"), "icono": "uid://d1d8tmba154nk", "modo": "texto", "titulo": "{rebobinar:texto/Ovillo Rebobinador}", "explicacion": "Devuelve la bola al gato para tirarla de nuevo sin gastar un tiro."},
 	"monedas": {"color": Color("D9AD21"), "icono": "uid://cmgxgm42kfbke", "modo": "texto", "titulo": "{monedas:texto/Monedas}", "explicacion": "Sirven para comprar reliquias y comidas."},
 	"ovillo_monedas": {"color": Color("d9a702ff"), "icono": "uid://csdrv6d6trs4a", "modo": "texto", "titulo": "{ovillo_monedas:texto/Ovillo de monedas}", "explicacion": "Ademas de puntos, da {monedas} al romperse."},
 	"ovillo_normal": {"color": Color("998042ff"), "icono": "uid://dbxxyb6slkgym", "modo": "texto", "titulo": "{ovillo_normal:texto/Ovillo normal}", "explicacion": "Suma puntos al romperse."},

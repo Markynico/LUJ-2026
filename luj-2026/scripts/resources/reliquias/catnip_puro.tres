@@ -5,6 +5,7 @@
 [ext_resource type="Resource" uid="uid://cy6q6prk7gt7p" path="res://scripts/resources/ovillo_catnip.tres" id="2_j63x8"]
 [ext_resource type="Texture2D" uid="uid://bt0w4bqv1gqf0" path="res://assets/reliquias/catnip puro.png" id="2_rel"]
 [ext_resource type="Resource" uid="uid://druivdavm0d32" path="res://scripts/resources/reliquias/planta_catnip.tres" id="3_mct3k"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="4_8g647"]
 
 [sub_resource type="Resource" id="CondicionDesbloqueo_1"]
 script = ExtResource("1_cond")

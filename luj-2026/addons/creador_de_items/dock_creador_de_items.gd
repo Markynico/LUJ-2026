@@ -222,10 +222,12 @@ func script_editable(recurso : Resource) -> Script:
 
 func hooks_del_script(script : Script) -> Array[String]:
 	var resultado : Array[String] = []
+	var regex : RegEx = RegEx.new()
 	if not script or script.resource_path == datos_tipo()["script_base"]:
 		return resultado
-	for metodo in script.get_script_method_list():
-		resultado.append(metodo["name"])
+	regex.compile("(?m)^func\\s+(\\w+)\\s*\\(")
+	for coincidencia in regex.search_all(script.source_code):
+		resultado.append(coincidencia.get_string(1))
 	return resultado
 
 

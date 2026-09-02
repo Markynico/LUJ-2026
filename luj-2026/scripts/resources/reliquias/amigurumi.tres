@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_cond"]
 [ext_resource type="Script" uid="uid://emd61ttv1ajj" path="res://scripts/reliquias/reliquia_opciones_loot.gd" id="1_rel"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="2_lwn8r"]
 [ext_resource type="Texture2D" uid="uid://c0s8mgjvka2e6" path="res://assets/reliquias/amigurumi.png" id="2_rel"]
 
 [sub_resource type="Resource" id="CondicionDesbloqueo_1"]

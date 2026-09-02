@@ -157,7 +157,6 @@ timer_blink = NodePath("TimerBlink")
 particulas_orgulloso = NodePath("CPUParticles2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=36343804]
-z_as_relative = false
 texture_filter = 2
 position = Vector2(3, 2)
 scale = Vector2(0.21, 0.21)

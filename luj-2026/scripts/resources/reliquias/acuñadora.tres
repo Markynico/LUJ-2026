@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_cond"]
 [ext_resource type="Script" uid="uid://d13ovhr65hhwo" path="res://scripts/reliquias/reliquia_monedas_ovillo.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://bequ45lam4nqd" path="res://assets/reliquias/acuñadora de monedas.png" id="2_rel"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="3_16qid"]
 [ext_resource type="Resource" uid="uid://dky2mbnm2rn0l" path="res://scripts/resources/ovillo_monedas.tres" id="3_rel"]
 [ext_resource type="Script" uid="uid://bbkyk2anhunsd" path="res://scripts/ovillos_custom/ovillo_base.gd" id="4_rel"]
 

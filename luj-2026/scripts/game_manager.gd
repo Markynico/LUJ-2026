@@ -57,6 +57,8 @@ static var niveles_ganados_run : int = 0
 @export var probabilidad_epico : float = 10.0
 ##probabilidad en porcentaje de rareza legendaria
 @export var probabilidad_legendario : float = 5.0
+##probabilidad en porcentaje de rareza mitica
+@export var probabilidad_mitico : float = 0.5
 @export_group("")
 
 
@@ -339,9 +341,9 @@ func reiniciar_nivel_actual() -> void:
 
 
 func sortear_rareza() -> Rareza.Nivel:
-	var azar : float = randf() * (probabilidad_comun + probabilidad_raro + probabilidad_epico + probabilidad_legendario)
+	var azar : float = randf() * (probabilidad_comun + probabilidad_raro + probabilidad_epico + probabilidad_legendario + probabilidad_mitico)
 	var acumulado : float = 0.0
-	var probabilidades : Array[float] = [probabilidad_comun, probabilidad_raro, probabilidad_epico, probabilidad_legendario]
+	var probabilidades : Array[float] = [probabilidad_comun, probabilidad_raro, probabilidad_epico, probabilidad_legendario, probabilidad_mitico]
 	for nivel in probabilidades.size():
 		acumulado += probabilidades[nivel]
 		if azar <= acumulado:

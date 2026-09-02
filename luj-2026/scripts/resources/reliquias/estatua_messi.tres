@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_cond"]
 [ext_resource type="Script" uid="uid://v30ldg5twv23" path="res://scripts/reliquias/reliquia_messi.gd" id="1_rel"]
 [ext_resource type="Texture2D" uid="uid://ber6xmqybwe5f" path="res://assets/reliquias/estatua de messi de oro.png" id="2_rel"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="3_b1a3m"]
 
 [sub_resource type="Resource" id="CondicionDesbloqueo_1"]
 script = ExtResource("1_cond")
