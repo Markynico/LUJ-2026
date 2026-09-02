@@ -43,6 +43,8 @@ static var niveles_ganados_run : int = 0
 @export_range(0.1, 1.0, 0.05, "or_greater") var porcentaje_ovillos_requerido : float = 0.30
 ##reliquias con las que arranca la run, para probar
 @export var reliquias_iniciales : Array[Reliquia] = []
+##comidas con las que arranca la run, para probar; se agregan como comidas elegidas
+@export var comidas_iniciales : Array[PelotitaBase] = []
 ##monedas con las que arranca la run
 @export var monedas_iniciales : int = 0
 ##dificultad que se usa si no se eligio ninguna en el menu
@@ -91,6 +93,11 @@ func _ready() -> void:
 		if not dificultad_actual:
 			dificultad_actual = dificultad_default
 		EstadisticasRun.empezar_run()
+		for comida in comidas_iniciales:
+			if comida:
+				Global.comidas_elegidas.append(comida)
+		if not comidas_iniciales.is_empty():
+			Global.eligio_una_comida.emit()
 	vidas_actuales = vidas_guardadas
 
 	if ReliquiasManager.obtenidas.is_empty():
