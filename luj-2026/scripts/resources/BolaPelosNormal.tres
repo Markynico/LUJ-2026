@@ -16,6 +16,7 @@ metadata/_custom_type_script = "uid://5i4oxxen13xa"
 
 [resource]
 script = ExtResource("1_07tsf")
+en_tienda = false
 nombre = "Panchosvaldo"
 descripcion = "Todo normal, la comida clásica de un gato."
 textura = ExtResource("4_8pm5w")

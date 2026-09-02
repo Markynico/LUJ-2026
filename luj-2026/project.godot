@@ -46,7 +46,7 @@ export/convert_text_resources_to_binary=false
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/editor_de_niveles/plugin.cfg")
+enabled=PackedStringArray("res://addons/creador_de_items/plugin.cfg", "res://addons/editor_de_niveles/plugin.cfg")
 
 [file_customization]
 

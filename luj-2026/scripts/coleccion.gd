@@ -3,10 +3,6 @@ extends Control
 
 signal cerrada
 
-##reliquias que muestra la coleccion
-@export var pool_reliquias : Array[Reliquia] = []
-##comidas que muestra la coleccion
-@export var pool_comidas : Array[PelotitaBase] = []
 ##escala de las tarjetas en la grilla
 @export var escala_tarjeta : float = 0.5
 ##tamaño base de la tarjeta
@@ -23,6 +19,8 @@ signal cerrada
 @export var tamaño_fuente_condicion_minimo : int = 12
 ##margen en pixeles entre el texto de desbloqueo y el borde de la tarjeta, ya escalada
 @export var margen_texto_condicion : float = 24.0
+##escala de los iconos inline en el texto de desbloqueo
+@export var escala_iconos_condicion : float = 1.6
 ##fuente del texto de condicion de desbloqueo
 @export var fuente_condicion : Font = preload("uid://dwg47e0trev3j")
 
@@ -35,8 +33,8 @@ signal cerrada
 
 func _ready() -> void:
 	boton_volver.pressed.connect(volver_al_menu)
-	poblar_grilla(grilla_reliquias, pool_reliquias)
-	poblar_grilla(grilla_comidas, pool_comidas)
+	poblar_grilla(grilla_reliquias, CatalogoItems.reliquias_en_coleccion())
+	poblar_grilla(grilla_comidas, CatalogoItems.comidas_en_coleccion())
 
 
 func poblar_grilla(grilla : GridContainer, items : Array) -> void:
@@ -81,7 +79,7 @@ func bloquear_tarjeta(envoltura : Control, tarjeta : Tarjeta, reliquia : Resourc
 	etiqueta.add_theme_font_override("normal_font", fuente_condicion)
 	etiqueta.add_theme_font_size_override("normal_font_size", tamaño_fuente_que_entra(texto_plano(texto), envoltura.custom_minimum_size - Vector2.ONE * margen_texto_condicion * 2.0))
 	etiqueta.add_theme_color_override("default_color", Color.WHITE)
-	etiqueta.text = "[center]" + Resaltador.formatear(texto) + "[/center]"
+	etiqueta.text = "[center]" + Resaltador.formatear(texto, escala_iconos_condicion) + "[/center]"
 	etiqueta.set_anchors_preset(Control.PRESET_FULL_RECT)
 	etiqueta.offset_left = margen_texto_condicion
 	etiqueta.offset_top = margen_texto_condicion

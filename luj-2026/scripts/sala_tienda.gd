@@ -3,10 +3,6 @@ extends Control
 
 signal continuar_pedido
 
-##reliquias que pueden aparecer a la venta, se excluyen las ya obtenidas
-@export var pool_reliquias : Array[Reliquia] = []
-##comidas que pueden aparecer a la venta
-@export var pool_comidas : Array[PelotitaBase] = []
 ##reliquias en oferta en la fila de arriba
 @export var cantidad_reliquias : int = 3
 ##comidas en oferta en la fila de abajo
@@ -50,10 +46,10 @@ func poblar_ofertas() -> void:
 	var reliquias : Array = []
 	var comidas : Array = []
 	await get_tree().process_frame
-	for reliquia in Progreso.filtrar_desbloqueadas(pool_reliquias):
+	for reliquia in Progreso.filtrar_desbloqueadas(CatalogoItems.reliquias_en_tienda()):
 		if not ReliquiasManager.obtenidas.has(reliquia):
 			reliquias.append(reliquia)
-	comidas = Progreso.filtrar_desbloqueadas(pool_comidas)
+	comidas = Progreso.filtrar_desbloqueadas(CatalogoItems.comidas_en_tienda())
 	armar_fila(fila_reliquias, elegir_oferta(reliquias, cantidad_reliquias))
 	armar_fila(fila_comidas, elegir_oferta(comidas, cantidad_comidas))
 

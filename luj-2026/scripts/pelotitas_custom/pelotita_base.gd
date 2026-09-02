@@ -14,6 +14,12 @@ extends Resource
 ##imagen q se va a mostrar en el selector de comidas, la idea es q una pelotita este asociada a una comida si no me equivoco no?
 @export var imagen_comida_asociada : Texture2D
 
+@export_group("Catalogo")
+##si puede aparecer a la venta en la tienda
+@export var en_tienda : bool = true
+##si se muestra en la coleccion
+@export var en_coleccion : bool = true
+
 @export_group("Desbloqueo")
 ##condiciones que deben cumplirse todas para desbloquear la comida, vacio = desbloqueada de entrada
 @export var condiciones_desbloqueo : Array[CondicionDesbloqueo] = []
