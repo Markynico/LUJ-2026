@@ -8,6 +8,8 @@ const SECCION_ARCHIVO : String = "archivo"
 const SECCION_CONTADORES : String = "contadores"
 const SECCION_DESBLOQUEOS : String = "desbloqueos"
 const VERSION_ARCHIVO : int = 2
+const SECCION_RUN_EN_CURSO : String = "run_en_curso"
+const SEGUNDOS_ENTRE_GUARDADOS : float = 3.0
 const SEPARADOR_CONDICIONES : String = ", "
 const SEPARADOR_ULTIMA_CONDICION : String = " y "
 
@@ -53,10 +55,53 @@ var cache_condiciones_lista : bool = false
 var snapshot_run : Array[String] = []
 var archivo_dañado : bool = false
 var revisando : Array[String] = []
+var guardado_pendiente : bool = false
+var tiempo_desde_guardado : float = 0.0
 
 
 func _ready() -> void:
 	cargar()
+
+
+func _process(delta : float) -> void:
+	tiempo_desde_guardado += delta
+	if guardado_pendiente and tiempo_desde_guardado >= SEGUNDOS_ENTRE_GUARDADOS:
+		guardar()
+
+
+func _notification(que : int) -> void:
+	if que == NOTIFICATION_WM_CLOSE_REQUEST and guardado_pendiente:
+		guardar()
+
+
+func pedir_guardado() -> void:
+	guardado_pendiente = true
+
+
+func estadisticas_de_run() -> Dictionary:
+	return {
+		"niveles_ganados": EstadisticasRun.niveles_ganados,
+		"niveles_perdidos": EstadisticasRun.niveles_perdidos,
+		"niveles_limpios": EstadisticasRun.niveles_limpios,
+		"ovillos_rotos": EstadisticasRun.ovillos_rotos,
+		"bolas_disparadas": EstadisticasRun.bolas_disparadas,
+		"monedas_conseguidas": EstadisticasRun.monedas_conseguidas,
+		"monedas_gastadas": EstadisticasRun.monedas_gastadas,
+		"items_comprados": EstadisticasRun.comidas_compradas + EstadisticasRun.reliquias_adquiridas.size(),
+		"reliquias_adquiridas": EstadisticasRun.reliquias_adquiridas.size(),
+		"curas_compradas": EstadisticasRun.curas_compradas,
+		"reliquias_de_loot": EstadisticasRun.reliquias_de_loot,
+		"ovillos_rotos_por_tipo": EstadisticasRun.ovillos_rotos_por_tipo.duplicate(),
+	}
+
+
+func sumar_estadisticas(datos : Dictionary) -> void:
+	var por_tipo : Dictionary = datos.get("ovillos_rotos_por_tipo", {})
+	for clave in datos:
+		if contadores.has(clave):
+			contadores[clave] += int(datos[clave])
+	for clave in por_tipo:
+		ovillos_rotos_por_tipo[clave] = ovillos_rotos_por_tipo.get(clave, 0) + int(por_tipo[clave])
 
 
 func acumular_run() -> void:
@@ -67,19 +112,7 @@ func acumular_run() -> void:
 		if EstadisticasRun.dificultad:
 			rango = EstadisticasRun.dificultad.rango
 			runs_ganadas_por_rango[rango] = runs_ganadas_por_rango.get(rango, 0) + 1
-	contadores["niveles_ganados"] += EstadisticasRun.niveles_ganados
-	contadores["niveles_perdidos"] += EstadisticasRun.niveles_perdidos
-	contadores["niveles_limpios"] += EstadisticasRun.niveles_limpios
-	contadores["ovillos_rotos"] += EstadisticasRun.ovillos_rotos
-	contadores["bolas_disparadas"] += EstadisticasRun.bolas_disparadas
-	contadores["monedas_conseguidas"] += EstadisticasRun.monedas_conseguidas
-	contadores["monedas_gastadas"] += EstadisticasRun.monedas_gastadas
-	contadores["items_comprados"] += EstadisticasRun.comidas_compradas + EstadisticasRun.reliquias_adquiridas.size()
-	contadores["reliquias_adquiridas"] += EstadisticasRun.reliquias_adquiridas.size()
-	contadores["curas_compradas"] += EstadisticasRun.curas_compradas
-	contadores["reliquias_de_loot"] += EstadisticasRun.reliquias_de_loot
-	for clave in EstadisticasRun.ovillos_rotos_por_tipo:
-		ovillos_rotos_por_tipo[clave] = ovillos_rotos_por_tipo.get(clave, 0) + EstadisticasRun.ovillos_rotos_por_tipo[clave]
+	sumar_estadisticas(estadisticas_de_run())
 	revisar_desbloqueos()
 	guardar()
 
@@ -133,6 +166,7 @@ func revisar_desbloqueos_en_vivo() -> void:
 	var hubo_nuevas : bool = false
 	if not EstadisticasRun.run_activa:
 		return
+	pedir_guardado()
 	for recurso in recursos_con_condicion:
 		if reliquias_desbloqueadas.has(recurso.resource_path):
 			continue
@@ -235,7 +269,7 @@ func descripcion_condiciones(recurso : Resource) -> String:
 func contadores_condiciones(recurso : Resource) -> String:
 	var partes : PackedStringArray = PackedStringArray()
 	for condicion in condiciones_de(recurso):
-		partes.append("%d/%d" % [valor_condicion(condicion), condicion.cantidad])
+		partes.append("%d/%d" % [mini(valor_condicion(condicion) + (parcial_condicion(condicion) if EstadisticasRun.run_activa else 0), condicion.cantidad), condicion.cantidad])
 	return unir_naturalmente(partes)
 
 
@@ -323,7 +357,11 @@ func guardar() -> void:
 	for rango in runs_ganadas_por_rango:
 		archivo.set_value("runs_ganadas_por_rango", str(rango), runs_ganadas_por_rango[rango])
 	archivo.set_value(SECCION_DESBLOQUEOS, "reliquias", reliquias_desbloqueadas)
+	if EstadisticasRun.run_activa:
+		archivo.set_value(SECCION_RUN_EN_CURSO, "estadisticas", estadisticas_de_run())
 	archivo.save(RUTA_ARCHIVO)
+	guardado_pendiente = false
+	tiempo_desde_guardado = 0.0
 
 
 func cargar() -> void:
@@ -347,6 +385,9 @@ func cargar() -> void:
 		for clave in archivo.get_section_keys("runs_ganadas_por_rango"):
 			runs_ganadas_por_rango[int(clave)] = archivo.get_value("runs_ganadas_por_rango", clave, 0)
 	reliquias_desbloqueadas.assign(archivo.get_value(SECCION_DESBLOQUEOS, "reliquias", []))
+	if archivo.has_section(SECCION_RUN_EN_CURSO):
+		sumar_estadisticas(archivo.get_value(SECCION_RUN_EN_CURSO, "estadisticas", {}))
+		guardar()
 
 
 func resetear() -> void:
