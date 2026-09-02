@@ -17,6 +17,7 @@ const PALABRAS : Dictionary = {
 	"facil": {"color": Color("6cc04a"), "icono": "uid://bp1qyy3ksenhp", "modo": "texto", "borde": Color(0.2, 0.8, 0.3), "titulo": "{facil:texto/Dificultad facil}", "explicacion": "Pocas salas para ganar la run y metas mas bajas por nivel."},
 	"media": {"color": Color("e0a030"), "icono": "uid://dmd7g1ic6s8dq", "modo": "texto", "escala": 1.2, "borde": Color(1.0, 0.6, 0.1), "titulo": "{media:texto/Dificultad media}", "explicacion": "Mas salas para ganar la run y metas mas exigentes."},
 	"dificil": {"color": Color("d84a3c"), "icono": "uid://dbh4cm5upkxnq", "modo": "texto", "escala": 1.5, "borde": Color(0.9, 0.15, 0.15), "titulo": "{dificil:texto/Dificultad dificil}", "explicacion": "La run mas larga, con las metas mas altas por nivel."},
+	"congelar": {"color": Color("48c7fdff"), "icono": "", "modo": "texto", "escala": 1.2, "titulo": "{congelar:texto/Congelar}", "explicacion": "Las bolas de pelo rompen y atraviesan los ovillos {congelar:texto/congelados}."},
 }
 const TAMAÑO_ICONO : int = 24
 const GROSOR_BORDE : int = 5

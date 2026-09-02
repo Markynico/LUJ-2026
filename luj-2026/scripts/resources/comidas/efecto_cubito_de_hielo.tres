@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="EfectoCubitoDeHielo" format=3 uid="uid://bxxr4c5gt4hx7"]
+
+[ext_resource type="Script" uid="uid://c7o5v3vrisdoi" path="res://scripts/pelotitas_custom/efecto_cubito_de_hielo.gd" id="1_30hhb"]
+
+[resource]
+script = ExtResource("1_30hhb")

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="PelotitaBase" format=3 uid="uid://8m1yr604l01d"]
+
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_tpdhy"]
+[ext_resource type="Script" uid="uid://c31lbqa2grch4" path="res://scripts/pelotitas_custom/efectos_pelotita.gd" id="2_a5h7k"]
+[ext_resource type="Texture2D" uid="uid://cas0ddsvmj7yp" path="res://assets/comidas/cubo de hielo.png" id="3_q8h8o"]
+[ext_resource type="Script" uid="uid://c7ogyqxnq7236" path="res://scripts/pelotitas_custom/pelotita_base.gd" id="4_1ight"]
+[ext_resource type="Resource" uid="uid://b6qcuay1h3qds" path="res://scripts/resources/EfectoAplicarEstado.tres" id="4_gnsxp"]
+[ext_resource type="Texture2D" uid="uid://dpfpo1g874ow0" path="res://assets/bola de pelos helada.png" id="5_gnsxp"]
+
+[sub_resource type="Gradient" id="Gradient_abins"]
+colors = PackedColorArray(1, 1, 1, 1, 0.5647059, 0.8980392, 0.9098039, 1)
+
+[resource]
+script = ExtResource("4_1ight")
+nombre = "Cubito de Hielo"
+descripcion = "{congelar:texto/Congela} los ovillos que toca.
+Solo rompe ovillos ya {congelar:texto/congelados}.
+
+\"Tendría calor...?\""
+rareza = 1
+textura = ExtResource("5_gnsxp")
+colores_estela = SubResource("Gradient_abins")
+imagen_comida_asociada = ExtResource("3_q8h8o")
+efectos = Array[ExtResource("2_a5h7k")]([ExtResource("4_gnsxp")])
