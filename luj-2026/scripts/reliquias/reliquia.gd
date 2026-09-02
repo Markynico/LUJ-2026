@@ -23,7 +23,15 @@ extends EfectoReliquia
 
 
 func descripcion_para_mostrar() -> String:
-	return descripcion
+	var texto : String = descripcion
+	var extra : String
+	for efecto in efectos:
+		if efecto:
+			extra = efecto.texto_extra()
+			if not extra.is_empty():
+				texto += "
+" + extra
+	return texto
 
 
 func fuentes() -> Array:

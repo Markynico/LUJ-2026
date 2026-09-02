@@ -6,6 +6,11 @@ func evento(nombre : String, contexto : Dictionary) -> void:
 	pass
 
 
+##texto que se agrega al final de la descripcion de la reliquia, por ejemplo un contador de usos
+func texto_extra() -> String:
+	return ""
+
+
 func al_obtener(game_manager : GameManager) -> void:
 	evento("al_obtener", {"game_manager": game_manager})
 

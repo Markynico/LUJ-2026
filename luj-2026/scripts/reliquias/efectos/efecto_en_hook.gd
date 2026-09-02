@@ -15,6 +15,8 @@ var hook : String = "al_obtener"
 ##acciones que se ejecutan si la probabilidad falla
 @export var acciones_si_falla : Array[AccionReliquia] = []
 
+const COLOR_SIN_USOS : Color = Color("e0392e")
+
 var veces : int = 0
 var usos : int = 0
 
@@ -37,6 +39,14 @@ static func hooks_disponibles() -> PackedStringArray:
 			continue
 		resultado.append(metodo["name"])
 	return resultado
+
+
+func texto_extra() -> String:
+	var restantes : int
+	if usos_maximos <= 0:
+		return ""
+	restantes = maxi(0, usos_maximos - usos)
+	return "[color=#%s]%d/%d[/color]" % [(Rareza.color_de(Rareza.Nivel.COMUN) if restantes > 0 else COLOR_SIN_USOS).to_html(false), restantes, usos_maximos]
 
 
 func evento(nombre : String, contexto : Dictionary) -> void:
