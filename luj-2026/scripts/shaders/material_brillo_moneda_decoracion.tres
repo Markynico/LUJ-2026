@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bn1odh7e01qre"]
+
+[ext_resource type="Shader" uid="uid://pb3m8pym2mfr" path="res://scripts/shaders/brillo_barrido.gdshader" id="1_shader"]
+[ext_resource type="Texture2D" uid="uid://ctlasolsixbkd" path="res://assets/sprite_ovillos/este va en el ovillo cara.png" id="2_moneda"]
+
+[resource]
+shader = ExtResource("1_shader")
+shader_parameter/Line_Smoothness = 0.045
+shader_parameter/Line_Width = 0.09
+shader_parameter/Brightness = 3.0
+shader_parameter/Rotation_deg = 30.0
+shader_parameter/Distortion = 1.8
+shader_parameter/Speed = 0.7
+shader_parameter/Position = 0.0
+shader_parameter/Position_Min = 0.25
+shader_parameter/Position_Max = 0.5
+shader_parameter/Alpha = 1.0
+shader_parameter/surface = ExtResource("2_moneda")

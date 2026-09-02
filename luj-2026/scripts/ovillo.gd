@@ -24,6 +24,7 @@ var activado : bool = true
 var bola_que_impacto : BolaDePelos = null
 
 var multiplicador : int = 1 #para ovillo_catnip
+var multiplicador_oro : int = 1
 var estados : Array[EstadoOvillo] = []
 var ultimo_resultado : ResultadoImpacto
 
@@ -44,7 +45,7 @@ func _ready() -> void:
 				sprite_decoracion.hide()
 		if sprite_brillo_decoracion:
 			if tipo_ovillo.material_brillo_decoracion:
-				sprite_brillo_decoracion.texture = sprite_normal.texture
+				sprite_brillo_decoracion.texture = tipo_ovillo.decoracion if tipo_ovillo.brillo_en == OvilloBase.BrilloEn.DECORACION else sprite_normal.texture
 				sprite_brillo_decoracion.material = tipo_ovillo.material_brillo_decoracion
 				sprite_brillo_decoracion.show()
 			else:
@@ -249,6 +250,16 @@ func fin_duplicar() -> void:
 	else:
 		multiplicador = 1
 
+
+func duplicar_monedas() -> void:
+	if activado:
+		multiplicador_oro = 2
+
+
+func fin_duplicar_monedas() -> void:
+	if activado:
+		multiplicador_oro = 1
+
 func obtener_puntaje () -> int:
 	if not tipo_ovillo:
 		return 0
@@ -258,7 +269,7 @@ func obtener_puntaje () -> int:
 func obtener_monedas () -> int:
 	if not tipo_ovillo:
 		return 0
-	return pasar_por_estados("modificar_monedas", roundi(tipo_ovillo.cant_monedas * multiplicador * ReliquiasManager.multiplicador_monedas_para(tipo_ovillo)))
+	return pasar_por_estados("modificar_monedas", roundi(tipo_ovillo.cant_monedas * multiplicador * multiplicador_oro * ReliquiasManager.multiplicador_monedas_para(tipo_ovillo)))
 
 
 func pasar_por_estados(metodo : String, valor : int) -> int:

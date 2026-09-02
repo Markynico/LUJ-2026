@@ -7,7 +7,8 @@
 [ext_resource type="Resource" uid="uid://dky2mbnm2rn0l" path="res://scripts/resources/ovillo_monedas.tres" id="5_u0c8d"]
 [ext_resource type="Resource" uid="uid://cy6q6prk7gt7p" path="res://scripts/resources/ovillo_catnip.tres" id="6_3axgr"]
 [ext_resource type="Resource" uid="uid://fumr1qv4h1ho" path="res://scripts/resources/ovillo_rebobinar.tres" id="7_r2n36"]
+[ext_resource type="Resource" uid="uid://ovillooro00001" path="res://scripts/resources/ovillo_oro.tres" id="8_oro"]
 
 [node name="SpawnOvillo" type="Node2D" unique_id=566835572]
 script = ExtResource("1_spawn")
-tipo_ovillos = Array[ExtResource("2_c1m82")]([ExtResource("3_u0c8d"), ExtResource("4_c1m82"), ExtResource("5_u0c8d"), ExtResource("6_3axgr"), ExtResource("7_r2n36")])
+tipo_ovillos = Array[ExtResource("2_c1m82")]([ExtResource("3_u0c8d"), ExtResource("4_c1m82"), ExtResource("5_u0c8d"), ExtResource("6_3axgr"), ExtResource("7_r2n36"), ExtResource("8_oro")])

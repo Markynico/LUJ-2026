@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://13pthof0cqpy" path="res://assets/sprite_ovillos/este tapa la moneda.png" id="2_3ok5b"]
 [ext_resource type="Script" uid="uid://bbkyk2anhunsd" path="res://scripts/ovillos_custom/ovillo_base.gd" id="2_w3p2q"]
 [ext_resource type="Script" uid="uid://teghc6v6rp6c" path="res://scripts/ovillos_custom/efecto_monedas.gd" id="3_fa0qx"]
-[ext_resource type="Material" uid="uid://cfouekfi03sjc" path="res://scripts/shaders/material_brillo_moneda.tres" id="4_brillo"]
+[ext_resource type="Material" uid="uid://bn1odh7e01qre" path="res://scripts/shaders/material_brillo_moneda_decoracion.tres" id="4_brillo"]
 
 [sub_resource type="Resource" id="Resource_3vil1"]
 script = ExtResource("3_fa0qx")
@@ -16,10 +16,11 @@ script = ExtResource("2_w3p2q")
 nombre = "Ovillo de Monedas"
 descripcion = "Da {monedas} monedas al impactar.
 {puntos} Puntos."
-color = Color(0.74, 0.5426667, 0, 1)
+color = Color(1, 0.8926667, 0.72, 1)
 decoracion = ExtResource("1_fa0qx")
 "decoracion_teñida" = ExtResource("2_3ok5b")
 material_brillo_decoracion = ExtResource("4_brillo")
+brillo_en = 1
 efecto_al_romper = 2
 cant_monedas = 1
 rebote_extra = 0.0
