@@ -60,6 +60,9 @@ extends Node2D
 ##segundos que tarda el purr en volver a su volumen original
 @export var duracion_bajada_purr : float = 1.5
 
+@onready var layer_creditos: CanvasLayer = %LayerCreditos
+
+
 var gato_actual : int = 0
 var posicion_inicial : Vector2
 var zoom_inicial : Vector2
@@ -75,6 +78,7 @@ var botones_dificultad : Array[Button] = []
 
 
 func _ready() -> void:
+	layer_creditos.hide()
 	AudioManager.reproducir_musica(AudioManager.musica_menu)
 	posicion_inicial = camara.global_position
 	zoom_inicial = camara.zoom
@@ -158,6 +162,7 @@ func _unhandled_input(evento : InputEvent) -> void:
 
 
 func abrir_seleccion() -> void:
+	#layer_creditos.hide()
 	en_seleccion = true
 	iniciar_purr()
 	habilitar_botones_menu(false)
@@ -168,6 +173,7 @@ func abrir_seleccion() -> void:
 
 
 func cerrar_seleccion() -> void:
+	#layer_creditos.show()
 	en_seleccion = false
 	terminar_orgulloso()
 	if guante_caricia:
@@ -284,3 +290,11 @@ func habilitar_botones_menu(habilitar : bool) -> void:
 	for boton in get_children():
 		if boton is BotonEstandarte:
 			boton.mouse_filter = Control.MOUSE_FILTER_STOP if habilitar else Control.MOUSE_FILTER_IGNORE
+
+
+func _on_boton_cerrar_creditos_pressed() -> void:
+	layer_creditos.hide()
+
+
+func _on_button_creditos_pressed() -> void:
+		layer_creditos.show()

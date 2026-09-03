@@ -4,7 +4,6 @@
 [ext_resource type="Resource" uid="uid://bp6yjcorvvb2y" path="res://scripts/resources/BolaPelosMate.tres" id="2_rguhl"]
 [ext_resource type="PackedScene" uid="uid://dmexovyecfyo4" path="res://escenas/componentes/estela_movimiento.tscn" id="4_tra1g"]
 [ext_resource type="Texture2D" uid="uid://dljb32hglhe5q" path="res://assets/placeholders/bolaspelo_placeholder/placeholder_bola_de_pelos_michinko2.png" id="7_0ct46"]
-[ext_resource type="PackedScene" uid="uid://dymyh3ifxvug3" path="res://escenas/componentes/pergamino_info.tscn" id="9_sdgal"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bola"]
 friction = 0.6
@@ -44,11 +43,6 @@ z_index = 18
 width = 13.0
 body = NodePath("..")
 
-[node name="PergaminoInfo" parent="." unique_id=1923268390 instance=ExtResource("9_sdgal")]
-visible = false
-
 [node name="Node2D" type="Node2D" parent="." unique_id=1311147375]
 
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
-[connection signal="mouse_entered" from="." to="PergaminoInfo" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="." to="PergaminoInfo" method="_on_mouse_exited"]
