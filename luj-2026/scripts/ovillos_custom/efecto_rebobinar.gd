@@ -2,10 +2,10 @@ class_name  EfectoRebobinar
 extends EfectosOvillo
 
 func al_recibir_impacto(ovillo: Ovillo):
-	var bola = ovillo.bola_que_impacto
-	
-	if bola:
-		AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.REBOBINAR)
-		ovillo.rebobinar_bola.emit()
-		Global.agregar_pelotita_al_cargador(bola.tipo_pelotita)
-		print("EMITIDO")
+	var bola : BolaDePelos = ovillo.bola_que_impacto
+	var pelotita : PelotitaBase = bola.tipo_pelotita if bola else Global.ultima_pelotita_disparada
+	if not pelotita:
+		return
+	AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.REBOBINAR)
+	ovillo.rebobinar_bola.emit()
+	Global.agregar_pelotita_al_cargador(pelotita)

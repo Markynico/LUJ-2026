@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bh6v3wn4vlcem" path="res://escenas/componentes/cuadro_ui.tscn" id="3_0sskl"]
 [ext_resource type="Theme" uid="uid://cwsrathd8xljh" path="res://themes/theme_label_numeritos.tres" id="4_hrvm2"]
 [ext_resource type="Texture2D" uid="uid://cmgxgm42kfbke" path="res://assets/moneda cara.png" id="5_8qmdo"]
+[ext_resource type="Theme" uid="uid://bjkvjfhj8dr8y" path="res://themes/theme_ui_general.tres" id="6_tema"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_37ege"]
 resource_local_to_scene = true
@@ -195,6 +196,24 @@ size_flags_vertical = 3
 mouse_filter = 2
 expand_mode = 5
 stretch_mode = 5
+
+[node name="BotonDestruirBola" type="Button" parent="CanvasLayer" unique_id=764577970]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 42)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -360.0
+offset_top = 136.0
+offset_right = -20.0
+offset_bottom = 178.0
+grow_horizontal = 0
+pivot_offset = Vector2(170, 21)
+theme = ExtResource("6_tema")
+theme_override_font_sizes/font_size = 24
+text = "Destruir Bola"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=764577966]
 anchors_preset = 10

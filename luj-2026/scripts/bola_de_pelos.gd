@@ -27,6 +27,12 @@ extends RigidBody2D
 ##distancia fuera de los bordes del juego a la que se elimina la bola
 @export var margen_borde : float = 200.0
 
+@export_group("ATASCO")
+##segundos quieta para considerar que la bola esta atascada
+@export var segundos_para_atascarse : float = 5.0
+##velocidad por debajo de la cual la bola cuenta como quieta
+@export var umbral_quieta : float = 10.0
+
 var fue_duplicada : bool = false #se usa para efecto espejismo
 var impactos_ovillos : int = 0
 var objeto_ultimo_rebote : Node2D
@@ -37,6 +43,7 @@ var contador_rebotes : int = 0
 var limites_juego : Rect2
 var velocidad_previa : Vector2 = Vector2.ZERO
 var velocidad_entrante : Vector2 = Vector2.ZERO
+var tiempo_quieta : float = 0.0
 
 
 var vector_x : int = randi_range(-300, 300) #estaba en -500 , 500 y el de abajo tmb
@@ -162,7 +169,20 @@ func sonido_rebote():
 
 
 #eliminar la bola de pelos cuando sale de la pantalla
-func _physics_process(_delta : float) -> void:
+func _physics_process(delta : float) -> void:
 	if not limites_juego.has_point(global_position):
 		ReliquiasManager.al_perder_bola(self)
 		queue_free()
+		return
+	if linear_velocity.length() < umbral_quieta:
+		tiempo_quieta += delta
+	else:
+		tiempo_quieta = 0.0
+
+
+func esta_atascada() -> bool:
+	return tiempo_quieta >= segundos_para_atascarse
+
+
+func destruir() -> void:
+	queue_free()

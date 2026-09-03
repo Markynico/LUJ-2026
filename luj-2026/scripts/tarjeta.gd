@@ -23,6 +23,26 @@ signal clickeada
 @export var pulso_duracion : float = 0.6
 ##segundos del fade in y out cuando se usa como tarjeta de hover
 @export var duracion_fade : float = 0.15
+##escala que toma la tarjeta al pasar el mouse, 1 = no cambia
+@export var escala_hover : float = 1.05
+##segundos del tween de escala del hover
+@export var duracion_hover : float = 0.1
+##cuanto se pasa del tamaño del hover antes de asentarse, 0.015 = 1.5% extra
+@export var sobrepaso_hover : float = 0.015
+##segundos que tarda en asentarse despues del sobrepaso
+@export var duracion_asentado_hover : float = 0.08
+##z_index que toma la tarjeta mientras esta en hover, para dibujarse sobre las vecinas
+@export var z_hover : int = 1
+
+@export_group("Entrada")
+##segundos del fade de entrada de la tarjeta
+@export var duracion_entrada : float = 0.25
+
+@export_group("Comprado")
+##escala desde la que aparece el sello de comprado
+@export var escala_inicial_sello : float = 1.6
+##segundos de la animacion del sello de comprado
+@export var duracion_sello : float = 0.3
 
 @export_group("Boton de precio")
 ##icono de moneda del boton de precio
@@ -54,6 +74,10 @@ signal clickeada
 @export var label_descripcion : RichTextLabel
 @export var label_tipo : Label
 @export var label_rareza : Label
+##capa con el atenuador y el sello que se muestran al comprar
+@export var capa_comprado : Control
+##sello de comprado que aparece con un pop
+@export var sello_comprado : Control
 
 @export_group("Ajuste de fuentes")
 ##tamaño minimo al que se achica la descripcion para entrar sin scroll
@@ -75,7 +99,12 @@ var tamaño_base_rareza : int = 0
 var borde_hover : Panel
 var tween_borde : Tween
 var tween_fade : Tween
+var tween_escala : Tween
+var tween_entrada : Tween
 var boton_precio : Button
+var en_hover : bool = false
+var escala_base : Vector2 = Vector2.ONE
+var posicion_base : Vector2 = Vector2.ZERO
 var precio_actual : int = 0
 
 
@@ -96,6 +125,15 @@ func _ready() -> void:
 	mouse_entered.connect(al_hover.bind(true))
 	mouse_exited.connect(al_hover.bind(false))
 	gui_input.connect(al_gui_input)
+
+
+func animar_entrada(retardo : float = 0.0) -> void:
+	if tween_entrada:
+		tween_entrada.kill()
+	modulate.a = 0.0
+	tween_entrada = create_tween()
+	tween_entrada.tween_interval(retardo)
+	tween_entrada.tween_property(self, "modulate:a", 1.0, duracion_entrada)
 
 
 func aparecer() -> void:
@@ -162,6 +200,59 @@ func al_hover(entrando : bool) -> void:
 	if entrando and not hover_activado:
 		return
 	mostrar_borde(entrando)
+	animar_escala_hover(entrando)
+
+
+func animar_escala_hover(entrando : bool) -> void:
+	if escala_hover == 1.0 or entrando == en_hover:
+		return
+	if entrando:
+		if not tween_escala or not tween_escala.is_running():
+			escala_base = scale
+			posicion_base = position
+		z_index = z_hover
+	en_hover = entrando
+	if tween_escala:
+		tween_escala.kill()
+	tween_escala = create_tween().set_parallel().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	if entrando:
+		animar_hacia(escala_hover + sobrepaso_hover, duracion_hover)
+		tween_escala.chain()
+		animar_hacia(escala_hover, duracion_asentado_hover)
+	else:
+		animar_hacia(1.0 - sobrepaso_hover, duracion_hover)
+		tween_escala.chain()
+		animar_hacia(1.0, duracion_asentado_hover)
+		tween_escala.chain().tween_callback(func() -> void: z_index = 0)
+
+
+func animar_hacia(factor : float, duracion : float) -> void:
+	var desplazamiento : Vector2 = size * escala_base * (factor - 1.0) * 0.5
+	tween_escala.tween_property(self, "scale", escala_base * factor, duracion)
+	tween_escala.tween_property(self, "position", posicion_base - desplazamiento, duracion)
+
+
+func terminar_hover() -> void:
+	if not en_hover:
+		return
+	if tween_escala:
+		tween_escala.kill()
+	en_hover = false
+	scale = escala_base
+	position = posicion_base
+	z_index = 0
+
+
+func marcar_comprado() -> void:
+	var tween_sello : Tween
+	if not capa_comprado:
+		return
+	capa_comprado.show()
+	if not sello_comprado:
+		return
+	sello_comprado.scale = Vector2.ONE * escala_inicial_sello
+	tween_sello = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween_sello.tween_property(sello_comprado, "scale", Vector2.ONE, duracion_sello)
 
 
 func mostrar_borde(encendido : bool) -> void:

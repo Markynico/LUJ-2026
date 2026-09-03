@@ -6,10 +6,14 @@ extends EfectosPelotita
 @export var tipo_efecto_bomba : OvilloBase
 
 func impactar_con_objeto(pelotita : BolaDePelos ,objeto_a_impactar : Node2D):
-	rebote_simple(pelotita, objeto_a_impactar)
-	if not objeto_a_impactar is Ovillo:
-		return
-	pelotita.impactos_ovillos += 1
-	if pelotita.impactos_ovillos >= impactos_para_duplicar:
-		pelotita.impactos_ovillos = 0
+	var convertir : bool = false
+	if objeto_a_impactar is Ovillo:
+		pelotita.impactos_ovillos += 1
+		if pelotita.impactos_ovillos >= impactos_para_duplicar:
+			pelotita.impactos_ovillos = 0
+			convertir = objeto_a_impactar.activado and objeto_a_impactar.tipo_ovillo != ReliquiasManager.reemplazo_para(tipo_efecto_bomba)
+	if convertir:
 		objeto_a_impactar.convertir_explosivo(objeto_a_impactar, tipo_efecto_bomba)
+		rebote_simple(pelotita, objeto_a_impactar, false)
+	else:
+		rebote_simple(pelotita, objeto_a_impactar)

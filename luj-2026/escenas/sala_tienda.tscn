@@ -10,10 +10,10 @@
 [ext_resource type="FontFile" uid="uid://dwg47e0trev3j" path="res://fuentes/Bungee-Regular.ttf" id="44_bungee"]
 [ext_resource type="Texture2D" uid="uid://clbwk8g62651y" path="res://assets/maribrujagatamagica.png" id="45_lly1i"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_lly1i"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_tv4rl"]
 viewport_path = NodePath("UIComidasElegidas/SubViewportComidas")
 
-[node name="SalaTienda" type="Control" unique_id=1468592656 node_paths=PackedStringArray("fila_reliquias", "fila_comidas", "boton_curar_vida", "texto_curar", "boton_continuar", "foco")]
+[node name="SalaTienda" type="Control" unique_id=1468592656 node_paths=PackedStringArray("fila_reliquias", "fila_comidas", "boton_curar_vida", "texto_curar", "boton_refrescar", "texto_refrescar", "boton_continuar", "foco")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,6 +26,8 @@ fila_reliquias = NodePath("FondoTienda/Contenido/FilaReliquias")
 fila_comidas = NodePath("FondoTienda/Contenido/FilaComidas")
 boton_curar_vida = NodePath("FondoTienda/Servicios/BotonCurarVida")
 texto_curar = NodePath("FondoTienda/Servicios/BotonCurarVida/TextoCurar")
+boton_refrescar = NodePath("FondoTienda/BotonRefrescar")
+texto_refrescar = NodePath("FondoTienda/BotonRefrescar/TextoRefrescar")
 boton_continuar = NodePath("FondoTienda/BotonContinuar")
 foco = NodePath("FocoTarjetas")
 
@@ -112,10 +114,34 @@ mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("44_bungee")
 theme_override_font_sizes/normal_font_size = 17
 bbcode_enabled = true
-meta_underlined = false
 scroll_active = false
 autowrap_mode = 0
 vertical_alignment = 1
+meta_underlined = false
+
+[node name="BotonRefrescar" type="Button" parent="FondoTienda" unique_id=1532162390]
+custom_minimum_size = Vector2(220, 42)
+layout_mode = 1
+offset_left = 94.0
+offset_top = 156.0
+offset_right = 314.0
+offset_bottom = 198.0
+
+[node name="TextoRefrescar" type="RichTextLabel" parent="FondoTienda/BotonRefrescar" unique_id=1532162391]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("44_bungee")
+theme_override_font_sizes/normal_font_size = 17
+bbcode_enabled = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+meta_underlined = false
 
 [node name="BotonContinuar" type="Button" parent="FondoTienda" unique_id=167360771]
 layout_mode = 1
@@ -143,7 +169,7 @@ layout_mode = 1
 
 [node name="UIComidasElegidas" parent="HUD" index="0" unique_id=1447058340]
 visible = false
-texture = SubResource("ViewportTexture_lly1i")
+texture = SubResource("ViewportTexture_tv4rl")
 
 [node name="CanvasLayer" parent="HUD" index="1" unique_id=1032973156]
 layer = 3

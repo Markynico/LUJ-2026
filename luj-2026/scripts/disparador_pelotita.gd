@@ -69,6 +69,7 @@ func escupir_bola () -> void: #se llama desde el animation player del gato
 		var tipo_pelotita = Global.cargador_de_pelotitas.pop_front()
 		if tipo_pelotita == null:
 			return
+		Global.ultima_pelotita_disparada = tipo_pelotita
 		var instancia : BolaDePelos = escena_pelotita_prueba.instantiate()
 		instancia.tipo_pelotita = tipo_pelotita
 		var datos : DatosDisparo

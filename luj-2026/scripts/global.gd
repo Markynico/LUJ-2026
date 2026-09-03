@@ -11,6 +11,7 @@ signal cargador_pelotitas_actualizado #cuando disparo tambien llamo a esta signa
 
 var monedas : int = 0
 var gato_elegido : DatosGato
+var ultima_pelotita_disparada : PelotitaBase
 var puntos : int = 0
 
 @export var bola_de_pelos_normal : PelotitaBase
@@ -32,6 +33,7 @@ func _ready() -> void:
 
 func reiniciar_pelotitas() -> void:
 	comidas_elegidas.clear()
+	ultima_pelotita_disparada = null
 	cargador_de_pelotitas = cargador_inicial.duplicate()
 	cargador_pelotitas_actualizado.emit()
 

@@ -45,6 +45,7 @@ width = 13.0
 body = NodePath("..")
 
 [node name="PergaminoInfo" parent="." unique_id=1923268390 instance=ExtResource("9_sdgal")]
+visible = false
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1311147375]
 
