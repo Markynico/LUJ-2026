@@ -15,7 +15,7 @@ llenar_slots_nuevos = true
 script = ExtResource("1_rel")
 nombre = "Caja del Rascador"
 rareza = 2
-descripcion = "+2 {vida:icono}.
+descripcion = "+2 {vida:icono} máxima.
 
 \"Home sweet home\""
 icono = ExtResource("2_rel")

@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_oxtx1")
+impactos_para_duplicar = 5
 tipo_efecto_bomba = ExtResource("2_q4vhi")
 fuerza_rebote = 100.0
 metadata/_custom_type_script = "uid://oywgrp0ljdng"

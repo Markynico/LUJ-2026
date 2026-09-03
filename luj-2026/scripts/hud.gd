@@ -11,15 +11,30 @@ extends Control
 ##color de la barra de progreso al cumplir el objetivo, pulsa hacia mas claro
 @export var color_barra_meta : Color = Color(0.2, 0.75, 0.48)
 
+@export_group("Destruir bola")
+##segundos del fade in y out del boton de destruir bola
+@export var duracion_fade_destruir : float = 0.3
+##segundos entre cada pulso del boton de destruir bola
+@export var intervalo_pulso_destruir : float = 2.5
+##escala maxima del pulso del boton de destruir bola
+@export var escala_pulso_destruir : float = 1.08
+##segundos que dura cada pulso, ida y vuelta
+@export var duracion_pulso_destruir : float = 0.4
+@export_group("")
+
 @onready var barra_ovillos : ProgressBar = %BarraOvillos
 @onready var label_ovillos : Label = %LabelOvillos
 @onready var label_salas : Label = %LabelSalas
 @onready var icono_dificultad : TextureRect = %IconoDificultad
 @onready var bolas_restantes_label : Label = %BolasRestantes if has_node("%BolasRestantes") else null
 @onready var monedas_label : Label = %Monedas if has_node("%Monedas") else null
+@onready var boton_destruir_bola : Button = %BotonDestruirBola if has_node("%BotonDestruirBola") else null
 
 var tween_barra : Tween
 var meta_barra : int = -1
+var tween_destruir : Tween
+var tween_pulso : Tween
+var destruir_visible : bool = false
 
 func _ready() -> void:
 	if not game_manager:
@@ -39,6 +54,58 @@ func _ready() -> void:
 		# Inicializar vistas
 		actualizar_bolas_restantes(game_manager.bolas_restantes)
 		actualizar_salas()
+	if boton_destruir_bola:
+		boton_destruir_bola.pressed.connect(destruir_bola_atascada)
+
+
+func _process(delta : float) -> void:
+	if boton_destruir_bola:
+		mostrar_destruir_bola(bola_atascada() != null)
+
+
+func bola_atascada() -> BolaDePelos:
+	for bola in get_tree().get_nodes_in_group("bolas_de_pelos"):
+		if bola is BolaDePelos and bola.esta_atascada():
+			return bola
+	return null
+
+
+func mostrar_destruir_bola(mostrar : bool) -> void:
+	if mostrar == destruir_visible:
+		return
+	destruir_visible = mostrar
+	if tween_destruir:
+		tween_destruir.kill()
+	tween_destruir = boton_destruir_bola.create_tween()
+	if mostrar:
+		boton_destruir_bola.show()
+		tween_destruir.tween_property(boton_destruir_bola, "modulate:a", 1.0, duracion_fade_destruir)
+		tween_destruir.tween_callback(pulsar_destruir_bola)
+	else:
+		detener_pulso_destruir()
+		tween_destruir.tween_property(boton_destruir_bola, "modulate:a", 0.0, duracion_fade_destruir)
+		tween_destruir.tween_callback(boton_destruir_bola.hide)
+
+
+func pulsar_destruir_bola() -> void:
+	detener_pulso_destruir()
+	tween_pulso = boton_destruir_bola.create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween_pulso.tween_interval(intervalo_pulso_destruir)
+	tween_pulso.tween_property(boton_destruir_bola, "scale", Vector2.ONE * escala_pulso_destruir, duracion_pulso_destruir * 0.5)
+	tween_pulso.tween_property(boton_destruir_bola, "scale", Vector2.ONE, duracion_pulso_destruir * 0.5)
+	tween_pulso.set_loops()
+
+
+func detener_pulso_destruir() -> void:
+	if tween_pulso:
+		tween_pulso.kill()
+	boton_destruir_bola.scale = Vector2.ONE
+
+
+func destruir_bola_atascada() -> void:
+	var bola : BolaDePelos = bola_atascada()
+	if bola:
+		bola.destruir()
 
 func actualizar_bolas_restantes(cantidad: int) -> void:
 	if bolas_restantes_label:

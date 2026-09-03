@@ -16,11 +16,24 @@ script = ExtResource("e_enhook")
 acciones = Array[ExtResource("e_acc_base")]([SubResource("Efecto_1")])
 hook = "al_obtener"
 
+[sub_resource type="Resource" id="Resource_xfnsq"]
+script = ExtResource("e_acc_curar")
+solo_si_falta_vida = true
+metadata/_custom_type_script = "uid://cm4aymif3jaf5"
+
+[sub_resource type="Resource" id="Resource_u78ec"]
+script = ExtResource("e_enhook")
+cada = 200
+usos_maximos = 1
+acciones = Array[ExtResource("e_acc_base")]([SubResource("Resource_xfnsq")])
+hook = "al_romper_ovillo"
+metadata/_custom_type_script = "uid://ddsnu5korq388"
+
 [resource]
 script = ExtResource("1_rel")
 nombre = "Lata de Atún"
-descripcion = "Cura 1 {vida:icono}.
+descripcion = "Cura 1 al obtener {vida:icono}. Cura 1 vida adicional cuando se rompen 200 ovillos. 1 solo uso.
 
 \"Todavía no se inventaron las latas pero bue…\""
 icono = ExtResource("2_rel")
-efectos = Array[ExtResource("e_efr")]([SubResource("Efecto_2")])
+efectos = Array[ExtResource("e_efr")]([SubResource("Efecto_2"), SubResource("Resource_u78ec")])

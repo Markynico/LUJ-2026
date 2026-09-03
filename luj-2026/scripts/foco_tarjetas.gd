@@ -50,6 +50,7 @@ func abrir(tarjeta : Tarjeta, retorno : Control = null) -> void:
 		return
 	tarjeta_actual = tarjeta
 	nodo_retorno = retorno
+	tarjeta.terminar_hover()
 	posicion_original = tarjeta.global_position
 	posicion_local_original = tarjeta.position
 	escala_original = tarjeta.scale
