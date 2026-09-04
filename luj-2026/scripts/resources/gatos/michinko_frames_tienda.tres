@@ -1,6 +1,4 @@
-[gd_scene format=3]
-
-[ext_resource type="Script" path="res://scripts/michinko_ovillo.gd" id="1_michi"]
+[gd_resource type="SpriteFrames" load_steps=26 format=3 uid="uid://ddrbvazeshb62"]
 
 [ext_resource type="Texture2D" uid="uid://f47vcckjmepg" path="res://assets/sprites_gato/frames gif any/1.png" id="f1"]
 [ext_resource type="Texture2D" uid="uid://bly2atq0am7qh" path="res://assets/sprites_gato/frames gif any/2.png" id="f2"]
@@ -28,7 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://dmb3v14ai8rfj" path="res://assets/sprites_gato/frames gif any/24.png" id="f24"]
 [ext_resource type="Texture2D" uid="uid://boub0edcwcc7w" path="res://assets/sprites_gato/frames gif any/25.png" id="f25"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_michi"]
+[resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -110,7 +108,3 @@ animations = [{
 "name": &"default",
 "speed": 15.0
 }]
-
-[node name="MichinkoOvillo" type="AnimatedSprite2D"]
-sprite_frames = SubResource("SpriteFrames_michi")
-script = ExtResource("1_michi")

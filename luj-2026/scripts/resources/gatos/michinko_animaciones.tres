@@ -1,0 +1,130 @@
+[gd_resource type="AnimationLibrary" format=3 uid="uid://cev3akcmcs0w0"]
+
+[ext_resource type="Texture2D" uid="uid://bwcsatf82vn2s" path="res://assets/sprites_gato/gato 4_POSTVOMITO.png" id="5_ucdm4"]
+[ext_resource type="Texture2D" uid="uid://yuk4ffxvbvp1" path="res://assets/sprites_gato/gato 2_VOMITANDO1.png" id="6_2wj7v"]
+[ext_resource type="Texture2D" uid="uid://ce2o07vo1mggk" path="res://assets/sprites_gato/gato 1_IDLE_BLINK 1.png" id="6_nqle2"]
+[ext_resource type="Texture2D" uid="uid://ny40kbp5un2" path="res://assets/sprites_gato/gato 3_VOMITANDO2.png" id="7_5rjvg"]
+[ext_resource type="Texture2D" uid="uid://n060nl7wg7c3" path="res://assets/sprites_gato/gato 1_IDLE_BLINK 2.png" id="7_emxb7"]
+[ext_resource type="Texture2D" uid="uid://d4jwa2qup8olr" path="res://assets/sprites_gato/gato 1_IDLE_BLINK 3.png" id="8_j1ps4"]
+[ext_resource type="Texture2D" uid="uid://bcbw6dvs16wtv" path="res://assets/sprites_gato/gato 5_POSTVOMITO2.png" id="8_yb1tw"]
+[ext_resource type="Texture2D" uid="uid://covte7ns0mkry" path="res://assets/sprites_gato/gato 6_ORGULLOSO.png" id="9_7xk13"]
+[ext_resource type="Texture2D" uid="uid://ckebjsyvf51xv" path="res://assets/sprites_gato/gato 1_IDLE_BLINK 4.png" id="9_i3vll"]
+[ext_resource type="Texture2D" uid="uid://ds6gl78d1ayev" path="res://assets/sprites_gato/gato 1_idle.png" id="10_2wj7v"]
+[ext_resource type="Texture2D" uid="uid://ddmq0njqiqsuf" path="res://assets/sprites_gato/gato 1_IDLE_BLINK 5.png" id="10_xa348"]
+
+[sub_resource type="Animation" id="Animation_4fwun"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("10_2wj7v")]
+}
+
+[sub_resource type="Animation" id="Animation_pcv4d"]
+resource_name = "blink"
+length = 0.46666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333333, 0.23333333, 0.3, 0.36666667, 0.4, 0.4666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("10_2wj7v"), ExtResource("6_nqle2"), ExtResource("7_emxb7"), ExtResource("8_j1ps4"), ExtResource("9_i3vll"), ExtResource("10_xa348"), ExtResource("10_2wj7v")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.13333334, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"sonar_blink"
+}, {
+"args": [],
+"method": &"sonar_blink"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ucdm4"]
+resource_name = "escupir_bola"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.2, 1.7, 2.0333333, 2.4, 3.1666667, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("5_ucdm4"), ExtResource("6_2wj7v"), ExtResource("5_ucdm4"), ExtResource("6_2wj7v"), ExtResource("5_ucdm4"), ExtResource("7_5rjvg"), ExtResource("8_yb1tw"), ExtResource("9_7xk13")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DisparadorPelotita")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"escupir_bola"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_5rjvg"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("10_2wj7v")]
+}
+
+[sub_resource type="Animation" id="Animation_emxb7"]
+resource_name = "orgulloso"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_7xk13")]
+}
+
+[resource]
+_data = {
+&"RESET": SubResource("Animation_4fwun"),
+&"blink": SubResource("Animation_pcv4d"),
+&"escupir_bola": SubResource("Animation_ucdm4"),
+&"idle": SubResource("Animation_5rjvg"),
+&"orgulloso": SubResource("Animation_emxb7")
+}

@@ -49,6 +49,8 @@ static var niveles_ganados_run : int = 0
 @export var monedas_iniciales : int = 0
 ##dificultad que se usa si no se eligio ninguna en el menu
 @export var dificultad_default : DificultadRun = preload("res://scripts/resources/dificultades/dificultad_facil.tres")
+##gato que se usa si no se eligio ninguno en el menu
+@export var gato_default : DatosGato = preload("res://scripts/resources/gatos/michinko.tres")
 
 @export_group("Rareza")
 ##probabilidad en porcentaje de rareza comun
@@ -81,6 +83,8 @@ var finalizando : bool = false
 
 func _enter_tree() -> void:
 	instancia_actual = self
+	if not Global.gato_elegido:
+		Global.gato_elegido = gato_default
 
 func _ready() -> void:
 	Global.cargador_pelotitas_actualizado.connect(_on_cargador_pelotitas_actualizado)
@@ -214,7 +218,7 @@ func perder_vida(cantidad : int = 1) -> void:
 		game_over.emit()
 		print("GAME OVER - Sin vidas restantes")
 		vidas_guardadas = vidas_maximas
-		get_tree().create_timer(2.0).timeout.connect(volver_al_menu)
+		volver_al_menu()
 
 func ganar_vida(cantidad : int = 1) -> void:
 	vidas_actuales = clampi(vidas_actuales + cantidad, 0, vidas_maximas)
@@ -283,8 +287,7 @@ func finalizar_nivel(tipo_sala : int = -1) -> void:
 		ReliquiasManager.al_terminar_nivel(self, true, nivel_limpio())
 		if dificultad_actual and niveles_ganados_run >= dificultad_actual.niveles_para_ganar:
 			print("¡RUN GANADA!")
-			nivel_completado.emit(true)
-			get_tree().create_timer(2.0).timeout.connect(volver_al_menu.bind(true))
+			volver_al_menu(true)
 			return
 		nivel_completado.emit(true)
 		print("¡NIVEL SUPERADO CON ÉXITO!")
@@ -298,6 +301,8 @@ func finalizar_nivel(tipo_sala : int = -1) -> void:
 		perder_vida(1)
 		EstadisticasRun.registrar_nivel(puntos_obtenidos, false)
 		ReliquiasManager.al_terminar_nivel(self, false, false)
+		if estado_actual == EstadoDeJuego.GAME_OVER:
+			return
 		nivel_completado.emit(false)
 		
 		if vidas_actuales > 0:
@@ -323,6 +328,8 @@ func fallar_por_atasco() -> void:
 	finalizando = true
 	print("Gato atascado. Pierde una vida y se repite el nivel.")
 	perder_vida(1)
+	if estado_actual == EstadoDeJuego.GAME_OVER:
+		return
 	nivel_completado.emit(false)
 	if vidas_actuales > 0:
 		get_tree().create_timer(1.5).timeout.connect(reiniciar_nivel_actual)

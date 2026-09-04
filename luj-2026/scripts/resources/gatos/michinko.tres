@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="DatosGato" format=3 uid="uid://c0y7jrcb8f0k"]
+
+[ext_resource type="Script" uid="uid://ldkn2qu0rnkn" path="res://scripts/resources/datos_gato.gd" id="1_2ho1f"]
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="2_ngxov"]
+[ext_resource type="Texture2D" uid="uid://ds6gl78d1ayev" path="res://assets/sprites_gato/gato 1_idle.png" id="3_idle"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="3_wlv58"]
+[ext_resource type="Texture2D" uid="uid://yuk4ffxvbvp1" path="res://assets/sprites_gato/gato 2_VOMITANDO1.png" id="4_bolita"]
+[ext_resource type="Texture2D" uid="uid://covte7ns0mkry" path="res://assets/sprites_gato/gato 6_ORGULLOSO.png" id="5_orgulloso"]
+[ext_resource type="AnimationLibrary" uid="uid://cev3akcmcs0w0" path="res://scripts/resources/gatos/michinko_animaciones.tres" id="6_anim"]
+[ext_resource type="SpriteFrames" uid="uid://ddrbva0eshb62" path="res://scripts/resources/gatos/michinko_frames_tienda.tres" id="7_frames"]
+[ext_resource type="Texture2D" uid="uid://bcbw6dvs16wtv" path="res://assets/sprites_gato/gato 5_POSTVOMITO2.png" id="8_derrota"]
+
+[resource]
+script = ExtResource("1_2ho1f")
+nombre = "Michinko"
+textura = ExtResource("3_idle")
+descripcion = "Michinko tiene un estómago especial que convierte la comida en bolas de pelo mágicas.
+
+Lo que tiene de especial le falta en neuronas, pero lo queremos igual."
+imagen_normal = ExtResource("3_idle")
+imagen_bolita = ExtResource("4_bolita")
+imagen_orgulloso = ExtResource("5_orgulloso")
+animaciones = ExtResource("6_anim")
+frames_tienda = ExtResource("7_frames")
+sprite_victoria = ExtResource("5_orgulloso")
+sprite_derrota = ExtResource("8_derrota")

@@ -5,19 +5,23 @@
 
 [sub_resource type="Curve2D" id="Curve2D_idaus"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 950, 0, 0, 0, 0, 0, 952, 425, 0, 0, 0, 0, -2, 425, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 885.1747, -1.8349609, 0, 0, 0, 0, 885.1747, 241.16504, 0, 0, 0, 0, -1.8253174, 236.16504, 0, 0, 0, 0, 0, 0)
 }
 point_count = 5
 
 [sub_resource type="Resource" id="Resource_pi4s6"]
 script = ExtResource("1_forma")
-separacion_ovillos = 41.0
 anillos_interiores = 3
-separacion_anillos = 27
-copias_recorrido = 7
-"tamaño" = Vector2(201.64659, 201.64659)
+velocidad_desplazamiento = 25.0
+alternar_direccion_anillos = true
+copias_recorrido = 4
+huecos = PackedInt32Array()
+"tamaño" = Vector2(295.00003, 295.00003)
+poligono = PackedVector2Array()
 recorrido = SubResource("Curve2D_idaus")
-posicion_recorrido = Vector2(481.06708, 434)
+posicion_recorrido = Vector2(495.85, 495.83496)
+escala_recorrido = Vector2(1.0135286, 1)
+velocidad = 25.0
 bucle = true
 ida_y_vuelta = false
 
@@ -25,5 +29,5 @@ ida_y_vuelta = false
 script = ExtResource("2_nivel")
 nombre = "Nivel23"
 formas = Array[ExtResource("1_forma")]([SubResource("Resource_pi4s6")])
-posicion_divisiones = Vector2(349, 1086)
-ancho_divisiones = 1241.0
+posicion_divisiones = Vector2(353.24, 1086)
+ancho_divisiones = 1199.52

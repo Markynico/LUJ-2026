@@ -24,6 +24,13 @@ signal continuar_pedido
 ##separacion horizontal entre tarjetas de una fila
 @export var separacion_tarjetas : float = 40.0
 
+@export_group("Oferta fija (pruebas)")
+##reliquias que se muestran en vez de sortear, vacio = sorteo normal
+@export var reliquias_fijas : Array[Reliquia] = []
+##comidas que se muestran en vez de sortear, vacio = sorteo normal
+@export var comidas_fijas : Array[PelotitaBase] = []
+@export_group("")
+
 @export_group("Nodos")
 @export var fila_reliquias : HBoxContainer
 @export var fila_comidas : HBoxContainer
@@ -55,8 +62,14 @@ func _ready() -> void:
 
 func poblar_ofertas() -> void:
 	await get_tree().process_frame
-	armar_fila(fila_reliquias, elegir_oferta(candidatos_reliquias(), cantidad_reliquias), 0.0)
-	armar_fila(fila_comidas, elegir_oferta(candidatos_comidas(), cantidad_comidas), cantidad_reliquias * retardo_entre_tarjetas)
+	armar_fila(fila_reliquias, oferta_inicial(reliquias_fijas, candidatos_reliquias(), cantidad_reliquias), 0.0)
+	armar_fila(fila_comidas, oferta_inicial(comidas_fijas, candidatos_comidas(), cantidad_comidas), cantidad_reliquias * retardo_entre_tarjetas)
+
+
+func oferta_inicial(fijos : Array, candidatos : Array, cantidad : int) -> Array:
+	if fijos.is_empty():
+		return elegir_oferta(candidatos, cantidad)
+	return fijos.filter(func(item : Resource) -> bool: return item != null)
 
 
 func candidatos_reliquias() -> Array:

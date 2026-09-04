@@ -8,9 +8,16 @@ extends Node2D
 @export var empuja_bolas : bool = true
 ##fuerza del impulso que reciben las bolas en el centro de la explosion
 @export var fuerza_impulso : float = 1500.0
+##sonido que reemplaza al del ovillo cuando una reliquia potencio la explosion
+@export var efecto_potenciada : EfectoDeSonido.Tipo = EfectoDeSonido.Tipo.EXPLOSION_GRANDE
 
 var estado_a_aplicar : EstadoOvillo
 var rompe_ovillos : bool = true
+var potenciada : bool = false
+
+
+func efecto_sonido(efecto_base : EfectoDeSonido.Tipo) -> EfectoDeSonido.Tipo:
+	return efecto_potenciada if potenciada else efecto_base
 
 func _ready() -> void:
 	animated_sprite_explosion.animation_finished.connect(queue_free)

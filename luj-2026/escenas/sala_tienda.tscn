@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b07gjr8bpk3tm" path="res://escenas/hud.tscn" id="2_hud"]
 [ext_resource type="Theme" uid="uid://bjkvjfhj8dr8y" path="res://themes/theme_ui_general.tres" id="2_tema"]
 [ext_resource type="Texture2D" uid="uid://bhi3nf0jngdpb" path="res://assets/tapir.jpg" id="20_5lb6f"]
-[ext_resource type="PackedScene" path="res://escenas/componentes/michinko_ovillo.tscn" id="42_l2lnn"]
+[ext_resource type="PackedScene" uid="uid://cmmo4nbdrd7fy" path="res://escenas/componentes/gato_tienda.tscn" id="42_l2lnn"]
 [ext_resource type="PackedScene" path="res://escenas/componentes/velas_vidas.tscn" id="43_velas"]
 [ext_resource type="FontFile" uid="uid://dwg47e0trev3j" path="res://fuentes/Bungee-Regular.ttf" id="44_bungee"]
 [ext_resource type="Texture2D" uid="uid://clbwk8g62651y" path="res://assets/maribrujagatamagica.png" id="45_lly1i"]
@@ -174,7 +174,7 @@ texture = SubResource("ViewportTexture_tv4rl")
 [node name="CanvasLayer" parent="HUD" index="1" unique_id=1032973156]
 layer = 3
 
-[node name="MichinkoOvillo" parent="." unique_id=1014780603 instance=ExtResource("42_l2lnn")]
+[node name="GatoTienda" parent="." unique_id=1014780603 instance=ExtResource("42_l2lnn")]
 position = Vector2(175.00003, 797.00006)
 scale = Vector2(0.33148143, 0.3314815)
 flip_h = true

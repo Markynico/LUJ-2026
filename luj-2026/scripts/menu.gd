@@ -5,8 +5,6 @@ extends Node2D
 @export_file("*.tscn") var escena_juego : String = "uid://hli2qjvrii4o"
 ##escena de la coleccion
 @export_file("*.tscn") var escena_coleccion : String = "res://escenas/coleccion.tscn"
-##gatos disponibles para elegir
-@export var gatos : Array[DatosGato]
 ##dificultades entre las que se elige antes de la run
 @export var dificultades : Array[DificultadRun]
 
@@ -35,6 +33,22 @@ extends Node2D
 @export var boton_confirmar : Button
 @export var boton_volver : Button
 @export var brillo_seleccion : ColorRect
+##flechas y texto de bloqueo que acompañan al gato, se muestran junto con el panel
+@export var exhibidor : Control
+@export var flecha_izquierda : Button
+@export var flecha_derecha : Button
+##texto flotante con las condiciones de desbloqueo del gato bloqueado
+@export var texto_bloqueo : RichTextLabel
+##modulate de las flechas con el mouse encima
+@export var color_hover_flecha : Color = Color(1.4, 1.4, 1.4)
+##modulate de las flechas deshabilitadas
+@export var color_deshabilitado_flecha : Color = Color(1, 1, 1, 0.3)
+##segundos que tarda el giro del exhibidor al cambiar de gato
+@export var duracion_giro : float = 0.35
+##pixeles que se desplaza cada gato al entrar y salir del exhibidor
+@export var desplazamiento_giro : float = 40.0
+##escala de los iconos dentro del texto de bloqueo
+@export var escala_iconos_bloqueo : float = 1.6
 
 @export_group("Seleccion de dificultad")
 @export var contenedor_dificultades : BoxContainer
@@ -63,7 +77,11 @@ extends Node2D
 @onready var layer_creditos: CanvasLayer = %LayerCreditos
 
 
+var gatos : Array[DatosGato] = []
 var gato_actual : int = 0
+var tween_giro : Tween
+var fantasma : Sprite2D
+var posicion_base_sprite : Vector2 = Vector2.ZERO
 var posicion_inicial : Vector2
 var zoom_inicial : Vector2
 var en_seleccion : bool = false
@@ -90,6 +108,17 @@ func _ready() -> void:
 	boton_salir.pressed.connect(salir)
 	boton_confirmar.pressed.connect(confirmar)
 	boton_volver.pressed.connect(cerrar_seleccion)
+	for flecha in [flecha_izquierda, flecha_derecha]:
+		if flecha:
+			flecha.pressed.connect(girar_exhibidor.bind(-1 if flecha == flecha_izquierda else 1))
+			flecha.mouse_entered.connect(pintar_flecha.bind(flecha))
+			flecha.mouse_exited.connect(pintar_flecha.bind(flecha))
+	if exhibidor:
+		exhibidor.visible = false
+	if gato_menu and gato_menu.sprite:
+		posicion_base_sprite = gato_menu.sprite.position
+	gatos = CatalogoItems.gatos()
+	gato_actual = indice_ultimo_gato()
 	if guante_caricia:
 		guante_caricia.caricia_iniciada.connect(al_iniciar_caricia)
 		guante_caricia.caricia_terminada.connect(al_terminar_caricia)
@@ -147,13 +176,102 @@ func aplicar_borde_dificultad(boton : Button, color : Color) -> void:
 	boton.material.set_shader_parameter("color_borde", color)
 
 
+func indice_ultimo_gato() -> int:
+	for i in gatos.size():
+		if gatos[i].resource_path == Progreso.ultimo_gato:
+			return i
+	return 0
+
+
+func gato_elegido() -> DatosGato:
+	return gatos[gato_actual] if not gatos.is_empty() else null
+
+
+func esta_bloqueado(datos : DatosGato) -> bool:
+	return datos and Progreso.tiene_condiciones(datos) and not Progreso.esta_desbloqueada(datos)
+
+
 func mostrar_gato() -> void:
-	var datos : DatosGato
-	if gatos.is_empty():
+	var datos : DatosGato = gato_elegido()
+	var bloqueado : bool
+	if not datos:
 		return
-	datos = gatos[gato_actual]
+	bloqueado = esta_bloqueado(datos)
 	label_nombre.text = datos.nombre
 	label_descripcion.text = datos.descripcion
+	boton_confirmar.disabled = bloqueado
+	for flecha in [flecha_izquierda, flecha_derecha]:
+		if flecha:
+			flecha.disabled = gatos.size() <= 1
+			pintar_flecha(flecha)
+	if gato_menu:
+		gato_menu.aplicar_datos(datos)
+		gato_menu.modulate = Color.BLACK if bloqueado else Color.WHITE
+		if gato_menu.timer_blink:
+			if bloqueado:
+				gato_menu.timer_blink.stop()
+			elif gato_menu.timer_blink.is_stopped():
+				gato_menu.programar_blink()
+	if guante_caricia:
+		guante_caricia.activo = en_seleccion and not bloqueado
+	mostrar_texto_bloqueo(datos if bloqueado else null)
+
+
+func pintar_flecha(flecha : Button) -> void:
+	if flecha.disabled:
+		flecha.modulate = color_deshabilitado_flecha
+	elif flecha.is_hovered():
+		flecha.modulate = color_hover_flecha
+	else:
+		flecha.modulate = Color.WHITE
+
+
+func mostrar_texto_bloqueo(datos : DatosGato) -> void:
+	var texto : String
+	if not texto_bloqueo:
+		return
+	texto_bloqueo.visible = datos != null
+	if not datos:
+		return
+	texto = "%s\n%s" % [Progreso.descripcion_condiciones(datos), Progreso.contadores_condiciones(datos)]
+	texto_bloqueo.text = "[center]" + Resaltador.formatear(texto, escala_iconos_bloqueo) + "[/center]"
+
+
+func girar_exhibidor(direccion : int) -> void:
+	var sprite : Sprite2D
+	if gatos.size() <= 1 or not gato_menu or not gato_menu.sprite:
+		return
+	sprite = gato_menu.sprite
+	terminar_giro()
+	terminar_orgulloso()
+	fantasma = sprite.duplicate()
+	fantasma.global_transform = sprite.global_transform
+	fantasma.modulate = gato_menu.modulate * sprite.modulate
+	fantasma.z_index = gato_menu.z_index
+	fantasma.z_as_relative = false
+	add_child(fantasma)
+	gato_actual = wrapi(gato_actual + direccion, 0, gatos.size())
+	mostrar_gato()
+	sprite.position = posicion_base_sprite + Vector2(direccion * desplazamiento_giro, 0.0)
+	sprite.modulate.a = 0.0
+	tween_giro = create_tween().set_parallel().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween_giro.tween_property(fantasma, "position:x", fantasma.position.x - direccion * desplazamiento_giro, duracion_giro)
+	tween_giro.tween_property(fantasma, "modulate:a", 0.0, duracion_giro)
+	tween_giro.tween_property(sprite, "position", posicion_base_sprite, duracion_giro)
+	tween_giro.tween_property(sprite, "modulate:a", 1.0, duracion_giro)
+	tween_giro.chain().tween_callback(terminar_giro)
+
+
+func terminar_giro() -> void:
+	if tween_giro:
+		tween_giro.kill()
+		tween_giro = null
+	if is_instance_valid(fantasma):
+		fantasma.queue_free()
+	fantasma = null
+	if gato_menu and gato_menu.sprite:
+		gato_menu.sprite.position = posicion_base_sprite
+		gato_menu.sprite.modulate.a = 1.0
 
 
 func _unhandled_input(evento : InputEvent) -> void:
@@ -168,14 +286,14 @@ func abrir_seleccion() -> void:
 	habilitar_botones_menu(false)
 	mover_camara(foco_seleccion.global_position, zoom_seleccion)
 	tween.chain().tween_callback(mostrar_panel.bind(true))
-	if guante_caricia:
-		guante_caricia.activo = true
+	mostrar_gato()
 
 
 func cerrar_seleccion() -> void:
 	#layer_creditos.show()
 	en_seleccion = false
 	terminar_orgulloso()
+	terminar_giro()
 	if guante_caricia:
 		guante_caricia.activo = false
 	detener_purr()
@@ -185,9 +303,12 @@ func cerrar_seleccion() -> void:
 
 
 func confirmar() -> void:
+	if esta_bloqueado(gato_elegido()):
+		return
 	detener_purr(Transicion.duracion)
-	if not gatos.is_empty():
-		Global.gato_elegido = gatos[gato_actual]
+	if gato_elegido():
+		Global.gato_elegido = gato_elegido()
+		Progreso.recordar_gato(gato_elegido())
 	GameManager.dificultad_actual = dificultad_elegida
 	Transicion.cambiar_escena(escena_juego)
 
@@ -273,15 +394,23 @@ func mostrar_panel(visible_panel : bool) -> void:
 		panel_info.modulate.a = 0.0
 		panel_info.visible = true
 		tween_panel.tween_property(panel_info, "modulate:a", 1.0, duracion_fade_panel)
+		if exhibidor:
+			exhibidor.modulate.a = 0.0
+			exhibidor.visible = true
+			tween_panel.tween_property(exhibidor, "modulate:a", 1.0, duracion_fade_panel)
 		if brillo_seleccion:
 			brillo_seleccion.modulate.a = 0.0
 			brillo_seleccion.visible = true
 			tween_panel.tween_property(brillo_seleccion, "modulate:a", 1.0, duracion_fade_panel)
 	else:
 		tween_panel.tween_property(panel_info, "modulate:a", 0.0, duracion_fade_panel)
+		if exhibidor:
+			tween_panel.tween_property(exhibidor, "modulate:a", 0.0, duracion_fade_panel)
 		if brillo_seleccion:
 			tween_panel.tween_property(brillo_seleccion, "modulate:a", 0.0, duracion_fade_panel)
 		tween_panel.chain().tween_callback(panel_info.hide)
+		if exhibidor:
+			tween_panel.tween_callback(exhibidor.hide)
 		if brillo_seleccion:
 			tween_panel.tween_callback(brillo_seleccion.hide)
 

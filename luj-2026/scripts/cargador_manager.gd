@@ -33,8 +33,9 @@ func crear_cargador_de_pelotitas():
 		Global.comidas_elegidas.append(pelotita_normal) #fuerzo a q la primer comida elegida sea la normal (ya probe setear con @export la normal pero por algun motivo no anda asiq lo hago por codigo aca)
 
 	var ultima_comida : PelotitaBase = Global.comidas_elegidas.back() #para q siempre salga al menos UNA de la ultima comida q compraste
+	var tiros : int = game_manager.bolas_restantes if game_manager.bolas_restantes > 0 else game_manager.bolas_maximas
 	Global.agregar_pelotita_al_cargador(ultima_comida)
-	for i in game_manager.bolas_maximas - 1: #-1 pq le meti a la fuerza la ultima comida, si queremos q al comprar siempre sume 1 mas al cargador le sacamos el -1
+	for i in tiros - 1: #-1 pq le meti a la fuerza la ultima comida, si queremos q al comprar siempre sume 1 mas al cargador le sacamos el -1
 		var pelotita_aleatoria = Global.comidas_elegidas.pick_random() #random segun las comidas q elegimos
 		Global.agregar_pelotita_al_cargador(pelotita_aleatoria)
 

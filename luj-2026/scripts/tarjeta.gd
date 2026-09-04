@@ -37,6 +37,8 @@ signal clickeada
 @export_group("Entrada")
 ##segundos del fade de entrada de la tarjeta
 @export var duracion_entrada : float = 0.25
+##escala desde la que crece la tarjeta al entrar, el rebote lo da la curva
+@export var escala_entrada : float = 0.7
 
 @export_group("Comprado")
 ##escala desde la que aparece el sello de comprado
@@ -78,6 +80,24 @@ signal clickeada
 @export var capa_comprado : Control
 ##sello de comprado que aparece con un pop
 @export var sello_comprado : Control
+##capas de la tarjeta que se pintan del color de la rareza
+@export var parte_banner : TextureRect
+@export var parte_ovillo : TextureRect
+@export var parte_sello : TextureRect
+##capa de detalles que solo comparte el shader de esquinas, sin color de rareza
+@export var parte_detalles : TextureRect
+
+@export_group("Color de rareza")
+##multiplicador del color de rareza en el banner, mayor a 1 aclara porque el sprite es gris
+@export var brillo_banner : float = 3.4
+##multiplicador del color de rareza en el ovillo
+@export var brillo_ovillo : float = 2.8
+##multiplicador del color de rareza en el sello
+@export var brillo_sello : float = 2.2
+##saturacion del color de rareza en las tres capas, 1 = el color original
+@export var saturacion_rareza : float = 1.0
+##luminosidad del color de rareza en las tres capas, 1 = el color original
+@export var luminosidad_rareza : float = 1.0
 
 @export_group("Ajuste de fuentes")
 ##tamaño minimo al que se achica la descripcion para entrar sin scroll
@@ -130,10 +150,23 @@ func _ready() -> void:
 func animar_entrada(retardo : float = 0.0) -> void:
 	if tween_entrada:
 		tween_entrada.kill()
+	terminar_hover()
+	escala_base = scale
+	posicion_base = position
 	modulate.a = 0.0
+	scale = escala_base * escala_entrada
+	position = posicion_base - size * escala_base * (escala_entrada - 1.0) * 0.5
 	tween_entrada = create_tween()
 	tween_entrada.tween_interval(retardo)
 	tween_entrada.tween_property(self, "modulate:a", 1.0, duracion_entrada)
+	tween_entrada.parallel().tween_property(self, "scale", escala_base, duracion_entrada).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween_entrada.parallel().tween_property(self, "position", posicion_base, duracion_entrada).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween_entrada.tween_callback(retomar_hover)
+
+
+func retomar_hover() -> void:
+	if get_global_rect().has_point(get_global_mouse_position()):
+		al_hover(true)
 
 
 func aparecer() -> void:
@@ -163,6 +196,9 @@ func aplicar_esquinas() -> void:
 	material.set_shader_parameter("radio", radio_esquinas)
 	material.set_shader_parameter("tamanio", size)
 	resized.connect(func() -> void: material.set_shader_parameter("tamanio", size))
+	for parte in [parte_banner, parte_ovillo, parte_sello, parte_detalles]:
+		if parte:
+			parte.material = material
 
 
 func crear_borde_hover() -> void:
@@ -178,6 +214,21 @@ func crear_borde_hover() -> void:
 	borde_hover.modulate.a = 0.0
 	add_child(borde_hover)
 	actualizar_color_borde()
+
+
+func pintar_partes_rareza() -> void:
+	var color : Color = Rareza.color_de(Rareza.Nivel.COMUN)
+	if recurso and "rareza" in recurso:
+		color = Rareza.color_de(recurso.rareza)
+	color = Color.from_hsv(color.h, clampf(color.s * saturacion_rareza, 0.0, 1.0), clampf(color.v * luminosidad_rareza, 0.0, 1.0))
+	pintar_parte(parte_banner, color, brillo_banner)
+	pintar_parte(parte_ovillo, color, brillo_ovillo)
+	pintar_parte(parte_sello, color, brillo_sello)
+
+
+func pintar_parte(parte : TextureRect, color : Color, brillo : float) -> void:
+	if parte:
+		parte.modulate = Color(color.r * brillo, color.g * brillo, color.b * brillo, 1.0)
 
 
 func actualizar_color_borde() -> void:
@@ -198,6 +249,8 @@ func al_gui_input(evento : InputEvent) -> void:
 
 func al_hover(entrando : bool) -> void:
 	if entrando and not hover_activado:
+		return
+	if entrando and tween_entrada and tween_entrada.is_running():
 		return
 	mostrar_borde(entrando)
 	animar_escala_hover(entrando)
@@ -289,6 +342,7 @@ func actualizar_tarjeta() -> void:
 		label_rareza.text = Rareza.nombre_de(recurso.rareza)
 		label_rareza.add_theme_color_override("font_color", Rareza.color_de(recurso.rareza))
 		ajustar_fuente_rareza.call_deferred()
+	pintar_partes_rareza()
 	actualizar_color_borde()
 
 

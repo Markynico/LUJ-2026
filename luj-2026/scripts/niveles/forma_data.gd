@@ -26,6 +26,8 @@ extends Resource
 @export var copias_recorrido : int = 0
 @export var grupo_simetria : int = 0
 @export var rol_simetria : Vector2i = Vector2i.ZERO
+##ejes que estaban activos cuando se prendio usar_simetria, solo se duplica sobre esos
+@export var ejes_simetria : Array[Vector2i] = []
 @export var huecos : PackedInt32Array = PackedInt32Array()
 @export var tamaño : Vector2 = Vector2(200, 100)
 @export var radio : float = 100.0

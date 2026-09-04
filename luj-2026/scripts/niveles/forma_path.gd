@@ -195,6 +195,7 @@ func obtener_datos() -> FormaData:
 	datos.usar_simetria = usar_simetria
 	datos.grupo_simetria = get_meta("grupo_simetria", 0)
 	datos.rol_simetria = get_meta("rol_simetria", Vector2i.ZERO)
+	datos.ejes_simetria.assign(get_meta("ejes_simetria", []))
 	datos.velocidad_desplazamiento = velocidad_desplazamiento
 	datos.invertir_desplazamiento = invertir_desplazamiento
 	datos.alternar_direccion_repeticiones = alternar_direccion_repeticiones
@@ -215,6 +216,11 @@ func aplicar_datos(datos : FormaData) -> void:
 	if datos.grupo_simetria != 0:
 		set_meta("grupo_simetria", datos.grupo_simetria)
 		set_meta("rol_simetria", datos.rol_simetria)
+	if datos.ejes_simetria.is_empty():
+		if has_meta("ejes_simetria"):
+			remove_meta("ejes_simetria")
+	else:
+		set_meta("ejes_simetria", datos.ejes_simetria.duplicate())
 	velocidad_desplazamiento = datos.velocidad_desplazamiento
 	invertir_desplazamiento = datos.invertir_desplazamiento
 	alternar_direccion_repeticiones = datos.alternar_direccion_repeticiones

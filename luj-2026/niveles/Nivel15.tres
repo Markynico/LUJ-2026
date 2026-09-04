@@ -16,7 +16,9 @@ anillos_interiores = 2
 velocidad_desplazamiento = 25.0
 invertir_desplazamiento = true
 alternar_direccion_anillos = true
-copias_recorrido = 5
+copias_recorrido = 7
+huecos = PackedInt32Array()
+poligono = PackedVector2Array()
 recorrido = SubResource("Curve2D_kdfxs")
 posicion_recorrido = Vector2(489.77332, 792.7787)
 velocidad = 50.0
@@ -28,11 +30,13 @@ script = ExtResource("1_forma")
 posicion = Vector2(969.15, 619.58997)
 anillos_interiores = 1
 separacion_anillos = 20
+huecos = PackedInt32Array()
 "tamaño" = Vector2(660.6599, 55.660034)
+poligono = PackedVector2Array()
 
 [resource]
 script = ExtResource("2_nivel")
 nombre = "Nivel15"
 formas = Array[ExtResource("1_forma")]([SubResource("Resource_sq7nr"), SubResource("Resource_p1o4j")])
-posicion_divisiones = Vector2(349, 1080)
-ancho_divisiones = 1241.0
+posicion_divisiones = Vector2(353.24, 1086)
+ancho_divisiones = 1199.52

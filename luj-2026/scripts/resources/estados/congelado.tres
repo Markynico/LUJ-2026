@@ -26,5 +26,5 @@ script = ExtResource("2_ag5b6")
 nombre = "Congelado"
 descripcion = "Los ovillos congelados son quebradizos y se rompen sin crear rebotes."
 cambiar_color = true
-color = Color(0, 0.8166666, 1, 1)
+color = Color(0.6823429, 0.91654557, 0.99999994, 1)
 efectos = Array[ExtResource("1_37m4p")]([SubResource("Resource_lvktv"), SubResource("Resource_ew7ae"), SubResource("Resource_explc")])

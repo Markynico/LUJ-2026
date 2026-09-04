@@ -27,7 +27,7 @@ flag = 1
 [resource]
 script = ExtResource("1_rel")
 nombre = "Catnip 100% Puro"
-rareza = 3
+rareza = 4
 descripcion = "El efecto de los {catnip:icono} se puede stackear.
 
 \"De la buena\""
