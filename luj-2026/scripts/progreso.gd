@@ -4,6 +4,8 @@ const RUTA_ARCHIVO : String = "user://progreso.cfg"
 const RUTA_RESPALDO : String = "user://progreso.cfg.bak"
 const CARPETA_RELIQUIAS : String = "res://scripts/resources/reliquias"
 const CARPETA_COMIDAS : String = "res://scripts/resources"
+const CARPETA_GATOS : String = "res://scripts/resources/gatos"
+const SECCION_GATO : String = "gato"
 const SECCION_ARCHIVO : String = "archivo"
 const SECCION_CONTADORES : String = "contadores"
 const SECCION_DESBLOQUEOS : String = "desbloqueos"
@@ -59,6 +61,7 @@ var archivo_dañado : bool = false
 var revisando : Array[String] = []
 var guardado_pendiente : bool = false
 var tiempo_desde_guardado : float = 0.0
+var ultimo_gato : String = ""
 
 
 func _ready() -> void:
@@ -138,12 +141,12 @@ func cargar_recursos_con_condicion() -> void:
 	if cache_condiciones_lista:
 		return
 	cache_condiciones_lista = true
-	for carpeta in [CARPETA_RELIQUIAS, CARPETA_COMIDAS]:
+	for carpeta in [CARPETA_RELIQUIAS, CARPETA_COMIDAS, CARPETA_GATOS]:
 		for archivo in DirAccess.get_files_at(carpeta):
 			if archivo.get_extension() != "tres":
 				continue
 			recurso = load(carpeta.path_join(archivo))
-			if not (recurso is Reliquia or recurso is PelotitaBase):
+			if not (recurso is Reliquia or recurso is PelotitaBase or recurso is DatosGato):
 				continue
 			if tiene_condiciones(recurso):
 				recursos_con_condicion.append(recurso)
@@ -351,6 +354,13 @@ func disponible_en_run(recurso : Resource) -> bool:
 	return snapshot_run.has(recurso.resource_path)
 
 
+func recordar_gato(gato : DatosGato) -> void:
+	if not gato:
+		return
+	ultimo_gato = gato.resource_path
+	pedir_guardado()
+
+
 func guardar() -> void:
 	var archivo : ConfigFile = ConfigFile.new()
 	if archivo_dañado:
@@ -364,6 +374,7 @@ func guardar() -> void:
 	for rango in runs_ganadas_por_rango:
 		archivo.set_value("runs_ganadas_por_rango", str(rango), runs_ganadas_por_rango[rango])
 	archivo.set_value(SECCION_DESBLOQUEOS, "reliquias", reliquias_desbloqueadas)
+	archivo.set_value(SECCION_GATO, "ultimo", ultimo_gato)
 	if EstadisticasRun.run_activa:
 		archivo.set_value(SECCION_RUN_EN_CURSO, "estadisticas", estadisticas_de_run())
 	archivo.save(RUTA_ARCHIVO)
@@ -392,6 +403,7 @@ func cargar() -> void:
 		for clave in archivo.get_section_keys("runs_ganadas_por_rango"):
 			runs_ganadas_por_rango[int(clave)] = archivo.get_value("runs_ganadas_por_rango", clave, 0)
 	reliquias_desbloqueadas.assign(archivo.get_value(SECCION_DESBLOQUEOS, "reliquias", []))
+	ultimo_gato = archivo.get_value(SECCION_GATO, "ultimo", "")
 	if archivo.has_section(SECCION_RUN_EN_CURSO):
 		sumar_estadisticas(archivo.get_value(SECCION_RUN_EN_CURSO, "estadisticas", {}))
 		guardar()

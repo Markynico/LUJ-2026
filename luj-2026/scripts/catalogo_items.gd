@@ -5,6 +5,7 @@ const CARPETA : String = "res://scripts/resources/"
 
 static var reliquias_cargadas : Array[Reliquia] = []
 static var comidas_cargadas : Array[PelotitaBase] = []
+static var gatos_cargados : Array[DatosGato] = []
 static var cargado : bool = false
 
 
@@ -22,6 +23,9 @@ static func cargar() -> void:
 			reliquias_cargadas.append(recurso)
 		elif recurso is PelotitaBase:
 			comidas_cargadas.append(recurso)
+		elif recurso is DatosGato:
+			gatos_cargados.append(recurso)
+	gatos_cargados.sort_custom(func(a : DatosGato, b : DatosGato) -> bool: return a.orden < b.orden)
 
 
 static func recorrer(carpeta : String, rutas : Array[String]) -> void:
@@ -58,3 +62,8 @@ static func comidas_en_tienda() -> Array:
 static func comidas_en_coleccion() -> Array:
 	cargar()
 	return comidas_cargadas.filter(func(comida : PelotitaBase) -> bool: return comida.en_coleccion)
+
+
+static func gatos() -> Array[DatosGato]:
+	cargar()
+	return gatos_cargados

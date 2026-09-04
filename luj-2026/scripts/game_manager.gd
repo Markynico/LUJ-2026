@@ -49,6 +49,8 @@ static var niveles_ganados_run : int = 0
 @export var monedas_iniciales : int = 0
 ##dificultad que se usa si no se eligio ninguna en el menu
 @export var dificultad_default : DificultadRun = preload("res://scripts/resources/dificultades/dificultad_facil.tres")
+##gato que se usa si no se eligio ninguno en el menu
+@export var gato_default : DatosGato = preload("res://scripts/resources/gatos/michinko.tres")
 
 @export_group("Rareza")
 ##probabilidad en porcentaje de rareza comun
@@ -81,6 +83,8 @@ var finalizando : bool = false
 
 func _enter_tree() -> void:
 	instancia_actual = self
+	if not Global.gato_elegido:
+		Global.gato_elegido = gato_default
 
 func _ready() -> void:
 	Global.cargador_pelotitas_actualizado.connect(_on_cargador_pelotitas_actualizado)

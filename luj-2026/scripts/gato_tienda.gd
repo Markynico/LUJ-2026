@@ -1,4 +1,4 @@
-class_name MichinkoOvillo
+class_name GatoTienda
 extends AnimatedSprite2D
 
 ##segundos minimos de espera entre animaciones
@@ -8,6 +8,10 @@ extends AnimatedSprite2D
 
 
 func _ready() -> void:
+	if Global.gato_elegido:
+		self_modulate = Global.gato_elegido.tinte
+		if Global.gato_elegido.frames_tienda:
+			sprite_frames = Global.gato_elegido.frames_tienda
 	animation_finished.connect(descansar)
 	descansar()
 

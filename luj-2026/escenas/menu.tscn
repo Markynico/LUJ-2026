@@ -11,8 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://bgwfassbyybmg" path="res://assets/estandartes/estandartesalirarriba.png" id="8_builu"]
 [ext_resource type="Texture2D" uid="uid://re7kh2u4s8ut" path="res://assets/estandartes/estandartesalirabajo.png" id="9_20bhr"]
 [ext_resource type="Texture2D" uid="uid://84aw1fbg7kwq" path="res://assets/Michinko Logo.png" id="11_6m0pt"]
-[ext_resource type="Script" uid="uid://ldkn2qu0rnkn" path="res://scripts/resources/datos_gato.gd" id="12_dgato"]
-[ext_resource type="Resource" uid="uid://c0y7jrcb8f0k" path="res://scripts/resources/gatos_michinko.tres" id="13_michi"]
 [ext_resource type="PackedScene" uid="uid://cbqiu7echm444" path="res://escenas/opciones.tscn" id="14_opc"]
 [ext_resource type="Material" uid="uid://bw1r2eimk66te" path="res://scripts/shaders/material_brillo_radial.tres" id="15_brillo"]
 [ext_resource type="PackedScene" uid="uid://che0rryy8c7cq" path="res://escenas/gato.tscn" id="15_xxdvs"]
@@ -28,6 +26,26 @@
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jhh3k"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qblru"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ds10p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x3h7a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ui16y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5e2gb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7c66c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_87yda"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_40utb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dvn3j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_soewk"]
+
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_7nkol"]
 color = Color(0.43137255, 0.38039216, 0.23529412, 1)
 thickness = 3
@@ -42,9 +60,8 @@ border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 border_blend = true
 
-[node name="Menu" type="Node2D" unique_id=1421157520 node_paths=PackedStringArray("camara", "foco_seleccion", "boton_jugar", "boton_coleccion", "boton_opciones", "boton_salir", "panel_info", "label_nombre", "label_descripcion", "boton_confirmar", "boton_volver", "brillo_seleccion", "contenedor_dificultades", "opciones", "guante_caricia", "gato_menu")]
+[node name="Menu" type="Node2D" unique_id=1421157520 node_paths=PackedStringArray("camara", "foco_seleccion", "boton_jugar", "boton_coleccion", "boton_opciones", "boton_salir", "panel_info", "label_nombre", "label_descripcion", "boton_confirmar", "boton_volver", "brillo_seleccion", "exhibidor", "flecha_izquierda", "flecha_derecha", "texto_bloqueo", "contenedor_dificultades", "opciones", "guante_caricia", "gato_menu")]
 script = ExtResource("1_menu")
-gatos = Array[ExtResource("12_dgato")]([ExtResource("13_michi")])
 dificultades = Array[ExtResource("19_dif")]([ExtResource("20_dfac"), ExtResource("21_dmed"), ExtResource("22_ddif")])
 zoom_seleccion = Vector2(3.5, 3.5)
 camara = NodePath("Camera2D")
@@ -59,6 +76,10 @@ label_descripcion = NodePath("UISeleccion/CuadroUI/MarginContainer/Contenido/Lab
 boton_confirmar = NodePath("UISeleccion/CuadroUI/Botones/BotonConfirmar")
 boton_volver = NodePath("UISeleccion/CuadroUI/Botones/BotonVolver")
 brillo_seleccion = NodePath("RecorteBrillo/BrilloSeleccion")
+exhibidor = NodePath("UISeleccion/Exhibidor")
+flecha_izquierda = NodePath("UISeleccion/Exhibidor/FlechaIzquierda")
+flecha_derecha = NodePath("UISeleccion/Exhibidor/FlechaDerecha")
+texto_bloqueo = NodePath("UISeleccion/Exhibidor/TextoBloqueo")
 contenedor_dificultades = NodePath("UISeleccion/CuadroUI/MarginContainer/Contenido/ContenedorDificultades")
 opciones = NodePath("Opciones")
 guante_caricia = NodePath("Gato/GuanteCaricia")
@@ -168,7 +189,6 @@ mouse_filter = 2
 z_as_relative = false
 position = Vector2(1481, 209)
 decorativo = true
-escala_normal = 0.32
 
 [node name="FocoSeleccion" type="Marker2D" parent="Gato" unique_id=159663655]
 position = Vector2(129, 14)
@@ -187,6 +207,62 @@ position = Vector2(960, 540)
 visible = false
 
 [node name="UISeleccion" type="CanvasLayer" parent="." unique_id=789863585]
+
+[node name="Exhibidor" type="Control" parent="UISeleccion" unique_id=789863590]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="FlechaIzquierda" type="Button" parent="UISeleccion/Exhibidor" unique_id=789863591]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 450.0
+offset_right = 210.0
+offset_bottom = 530.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qblru")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ds10p")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_x3h7a")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ui16y")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5e2gb")
+
+[node name="Triangulo" type="Polygon2D" parent="UISeleccion/Exhibidor/FlechaIzquierda" unique_id=789863594]
+color = Color(0.43, 0.38, 0.24, 1)
+polygon = PackedVector2Array(60, 0, 0, 40, 60, 80)
+
+[node name="FlechaDerecha" type="Button" parent="UISeleccion/Exhibidor" unique_id=789863592]
+layout_mode = 0
+offset_left = 806.0
+offset_top = 450.0
+offset_right = 866.0
+offset_bottom = 530.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7c66c")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_87yda")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_40utb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_dvn3j")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_soewk")
+
+[node name="Triangulo" type="Polygon2D" parent="UISeleccion/Exhibidor/FlechaDerecha" unique_id=789863595]
+color = Color(0.43, 0.38, 0.24, 1)
+polygon = PackedVector2Array(0, 0, 60, 40, 0, 80)
+
+[node name="TextoBloqueo" type="RichTextLabel" parent="UISeleccion/Exhibidor" unique_id=789863593]
+visible = false
+layout_mode = 0
+offset_left = 208.0
+offset_top = 90.0
+offset_right = 808.0
+offset_bottom = 290.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("25_ds10p")
+theme_override_font_sizes/normal_font_size = 34
+bbcode_enabled = true
+scroll_active = false
+vertical_alignment = 2
 
 [node name="CuadroUI" parent="UISeleccion" unique_id=280403763 instance=ExtResource("17_lemrg")]
 offset_left = 981.0

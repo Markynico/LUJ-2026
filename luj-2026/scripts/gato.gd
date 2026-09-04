@@ -13,26 +13,18 @@ signal escupir_bola
 		orgulloso = valor
 		if is_inside_tree():
 			aplicar_orgulloso()
-@export var fuerza_disparo : float = 1.0
-##ovillos que puede romper el gato al ser lanzado
-@export var impactos_maximos : int = 4
+##datos del gato que se usan si no hay uno elegido en el menu; en el editor sirve de preview
+@export var datos : DatosGato:
+	set(valor):
+		datos = valor
+		if Engine.is_editor_hint() and is_inside_tree():
+			aplicar_datos(valor)
 ##segundos quieto tras el lanzamiento para considerarlo atascado
 @export var tiempo_para_atascarse : float = 3.0
 ##velocidad por debajo de la cual el gato cuenta como quieto
 @export var umbral_quieto : float = 10.0
 
 @export_group("Sprites")
-@export var imagen_normal : Texture2D #dsp cambiamos por animatedsprite ambos o solo este
-@export var imagen_bolita : Texture2D
-@export var imagen_orgulloso : Texture2D
-##escala del sprite cuando muestra la imagen normal
-@export var escala_normal : float = 0.21:
-	set(valor):
-		escala_normal = valor
-		if Engine.is_editor_hint() and sprite:
-			sprite.scale = Vector2.ONE * valor
-##escala del sprite cuando muestra la imagen bolita
-@export var escala_bolita : float = 0.06
 ##z del sprite mientras el gato vuela lanzado, para taparse la baranda
 @export var z_lanzado : int = 20
 
@@ -57,6 +49,13 @@ signal escupir_bola
 @export var game_manager : GameManager
 
 var movimiento_horizontal_habilitado : bool = false
+var fuerza_disparo : float = 1.0
+var impactos_maximos : int = 4
+var imagen_normal : Texture2D
+var imagen_bolita : Texture2D
+var imagen_orgulloso : Texture2D
+var escala_normal : float = 0.32
+var escala_bolita : float = 0.26
 
 var velocidad_inicial : Vector2
 var velocidad_antes_del_paso : Vector2 = Vector2.ZERO
@@ -67,6 +66,13 @@ var _finalizo_ronda : bool = false
 var posicion_inicial : Vector2
 var ovillos_rotos : int = 0
 var tiempo_quieto : float = 0.0
+
+func _enter_tree() -> void:
+	if Engine.is_editor_hint():
+		aplicar_datos(datos)
+		return
+	aplicar_datos(Global.gato_elegido if Global.gato_elegido else datos)
+
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -337,6 +343,28 @@ func espejar_particulas(espejado : bool) -> void:
 		return
 	particulas_orgulloso.position.x = -absf(particulas_orgulloso.position.x) if espejado else absf(particulas_orgulloso.position.x)
 	particulas_orgulloso.scale.x = -1.0 if espejado else 1.0
+
+
+func aplicar_datos(nuevos : DatosGato) -> void:
+	if not nuevos:
+		return
+	if datos != nuevos:
+		datos = nuevos
+	imagen_normal = nuevos.imagen_normal
+	imagen_bolita = nuevos.imagen_bolita
+	imagen_orgulloso = nuevos.imagen_orgulloso
+	escala_normal = nuevos.escala_normal
+	escala_bolita = nuevos.escala_bolita
+	fuerza_disparo = nuevos.fuerza_disparo
+	impactos_maximos = nuevos.impactos_maximos
+	if sprite:
+		sprite.self_modulate = nuevos.tinte
+	if animation_player and nuevos.animaciones and animation_player.get_animation_library(&"") != nuevos.animaciones:
+		animation_player.stop()
+		if animation_player.has_animation_library(&""):
+			animation_player.remove_animation_library(&"")
+		animation_player.add_animation_library(&"", nuevos.animaciones)
+	aplicar_orgulloso()
 
 
 func aplicar_orgulloso() -> void:

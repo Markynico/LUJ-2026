@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmmo4nbdrd7fy"]
+
+[ext_resource type="Script" uid="uid://nwkxvfycp5q4" path="res://scripts/gato_tienda.gd" id="1_michi"]
+[ext_resource type="SpriteFrames" uid="uid://ddrbvazeshb62" path="res://scripts/resources/gatos/michinko_frames_tienda.tres" id="2_frames"]
+
+[node name="GatoTienda" type="AnimatedSprite2D"]
+sprite_frames = ExtResource("2_frames")
+script = ExtResource("1_michi")

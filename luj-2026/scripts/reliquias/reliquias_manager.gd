@@ -25,6 +25,8 @@ func obtener(reliquia : Reliquia) -> void:
 
 func fuentes() -> Array:
 	var resultado : Array = []
+	if Global.gato_elegido:
+		resultado.append_array(Global.gato_elegido.fuentes())
 	for reliquia in obtenidas:
 		resultado.append_array(reliquia.fuentes())
 	return resultado

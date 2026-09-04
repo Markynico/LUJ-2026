@@ -77,7 +77,7 @@ func crear_panel(reliquia : Resource) -> PanelContainer:
 		icono.custom_minimum_size = Vector2(textura_icono.get_width() * alto_icono / textura_icono.get_height(), alto_icono)
 	nombre.text = reliquia.nombre
 	nombre.add_theme_font_size_override("font_size", tamaño_nombre)
-	nombre.add_theme_color_override("font_color", Rareza.color_de(reliquia.rareza))
+	nombre.add_theme_color_override("font_color", Rareza.color_de(reliquia.rareza) if "rareza" in reliquia else Color.WHITE)
 	nombre.add_theme_constant_override("outline_size", grosor_contorno_nombre)
 	nombre.add_theme_color_override("font_outline_color", color_contorno_nombre)
 	nombre.size_flags_vertical = Control.SIZE_SHRINK_CENTER

@@ -37,6 +37,13 @@ var base_capturada : bool = false
 
 
 func _ready() -> void:
+	if not Engine.is_editor_hint() and Global.gato_elegido:
+		if Global.gato_elegido.sprite_victoria:
+			sprite_victoria = Global.gato_elegido.sprite_victoria
+		if Global.gato_elegido.sprite_derrota:
+			sprite_derrota = Global.gato_elegido.sprite_derrota
+		if sprite:
+			sprite.self_modulate = Global.gato_elegido.tinte
 	aplicar()
 
 
