@@ -11,6 +11,7 @@ const INTERVALO_SYNC := 0.1
 const TOLERANCIA_POSICION := 1.0
 const TOLERANCIA_ANGULO := 0.02
 const TOLERANCIA_ESCALA := 0.01
+const META_EJES := "ejes_simetria"
 
 var cargador : CargadorDeNivel
 var espejo_horizontal : bool = false
@@ -100,7 +101,8 @@ func registrar_nueva(forma : Node2D) -> Array[Node2D]:
 	var raices : Array[Node2D] = []
 	if "usar_simetria" in forma:
 		forma.usar_simetria = true
-	for relacion in relaciones_activas():
+		fijar_ejes(forma)
+	for relacion in ejes_de(forma):
 		copia = cargador.crear_forma(tipo, cargador)
 		sincronizar(forma, copia, relacion)
 		copia.usar_simetria = false
@@ -149,7 +151,7 @@ func emparejar_existentes() -> void:
 			for j in range(i + 1, formas.size()):
 				if usadas.has(formas[j]) or tiene_par(formas[j], relacion):
 					continue
-				if not con_toggle(formas[i]) and not con_toggle(formas[j]):
+				if not admite(formas[i], relacion) and not admite(formas[j], relacion):
 					continue
 				if es_espejo(formas[i], formas[j], relacion):
 					usadas[formas[i]] = true
@@ -177,9 +179,9 @@ func emparejar_por_grupo(formas : Array[Node2D]) -> void:
 			rol = miembro.get_meta("rol_simetria", Vector2i.ZERO)
 			if miembro == original or rol == Vector2i.ZERO:
 				continue
-			if not relaciones_activas().has(rol) or tiene_par(original, rol):
+			if tiene_par(original, rol):
 				continue
-			if not con_toggle(original) and not con_toggle(miembro):
+			if not admite(original, rol) and not admite(miembro, rol):
 				continue
 			if not es_espejo(original, miembro, rol):
 				sincronizar(original, miembro, rol)
@@ -197,9 +199,15 @@ func revisar_toggles() -> void:
 	var copia : Node2D
 	for raiz in cargador.obtener_raices_de_formas():
 		forma = forma_de(raiz)
-		if not forma or not "usar_simetria" in forma or not forma.usar_simetria:
+		if not forma or not "usar_simetria" in forma:
 			continue
-		for relacion in relaciones_activas():
+		if not forma.usar_simetria:
+			if forma.has_meta(META_EJES):
+				forma.remove_meta(META_EJES)
+			continue
+		if not forma.has_meta(META_EJES):
+			inferir_ejes(forma)
+		for relacion in ejes_de(forma):
 			if tiene_par(forma, relacion):
 				continue
 			copia = buscar_espejo_existente(forma, relacion)
@@ -226,6 +234,40 @@ func buscar_espejo_existente(forma : Node2D, relacion : Vector2i) -> Node2D:
 
 func con_toggle(forma : Node2D) -> bool:
 	return "usar_simetria" in forma and forma.usar_simetria
+
+
+func fijar_ejes(forma : Node2D) -> void:
+	forma.set_meta(META_EJES, relaciones_activas())
+
+
+func inferir_ejes(forma : Node2D) -> void:
+	var ejes : Array[Vector2i] = []
+	var grupo : int = forma.get_meta("grupo_simetria", 0)
+	var otra : Node2D
+	var rol : Vector2i
+	if grupo != 0:
+		for raiz in cargador.obtener_raices_de_formas():
+			otra = forma_de(raiz)
+			if not otra or otra == forma or otra.get_meta("grupo_simetria", 0) != grupo:
+				continue
+			rol = otra.get_meta("rol_simetria", Vector2i.ZERO)
+			if rol != Vector2i.ZERO and not ejes.has(rol):
+				ejes.append(rol)
+	if ejes.is_empty():
+		fijar_ejes(forma)
+	else:
+		forma.set_meta(META_EJES, ejes)
+
+
+func ejes_de(forma : Node2D) -> Array[Vector2i]:
+	var ejes : Array[Vector2i] = []
+	if forma and forma.has_meta(META_EJES):
+		ejes.assign(forma.get_meta(META_EJES))
+	return ejes
+
+
+func admite(forma : Node2D, relacion : Vector2i) -> bool:
+	return con_toggle(forma) and ejes_de(forma).has(relacion)
 
 
 func tiene_par(forma : Node2D, relacion : Vector2i) -> bool:
@@ -299,6 +341,7 @@ func sincronizar(fuente : Node2D, copia : Node2D, relacion : Vector2i) -> void:
 	var toggle_copia : bool = con_toggle(copia)
 	var grupo_copia : int = copia.get_meta("grupo_simetria", 0)
 	var rol_copia : Vector2i = copia.get_meta("rol_simetria", Vector2i.ZERO)
+	var ejes_copia : Array[Vector2i] = ejes_de(copia)
 	if raiz_fuente is MovimientoPorPath and not raiz_copia is MovimientoPorPath:
 		raiz_copia = cargador.agregar_recorrido(copia, cargador)
 	elif not raiz_fuente is MovimientoPorPath and raiz_copia is MovimientoPorPath:
@@ -308,6 +351,11 @@ func sincronizar(fuente : Node2D, copia : Node2D, relacion : Vector2i) -> void:
 	copia.aplicar_datos(datos)
 	if "usar_simetria" in copia:
 		copia.usar_simetria = toggle_copia
+	if ejes_copia.is_empty():
+		if copia.has_meta(META_EJES):
+			copia.remove_meta(META_EJES)
+	else:
+		copia.set_meta(META_EJES, ejes_copia)
 	if grupo_copia != 0:
 		copia.set_meta("grupo_simetria", grupo_copia)
 		copia.set_meta("rol_simetria", rol_copia)
