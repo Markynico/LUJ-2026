@@ -1,12 +1,21 @@
 [gd_scene format=3 uid="uid://u6k76f6lyw8y"]
 
 [ext_resource type="Script" uid="uid://bksn57vug6xi" path="res://scripts/tarjeta.gd" id="1_tarjeta"]
-[ext_resource type="Texture2D" uid="uid://qk7oqr8153cw" path="res://assets/tarjeta v2.png" id="2_fondo"]
-[ext_resource type="Resource" uid="uid://dw1ucm0wln1yo" path="res://scripts/resources/reliquias/cassette_roto.tres" id="4_dfqys"]
+[ext_resource type="Texture2D" uid="uid://danfrgeblr20g" path="res://assets/partes tarjeta/carta fondo.png" id="2_fondo"]
+[ext_resource type="Resource" uid="uid://cwu013pqyv4wp" path="res://scripts/resources/reliquias/objeto_valioso.tres" id="5_3fyqq"]
 [ext_resource type="Theme" uid="uid://bjkvjfhj8dr8y" path="res://themes/theme_ui_general.tres" id="5_cbjq2"]
 [ext_resource type="Texture2D" uid="uid://cgiw5gf0n4eao" path="res://assets/reliquias/magiclick.png" id="5_dfqys"]
 [ext_resource type="FontFile" uid="uid://dwg47e0trev3j" path="res://fuentes/Bungee-Regular.ttf" id="6_bungee"]
-[ext_resource type="Shader" path="res://scripts/shaders/esquinas_redondeadas.gdshader" id="7_esquinas"]
+[ext_resource type="Shader" uid="uid://cwat1lhwxdf16" path="res://scripts/shaders/esquinas_redondeadas.gdshader" id="7_esquinas"]
+[ext_resource type="Texture2D" uid="uid://r3arwueqfxf2" path="res://assets/partes tarjeta/carta banner arriba.png" id="9_banner"]
+[ext_resource type="Texture2D" uid="uid://b384url8nx8io" path="res://assets/partes tarjeta/carta ovillo.png" id="10_ovillo"]
+[ext_resource type="Texture2D" uid="uid://cdcv6qonnlo6k" path="res://assets/partes tarjeta/carta detalles amarillos.png" id="11_detalles"]
+[ext_resource type="Texture2D" uid="uid://buktkgq26t3ma" path="res://assets/partes tarjeta/carta sello.png" id="12_sello"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_esquinas"]
+shader = ExtResource("7_esquinas")
+shader_parameter/radio = 24.0
+shader_parameter/tamanio = Vector2(500, 600)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_atenuador"]
 bg_color = Color(0, 0, 0, 0.45)
@@ -31,12 +40,7 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_esquinas"]
-shader = ExtResource("7_esquinas")
-shader_parameter/radio = 24.0
-shader_parameter/tamanio = Vector2(500, 600)
-
-[node name="Tarjeta" type="TextureRect" unique_id=1697798897 node_paths=PackedStringArray("icono", "label_nombre", "label_descripcion", "label_tipo", "label_rareza", "capa_comprado", "sello_comprado")]
+[node name="Tarjeta" type="TextureRect" unique_id=1697798897 node_paths=PackedStringArray("icono", "label_nombre", "label_descripcion", "label_tipo", "label_rareza", "capa_comprado", "sello_comprado", "parte_banner", "parte_ovillo", "parte_sello", "parte_detalles")]
 texture_filter = 2
 material = SubResource("ShaderMaterial_esquinas")
 offset_right = 500.0
@@ -45,7 +49,7 @@ theme = ExtResource("5_cbjq2")
 texture = ExtResource("2_fondo")
 expand_mode = 1
 script = ExtResource("1_tarjeta")
-recurso = ExtResource("4_dfqys")
+recurso = ExtResource("5_3fyqq")
 icono = NodePath("Margen/Contenido/Icono")
 label_nombre = NodePath("Margen/Contenido/LabelNombre")
 label_descripcion = NodePath("Margen/Contenido/LabelDescripcion")
@@ -53,8 +57,63 @@ label_tipo = NodePath("LabelTipo")
 label_rareza = NodePath("LabelRareza")
 capa_comprado = NodePath("Comprado")
 sello_comprado = NodePath("Comprado/Sello")
-"tamaño_minimo_rareza" = null
-ancho_maximo_rareza = null
+parte_banner = NodePath("Banner")
+parte_ovillo = NodePath("Ovillo")
+parte_sello = NodePath("Sello")
+parte_detalles = NodePath("DetallesAmarillos")
+brillo_banner = 1.2
+brillo_ovillo = 1.2
+brillo_sello = 1.6
+saturacion_rareza = 0.8
+luminosidad_rareza = 0.8
+
+[node name="Banner" type="TextureRect" parent="." unique_id=1697798910]
+material = SubResource("ShaderMaterial_esquinas")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("9_banner")
+expand_mode = 1
+
+[node name="Ovillo" type="TextureRect" parent="." unique_id=1697798911]
+material = SubResource("ShaderMaterial_esquinas")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("10_ovillo")
+expand_mode = 1
+
+[node name="DetallesAmarillos" type="TextureRect" parent="." unique_id=1697798912]
+material = SubResource("ShaderMaterial_esquinas")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("11_detalles")
+expand_mode = 1
+
+[node name="Sello" type="TextureRect" parent="." unique_id=1697798913]
+material = SubResource("ShaderMaterial_esquinas")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("12_sello")
+expand_mode = 1
 
 [node name="LabelRareza" type="Label" parent="." unique_id=1697798901]
 layout_mode = 1
@@ -121,8 +180,8 @@ theme = ExtResource("5_cbjq2")
 theme_type_variation = &"LabelTitulo"
 theme_override_colors/font_color = Color(0.89, 0.09790001, 0.11110146, 1)
 theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 44
-text = "Cassette Roto"
+theme_override_font_sizes/font_size = 37
+text = "Vasija a Punto de Caerse"
 horizontal_alignment = 1
 
 [node name="LabelDescripcion" type="RichTextLabel" parent="Margen/Contenido" unique_id=1919030934]
@@ -138,7 +197,7 @@ text = "Los [img=24x39]uid://dhf7cpyrxnlhx[/img]  explotan instantáneamente.
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="Comprado" type="Control" parent="." unique_id=1697798910]
+[node name="Comprado" type="Control" parent="." unique_id=1277744269]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -148,7 +207,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Atenuador" type="Panel" parent="Comprado" unique_id=1697798911]
+[node name="Atenuador" type="Panel" parent="Comprado" unique_id=1955699225]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -158,7 +217,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_atenuador")
 
-[node name="Sello" type="Label" parent="Comprado" unique_id=1697798912]
+[node name="Sello" type="Label" parent="Comprado" unique_id=1054314589]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -173,7 +232,6 @@ grow_horizontal = 2
 grow_vertical = 2
 rotation = -0.35
 pivot_offset = Vector2(200, 45)
-mouse_filter = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.05, 0.25, 0.08, 1)
 theme_override_constants/outline_size = 8

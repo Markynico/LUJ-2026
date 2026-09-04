@@ -78,6 +78,24 @@ signal clickeada
 @export var capa_comprado : Control
 ##sello de comprado que aparece con un pop
 @export var sello_comprado : Control
+##capas de la tarjeta que se pintan del color de la rareza
+@export var parte_banner : TextureRect
+@export var parte_ovillo : TextureRect
+@export var parte_sello : TextureRect
+##capa de detalles que solo comparte el shader de esquinas, sin color de rareza
+@export var parte_detalles : TextureRect
+
+@export_group("Color de rareza")
+##multiplicador del color de rareza en el banner, mayor a 1 aclara porque el sprite es gris
+@export var brillo_banner : float = 3.4
+##multiplicador del color de rareza en el ovillo
+@export var brillo_ovillo : float = 2.8
+##multiplicador del color de rareza en el sello
+@export var brillo_sello : float = 2.2
+##saturacion del color de rareza en las tres capas, 1 = el color original
+@export var saturacion_rareza : float = 1.0
+##luminosidad del color de rareza en las tres capas, 1 = el color original
+@export var luminosidad_rareza : float = 1.0
 
 @export_group("Ajuste de fuentes")
 ##tamaño minimo al que se achica la descripcion para entrar sin scroll
@@ -163,6 +181,9 @@ func aplicar_esquinas() -> void:
 	material.set_shader_parameter("radio", radio_esquinas)
 	material.set_shader_parameter("tamanio", size)
 	resized.connect(func() -> void: material.set_shader_parameter("tamanio", size))
+	for parte in [parte_banner, parte_ovillo, parte_sello, parte_detalles]:
+		if parte:
+			parte.material = material
 
 
 func crear_borde_hover() -> void:
@@ -178,6 +199,21 @@ func crear_borde_hover() -> void:
 	borde_hover.modulate.a = 0.0
 	add_child(borde_hover)
 	actualizar_color_borde()
+
+
+func pintar_partes_rareza() -> void:
+	var color : Color = Rareza.color_de(Rareza.Nivel.COMUN)
+	if recurso and "rareza" in recurso:
+		color = Rareza.color_de(recurso.rareza)
+	color = Color.from_hsv(color.h, clampf(color.s * saturacion_rareza, 0.0, 1.0), clampf(color.v * luminosidad_rareza, 0.0, 1.0))
+	pintar_parte(parte_banner, color, brillo_banner)
+	pintar_parte(parte_ovillo, color, brillo_ovillo)
+	pintar_parte(parte_sello, color, brillo_sello)
+
+
+func pintar_parte(parte : TextureRect, color : Color, brillo : float) -> void:
+	if parte:
+		parte.modulate = Color(color.r * brillo, color.g * brillo, color.b * brillo, 1.0)
 
 
 func actualizar_color_borde() -> void:
@@ -289,6 +325,7 @@ func actualizar_tarjeta() -> void:
 		label_rareza.text = Rareza.nombre_de(recurso.rareza)
 		label_rareza.add_theme_color_override("font_color", Rareza.color_de(recurso.rareza))
 		ajustar_fuente_rareza.call_deferred()
+	pintar_partes_rareza()
 	actualizar_color_borde()
 
 
