@@ -220,7 +220,7 @@ func explotar(nodo_explosion : Explosion): #lo llamo en el EfectoExplosion
 	for fuente in fuentes_estados():
 		fuente.al_explotar(self, nodo_explosion)
 	if ReliquiasManager.explosion_instantanea:
-		AudioManager.reproducir_sfx(tipo_ovillo.efecto_al_explotar)
+		AudioManager.reproducir_sfx(nodo_explosion.efecto_sonido(tipo_ovillo.efecto_al_explotar))
 		nodo_explosion.activar_explosion()
 		return
 	var reproductor_mecha : AudioStreamPlayer = AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.MECHA)
@@ -233,7 +233,7 @@ func explotar(nodo_explosion : Explosion): #lo llamo en el EfectoExplosion
 	sprite_normal.hide() #los vuelvo a esconder como si se hubiera desactivado recien ahora
 	sprite_desactivado.show()
 	AudioManager.detener_sfx(reproductor_mecha)
-	AudioManager.reproducir_sfx(tipo_ovillo.efecto_al_explotar)
+	AudioManager.reproducir_sfx(nodo_explosion.efecto_sonido(tipo_ovillo.efecto_al_explotar))
 	nodo_explosion.activar_explosion()
 	tween.kill()
 

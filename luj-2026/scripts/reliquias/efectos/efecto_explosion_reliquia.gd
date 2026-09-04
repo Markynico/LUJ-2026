@@ -14,5 +14,6 @@ func al_explotar(explosion : Explosion) -> void:
 	if randf() * 100.0 <= probabilidad:
 		explosion.scale *= multiplicador
 		explosion.fuerza_impulso *= multiplicador
+		explosion.potenciada = true
 	if probabilidad_perder_vida > 0.0 and randf() * 100.0 <= probabilidad_perder_vida and is_instance_valid(game_manager):
 		game_manager.perder_vida(1)
