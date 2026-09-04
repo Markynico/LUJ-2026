@@ -5,120 +5,160 @@
 
 [sub_resource type="Resource" id="Resource_0s1od"]
 script = ExtResource("1_0s1od")
-tipo = "obstaculo_rectangulo"
-posicion = Vector2(965.1, 600)
-rotacion = 0.04917529
+posicion = Vector2(532.5454, 429.82242)
+anillos_interiores = 3
+separacion_anillos = 33
+usar_simetria = true
+grupo_simetria = 1
+huecos = PackedInt32Array()
+"tamaño" = Vector2(260, 155)
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_c1atb"]
 script = ExtResource("1_0s1od")
-posicion = Vector2(965.1, 600)
+posicion = Vector2(533.87646, 771.88947)
+anillos_interiores = 3
+separacion_anillos = 33
+usar_simetria = true
+grupo_simetria = 2
+huecos = PackedInt32Array()
 "tamaño" = Vector2(260, 155)
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_pg0eg"]
 script = ExtResource("1_0s1od")
-posicion = Vector2(548.85583, 429.82242)
-"tamaño" = Vector2(260, 155)
-
-[sub_resource type="Resource" id="Resource_b2q21"]
-script = ExtResource("1_0s1od")
-posicion = Vector2(550.1869, 771.88947)
-"tamaño" = Vector2(260, 155)
-
-[sub_resource type="Resource" id="Resource_61cym"]
-script = ExtResource("1_0s1od")
-posicion = Vector2(1399.365, 429.82242)
-"tamaño" = Vector2(260, 155)
-
-[sub_resource type="Resource" id="Resource_acxbn"]
-script = ExtResource("1_0s1od")
-posicion = Vector2(1399.365, 770.5584)
-rotacion = -0.0034906585
-"tamaño" = Vector2(260, 155)
-
-[sub_resource type="Resource" id="Resource_2ik1b"]
-script = ExtResource("1_0s1od")
 tipo = "obstaculo_circulo"
-posicion = Vector2(1168.5934, 757.7857)
-radio = 31.05824
-
-[sub_resource type="Resource" id="Resource_ynvk2"]
-script = ExtResource("1_0s1od")
-tipo = "obstaculo_circulo"
-posicion = Vector2(742.5403, 763.64215)
+posicion = Vector2(733.9207, 791.15717)
+usar_simetria = true
+grupo_simetria = 4
+huecos = PackedInt32Array()
 radio = 35.168858
+poligono = PackedVector2Array()
 
-[sub_resource type="Resource" id="Resource_ahm7c"]
-script = ExtResource("1_0s1od")
-posicion = Vector2(965.1, 597.3104)
-"tamaño" = Vector2(317.90015, 202.40002)
-
-[sub_resource type="Resource" id="Resource_2pay2"]
-script = ExtResource("1_0s1od")
-posicion = Vector2(965.1, 597.3104)
-"tamaño" = Vector2(368.50012, 255.20001)
-
-[sub_resource type="Resource" id="Resource_hkaja"]
-script = ExtResource("1_0s1od")
-posicion = Vector2(549.51044, 428.46042)
-"tamaño" = Vector2(321.19998, 218.89996)
-
-[sub_resource type="Resource" id="Resource_gvij1"]
-script = ExtResource("1_0s1od")
-posicion = Vector2(1397.6105, 429.01038)
-"tamaño" = Vector2(321.19998, 218.89996)
-
-[sub_resource type="Resource" id="Resource_pengw"]
-script = ExtResource("1_0s1od")
-posicion = Vector2(547.3104, 771.1104)
-"tamaño" = Vector2(321.19998, 218.89996)
-
-[sub_resource type="Resource" id="Resource_ik5w5"]
-script = ExtResource("1_0s1od")
-posicion = Vector2(1397.1506, 768.94574)
-"tamaño" = Vector2(321.19998, 218.89996)
-
-[sub_resource type="Curve2D" id="Curve2D_v5rwl"]
+[sub_resource type="Curve2D" id="Curve2D_b2q21"]
 bake_interval = 2.0
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -140.50012, 276.30145, 0, 0, 0, 0, 294.49988, 276.30145)
 }
 point_count = 2
 
-[sub_resource type="Resource" id="Resource_ad22a"]
+[sub_resource type="Resource" id="Resource_61cym"]
 script = ExtResource("1_0s1od")
 tipo = "path"
-posicion = Vector2(893.5001, 605.69855)
-curva = SubResource("Curve2D_v5rwl")
+posicion = Vector2(877.1897, 605.69855)
+huecos = PackedInt32Array()
+poligono = PackedVector2Array()
+curva = SubResource("Curve2D_b2q21")
 
-[sub_resource type="Curve2D" id="Curve2D_aaowv"]
+[sub_resource type="Curve2D" id="Curve2D_acxbn"]
 bake_interval = 2.0
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -455.3999, -120.05005, 0, 0, 0, 0, -128.3999, -120.05005)
+"points": PackedVector2Array(0, 0, 0, 0, -534.3999, -181.05005, 0, 0, 0, 0, -93.3999, -28.050049)
 }
 point_count = 2
 
-[sub_resource type="Resource" id="Resource_p6fue"]
+[sub_resource type="Resource" id="Resource_2ik1b"]
 script = ExtResource("1_0s1od")
 tipo = "path"
 posicion = Vector2(839.3999, 715.05005)
-curva = SubResource("Curve2D_aaowv")
+repeticiones = 1
+separacion_repeticiones = 19
+eje_repeticiones = 1
+velocidad_desplazamiento = 25.0
+alternar_direccion_repeticiones = true
+efecto_ladrillo = true
+usar_simetria = true
+grupo_simetria = 3
+huecos = PackedInt32Array()
+poligono = PackedVector2Array()
+curva = SubResource("Curve2D_acxbn")
 
-[sub_resource type="Curve2D" id="Curve2D_2n0co"]
+[sub_resource type="Resource" id="Resource_ynvk2"]
+script = ExtResource("1_0s1od")
+posicion = Vector2(948.2796, 594.51385)
+anillos_interiores = 4
+separacion_anillos = 35
+huecos = PackedInt32Array()
+"tamaño" = Vector2(368.50012, 255.20001)
+poligono = PackedVector2Array()
+
+[sub_resource type="Curve2D" id="Curve2D_ahm7c"]
 bake_interval = 2.0
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -149.49976, -218.45001, 0, 0, 0, 0, 281.50024, -216.45001)
 }
 point_count = 2
 
-[sub_resource type="Resource" id="Resource_wlctc"]
+[sub_resource type="Resource" id="Resource_2pay2"]
 script = ExtResource("1_0s1od")
 tipo = "path"
-posicion = Vector2(906.49976, 598.45)
-curva = SubResource("Curve2D_2n0co")
+posicion = Vector2(890.18933, 598.45)
+huecos = PackedInt32Array()
+poligono = PackedVector2Array()
+curva = SubResource("Curve2D_ahm7c")
+
+[sub_resource type="Resource" id="Resource_hkaja"]
+script = ExtResource("1_0s1od")
+posicion = Vector2(1373.4546, 429.82242)
+escala = Vector2(-1, 1)
+anillos_interiores = 3
+separacion_anillos = 33
+grupo_simetria = 1
+rol_simetria = Vector2i(1, 0)
+huecos = PackedInt32Array()
+"tamaño" = Vector2(260, 155)
+poligono = PackedVector2Array()
+
+[sub_resource type="Resource" id="Resource_gvij1"]
+script = ExtResource("1_0s1od")
+posicion = Vector2(1372.1235, 771.88947)
+escala = Vector2(-1, 1)
+anillos_interiores = 3
+separacion_anillos = 33
+grupo_simetria = 2
+rol_simetria = Vector2i(1, 0)
+huecos = PackedInt32Array()
+"tamaño" = Vector2(260, 155)
+poligono = PackedVector2Array()
+
+[sub_resource type="Curve2D" id="Curve2D_pengw"]
+bake_interval = 2.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -534.3999, -181.05005, 0, 0, 0, 0, -102.3999, -39.05005)
+}
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_ik5w5"]
+script = ExtResource("1_0s1od")
+tipo = "path"
+posicion = Vector2(1066.6001, 715.05005)
+escala = Vector2(-1, 1)
+repeticiones = 1
+separacion_repeticiones = 19
+eje_repeticiones = 1
+velocidad_desplazamiento = 25.0
+alternar_direccion_repeticiones = true
+efecto_ladrillo = true
+grupo_simetria = 3
+rol_simetria = Vector2i(1, 0)
+huecos = PackedInt32Array()
+poligono = PackedVector2Array()
+curva = SubResource("Curve2D_pengw")
+
+[sub_resource type="Resource" id="Resource_v5rwl"]
+script = ExtResource("1_0s1od")
+tipo = "obstaculo_circulo"
+posicion = Vector2(1172.0793, 791.15717)
+escala = Vector2(-1, 1)
+grupo_simetria = 4
+rol_simetria = Vector2i(1, 0)
+huecos = PackedInt32Array()
+radio = 35.168858
+poligono = PackedVector2Array()
 
 [resource]
 script = ExtResource("2_c1atb")
 nombre = "Nivel6"
-formas = Array[ExtResource("1_0s1od")]([SubResource("Resource_0s1od"), SubResource("Resource_c1atb"), SubResource("Resource_pg0eg"), SubResource("Resource_b2q21"), SubResource("Resource_61cym"), SubResource("Resource_acxbn"), SubResource("Resource_2ik1b"), SubResource("Resource_ynvk2"), SubResource("Resource_ahm7c"), SubResource("Resource_2pay2"), SubResource("Resource_hkaja"), SubResource("Resource_gvij1"), SubResource("Resource_pengw"), SubResource("Resource_ik5w5"), SubResource("Resource_ad22a"), SubResource("Resource_p6fue"), SubResource("Resource_wlctc")])
-posicion_divisiones = Vector2(349, 1080)
-ancho_divisiones = 1241.0
+formas = Array[ExtResource("1_0s1od")]([SubResource("Resource_0s1od"), SubResource("Resource_c1atb"), SubResource("Resource_pg0eg"), SubResource("Resource_61cym"), SubResource("Resource_2ik1b"), SubResource("Resource_ynvk2"), SubResource("Resource_2pay2"), SubResource("Resource_hkaja"), SubResource("Resource_gvij1"), SubResource("Resource_ik5w5"), SubResource("Resource_v5rwl")])
+posicion_divisiones = Vector2(353.24, 1086)
+ancho_divisiones = 1199.52
