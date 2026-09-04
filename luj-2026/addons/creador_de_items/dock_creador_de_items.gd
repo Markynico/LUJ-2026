@@ -54,6 +54,23 @@ const TIPOS : Dictionary = {
 		"carpeta_resources": "res://scripts/resources/ovillos/",
 		"carpetas_existentes": ["res://scripts/resources/ovillos/", "res://scripts/resources/"],
 	},
+	"Gato": {
+		"script_base": "res://scripts/reliquias/efecto_reliquia.gd",
+		"script_hooks": "res://scripts/reliquias/efecto_reliquia.gd",
+		"script_contenedor": "res://scripts/resources/datos_gato.gd",
+		"clase_base": "EfectoReliquia",
+		"clase_contenedor": "DatosGato",
+		"propiedad_efectos": "efectos",
+		"propiedad_icono": "textura",
+		"nombre_en_efecto": "",
+		"con_rareza": false,
+		"con_textura": false,
+		"etiqueta_icono": "Sprite menu",
+		"carpeta_scripts": "res://scripts/gatos/",
+		"prefijo_script": "efecto_gato_",
+		"carpeta_resources": "res://scripts/resources/gatos/",
+		"carpetas_existentes": ["res://scripts/resources/gatos/"],
+	},
 	"Estado de ovillo": {
 		"script_base": "res://scripts/ovillos_custom/estados/estado_ovillo.gd",
 		"script_hooks": "res://scripts/ovillos_custom/estados/efecto_estado_ovillo.gd",
@@ -389,6 +406,7 @@ func crear_script_nuevo(nombre : String) -> Script:
 	if clase_existe(clase):
 		avisar("Ya existe la clase " + clase)
 		return null
+	DirAccess.make_dir_recursive_absolute(datos_tipo()["carpeta_scripts"])
 	script = escribir_script(ruta_script, generar_script(clase, datos_tipo()["clase_base"]))
 	if not script:
 		avisar("No se pudo escribir " + ruta_script)
