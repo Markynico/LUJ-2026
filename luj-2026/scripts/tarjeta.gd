@@ -37,6 +37,8 @@ signal clickeada
 @export_group("Entrada")
 ##segundos del fade de entrada de la tarjeta
 @export var duracion_entrada : float = 0.25
+##escala desde la que crece la tarjeta al entrar, el rebote lo da la curva
+@export var escala_entrada : float = 0.7
 
 @export_group("Comprado")
 ##escala desde la que aparece el sello de comprado
@@ -148,10 +150,23 @@ func _ready() -> void:
 func animar_entrada(retardo : float = 0.0) -> void:
 	if tween_entrada:
 		tween_entrada.kill()
+	terminar_hover()
+	escala_base = scale
+	posicion_base = position
 	modulate.a = 0.0
+	scale = escala_base * escala_entrada
+	position = posicion_base - size * escala_base * (escala_entrada - 1.0) * 0.5
 	tween_entrada = create_tween()
 	tween_entrada.tween_interval(retardo)
 	tween_entrada.tween_property(self, "modulate:a", 1.0, duracion_entrada)
+	tween_entrada.parallel().tween_property(self, "scale", escala_base, duracion_entrada).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween_entrada.parallel().tween_property(self, "position", posicion_base, duracion_entrada).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween_entrada.tween_callback(retomar_hover)
+
+
+func retomar_hover() -> void:
+	if get_global_rect().has_point(get_global_mouse_position()):
+		al_hover(true)
 
 
 func aparecer() -> void:
@@ -234,6 +249,8 @@ func al_gui_input(evento : InputEvent) -> void:
 
 func al_hover(entrando : bool) -> void:
 	if entrando and not hover_activado:
+		return
+	if entrando and tween_entrada and tween_entrada.is_running():
 		return
 	mostrar_borde(entrando)
 	animar_escala_hover(entrando)
