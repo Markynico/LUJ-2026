@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bhnfhacc4me7n"]
+
+[ext_resource type="Script" uid="uid://d11yoihculom3" path="res://scripts/prueba_tienda.gd" id="1_prueba"]
+[ext_resource type="PackedScene" uid="uid://djxr6fsxwllx3" path="res://escenas/game_manager.tscn" id="2_gm"]
+[ext_resource type="PackedScene" uid="uid://dnyb8516ireeo" path="res://escenas/sala_tienda.tscn" id="3_tienda"]
+[ext_resource type="Script" uid="uid://5lbsfhx8xug1" path="res://scripts/reliquias/reliquia.gd" id="4_reliquia"]
+[ext_resource type="Resource" uid="uid://dqkvtjg3x0gb7" path="res://scripts/resources/reliquias/lata_atun.tres" id="5_fkdn0"]
+[ext_resource type="Script" uid="uid://c7ogyqxnq7236" path="res://scripts/pelotitas_custom/pelotita_base.gd" id="5_pelotita"]
+[ext_resource type="Resource" uid="uid://cwu013pqyv4wp" path="res://scripts/resources/reliquias/objeto_valioso.tres" id="6_85x2v"]
+[ext_resource type="Resource" uid="uid://b0wiyen41o3t2" path="res://scripts/resources/reliquias/catnip_puro.tres" id="7_wnkhm"]
+[ext_resource type="Resource" uid="uid://vpcwlt8nkqws" path="res://scripts/resources/BolaPelosIgnea.tres" id="8_ignea"]
+[ext_resource type="Resource" uid="uid://8m1yr604l01d" path="res://scripts/resources/comidas/cubito_de_hielo.tres" id="9_cubito"]
+[ext_resource type="Resource" uid="uid://bp6yjcorvvb2y" path="res://scripts/resources/BolaPelosMate.tres" id="11_kxlkl"]
+
+[node name="PruebaTienda" type="Node2D" unique_id=447984428 node_paths=PackedStringArray("tienda")]
+script = ExtResource("1_prueba")
+tienda = NodePath("CanvasLayer/SalaTienda")
+
+[node name="GameManager" parent="." unique_id=593842392 instance=ExtResource("2_gm")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=96160692]
+
+[node name="SalaTienda" parent="CanvasLayer" unique_id=543615900 instance=ExtResource("3_tienda")]
+retardo_entre_tarjetas = 0.1
+reliquias_fijas = Array[ExtResource("4_reliquia")]([ExtResource("5_fkdn0"), ExtResource("6_85x2v"), ExtResource("7_wnkhm")])
+comidas_fijas = Array[ExtResource("5_pelotita")]([ExtResource("8_ignea"), ExtResource("9_cubito"), ExtResource("11_kxlkl")])
