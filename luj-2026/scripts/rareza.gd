@@ -5,8 +5,10 @@ enum Nivel { COMUN, RARO, EPICO, LEGENDARIO, MITICO }
 
 const NOMBRES : Array[String] = ["Común", "Raro", "Épico", "Legendario", "Mítico"]
 const COLORES : Array[Color] = [Color("12a13aff"), Color("0036d6ff"), Color("8800ffff"), Color("ff6f00ff"), Color("e01818ff")]
-const PRECIOS_RELIQUIAS : Array[int] = [50, 80, 120, 200, 400]
-const PRECIOS_COMIDAS : Array[int] = [30, 50, 80, 130, 260]
+#const PRECIOS_RELIQUIAS : Array[int] = [50, 80, 120, 200, 400] #asi estaban antes
+const PRECIOS_RELIQUIAS : Array[int] = [100, 180, 400, 600, 900]
+#const PRECIOS_COMIDAS : Array[int] = [30, 50, 80, 130, 260] #asi estaban antes
+const PRECIOS_COMIDAS : Array[int] = [100, 200, 400, 600, 800]
 
 
 static func nombre_de(nivel : Nivel) -> String:
