@@ -8,8 +8,8 @@
 [ext_resource type="Theme" uid="uid://bjkvjfhj8dr8y" path="res://themes/theme_ui_general.tres" id="6_tema"]
 [ext_resource type="FontFile" uid="uid://daev32fyu3g8a" path="res://assets/fuentes/CARDINAL-ALTERNATE.TTF" id="7_xuv2i"]
 [ext_resource type="Script" uid="uid://olx32tru8a8h" path="res://scripts/explicacion_mecanicas.gd" id="8_lhg4a"]
+[ext_resource type="Texture2D" uid="uid://1k4d43khmqt" path="res://assets/explicaciones_tutorial/tuto3_michinko.png" id="10_8ppq8"]
 [ext_resource type="Texture2D" uid="uid://d1b7e8ptyniuo" path="res://assets/explicaciones_tutorial/tuto2_final.png" id="10_hklxo"]
-[ext_resource type="Texture2D" uid="uid://d4gbp6apwwa7e" path="res://assets/explicaciones_tutorial/tuto3.png" id="11_8ppq8"]
 [ext_resource type="Texture2D" uid="uid://dbb7mhyfhujm4" path="res://assets/explicaciones_tutorial/TUTO1.png" id="12_hfoka"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_37ege"]
@@ -231,23 +231,8 @@ visible = false
 layout_mode = 2
 text = "Bolas de pelo restantes:"
 
-[node name="BotonInfo" type="Button" parent="CanvasLayer" unique_id=955167077]
-process_mode = 3
-custom_minimum_size = Vector2(111, 0)
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 94.0
-offset_top = -150.0
-offset_right = 117.0
-offset_bottom = -86.0
-grow_vertical = 0
-theme = ExtResource("6_tema")
-theme_override_fonts/font = ExtResource("7_xuv2i")
-theme_override_font_sizes/font_size = 47
-text = "Info"
-
 [node name="ExplicacionMecanicas" type="Control" parent="." unique_id=944890235]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -255,10 +240,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("8_lhg4a")
-lista_imagenes_explicativas = Array[Texture2D]([ExtResource("12_hfoka"), ExtResource("10_hklxo"), ExtResource("11_8ppq8")])
+lista_imagenes_explicativas = Array[Texture2D]([ExtResource("12_hfoka"), ExtResource("10_hklxo"), ExtResource("10_8ppq8")])
 
 [node name="LayerExplicaciones" type="CanvasLayer" parent="ExplicacionMecanicas" unique_id=1769644158]
 unique_name_in_owner = true
+layer = 2
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="ExplicacionMecanicas/LayerExplicaciones" unique_id=764331110]
 anchors_preset = 15
@@ -266,7 +253,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.26657522, 0.2665752, 0.2665752, 0.70980394)
+color = Color(0.15127608, 0.15127608, 0.15127608, 0.70980394)
+
+[node name="CuadroUI" parent="ExplicacionMecanicas/LayerExplicaciones/ColorRect" unique_id=160423975 instance=ExtResource("3_0sskl")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -728.5
+offset_top = -447.0
+offset_right = 728.5
+offset_bottom = 383.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="ImagenesTutoriales" type="TextureRect" parent="ExplicacionMecanicas/LayerExplicaciones/ColorRect" unique_id=1697949011]
 unique_name_in_owner = true
@@ -278,10 +279,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -966.5
-offset_top = -540.0
-offset_right = 953.5
-offset_bottom = 540.0
+offset_left = -720.0
+offset_top = -437.0
+offset_right = 720.0
+offset_bottom = 373.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("12_hfoka")
@@ -293,10 +294,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -101.5
-offset_top = -115.0
-offset_right = 101.5
-offset_bottom = -60.0
+offset_left = -105.5
+offset_top = -103.0
+offset_right = 105.5
+offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 47
@@ -324,6 +325,43 @@ layout_mode = 2
 theme = ExtResource("6_tema")
 text = ">"
 
-[connection signal="pressed" from="CanvasLayer/BotonInfo" to="ExplicacionMecanicas" method="_on_boton_info_pressed"]
+[node name="BotonCerrar" type="Button" parent="ExplicacionMecanicas/LayerExplicaciones" unique_id=506811607]
+process_mode = 3
+custom_minimum_size = Vector2(111, 0)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -150.0
+offset_right = 176.0
+offset_bottom = -86.0
+grow_vertical = 0
+theme = ExtResource("6_tema")
+theme_override_fonts/font = ExtResource("7_xuv2i")
+theme_override_font_sizes/font_size = 47
+text = "Cerrar"
+
+[node name="BotonInfo" type="Button" parent="." unique_id=955167077]
+process_mode = 3
+visible = false
+z_index = 5
+custom_minimum_size = Vector2(111, 0)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 92.0
+offset_top = -152.0
+offset_right = 203.0
+offset_bottom = -88.0
+grow_vertical = 0
+theme = ExtResource("6_tema")
+theme_override_fonts/font = ExtResource("7_xuv2i")
+theme_override_font_sizes/font_size = 47
+text = "Info"
+
+[connection signal="boton_info_presionado" from="." to="ExplicacionMecanicas" method="_on_boton_info_pressed"]
 [connection signal="pressed" from="ExplicacionMecanicas/LayerExplicaciones/HBoxBotonesIzqDer/PaginaIzq" to="ExplicacionMecanicas" method="_on_pagina_izq_pressed"]
 [connection signal="pressed" from="ExplicacionMecanicas/LayerExplicaciones/HBoxBotonesIzqDer/PaginaDer" to="ExplicacionMecanicas" method="_on_pagina_der_pressed"]
+[connection signal="pressed" from="ExplicacionMecanicas/LayerExplicaciones/BotonCerrar" to="ExplicacionMecanicas" method="_on_boton_cerrar_pressed"]
+[connection signal="pressed" from="BotonInfo" to="ExplicacionMecanicas" method="_on_boton_info_pressed"]

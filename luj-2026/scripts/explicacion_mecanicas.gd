@@ -10,11 +10,13 @@ var pagina_actual : int = 0
 
 func _ready() -> void:
 	layer_explicaciones.hide()
+	hide()
 	texturect_imagenes_tutoriales.texture = lista_imagenes_explicativas[0]
 	label_cant_paginas.text = str(pagina_actual + 1) + " / " + str(lista_imagenes_explicativas.size())
 
 func _on_boton_info_pressed():
 	layer_explicaciones.show()
+	show() #este mismo nodo tmb sino rompia todo
 
 
 func _on_pagina_izq_pressed() -> void:
@@ -39,3 +41,8 @@ func _on_pagina_der_pressed() -> void:
 	label_cant_paginas.text = str(pagina_actual + 1) + " / " + str(lista_imagenes_explicativas.size())
 	print("al finalizar der, contador vale : ", pagina_actual)
 	
+
+
+func _on_boton_cerrar_pressed() -> void:
+	layer_explicaciones.hide()
+	hide()

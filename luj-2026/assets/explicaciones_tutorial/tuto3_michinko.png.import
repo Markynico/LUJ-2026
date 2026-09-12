@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://doss2hd6fl6os"
-path="res://.godot/imported/Captura de pantalla (593).png-6ca92b83844416392961aa3a7c582503.ctex"
+uid="uid://1k4d43khmqt"
+path="res://.godot/imported/tuto3_michinko.png-c03b0474f0680cb61ebcffebcfca5bcb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/explicaciones_tutorial/Captura de pantalla (593).png"
-dest_files=["res://.godot/imported/Captura de pantalla (593).png-6ca92b83844416392961aa3a7c582503.ctex"]
+source_file="res://assets/explicaciones_tutorial/tuto3_michinko.png"
+dest_files=["res://.godot/imported/tuto3_michinko.png-c03b0474f0680cb61ebcffebcfca5bcb.ctex"]
 
 [params]
 
