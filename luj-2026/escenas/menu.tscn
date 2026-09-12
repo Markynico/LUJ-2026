@@ -21,6 +21,7 @@
 [ext_resource type="Resource" uid="uid://0m7rprypwofd" path="res://scripts/resources/dificultades/dificultad_facil.tres" id="20_dfac"]
 [ext_resource type="Resource" uid="uid://oe7n6flqxgn6" path="res://scripts/resources/dificultades/dificultad_media.tres" id="21_dmed"]
 [ext_resource type="Resource" uid="uid://bwtp6rro6y6j3" path="res://scripts/resources/dificultades/dificultad_dificil.tres" id="22_ddif"]
+[ext_resource type="PackedScene" uid="uid://omba114yvay4" path="res://escenas/componentes/reiniciar_escena.tscn" id="24_ds10p"]
 [ext_resource type="FontFile" uid="uid://daev32fyu3g8a" path="res://assets/fuentes/CARDINAL-ALTERNATE.TTF" id="24_qblru"]
 [ext_resource type="FontFile" uid="uid://dwg47e0trev3j" path="res://fuentes/Bungee-Regular.ttf" id="25_ds10p"]
 
@@ -473,6 +474,8 @@ size = Vector2i(520, 140)
 ok_button_text = "Resetear"
 dialog_text = "Se van a borrar todos los stats y desbloqueos acumulados. ¿Seguro?"
 cancel_button_text = "Cancelar"
+
+[node name="ReiniciarEscena" parent="." unique_id=1875771562 instance=ExtResource("24_ds10p")]
 
 [connection signal="pressed" from="LayerBotonCreditos/ButtonCreditos" to="." method="_on_button_creditos_pressed"]
 [connection signal="pressed" from="LayerCreditos/Panel/Contenido/BotonCerrarCreditos" to="." method="_on_boton_cerrar_creditos_pressed"]
