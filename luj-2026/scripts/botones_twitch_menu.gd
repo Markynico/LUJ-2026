@@ -28,4 +28,5 @@ func aumentar_contador_caricias(contador : int):
 	if contador>=10:
 		print("dar una reliquiaaaaaaaaaaaaaaaa")
 		Global.regalar_reliquia = true
+		Notificaciones.mostrar_desbloqueo(reliquia_regalo)
 	label_contador.text = str(contador) + " / 20 para obtener una reliquia"
