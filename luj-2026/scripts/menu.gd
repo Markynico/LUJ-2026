@@ -427,3 +427,8 @@ func _on_boton_cerrar_creditos_pressed() -> void:
 
 func _on_button_creditos_pressed() -> void:
 		layer_creditos.show()
+
+
+func _on_button_conectar_twitch_pressed() -> void:
+	#%TWITCH._on_button_conectar_con_twitch_pressed()
+	Global.boton_twitch_presionado.emit()

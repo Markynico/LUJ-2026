@@ -14,16 +14,22 @@
 [ext_resource type="PackedScene" uid="uid://cbqiu7echm444" path="res://escenas/opciones.tscn" id="14_opc"]
 [ext_resource type="Material" uid="uid://bw1r2eimk66te" path="res://scripts/shaders/material_brillo_radial.tres" id="15_brillo"]
 [ext_resource type="PackedScene" uid="uid://che0rryy8c7cq" path="res://escenas/gato.tscn" id="15_xxdvs"]
-[ext_resource type="PackedScene" path="res://escenas/componentes/guante_caricia.tscn" id="17_guant"]
+[ext_resource type="PackedScene" uid="uid://b5rhrr7fqex3e" path="res://escenas/componentes/guante_caricia.tscn" id="17_guant"]
 [ext_resource type="PackedScene" uid="uid://bh6v3wn4vlcem" path="res://escenas/componentes/cuadro_ui.tscn" id="17_lemrg"]
 [ext_resource type="Theme" uid="uid://bjkvjfhj8dr8y" path="res://themes/theme_ui_general.tres" id="18_xxdvs"]
 [ext_resource type="Script" uid="uid://colmyx75iuvr3" path="res://scripts/dificultad_run.gd" id="19_dif"]
 [ext_resource type="Resource" uid="uid://0m7rprypwofd" path="res://scripts/resources/dificultades/dificultad_facil.tres" id="20_dfac"]
 [ext_resource type="Resource" uid="uid://oe7n6flqxgn6" path="res://scripts/resources/dificultades/dificultad_media.tres" id="21_dmed"]
 [ext_resource type="Resource" uid="uid://bwtp6rro6y6j3" path="res://scripts/resources/dificultades/dificultad_dificil.tres" id="22_ddif"]
+[ext_resource type="Script" uid="uid://brawvsa7mtjwl" path="res://scripts/botones_twitch_menu.gd" id="24_5e2gb"]
 [ext_resource type="PackedScene" uid="uid://omba114yvay4" path="res://escenas/componentes/reiniciar_escena.tscn" id="24_ds10p"]
 [ext_resource type="FontFile" uid="uid://daev32fyu3g8a" path="res://assets/fuentes/CARDINAL-ALTERNATE.TTF" id="24_qblru"]
+[ext_resource type="Theme" uid="uid://cwsrathd8xljh" path="res://themes/theme_label_numeritos.tres" id="24_x3h7a"]
+[ext_resource type="Resource" uid="uid://duu7f1aj2t4g7" path="res://scripts/resources/reliquias/almohadon.tres" id="25_87yda"]
 [ext_resource type="FontFile" uid="uid://dwg47e0trev3j" path="res://fuentes/Bungee-Regular.ttf" id="25_ds10p"]
+[ext_resource type="Texture2D" uid="uid://0jnwrg8b2rlm" path="res://assets/placeholders/twitch_michinko1.svg" id="25_ui16y"]
+[ext_resource type="PackedScene" uid="uid://bculs28gstcxk" path="res://example_twitch/Example.tscn" id="25_x3h7a"]
+[ext_resource type="AudioStream" uid="uid://b1ilrnk037lkj" path="res://assets/audio/sfx/comprar_item.wav" id="27_7c66c"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jhh3k"]
 
@@ -50,6 +56,108 @@
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_7nkol"]
 color = Color(0.43137255, 0.38039216, 0.23529412, 1)
 thickness = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7c66c"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0)
+border_blend = true
+corner_detail = 2
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+shadow_color = Color(0, 0, 0, 0.2)
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x3h7a"]
+bg_color = Color(0.5294118, 0.18039216, 0.8901961, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.4386483, 0.11870962, 0.75156033, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 15.0
+expand_margin_top = 10.0
+expand_margin_right = 15.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ui16y"]
+bg_color = Color(0.34033048, 0.07580004, 0.59324694, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.26150063, 0.046753593, 0.46244812, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 15.0
+expand_margin_top = 10.0
+expand_margin_right = 15.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5e2gb"]
+bg_color = Color(0.38621938, 0.09218272, 0.66495013, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.38431373, 0.09411765, 0.6666667, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 15.0
+expand_margin_top = 10.0
+expand_margin_right = 15.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="Animation" id="Animation_x3h7a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SinConectar/LabelNuevo:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ui16y"]
+resource_name = "enfasis_en_nuevo"
+length = 1.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SinConectar/LabelNuevo:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6666667, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.25, 1.25), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5e2gb"]
+_data = {
+&"RESET": SubResource("Animation_x3h7a"),
+&"enfasis_en_nuevo": SubResource("Animation_ui16y")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s8bbw"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -347,6 +455,108 @@ size_flags_vertical = 8
 theme = ExtResource("18_xxdvs")
 text = "Confirmar"
 
+[node name="TWITCH" parent="UISeleccion/CuadroUI" unique_id=387462933 instance=ExtResource("25_x3h7a")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+
+[node name="BotonesTwitch" type="Control" parent="UISeleccion/CuadroUI" unique_id=1692932652 node_paths=PackedStringArray("texto_sin_conectar", "texto_conectado", "label_contador", "audio_conectado")]
+anchors_preset = 0
+offset_left = -710.0
+offset_top = 780.0
+offset_right = -670.0
+offset_bottom = 820.0
+script = ExtResource("24_5e2gb")
+texto_sin_conectar = NodePath("SinConectar")
+texto_conectado = NodePath("Conectado")
+label_contador = NodePath("Conectado/VBoxContainer/LabelContadorCaricias")
+audio_conectado = NodePath("AudioConectado")
+reliquia_a_regalar = ExtResource("25_87yda")
+
+[node name="SinConectar" type="Control" parent="UISeleccion/CuadroUI/BotonesTwitch" unique_id=1361926805]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LabelNuevo" type="Label" parent="UISeleccion/CuadroUI/BotonesTwitch/SinConectar" unique_id=1717794637]
+layout_mode = 0
+offset_left = -33.0
+offset_top = -3.0
+offset_right = 29.0
+offset_bottom = 22.333334
+rotation = -0.36651915
+theme = ExtResource("24_x3h7a")
+theme_override_colors/font_color = Color(0.80784315, 0.5803922, 0.20784314, 1)
+theme_override_constants/outline_size = 5
+theme_override_styles/normal = SubResource("StyleBoxFlat_7c66c")
+text = "NUEVO"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UISeleccion/CuadroUI/BotonesTwitch/SinConectar" unique_id=1870805491]
+layout_mode = 0
+offset_right = 510.0
+offset_bottom = 108.0
+theme_override_constants/separation = 22
+
+[node name="LabelElchat" type="Label" parent="UISeleccion/CuadroUI/BotonesTwitch/SinConectar/VBoxContainer" unique_id=1461132418]
+layout_mode = 2
+theme = ExtResource("24_x3h7a")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 22
+text = "¿El chat quiere acariciar a michinko?"
+
+[node name="ButtonConectarTwitch" type="Button" parent="UISeleccion/CuadroUI/BotonesTwitch/SinConectar/VBoxContainer" unique_id=1634638776]
+custom_minimum_size = Vector2(420, 0)
+custom_maximum_size = Vector2(470, -1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("18_xxdvs")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_x3h7a")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ui16y")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5e2gb")
+text = "Conectar con Twitch"
+icon = ExtResource("25_ui16y")
+
+[node name="AnimationTwitch" type="AnimationPlayer" parent="UISeleccion/CuadroUI/BotonesTwitch" unique_id=1148716816]
+libraries/ = SubResource("AnimationLibrary_5e2gb")
+autoplay = &"enfasis_en_nuevo"
+
+[node name="Conectado" type="Control" parent="UISeleccion/CuadroUI/BotonesTwitch" unique_id=700121169]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UISeleccion/CuadroUI/BotonesTwitch/Conectado" unique_id=970347293]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 529.0
+offset_bottom = 66.0
+
+[node name="LabelComando" type="Label" parent="UISeleccion/CuadroUI/BotonesTwitch/Conectado/VBoxContainer" unique_id=617069541]
+layout_mode = 2
+theme = ExtResource("24_x3h7a")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 22
+text = "Comando !acariciar para darle mimitos"
+horizontal_alignment = 1
+
+[node name="LabelContadorCaricias" type="Label" parent="UISeleccion/CuadroUI/BotonesTwitch/Conectado/VBoxContainer" unique_id=1204658208]
+layout_mode = 2
+theme = ExtResource("24_x3h7a")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 22
+text = "0 / 20 para obtener una reliquia"
+horizontal_alignment = 1
+
+[node name="AudioConectado" type="AudioStreamPlayer" parent="UISeleccion/CuadroUI/BotonesTwitch" unique_id=613962595]
+stream = ExtResource("27_7c66c")
+
 [node name="LayerBotonCreditos" type="Control" parent="." unique_id=1214325783]
 layout_mode = 3
 anchors_preset = 15
@@ -477,5 +687,6 @@ cancel_button_text = "Cancelar"
 
 [node name="ReiniciarEscena" parent="." unique_id=1875771562 instance=ExtResource("24_ds10p")]
 
+[connection signal="pressed" from="UISeleccion/CuadroUI/BotonesTwitch/SinConectar/VBoxContainer/ButtonConectarTwitch" to="." method="_on_button_conectar_twitch_pressed"]
 [connection signal="pressed" from="LayerBotonCreditos/ButtonCreditos" to="." method="_on_button_creditos_pressed"]
 [connection signal="pressed" from="LayerCreditos/Panel/Contenido/BotonCerrarCreditos" to="." method="_on_boton_cerrar_creditos_pressed"]

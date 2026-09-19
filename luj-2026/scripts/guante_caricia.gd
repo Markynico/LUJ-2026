@@ -5,6 +5,8 @@ extends Node2D
 signal caricia_iniciada
 signal caricia_terminada
 
+var contador_caricias : int = 0
+
 ##segundos del fade in y out del guante
 @export var duracion_fade : float = 0.2
 ##veces que se repite la animacion por caricia
@@ -23,6 +25,7 @@ signal caricia_terminada
 @export var area : Area2D
 @export var posicion_hover : Marker2D
 @export var posicion_caricia : Marker2D
+@export var label_nombre_viewer : Label
 
 var activo : bool = false :
 	set(valor):
@@ -39,6 +42,9 @@ var tween_movimiento : Tween
 
 
 func _ready() -> void:
+	Global.acariciar_desde_twitch.connect(acariciar_michinko_twitch)
+	label_nombre_viewer.text = ""
+	
 	guante.scale = Vector2.ONE * escala_guante
 	if Engine.is_editor_hint():
 		guante.visible = true
@@ -77,7 +83,19 @@ func al_evento_area(viewport : Node, evento : InputEvent, indice_forma : int) ->
 		caricia_en_curso = true
 		mover_guante(posicion_caricia.position)
 		tween_movimiento.tween_callback(empezar_animacion)
+		#acariciar_michinko()
 
+func acariciar_michinko_twitch(nombre_viewer : String = ""):
+	label_nombre_viewer.text = "" #pa reiniciar
+	mostrar_hover()
+	reproducciones_restantes = repeticiones
+	caricia_en_curso = true
+	mover_guante(posicion_caricia.position)
+	tween_movimiento.tween_callback(empezar_animacion)
+	contador_caricias += 1
+	if nombre_viewer!= null:
+		label_nombre_viewer.text = nombre_viewer + " " + str(contador_caricias) +"\n Le dio mimitos a Michinko"
+		Global.caricia_realizada.emit(contador_caricias)
 
 func empezar_animacion() -> void:
 	guante.play(&"acariciar")
@@ -99,6 +117,7 @@ func al_terminar_caricia() -> void:
 
 
 func mostrar_hover() -> void:
+	label_nombre_viewer.text = ""
 	guante.stop()
 	guante.frame = 0
 	if guante.visible and guante.modulate.a > 0.0:

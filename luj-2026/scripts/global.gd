@@ -1,6 +1,11 @@
 @icon("res://iconos_custom/book.svg")
 extends Node
 
+signal acariciar_desde_twitch(nombre_viewer : String) #me mate con el nombre che
+signal caricia_realizada(contador_caricias : int)
+signal boton_twitch_presionado
+signal twitch_conectado(correctamente : bool)
+
 
 signal monedas_cambiadas(monedas : int)
 signal puntos_cambiados(puntos : int)
