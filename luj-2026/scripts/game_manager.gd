@@ -87,6 +87,12 @@ func _enter_tree() -> void:
 		Global.gato_elegido = gato_default
 
 func _ready() -> void:
+	#esto para lo de twitch, dsp lo sacamos de nuevo
+	if Global.regalar_reliquia == true:
+		ReliquiasManager.obtener(Global.reliquia_a_regalar)
+		reliquias_iniciales.append(Global.reliquia_a_regalar)
+		print("se supone q ya le di la reliquia usando reliquias manager")
+	
 	Global.cargador_pelotitas_actualizado.connect(_on_cargador_pelotitas_actualizado)
 	# Persistencia de vidas entre recargas de nivel
 	if not vidas_inicializadas:

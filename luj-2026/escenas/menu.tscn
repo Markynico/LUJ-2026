@@ -159,6 +159,9 @@ _data = {
 &"enfasis_en_nuevo": SubResource("Animation_ui16y")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_87yda"]
+bg_color = Color(0.6, 0.6, 0.6, 0.22352941)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s8bbw"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
@@ -475,7 +478,7 @@ texto_sin_conectar = NodePath("SinConectar")
 texto_conectado = NodePath("Conectado")
 label_contador = NodePath("Conectado/VBoxContainer/LabelContadorCaricias")
 audio_conectado = NodePath("AudioConectado")
-reliquia_a_regalar = ExtResource("25_87yda")
+reliquia_regalo = ExtResource("25_87yda")
 
 [node name="SinConectar" type="Control" parent="UISeleccion/CuadroUI/BotonesTwitch" unique_id=1361926805]
 anchors_preset = 0
@@ -517,6 +520,8 @@ size_flags_vertical = 4
 theme = ExtResource("18_xxdvs")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("25_ds10p")
+theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxFlat_x3h7a")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ui16y")
 theme_override_styles/hover = SubResource("StyleBoxFlat_5e2gb")
@@ -537,6 +542,7 @@ layout_mode = 0
 offset_top = 2.0
 offset_right = 529.0
 offset_bottom = 66.0
+theme_override_constants/separation = 11
 
 [node name="LabelComando" type="Label" parent="UISeleccion/CuadroUI/BotonesTwitch/Conectado/VBoxContainer" unique_id=617069541]
 layout_mode = 2
@@ -551,6 +557,7 @@ layout_mode = 2
 theme = ExtResource("24_x3h7a")
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_87yda")
 text = "0 / 20 para obtener una reliquia"
 horizontal_alignment = 1
 

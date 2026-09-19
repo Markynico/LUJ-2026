@@ -33,47 +33,48 @@ func send_message() -> void:
 	%LineEdit.text = ""
 
 func put_chat(senderdata : SenderData, msg : String):
-	var bottom : bool = %ChatScrollContainer.scroll_vertical == %ChatScrollContainer.get_v_scroll_bar().max_value - %ChatScrollContainer.get_v_scroll_bar().get_rect().size.y
-	var label : RichTextLabel = RichTextLabel.new()
-	var time = Time.get_time_dict_from_system()
-	label.fit_content = true
-	label.selection_enabled = true
-	label.push_font_size(12)
-	label.push_color(Color.WEB_GRAY)
-	label.add_text("%02d:%02d " % [time["hour"], time["minute"]])
-	label.pop()
-	label.push_font_size(14)
-	var badges : Array[Texture2D]
-	for badge in senderdata.tags["badges"].split(",", false):
-		label.add_image(await(iconloader.get_badge(badge, senderdata.tags["room-id"])), 0, 0, Color.WHITE, INLINE_ALIGNMENT_CENTER)
-	label.push_bold()
-	if (senderdata.tags["color"] != ""):
-		label.push_color(Color(senderdata.tags["color"]))
-	label.add_text(" %s" % senderdata.tags["display-name"]) #aca esta el username de quien mando un mensaje, esto usarlo para diferenciar cada personaje
-#	nombre_temporal =senderdata.tags["display-name"] #IMPORTANTISIMO, aca se guarda el nombre del usuario para usarse en funciones como join
-	label.push_color(Color.WHITE)
-	label.push_normal()
-	label.add_text(": ")
-	var locations : Array[EmoteLocation] = []
-	if (senderdata.tags.has("emotes")):
-		for emote in senderdata.tags["emotes"].split("/", false):
-			var data : PackedStringArray = emote.split(":")
-			for d in data[1].split(","):
-				var start_end = d.split("-")
-				locations.append(EmoteLocation.new(data[0], int(start_end[0]), int(start_end[1])))
-	locations.sort_custom(Callable(EmoteLocation, "smaller"))
-	if (locations.is_empty()):
-		label.add_text(msg)
-	else:
-		var offset = 0
-		for loc in locations:
-			label.add_text(msg.substr(offset, loc.start - offset))
-			label.add_image(await(iconloader.get_emote(loc.id)), 0, 0, Color.WHITE, INLINE_ALIGNMENT_CENTER)
-			offset = loc.end + 1
-	%Messages.add_child(label)
-	await(get_tree().process_frame)
-	if (bottom):
-		%ChatScrollContainer.scroll_vertical = %ChatScrollContainer.get_v_scroll_bar().max_value
+	return
+	#var bottom : bool = %ChatScrollContainer.scroll_vertical == %ChatScrollContainer.get_v_scroll_bar().max_value - %ChatScrollContainer.get_v_scroll_bar().get_rect().size.y
+	#var label : RichTextLabel = RichTextLabel.new()
+	#var time = Time.get_time_dict_from_system()
+	#label.fit_content = true
+	#label.selection_enabled = true
+	#label.push_font_size(12)
+	#label.push_color(Color.WEB_GRAY)
+	#label.add_text("%02d:%02d " % [time["hour"], time["minute"]])
+	#label.pop()
+	#label.push_font_size(14)
+	#var badges : Array[Texture2D]
+	#for badge in senderdata.tags["badges"].split(",", false):
+		#label.add_image(await(iconloader.get_badge(badge, senderdata.tags["room-id"])), 0, 0, Color.WHITE, INLINE_ALIGNMENT_CENTER)
+	#label.push_bold()
+	#if (senderdata.tags["color"] != ""):
+		#label.push_color(Color(senderdata.tags["color"]))
+	#label.add_text(" %s" % senderdata.tags["display-name"]) #aca esta el username de quien mando un mensaje, esto usarlo para diferenciar cada personaje
+##	nombre_temporal =senderdata.tags["display-name"] #IMPORTANTISIMO, aca se guarda el nombre del usuario para usarse en funciones como join
+	#label.push_color(Color.WHITE)
+	#label.push_normal()
+	#label.add_text(": ")
+	#var locations : Array[EmoteLocation] = []
+	#if (senderdata.tags.has("emotes")):
+		#for emote in senderdata.tags["emotes"].split("/", false):
+			#var data : PackedStringArray = emote.split(":")
+			#for d in data[1].split(","):
+				#var start_end = d.split("-")
+				#locations.append(EmoteLocation.new(data[0], int(start_end[0]), int(start_end[1])))
+	#locations.sort_custom(Callable(EmoteLocation, "smaller"))
+	#if (locations.is_empty()):
+		#label.add_text(msg)
+	#else:
+		#var offset = 0
+		#for loc in locations:
+			#label.add_text(msg.substr(offset, loc.start - offset))
+			#label.add_image(await(iconloader.get_emote(loc.id)), 0, 0, Color.WHITE, INLINE_ALIGNMENT_CENTER)
+			#offset = loc.end + 1
+	#%Messages.add_child(label)
+	#await(get_tree().process_frame)
+	#if (bottom):
+		#%ChatScrollContainer.scroll_vertical = %ChatScrollContainer.get_v_scroll_bar().max_value
 
 class EmoteLocation extends RefCounted:
 	var id : String

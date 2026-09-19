@@ -94,7 +94,7 @@ func acariciar_michinko_twitch(nombre_viewer : String = ""):
 	tween_movimiento.tween_callback(empezar_animacion)
 	contador_caricias += 1
 	if nombre_viewer!= null:
-		label_nombre_viewer.text = nombre_viewer + " " + str(contador_caricias) +"\n Le dio mimitos a Michinko"
+		label_nombre_viewer.text = nombre_viewer +"\n Le dio mimitos a Michinko"
 		Global.caricia_realizada.emit(contador_caricias)
 
 func empezar_animacion() -> void:

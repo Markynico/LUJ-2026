@@ -5,7 +5,8 @@ signal acariciar_desde_twitch(nombre_viewer : String) #me mate con el nombre che
 signal caricia_realizada(contador_caricias : int)
 signal boton_twitch_presionado
 signal twitch_conectado(correctamente : bool)
-
+var regalar_reliquia : bool = false #lo pongo en true si llegamos a 20 caricias con el chat
+var reliquia_a_regalar : Reliquia
 
 signal monedas_cambiadas(monedas : int)
 signal puntos_cambiados(puntos : int)
