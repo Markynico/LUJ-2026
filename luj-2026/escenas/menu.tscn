@@ -665,7 +665,7 @@ theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("25_ds10p")
 theme_override_font_sizes/font_size = 23
 text = "- Anuyka: Arte 2D, diseño de personajes, animaciones
-- Malena: Arte 2D, diseño de personajes, animaciones
+- Malena ro: Arte 2D, diseño de personajes, animaciones
 - Marcos Salinas: Programación
 - Brian Gerardi: Programación, level design
 - Attie Testa: Música, SFX, UX/UI, programación, level design 

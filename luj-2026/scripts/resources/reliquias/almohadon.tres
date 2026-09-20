@@ -16,6 +16,6 @@ nombre = "Almohadón"
 rareza = 1
 descripcion = "+1 {vida:icono} máximo.
 
-\"Después seguro se termina acostando en la caja en vez de acá\""
+Muchas gracias a todo el equipo de BAGD, los queremos mucho<3"
 icono = ExtResource("2_rel")
 efectos = Array[ExtResource("e_efr")]([SubResource("Efecto_1")])
