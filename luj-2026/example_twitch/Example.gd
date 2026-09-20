@@ -109,6 +109,8 @@ func probando(cmd_info : CommandInfo):
 
 func acariciar(cmd_info : CommandInfo):
 	var nombre_usuario : String = cmd_info.sender_data.user
+	#var tags = cmd_info.sender_data.tags
+	#var color = tags["color"]
 	print("ACARICIAR A MICHINKO OWWWWWWWWWWW")
 	Global.acariciar_desde_twitch.emit(nombre_usuario)
 

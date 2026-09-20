@@ -10,6 +10,8 @@ func _ready() -> void:
 
 func set_texto(texto : String):
 	label_viewer.text = texto
+	#var color_real = Color.from_string(color, Color.WHITE) #si no pudiera transformarlo a color real lo pone en negro
+	#label_viewer.label_settings.font_color = color_real
 
 
 func animar_texto():
@@ -27,8 +29,8 @@ func efecto_animar_texto2():
 
 	#mover y desvanecer al mismo tiempo
 	tween.set_parallel(true)
-	tween.tween_property(self,"position",posicion_final,2.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween.tween_property(self,"modulate:a",0.0, 2.2).set_trans(Tween.TRANS_LINEAR)
+	tween.tween_property(self,"position",posicion_final,2.8).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self,"modulate:a",0.0, 2.8).set_trans(Tween.TRANS_LINEAR)
 	tween.set_parallel(false)
 	#tween.tween_callback(queue_free)
 	await tween.finished

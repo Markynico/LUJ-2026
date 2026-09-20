@@ -6,6 +6,7 @@ extends Control
 @export var audio_conectado : AudioStreamPlayer
 
 @export var reliquia_regalo : Reliquia #le regalamos el almohadon pa q tengan una vida mas :D
+@export var maximo_caricias : int = 20
 
 func _ready() -> void:
 	Global.twitch_conectado.connect(_on_twitch_conectado)
@@ -25,8 +26,11 @@ func _on_twitch_conectado(estado : bool):
 
 
 func aumentar_contador_caricias(contador : int):
-	if contador>=10:
+	if contador>= maximo_caricias and Global.regalar_reliquia == false: #false para saber q no regale  reliquia antes
 		print("dar una reliquiaaaaaaaaaaaaaaaa")
 		Global.regalar_reliquia = true
 		Notificaciones.mostrar_desbloqueo(reliquia_regalo)
-	label_contador.text = str(contador) + " / 20 para obtener una reliquia"
+	if Global.regalar_reliquia == true:
+		label_contador.text = str(contador) + " / 20 ¡reliquia obtenida!"
+	else:
+		label_contador.text = str(contador) + " / 20 para obtener una reliquia"

@@ -8,12 +8,13 @@
 
 [sub_resource type="Resource" id="Efecto_1"]
 script = ExtResource("e_slots")
+llenar_slots_nuevos = true
 
 [resource]
 script = ExtResource("1_rel")
 nombre = "Almohadón"
 rareza = 1
-descripcion = "+1 {slot_vida:icono} máximo.
+descripcion = "+1 {vida:icono} máximo.
 
 \"Después seguro se termina acostando en la caja en vez de acá\""
 icono = ExtResource("2_rel")

@@ -549,7 +549,7 @@ layout_mode = 2
 theme = ExtResource("24_x3h7a")
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 22
-text = "Comando !acariciar para darle mimitos"
+text = "Comando  !acariciar  para darle mimitos"
 horizontal_alignment = 1
 
 [node name="LabelContadorCaricias" type="Label" parent="UISeleccion/CuadroUI/BotonesTwitch/Conectado/VBoxContainer" unique_id=1204658208]

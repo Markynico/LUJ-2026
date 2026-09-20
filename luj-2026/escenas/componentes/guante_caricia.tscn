@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://k4tpw3ytvufb" path="res://escenas/componentes/texto_viewer_acaricio.tscn" id="2_v0qnl"]
 [ext_resource type="Texture2D" uid="uid://cwxd10uusyc3x" path="res://assets/animacion guante/guante2.png" id="3_guant"]
 [ext_resource type="Texture2D" uid="uid://c1pym3b4g7vlo" path="res://assets/animacion guante/guante3.png" id="4_guant"]
-[ext_resource type="Theme" uid="uid://cwsrathd8xljh" path="res://themes/theme_label_numeritos.tres" id="5_0fve5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_guant"]
 animations = [{
@@ -27,46 +26,19 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_guant"]
 radius = 60.0
 
-[node name="GuanteCaricia" type="Node2D" unique_id=803669863 node_paths=PackedStringArray("guante", "area", "posicion_hover", "posicion_caricia", "label_nombre_viewer")]
+[node name="GuanteCaricia" type="Node2D" unique_id=803669863 node_paths=PackedStringArray("guante", "area", "posicion_hover", "posicion_caricia")]
 script = ExtResource("1_guante")
 escena_label_viewer = ExtResource("2_v0qnl")
 guante = NodePath("Guante")
 area = NodePath("Area2D")
 posicion_hover = NodePath("PosicionHover")
 posicion_caricia = NodePath("PosicionCaricia")
-label_nombre_viewer = NodePath("Guante/NombreViewer")
 
 [node name="Guante" type="AnimatedSprite2D" parent="." unique_id=1793046609]
 position = Vector2(0, -40)
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_guant")
 animation = &"acariciar"
-
-[node name="NombreViewer" type="Label" parent="Guante" unique_id=1983282314]
-unique_name_in_owner = true
-visible = false
-z_index = 222
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1174.0
-offset_top = -553.5
-offset_right = 174.0
-offset_bottom = -446.5
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("5_0fve5")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = 3
-theme_override_constants/paragraph_spacing = 0
-theme_override_constants/outline_size = 15
-theme_override_font_sizes/font_size = 65
-text = "pedrito le dio mimitos a michinko"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Area2D" type="Area2D" parent="." unique_id=811052399]
 collision_mask = 0
