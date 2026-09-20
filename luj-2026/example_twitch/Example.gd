@@ -1,7 +1,7 @@
 @icon("res://assets/placeholders/twitch_michinko1.svg")
 extends Control
 
-@export var client_id : String = "xlthn6ephh6cfcx2hculewt8b37ks9" #nota, cambiar cuando exporte el proyecto final
+@export var client_id : String = "gultqtjz4ufcfhlsrlvbsvhbko9frw" #nota, cambiar cuando exporte el proyecto final
 @export var channel : String
 @export var username : String
 
