@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://k4tpw3ytvufb"]
+
+[ext_resource type="Script" uid="uid://djlclulgioi05" path="res://scripts/texto_viewer_acaricio.gd" id="1_180cb"]
+[ext_resource type="Theme" uid="uid://cwsrathd8xljh" path="res://themes/theme_label_numeritos.tres" id="1_haxef"]
+
+[node name="TextoViewerAcaricio" type="Control" unique_id=1458163175 node_paths=PackedStringArray("label_viewer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_180cb")
+label_viewer = NodePath("NombreViewer")
+
+[node name="NombreViewer" type="Label" parent="." unique_id=1083069329]
+unique_name_in_owner = true
+z_index = 222
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -145.0
+offset_top = -20.0
+offset_right = 103.99829
+offset_bottom = -4.001587
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_haxef")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 3
+theme_override_constants/paragraph_spacing = 0
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 7
+text = "pedrito le dio mimitos a michinko"
+horizontal_alignment = 1
+vertical_alignment = 1

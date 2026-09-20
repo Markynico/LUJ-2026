@@ -6,6 +6,8 @@ signal caricia_iniciada
 signal caricia_terminada
 
 var contador_caricias : int = 0
+@export var escena_label_viewer : PackedScene
+
 
 ##segundos del fade in y out del guante
 @export var duracion_fade : float = 0.2
@@ -94,7 +96,11 @@ func acariciar_michinko_twitch(nombre_viewer : String = ""):
 	tween_movimiento.tween_callback(empezar_animacion)
 	contador_caricias += 1
 	if nombre_viewer!= null:
-		label_nombre_viewer.text = nombre_viewer +"\n Le dio mimitos a Michinko"
+		var instancia_texto : TextoViewer = escena_label_viewer.instantiate()
+		var texto : String = nombre_viewer +"\n Le dio mimitos a Michinko"
+		instancia_texto.set_texto(texto) #seguir testeandolo cuando vuelva con yordan
+		add_child(instancia_texto)
+		#label_nombre_viewer.text = nombre_viewer +"\n Le dio mimitos a Michinko"
 		Global.caricia_realizada.emit(contador_caricias)
 
 func empezar_animacion() -> void:
