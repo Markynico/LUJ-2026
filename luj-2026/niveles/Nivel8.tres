@@ -173,5 +173,5 @@ poligono = PackedVector2Array()
 script = ExtResource("2_bulom")
 nombre = "Nivel8"
 formas = Array[ExtResource("1_a78u5")]([SubResource("Resource_bulom"), SubResource("Resource_1muil"), SubResource("Resource_ah7di"), SubResource("Resource_ghasj"), SubResource("Resource_fc7mp"), SubResource("Resource_817jb"), SubResource("Resource_edmu5"), SubResource("Resource_jgh6e"), SubResource("Resource_sb81b"), SubResource("Resource_7trdl"), SubResource("Resource_71phc"), SubResource("Resource_ilpnl"), SubResource("Resource_35aje"), SubResource("Resource_0fg12")])
-posicion_divisiones = Vector2(349, 1080)
-ancho_divisiones = 1241.0
+posicion_divisiones = Vector2(353.24, 1086)
+ancho_divisiones = 1199.52

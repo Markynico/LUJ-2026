@@ -17,17 +17,21 @@ posicion = Vector2(977.8672, 613.6819)
 escala = Vector2(1, 1.1383648)
 separacion_ovillos = 30.0
 velocidad_desplazamiento = 26.975
+huecos = PackedInt32Array()
+poligono = PackedVector2Array()
 curva = SubResource("Curve2D_j5rf4")
 
 [sub_resource type="Resource" id="Resource_k1xy1"]
 script = ExtResource("1_j5rf4")
 tipo = "obstaculo_circulo"
 posicion = Vector2(757.8284, 591.73236)
+huecos = PackedInt32Array()
 radio = 39.53076
+poligono = PackedVector2Array()
 
 [resource]
 script = ExtResource("2_8vc1k")
 nombre = "Nivel10"
 formas = Array[ExtResource("1_j5rf4")]([SubResource("Resource_8vc1k"), SubResource("Resource_k1xy1")])
-posicion_divisiones = Vector2(349, 1080)
-ancho_divisiones = 1241.0
+posicion_divisiones = Vector2(353.24, 1086)
+ancho_divisiones = 1199.52

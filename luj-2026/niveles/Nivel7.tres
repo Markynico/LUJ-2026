@@ -9,7 +9,9 @@ tipo = "obstaculo_circulo"
 posicion = Vector2(550, 500)
 usar_simetria = true
 grupo_simetria = 1
+huecos = PackedInt32Array()
 radio = 62.22855
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_5oakg"]
 script = ExtResource("1_uyylj")
@@ -17,6 +19,8 @@ tipo = "circulo"
 posicion = Vector2(549.77655, 499.19977)
 usar_simetria = true
 grupo_simetria = 2
+huecos = PackedInt32Array()
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_gn8yk"]
 script = ExtResource("1_uyylj")
@@ -24,7 +28,9 @@ tipo = "obstaculo_circulo"
 posicion = Vector2(550.22345, 780.80023)
 usar_simetria = true
 grupo_simetria = 3
+huecos = PackedInt32Array()
 radio = 62.22855
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_mhocd"]
 script = ExtResource("1_uyylj")
@@ -32,28 +38,38 @@ tipo = "circulo"
 posicion = Vector2(550, 780)
 usar_simetria = true
 grupo_simetria = 4
+huecos = PackedInt32Array()
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_tk5su"]
 script = ExtResource("1_uyylj")
 tipo = "obstaculo_circulo"
 posicion = Vector2(972.22345, 501.80023)
+huecos = PackedInt32Array()
 radio = 62.22855
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_870v4"]
 script = ExtResource("1_uyylj")
 tipo = "circulo"
 posicion = Vector2(970, 501)
+huecos = PackedInt32Array()
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_r0ouj"]
 script = ExtResource("1_uyylj")
 tipo = "obstaculo_circulo"
 posicion = Vector2(969.9853, 781.5516)
+huecos = PackedInt32Array()
 radio = 62.22855
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_gvisc"]
 script = ExtResource("1_uyylj")
 tipo = "circulo"
 posicion = Vector2(970.01904, 781.9155)
+huecos = PackedInt32Array()
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_vunne"]
 script = ExtResource("1_uyylj")
@@ -61,7 +77,9 @@ tipo = "obstaculo_circulo"
 posicion = Vector2(763.22345, 644.80023)
 usar_simetria = true
 grupo_simetria = 5
+huecos = PackedInt32Array()
 radio = 62.22855
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_ewgol"]
 script = ExtResource("1_uyylj")
@@ -69,6 +87,8 @@ tipo = "circulo"
 posicion = Vector2(763, 644)
 usar_simetria = true
 grupo_simetria = 6
+huecos = PackedInt32Array()
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_2r773"]
 script = ExtResource("1_uyylj")
@@ -77,7 +97,9 @@ posicion = Vector2(760.26685, 466.87296)
 separacion_ovillos = 30.0
 usar_simetria = true
 grupo_simetria = 7
+huecos = PackedInt32Array()
 radio = 36.329243
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_0b02v"]
 script = ExtResource("1_uyylj")
@@ -86,7 +108,9 @@ posicion = Vector2(764.2598, 815.595)
 separacion_ovillos = 30.0
 usar_simetria = true
 grupo_simetria = 8
+huecos = PackedInt32Array()
 radio = 36.329243
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_7evqt"]
 script = ExtResource("1_uyylj")
@@ -95,7 +119,9 @@ posicion = Vector2(427.5168, 637.24097)
 separacion_ovillos = 30.0
 usar_simetria = true
 grupo_simetria = 9
+huecos = PackedInt32Array()
 radio = 36.329243
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_lku8m"]
 script = ExtResource("1_uyylj")
@@ -104,7 +130,9 @@ posicion = Vector2(418.19986, 373.70294)
 separacion_ovillos = 30.0
 usar_simetria = true
 grupo_simetria = 10
+huecos = PackedInt32Array()
 radio = 36.329243
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_u7jh6"]
 script = ExtResource("1_uyylj")
@@ -113,7 +141,9 @@ posicion = Vector2(424.85486, 884.807)
 separacion_ovillos = 30.0
 usar_simetria = true
 grupo_simetria = 11
+huecos = PackedInt32Array()
 radio = 36.329243
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_jg6at"]
 script = ExtResource("1_uyylj")
@@ -122,7 +152,9 @@ posicion = Vector2(609.69995, 640.4)
 separacion_ovillos = 22.0
 usar_simetria = true
 grupo_simetria = 12
+huecos = PackedInt32Array()
 radio = 28.109255
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_fh2v2"]
 script = ExtResource("1_uyylj")
@@ -131,7 +163,9 @@ posicion = Vector2(678.6799, 406.06372)
 separacion_ovillos = 22.0
 usar_simetria = true
 grupo_simetria = 13
+huecos = PackedInt32Array()
 radio = 28.109255
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_x2rcc"]
 script = ExtResource("1_uyylj")
@@ -140,7 +174,9 @@ posicion = Vector2(835, 406)
 separacion_ovillos = 22.0
 usar_simetria = true
 grupo_simetria = 14
+huecos = PackedInt32Array()
 radio = 28.109255
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_k1jqa"]
 script = ExtResource("1_uyylj")
@@ -149,7 +185,9 @@ posicion = Vector2(680.25604, 871.02515)
 separacion_ovillos = 22.0
 usar_simetria = true
 grupo_simetria = 15
+huecos = PackedInt32Array()
 radio = 28.109255
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_04cm6"]
 script = ExtResource("1_uyylj")
@@ -158,7 +196,9 @@ posicion = Vector2(838.6479, 879.6939)
 separacion_ovillos = 22.0
 usar_simetria = true
 grupo_simetria = 16
+huecos = PackedInt32Array()
 radio = 28.109255
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_ej4vr"]
 script = ExtResource("1_uyylj")
@@ -167,7 +207,9 @@ posicion = Vector2(1389, 500)
 escala = Vector2(-1, 1)
 grupo_simetria = 1
 rol_simetria = Vector2i(1, 0)
+huecos = PackedInt32Array()
 radio = 62.22855
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_fwihp"]
 script = ExtResource("1_uyylj")
@@ -176,6 +218,8 @@ posicion = Vector2(1389.2234, 499.19977)
 escala = Vector2(-1, 1)
 grupo_simetria = 2
 rol_simetria = Vector2i(1, 0)
+huecos = PackedInt32Array()
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_4tfqm"]
 script = ExtResource("1_uyylj")
@@ -184,7 +228,9 @@ posicion = Vector2(1388.7766, 780.80023)
 escala = Vector2(-1, 1)
 grupo_simetria = 3
 rol_simetria = Vector2i(1, 0)
+huecos = PackedInt32Array()
 radio = 62.22855
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_82olo"]
 script = ExtResource("1_uyylj")
@@ -193,6 +239,8 @@ posicion = Vector2(1389, 780)
 escala = Vector2(-1, 1)
 grupo_simetria = 4
 rol_simetria = Vector2i(1, 0)
+huecos = PackedInt32Array()
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_8ctdy"]
 script = ExtResource("1_uyylj")
@@ -201,7 +249,9 @@ posicion = Vector2(1175.7766, 644.80023)
 escala = Vector2(-1, 1)
 grupo_simetria = 5
 rol_simetria = Vector2i(1, 0)
+huecos = PackedInt32Array()
 radio = 62.22855
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_uonsq"]
 script = ExtResource("1_uyylj")
@@ -210,6 +260,8 @@ posicion = Vector2(1176, 644)
 escala = Vector2(-1, 1)
 grupo_simetria = 6
 rol_simetria = Vector2i(1, 0)
+huecos = PackedInt32Array()
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_15r17"]
 script = ExtResource("1_uyylj")
@@ -219,7 +271,9 @@ escala = Vector2(-1, 1)
 separacion_ovillos = 30.0
 grupo_simetria = 7
 rol_simetria = Vector2i(1, 0)
+huecos = PackedInt32Array()
 radio = 36.329243
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_fl84f"]
 script = ExtResource("1_uyylj")
@@ -229,7 +283,9 @@ escala = Vector2(-1, 1)
 separacion_ovillos = 30.0
 grupo_simetria = 8
 rol_simetria = Vector2i(1, 0)
+huecos = PackedInt32Array()
 radio = 36.329243
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_7mtaq"]
 script = ExtResource("1_uyylj")
@@ -239,7 +295,9 @@ escala = Vector2(-1, 1)
 separacion_ovillos = 30.0
 grupo_simetria = 9
 rol_simetria = Vector2i(1, 0)
+huecos = PackedInt32Array()
 radio = 36.329243
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_mk2mu"]
 script = ExtResource("1_uyylj")
@@ -249,7 +307,9 @@ escala = Vector2(-1, 1)
 separacion_ovillos = 30.0
 grupo_simetria = 10
 rol_simetria = Vector2i(1, 0)
+huecos = PackedInt32Array()
 radio = 36.329243
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_oae02"]
 script = ExtResource("1_uyylj")
@@ -259,7 +319,9 @@ escala = Vector2(-1, 1)
 separacion_ovillos = 30.0
 grupo_simetria = 11
 rol_simetria = Vector2i(1, 0)
+huecos = PackedInt32Array()
 radio = 36.329243
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_ep5cs"]
 script = ExtResource("1_uyylj")
@@ -269,7 +331,9 @@ escala = Vector2(-1, 1)
 separacion_ovillos = 22.0
 grupo_simetria = 12
 rol_simetria = Vector2i(1, 0)
+huecos = PackedInt32Array()
 radio = 28.109255
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_mr1k6"]
 script = ExtResource("1_uyylj")
@@ -279,7 +343,9 @@ escala = Vector2(-1, 1)
 separacion_ovillos = 22.0
 grupo_simetria = 13
 rol_simetria = Vector2i(1, 0)
+huecos = PackedInt32Array()
 radio = 28.109255
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_sc6xy"]
 script = ExtResource("1_uyylj")
@@ -289,7 +355,9 @@ escala = Vector2(-1, 1)
 separacion_ovillos = 22.0
 grupo_simetria = 14
 rol_simetria = Vector2i(1, 0)
+huecos = PackedInt32Array()
 radio = 28.109255
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_ag4bf"]
 script = ExtResource("1_uyylj")
@@ -299,7 +367,9 @@ escala = Vector2(-1, 1)
 separacion_ovillos = 22.0
 grupo_simetria = 15
 rol_simetria = Vector2i(1, 0)
+huecos = PackedInt32Array()
 radio = 28.109255
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_4klyr"]
 script = ExtResource("1_uyylj")
@@ -309,7 +379,9 @@ escala = Vector2(-1, 1)
 separacion_ovillos = 22.0
 grupo_simetria = 16
 rol_simetria = Vector2i(1, 0)
+huecos = PackedInt32Array()
 radio = 28.109255
+poligono = PackedVector2Array()
 
 [resource]
 script = ExtResource("2_5oakg")
