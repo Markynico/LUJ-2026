@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://cexjr0e4owki" path="res://escenas/estructura_de_nivel.tscn" id="2_estru"]
 [ext_resource type="Texture2D" uid="uid://cnn0x0om8yo5m" path="res://assets/pantalla de juego.png" id="2_fondo"]
 [ext_resource type="PackedScene" uid="uid://bxjt6h43758na" path="res://escenas/componentes/divisiones_pachinko.tscn" id="7_divs"]
+[ext_resource type="PackedScene" uid="uid://cformacirc0a1" path="res://escenas/componentes/forma_circulo.tscn" id="7_x3fkq"]
+[ext_resource type="Script" uid="uid://1owdrb8otuge" path="res://scripts/niveles/forma_circulo.gd" id="8_wilmi"]
+[ext_resource type="Script" uid="uid://1owdp7hud1ge" path="res://scripts/niveles/forma_path.gd" id="10_uxw3d"]
 [ext_resource type="PackedScene" uid="uid://cformabe000a1" path="res://escenas/componentes/forma_path.tscn" id="11_8bbmv"]
-[ext_resource type="Script" uid="uid://1owdp7hud1ge" path="res://scripts/niveles/forma_path.gd" id="12_5ekpu"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_w7gqy"]
 
@@ -17,68 +19,48 @@ size = Vector2(1180.5, 45.99997)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_so1p1"]
 size = Vector2(55.5, 28)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_6wvn0"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_xrhlm"]
 viewport_path = NodePath("PanelInfoIzquierdo/SubViewportIzq")
-
-[sub_resource type="Curve2D" id="Curve2D_43wpl"]
-bake_interval = 2.0
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 577.7047, 1.2038574, 0, 0, 0, 0, -593.2953, -2.7961426)
-}
-point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_x3fkq"]
 bake_interval = 2.0
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 551.7047, 25.203857, 0, 0, 0, 0, -564.2953, 23.203857)
+"points": PackedVector2Array(0, 0, 0, 0, 130.98975, -218.8905, 106.7, -11, -106.7, 11, 24.989746, -184.8905, 91.3, -34.1, -91.3, 34.1, -197.01025, -182.8905, 0, 0, 0, 0, -316.01025, -79.8905)
 }
-point_count = 2
+point_count = 4
 
 [sub_resource type="Curve2D" id="Curve2D_wilmi"]
 bake_interval = 2.0
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 577.7047, 1.2038574, 0, 0, 0, 0, -593.2953, -2.7961426)
+"points": PackedVector2Array(0, 0, 0, 0, 202.49329, -138.2644, 102.81764, -13.223139, -102.81764, 13.223139, 67.007935, -33.264404, 93.146774, -29.752064, -93.146774, 29.752064, -179.61774, -41.264404, 0, 0, 0, 0, -323.57092, 57.735596)
 }
-point_count = 2
+point_count = 4
 
 [sub_resource type="Curve2D" id="Curve2D_uxw3d"]
 bake_interval = 2.0
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 551.7047, 25.203857, 0, 0, 0, 0, -564.2953, 23.203857)
+"points": PackedVector2Array(0, 0, 0, 0, 299.51245, -99.70245, 68.59504, -28.099173, -68.59504, 28.099173, 228.51245, 8.297546, 58.67768, -32.231403, -58.67768, 32.231403, 110.51245, -10.702454, 63.63636, 0.82644624, -63.63636, -0.82644624, -8.487549, 76.29755, 61.983467, -21.487602, -61.983467, 21.487602, -138.48755, -5.7024536, 0, 0, 0, 0, -247.48755, 70.29755)
 }
-point_count = 2
+point_count = 6
 
 [sub_resource type="Curve2D" id="Curve2D_na3or"]
 bake_interval = 2.0
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 577.7047, 1.2038574, 0, 0, 0, 0, -593.2953, -2.7961426)
+"points": PackedVector2Array(0, 0, 0, 0, 331.36316, -78.54553, 30.909086, -72.72727, -30.909086, 72.72727, 105.36316, -4.545532, 72.72727, 3.6363635, -72.72727, -3.6363635, -126.63684, -44.545532, 0, 0, 0, 0, -223.63684, 3.4544678)
 }
-point_count = 2
+point_count = 4
 
 [sub_resource type="Curve2D" id="Curve2D_8bbmv"]
 bake_interval = 2.0
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 551.7047, 25.203857, 0, 0, 0, 0, -564.2953, 23.203857)
+"points": PackedVector2Array(0, 0, 0, 0, 182.76892, 45.347168, 131.40495, -1.6528925, -131.40495, 1.6528925, -65.23108, 131.34717, 0, 0, 0, 0, -322.23108, 42.890015)
 }
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_5ekpu"]
-bake_interval = 2.0
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 577.7047, 1.2038574, 0, 0, 0, 0, -593.2953, -2.7961426)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_6b6q6"]
-bake_interval = 2.0
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 551.7047, 25.203857, 0, 0, 0, 0, -564.2953, 23.203857)
-}
-point_count = 2
+point_count = 3
 
 [node name="EditorDeNiveles" type="Node2D" unique_id=925235971 node_paths=PackedStringArray("estructura")]
 script = ExtResource("1_carg")
 estructura = NodePath("EstructuraDeNivel")
+metadata/_edit_vertical_guides_ = [-844.0]
 
 [node name="Fondo" type="TextureRect" parent="." unique_id=1048498702]
 offset_right = 2560.0
@@ -158,67 +140,187 @@ shape = SubResource("RectangleShape2D_so1p1")
 
 [node name="PanelInfoIzquierdo" parent="EstructuraDeNivel" index="3" unique_id=1428603965]
 visible = false
-texture = SubResource("ViewportTexture_6wvn0")
+texture = SubResource("ViewportTexture_xrhlm")
 
 [node name="DivisionesPachinko" parent="." unique_id=631157151 instance=ExtResource("7_divs")]
 position = Vector2(353.24, 1086)
 ancho_total = 1199.52
 metadata/_edit_lock_ = true
 
-[node name="FormaPath" type="Path2D" parent="." unique_id=799578377 instance=ExtResource("11_8bbmv")]
-position = Vector2(970, 818)
-curve = SubResource("Curve2D_43wpl")
-script = ExtResource("12_5ekpu")
-eje_repeticiones = 0
+[node name="FormaCirculo" type="Node2D" parent="." unique_id=1550004538 instance=ExtResource("7_x3fkq")]
+position = Vector2(954.11584, 629.8072)
+script = ExtResource("8_wilmi")
+radio = 295.76266
+anillos_exteriores = 1
+separacion_anillos = 26
+velocidad_desplazamiento = 10.0
+alternar_direccion_anillos = true
 huecos = PackedInt32Array()
 
-[node name="FormaPath2" type="Path2D" parent="." unique_id=732190010 instance=ExtResource("11_8bbmv")]
-position = Vector2(971, 737)
+[node name="FormaPath" type="Path2D" parent="." unique_id=1861821388 instance=ExtResource("11_8bbmv")]
+position = Vector2(986.01025, 625.8905)
 curve = SubResource("Curve2D_x3fkq")
-script = ExtResource("12_5ekpu")
-eje_repeticiones = 0
+script = ExtResource("10_uxw3d")
+repeticiones = 1
+separacion_repeticiones = 18
+efecto_ladrillo = true
+velocidad_desplazamiento = 25.0
 huecos = PackedInt32Array()
 
-[node name="FormaPath3" type="Path2D" parent="." unique_id=766000377 instance=ExtResource("11_8bbmv")]
-position = Vector2(970.2953, 706.79614)
+[node name="FormaPath2" type="Path2D" parent="." unique_id=298578736 instance=ExtResource("11_8bbmv")]
+position = Vector2(962.6941, 575.2644)
+scale = Vector2(0.9447515, 1)
 curve = SubResource("Curve2D_wilmi")
-script = ExtResource("12_5ekpu")
-eje_repeticiones = 0
+script = ExtResource("10_uxw3d")
+repeticiones = 1
+separacion_repeticiones = 18
+efecto_ladrillo = true
+velocidad_desplazamiento = 25.0
+invertir_desplazamiento = true
 huecos = PackedInt32Array()
 
-[node name="FormaPath4" type="Path2D" parent="." unique_id=1506201299 instance=ExtResource("11_8bbmv")]
-position = Vector2(971.2953, 625.79614)
+[node name="FormaPath3" type="Path2D" parent="." unique_id=796040638 instance=ExtResource("11_8bbmv")]
+position = Vector2(909.48755, 615.70245)
 curve = SubResource("Curve2D_uxw3d")
-script = ExtResource("12_5ekpu")
-eje_repeticiones = 0
+script = ExtResource("10_uxw3d")
+repeticiones = 1
+separacion_repeticiones = 18
+efecto_ladrillo = true
+velocidad_desplazamiento = 25.0
 huecos = PackedInt32Array()
 
-[node name="FormaPath5" type="Path2D" parent="." unique_id=1916532629 instance=ExtResource("11_8bbmv")]
-position = Vector2(970.2953, 601.79614)
+[node name="FormaPath4" type="Path2D" parent="." unique_id=46657361 instance=ExtResource("11_8bbmv")]
+position = Vector2(901.63684, 733.54553)
 curve = SubResource("Curve2D_na3or")
-script = ExtResource("12_5ekpu")
-eje_repeticiones = 0
+script = ExtResource("10_uxw3d")
+repeticiones = 1
+separacion_repeticiones = 18
+efecto_ladrillo = true
+velocidad_desplazamiento = 25.0
+invertir_desplazamiento = true
 huecos = PackedInt32Array()
 
-[node name="FormaPath6" type="Path2D" parent="." unique_id=1699997078 instance=ExtResource("11_8bbmv")]
-position = Vector2(971.2953, 520.79614)
+[node name="FormaPath5" type="Path2D" parent="." unique_id=1153726024 instance=ExtResource("11_8bbmv")]
+position = Vector2(1019.2311, 685.6343)
+scale = Vector2(1, 1.2209302)
 curve = SubResource("Curve2D_8bbmv")
-script = ExtResource("12_5ekpu")
-eje_repeticiones = 0
+script = ExtResource("10_uxw3d")
+repeticiones = 1
+separacion_repeticiones = 18
+efecto_ladrillo = true
+velocidad_desplazamiento = 25.0
 huecos = PackedInt32Array()
 
-[node name="FormaPath7" type="Path2D" parent="." unique_id=984138379 instance=ExtResource("11_8bbmv")]
-position = Vector2(970.2953, 490.79614)
-curve = SubResource("Curve2D_5ekpu")
-script = ExtResource("12_5ekpu")
-eje_repeticiones = 0
+[node name="FormaCirculo2" type="Node2D" parent="." unique_id=406093129 instance=ExtResource("7_x3fkq")]
+position = Vector2(476.5501, 442.7901)
+script = ExtResource("8_wilmi")
+radio = 101.647156
+usar_simetria = true
+anillos_interiores = 2
+velocidad_desplazamiento = 25.0
+alternar_direccion_anillos = true
 huecos = PackedInt32Array()
+metadata/grupo_simetria = 1
+metadata/rol_simetria = Vector2i(0, 0)
 
-[node name="FormaPath8" type="Path2D" parent="." unique_id=729432195 instance=ExtResource("11_8bbmv")]
-position = Vector2(971.2953, 409.79614)
-curve = SubResource("Curve2D_6b6q6")
-script = ExtResource("12_5ekpu")
-eje_repeticiones = 0
+[node name="FormaCirculo3" type="Node2D" parent="." unique_id=1933564047 instance=ExtResource("7_x3fkq")]
+position = Vector2(547, 862)
+script = ExtResource("8_wilmi")
+radio = 79.87108
+usar_simetria = true
+anillos_interiores = 2
+velocidad_desplazamiento = 25.0
+invertir_desplazamiento = true
+alternar_direccion_anillos = true
 huecos = PackedInt32Array()
+metadata/grupo_simetria = 2
+metadata/rol_simetria = Vector2i(0, 0)
+
+[node name="FormaCirculo4" type="Node2D" parent="." unique_id=1975070871 instance=ExtResource("7_x3fkq")]
+position = Vector2(581, 593)
+script = ExtResource("8_wilmi")
+radio = 34.93719
+usar_simetria = true
+velocidad_desplazamiento = 25.0
+invertir_desplazamiento = true
+huecos = PackedInt32Array()
+metadata/grupo_simetria = 3
+metadata/rol_simetria = Vector2i(0, 0)
+
+[node name="FormaCirculo5" type="Node2D" parent="." unique_id=1159720451 instance=ExtResource("7_x3fkq")]
+position = Vector2(446, 690)
+script = ExtResource("8_wilmi")
+radio = 37.646374
+usar_simetria = true
+velocidad_desplazamiento = 25.0
+huecos = PackedInt32Array()
+metadata/grupo_simetria = 4
+metadata/rol_simetria = Vector2i(0, 0)
+
+[node name="FormaCirculo6" type="Node2D" parent="." unique_id=1690979896 instance=ExtResource("7_x3fkq")]
+position = Vector2(580.57074, 706.7521)
+script = ExtResource("8_wilmi")
+radio = 22.57013
+usar_simetria = true
+velocidad_desplazamiento = 50.0
+huecos = PackedInt32Array()
+metadata/grupo_simetria = 5
+metadata/rol_simetria = Vector2i(0, 0)
+
+[node name="FormaCirculo7" type="Node2D" parent="." unique_id=120311502 instance=ExtResource("7_x3fkq")]
+position = Vector2(1429.45, 442.7901)
+scale = Vector2(-1, 1)
+script = ExtResource("8_wilmi")
+radio = 101.647156
+anillos_interiores = 2
+velocidad_desplazamiento = 25.0
+alternar_direccion_anillos = true
+huecos = PackedInt32Array()
+metadata/grupo_simetria = 1
+metadata/rol_simetria = Vector2i(1, 0)
+
+[node name="FormaCirculo8" type="Node2D" parent="." unique_id=1889807944 instance=ExtResource("7_x3fkq")]
+position = Vector2(1359, 862)
+scale = Vector2(-1, 1)
+script = ExtResource("8_wilmi")
+radio = 79.87108
+anillos_interiores = 2
+velocidad_desplazamiento = 25.0
+invertir_desplazamiento = true
+alternar_direccion_anillos = true
+huecos = PackedInt32Array()
+metadata/grupo_simetria = 2
+metadata/rol_simetria = Vector2i(1, 0)
+
+[node name="FormaCirculo9" type="Node2D" parent="." unique_id=1871144459 instance=ExtResource("7_x3fkq")]
+position = Vector2(1325, 593)
+scale = Vector2(-1, 1)
+script = ExtResource("8_wilmi")
+radio = 34.93719
+velocidad_desplazamiento = 25.0
+invertir_desplazamiento = true
+huecos = PackedInt32Array()
+metadata/grupo_simetria = 3
+metadata/rol_simetria = Vector2i(1, 0)
+
+[node name="FormaCirculo10" type="Node2D" parent="." unique_id=763781247 instance=ExtResource("7_x3fkq")]
+position = Vector2(1460, 690)
+scale = Vector2(-1, 1)
+script = ExtResource("8_wilmi")
+radio = 37.646374
+velocidad_desplazamiento = 25.0
+huecos = PackedInt32Array()
+metadata/grupo_simetria = 4
+metadata/rol_simetria = Vector2i(1, 0)
+
+[node name="FormaCirculo11" type="Node2D" parent="." unique_id=1185579587 instance=ExtResource("7_x3fkq")]
+position = Vector2(1325.4292, 706.7521)
+scale = Vector2(-1, 1)
+script = ExtResource("8_wilmi")
+radio = 22.57013
+velocidad_desplazamiento = 50.0
+huecos = PackedInt32Array()
+metadata/grupo_simetria = 5
+metadata/rol_simetria = Vector2i(1, 0)
 
 [editable path="EstructuraDeNivel"]

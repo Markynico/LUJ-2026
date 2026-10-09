@@ -144,5 +144,5 @@ curva = SubResource("Curve2D_fqm5n")
 script = ExtResource("2_iyr54")
 nombre = "Nivel2"
 formas = Array[ExtResource("1_x4xo4")]([SubResource("Resource_x4xo4"), SubResource("Resource_iyr54"), SubResource("Resource_mskso"), SubResource("Resource_5tv0s"), SubResource("Resource_hjprr"), SubResource("Resource_5f4we"), SubResource("Resource_ot6fx"), SubResource("Resource_d8kfr"), SubResource("Resource_j72gc")])
-posicion_divisiones = Vector2(349, 1080)
-ancho_divisiones = 1241.0
+posicion_divisiones = Vector2(353.24, 1086)
+ancho_divisiones = 1199.52

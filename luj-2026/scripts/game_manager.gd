@@ -30,6 +30,8 @@ static var vidas_inicializadas: bool = false
 static var dificultad_actual : DificultadRun
 static var niveles_jugados : int = 0
 static var niveles_ganados_run : int = 0
+##dificultad de las salas, que aumenta a lo largo de la partida al ganar las salas
+static var dificultad_sala_actual = 1
 
 @export var gato : Gato
 @export var cargador_nivel : CargadorDeNivel
@@ -94,6 +96,7 @@ func _ready() -> void:
 		vidas_inicializadas = true
 		niveles_jugados = 0
 		niveles_ganados_run = 0
+		dificultad_sala_actual
 		if not dificultad_actual:
 			dificultad_actual = dificultad_default
 		EstadisticasRun.empezar_run()
@@ -289,6 +292,7 @@ func finalizar_nivel(tipo_sala : int = -1) -> void:
 			print("¡RUN GANADA!")
 			volver_al_menu(true)
 			return
+		actualizar_dificultad_sala()
 		nivel_completado.emit(true)
 		print("¡NIVEL SUPERADO CON ÉXITO!")
 
@@ -345,6 +349,9 @@ func reiniciar_nivel_actual() -> void:
 	else:
 		sala_pedida.emit(TipoDeSala.Tipo.NORMAL)
 
+func actualizar_dificultad_sala()->void:
+	# Dificultad minima 1, máxima 5. Cada 3 salas ganadas sube
+	dificultad_sala_actual = clampi((niveles_ganados_run / 3) + 1, 1, 5)
 
 
 #func _on_eligio_una_comida():#funcion q se llama desde global, dsp de elegir una comida en el selector de comidas

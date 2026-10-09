@@ -78,7 +78,6 @@ func construir_nivel_elegido() -> void:
 	if elegido:
 		construir_nivel(elegido)
 
-
 func tomar_nivel_de_prueba() -> NivelData:
 	if not nivel_prueba and FileAccess.file_exists(RUTA_NIVEL_PRUEBA):
 		nivel_prueba = ResourceLoader.load(RUTA_NIVEL_PRUEBA, "", ResourceLoader.CACHE_MODE_IGNORE)
@@ -89,14 +88,24 @@ func tomar_nivel_de_prueba() -> NivelData:
 
 
 func elegir_nivel() -> NivelData:
+	var dificultad_sala : int = GameManager.dificultad_sala_actual
+	
+	# Todos los niveles disponibles
 	var disponibles : Array[NivelData] = niveles_aleatorios if not niveles_aleatorios.is_empty() else cargar_carpeta()
-	var candidatos : Array[NivelData] = disponibles.filter(func(dato : NivelData) -> bool: return not historial_niveles.has(dato))
+	
+	# Todos los niveles disponibles de la dificultad actual
+	var dificultad_disponibles : Array[NivelData] = disponibles.filter(
+		func(dato : NivelData) -> bool: 
+			return dato.dificultad == dificultad_sala)
+	
+	var candidatos : Array[NivelData] = dificultad_disponibles.filter(func(dato : NivelData) -> bool: return not historial_niveles.has(dato))
 	var elegido : NivelData
 	if disponibles.is_empty():
 		return null
 	if candidatos.is_empty():
-		candidatos = disponibles
+		candidatos = dificultad_disponibles
 	elegido = candidatos.pick_random()
+	print("Sala de dificultad " + str(elegido.dificultad))
 	historial_niveles.append(elegido)
 	while historial_niveles.size() > niveles_sin_repetir:
 		historial_niveles.pop_front()

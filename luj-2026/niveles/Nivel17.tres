@@ -215,6 +215,7 @@ rotar_con_el_path = true
 
 [resource]
 script = ExtResource("2_nivel")
+dificultad = 3
 nombre = "Nivel17"
 formas = Array[ExtResource("1_forma")]([SubResource("Resource_0eigw"), SubResource("Resource_b4lfx"), SubResource("Resource_2wg6o"), SubResource("Resource_2v4a0"), SubResource("Resource_6l2ls"), SubResource("Resource_0lm1u"), SubResource("Resource_hebsr"), SubResource("Resource_umooa"), SubResource("Resource_wi7vv"), SubResource("Resource_7aeq8"), SubResource("Resource_askta"), SubResource("Resource_0212t")])
 posicion_divisiones = Vector2(349, 1086)
