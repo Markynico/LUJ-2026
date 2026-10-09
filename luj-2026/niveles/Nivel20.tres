@@ -324,6 +324,7 @@ curva = SubResource("Curve2D_3e7fy")
 
 [resource]
 script = ExtResource("2_nivel")
+dificultad = 5
 nombre = "Nivel20"
 formas = Array[ExtResource("1_forma")]([SubResource("Resource_v02ku"), SubResource("Resource_iay30"), SubResource("Resource_dhtlw"), SubResource("Resource_26hnn"), SubResource("Resource_dybnm"), SubResource("Resource_q8v1w"), SubResource("Resource_3qn8m"), SubResource("Resource_0om6q"), SubResource("Resource_gt5vf"), SubResource("Resource_6gcrg"), SubResource("Resource_jnetp"), SubResource("Resource_myc7o"), SubResource("Resource_wktpc"), SubResource("Resource_k82fa"), SubResource("Resource_xbk6i"), SubResource("Resource_utljo"), SubResource("Resource_keal4"), SubResource("Resource_qmlp6"), SubResource("Resource_pp37v"), SubResource("Resource_fgnvb")])
 posicion_divisiones = Vector2(353.24, 1086)

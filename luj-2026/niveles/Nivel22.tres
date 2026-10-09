@@ -279,6 +279,7 @@ poligono = PackedVector2Array()
 
 [resource]
 script = ExtResource("2_nivel")
+dificultad = 2
 nombre = "Nivel22"
 formas = Array[ExtResource("1_forma")]([SubResource("Resource_0k66h"), SubResource("Resource_qh86w"), SubResource("Resource_frmgr"), SubResource("Resource_sp5qm"), SubResource("Resource_ip7h6"), SubResource("Resource_c11mo"), SubResource("Resource_66lin"), SubResource("Resource_sanql"), SubResource("Resource_y7v5g"), SubResource("Resource_7mjaj"), SubResource("Resource_ntndw"), SubResource("Resource_ppnba"), SubResource("Resource_e1kfb"), SubResource("Resource_kgjur"), SubResource("Resource_bhjxn"), SubResource("Resource_u0lk8"), SubResource("Resource_t4tg3"), SubResource("Resource_lr1uk"), SubResource("Resource_ix830"), SubResource("Resource_2rkhv"), SubResource("Resource_g4jxk"), SubResource("Resource_ecvag")])
 posicion_divisiones = Vector2(353.24, 1086)

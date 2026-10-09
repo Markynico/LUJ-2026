@@ -259,6 +259,7 @@ velocidad = 140.0
 
 [resource]
 script = ExtResource("2_nivel")
+dificultad = 3
 nombre = "Nivel19"
 formas = Array[ExtResource("1_forma")]([SubResource("Resource_qsitf"), SubResource("Resource_74g5t"), SubResource("Resource_gsdx6"), SubResource("Resource_yerpv"), SubResource("Resource_dh046"), SubResource("Resource_3g2ej"), SubResource("Resource_5u1st"), SubResource("Resource_cfisp"), SubResource("Resource_mfbly"), SubResource("Resource_6dra7"), SubResource("Resource_r172t"), SubResource("Resource_bh3c3"), SubResource("Resource_u6bo5"), SubResource("Resource_fbstw"), SubResource("Resource_7xg7s"), SubResource("Resource_wnpwk"), SubResource("Resource_c4loj"), SubResource("Resource_5t6xw"), SubResource("Resource_5s2mv")])
 posicion_divisiones = Vector2(353.24, 1086)

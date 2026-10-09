@@ -36,6 +36,7 @@ poligono = PackedVector2Array()
 
 [resource]
 script = ExtResource("2_nivel")
+dificultad = 2
 nombre = "Nivel15"
 formas = Array[ExtResource("1_forma")]([SubResource("Resource_sq7nr"), SubResource("Resource_p1o4j")])
 posicion_divisiones = Vector2(353.24, 1086)

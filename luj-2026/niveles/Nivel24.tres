@@ -9,7 +9,9 @@ tipo = "circulo"
 posicion = Vector2(968, 461)
 separacion_ovillos = 32.0
 anillos_interiores = 1
+huecos = PackedInt32Array()
 radio = 70.0
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_ol7o1"]
 script = ExtResource("1_forma")
@@ -22,7 +24,9 @@ velocidad_desplazamiento = 25.0
 alternar_direccion_anillos = true
 usar_simetria = true
 grupo_simetria = 1
+huecos = PackedInt32Array()
 radio = 60.396183
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_6e2bb"]
 script = ExtResource("1_forma")
@@ -32,7 +36,9 @@ separacion_ovillos = 30.0
 anillos_interiores = 1
 usar_simetria = true
 grupo_simetria = 2
+huecos = PackedInt32Array()
 radio = 60.0
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_618el"]
 script = ExtResource("1_forma")
@@ -40,27 +46,35 @@ tipo = "obstaculo_circulo"
 posicion = Vector2(650, 480)
 usar_simetria = true
 grupo_simetria = 3
+huecos = PackedInt32Array()
 radio = 45.0
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_gv10t"]
 script = ExtResource("1_forma")
 tipo = "obstaculo_circulo"
 posicion = Vector2(970, 720)
+huecos = PackedInt32Array()
 radio = 50.0
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_d0g87"]
 script = ExtResource("1_forma")
 tipo = "obstaculo_rectangulo"
 posicion = Vector2(1530.4347, 528.81036)
 rotacion = -0.3490659
+huecos = PackedInt32Array()
 "tamaño" = Vector2(181.45334, 31.330688)
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_kmf41"]
 script = ExtResource("1_forma")
 tipo = "obstaculo_rectangulo"
 posicion = Vector2(411.48578, 572.7881)
 rotacion = 0.3490659
+huecos = PackedInt32Array()
 "tamaño" = Vector2(182.70996, 30.674072)
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_o01wx"]
 script = ExtResource("1_forma")
@@ -74,7 +88,9 @@ velocidad_desplazamiento = 25.0
 alternar_direccion_anillos = true
 grupo_simetria = 1
 rol_simetria = Vector2i(1, 0)
+huecos = PackedInt32Array()
 radio = 60.396183
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_jtu2d"]
 script = ExtResource("1_forma")
@@ -85,7 +101,9 @@ separacion_ovillos = 30.0
 anillos_interiores = 1
 grupo_simetria = 2
 rol_simetria = Vector2i(1, 0)
+huecos = PackedInt32Array()
 radio = 60.0
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_sxt1d"]
 script = ExtResource("1_forma")
@@ -94,7 +112,9 @@ posicion = Vector2(1289, 480)
 escala = Vector2(-1, 1)
 grupo_simetria = 3
 rol_simetria = Vector2i(1, 0)
+huecos = PackedInt32Array()
 radio = 45.0
+poligono = PackedVector2Array()
 
 [sub_resource type="Curve2D" id="Curve2D_lwopa"]
 bake_interval = 2.0
@@ -113,6 +133,8 @@ eje_repeticiones = 1
 efecto_ladrillo = true
 usar_simetria = true
 grupo_simetria = 4
+huecos = PackedInt32Array()
+poligono = PackedVector2Array()
 curva = SubResource("Curve2D_lwopa")
 
 [sub_resource type="Curve2D" id="Curve2D_cl7fe"]
@@ -133,10 +155,13 @@ eje_repeticiones = 1
 efecto_ladrillo = true
 grupo_simetria = 4
 rol_simetria = Vector2i(1, 0)
+huecos = PackedInt32Array()
+poligono = PackedVector2Array()
 curva = SubResource("Curve2D_cl7fe")
 
 [resource]
 script = ExtResource("2_nivel")
+dificultad = 3
 nombre = "Nivel24"
 formas = Array[ExtResource("1_forma")]([SubResource("Resource_10o7l"), SubResource("Resource_ol7o1"), SubResource("Resource_6e2bb"), SubResource("Resource_618el"), SubResource("Resource_gv10t"), SubResource("Resource_d0g87"), SubResource("Resource_kmf41"), SubResource("Resource_o01wx"), SubResource("Resource_jtu2d"), SubResource("Resource_sxt1d"), SubResource("Resource_histy"), SubResource("Resource_axdsc")])
 posicion_divisiones = Vector2(349, 1086)
