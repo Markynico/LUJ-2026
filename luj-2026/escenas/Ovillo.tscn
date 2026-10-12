@@ -43,7 +43,7 @@ texture_filter = 1
 visible = false
 texture_filter = 1
 
-[node name="SpriteEstado" type="Sprite2D" parent="SpriteNormal"]
+[node name="SpriteEstado" type="Sprite2D" parent="SpriteNormal" unique_id=463297374]
 visible = false
 texture_filter = 1
 

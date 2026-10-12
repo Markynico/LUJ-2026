@@ -191,8 +191,15 @@ func desactivar_ovillo() -> void:
 	activado = false
 	if forma_colision:
 		forma_colision.set_deferred("disabled", true)
-	if sprite_normal:
-		sprite_normal.hide()
+	if sprite_normal:# cambiar esto por un efectito de tween
+		var escala_actual : Vector2 = sprite_normal.scale
+		var tween_golpeado := create_tween()
+		tween_golpeado.set_trans(Tween.TRANS_CUBIC)
+		tween_golpeado.set_ease(Tween.EASE_IN)
+		tween_golpeado.tween_property(sprite_normal,"scale",escala_actual * 1.35 , 0.1)
+		tween_golpeado.tween_property(sprite_normal,"scale",Vector2.ZERO, 0.2)
+		await tween_golpeado.finished
+		sprite_normal.hide() 
 	if sprite_desactivado:
 		sprite_desactivado.show()
 	if tipo_ovillo:
@@ -225,6 +232,7 @@ func explotar(nodo_explosion : Explosion): #lo llamo en el EfectoExplosion
 		return
 	var reproductor_mecha : AudioStreamPlayer = AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.MECHA)
 	sprite_normal.show() #lo muestro a proposito pq cuando lo desactivo se esconde, es solo visual
+	#sprite_normal.scale = tipo_ovillo.escala * Vector2.ONE #ahora le tengo q setear la escala inicial pq el efecto de impacto nuevo hacia q no se vea la animacion
 	sprite_desactivado.hide()
 	sprite_normal.material = shader_titilar.duplicate() #ahora sprite tiene el shader, onda adentro del material esta el shader
 	var shader_real : ShaderMaterial = sprite_normal.material
