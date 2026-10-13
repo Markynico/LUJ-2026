@@ -191,12 +191,12 @@ func desactivar_ovillo() -> void:
 	activado = false
 	if forma_colision:
 		forma_colision.set_deferred("disabled", true)
-	if sprite_normal:# cambiar esto por un efectito de tween
+	if sprite_normal:#TODO me quedaria arreglar el efectito al ovillo bomba, con el resto anda joya
 		var escala_actual : Vector2 = sprite_normal.scale
 		var tween_golpeado := create_tween()
-		tween_golpeado.set_trans(Tween.TRANS_CUBIC)
+		tween_golpeado.set_trans(Tween.TRANS_BACK)
 		tween_golpeado.set_ease(Tween.EASE_IN)
-		tween_golpeado.tween_property(sprite_normal,"scale",escala_actual * 1.35 , 0.1)
+		tween_golpeado.tween_property(sprite_normal,"scale",escala_actual * 1.3 , 0.1)
 		tween_golpeado.tween_property(sprite_normal,"scale",Vector2.ZERO, 0.2)
 		await tween_golpeado.finished
 		sprite_normal.hide() 
