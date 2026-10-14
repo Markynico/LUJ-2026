@@ -13,6 +13,7 @@ extends Node2D
 @export var camara : Camera2D
 ##zoom de la camara mientras el gato escupe la bola
 @export var zoom_disparo : Vector2 = Vector2(1.5, 1.5)
+@export var zoom_disparo_minimo : Vector2 = Vector2(1.15, 1.15)
 ##segundos que tarda el zoom de disparo
 @export var duracion_zoom : float = 0.4
 ##corrimiento de la camara respecto del gato durante el zoom
@@ -36,6 +37,8 @@ var capa_salas : CanvasLayer
 var posicion_camara_inicial : Vector2
 var zoom_camara_inicial : Vector2
 var tween_camara : Tween
+var primer_disparo_del_nivel : bool = true
+var zoom_corto_activo : bool = false
 
 
 func _ready() -> void:
@@ -55,12 +58,18 @@ func _ready() -> void:
 
 
 func acercar_camara() -> void:
-	AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.WHOOSH_CAMARA_RAPIDO)
-	mover_camara(gato.global_position + offset_zoom, zoom_disparo)
+	zoom_corto_activo = not primer_disparo_del_nivel
+	primer_disparo_del_nivel = false
+	if zoom_corto_activo:
+		mover_camara(gato.global_position + offset_zoom, zoom_disparo_minimo)
+	else:
+		AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.WHOOSH_CAMARA_RAPIDO)
+		mover_camara(gato.global_position + offset_zoom, zoom_disparo)
 
 
 func alejar_camara() -> void:
-	AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.WHOOSH_CAMARA_RAPIDO)
+	if not zoom_corto_activo:
+		AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.WHOOSH_CAMARA_RAPIDO)
 	mover_camara(posicion_camara_inicial, zoom_camara_inicial)
 
 
@@ -126,6 +135,7 @@ func aplicar_sala(tipo : TipoDeSala.Tipo) -> void:
 
 
 func empezar_nivel() -> void:
+	primer_disparo_del_nivel = true
 	cargador.construir_nivel_elegido()
 	game_manager.conectar_sala(cargador, selector)
 	gato.reiniciar()

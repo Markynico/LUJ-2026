@@ -64,7 +64,7 @@ parte_detalles = NodePath("DetallesAmarillos")
 brillo_banner = 1.2
 brillo_ovillo = 1.2
 brillo_sello = 1.6
-saturacion_rareza = 0.8
+saturacion_rareza = 0.6
 luminosidad_rareza = 0.8
 
 [node name="Banner" type="TextureRect" parent="." unique_id=1697798910]
