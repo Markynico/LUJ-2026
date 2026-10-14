@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="ReliquiaReliquiaAttie" format=3 uid="uid://n5vmvdnta6te"]
+
+[ext_resource type="Script" uid="uid://bus0kgj1moqjc" path="res://scripts/condicion_desbloqueo.gd" id="1_nbir3"]
+[ext_resource type="Script" uid="uid://c6f3ybcbnyfng" path="res://scripts/reliquias/efecto_reliquia.gd" id="2_j1os6"]
+[ext_resource type="Script" uid="uid://bswos85s0fjb" path="res://scripts/reliquias/reliquia_reliquia_attie.gd" id="3_w6qqu"]
+[ext_resource type="Script" uid="uid://bb1k1rxvpqrte" path="res://scripts/reliquias/efectos/efecto_multiplicador.gd" id="3_we4oe"]
+[ext_resource type="Script" uid="uid://bbkyk2anhunsd" path="res://scripts/ovillos_custom/ovillo_base.gd" id="4_db8yi"]
+[ext_resource type="Resource" uid="uid://csd66g4gp4y05" path="res://scripts/resources/ovillo_oro.tres" id="5_32lrr"]
+[ext_resource type="Script" uid="uid://vvkhs7og47w7" path="res://scripts/reliquias/efectos/efecto_extender_duracion.gd" id="6_db8yi"]
+
+[sub_resource type="Resource" id="Resource_tfuk6"]
+script = ExtResource("3_we4oe")
+que = 1
+multiplicador = 6.0
+tipos_objetivo = Array[ExtResource("4_db8yi")]([ExtResource("5_32lrr")])
+metadata/_custom_type_script = "uid://bb1k1rxvpqrte"
+
+[sub_resource type="Resource" id="Resource_k61t0"]
+script = ExtResource("6_db8yi")
+que = 1
+metadata/_custom_type_script = "uid://vvkhs7og47w7"
+
+[resource]
+script = ExtResource("3_w6qqu")
+nombre = "reliquia attie"
+rareza = 4
+descripcion = "asdasd"
+efectos = Array[ExtResource("2_j1os6")]([SubResource("Resource_tfuk6"), SubResource("Resource_k61t0")])

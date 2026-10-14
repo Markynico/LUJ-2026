@@ -20,11 +20,13 @@ eje_repeticiones = 1
 velocidad_desplazamiento = 17.585
 alternar_direccion_repeticiones = true
 efecto_ladrillo = true
+huecos = PackedInt32Array()
+poligono = PackedVector2Array()
 curva = SubResource("Curve2D_srgcd")
 
 [resource]
 script = ExtResource("2_a5hyq")
 nombre = "Nivel9"
 formas = Array[ExtResource("1_srgcd")]([SubResource("Resource_a5hyq")])
-posicion_divisiones = Vector2(349, 1080)
-ancho_divisiones = 1241.0
+posicion_divisiones = Vector2(353.24, 1086)
+ancho_divisiones = 1199.52

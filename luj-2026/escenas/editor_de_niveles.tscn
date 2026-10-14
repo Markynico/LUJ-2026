@@ -6,8 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cexjr0e4owki" path="res://escenas/estructura_de_nivel.tscn" id="2_estru"]
 [ext_resource type="Texture2D" uid="uid://cnn0x0om8yo5m" path="res://assets/pantalla de juego.png" id="2_fondo"]
 [ext_resource type="PackedScene" uid="uid://bxjt6h43758na" path="res://escenas/componentes/divisiones_pachinko.tscn" id="7_divs"]
-[ext_resource type="PackedScene" uid="uid://cformabe000a1" path="res://escenas/componentes/forma_path.tscn" id="11_8bbmv"]
-[ext_resource type="Script" uid="uid://1owdp7hud1ge" path="res://scripts/niveles/forma_path.gd" id="12_5ekpu"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_w7gqy"]
 
@@ -19,62 +17,6 @@ size = Vector2(55.5, 28)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_6wvn0"]
 viewport_path = NodePath("PanelInfoIzquierdo/SubViewportIzq")
-
-[sub_resource type="Curve2D" id="Curve2D_43wpl"]
-bake_interval = 2.0
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 577.7047, 1.2038574, 0, 0, 0, 0, -593.2953, -2.7961426)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_x3fkq"]
-bake_interval = 2.0
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 551.7047, 25.203857, 0, 0, 0, 0, -564.2953, 23.203857)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_wilmi"]
-bake_interval = 2.0
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 577.7047, 1.2038574, 0, 0, 0, 0, -593.2953, -2.7961426)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_uxw3d"]
-bake_interval = 2.0
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 551.7047, 25.203857, 0, 0, 0, 0, -564.2953, 23.203857)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_na3or"]
-bake_interval = 2.0
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 577.7047, 1.2038574, 0, 0, 0, 0, -593.2953, -2.7961426)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_8bbmv"]
-bake_interval = 2.0
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 551.7047, 25.203857, 0, 0, 0, 0, -564.2953, 23.203857)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_5ekpu"]
-bake_interval = 2.0
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 577.7047, 1.2038574, 0, 0, 0, 0, -593.2953, -2.7961426)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_6b6q6"]
-bake_interval = 2.0
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 551.7047, 25.203857, 0, 0, 0, 0, -564.2953, 23.203857)
-}
-point_count = 2
 
 [node name="EditorDeNiveles" type="Node2D" unique_id=925235971 node_paths=PackedStringArray("estructura")]
 script = ExtResource("1_carg")
@@ -164,61 +106,5 @@ texture = SubResource("ViewportTexture_6wvn0")
 position = Vector2(353.24, 1086)
 ancho_total = 1199.52
 metadata/_edit_lock_ = true
-
-[node name="FormaPath" type="Path2D" parent="." unique_id=799578377 instance=ExtResource("11_8bbmv")]
-position = Vector2(970, 818)
-curve = SubResource("Curve2D_43wpl")
-script = ExtResource("12_5ekpu")
-eje_repeticiones = 0
-huecos = PackedInt32Array()
-
-[node name="FormaPath2" type="Path2D" parent="." unique_id=732190010 instance=ExtResource("11_8bbmv")]
-position = Vector2(971, 737)
-curve = SubResource("Curve2D_x3fkq")
-script = ExtResource("12_5ekpu")
-eje_repeticiones = 0
-huecos = PackedInt32Array()
-
-[node name="FormaPath3" type="Path2D" parent="." unique_id=766000377 instance=ExtResource("11_8bbmv")]
-position = Vector2(970.2953, 706.79614)
-curve = SubResource("Curve2D_wilmi")
-script = ExtResource("12_5ekpu")
-eje_repeticiones = 0
-huecos = PackedInt32Array()
-
-[node name="FormaPath4" type="Path2D" parent="." unique_id=1506201299 instance=ExtResource("11_8bbmv")]
-position = Vector2(971.2953, 625.79614)
-curve = SubResource("Curve2D_uxw3d")
-script = ExtResource("12_5ekpu")
-eje_repeticiones = 0
-huecos = PackedInt32Array()
-
-[node name="FormaPath5" type="Path2D" parent="." unique_id=1916532629 instance=ExtResource("11_8bbmv")]
-position = Vector2(970.2953, 601.79614)
-curve = SubResource("Curve2D_na3or")
-script = ExtResource("12_5ekpu")
-eje_repeticiones = 0
-huecos = PackedInt32Array()
-
-[node name="FormaPath6" type="Path2D" parent="." unique_id=1699997078 instance=ExtResource("11_8bbmv")]
-position = Vector2(971.2953, 520.79614)
-curve = SubResource("Curve2D_8bbmv")
-script = ExtResource("12_5ekpu")
-eje_repeticiones = 0
-huecos = PackedInt32Array()
-
-[node name="FormaPath7" type="Path2D" parent="." unique_id=984138379 instance=ExtResource("11_8bbmv")]
-position = Vector2(970.2953, 490.79614)
-curve = SubResource("Curve2D_5ekpu")
-script = ExtResource("12_5ekpu")
-eje_repeticiones = 0
-huecos = PackedInt32Array()
-
-[node name="FormaPath8" type="Path2D" parent="." unique_id=729432195 instance=ExtResource("11_8bbmv")]
-position = Vector2(971.2953, 409.79614)
-curve = SubResource("Curve2D_6b6q6")
-script = ExtResource("12_5ekpu")
-eje_repeticiones = 0
-huecos = PackedInt32Array()
 
 [editable path="EstructuraDeNivel"]
