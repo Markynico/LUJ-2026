@@ -5,12 +5,20 @@
 [ext_resource type="Material" uid="uid://mm5ccdl66itm" path="res://scripts/shaders/material_ovillo_titilar.tres" id="3_3vil1"]
 [ext_resource type="Texture2D" uid="uid://dlqtkdflbrbk6" path="res://assets/sprite_ovillos/ovillo base.png" id="4_dcous"]
 [ext_resource type="PackedScene" uid="uid://dymyh3ifxvug3" path="res://escenas/componentes/pergamino_info.tscn" id="6_dcous"]
+[ext_resource type="PackedScene" uid="uid://koe7h22u8fj8" path="res://escenas/componentes/sprite_onda_expansiva.tscn" id="7_3vil1"]
 [ext_resource type="PackedScene" uid="uid://foy2qcacwbix" path="res://escenas/componentes/numero_impacto.tscn" id="7_vkchq"]
+[ext_resource type="Shader" uid="uid://ea0vqi2vvaqd" path="res://scripts/onda_expansiva.gdshader" id="8_3vil1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f54ks"]
+shader = ExtResource("8_3vil1")
+shader_parameter/circle_width = 0.2500000037253
+shader_parameter/alpha_boost = 1.0
+shader_parameter/progress = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_37ege"]
 radius = 13.5
 
-[node name="Ovillo" type="StaticBody2D" unique_id=142733400 node_paths=PackedStringArray("forma_colision", "sprite_normal", "sprite_desactivado", "sprite_decoracion", "sprite_decoracion_teñida", "sprite_brillo_decoracion", "pergamino_info", "numero_impacto", "sprite_estado")]
+[node name="Ovillo" type="StaticBody2D" unique_id=142733400 node_paths=PackedStringArray("forma_colision", "sprite_normal", "sprite_desactivado", "sprite_decoracion", "sprite_decoracion_teñida", "sprite_brillo_decoracion", "pergamino_info", "numero_impacto", "sprite_estado", "sprite_onda_expansiva")]
 collision_layer = 2
 collision_mask = 0
 input_pickable = true
@@ -25,7 +33,11 @@ sprite_brillo_decoracion = NodePath("SpriteNormal/SpriteBrilloDecoracion")
 pergamino_info = NodePath("PergaminoInfo")
 numero_impacto = NodePath("NumeroImpacto")
 sprite_estado = NodePath("SpriteNormal/SpriteEstado")
+sprite_onda_expansiva = NodePath("SpriteOndaExpansiva")
 shader_titilar = ExtResource("3_3vil1")
+
+[node name="SpriteOndaExpansiva" parent="." unique_id=1897993470 instance=ExtResource("7_3vil1")]
+material = SubResource("ShaderMaterial_f54ks")
 
 [node name="SpriteNormal" type="Sprite2D" parent="." unique_id=20603333]
 texture_filter = 1

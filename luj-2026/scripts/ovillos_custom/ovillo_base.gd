@@ -8,7 +8,9 @@ enum BrilloEn { OVILLO, DECORACION }
 @export_multiline var descripcion : String = ""
 ##sprite propio del tipo, opcional: si queda vacio se usa el sprite base de la escena
 @export var sprite : Texture
-##color con el que se tiñe el sprite base
+##si queremos q haga una onda expansiva al ser golpeado
+@export var hace_onda_expansiva : bool = true
+##color con el que se tiñe el sprite base (ahora tambien se usa este color para la mini onda expansiva al ser golpeado)
 @export var color : Color = Color.WHITE
 ##textura opcional que se dibuja por encima del ovillo, sin teñir
 @export var decoracion : Texture

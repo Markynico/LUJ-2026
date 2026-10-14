@@ -18,10 +18,13 @@ extends StaticBody2D
 signal ovillo_desactivado(ovillo: Ovillo)
 signal rebobinar_bola(bola_de_pelos : BolaDePelos)
 
+@export var sprite_onda_expansiva : Sprite2D
 @export var shader_titilar : ShaderMaterial
+var tween_golpeado : Tween #para el efectito al golpear, q se expande y achica
 var tween : Tween
 var activado : bool = true
 var bola_que_impacto : BolaDePelos = null
+@onready var escala_inicial : Vector2 = sprite_normal.scale
 
 var multiplicador : int = 1 #para ovillo_catnip
 var multiplicador_oro : int = 1
@@ -191,15 +194,12 @@ func desactivar_ovillo() -> void:
 	activado = false
 	if forma_colision:
 		forma_colision.set_deferred("disabled", true)
-	if sprite_normal:#TODO me quedaria arreglar el efectito al ovillo bomba, con el resto anda joya
-		var escala_actual : Vector2 = sprite_normal.scale
-		var tween_golpeado := create_tween()
-		tween_golpeado.set_trans(Tween.TRANS_BACK)
-		tween_golpeado.set_ease(Tween.EASE_IN)
-		tween_golpeado.tween_property(sprite_normal,"scale",escala_actual * 1.3 , 0.1)
-		tween_golpeado.tween_property(sprite_normal,"scale",Vector2.ZERO, 0.2)
+	if sprite_normal:
+		iniciar_onda_expansiva()
+		efecto_achicar_ovillo()
 		await tween_golpeado.finished
-		sprite_normal.hide() 
+		sprite_normal.hide()
+		#terminar_onda_expansiva()
 	if sprite_desactivado:
 		sprite_desactivado.show()
 	if tipo_ovillo:
@@ -232,7 +232,9 @@ func explotar(nodo_explosion : Explosion): #lo llamo en el EfectoExplosion
 		return
 	var reproductor_mecha : AudioStreamPlayer = AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.MECHA)
 	sprite_normal.show() #lo muestro a proposito pq cuando lo desactivo se esconde, es solo visual
-	#sprite_normal.scale = tipo_ovillo.escala * Vector2.ONE #ahora le tengo q setear la escala inicial pq el efecto de impacto nuevo hacia q no se vea la animacion
+	if tween_golpeado:
+		tween_golpeado.kill() #pq sino el efecto de explosion no se mostraba
+	sprite_normal.scale = escala_inicial #el tween_golpeado hace que se cambie su escala, por eso aca lo vuelvo al valor inicial sino el efecto de titilar no se veia
 	sprite_desactivado.hide()
 	sprite_normal.material = shader_titilar.duplicate() #ahora sprite tiene el shader, onda adentro del material esta el shader
 	var shader_real : ShaderMaterial = sprite_normal.material
@@ -318,3 +320,25 @@ func cambiar_tipo(nuevo_tipo : OvilloBase) -> void:
 	if sprite_normal and tipo_ovillo.sprite:
 		sprite_normal.texture = tipo_ovillo.sprite
 	actualizar_visual_estados()
+
+func iniciar_onda_expansiva():
+	if tipo_ovillo.hace_onda_expansiva == false:
+		return
+	sprite_onda_expansiva.material = sprite_onda_expansiva.material.duplicate()
+	sprite_onda_expansiva.modulate = tipo_ovillo.color
+	var material : ShaderMaterial = sprite_onda_expansiva.material
+	material.set_shader_parameter("progress", 0.0)
+	#print("se deberia mover la onda expansiva ")
+	var tween_onda_expansiva : Tween = create_tween()
+	tween_onda_expansiva.set_trans(Tween.TRANS_BACK)
+	tween_onda_expansiva.set_ease(Tween.EASE_IN)
+	tween_onda_expansiva.tween_property(material,"shader_parameter/progress",1.0,0.25)
+
+
+
+func efecto_achicar_ovillo(): #pa cuando lo golpeamos, se expande y se achica
+	tween_golpeado = create_tween()
+	tween_golpeado.set_trans(Tween.TRANS_BACK)
+	tween_golpeado.set_ease(Tween.EASE_IN)
+	tween_golpeado.tween_property(sprite_normal,"scale",escala_inicial * 1.3 , 0.1)
+	tween_golpeado.tween_property(sprite_normal,"scale",Vector2.ZERO, 0.2)
