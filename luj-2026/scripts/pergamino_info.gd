@@ -12,11 +12,11 @@ func _ready() -> void:
 	hide()
 
 func _on_mouse_entered() -> void:
-	print("mostrar (en pergamino)")
+#	print("mostrar (en pergamino)")
 	set_activo(true)
 
 func _on_mouse_exited() -> void:
-	print("esconder (en pergamino)")
+#	print("esconder (en pergamino)")
 	set_activo(false)
 
 func set_activo(activar : bool):

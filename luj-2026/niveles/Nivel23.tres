@@ -27,6 +27,7 @@ ida_y_vuelta = false
 
 [resource]
 script = ExtResource("2_nivel")
+dificultad = 5
 nombre = "Nivel23"
 formas = Array[ExtResource("1_forma")]([SubResource("Resource_pi4s6")])
 posicion_divisiones = Vector2(353.24, 1086)

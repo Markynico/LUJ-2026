@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://omba114yvay4"]
+
+[ext_resource type="Script" uid="uid://ca85y85i1fexv" path="res://scripts/reiniciar_escena.gd" id="1_qb0qx"]
+
+[node name="ReiniciarEscena" type="Node" unique_id=1875771562]
+script = ExtResource("1_qb0qx")

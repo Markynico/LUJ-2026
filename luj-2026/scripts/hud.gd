@@ -36,6 +36,8 @@ var tween_destruir : Tween
 var tween_pulso : Tween
 var destruir_visible : bool = false
 
+signal boton_info_presionado
+
 func _ready() -> void:
 	if not game_manager:
 		game_manager = get_tree().root.find_child("GameManager", true, false) as GameManager
@@ -159,3 +161,7 @@ func actualizar_salas() -> void:
 
 func al_completar_nivel(exito: bool) -> void:
 	actualizar_salas()
+
+
+func _on_boton_info_pressed() -> void:
+	boton_info_presionado.emit()

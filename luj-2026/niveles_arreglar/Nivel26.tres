@@ -14,6 +14,8 @@ point_count = 2
 script = ExtResource("1_forma")
 tipo = "path"
 separacion_ovillos = 40.0
+huecos = PackedInt32Array()
+poligono = PackedVector2Array()
 curva = SubResource("Curve2D_txysy")
 
 [sub_resource type="Curve2D" id="Curve2D_8o0n8"]
@@ -25,7 +27,9 @@ point_count = 2
 [sub_resource type="Resource" id="Resource_pqogc"]
 script = ExtResource("1_forma")
 tipo = "obstaculo_rectangulo"
+huecos = PackedInt32Array()
 "tamaño" = Vector2(200, 24)
+poligono = PackedVector2Array()
 recorrido = SubResource("Curve2D_8o0n8")
 posicion_recorrido = Vector2(580, 480)
 velocidad = 130.0
@@ -41,6 +45,8 @@ point_count = 2
 script = ExtResource("1_forma")
 tipo = "path"
 separacion_ovillos = 40.0
+huecos = PackedInt32Array()
+poligono = PackedVector2Array()
 curva = SubResource("Curve2D_v1eqg")
 
 [sub_resource type="Curve2D" id="Curve2D_kg36n"]
@@ -52,7 +58,9 @@ point_count = 2
 [sub_resource type="Resource" id="Resource_rmjtp"]
 script = ExtResource("1_forma")
 tipo = "obstaculo_rectangulo"
+huecos = PackedInt32Array()
 "tamaño" = Vector2(200, 24)
+poligono = PackedVector2Array()
 recorrido = SubResource("Curve2D_kg36n")
 posicion_recorrido = Vector2(1360, 620)
 velocidad = 130.0
@@ -68,47 +76,61 @@ point_count = 2
 script = ExtResource("1_forma")
 tipo = "path"
 separacion_ovillos = 40.0
+huecos = PackedInt32Array()
+poligono = PackedVector2Array()
 curva = SubResource("Curve2D_md68f")
 
 [sub_resource type="Resource" id="Resource_8mn8l"]
 script = ExtResource("1_forma")
 tipo = "obstaculo_circulo"
 posicion = Vector2(750, 780)
+huecos = PackedInt32Array()
 radio = 35.0
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_xlgse"]
 script = ExtResource("1_forma")
 tipo = "obstaculo_circulo"
 posicion = Vector2(1190, 780)
+huecos = PackedInt32Array()
 radio = 35.0
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_d6x6y"]
 script = ExtResource("1_forma")
 tipo = "circulo"
 posicion = Vector2(750, 780)
 separacion_ovillos = 30.0
+huecos = PackedInt32Array()
 radio = 70.0
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_3x7jx"]
 script = ExtResource("1_forma")
 tipo = "circulo"
 posicion = Vector2(1190, 780)
 separacion_ovillos = 30.0
+huecos = PackedInt32Array()
 radio = 70.0
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_ighn5"]
 script = ExtResource("1_forma")
 tipo = "obstaculo_rectangulo"
 posicion = Vector2(1553.9578, 733.76605)
 rotacion = -0.3490659
+huecos = PackedInt32Array()
 "tamaño" = Vector2(107.76489, 44.53784)
+poligono = PackedVector2Array()
 
 [sub_resource type="Resource" id="Resource_eq04m"]
 script = ExtResource("1_forma")
 tipo = "obstaculo_rectangulo"
 posicion = Vector2(382.555, 734.7285)
 rotacion = 0.3490659
+huecos = PackedInt32Array()
 "tamaño" = Vector2(116.09619, 47.694885)
+poligono = PackedVector2Array()
 
 [resource]
 script = ExtResource("2_nivel")
