@@ -22,4 +22,6 @@ rebote_extra = 0.0
 puntaje = 5
 valor_spawn = 1.0
 efectos_al_recibir_impacto = Array[ExtResource("1_uuoqp")]([SubResource("Resource_3axgr")])
+size_onda_expansiva = 1.8
+tiempo_onda_expansiva = 0.25
 metadata/_custom_type_script = "uid://bbkyk2anhunsd"

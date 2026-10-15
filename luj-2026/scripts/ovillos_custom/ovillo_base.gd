@@ -8,8 +8,6 @@ enum BrilloEn { OVILLO, DECORACION }
 @export_multiline var descripcion : String = ""
 ##sprite propio del tipo, opcional: si queda vacio se usa el sprite base de la escena
 @export var sprite : Texture
-##si queremos q haga una onda expansiva al ser golpeado
-@export var hace_onda_expansiva : bool = true
 ##color con el que se tiñe el sprite base (ahora tambien se usa este color para la mini onda expansiva al ser golpeado)
 @export var color : Color = Color.WHITE
 ##textura opcional que se dibuja por encima del ovillo, sin teñir
@@ -39,3 +37,11 @@ enum BrilloEn { OVILLO, DECORACION }
 @export var valor_spawn : float = 10.0
 @export var color_numeros_impacto : Color
 @export var efectos_al_recibir_impacto : Array[EfectosOvillo]
+
+@export_group("ONDA EXPANSIVA AL GOLPEAR")
+##si queremos q haga una onda expansiva al ser golpeado
+@export var hace_onda_expansiva : bool = true
+##si queremos que la onda expansiva sea mas grande o mas chica, se va a multiplicar la escala por este numero, 1.0 es lo normal
+@export var size_onda_expansiva : float = 1.0
+##tiempo para la animacion de la onda expansiva
+@export var tiempo_onda_expansiva : float = 0.2

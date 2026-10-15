@@ -5,17 +5,21 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_37ege"]
 shader = ExtResource("1_t7jyh")
-shader_parameter/circle_width = 1.0
-shader_parameter/alpha_boost = 5.0
+shader_parameter/circle_width = 0.60000000894072
+shader_parameter/alpha_boost = 4.20000004768384
 shader_parameter/progress = 0.0
+shader_parameter/enable_aura = false
+shader_parameter/aura_speed = 7.0000001043084
+shader_parameter/aura_strength = 0.050000002375
+shader_parameter/aura_frequency = 47.0
 
 [sub_resource type="Gradient" id="Gradient_vkchq"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.83137256)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3vil1"]
 gradient = SubResource("Gradient_vkchq")
-width = 60
-height = 60
+width = 40
+height = 40
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)

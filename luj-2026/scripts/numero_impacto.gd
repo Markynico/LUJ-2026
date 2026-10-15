@@ -9,8 +9,14 @@ func _ready() -> void:
 	hide()
 	#reiniciar_valores()
 
-func iniciar_numero_impacto(numero : int): 
+func iniciar_numero_impacto(numero : int, color_numero : Color = Color.WHITE): 
 	text = str(numero)
+	set("theme_override_colors/font_color",color_numero)
+	show()
+	efecto_punch_parabolico()
+
+func mostrar_texto_impacto(texto : String):
+	text = texto
 	show()
 	efecto_punch_parabolico()
 

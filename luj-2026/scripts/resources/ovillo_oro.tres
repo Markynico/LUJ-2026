@@ -26,4 +26,5 @@ cant_monedas = 10
 rebote_extra = 0.0
 valor_spawn = 3.0
 efectos_al_recibir_impacto = Array[ExtResource("1_base")]([SubResource("Resource_oro"), SubResource("Resource_x4xo4")])
+size_onda_expansiva = 1.2
 metadata/_custom_type_script = "uid://bbkyk2anhunsd"

@@ -3,6 +3,7 @@ class_name Ovillo
 extends StaticBody2D
 
 @export var tipo_ovillo : OvilloBase
+@export var probando_color_catnip : Color
 
 @export_group("NODOS")
 @export var forma_colision : CollisionShape2D
@@ -20,6 +21,8 @@ signal rebobinar_bola(bola_de_pelos : BolaDePelos)
 
 @export var sprite_onda_expansiva : Sprite2D
 @export var shader_titilar : ShaderMaterial
+var ruta_escena_moneda_recogida : String = "res://escenas/componentes/sprite_moneda_recogida.tscn"
+var tween_aura_catnip : Tween
 var tween_golpeado : Tween #para el efectito al golpear, q se expande y achica
 var tween : Tween
 var activado : bool = true
@@ -168,7 +171,7 @@ func recibir_explosion() -> void:
 
 func romper() -> void:
 	desactivar_ovillo()
-	numero_impacto.iniciar_numero_impacto(obtener_puntaje()) #le cambie monedas x puntaje
+	numero_impacto.iniciar_numero_impacto(obtener_puntaje(), tipo_ovillo.color) #le cambie monedas x puntaje
 	for efecto in tipo_ovillo.efectos_al_recibir_impacto:
 		efecto.al_recibir_impacto(self)
 	for fuente in fuentes_estados():
@@ -199,7 +202,7 @@ func desactivar_ovillo() -> void:
 		efecto_achicar_ovillo()
 		await tween_golpeado.finished
 		sprite_normal.hide()
-		#terminar_onda_expansiva()
+		sprite_onda_expansiva.hide()
 	if sprite_desactivado:
 		sprite_desactivado.show()
 	if tipo_ovillo:
@@ -221,6 +224,7 @@ func reactivar_ovillo() -> void:
 		sprite_normal.show()
 	if sprite_desactivado:
 		sprite_desactivado.hide()
+	sprite_onda_expansiva.show()
 
 
 func explotar(nodo_explosion : Explosion): #lo llamo en el EfectoExplosion
@@ -255,25 +259,29 @@ func duplicar_recompensas() -> void: #la llama efecto_ovillo_catnip
 		multiplicador *= 2
 	else:
 		multiplicador = 2
+	activar_aura_catnip()
 
 
-func fin_duplicar() -> void:
+func fin_duplicar() -> void: #tambien, del catnip
 	if !activado:
 		return
 	if ReliquiasManager.catnip_stackeable:
 		multiplicador = maxi(1, multiplicador / 2)
 	else:
 		multiplicador = 1
+	desactivar_aura_catnip()
 
 
 func duplicar_monedas() -> void:
 	if activado:
 		multiplicador_oro = 2
+		activar_aura_monedas()
 
 
 func fin_duplicar_monedas() -> void:
 	if activado:
 		multiplicador_oro = 1
+		desactivar_aura_monedas()
 
 func obtener_puntaje () -> int:
 	if not tipo_ovillo:
@@ -325,14 +333,15 @@ func iniciar_onda_expansiva():
 	if tipo_ovillo.hace_onda_expansiva == false:
 		return
 	sprite_onda_expansiva.material = sprite_onda_expansiva.material.duplicate()
-	sprite_onda_expansiva.modulate = tipo_ovillo.color
+	sprite_onda_expansiva.modulate = tipo_ovillo.color #con esto la onda expansiva cambia de color segun el tipo de ovillo
+	sprite_onda_expansiva.scale *= tipo_ovillo.size_onda_expansiva
 	var material : ShaderMaterial = sprite_onda_expansiva.material
 	material.set_shader_parameter("progress", 0.0)
 	#print("se deberia mover la onda expansiva ")
 	var tween_onda_expansiva : Tween = create_tween()
 	tween_onda_expansiva.set_trans(Tween.TRANS_BACK)
 	tween_onda_expansiva.set_ease(Tween.EASE_IN)
-	tween_onda_expansiva.tween_property(material,"shader_parameter/progress",1.0,0.25)
+	tween_onda_expansiva.tween_property(material,"shader_parameter/progress",1.0, tipo_ovillo.tiempo_onda_expansiva)
 
 
 
@@ -342,3 +351,72 @@ func efecto_achicar_ovillo(): #pa cuando lo golpeamos, se expande y se achica
 	tween_golpeado.set_ease(Tween.EASE_IN)
 	tween_golpeado.tween_property(sprite_normal,"scale",escala_inicial * 1.3 , 0.1)
 	tween_golpeado.tween_property(sprite_normal,"scale",Vector2.ZERO, 0.2)
+
+
+func activar_aura_catnip():
+	#numero_impacto.mostrar_texto_impacto("¡CATNIP ACTIVADO!")
+	#numero_impacto.iniciar_numero_impacto(11) #era de prueba
+	
+	var color_catnip : Color = Color.WEB_GREEN
+	
+	sprite_onda_expansiva.modulate = probando_color_catnip
+	var material : ShaderMaterial = sprite_onda_expansiva.material
+	material.set_shader_parameter("progress", 0.0)
+	material.set_shader_parameter("enable_aura", true)
+	if tween_aura_catnip:
+		tween_aura_catnip.kill()
+	tween_aura_catnip = create_tween()
+	tween_aura_catnip.set_trans(Tween.TRANS_SINE)
+	tween_aura_catnip.set_ease(Tween.EASE_IN_OUT)
+	tween_aura_catnip.tween_property(material,"shader_parameter/progress",0.5, 0.55)
+
+
+func desactivar_aura_catnip():
+	var material : ShaderMaterial = sprite_onda_expansiva.material
+	material.set_shader_parameter("enable_aura", false)
+	if tween_aura_catnip:
+		tween_aura_catnip.kill()
+
+	tween_aura_catnip = create_tween()
+	tween_aura_catnip.set_trans(Tween.TRANS_CUBIC)
+	tween_aura_catnip.set_ease(Tween.EASE_IN)
+	tween_aura_catnip.tween_property(material,"shader_parameter/progress",1.0, 0.5)
+
+
+func activar_aura_monedas():
+	return
+	if tipo_ovillo.nombre != "Ovillo de Monedas": #por ahora chequeo con el string del nombre pero estaria bueno q tenga un enum para cada tipo mas adelante
+		var color_invisible : Color = Color.TRANSPARENT
+		sprite_onda_expansiva.modulate = color_invisible
+		return
+	var color_monedas : Color = Color.GOLD
+	
+	sprite_onda_expansiva.modulate = color_monedas
+	
+	var material : ShaderMaterial = sprite_onda_expansiva.material
+	material.set_shader_parameter("progress", 0.0)
+	material.set_shader_parameter("enable_aura", true)
+	if tween_aura_catnip:
+		tween_aura_catnip.kill()
+	tween_aura_catnip = create_tween()
+	tween_aura_catnip.set_trans(Tween.TRANS_SINE)
+	tween_aura_catnip.set_ease(Tween.EASE_IN_OUT)
+	tween_aura_catnip.tween_property(material,"shader_parameter/progress",0.5, 0.55)
+
+
+
+
+func desactivar_aura_monedas():
+	var material : ShaderMaterial = sprite_onda_expansiva.material
+	material.set_shader_parameter("enable_aura", false)
+	if tween_aura_catnip:
+		tween_aura_catnip.kill()
+	tween_aura_catnip = create_tween()
+	tween_aura_catnip.set_trans(Tween.TRANS_SINE)
+	tween_aura_catnip.set_ease(Tween.EASE_IN_OUT)
+	tween_aura_catnip.tween_property(material,"shader_parameter/progress",1.0, 0.55)
+
+
+func efecto_obtener_moneda():
+	var instancia_efecto = load(ruta_escena_moneda_recogida).instantiate()
+	add_child(instancia_efecto)
