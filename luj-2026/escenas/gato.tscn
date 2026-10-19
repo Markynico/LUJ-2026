@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cvo1oqa6q40ut" path="res://scripts/gato.gd" id="1_vrxw6"]
 [ext_resource type="PackedScene" uid="uid://brhfmi38jresg" path="res://escenas/componentes/disparador_pelotita.tscn" id="3_bbvk0"]
+[ext_resource type="Texture2D" uid="uid://ds6gl78d1ayev" path="res://assets/sprites_gato/gato 1_idle.png" id="10_2wj7v"]
 [ext_resource type="Texture2D" uid="uid://opl0ohjtrung" path="res://assets/estrella.png" id="14_nqle2"]
 [ext_resource type="Resource" uid="uid://c0y7jrcb8f0k" path="res://scripts/resources/gatos/michinko.tres" id="15_datos"]
 [ext_resource type="AnimationLibrary" uid="uid://cev3akcmcs0w0" path="res://scripts/resources/gatos/michinko_animaciones.tres" id="16_anim"]
-[ext_resource type="Texture2D" uid="uid://ds6gl78d1ayev" path="res://assets/sprites_gato/gato 1_idle.png" id="10_2wj7v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dklp6"]
 radius = 33.01515

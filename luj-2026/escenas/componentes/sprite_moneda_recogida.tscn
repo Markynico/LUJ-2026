@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dnlciajjeiqlm"]
+
+[ext_resource type="Texture2D" uid="uid://cmgxgm42kfbke" path="res://assets/moneda cara.png" id="1_w0a1n"]
+[ext_resource type="Script" uid="uid://ckuvb5g62llks" path="res://scripts/sprite_moneda_recogida.gd" id="2_nu5su"]
+
+[node name="SpriteMonedaRecogida" type="Sprite2D" unique_id=939286085]
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("1_w0a1n")
+script = ExtResource("2_nu5su")

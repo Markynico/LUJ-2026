@@ -50,7 +50,7 @@ signal escupir_bola
 
 var movimiento_horizontal_habilitado : bool = false
 var fuerza_disparo : float = 1.0
-var impactos_maximos : int = 4
+var impactos_maximos : int = 9999 #esto pa q el gato rompa todo al caer, igual tmb se cambia en el resource del gato en si
 var imagen_normal : Texture2D
 var imagen_bolita : Texture2D
 var imagen_orgulloso : Texture2D

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://koe7h22u8fj8"]
+
+[ext_resource type="Material" uid="uid://bqqij8cn03td7" path="res://scripts/shaders/shader_onda_expansiva.tres" id="1_enmuq"]
+[ext_resource type="Script" uid="uid://c8tm31g8p2mxy" path="res://scripts/sprite_onda_expansiva.gd" id="2_enmuq"]
+
+[sub_resource type="Gradient" id="Gradient_vkchq"]
+offsets = PackedFloat32Array(0, 0.6023392)
+colors = PackedColorArray(1, 1, 1, 0.5019608, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3vil1"]
+gradient = SubResource("Gradient_vkchq")
+width = 60
+height = 60
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="SpriteOndaExpansiva" type="Sprite2D" unique_id=1897993470]
+material = ExtResource("1_enmuq")
+texture = SubResource("GradientTexture2D_3vil1")
+script = ExtResource("2_enmuq")

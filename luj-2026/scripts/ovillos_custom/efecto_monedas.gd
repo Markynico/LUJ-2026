@@ -7,3 +7,4 @@ extends EfectosOvillo
 
 func al_recibir_impacto(ovillo : Ovillo):
 	Global.actualizar_monedas(ovillo.obtener_monedas(monedas))
+	ovillo.efecto_obtener_moneda()

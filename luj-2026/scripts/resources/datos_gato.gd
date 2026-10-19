@@ -35,7 +35,7 @@ extends Resource
 ##multiplicador de la distancia al mouse al lanzar el gato
 @export var fuerza_disparo : float = 1.0
 ##ovillos que puede romper el gato al ser lanzado
-@export var impactos_maximos : int = 4
+@export var impactos_maximos : int = 9999 #TODO dsp tenemos q sacar la reliquia de armadura pq ya no hace falta
 
 @export_group("Efectos")
 ##efectos pasivos del gato, usan los mismos hooks que las reliquias

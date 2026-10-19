@@ -4,6 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://dccnge8bwnhmv" path="res://escenas/bola_de_pelos.tscn" id="2_of528"]
 [ext_resource type="Texture2D" uid="uid://copta8wcxywct" path="res://iconos_custom/person_body.svg" id="3_of528"]
 [ext_resource type="PackedScene" uid="uid://bmqhpq2y5tv2w" path="res://escenas/componentes/trayectoria_disparo.tscn" id="4_c1g5h"]
+[ext_resource type="Shader" uid="uid://xfvaol3tvoy7" path="res://scripts/linea_disparador.gdshader" id="5_eqngu"]
+[ext_resource type="Texture2D" uid="uid://d1xya4jc17ii5" path="res://assets/placeholders/linea_disparador_michinko.png" id="6_eqngu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jgpmu"]
+shader = ExtResource("5_eqngu")
+shader_parameter/velocidad_linea = 1.0
 
 [node name="DisparadorPelotita" type="Node2D" unique_id=1250010144]
 script = ExtResource("1_k5sp8")
@@ -17,4 +23,9 @@ texture = ExtResource("3_of528")
 
 [node name="TrayectoriaDisparo" parent="." unique_id=2096489121 node_paths=PackedStringArray("disparador") instance=ExtResource("4_c1g5h")]
 z_index = 15
+texture_repeat = 2
+material = SubResource("ShaderMaterial_jgpmu")
+width = 15.0
+texture = ExtResource("6_eqngu")
+texture_mode = 1
 disparador = NodePath("..")
