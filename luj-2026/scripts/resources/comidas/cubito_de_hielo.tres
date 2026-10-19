@@ -21,4 +21,6 @@ rareza = 1
 textura = ExtResource("5_gnsxp")
 colores_estela = SubResource("Gradient_abins")
 imagen_comida_asociada = ExtResource("3_q8h8o")
+en_tienda = false
+en_coleccion = false
 efectos = Array[ExtResource("2_a5h7k")]([ExtResource("4_gnsxp")])

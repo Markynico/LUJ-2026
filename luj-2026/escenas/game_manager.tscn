@@ -5,6 +5,7 @@
 
 [node name="GameManager" type="Node" unique_id=627731887]
 script = ExtResource("1_rp10r")
+escena_stats = "uid://x4ns3yj8ctyr"
 
 [node name="CargadorManager" parent="." unique_id=1901494968 node_paths=PackedStringArray("game_manager") instance=ExtResource("2_f08bf")]
 game_manager = NodePath("..")
