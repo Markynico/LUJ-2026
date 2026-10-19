@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bqqij8cn03td7"]
+
+[ext_resource type="Shader" uid="uid://ea0vqi2vvaqd" path="res://scripts/onda_expansiva.gdshader" id="1_l10d0"]
+
+[resource]
+shader = ExtResource("1_l10d0")
+shader_parameter/circle_width = 0.90000001341108
+shader_parameter/alpha_boost = 0.80000001192096
+shader_parameter/progress = 0.0
+shader_parameter/enable_aura = false
+shader_parameter/aura_speed = 3.30000004917396
+shader_parameter/aura_strength = 0.030000001425
+shader_parameter/aura_frequency = 3.0

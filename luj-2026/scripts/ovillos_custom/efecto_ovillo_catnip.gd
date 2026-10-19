@@ -7,6 +7,7 @@ extends EfectosOvillo
 func al_recibir_impacto(ovillo: Ovillo):
 	AudioManager.reproducir_sfx(EfectoDeSonido.Tipo.CATNIP)
 	ovillo.get_tree().call_group("ovillos", "duplicar_recompensas")
+	#ovillo.mostrar_texto_al_impactar("¡CATNIP ACTIVADO!")
 	await ovillo.get_tree().create_timer(duracion * ReliquiasManager.multiplicador_duracion_para("catnip")).timeout
 	if is_instance_valid(ovillo):
 		ovillo.get_tree().call_group("ovillos", "fin_duplicar")

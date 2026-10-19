@@ -1,30 +1,22 @@
 [gd_scene format=3 uid="uid://koe7h22u8fj8"]
 
-[ext_resource type="Shader" uid="uid://ea0vqi2vvaqd" path="res://scripts/onda_expansiva.gdshader" id="1_t7jyh"]
+[ext_resource type="Material" uid="uid://bqqij8cn03td7" path="res://scripts/shaders/shader_onda_expansiva.tres" id="1_enmuq"]
 [ext_resource type="Script" uid="uid://c8tm31g8p2mxy" path="res://scripts/sprite_onda_expansiva.gd" id="2_enmuq"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_37ege"]
-shader = ExtResource("1_t7jyh")
-shader_parameter/circle_width = 0.60000000894072
-shader_parameter/alpha_boost = 4.20000004768384
-shader_parameter/progress = 0.0
-shader_parameter/enable_aura = false
-shader_parameter/aura_speed = 7.0000001043084
-shader_parameter/aura_strength = 0.050000002375
-shader_parameter/aura_frequency = 47.0
-
 [sub_resource type="Gradient" id="Gradient_vkchq"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.83137256)
+offsets = PackedFloat32Array(0, 0.6023392)
+colors = PackedColorArray(1, 1, 1, 0.5019608, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3vil1"]
 gradient = SubResource("Gradient_vkchq")
-width = 40
-height = 40
+width = 60
+height = 60
+use_hdr = true
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 
 [node name="SpriteOndaExpansiva" type="Sprite2D" unique_id=1897993470]
-material = SubResource("ShaderMaterial_37ege")
+material = ExtResource("1_enmuq")
 texture = SubResource("GradientTexture2D_3vil1")
 script = ExtResource("2_enmuq")

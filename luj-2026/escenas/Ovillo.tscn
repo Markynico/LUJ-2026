@@ -7,17 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://dymyh3ifxvug3" path="res://escenas/componentes/pergamino_info.tscn" id="6_dcous"]
 [ext_resource type="PackedScene" uid="uid://koe7h22u8fj8" path="res://escenas/componentes/sprite_onda_expansiva.tscn" id="7_3vil1"]
 [ext_resource type="PackedScene" uid="uid://foy2qcacwbix" path="res://escenas/componentes/numero_impacto.tscn" id="7_vkchq"]
-[ext_resource type="Shader" uid="uid://ea0vqi2vvaqd" path="res://scripts/onda_expansiva.gdshader" id="8_3vil1"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_f54ks"]
-shader = ExtResource("8_3vil1")
-shader_parameter/circle_width = 0.2500000037253
-shader_parameter/alpha_boost = 1.0
-shader_parameter/progress = 0.0
-shader_parameter/enable_aura = false
-shader_parameter/aura_speed = 10.0
-shader_parameter/aura_strength = 0.02
-shader_parameter/aura_frequency = 40.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_37ege"]
 radius = 13.5
@@ -28,7 +17,7 @@ collision_mask = 0
 input_pickable = true
 script = ExtResource("1_wlnnp")
 tipo_ovillo = ExtResource("2_wlnnp")
-probando_color_catnip = Color(0, 0.8352941, 0, 0.6901961)
+probando_color_catnip = Color(0, 0.8352941, 0, 0.39607844)
 forma_colision = NodePath("CollisionShape2D")
 sprite_normal = NodePath("SpriteNormal")
 sprite_desactivado = NodePath("SpriteDesactivado")
@@ -42,7 +31,6 @@ sprite_onda_expansiva = NodePath("SpriteOndaExpansiva")
 shader_titilar = ExtResource("3_3vil1")
 
 [node name="SpriteOndaExpansiva" parent="." unique_id=1897993470 instance=ExtResource("7_3vil1")]
-material = SubResource("ShaderMaterial_f54ks")
 
 [node name="SpriteNormal" type="Sprite2D" parent="." unique_id=20603333]
 texture_filter = 1
