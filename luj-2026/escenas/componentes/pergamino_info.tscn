@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://dymyh3ifxvug3"]
 
 [ext_resource type="Script" uid="uid://djc83gveohivq" path="res://scripts/pergamino_info.gd" id="1_gtour"]
-[ext_resource type="FontFile" uid="uid://dwg47e0trev3j" path="res://fuentes/Bungee-Regular.ttf" id="2_exk88"]
+[ext_resource type="FontFile" uid="uid://db7omic2nxlay" path="res://assets/fuentes/IMFellEnglishSC-Regular.ttf" id="2_1oflw"]
+[ext_resource type="FontFile" uid="uid://dvrm53iugckup" path="res://assets/fuentes/WinkySans-VariableFont_wght.ttf" id="2_exk88"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37ege"]
 content_margin_left = 24.0
@@ -44,12 +45,12 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("2_exk88")
+theme_override_fonts/normal_font = ExtResource("2_1oflw")
 theme_override_font_sizes/normal_font_size = 47
 bbcode_enabled = true
-meta_underlined = false
 text = "vo jugador si estas viendo esto, es un bug :p"
 fit_content = true
+meta_underlined = false
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=1657379201]
 layout_mode = 2
@@ -63,6 +64,6 @@ mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("2_exk88")
 theme_override_font_sizes/normal_font_size = 47
 bbcode_enabled = true
-meta_underlined = false
 text = "abcde"
 fit_content = true
+meta_underlined = false
